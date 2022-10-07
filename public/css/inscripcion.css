@@ -1,0 +1,34 @@
+.course-data-card,
+.pay-step-box {
+  max-width: 33rem;
+}
+
+.bs-stepper .step-trigger:not(:disabled):not(.disabled) {
+  cursor: default;
+}
+
+.bs-stepper .step-trigger {
+  pointer-events: none;
+}
+
+.bs-stepper .step-trigger.disabled,
+.bs-stepper .step-trigger:disabled {
+  opacity: 0.85;
+}
+
+.bs-stepper .step.active .step-trigger {
+  color: #007bff;
+  outline: 0;
+}
+
+.single-step .step:not(.active) {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .bs-stepper .step-trigger {
+    -ms-flex-direction: initial;
+    flex-direction: initial;
+    padding: 20px;
+  }
+}

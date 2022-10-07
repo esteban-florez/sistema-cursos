@@ -1,0 +1,19 @@
+.price-badge {
+  font-size: 1.3rem;
+  float: right;
+  margin-top: 0.25rem;
+}
+
+@media screen and (min-width: 576px) {
+  .courses-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 48%));
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .courses-grid div:not(.badge, .card-body) {
+    height: 100%;
+  }
+}

@@ -1,0 +1,27 @@
+.area-card {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.area-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.area-buttons {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 576px) {
+  .area-card {
+    /* justify-content: initial; */
+  }
+}

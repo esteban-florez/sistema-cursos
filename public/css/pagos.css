@@ -1,0 +1,40 @@
+.pay-card {
+  max-width: 43rem;
+}
+
+.status-badge {
+  font-size: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .pay-md-grid {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .pay-md-grid > .list-group-item {
+    width: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.125) !important;
+  }
+
+  .pay-md-grid > .course-cell {
+    width: 100%;
+    font-size: 1.1rem;
+  }
+
+  .br-tl-md {
+    border-radius: 5px 0 0 0 !important;
+  }
+  
+  .br-tr-md {
+    border-radius: 0 5px 0 0 !important;
+  }
+  
+  .br-br-md {
+    border-radius: 0 0 5px 0 !important;
+  }
+
+  .br-bl-md {
+    border-radius: 0 0 0 5px !important;
+  }
+}

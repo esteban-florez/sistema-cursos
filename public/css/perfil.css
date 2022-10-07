@@ -1,0 +1,26 @@
+.widget-user .widget-user-image > img {
+  width: 6rem;
+  height: 6rem;
+}
+
+.widget-user .widget-user-username {
+  font-weight: bold;
+}
+
+.widget-user .widget-user-desc {
+  font-weight: lighter;
+}
+
+.widget-user .widget-user-image {
+  left: calc(50% - 3rem);
+  margin-left: 0;
+}
+
+.profile-number {
+  font-size: 1.4rem;
+  font-family: monospace;
+}
+
+.profile-card-shadow {
+  box-shadow: 0 0 10px rgb(180, 180, 180);
+}

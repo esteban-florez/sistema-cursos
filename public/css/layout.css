@@ -1,0 +1,154 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  margin-top: 0.5rem;
+}
+
+.badge.badge-5 {
+  font-size: 1.5rem;
+}
+
+.badge.badge-4 {
+  font-size: 1.25rem;
+}
+
+.badge.badge-3 {
+  font-size: 1rem;
+}
+
+.badge.badge-2 {
+  font-size: 0.75rem;
+}
+
+.badge.badge-1 {
+  font-size: 0.5rem;
+}
+
+.gap-5 {
+  gap: 1.5rem;
+}
+
+.gap-4 {
+  gap: 1.25rem;
+}
+
+.gap-3 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 0.75rem;
+}
+
+.gap-1 {
+  gap: 0.5rem;
+}
+
+.user-panel img {
+  height: 2.1rem;
+  object-fit: cover;
+}
+
+.img-size-50 {
+  height: 50px;
+}
+
+.navbar-icon {
+  font-size: 1.2rem;
+}
+
+.navbar-icon + * {
+  font-size: .8rem;
+  top: 0.25rem;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  margin: 1rem auto;
+  background-color: #555;
+}
+
+.user-panel .image img {
+  width: 45px;
+  height: 45px;
+}
+
+.img-cover {
+  object-fit: cover;
+}
+
+.content-top-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-top-layout > form {
+  width: 100%;
+}
+
+.select-icon {
+  right: 1rem;
+  top: calc(50% - 0.5rem);
+}
+
+.small-box {
+  margin-bottom: 0;
+}
+
+span.fas,
+span.far,
+span.fab {
+  pointer-events: none;
+}
+
+.footer-img {
+  top: calc(50% - 20px);
+}
+
+@media screen and (min-width: 576px) {
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .content-top-layout {
+    flex-wrap: nowrap;
+  }
+
+  .content-top-layout > form {
+    width: 50%;
+  }
+  
+  .content-top-layout > button {
+    order: 1;
+  }
+
+  .content-top-layout.alt-top-layout {
+    flex-wrap: nowrap;
+  }
+
+  .content-top-layout.alt-top-layout > form {
+    width: 30%;
+  }
+
+  .content-top-layout.alt-top-layout > .buttons-wrapper {
+    order: 1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .content-top-layout.alt-top-layout > form {
+    width: 40%;
+  }
+}
+
+@media screen and (min-width: 1148px) {
+  .content-top-layout.alt-top-layout > form {
+    width: 50%;
+  }
+}

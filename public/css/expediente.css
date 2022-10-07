@@ -1,0 +1,17 @@
+.card-link {
+  color: initial;
+}
+
+.card-link:hover {
+  color: initial;
+}
+
+.card-link > .card {
+  transition-timing-function: linear;
+  transition-duration: 0.1s;
+  transition-property: background;
+}
+
+.card-link > .card:hover {
+  background-color: #eee;
+}

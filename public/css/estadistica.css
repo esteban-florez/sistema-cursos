@@ -1,0 +1,7 @@
+.stats-form {
+  flex-grow: 1;
+}
+
+.general-stats-row {
+  row-gap: 0.5rem;
+}
