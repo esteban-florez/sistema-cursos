@@ -10,7 +10,7 @@
       </div>
     </div>
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column" role="menu">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
         <li class="nav-item">
           <a href="/cursos-admin.html" class="nav-link">
             <i class="nav-icon fas fa-graduation-cap"></i>
@@ -43,7 +43,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/login.html" class="nav-link">
+          <a href="{{ url('logout') }}" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Cerrar Sesión</p>
           </a>
