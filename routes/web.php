@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/login', 'login')
+Route::redirect('/', 'login');
+
+Route::view('login', 'login')
     ->name('login');
 
-Route::post('/auth', [LoginController::class, 'authenticate'])
+Route::post('auth', [LoginController::class, 'authenticate'])
     ->name('auth');
 
-Route::get('/logout', [LoginController::class, 'logout'])
+Route::get('logout', [LoginController::class, 'logout'])
     ->name('logout');
 
-Route::view('/home', 'home')->name('home')
+Route::view('home', 'home')->name('home')
     ->middleware('auth');
