@@ -12,7 +12,7 @@
     </div>
     <div class="card">
       <div class="card-body login-card-body">
-      <form action="{{ url('auth') }}" method="POST">
+      <form action="{{ route('auth') }}" method="POST">
         @csrf
         <div class="input-group mb-3">
         <input type="email" class="form-control" placeholder="Corre Electrónico" name="email">
