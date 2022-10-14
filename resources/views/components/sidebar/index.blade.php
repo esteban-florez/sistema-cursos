@@ -111,7 +111,7 @@
       @endis
       <div class="divider"></div>
       @isnt('administrator')
-      <x-sidebar.item :url="route('profile')" icon="user-alt">
+      <x-sidebar.item url="#" icon="user-alt">
         Perfil
       </x-sidebar.item>
       @endisnt
