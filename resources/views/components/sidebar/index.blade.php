@@ -111,7 +111,7 @@
       @endis
       <div class="divider"></div>
       @isnt('administrator')
-      <x-sidebar.item :url="url('profile')" icon="user-alt">
+      <x-sidebar.item :url="route('profile')" icon="user-alt">
         Perfil
       </x-sidebar.item>
       @endisnt
@@ -131,7 +131,7 @@
         </x-slot>
       </x-sidebar.item>
       @endis
-      <x-sidebar.item :url="url('logout')" icon="sign-out-alt">
+      <x-sidebar.item :url="route('logout')" icon="sign-out-alt">
         Cerrar Sesión
       </x-sidebar.item>
     </ul>

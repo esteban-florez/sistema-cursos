@@ -26,6 +26,9 @@
 - Agregar aviso de hacer click para ver detalle de expediente en "expedientes.html".
 - Cambiar "materiales" por "artículos" en historial.html
 - Ver donde es necesario poner botones de "volver" y así.
+- Artículos se quita el codigo.
+- Interfaz de inventario, que tenga todos, un link dentro de Sidebar->Clubes->Inventarios.
+- Pagos con collapse (mirian).
 
 # Cosas mas como de arquitectura que hay que decidir/solucionar:
 
