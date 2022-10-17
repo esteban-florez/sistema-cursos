@@ -17,7 +17,7 @@
         <i class="far fa-bell navbar-icon"></i>
         <span class="badge badge-danger navbar-badge">2</span>
       </a>
-      <x-header.dropdown/>
+      <x-layout.header.dropdown/>
     </li>
     <li class="nav-item">
       <a class="nav-link" role="button" data-toggle="modal" data-target="#infoModal">
