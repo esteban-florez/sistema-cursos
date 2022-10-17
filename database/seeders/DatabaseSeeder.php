@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Area;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'name' => 'Edeblangel Vanegas',
-            'email' => 'administrator@example.com',
-            'password' => bcrypt('administrator'),
+            'email' => 'admin@example.com',
+            'password' => bcrypt('admin'),
             'role' => 'administrator',
         ]);
 
@@ -34,5 +35,8 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('student'),
             'role' => 'student',
         ]);
+
+        Area::factory(4)->create();
+        Area::create(['name' => 'Informática', 'is_pnf' => true]);
     }
 }

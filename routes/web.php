@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,3 +28,13 @@ Route::get('logout', [LoginController::class, 'logout'])
 
 Route::view('home', 'home')->name('home')
     ->middleware('auth');
+
+Route::view('test', 'test');
+
+Route::group([
+    'middleware' => ['auth', 'admin'],
+    'prefix' => 'areas',
+    'as' => 'areas.',
+], function () {
+    Route::get('/', [AreaController::class, 'index'])->name('index');
+});
