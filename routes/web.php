@@ -37,4 +37,6 @@ Route::group([
     'as' => 'areas.',
 ], function () {
     Route::get('/', [AreaController::class, 'index'])->name('index');
+
+    Route::post('/', [AreaController::class, 'store'])->name('store');
 });
