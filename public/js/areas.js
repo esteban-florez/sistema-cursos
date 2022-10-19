@@ -1,8 +1,8 @@
-const check = document.querySelector('#isPNFCheckbox')
+const check = document.querySelector('#isPnfCheckbox');
 const pnfInput = document.querySelector('#pnfNameInput')
-check.addEventListener('input', updatePNFInput)
+check.addEventListener('input', updatePnfInput)
     
-function updatePNFInput() {
+function updatePnfInput() {
   if(check.checked) {
     pnfInput.removeAttribute('disabled')
   } else {

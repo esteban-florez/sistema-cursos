@@ -1,4 +1,4 @@
-<x-modal>
+<x-modal id="infoModal">
   <x-slot name="header">
     <h4 class="modal-title">Contáctanos</h4>
     <button type="button" class="close" data-dismiss="modal">

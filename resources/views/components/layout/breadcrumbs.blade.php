@@ -1,8 +1,9 @@
 @inject('Route', 'Illuminate\Support\Facades\Route')
-@aware(['subtitle'])
 
-<div class="d-flex gap-2 py-2 @isset($subtitle)align-self-start @endisset">
+<div class="d-md-flex gap-2 py-sm-2 breadcrumbs">
   <a href="#">Cursos</a>
   /
-  <span>Áreas de formación</span>
+  <a href="#">Listado de cursos</a>
+  /
+  <span>Curso de Programación Web</span>
 </div>
