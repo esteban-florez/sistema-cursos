@@ -37,6 +37,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Area::factory(4)->create();
-        Area::create(['name' => 'Informática', 'is_pnf' => true]);
+        Area::create(['name' => 'Informática', 'is_pnf' => true, 'pnf_name' => 'Informática']);
     }
 }

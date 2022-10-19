@@ -15,8 +15,8 @@
           </p>
         </div>
         <div class="area-buttons">
-          <button class="btn btn-primary d-block d-sm-inline-block">Editar</button>
-          <button class="btn btn-danger d-block d-sm-inline-block">Eliminar</button>
+          <x-button icon="edit">Editar</x-button>
+          <x-button icon="trash-alt" color="danger">Eliminar</x-button>
         </div>
       </div>
     </div>

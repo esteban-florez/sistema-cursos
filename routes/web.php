@@ -40,4 +40,4 @@ Route::group([
 });
 
 Route::view('pagos', 'pagos')->name('pagos')
-    ->middleware('auth');
+    ->middleware('auth', 'admin');

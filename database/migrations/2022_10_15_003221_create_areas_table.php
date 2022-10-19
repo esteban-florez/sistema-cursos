@@ -16,7 +16,8 @@ class CreateAreasTable extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->boolean('is_pnf');
+            $table->boolean('is_pnf')->default(false);
+            $table->string('pnf_name')->unique()->nullable();
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
-<x-layout.app :title="$title">
+<x-layout.app :title="$title" :extra="$extra ?? null">
   <main class="content-wrapper">
-    <x-layout.title :subtitle="$subtitle ?? null">
+    <x-layout.title>
       {{ $title }}
     </x-layout.title>
     {{ $slot }}

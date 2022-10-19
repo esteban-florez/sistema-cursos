@@ -14,8 +14,9 @@ class AreaFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->jobTitle,
+            'name' => $this->faker->unique()->jobTitle,
             'is_pnf' => $this->faker->boolean(),
+            'pnf_name' => $this->faker->unique()->company,
         ];
     }
 }
