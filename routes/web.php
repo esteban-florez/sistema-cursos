@@ -38,3 +38,6 @@ Route::group([
 ], function () {
     Route::get('/', [AreaController::class, 'index'])->name('index');
 });
+
+Route::view('pagos', 'pagos')->name('pagos')
+    ->middleware('auth');

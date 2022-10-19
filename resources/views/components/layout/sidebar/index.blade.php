@@ -83,7 +83,7 @@
       <x-layout.sidebar.item icon="money-bill">
         Pagos
         <x-slot name="menu">
-          <x-layout.sidebar.item url="#" icon="list">
+          <x-layout.sidebar.item :url="route('pagos')" icon="list">
             Lista de pagos
           </x-layout.sidebar.item>
           @is('administrator')
