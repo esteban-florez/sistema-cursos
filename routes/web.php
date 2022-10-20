@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,12 @@ Route::redirect('/', 'login');
 
 Route::view('login', 'login')
     ->name('login');
+
+Route::get('signup', [UserController::class, 'create'])
+    ->name('users.create');
+
+Route::post('users', [UserController::class, 'store'])
+    ->name('users.store');
 
 Route::post('auth', [LoginController::class, 'authenticate'])
     ->name('auth');
