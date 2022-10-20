@@ -20,7 +20,7 @@
             </div>
             @enderror
             <div class="input-group mb-3">
-              <input type="email" class="form-control" placeholder="Corre Electrónico" name="email">
+              <input type="email" class="form-control" placeholder="Correo Electrónico" name="email">
               <div class="input-group-append">
                 <div class="input-group-text">
                   <i class="fa fa-user"></i>
