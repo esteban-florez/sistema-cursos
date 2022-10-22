@@ -29,28 +29,43 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="mb-3 col-md-6">
-                  <label for="usernameInput">Nombre de usuario: </label>
-                  <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" id="usernameInput" required>
+                  <x-field type= "text" name= "username" id= "usernameInput" required>
+                    Nombre de usuario:
+                  </x-field>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="passwordInput">Contraseña: </label>
-                  <input type="password" class="form-control" placeholder="Contraseña" id="passwordInput" name="password" required>
+                  <x-field type= "text" name= "password" id= "passwordInput" required>
+                    Contraseña:
+                  </x-field>
                 </div>
               </div>
               <hr>
               <h2>Datos personales</h2>
               <div class="row">
                 <div class="mb-3 col-md-6">
-                  <label for="namesInput">Nombres: </label>
-                  <input type="text" class="form-control" placeholder="Nombres" name="names" id="namesInput" required>
+                  <x-field type= "text" name= "first-name" id= "firstName" required>
+                    Primer nombre: 
+                  </x-field>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="lastnamesInput">Apellidos: </label>
-                  <input type="text" class="form-control" placeholder="Apellidos" name="lastnames" id="lastnamesInput" required>
+                  <x-field type= "text" name= "second-name" id= "secondName" required>
+                    Segundo nombre: 
+                  </x-field>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="birthInput">Fecha de nacimiento: </label>
-                  <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="birth" id="birthInput" required>
+                  <x-field type= "text" name= "first-lastname" id= "firstLastname" required>
+                    Primer apellido: 
+                  </x-field>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <x-field type= "text" name= "second-lastname" id= "secondLastname" required>
+                    Segundo apellido: 
+                  </x-field>
+                </div>
+                <div class="mb-3 col-md-6">
+                  <x-field type= "date" name= "birth" id= "birthInput" required>
+                    Fecha de nacimiento:
+                  </x-field>
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="genderSelect">Sexo: </label>
@@ -71,12 +86,14 @@
                   </div>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="emailInput">Correo Electrónico: </label>
-                  <input class="form-control" type="email" name="email" placeholder="Correo Electrónico" id="emailInput" required>
+                  <x-field type= "email" name= "email" id= "emailInput" required>
+                    Correo Electrónico: 
+                  </x-field>
                 </div>
                 <div class="mb-3 col-md-6">
-                  <label for="phoneInput">Número de Teléfono: </label>
-                  <input class="form-control" type="text" name="phone" placeholder="Numero de Teléfono" id="phoneInput" required>
+                  <x-field type= "text" name= "phone" id= "phoneInput" required>
+                  Número de Teléfono: 
+                  </x-field>
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="gradeSelect">Grado de Instrucción: </label>
