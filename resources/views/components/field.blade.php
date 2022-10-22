@@ -1,5 +1,5 @@
 @php
- $isCheckbox = $attributes->get('type') == 'checkbox';
+ $isCheckbox = $attributes->get('type') === 'checkbox';
 @endphp
 
 <div @class(['form-check' => $isCheckbox, 'mb-3'])>

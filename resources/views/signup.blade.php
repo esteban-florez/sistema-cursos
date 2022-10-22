@@ -8,9 +8,7 @@
   <body class="hold-transition register-page">
     <div class="overlay"></div>
     <div class="register-box">
-      <div class="bg-white rounded-circle logo-container my-2 shadow">
-        <img width="60" height="60" src="{{ asset('img/logo-upta.png') }}">
-      </div>
+      <x-circle-logo />
       <div class="register-logo">
         <a class="text-white" href="#">
           <h1 class="font-weight-normal">Registro de usuario</h1>

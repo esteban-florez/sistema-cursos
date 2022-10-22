@@ -24,3 +24,9 @@
   place-items: center;
   margin: 0 auto;
 }
+
+span.fas,
+span.far,
+span.fab {
+  pointer-events: none;
+}

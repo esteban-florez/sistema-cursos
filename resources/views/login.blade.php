@@ -2,15 +2,18 @@
   <body class="hold-transition login-page">
     <div class="overlay"></div>
     <div class="login-box my-3">
-      <div class="bg-white rounded-circle logo-container my-2 shadow">
-        <img width="60" height="60" src="{{ asset('img/logo-upta.png') }}">
-      </div>
+      <x-circle-logo />
       <div class="login-logo">
         <a class="text-white" href="#">
           <h1 class="font-weight-normal">Iniciar Sesión</h1>
         </a>
       </div>
       <div class="card">
+        @if(session('status'))
+          <div class="alert alert-primary" role="alert">
+            Fino
+          </div>
+        @endif
         <div class="card-body login-card-body">
           <form action="{{ route('auth') }}" method="POST">
             @csrf
@@ -44,7 +47,9 @@
             </a>
           </div>
           <div class="d-flex justify-content-center">
-            <a class="text-center" href="/olvido-contraseña.html">Olvidé mi contraseña.</a>
+            <a class="text-center" href="{{ route('password.forgot') }}">
+              Olvidé mi contraseña.
+            </a>
           </div>
         </div>
       </div>
