@@ -36,6 +36,13 @@ class DatabaseSeeder extends Seeder
             'role' => 'student',
         ]);
 
+        User::create([
+            'name' => 'Esteban Florez',
+            'email' => 'eflorez077@gmail.com',
+            'password' => bcrypt('student'),
+            'role' => 'student',
+        ]);
+
         Area::factory(4)->create();
         Area::create(['name' => 'Informática', 'is_pnf' => true, 'pnf_name' => 'Informática']);
     }

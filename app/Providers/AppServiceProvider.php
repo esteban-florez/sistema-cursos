@@ -29,11 +29,11 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Blade::if('is', function ($role) {
-            return Auth::user()->role == $role;
+            return Auth::user()->role === $role;
         });
 
         Blade::if('isnt', function ($role) {
-            return Auth::user()->role != $role;
+            return Auth::user()->role !== $role;
         });
     }
 }
