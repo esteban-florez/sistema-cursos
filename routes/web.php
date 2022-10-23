@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\UserController;
-use App\Mail\RecoveryPassword;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,38 +16,46 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/email', function () {
-//     Mail::to('eflorez077@gmail.com')->send(new RecoveryPassword());
-// });
-
-// Auth routes
 
 Route::redirect('/', 'login');
 
-Route::view('login', 'login')
-    ->name('login');
+// Auth routes
 
-Route::post('auth', [AuthController::class, 'authenticate'])
-    ->name('auth');
+Route::group([
+    'controller' => AuthController::class
+], function () {
+    Route::view('login', 'login')
+        ->name('login');
+    
+    Route::post('auth', 'authenticate')
+        ->name('auth');
+    
+    Route::get('logout', 'logout')
+        ->name('logout');
+});
 
-Route::get('logout', [AuthController::class, 'logout'])
-    ->name('logout');
 
-Route::view('forgot-password', 'forgot-password')
-    ->middleware('guest')
-    ->name('password.forgot');
+// Password recovery
 
-Route::post('forgot-password', [AuthController::class, 'sendLink'])
-    ->middleware('guest')
-    ->name('password.email');
+Route::group([
+    'controller' => PasswordController::class,
+    'middleware' => 'guest',
+    'as' => 'password.',
+],
+function () {
+    Route::view('forgot-password', 'forgot')
+        ->name('forgot');
+    
+    Route::post('forgot-password', 'mail')
+        ->name('email');
+    
+    Route::get('reset-password/{token}', 'edit')
+        ->name('edit');
+    
+    Route::post('reset-password', 'reset')
+        ->name('reset');
+});
 
-Route::get('reset-password/{token}', function ($token) {
-    return view('password-reset', ['token' => $token]);
-})->middleware('guest')->name('password.edit');
-
-Route::post('reset-password', [AuthController::class, 'resetPassword'])
-    ->middleware('guest')
-    ->name('password.reset');
 
 // User routes
 
