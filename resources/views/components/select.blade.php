@@ -1,8 +1,11 @@
-@props(['default', 'options', 'color', 'icon'])
+@props(['default', 'options'])
+@php
+ $required = $attributes->get('required');   
+@endphp
 
 <div class="mb-3">
-  @isset($icon)
-  <i class="mr-1 fas fa-{{ $icon }} text-{{ $color }}"></i>
+  @isset($required)
+  <i class="mr-1 fas fa-asterisk text-danger"></i>
   @endisset
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   <select class="form-control" {{ $attributes }}>

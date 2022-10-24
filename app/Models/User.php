@@ -13,26 +13,11 @@ class User extends Authenticatable implements CanResetPassword
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are not mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'first_name',
-        'second_name',
-        'first_lastname',
-        'second_lastname',
-        'username',
-        'ci',
-        'ci_type',
-        'email',
-        'birth',
-        'gender',
-        'phone',
-        'grade',
-        'address',
-        'password'
-    ];
+    protected $guarded = ['id', 'role'];
 
     /**
      * The attributes that should be hidden for serialization.

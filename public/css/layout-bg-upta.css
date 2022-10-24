@@ -30,3 +30,7 @@ span.far,
 span.fab {
   pointer-events: none;
 }
+
+.fa-asterisk.text-danger {
+  font-size: 0.75rem;
+}

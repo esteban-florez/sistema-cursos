@@ -42,9 +42,9 @@
           </form>
           <hr>
           <div class="social-auth-links text-center mb-3">
-            <a href="{{ route('users.create') }}" class="btn btn-block btn-success">
+            <x-button url="{{ route('users.create') }}" color="success" class="btn-block">
               ¿No tienes una cuenta? Regístrate.
-            </a>
+            </x-button>
           </div>
           <div class="d-flex justify-content-center">
             <a class="text-center" href="{{ route('password.forgot') }}">

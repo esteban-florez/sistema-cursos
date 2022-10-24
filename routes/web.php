@@ -43,7 +43,7 @@ Route::group([
     'as' => 'password.',
 ],
 function () {
-    Route::view('forgot-password', 'forgot')
+    Route::get('forgot-password', 'forgot')
         ->name('forgot');
     
     Route::post('forgot-password', 'mail')

@@ -1,5 +1,13 @@
-@props(['color' => 'primary', 'icon', 'hideText'])
+@props(['color' => 'primary', 'icon', 'hideText', 'url' => null])
 
+@if($url)
+<a href="{{ $url }}" {{
+  $attributes
+    ->class(['btn', 'btn-'.$color])
+}}>
+  {{$slot}}
+</a>
+@else
 <button
   {{
     $attributes
@@ -16,3 +24,4 @@
     @endisset
     >{{ $slot }}</span>
 </button>
+@endif

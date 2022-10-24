@@ -15,33 +15,29 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::create([
-            'name' => 'Edeblangel Vanegas',
+        User::factory([
+            'first_name' => 'Edeblangel',
+            'first_lastname' => 'Vanegas',
             'email' => 'admin@example.com',
             'password' => bcrypt('admin'),
             'role' => 'administrator',
-        ]);
+        ])->create();
 
-        User::create([
-            'name' => 'Elías Vargas',
+        User::factory([
+            'first_name' => 'Elías',
+            'first_lastname' => 'Vargas',
             'email' => 'teacher@example.com',
             'password' => bcrypt('teacher'),
             'role' => 'instructor',
-        ]);
+        ])->create();
 
-        User::create([
-            'name' => 'Esteban Florez',
+        User::factory([
+            'first_name' => 'Esteban',
+            'first_lastname' => 'Florez',
             'email' => 'student@example.com',
             'password' => bcrypt('student'),
             'role' => 'student',
-        ]);
-
-        User::create([
-            'name' => 'Esteban Florez',
-            'email' => 'eflorez077@gmail.com',
-            'password' => bcrypt('student'),
-            'role' => 'student',
-        ]);
+        ])->create();
 
         Area::factory(4)->create();
         Area::create(['name' => 'Informática', 'is_pnf' => true, 'pnf_name' => 'Informática']);

@@ -28,13 +28,13 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-md-6">
-                  <x-field type="text" name="username" id="username" icon="asterisk" color="danger" required>
-                    Nombre de usuario:
-                  </x-field>
+                  <x-field type="password" name="password" id="password" required>
+                    Contraseña:
+                  </x-field>  
                 </div>
                 <div class="col-md-6">
-                  <x-field type="password" name="password" id="password" icon="asterisk" color="danger" required>
-                    Contraseña:
+                  <x-field type="password" name="password_confirmation" id="passwordConfirmation" required>
+                    Confirmar contraseña:
                   </x-field>
                 </div>
               </div>
@@ -42,7 +42,7 @@
               <h2>Datos personales</h2>
               <div class="row">
                 <div class="col-md-6">
-                  <x-field type="text" name="first_name" id="firstName" icon="asterisk" color="danger" required>
+                  <x-field type="text" name="first_name" id="firstName" required>
                     Primer nombre: 
                   </x-field>
                 </div>
@@ -52,7 +52,7 @@
                   </x-field>
                 </div>
                 <div class="col-md-6">
-                  <x-field type="text" name="first_lastname" id="firstLastname" icon="asterisk" color="danger" required>
+                  <x-field type="text" name="first_lastname" id="firstLastname" required>
                     Primer apellido: 
                   </x-field>
                 </div>
@@ -72,27 +72,27 @@
                   </div>
                 </div>
                 <div class="col-md-6">
-                  <x-field type="email" name="email" id="email" icon="asterisk" color="danger" required>
+                  <x-field type="email" name="email" id="email" required>
                     Correo Electrónico: 
                   </x-field>
                 </div>
                 <div class="col-md-6">
-                  <x-field type="date" name="birth" id="birth" icon="asterisk" color="danger" required>
+                  <x-field type="date" name="birth" id="birth" required>
                     Fecha de nacimiento:
                   </x-field>
                 </div>
                 <div class="col-md-6">
-                  <x-select default name="gender" id="gender" icon="asterisk" color="danger" required :options="['female'=>'Femenino', 'male'=>'Masculino']">
+                  <x-select default name="gender" id="gender" required :options="['female'=>'Femenino', 'male'=>'Masculino']">
                     Género:
                   </x-select>
                 </div>
                 <div class="col-md-6">
-                  <x-field type="number" name="phone" id="phone" icon="asterisk" color="danger" required>
+                  <x-field type="number" name="phone" id="phone" required>
                     Número de Teléfono: 
                   </x-field>
                 </div>
                 <div class="col-md-6">
-                  <x-select default name="grade" id="grade" icon="asterisk" color="danger" required :options="['basic'=>'Primaria', 'middle'=>'Bachillerato', 'tsu'=>'TSU', 'pregrade'=>'Pregrado']">
+                  <x-select default name="grade" id="grade" required :options="['basic'=>'Primaria', 'middle'=>'Bachillerato', 'tsu'=>'TSU', 'pregrade'=>'Pregrado']">
                     Grado de Instrucción:
                   </x-select>
                 </div>
