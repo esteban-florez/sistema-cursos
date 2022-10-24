@@ -1,8 +1,12 @@
+@props(['color', 'icon'])
 @php
  $isCheckbox = $attributes->get('type') === 'checkbox';
 @endphp
 
 <div @class(['form-check' => $isCheckbox, 'mb-3'])>
+  @isset($icon)
+  <i class="mr-1 fas fa-{{ $icon }} text-{{ $color }}"></i>
+  @endisset
   @unless ($isCheckbox)
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   @endunless

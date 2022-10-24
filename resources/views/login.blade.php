@@ -42,7 +42,7 @@
           </form>
           <hr>
           <div class="social-auth-links text-center mb-3">
-            <a href="/registro.html" class="btn btn-block btn-success">
+            <a href="{{ route('users.create') }}" class="btn btn-block btn-success">
               ¿No tienes una cuenta? Regístrate.
             </a>
           </div>

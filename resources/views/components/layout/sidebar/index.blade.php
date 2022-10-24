@@ -5,7 +5,7 @@
     <img src="{{ asset('img/sample1.jpg') }}" class="img-circle elevation-2" alt="Imagen del usuario">
     </div>
     <div class="info">
-    <p class="d-block text-white m-0">{{ Auth::user()->name }}</p>
+    <p class="d-block text-white m-0">{{ Auth::user()->first_name }} {{ Auth::user()->first_lastname }}</p>
     <span class="text-bold text-muted">{{ Str::ucfirst(Auth::user()->role) }}</span>
     </div>
   </div>
