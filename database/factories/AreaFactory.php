@@ -13,10 +13,12 @@ class AreaFactory extends Factory
      */
     public function definition()
     {
+        $isPnf = $this->faker->boolean();
+
         return [
             'name' => $this->faker->unique()->jobTitle,
-            'is_pnf' => $this->faker->boolean(),
-            'pnf_name' => $this->faker->unique()->company,
+            'is_pnf' => $isPnf,
+            'pnf_name' => $isPnf ? $this->faker->unique()->company : null,
         ];
     }
 }

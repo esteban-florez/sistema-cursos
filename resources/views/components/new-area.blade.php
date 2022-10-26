@@ -1,3 +1,5 @@
+@props(['id'])
+
 <x-modal :id="$id">
   <x-slot name="header">
     <h4 class="modal-title">Registrar área de formación</h4>
@@ -5,7 +7,8 @@
       <span>&times;</span>
     </button>
   </x-slot>
-  <form method="POST" action="{{ route('areas.store') }}">
+  <p>Los campos con <i class="fas fa-asterisk text-danger"></i> son obligatorios.</p>
+    <form method="POST" action="{{ route('areas.store') }}">
     @csrf
     <x-field name="name" id="name" placeholder="Escribe el nombre del área" required>
       Nombre:

@@ -3,8 +3,11 @@
 @if($url)
 <a href="{{ $url }}" {{
   $attributes
-    ->class(['btn', 'btn-'.$color])
+  ->class(['btn', 'btn-'.$color])
 }}>
+  @isset($icon)
+  <i class="mr-1 fas fa-{{ $icon }}"></i>
+  @endisset
   {{$slot}}
 </a>
 @else

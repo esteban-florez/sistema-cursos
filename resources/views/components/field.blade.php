@@ -10,7 +10,7 @@
   @unless ($isCheckbox)
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   @endunless
-  <input {{
+  <input @if($isCheckbox)value="1"@endif{{
     $attributes
     ->class([
       'form-control' => !$isCheckbox,

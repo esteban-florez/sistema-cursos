@@ -7,7 +7,7 @@
           <p class="m-0">PNF:  
             <span class="font-weight-bold">
             @if($area->is_pnf)
-              PNF en {{ Str::ucfirst($area->name) }}.
+              PNF en {{ Str::ucfirst($area->pnf_name) }}.
             @else
               N/A.
             @endif
@@ -15,8 +15,12 @@
           </p>
         </div>
         <div class="area-buttons">
-          <x-button icon="edit">Editar</x-button>
-          <x-button icon="trash-alt" color="danger">Eliminar</x-button>
+          <x-button :url="route('areas.edit', $area->id)" icon="edit">Editar</x-button>
+          <form method="POST" action="{{ route('areas.destroy', $area->id) }}">
+            @csrf
+            @method('DELETE')
+            <x-button type="submit" icon="trash-alt" color="danger">Eliminar</x-button>
+          </form>
         </div>
       </div>
     </div>

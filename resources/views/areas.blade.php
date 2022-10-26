@@ -1,3 +1,7 @@
+@php
+    $edit = isset($areaToEdit);
+@endphp
+
 <x-layout.main title="Áreas">
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/areas.css') }}">
@@ -10,6 +14,9 @@
     <x-button icon="plus" color="success" hide-text="sm" data-target="#newAreaModal" data-toggle="modal">Añadir</x-button>
   </x-layout.bar>
   <section class="container-fluid">
+    @if($errors->any())
+      <p class="alert alert-warning">Hubo un error: {{ $errors->first() }}</p>
+    @endif
     <div class="row px-3">
       @forelse($areas as $area)
         <x-area-card :area="$area"/>
@@ -23,6 +30,11 @@
     </div>
   </section>
   <x-slot name="extra">
-    <x-area-modal id="newAreaModal"></x-area-modal>
+    @if($edit)
+    <x-edit-area :area="$areaToEdit" id="editAreaModal"></x-edit-area>
+    <script defer src="{{ asset('js/popup.js') }}"></script>
+    @else
+    <x-new-area id="newAreaModal"></x-new-area>
+    @endif
   </x-slot>
 </x-layout.main>

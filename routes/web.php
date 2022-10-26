@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::view('test', 'test');
 
 Route::redirect('/', 'login');
 
@@ -30,7 +31,7 @@ Route::group([
     Route::post('auth', 'authenticate')
         ->name('auth');
     
-    Route::get('logout', 'logout')
+        Route::get('logout', 'logout')
         ->name('logout');
 });
 
@@ -67,16 +68,9 @@ Route::post('users', [UserController::class, 'store'])
 
 Route::view('home', 'home')->name('home')
     ->middleware('auth');
-
-Route::view('test', 'test');
-
-Route::group([
-    'middleware' => ['auth', 'admin'],
-    'prefix' => 'areas',
-    'as' => 'areas.',
-], function () {
-    Route::get('/', [AreaController::class, 'index'])->name('index');
-});
+    
+Route::resource('areas', AreaController::class)->except('create')
+    ->middleware(['auth', 'admin']);
 
 Route::view('pagos', 'pagos')->name('pagos')
     ->middleware('auth', 'admin');

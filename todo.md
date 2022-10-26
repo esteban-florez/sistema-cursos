@@ -29,6 +29,7 @@
 - Artículos se quita el codigo.
 - Interfaz de inventario, que tenga todos, un link dentro de Sidebar->Clubes->Inventarios.
 - Pagos con collapse (mirian).
+- Añadir slugs.
 
 # Cosas mas como de arquitectura que hay que decidir/solucionar:
 
