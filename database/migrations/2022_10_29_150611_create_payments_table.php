@@ -17,10 +17,11 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->date('date');
             $table->string('status');
-            $table->string('type');
-            $table->string('amount');
             $table->string('reference');
+            $table->string('amount');
+            $table->string('type');
             $table->string('mode');
+            $table->foreignId('estudiante_id')->constrained();
             $table->timestamps();
         });
     }

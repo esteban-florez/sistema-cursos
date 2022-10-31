@@ -19,6 +19,7 @@ class CreateClubsTable extends Migration
             $table->string('description');
             $table->string('imagen');
             $table->string('day');
+            $table->foreignId('instructor_id')->constrained();
             $table->string('start-hour');
             $table->string('final-hour');
             $table->timestamps();

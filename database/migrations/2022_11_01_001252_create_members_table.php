@@ -4,18 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInventariosTable extends Migration
+class CreateMembersTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('inventarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('quantity');
+        Schema::create('members', function (Blueprint $table) {
+            $table->foreignId('estudiante_id')->constrained();
+            $table->foreignId('club_id')->constrained();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateInventariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventarios');
+        Schema::dropIfExists('members');
     }
 }

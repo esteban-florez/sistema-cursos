@@ -18,6 +18,7 @@ class CreateCursosTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('imagen');
+            $table->foreignId('area_id')->constrained();
             $table->string('price_total');
             $table->string('price_insc');
             $table->timestamps();

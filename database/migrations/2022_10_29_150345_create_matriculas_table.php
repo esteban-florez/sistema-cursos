@@ -17,6 +17,7 @@ class CreateMatriculasTable extends Migration
             $table->id();
             $table->string('status_aprove');
             $table->string('solvency');
+            $table->foreignId('instructor_id')->constrained();
             $table->timestamps();
         });
     }
