@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatriculaTable extends Migration
+class CreateArticulosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateMatriculaTable extends Migration
      */
     public function up()
     {
-        Schema::create('matricula', function (Blueprint $table) {
+        Schema::create('articulos', function (Blueprint $table) {
             $table->id();
-            $table->string('status_aprove');
-            $table->string('solvency');
+            $table->string('code');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateMatriculaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matricula');
+        Schema::dropIfExists('articulos');
     }
 }

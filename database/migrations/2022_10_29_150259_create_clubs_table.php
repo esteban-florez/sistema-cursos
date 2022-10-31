@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArticuloTable extends Migration
+class CreateClubsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateArticuloTable extends Migration
      */
     public function up()
     {
-        Schema::create('articulo', function (Blueprint $table) {
+        Schema::create('clubs', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
             $table->string('name');
+            $table->string('description');
+            $table->string('imagen');
+            $table->string('day');
+            $table->string('start-hour');
+            $table->string('final-hour');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateArticuloTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articulo');
+        Schema::dropIfExists('clubs');
     }
 }

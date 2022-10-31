@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('second_lastname')->nullable();
             $table->string('ci')->unique();
             $table->enum('ci_type', ['V', 'E'])->default('V');
+            $table->string('imagen');
             $table->enum('gender', ['female','male']);
             $table->date('birth');
             $table->string('phone');
