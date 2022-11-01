@@ -15,9 +15,10 @@ class CreateInventariosTable extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('articulo_id')->constrained();
-            $table->foreignId('club_id')->constrained();
-            $table->string('quantity');
+            $table->string('cantidad');
+            $table->enum('tipo_operacion', ['+', '-']);
+            $table->foreignId('articulo_id')->constrained('articulos');
+            $table->foreignId('club_id')->constrained('clubs');
             $table->timestamps();
         });
     }

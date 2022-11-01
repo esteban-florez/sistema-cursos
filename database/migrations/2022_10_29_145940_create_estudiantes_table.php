@@ -15,7 +15,10 @@ class CreateEstudiantesTable extends Migration
     {
         Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->enum('grado', ['primaria', 'secundaria', 'tsu', 'universitario']);
+            $table->date('nacimiento');
+            $table->boolean('es_upta')->default(false);
+            $table->foreignId('usuarios_id')->constrained('usuarios');
             $table->timestamps();
         });
     }

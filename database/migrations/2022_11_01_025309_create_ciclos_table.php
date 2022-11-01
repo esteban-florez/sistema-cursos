@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClubsTable extends Migration
+class CreateCiclosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateClubsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clubs', function (Blueprint $table) {
+        Schema::create('ciclos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('descripcion');
-            $table->string('imagen');
-            $table->enum('dia', ['lu', 'ma', 'mi', 'ju', 'vi', 'sa', 'do']);
-            $table->time('hora_ini');
-            $table->time('hora_fin');
+            $table->date('fecha_inicio');
+            $table->date('fecha_cierre');
+            $table->date('inicio_ins');
+            $table->date('cierre_ins');
+            $table->foreignId('curso_id')->constrained('cursos');
             $table->foreignId('instructor_id')->constrained('instructores');
             $table->timestamps();
         });
@@ -33,6 +32,6 @@ class CreateClubsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clubs');
+        Schema::dropIfExists('ciclos');
     }
 }

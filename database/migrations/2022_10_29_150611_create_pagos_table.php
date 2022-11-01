@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatriculasTable extends Migration
+class CreatePagosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateMatriculasTable extends Migration
      */
     public function up()
     {
-        Schema::create('matriculas', function (Blueprint $table) {
+        Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->boolean('estado_apr');
-            $table->boolean('solvencia');
+            $table->date('fecha');
+            $table->string('estado_pago');
+            $table->string('referencia');
+            $table->string('monto');
+            $table->string('tipo_pago');
+            $table->string('modo');
             $table->foreignId('ciclo_id')->constrained('ciclos');
             $table->foreignId('estudiante_id')->constrained('estudiantes');
             $table->timestamps();
@@ -30,6 +34,6 @@ class CreateMatriculasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matriculas');
+        Schema::dropIfExists('pagos');
     }
 }
