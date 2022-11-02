@@ -2,21 +2,38 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Member;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Estudiante extends Model
+class Estudiante extends Authenticatable implements CanResetPassword
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
 
-    // Relacion uno a uno
-    // public function user(){
-    //     return $this->hasOne(User::class);
-    // }
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $guarded = ['id'];
 
-    public function member() {
-        return $this->hasOne(Member::class);
-    }
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }
