@@ -97,8 +97,9 @@
                   </x-select>
                 </div>
                 <div class="mb-3 col-12">
-                  <label for="address"><i class="fas fa-asterisk text-danger mr-1"></i>Dirección: </label>
-                  <textarea class="form-control" name="address" placeholder="Dirección" id="address"></textarea>
+                  <x-textarea name="address" id="address" placeholder="Cagua, Los cocos calle 3 casa #24" required>
+                    Dirección:
+                  </x-textarea>
                 </div>
               </div>
               <x-button type="submit" class="btn-lg btn-block">Registrarse</x-button>

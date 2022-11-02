@@ -18,7 +18,7 @@
             Lista de cursos
           </x-layout.sidebar.item>
           @is('administrator')
-          <x-layout.sidebar.item url="#" icon="plus">
+          <x-layout.sidebar.item :url="route('registrar-curso')" icon="plus">
             Registrar curso
           </x-layout.sidebar.item>
           <x-layout.sidebar.item url="#" icon="book">

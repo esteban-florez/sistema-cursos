@@ -19,7 +19,7 @@ class CreateCiclosTable extends Migration
             $table->date('date_final');
             $table->date('ins_start');
             $table->date('ins_final');
-            $table->foreignld('instructor_id')->constrained();
+            $table->foreignId('instructor_id')->constrained();
             $table->timestamps();
 
         });

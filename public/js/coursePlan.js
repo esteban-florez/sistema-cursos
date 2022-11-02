@@ -1,4 +1,4 @@
-const planCheck = document.querySelector('#plan-course');
+const planCheck = document.querySelector('#planCourse');
 const inputs = document.querySelectorAll('input[disabled]');
 
 planCheck.addEventListener('input', updateForm);
