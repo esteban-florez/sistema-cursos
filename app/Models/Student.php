@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Member;
+use App\Models\Registry;
 
-class Estudiante extends Authenticatable implements CanResetPassword
+class Student extends Authenticatable
 {
     use HasFactory, Notifiable;
 
@@ -36,4 +37,14 @@ class Estudiante extends Authenticatable implements CanResetPassword
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function memberships()
+    {
+        return $this->hasMany(Member::class);
+    }
+
+    public function registries()
+    {
+        return $this->hasMany(Registry::class);
+    }
 }

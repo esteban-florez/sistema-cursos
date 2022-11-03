@@ -4,16 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Registry;
+use App\Models\Inventory;
 
-class Payment extends Model
+class Item extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function registry()
+    public function inventories()
     {
-        return $this->belongsTo(Registry::class);
+        return $this->hasMany(Inventory::class);
     }
 }

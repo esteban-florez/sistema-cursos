@@ -4,16 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Registry;
+use App\Models\Instructor;
 
-class Payment extends Model
+class Course extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
+    public function instructor()
+    {
+        return $this->belongsTo(Instructor::class);
+    }
+
     public function registry()
     {
-        return $this->belongsTo(Registry::class);
+        return $this->hasMany(Registry::class);
     }
 }

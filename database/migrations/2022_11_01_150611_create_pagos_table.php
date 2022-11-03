@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagosTable extends Migration
+class CreatePaymentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreatePagosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->string('estado_pago');
-            $table->string('referencia');
-            $table->string('monto');
-            $table->string('tipo_pago');
-            $table->string('modo');
-            $table->foreignId('ciclo_id')->constrained('ciclos');
-            $table->foreignId('estudiante_id')->constrained('estudiantes');
+            $table->date('date');
+            $table->string('status');
+            $table->string('ref');
+            $table->string('amount');
+            $table->string('type');
+            $table->string('mode');
+            $table->foreignId('registry_id');
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ class CreatePagosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('payments');
     }
 }
