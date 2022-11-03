@@ -1,0 +1,5 @@
+//comando para hacer tabla nueva con modelo:
+php artisan make:model nombre con la primera letra mayuscula -m
+
+//comando para hacer tabla sola
+php artisan make:migration create_nombredelatabla_table

@@ -74,3 +74,6 @@ Route::resource('areas', AreaController::class)->except('create')
 
 Route::view('pagos', 'pagos')->name('pagos')
     ->middleware('auth', 'admin');
+
+Route::view('registrar-curso', 'registrar-curso')->name('registrar-curso')
+    ->middleware('auth', 'admin');
