@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\Models\Student;
 use App\Models\Area;
+use App\Models\Instructor;
+
+use function PHPSTORM_META\map;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,31 +18,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory([
-            'first_name' => 'Edeblangel',
-            'first_lastname' => 'Vanegas',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('admin'),
-            'role' => 'administrator',
-        ])->create();
-
-        User::factory([
-            'first_name' => 'Elías',
-            'first_lastname' => 'Vargas',
-            'email' => 'teacher@example.com',
-            'password' => bcrypt('teacher'),
-            'role' => 'instructor',
-        ])->create();
-
-        User::factory([
-            'first_name' => 'Esteban',
-            'first_lastname' => 'Florez',
+        Student::factory([
             'email' => 'student@example.com',
             'password' => bcrypt('student'),
-            'role' => 'student',
+            'first_name' => 'Esteban',
+            'first_lastname' => 'Florez',
+            ])->create();
+            
+        Student::factory(10)->create();
+
+        Area::factory(10)->create();
+
+        Instructor::factory([
+            'email' => 'admin@example.com',
+            'password' => bcrypt('admin'),
+            'name' => 'Edeblangel',
+            'lastname' => 'Vanegas',
+            'is_admin' => true,
         ])->create();
 
-        Area::factory(4)->create();
-        Area::create(['name' => 'Informática', 'is_pnf' => true, 'pnf_name' => 'Informática']);
+        Instructor::factory([
+            'email' => 'teacher@example.com',
+            'password' => bcrypt('teacher'),
+            'name' => 'Elías',
+            'lastname' => 'Vargas',
+        ])->create();
+
+        Instructor::factory(10)->create();
+
     }
 }

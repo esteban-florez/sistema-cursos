@@ -22,12 +22,13 @@ class CreateInstructorsTable extends Migration
             $table->string('image');
             $table->enum('gender', ['M', 'F']);
             $table->string('phone');
-            $table->string('direction');
+            $table->string('address');
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
             $table->string('degree');
             $table->date('birth');
+            $table->boolean('is_admin')->default(false);
             $table->foreignId('area_id')->constrained();
             $table->timestamps();
         });
