@@ -21,7 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->string('amount');
             $table->string('type');
             $table->string('mode');
-            $table->foreignId('registry_id');
+            $table->foreignId('registry_id')->constrained('registries');
             $table->timestamps();
         });
     }

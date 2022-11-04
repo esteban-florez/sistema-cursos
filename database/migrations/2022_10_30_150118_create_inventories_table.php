@@ -17,8 +17,8 @@ class CreateInventoriesTable extends Migration
             $table->id();
             $table->integer('amount');
             $table->enum('operation', ['+', '-']);
-            $table->foreignId('item_id');
-            $table->foreignId('club_id');
+            $table->foreignId('item_id')->constrained();
+            $table->foreignId('club_id')->constrained();
             $table->timestamps();
         });
     }

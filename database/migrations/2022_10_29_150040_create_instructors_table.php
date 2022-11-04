@@ -28,7 +28,7 @@ class CreateInstructorsTable extends Migration
             $table->rememberToken();
             $table->string('degree');
             $table->date('birth');
-            $table->foreignId('area_id');
+            $table->foreignId('area_id')->constrained();
             $table->timestamps();
         });
     }

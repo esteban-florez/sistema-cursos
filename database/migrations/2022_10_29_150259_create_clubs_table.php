@@ -21,7 +21,7 @@ class CreateClubsTable extends Migration
             $table->enum('day', ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']);
             $table->time('start_hour');
             $table->time('end_hour');
-            $table->foreignId('instructor_id');
+            $table->foreignId('instructor_id')->constrained();
             $table->timestamps();
         });
     }
