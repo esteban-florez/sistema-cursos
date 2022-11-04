@@ -28,9 +28,10 @@ class PasswordController extends Controller
             : back()->withErrors(['email' => 'El email es incorrecto.']);
     }
         
-    public function edit($token) {
+    public function edit($token, $email) {
         return view('reset-password', [
-            'token' => $token
+            'token' => $token,
+            'email' => $email,
         ]);
     }
 
@@ -39,7 +40,7 @@ class PasswordController extends Controller
         $request->validate([
             'token' => 'required',
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8', 'max:20','confirmed']
+            'password' => ['required', 'min:8', 'max:20', 'confirmed']
         ]);
 
         $status = Password::reset(

@@ -14,10 +14,8 @@
           <span class="badge bg-info help-pass float-right" data-toggle="tooltip" title="La contraseña debe tener entre 8 y 20 caracteres, y debe ser una combinación de mayúsculas, minúsculas, números y símbolos.">?</span>
           <p class="login-box-msg pb-2">Por favor ingrese su nueva contraseña.</p>
           <form action="{{ route('password.reset') }}" method="POST">
-            <x-field type="email" name="email" placeholder="Escribe tu correo electrónico..." required>
-              Correo Electrónico:
-            </x-field>
             @csrf
+            <input type="hidden" name="email" value="{{ $email }}">
             <input type="hidden" name="token" value="{{ $token }}">
             <div class="input-group mb-3">
               <input class="form-control" id="password" type="password" name="password" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>

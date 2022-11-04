@@ -16,23 +16,31 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('test', 'test');
 
-Route::redirect('/', 'login');
+Route::view('test', 'test')->name('test');
+
+Route::redirect('/', 'login')->middleware('guest');
 
 // Auth routes
 
 Route::group([
     'controller' => AuthController::class
 ], function () {
-    Route::view('login', 'login')
-        ->name('login');
     
-    Route::post('auth', 'authenticate')
-        ->name('auth');
+    Route::group([
+        'middleware' => 'guest'
+    ], function () {
+        Route::view('login', 'login')
+            ->name('login')
+            ->middleware('prevent-back');
+        
+        Route::post('auth', 'authenticate')
+            ->name('auth');
+    });
     
-        Route::get('logout', 'logout')
-        ->name('logout');
+    Route::get('logout', 'logout')
+        ->name('logout')
+        ->middleware('auth');
 });
 
 
@@ -50,7 +58,7 @@ function () {
     Route::post('forgot-password', 'mail')
         ->name('email');
     
-    Route::get('reset-password/{token}', 'edit')
+    Route::get('reset-password/{token}/{email}', 'edit')
         ->name('edit');
     
     Route::post('reset-password', 'reset')
@@ -67,13 +75,13 @@ Route::post('users', [UserController::class, 'store'])
     ->name('users.store');
 
 Route::view('home', 'home')->name('home')
-    ->middleware('auth');
+    ->middleware('auth', 'prevent-back');
     
 Route::resource('areas', AreaController::class)->except('create')
-    ->middleware(['auth', 'admin']);
+    ->middleware('auth:instructors');
 
 Route::view('pagos', 'pagos')->name('pagos')
-    ->middleware('auth', 'admin');
+    ->middleware('auth');
 
 Route::view('registrar-curso', 'registrar-curso')->name('registrar-curso')
-    ->middleware('auth', 'admin');
+    ->middleware('auth');

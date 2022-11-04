@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'student',
+        'passwords' => 'student',
     ],
 
     /*
@@ -36,10 +36,15 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'student' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'students',
         ],
+
+        'instructor' => [
+            'driver' => 'session',
+            'provider' => 'instructors',
+        ]
     ],
 
     /*
@@ -60,15 +65,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'students' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Student::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'instructors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Instructor::class,
+        ]
     ],
 
     /*
@@ -87,12 +92,19 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'student' => [
+            'provider' => 'students',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
+
+        'instructor' => [
+            'provider' => 'instructors',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ]
     ],
 
     /*
