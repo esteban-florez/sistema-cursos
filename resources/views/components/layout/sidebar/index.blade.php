@@ -1,3 +1,13 @@
+@php
+  $currentUser = Auth::guard('instructor')->user() ?? Auth::user();
+
+  if (isset($currentUser->is_admin)) {
+    $role = $currentUser->is_admin ? 'Administrador' : 'Instructor' ;
+  } else {
+    $role = 'Estudiante';
+  }
+@endphp
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <div class="sidebar mt-0 h-100">
   <div class="user-panel my-3 pb-3 d-flex align-items-center">
@@ -5,8 +15,8 @@
     <img src="{{ asset('img/sample1.jpg') }}" class="img-circle elevation-2" alt="Imagen del usuario">
     </div>
     <div class="info">
-    <p class="d-block text-white m-0">{{ Auth::user()->first_name }} {{ Auth::user()->first_lastname }}</p>
-    <span class="text-bold text-muted">{{ Str::ucfirst(Auth::user()->role) }}</span>
+      <p class="d-block text-white m-0">{{ $currentUser->name }} {{ $currentUser->lastname }}</p>
+      <span class="text-bold text-muted">{{ $role }}</span>
     </div>
   </div>
   <nav class="mt-2">

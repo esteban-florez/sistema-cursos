@@ -38,13 +38,44 @@ class Student extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Get all the memberships of a Student.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function memberships()
     {
         return $this->hasMany(Member::class);
     }
 
+    /**
+     * Get all the registries of a Student.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function registries()
     {
         return $this->hasMany(Registry::class);
+    }
+
+
+    /**
+     * Accesor for the "name" attribute of a Student.
+     * 
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        return $this->first_name;
+    }
+    
+    /**
+     * Accesor for the "lastname" attribute of a Student.
+     * 
+     * @return string
+     */
+    public function getLastnameAttribute()
+    {
+        return $this->first_lastname;
     }
 }
