@@ -7,8 +7,6 @@ use App\Models\Student;
 use App\Models\Area;
 use App\Models\Instructor;
 
-use function PHPSTORM_META\map;
-
 class DatabaseSeeder extends Seeder
 {
     /**
