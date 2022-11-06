@@ -21,6 +21,17 @@ class DatabaseSeeder extends Seeder
         Student::factory([
             'first_name' => 'Edeblangel',
             'first_lastname' => 'Vanegas',
+            'email' => 'student@example.com',
+            'password' => bcrypt('student'),
+            'first_name' => 'Esteban',
+            'first_lastname' => 'Florez',
+            ])->create();
+            
+        Student::factory(10)->create();
+
+        Area::factory(10)->create();
+
+        Instructor::factory([
             'email' => 'admin@example.com',
             'password' => bcrypt('admin'),
             'name' => 'Edeblangel',
