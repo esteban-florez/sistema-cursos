@@ -47,6 +47,5 @@ class DatabaseSeeder extends Seeder
         ])->create();
 
         Instructor::factory(10)->create();
-
     }
 }

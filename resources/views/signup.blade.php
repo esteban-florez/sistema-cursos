@@ -98,7 +98,7 @@
                   </x-field>
                 </div>
                 <div class="col-md-6">
-                  <x-select default name="grade" id="grade" required :options="['basic'=>'Primaria', 'middle'=>'Bachillerato', 'tsu'=>'TSU', 'pregrade'=>'Pregrado']">
+                  <x-select default name="grade" id="grade" required :options="['school'=>'Primaria', 'high'=>'Bachillerato', 'tsu'=>'TSU', 'college'=>'Pregrado']">
                     Grado de Instrucción:
                   </x-select>
                 </div>
