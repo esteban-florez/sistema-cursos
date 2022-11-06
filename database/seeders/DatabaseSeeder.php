@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Student::factory([
-            'first_name' => 'Edeblangel',
-            'first_lastname' => 'Vanegas',
             'email' => 'student@example.com',
             'password' => bcrypt('student'),
             'first_name' => 'Esteban',
