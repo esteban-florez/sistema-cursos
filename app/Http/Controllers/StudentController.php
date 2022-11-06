@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\Student;
 
-class UserController extends Controller
+class StudentController extends Controller
 {
     public function create()
     {
@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $user = $request->validate([
+        $student = $request->validate([
             'password' => ['required', 'confirmed', 'min:8', 'max:20'],
             'first_name' => ['required', 'max:25'],
             'second_name' => ['max:20'],
@@ -22,7 +22,7 @@ class UserController extends Controller
             'second_lastname' => ['max:20'],
             'ci' => ['required', 'max:25'],
             'ci_type' => ['required'],
-            'email' => ['required', 'email', 'max:50', 'unique:users,email'],
+            'email' => ['required', 'email', 'max:50', 'unique:students,email'],
             'birth' => ['required', 'date'],
             'gender' => ['required'],
             'phone' => ['required', 'max:25'],
@@ -30,21 +30,9 @@ class UserController extends Controller
             'address' => ['required', 'string', 'max:150'],
         ]);
         
-        $user = User::create([
-            'password' => bcrypt($request->password),
-            'first_name' => $request->first_name,
-            'second_name' => $request->second_name,
-            'first_lastname' => $request->first_lastname,
-            'second_lastname' => $request->second_lastname,
-            'ci' => $request->ci,
-            'ci_type' => $request->ci_type,
-            'email' => $request->email,
-            'birth' => $request->birth,
-            'gender' => $request->gender,
-            'phone' => $request->phone,
-            'grade' => $request->grade,
-            'address' => $request->address
-        ]);
+        $student['password'] = bcrypt($student['password']);
+
+        Student::create($student);
 
         return redirect()->route('login');
     }

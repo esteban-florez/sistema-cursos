@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 
 class AreaController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $areas = Area::all();
 
         return view('areas', ['areas' => $areas]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $data = $request->validate([
             'name' => 'required|unique:areas|max:255',
             'is_pnf' => 'nullable',
@@ -27,7 +29,8 @@ class AreaController extends Controller
         return redirect()->route('areas.index');
     }
 
-    public function edit(Area $area) {
+    public function edit(Area $area)
+    {
         $areas = Area::all();
 
         return view('areas', [

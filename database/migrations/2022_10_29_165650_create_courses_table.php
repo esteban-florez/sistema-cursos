@@ -24,8 +24,8 @@ class CreateCoursesTable extends Migration
             $table->date('end_date');
             $table->date('start_ins');
             $table->date('end_ins');
-            $table->foreignId('instructor_id');
-            $table->foreignId('area_id');
+            $table->foreignId('instructor_id')->constrained();
+            $table->foreignId('area_id')->constrained();
             $table->timestamps();
         });
     }

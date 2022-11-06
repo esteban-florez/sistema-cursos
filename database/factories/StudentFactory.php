@@ -3,9 +3,12 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+<<<<<<< HEAD
 use Illuminate\Support\Str;
+=======
+>>>>>>> ca6c051d25f8dcb31f4e877873c6f9a40fbca815
 
-class UserFactory extends Factory
+class StudentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,6 +18,7 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
+<<<<<<< HEAD
             'first_name' => $this->faker->firstName,
             'second_name' => $this->faker->firstName,
             'first_lastname' => $this->faker->lastName,
@@ -45,4 +49,23 @@ class UserFactory extends Factory
             ];
         });
     }
+=======
+            'first_name' => $this->faker->name,
+            'second_name' => $this->faker->name,
+            'first_lastname' => $this->faker->lastName,
+            'second_lastname' => $this->faker->lastName,
+            'ci' => $this->faker->unique()->randomNumber(8),
+            'ci_type' => $this->faker->randomElement(['V', 'E']),
+            'image' => 'image.jpg',
+            'gender' => $this->faker->randomElement(['M', 'F']),
+            'phone' => $this->faker->phoneNumber,
+            'address' => $this->faker->address,
+            'email' => $this->faker->unique()->email,
+            'password' => $this->faker->password(8),
+            'grade' => $this->faker->randomElement(['school', 'high', 'tsu', 'college']),
+            'birth' => $this->faker->date,
+            'is_upta' => $this->faker->boolean,
+        ];
+    }
+>>>>>>> ca6c051d25f8dcb31f4e877873c6f9a40fbca815
 }

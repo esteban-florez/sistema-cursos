@@ -1,9 +1,10 @@
 <x-layout.app-alt title="Registrarse">
   @push('css')
-    <link rel="stylesheet" href="{{ asset('css/registro.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
   @endpush
   @push('js')
     <script defer src="{{ asset('js/fixOverlay.js') }}"></script>
+    <script defer src="{{ asset('js/imgPreview.js') }}"></script>
   @endpush
   <body class="hold-transition register-page">
     <div class="overlay"></div>
@@ -16,7 +17,7 @@
       </div>
       <div class="card mb-3">
         <div class="card-body register-card-body">
-          <form action="{{ route('users.store') }}" method="POST">
+          <form action="{{ route('students.store') }}" method="POST">
             @csrf
             <div class="d-flex justify-content-between align-items-center">
               <h2>Datos de usuario</h2>
@@ -27,12 +28,17 @@
             </p>
             <div class="container-fluid">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-12 col-md-6 mb-3">
+                  <div class="image-input-container d-flex justify-content-center align-items-center" id="previewWrapper">
+                    <span class="badge badge-3 badge-dark position-absolute user-select-none">Click para añadir imagen</span>
+                    <img class="img-cover" src="{{ asset('img/placeholder.jpg') }}" alt="Imagen de perfil" id="previewImg"> 
+                    <input type="file" name="image" id="imgInput">
+                  </div>
+                </div>
+                <div class="col-md-6 mt-2">
                   <x-field type="password" name="password" id="password" required>
                     Contraseña:
                   </x-field>  
-                </div>
-                <div class="col-md-6">
                   <x-field type="password" name="password_confirmation" id="passwordConfirmation" required>
                     Confirmar contraseña:
                   </x-field>

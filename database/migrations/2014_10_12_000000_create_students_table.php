@@ -19,12 +19,12 @@ class CreateStudentsTable extends Migration
             $table->string('second_name')->nullable();
             $table->string('first_lastname');
             $table->string('second_lastname')->nullable();
-            $table->string('ci')->unique();
+            $table->integer('ci')->unique();
             $table->enum('ci_type', ['V', 'E'])->default('V');
-            $table->string('image');
-            $table->enum('gender', ['M', 'F']);
+            $table->string('image')->nullable();
+            $table->enum('gender', ['male', 'female']);
             $table->string('phone');
-            $table->string('direction');
+            $table->string('address');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

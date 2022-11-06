@@ -3,8 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\Models\Student;
 use App\Models\Area;
+use App\Models\Instructor;
+
+use function PHPSTORM_META\map;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,31 +18,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory([
+        Student::factory([
             'first_name' => 'Edeblangel',
             'first_lastname' => 'Vanegas',
             'email' => 'admin@example.com',
             'password' => bcrypt('admin'),
-            'role' => 'administrator',
+            'name' => 'Edeblangel',
+            'lastname' => 'Vanegas',
+            'is_admin' => true,
         ])->create();
 
-        User::factory([
-            'first_name' => 'Elías',
-            'first_lastname' => 'Vargas',
+        Instructor::factory([
             'email' => 'teacher@example.com',
             'password' => bcrypt('teacher'),
-            'role' => 'instructor',
+            'name' => 'Elías',
+            'lastname' => 'Vargas',
         ])->create();
 
-        User::factory([
-            'first_name' => 'Esteban',
-            'first_lastname' => 'Florez',
-            'email' => 'student@example.com',
-            'password' => bcrypt('student'),
-            'role' => 'student',
-        ])->create();
+        Instructor::factory(10)->create();
 
-        Area::factory(4)->create();
-        Area::create(['name' => 'Informática', 'is_pnf' => true, 'pnf_name' => 'Informática']);
     }
 }

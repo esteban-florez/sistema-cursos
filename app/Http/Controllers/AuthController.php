@@ -7,6 +7,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    private function loggedIn(Request $request)
+    {
+        $request->session()->regenerate();
+        return redirect()->home();
+    }
+
     public function login() {
         return view('login');
     }
@@ -18,9 +24,10 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->home();
+        foreach(guards() as $guard) {
+            if (Auth::guard($guard)->attempt($credentials)) {
+                return $this->loggedIn($request);
+            }
         }
 
         return back()->withErrors([
@@ -30,7 +37,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        foreach (guards() as $guard) {
+            Auth::guard($guard)->logout();
+        }
     
         $request->session()->invalidate();
     

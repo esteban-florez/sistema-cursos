@@ -14,8 +14,8 @@ class CreateMembersTable extends Migration
     public function up()
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->foreignId('student_id');
-            $table->foreignId('club_id');
+            $table->foreignId('student_id')->constrained();
+            $table->foreignId('club_id')->constrained();
             $table->timestamps();
         });
     }

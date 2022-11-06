@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class CheckAdminRole
+class PreventHistoryBack
 {
     /**
      * Handle an incoming request.
@@ -17,10 +16,11 @@ class CheckAdminRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->role === 'administrator') {
-            return abort(403);
-        }
+        $response = $next($request);
 
-        return $next($request);
+        return $response->header(
+            'Cache-Control', 'no-store')
+            ->header('Pragma','no-cache')
+            ->header('Expires','Sun, 02 Jan 1990 00:00:00 GMT');
     }
 }
