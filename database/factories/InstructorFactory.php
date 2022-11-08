@@ -19,7 +19,7 @@ class InstructorFactory extends Factory
             'ci' => $this->faker->unique()->randomNumber(8),
             'ci_type' => $this->faker->randomElement(['V', 'E']),
             'image' => 'image.jpg',
-            'gender' => $this->faker->randomElement(['M', 'F']),
+            'gender' => $this->faker->randomElement(['male', 'female']),
             'phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
             'email' => $this->faker->unique()->email,
