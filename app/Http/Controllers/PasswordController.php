@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class PasswordController extends Controller
 {
     public function forgot() {
-        return view('forgot-password');
+        return view('password.forgot');
     }
     
     public function mail(Request $request)
@@ -29,7 +29,7 @@ class PasswordController extends Controller
     }
         
     public function edit($token, $email) {
-        return view('reset-password', [
+        return view('password.reset', [
             'token' => $token,
             'email' => $email,
         ]);
