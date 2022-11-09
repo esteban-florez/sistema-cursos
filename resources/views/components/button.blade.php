@@ -1,4 +1,4 @@
-@props(['color' => 'primary', 'icon', 'hideText', 'url' => null])
+@props(['color' => 'primary', 'icon', 'hideText' => null, 'url' => null])
 
 @if($url)
 <a href="{{ $url }}" {{
@@ -6,9 +6,13 @@
   ->class(['btn', 'btn-'.$color])
 }}>
   @isset($icon)
-  <i class="mr-1 fas fa-{{ $icon }}"></i>
+  <i class="fas fa-{{ $icon }} m-none mr-{{$hideText}}-1"></i>
   @endisset
-  {{$slot}}
+  <span 
+    @isset($hideText)
+    class="d-none d-{{ $hideText }}-inline"
+    @endisset
+    >{{ $slot }}</span>
 </a>
 @else
 <button
@@ -19,9 +23,9 @@
   }}
 >
   @isset($icon)
-  <i class="mr-1 fas fa-{{ $icon }}"></i>
+  <i class="fas fa-{{ $icon }} m-none mr-{{$hideText}}-1"></i>
   @endisset
-  <span 
+  <span
     @isset($hideText)
     class="d-none d-{{ $hideText }}-inline"
     @endisset

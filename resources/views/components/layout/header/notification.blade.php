@@ -10,7 +10,9 @@
       <p class="text-sm">{{ $subtitle }}</p>
       <p class="text-sm text-muted">
         <i class="far fa-clock mr-1">
-        </i> Hace 5 horas // TODO: make timestamp work
+          {{-- TODO -> make timestamp work --}}
+          Hace 5 horas
+        </i>
       </p>
     </div>
   </div>

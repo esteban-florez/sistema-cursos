@@ -4,7 +4,7 @@
   @endpush
   <section class="card p-2 flex-row container-fluid d-flex justify-content-between" style="margin-top: -0.75rem"">
     <x-search placeholder="Buscar pago..." />
-    <!--TODO: Select para cursos--> 
+    {{-- TODO -> Select para cursos --}}
     <x-button icon="plus">Filtros</x-button>
   </section>
 
