@@ -99,12 +99,15 @@ span.fab {
   top: calc(50% - 20px);
 }
 
+.bar-container {
+  margin-top: -0.75rem;
+}
+
 .bar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  margin-top: -0.75rem;
   column-gap: 0.5rem;
 }
 
@@ -116,6 +119,10 @@ span.fab {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.pagination-container .pagination {
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 768px) {

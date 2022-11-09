@@ -1,6 +1,6 @@
-@props(['default', 'options'])
+@props(['default' => null, 'options', 'selected' => ''])
 @php
- $required = $attributes->get('required');   
+ $required = $attributes->get('required'); 
 @endphp
 
 <div class="mb-3">
@@ -13,7 +13,10 @@
       <option selected>Seleccionar...</option>
     @endif
     @foreach ($options as $value => $label)
-      <option value="{{ $value }}">{{ $label }}</option>
+      @php
+        $isSelected = $selected === (string) $value;
+      @endphp
+      <option value="{{ $value }}"@if($isSelected)selected @endif>{{ $label }}</option>
     @endforeach
   </select>
 </div>

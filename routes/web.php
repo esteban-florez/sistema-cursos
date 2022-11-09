@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\InstructorController;
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('test', 'test')->name('test');
+Route::get('test', function () {
+    return [request('sort') === 'string'];
+})->name('test');
 
 Route::redirect('/', 'login')->middleware('guest');
 
