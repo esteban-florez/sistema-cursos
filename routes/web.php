@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\InstructorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('test', 'test')->name('test');
 
 Route::redirect('/', 'login')->middleware('guest');
+
 
 // Auth routes
 
@@ -66,19 +68,36 @@ function () {
 });
 
 
-// User routes
+// Signup routes
 
 Route::get('signup', [StudentController::class, 'create'])
     ->name('students.create');
 
-Route::post('students', [StudentController::class, 'store'])
+Route::post('register', [StudentController::class, 'store'])
     ->name('students.store');
+
+
+// Instructors routes
+
+Route::resource('instructors', InstructorController::class)
+    ->middleware('admin');
+
+
+// Areas routes
+
+Route::resource('areas', AreaController::class)
+    ->except('create')
+    ->middleware('auth:instructor');
+
+
+// Misc
 
 Route::view('home', 'home')->name('home')
     ->middleware('auth', 'prevent-back');
-    
-Route::resource('areas', AreaController::class)->except('create')
-    ->middleware('auth:instructors');
+
+Route::get('students', function () {
+    return 'en proceso :3';
+})->name('students.index');
 
 Route::view('pagos', 'pagos')->name('pagos')
     ->middleware('auth');

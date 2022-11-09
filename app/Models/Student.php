@@ -58,7 +58,6 @@ class Student extends Authenticatable
         return $this->hasMany(Registry::class);
     }
 
-
     /**
      * Accesor for the "name" attribute of a Student.
      * 
@@ -77,5 +76,50 @@ class Student extends Authenticatable
     public function getLastnameAttribute()
     {
         return $this->first_lastname;
+    }
+
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->first_lastname}";
+    }
+
+    /**
+     * Accesor for the "role" attribute of a Student.
+     * 
+     * @return string
+     */
+    public function getRoleAttribute()
+    {
+        return 'Estudiante';
+    }
+
+    public function getFullCiAttribute()
+    {
+        $revCi = str_split(strrev($this->ci));
+        $length = count($revCi);
+        
+        array_splice($revCi, 3, 0, '.');
+
+        if ($length > 6) {
+            array_splice($revCi, 7, 0, '.');
+        }
+
+        $ci = strrev(implode($revCi));
+
+        return "{$this->ci_type}-{$ci}";
+    }
+
+    public function getUptaAttribute()
+    {
+        return $this->is_upta ? 'Sí' : 'No';
+    }
+
+    public function getTelAttribute()
+    {
+        $phone = str_split($this->phone);
+
+        array_splice($phone, 4, 0, '-');
+        
+        return implode($phone);
     }
 }
