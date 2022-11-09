@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
@@ -29,11 +30,13 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Blade::if('is', function ($role) {
-            return Auth::user()->role === $role;
+            return $role === getCurrentRole();
         });
 
         Blade::if('isnt', function ($role) {
-            return Auth::user()->role !== $role;
+            return $role !== getCurrentRole();
         });
+
+        Paginator::useBootstrap();
     }
 }

@@ -17,7 +17,7 @@ class VerifyAdminRole
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('instructor')->user()->is_admin !== true) {
+        if (Auth::guard('instructor')->user()->is_admin != true) {
             abort(403);
         }
 
