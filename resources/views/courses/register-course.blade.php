@@ -4,12 +4,11 @@
   @endpush
   @push('js')
     <script defer src="{{ asset('js/imgPreview.js') }}"></script>
-    <script defer src="{{ asset('js/coursePlan.js') }}"></script>
   @endpush
   <section class="container-fluid">
     <div class="card mx-sm-3">
       <div class="card-body">
-        <form action="#" method="POST">
+        <form action="{{ route('courses.store') }}" method="POST">
           @csrf
           <div class="row d-flex align-items-center">
             <div class="col-sm-6 col-md-4">
@@ -20,29 +19,43 @@
               </div>
             </div>
             <div class="col-sm-6 col-md-8">
-              <x-field name="name_course" id="nameCourse" placeholder="Nombre del Curso" autocomplete="off" required>
+              <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" required>
                 Nombre:
               </x-field>
-              <x-select name="instructor_name" id="instructorName" required default :options="['Elias'=>'Ing. Elias Vargas', 'Ana'=>'Ing. Ana Garcia']">
-                Instructor:
-              </x-select>
-              <x-select name="area" id="area" required default :options="['pnf_informatica'=>'PNF Informática', 'pnf_contaduria'=>'PNF Contaduría']">
-                Área de Formación:
-              </x-select>
+              <div class="mb-3">
+                <label class="form-label" for="instructor-id"><i class="fas fa-asterisk text-danger mr-1"></i>Instructores:</label>
+                <select class="form-control" name="instructor-id" id="instructorId" required>
+                  @foreach ($instructors as $instructor)
+                  <option value="{{ $instructor->id }}">
+                    {{ $instructor->role }} {{ $instructor->name }} {{ $instructor->lastname }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="areas-id"><i class="fas fa-asterisk text-danger mr-1"></i>Areas:</label>
+                <select class="form-control" name="areas-id" id="areasId" required>
+                  @foreach ($areas as $area)
+                  <option value="{{ $area->id }}">
+                    {{ $area->name }}
+                  </option>
+                  @endforeach
+                </select>
+              </div>
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label class="form-label" for="price_total"><i class="fas fa-asterisk text-danger mr-1"></i>Precio Total:</label>
+              <label class="form-label" for="total-price"><i class="fas fa-asterisk text-danger mr-1"></i>Precio Total:</label>
               <div class="input-group flex-nowrap">
-                <input class="form-control" type="number" id="priceTotal" name="price_total" required/>
+                <input class="form-control" type="number" id="totalPrice" name="total-price" required/>
                 <div class="input-group-append">
                   <span class="input-group-text" id="basic-addon1">$</span>
                 </div>
               </div>
             </div>
             <div class="col-12 col-sm-6 mb-3">
-              <label class="form-label" for="price_insc"><i class="fas fa-asterisk text-danger mr-1"></i>Precio de Inscripción:</label>
+              <label class="form-label" for="price-ins"><i class="fas fa-asterisk text-danger mr-1"></i>Precio de Inscripción:</label>
               <div class="input-group flex-nowrap">
-                <input class="form-control w-50" type="number" id="priceInsc" name="price_insc"/>
+                <input class="form-control w-50" type="number" id="priceIns" name="price-ins"/>
                 <div class="input-group-append">
                   <span class="input-group-text" id="basic-addon1">$</span>
                 </div>
@@ -53,58 +66,53 @@
                 Descripción del curso:
               </x-textarea>
             </div>
-            <div class="col-12">
-              <x-field type="checkbox" name="plan_course" id="planCourse">
-                Planificar Curso
-              </x-field>
-            </div>
             <div class="col-sm-6">
-              <x-field type="date" name="start_date" id="startDate" disabled>
+              <x-field type="date" name="start-date" id="startDate" required>
                 Incio de Inscripciones:
               </x-field>
             </div>
             <div class="col-sm-6">
-              <x-field type="date" name="end_date" id="endDate" disabled>
+              <x-field type="date" name="end-date" id="endDate" required>
                 Fin de Inscripciones:
               </x-field>
             </div>
             <div class="col-sm-6">
-              <x-field type="date" name="start_course" id="startCourse" disabled>
+              <x-field type="date" name="start-course" id="startCourse" required>
                 Incio de Curso:
               </x-field>
             </div>
             <div class="col-sm-6">
-              <x-field type="date" name="end_course" id="endCourse" disabled>
+              <x-field type="date" name="end-course" id="endCourse" required>
                 Fin de Curso:
               </x-field>
             </div>
             <div class="col-sm-6 mb-3">
               <label class="form-label" for="duration">Duración del curso:</label>
               <div class="input-group">
-                <input class="form-control" type="number" id="duration" name="duration" disabled/>
+                <input class="form-control" type="number" name="duration" id="duration" required/>
                 <div class="input-group-append">
                   <span class="input-group-text">horas</span>
                 </div>
               </div>
             </div>
             <div class="col-sm-6">
-              <x-field type="number" name="student-limit" id="studentLimit" disabled>
+              <x-field type="number" name="student-limit" id="studentLimit" required>
                 Máx. de Estudiantes:
               </x-field>
             </div>
             <div class="col-sm-6">
-              <x-field type="time" name="start_time" id="startTime" disabled>
+              <x-field type="time" name="start-time" id="startTime" required>
                 Hora de Inicio:
               </x-field>
             </div>
             <div class="col-sm-6">
-              <x-field type="time" name="end_time" id="endTime" disabled>
+              <x-field type="time" name="end-time" id="endTime" required>
                 Hora de Cierre:
               </x-field>
             </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
-            <x-button color="danger" icon="times">
+            <x-button url="{{ route('courses.index') }}" color="danger" icon="times">
               Cancelar
             </x-button>
             <x-button type="submit" color="success" icon="check">

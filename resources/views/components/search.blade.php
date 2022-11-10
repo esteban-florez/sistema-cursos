@@ -1,4 +1,5 @@
-<form>
+<form method="GET" action="{{ route(Route::currentRouteName()) }}">
+  {{ $hidden }}
   <div class="input-group">
     <input class="form-control" type="text" {{ $attributes }}>
     <div class="input-group-append">

@@ -86,4 +86,25 @@ class Instructor extends Authenticatable
     {
         return $this->is_admin ? 'Sí' : 'No';
     }
+
+    public function scopeFilters($query, $adminFilter, $sortColumn, $search)
+    {
+        return $query->when(
+            $sortColumn,
+            function ($query, $sortColumn) {
+                return $query->orderBy($sortColumn);
+            }
+        )->when(
+            $adminFilter,
+            function ($query, $adminFilter) {
+                $isAdmin = $adminFilter === 'true';
+                return $query->where('is_admin', '=', $isAdmin);
+            }
+        )->when(
+            $search,
+            function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%");
+            }
+        );
+    }
 }

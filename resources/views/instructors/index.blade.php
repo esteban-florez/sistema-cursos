@@ -1,10 +1,27 @@
 <x-layout.main title="Instructores">
   <x-layout.bar>
-    <x-search placeholder="Buscar instructor..."/>
+    <x-search placeholder="Buscar instructor..." :value="$search" name="search">
+      <x-slot name="hidden">
+        <input type="hidden" name="admin" value="{{ $filter }}">
+        <input type="hidden" name="sort" value="{{ $sort }}">
+      </x-slot>
+    </x-search>
     <div>
       <x-button icon="plus" color="success" hide-text="sm" :url="route('instructors.create')">Añadir</x-button>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>
     </div>
+    <x-slot name="filtersCollapse">
+      <x-filters-collapse>
+        <x-slot name="filters">
+          <x-select :options="['' => 'Todos', 'true' => 'Sí', 'false' => 'No']" id="admin" name="admin" :selected="$filter">
+            ¿Administrador?
+          </x-select>
+        </x-slot>
+        <x-slot name="sorts">
+          <x-radio :options="['date' => 'Fecha', 'name' => 'Nombre', 'ci' => 'Cédula']" name="sort" notitle default :checked="$sort"/>
+        </x-slot>
+      </x-filters-collapse>
+    </x-slot>
   </x-layout.bar>
   <section class="container-fluid">
     <x-table>

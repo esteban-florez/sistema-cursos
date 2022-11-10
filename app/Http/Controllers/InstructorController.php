@@ -12,11 +12,22 @@ class InstructorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $instructors = Instructor::paginate(10);
+        $search = $request->input('search', '');
+        $adminFilter = $request->input('admin', '');
+        $sortColumn = $request->input('sort', '');
 
-        return view('instructors.index', ['instructors' => $instructors]);
+        $instructors = Instructor::filters($adminFilter, $sortColumn, $search)
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('instructors.index', [
+            'instructors' => $instructors,
+            'filter' => $adminFilter,
+            'sort' => $sortColumn,
+            'search' => $search,
+        ]);
     }
 
     /**

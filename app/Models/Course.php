@@ -10,6 +10,11 @@ class Course extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are not mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $guarded = ['id'];
 
     public function instructor()
@@ -17,6 +22,11 @@ class Course extends Model
         return $this->belongsTo(Instructor::class);
     }
 
+    /**
+     * Get all the registry of a Course.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function registry()
     {
         return $this->hasMany(Registry::class);

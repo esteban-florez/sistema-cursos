@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\InstructorController;
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('test', 'test')->name('test');
+Route::get('test', function () {
+    return [request('sort') === 'string'];
+})->name('test');
 
 Route::redirect('/', 'login')->middleware('guest');
 
@@ -89,6 +92,22 @@ Route::resource('areas', AreaController::class)
     ->except('create')
     ->middleware('auth:instructor');
 
+// Courses routes
+
+Route::group([
+    'controller' => CourseController::class,
+    'middleware' => 'admin',
+], function(){
+    Route::get('courses', 'index')
+        ->name('courses.index');
+
+    Route::get('register-course', 'create')
+        ->name('courses.create');
+        
+    Route::post('register-course', 'store')
+        ->name('courses.store');
+});
+
 
 // Misc
 
@@ -100,7 +119,4 @@ Route::get('students', function () {
 })->name('students.index');
 
 Route::view('pagos', 'pagos')->name('pagos')
-    ->middleware('auth');
-
-Route::view('register-course', 'register-course')->name('register-course')
     ->middleware('auth');
