@@ -29,7 +29,7 @@ class CourseController extends Controller
         $instructors = Instructor::all();
         $areas = Area::all();
 
-        return view('courses.register-course', 
+        return view('courses.create', 
             ['instructors' => $instructors, 'areas' => $areas]
         );
     }
@@ -42,9 +42,11 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         $data = $request->validate([
             'name' => ['required', 'max:30'],
-            'image' => ['nullable'],
+            'image' => ['nullable','image', 'max:1024'],
             'instructor_id' => ['required'],
             'area_id' => ['required'],
             'description' => ['required', 'max:255'],
@@ -59,6 +61,13 @@ class CourseController extends Controller
             'start_time' => ['required'],
             'end_time' => ['required'],
         ]);
+
+        if($image = $data['image']){
+            $routeSaveImg = 'img/';
+            $imgCourse = date('YmdHis'). '.' . $image->getClientOriginalExtension();
+            $image->move($routeSaveImg, $imgCourse);
+            $data['image'] = "$imgCourse";
+        }
 
         Course::create($data);
 

@@ -17,8 +17,6 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->foreignId('instructor_id')->constrained();
-            $table->foreignId('area_id')->constrained();
             $table->string('description');
             $table->string('total_price');
             $table->string('price_ins');
@@ -30,6 +28,8 @@ class CreateCoursesTable extends Migration
             $table->string('student_limit');
             $table->time('start_time');
             $table->time('end_time');
+            $table->foreignId('instructor_id')->constrained();
+            $table->foreignId('area_id')->constrained();
             $table->timestamps();
         });
     }
