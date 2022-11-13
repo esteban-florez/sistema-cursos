@@ -1,19 +1,37 @@
-.price-badge {
+/* .price-badge {
   font-size: 1.3rem;
   float: right;
   margin-top: 0.25rem;
+} */
+
+.contenedor {
+  height: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coursent {
+  font-size: 6rem;  
+  color: rgba(131, 158, 170, 0.4);
+  text-align: center;
+}
+
+.courses-grid img {
+  height: 12.5rem;
+  object-fit: cover;
 }
 
 @media screen and (min-width: 576px) {
   .courses-grid {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 48%));
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 55%));
     gap: 1rem;
     justify-content: center;
   }
 
-  .courses-grid div:not(.badge, .card-body) {
+  /* .courses-grid div:not(.badge, .card-body) {
     height: 100%;
-  }
+  } */
 }
