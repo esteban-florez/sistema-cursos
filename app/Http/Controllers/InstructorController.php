@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Password;
 
 class InstructorController extends Controller
 {
@@ -37,7 +39,14 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        //
+        $areas = Area::all(['id', 'name']);
+        $areas = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->sortKeys();
+
+        return view('instructors.create', [
+            'areas' => $areas,
+        ]);
     }
 
     /**
@@ -48,7 +57,28 @@ class InstructorController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $data = $request->validate([
+            'name' => ['required', 'alpha', 'max:20'],
+            'lastname' => ['required', 'alpha', 'max:20'],
+            'ci' => ['required', 'integer', 'numeric', 'unique:instructors,ci'],
+            'ci_type' => ['required', 'in:V,E'],
+            'image' => ['nullable', 'image'],
+            'gender' => ['required', 'in:male,female'],
+            'phone' => ['required', 'digits:11'],
+            'address' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:instructors,email'],
+            'password' => [
+                'required', 'max:255', 'confirmed', 
+                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
+            ],
+            'degree' => ['required', 'max:255'], 
+            'area_id' => ['required', 'integer', 'numeric'],
+            'birth' => ['required', 'date'],
+        ]);
+
+        Instructor::create($data);
+
+        return redirect()->route('instructors.index');
     }
 
     /**
@@ -59,7 +89,9 @@ class InstructorController extends Controller
      */
     public function show(Instructor $instructor)
     {
-        //
+        return view('instructors.show',[
+            'instructor' => $instructor,
+        ]);
     }
 
     /**
@@ -70,7 +102,15 @@ class InstructorController extends Controller
      */
     public function edit(Instructor $instructor)
     {
-        //
+        $areas = Area::all(['id', 'name']);
+        $areas = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->sortKeys();
+
+        return view('instructors.edit', [
+            'instructor' => $instructor,
+            'areas' => $areas,
+        ]);
     }
 
     /**

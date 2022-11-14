@@ -1,6 +1,6 @@
 <x-layout.main title="Instructores">
   <x-layout.bar>
-    <x-search placeholder="Buscar instructor..." :value="$search" name="search">
+    <x-search placeholder="Buscar instructor..." :value="$search" name="search" :action="route(Route::currentRouteName())">
       <x-slot name="hidden">
         <input type="hidden" name="admin" value="{{ $filter }}">
         <input type="hidden" name="sort" value="{{ $sort }}">
@@ -18,7 +18,7 @@
           </x-select>
         </x-slot>
         <x-slot name="sorts">
-          <x-radio :options="['date' => 'Fecha', 'name' => 'Nombre', 'ci' => 'Cédula']" name="sort" notitle default :checked="$sort"/>
+          <x-radio :options="['date' => 'Fecha', 'name' => 'Nombre', 'ci' => 'Cédula']" name="sort" :checked="$sort" notitle first-empty/>
         </x-slot>
       </x-filters-collapse>
     </x-slot>

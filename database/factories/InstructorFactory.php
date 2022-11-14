@@ -16,11 +16,11 @@ class InstructorFactory extends Factory
         return [
             'name' => $this->faker->name,
             'lastname' => $this->faker->lastName,
-            'ci' => $this->faker->unique()->randomNumber(8),
+            'ci' => $this->faker->unique()->randomNumber(8, true),
             'ci_type' => $this->faker->randomElement(['V', 'E']),
             'image' => 'image.jpg',
             'gender' => $this->faker->randomElement(['male', 'female']),
-            'phone' => $this->faker->phoneNumber,
+            'phone' => rand(pow(10, 11-1), pow(10, 11)-1),
             'address' => $this->faker->address,
             'email' => $this->faker->unique()->email,
             'password' => $this->faker->password(8),
