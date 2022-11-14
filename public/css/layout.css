@@ -99,10 +99,6 @@ span.fab {
   top: calc(50% - 20px);
 }
 
-.bar-container {
-  margin-top: -0.75rem;
-}
-
 .bar {
   display: flex;
   flex-direction: row;

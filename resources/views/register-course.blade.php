@@ -23,10 +23,10 @@
               <x-field name="name_course" id="nameCourse" placeholder="Nombre del Curso" autocomplete="off" required>
                 Nombre:
               </x-field>
-              <x-select name="instructor_name" id="instructorName" required default :options="['Elias'=>'Ing. Elias Vargas', 'Ana'=>'Ing. Ana Garcia']">
+              <x-select name="instructor_name" id="instructorName" required :options="['Elias'=>'Ing. Elias Vargas', 'Ana'=>'Ing. Ana Garcia']">
                 Instructor:
               </x-select>
-              <x-select name="area" id="area" required default :options="['pnf_informatica'=>'PNF Informática', 'pnf_contaduria'=>'PNF Contaduría']">
+              <x-select name="area" id="area" required :options="['pnf_informatica'=>'PNF Informática', 'pnf_contaduria'=>'PNF Contaduría']">
                 Área de Formación:
               </x-select>
             </div>

@@ -2,7 +2,7 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/pagos.css') }}">
   @endpush
-  <section class="card p-2 flex-row container-fluid d-flex justify-content-between" style="margin-top: -0.75rem"">
+  <section class="card p-2 flex-row container-fluid d-flex justify-content-between">
     <x-search placeholder="Buscar pago..." />
     {{-- TODO -> Select para cursos --}}
     <x-button icon="plus">Filtros</x-button>

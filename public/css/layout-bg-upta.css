@@ -1,6 +1,8 @@
 .login-page, .register-page {
   background-image: url(../img/bg.jpg);
   background-size: cover;
+  min-height: 100vh!important;
+  height: auto;
 }
 
 .title-shadow {

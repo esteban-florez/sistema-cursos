@@ -1,4 +1,6 @@
-<form method="GET" action="{{ route(Route::currentRouteName()) }}">
+@props(['hidden' => '', 'action' => '#'])
+
+<form method="GET" action="{{ $action }}">
   {{ $hidden }}
   <div class="input-group">
     <input class="form-control" type="text" {{ $attributes }}>

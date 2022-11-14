@@ -1,4 +1,4 @@
-@props(['options', 'notitle' => false, 'default' => false, 'checked' => ''])
+@props(['options', 'notitle' => false, 'firstEmpty' => false, 'checked' => ''])
 {{-- TODO -> mover lógica a una clase de componente --}}
 @unless ($notitle)
 <div class="p-3">
@@ -7,7 +7,7 @@
   @foreach ($options as $value => $label)
   @php
     $id = $value;
-    $value = $default && $loop->first ? '' : $value;
+    $value = $firstEmpty && $loop->first ? '' : $value;
     $isChecked = $checked == $value;
   @endphp
   <div class="form-check">
@@ -29,3 +29,5 @@
 @unless ($notitle)
 </div>
 @endunless
+@error($attributes->get('name'))
+@enderror

@@ -1,4 +1,4 @@
-@props(['default' => null, 'options', 'selected' => ''])
+@props(['options', 'selected' => ''])
 @php
  $required = $attributes->get('required'); 
 @endphp
@@ -9,9 +9,6 @@
   @endisset
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   <select class="form-control" {{ $attributes }}>
-    @if($default)
-      <option selected>Seleccionar...</option>
-    @endif
     @foreach ($options as $value => $label)
       @php
         $isSelected = $selected === (string) $value;

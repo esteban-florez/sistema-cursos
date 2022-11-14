@@ -1,6 +1,6 @@
 @props(['color' => 'primary', 'icon', 'hideText' => null, 'url' => null])
 
-@if($url)
+@if ($url)
 <a href="{{ $url }}" {{
   $attributes
   ->class(['btn', 'btn-'.$color])
