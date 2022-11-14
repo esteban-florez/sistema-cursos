@@ -7,10 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Member;
 use App\Models\Registry;
+use App\Models\Accesors\UserAccesors;
 
 class Student extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, UserAccesors;
 
     /**
      * The attributes that are not mass assignable.
@@ -78,6 +79,16 @@ class Student extends Authenticatable
         return $this->first_lastname;
     }
 
+    public function getNamesAttribute()
+    {
+        return "{$this->first_name} {$this->second_name}";
+    }
+
+    public function getLastnamesAttribute()
+    {
+        return "{$this->first_lastname} {$this->second_lastname}";
+    }
+
     public function getFullNameAttribute()
     {
         return "{$this->first_name} {$this->first_lastname}";
@@ -93,33 +104,8 @@ class Student extends Authenticatable
         return 'Estudiante';
     }
 
-    public function getFullCiAttribute()
-    {
-        $revCi = str_split(strrev($this->ci));
-        $length = count($revCi);
-        
-        array_splice($revCi, 3, 0, '.');
-
-        if ($length > 6) {
-            array_splice($revCi, 7, 0, '.');
-        }
-
-        $ci = strrev(implode($revCi));
-
-        return "{$this->ci_type}-{$ci}";
-    }
-
     public function getUptaAttribute()
     {
         return $this->is_upta ? 'Sí' : 'No';
-    }
-
-    public function getTelAttribute()
-    {
-        $phone = str_split($this->phone);
-
-        array_splice($phone, 4, 0, '-');
-        
-        return implode($phone);
     }
 }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('test', function () {
-    return [request('sort') === 'string'];
+    return view('test');
 })->name('test');
 
 Route::redirect('/', 'login')->middleware('guest');
@@ -83,7 +83,7 @@ Route::post('register', [StudentController::class, 'store'])
 // Instructors routes
 
 Route::resource('instructors', InstructorController::class)
-    ->middleware('admin');
+    ->middleware('auth:instructor', 'admin');
 
 
 // Areas routes
