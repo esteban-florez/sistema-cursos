@@ -74,11 +74,6 @@ class Instructor extends Authenticatable
         return $this->is_admin ? 'Sí' : 'No';
     }
 
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
     public function scopeFilters($query, $adminFilter, $sortColumn, $search)
     {
         return $query->when(

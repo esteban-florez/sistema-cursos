@@ -30,8 +30,6 @@ class StudentController extends Controller
             'address' => ['required', 'string', 'max:150'],
         ]);
         
-        $student['password'] = bcrypt($student['password']);
-
         Student::create($student);
 
         return redirect()->route('login');

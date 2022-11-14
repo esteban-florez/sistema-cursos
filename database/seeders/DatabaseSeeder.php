@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         Student::factory([
             'email' => 'student@example.com',
-            'password' => bcrypt('student'),
+            'password' => 'student',
             'first_name' => 'Esteban',
             'first_lastname' => 'Florez',
             ])->create();
@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
 
         Instructor::factory([
             'email' => 'admin@example.com',
-            'password' => bcrypt('admin'),
+            'password' => 'admin',
             'name' => 'Edeblangel',
             'lastname' => 'Vanegas',
             'is_admin' => true,
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
 
         Instructor::factory([
             'email' => 'teacher@example.com',
-            'password' => bcrypt('teacher'),
+            'password' => 'teacher',
             'name' => 'Elías',
             'lastname' => 'Vargas',
         ])->create();
