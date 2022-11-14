@@ -18,11 +18,11 @@
       <x-layout.sidebar.item icon="graduation-cap">
         Cursos
         <x-slot name="menu">
-          <x-layout.sidebar.item url="#" icon="list">
+          <x-layout.sidebar.item :url="route('courses.index')" icon="list">
             Lista de cursos
           </x-layout.sidebar.item>
           @is('admin')
-          <x-layout.sidebar.item :url="route('register-course')" icon="plus">
+          <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
             Registrar curso
           </x-layout.sidebar.item>
           <x-layout.sidebar.item url="#" icon="book">

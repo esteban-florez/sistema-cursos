@@ -4,7 +4,6 @@
   @endpush
   @push('js')
     <script defer src="{{ asset('js/fixOverlay.js') }}"></script>
-    <script defer src="{{ asset('js/imgPreview.js') }}"></script>
   @endpush
   <body class="hold-transition register-page">
     <div class="overlay"></div>

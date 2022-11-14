@@ -92,6 +92,22 @@ Route::resource('areas', AreaController::class)
     ->except('create')
     ->middleware('auth:instructor');
 
+// Courses routes
+
+Route::group([
+    'controller' => CourseController::class,
+    'middleware' => 'admin',
+], function(){
+    Route::get('courses', 'index')
+        ->name('courses.index');
+
+    Route::get('register-course', 'create')
+        ->name('courses.create');
+        
+    Route::post('register-course', 'store')
+        ->name('courses.store');
+});
+
 
 // Misc
 
@@ -103,7 +119,4 @@ Route::get('students', function () {
 })->name('students.index');
 
 Route::view('pagos', 'pagos')->name('pagos')
-    ->middleware('auth');
-
-Route::view('register-course', 'register-course')->name('register-course')
     ->middleware('auth');

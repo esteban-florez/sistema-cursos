@@ -1,4 +1,4 @@
-@props(['type', 'areas' => null, 'image' => false, 'action', 'user' => null])
+@props(['type', 'areas' => null, 'image' => false, 'action', 'user' => null, 'edit' => false])
 
 @php
   if(isset($user)) {
@@ -7,7 +7,10 @@
   } 
 @endphp
 
-<form action="{{ $action }}" method="POST">
+<form action="{{ $action }}" method="POST" enctype="multipart/form-data">
+  @if ($edit)
+    @method('PUT')
+  @endif
   @csrf
   <div class="d-flex justify-content-between align-items-center">
     <h2 class="mb-0">Datos de usuario</h2>

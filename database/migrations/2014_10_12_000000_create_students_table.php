@@ -21,8 +21,8 @@ class CreateStudentsTable extends Migration
             $table->string('second_lastname')->nullable();
             $table->integer('ci')->unique();
             $table->enum('ci_type', ['V', 'E'])->default('V');
-            $table->string('image')->nullable();
             $table->enum('gender', ['male', 'female']);
+            $table->string('image')->nullable();
             $table->string('phone');
             $table->string('address');
             $table->string('email')->unique();
