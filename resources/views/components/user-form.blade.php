@@ -21,10 +21,10 @@
   <div class="container-fluid">
     <div class="row">
       @if ($image)
-        <div class="col-12 col-md-6">
-          <x-image-input/>
+        <div class="col-12 col-md-4">
+          <x-image-input required/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
           <x-field type="email" name="email" id="email" placeholder="email@ejemplo.com" value="{{ old('email') ?? $user->email ?? '' }}" required>
             Correo Electrónico:
           </x-field>

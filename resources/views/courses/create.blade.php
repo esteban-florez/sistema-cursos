@@ -1,10 +1,4 @@
 <x-layout.main title="Registrar Curso">
-  @push('css')
-    <link rel="stylesheet" href="{{ asset('css/imagen-input.css') }}">
-  @endpush
-  @push('js')
-    <script defer src="{{ asset('js/imgPreview.js') }}"></script>
-  @endpush
   <section class="container-fluid">
     <div class="card mx-sm-3">
       <div class="card-body">
@@ -12,11 +6,7 @@
           @csrf
           <div class="row d-flex align-items-center">
             <div class="col-sm-6 col-md-4 mb-3">
-              <label class="form-label">Añadir imagen del curso:</label>
-              <div class="image-input-container" id="previewWrapper">
-                <img class="img-cover" src="{{ asset('img/placeholder.jpg') }}" alt="Portada del Curso" id="previewImg"> 
-                <input type="file" name="image" id="imgInput" accept="image/*">
-              </div>
+              <x-image-input/>
             </div>
             <div class="col-sm-6 col-md-8">
               <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" required>
