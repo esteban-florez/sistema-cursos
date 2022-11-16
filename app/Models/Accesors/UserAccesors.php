@@ -30,7 +30,8 @@ trait UserAccesors
     }
 
 
-    public function getImageAttribute($image) {
+    public function getImageAttribute($image)
+    {
         return $image ?? 'img/user-placeholder.png';
     }
     // TODO -> crear un getRawGender accesor

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Instructor;
+use App\Services\RequestFile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -40,10 +41,7 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        $areas = Area::all(['id', 'name']);
-        $areas = $areas->mapWithKeys(function ($area) {
-            return [$area->id => $area->name];
-        })->sortKeys();
+        $areas = Area::getOptions();
 
         return view('instructors.create', [
             'areas' => $areas,
@@ -77,8 +75,8 @@ class InstructorController extends Controller
             'birth' => ['required', 'date'],
         ]);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $data['image'] = $request->file('image')->store('public/profiles');
+        if (RequestFile::check('image')) {
+            $data['image'] = RequestFile::store('image', 'public/profiles');
         } else {
             unset($data['image']);
         }
@@ -109,10 +107,7 @@ class InstructorController extends Controller
      */
     public function edit(Instructor $instructor)
     {
-        $areas = Area::all(['id', 'name']);
-        $areas = $areas->mapWithKeys(function ($area) {
-            return [$area->id => $area->name];
-        })->sortKeys();
+        $areas = Area::getOptions();
 
         return view('instructors.edit', [
             'instructor' => $instructor,
@@ -150,8 +145,8 @@ class InstructorController extends Controller
             'birth' => ['required', 'date'],
         ]);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $data['image'] = $request->file('image')->store('public/profiles');
+        if (RequestFile::check('image')) {
+            $data['image'] = RequestFile::store('image', 'public/profiles');
         } else {
             unset($data['image']);
         }
