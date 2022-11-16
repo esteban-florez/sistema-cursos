@@ -103,9 +103,10 @@ class Instructor extends Authenticatable
 
     public static function getOptions()
     {
+        // TODO -> un poquito de DRY no estaría mal
         $instructors = self::all(['id', 'name', 'lastname']);
         $instructors = $instructors->mapWithKeys(function ($instructor) {
-            return [$instructor->id => $instructor->FullName];
+            return [$instructor->id => $instructor->full_name];
         })->sortKeys();
         
         return $instructors;

@@ -1,6 +1,6 @@
 <x-layout.main title="Cursos">
   @push('css')
-  <link rel="stylesheet" href="{{ asset('css/cursos-user.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cursos-user.css') }}">
   @endpush
   <section class="container-fluid">
     @forelse($courses as $course)
@@ -8,7 +8,7 @@
       <div class="card">
         <div class="row no-gutters">
           <div class="col-sm-5">
-            <img class="w-100" src="courses/{{ $course->image }}" alt="Imagen del curso">
+            <img class="w-100" src="{{ $course->image }}" alt="Imagen del curso">
           </div>
           <div class="col-sm-7 d-flex align-items-center">
             <div class="card-body">

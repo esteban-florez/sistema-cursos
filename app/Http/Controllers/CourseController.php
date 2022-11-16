@@ -6,6 +6,7 @@ use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Instructor;
+use App\Services\RequestFile;
 
 class CourseController extends Controller
 {
@@ -66,8 +67,8 @@ class CourseController extends Controller
             'end_time' => ['required'],
         ]);
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $data['image'] = $request->file('image')->store('public/courses');
+        if (RequestFile::check('image')) {
+            $data['image'] = RequestFile::store('image', 'public/courses');
         } else {
             unset($data['image']);
         }

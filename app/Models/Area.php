@@ -32,5 +32,4 @@ class Area extends Model
         
         return $areas;
     }
-
 }
