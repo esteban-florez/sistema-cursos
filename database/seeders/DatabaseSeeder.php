@@ -3,9 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Student;
-use App\Models\Area;
-use App\Models\Instructor;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,32 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Student::factory([
-            'email' => 'student@example.com',
-            'password' => 'student',
-            'first_name' => 'Esteban',
-            'first_lastname' => 'Florez',
-            ])->create();
-            
-        Student::factory(10)->create();
+        Schema::disableForeignKeyConstraints();
 
-        Area::factory(10)->create();
+        $this->call(AreaSeeder::class);
+        $this->call(StudentSeeder::class);
+        $this->call(InstructorSeeder::class);
+        $this->call(CourseSeeder::class);
 
-        Instructor::factory([
-            'email' => 'admin@example.com',
-            'password' => 'admin',
-            'name' => 'Edeblangel',
-            'lastname' => 'Vanegas',
-            'is_admin' => true,
-        ])->create();
-
-        Instructor::factory([
-            'email' => 'teacher@example.com',
-            'password' => 'teacher',
-            'name' => 'Elías',
-            'lastname' => 'Vargas',
-        ])->create();
-
-        Instructor::factory(10)->create();
+        Schema::enableForeignKeyConstraints();
     }
 }
