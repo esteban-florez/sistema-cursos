@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InstructorController;
 use Illuminate\Support\Facades\Route;
 
@@ -73,10 +73,10 @@ function () {
 
 // Signup routes
 
-Route::get('signup', [StudentController::class, 'create'])
+Route::get('signup', [RegisterController::class, 'create'])
     ->name('students.create');
 
-Route::post('register', [StudentController::class, 'store'])
+Route::post('register', [RegisterController::class, 'store'])
     ->name('students.store');
 
 

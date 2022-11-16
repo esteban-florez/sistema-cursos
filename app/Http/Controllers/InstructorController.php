@@ -59,20 +59,20 @@ class InstructorController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'alpha', 'max:20'],
-            'lastname' => ['required', 'alpha', 'max:20'],
-            'ci' => ['required', 'integer', 'numeric', 'unique:instructors,ci'],
+            'name' => ['required', 'max:30'],
+            'lastname' => ['required', 'max:30'],
+            'ci' => ['required', 'integer', 'numeric', 'unique:instructors'],
             'ci_type' => ['required', 'in:V,E'],
             'image' => ['nullable', 'file','image', 'max:2048'],
             'gender' => ['required', 'in:male,female'],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:instructors,email'],
+            'email' => ['required', 'email', 'max:50', 'unique:instructors'],
             'password' => [
-                'required', 'max:255', 'confirmed', 
+                'required', 'max:50', 'confirmed', 
                 Password::min(8)->letters()->mixedCase()->numbers()->symbols()
             ],
-            'degree' => ['required', 'max:255'], 
+            'degree' => ['required', 'max:100'], 
             'area_id' => ['required', 'integer', 'numeric'],
             'birth' => ['required', 'date'],
         ]);
@@ -132,20 +132,20 @@ class InstructorController extends Controller
         $uniqueIgnore = Rule::unique('instructors')->ignoreModel($instructor);
 
         $data = $request->validate([
-            'name' => ['required', 'alpha', 'max:20'],
-            'lastname' => ['required', 'alpha', 'max:20'],
+            'name' => ['required', 'max:30'],
+            'lastname' => ['required', 'max:30'],
             'ci' => ['required', 'integer', 'numeric', $uniqueIgnore],
             'ci_type' => ['required', 'in:V,E'],
             'image' => ['nullable', 'file','image', 'max:2048'],
             'gender' => ['required', 'in:male,female'],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255', $uniqueIgnore],
+            'email' => ['required', 'email', 'max:50', $uniqueIgnore],
             'password' => [
-                'required', 'max:255', 'confirmed', 
+                'required', 'max:50', 'confirmed', 
                 Password::min(8)->letters()->mixedCase()->numbers()->symbols()
             ],
-            'degree' => ['required', 'max:255'], 
+            'degree' => ['required', 'max:100'], 
             'area_id' => ['required', 'integer', 'numeric'],
             'birth' => ['required', 'date'],
         ]);
