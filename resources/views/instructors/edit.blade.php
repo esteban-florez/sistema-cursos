@@ -10,6 +10,7 @@
         :action="route('instructors.update', $instructor->id)"
         :user="$instructor"
         image
+        edit
       />
     </div>
   </section>

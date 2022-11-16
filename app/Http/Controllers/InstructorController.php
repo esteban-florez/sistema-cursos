@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\Instructor;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class InstructorController extends Controller
@@ -62,7 +63,7 @@ class InstructorController extends Controller
             'lastname' => ['required', 'alpha', 'max:20'],
             'ci' => ['required', 'integer', 'numeric', 'unique:instructors,ci'],
             'ci_type' => ['required', 'in:V,E'],
-            'image' => ['nullable', 'image'],
+            'image' => ['nullable', 'file','image', 'max:2048'],
             'gender' => ['required', 'in:male,female'],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'max:255'],
@@ -75,6 +76,12 @@ class InstructorController extends Controller
             'area_id' => ['required', 'integer', 'numeric'],
             'birth' => ['required', 'date'],
         ]);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $data['image'] = $request->file('image')->store('public/profiles');
+        } else {
+            unset($data['image']);
+        }
 
         Instructor::create($data);
 
@@ -122,7 +129,36 @@ class InstructorController extends Controller
      */
     public function update(Request $request, Instructor $instructor)
     {
-        //
+        $uniqueIgnore = Rule::unique('instructors')->ignoreModel($instructor);
+
+        $data = $request->validate([
+            'name' => ['required', 'alpha', 'max:20'],
+            'lastname' => ['required', 'alpha', 'max:20'],
+            'ci' => ['required', 'integer', 'numeric', $uniqueIgnore],
+            'ci_type' => ['required', 'in:V,E'],
+            'image' => ['nullable', 'file','image', 'max:2048'],
+            'gender' => ['required', 'in:male,female'],
+            'phone' => ['required', 'digits:11'],
+            'address' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255', $uniqueIgnore],
+            'password' => [
+                'required', 'max:255', 'confirmed', 
+                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
+            ],
+            'degree' => ['required', 'max:255'], 
+            'area_id' => ['required', 'integer', 'numeric'],
+            'birth' => ['required', 'date'],
+        ]);
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $data['image'] = $request->file('image')->store('public/profiles');
+        } else {
+            unset($data['image']);
+        }
+
+        $instructor->update($data);
+
+        return redirect()->route('instructors.index');
     }
 
     /**
@@ -133,6 +169,8 @@ class InstructorController extends Controller
      */
     public function destroy(Instructor $instructor)
     {
-        //
+        $instructor->delete();
+
+        return redirect()->route('instructors.index');
     }
 }
