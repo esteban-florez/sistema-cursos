@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Course;
 use App\Models\Club;
+use App\Models\Area;
 use App\Models\Accesors\UserAccesors;
 
 class Instructor extends Authenticatable
@@ -47,6 +48,11 @@ class Instructor extends Authenticatable
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
     }
 
     public function getNamesAttribute()

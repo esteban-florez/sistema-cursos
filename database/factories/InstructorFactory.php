@@ -26,7 +26,6 @@ class InstructorFactory extends Factory
             'password' => $this->faker->password(8),
             'degree' => $this->faker->jobTitle,
             'birth' => $this->faker->date,
-            'area_id' => 1,
             'is_admin' => false,
         ];
     }
