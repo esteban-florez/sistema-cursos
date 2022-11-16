@@ -28,11 +28,13 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::all();
-        $areas = Area::all();
+        $instructors = Instructor::getOptions();
+        $areas = Area::getOptions();
 
-        return view('courses.create', 
-            ['instructors' => $instructors, 'areas' => $areas]
+        return view('courses.create', [
+            'instructors' => $instructors, 
+            'areas' => $areas
+            ]
         );
     }
 
@@ -48,14 +50,14 @@ class CourseController extends Controller
 
         $data = $request->validate([
             'name' => ['required', 'max:30'],
-            'image' => ['nullable','image', 'max:1024'],
+            'image' => ['image', 'max:1024'],
             'instructor_id' => ['required'],
             'area_id' => ['required'],
             'description' => ['required', 'max:255'],
             'total_price' => ['required'],
             'price_ins' => ['required'],
-            'start_date' => ['required'],
-            'end_date' => ['required'],
+            'start_ins' => ['required'],
+            'end_ins' => ['required'],
             'start_course' => ['required'],
             'end_course' => ['required'],
             'duration' => ['required'],
@@ -64,11 +66,10 @@ class CourseController extends Controller
             'end_time' => ['required'],
         ]);
 
-        if($image = $data['image']){
-            $routeSaveImg = 'img/';
-            $imgCourse = date('YmdHis'). '.' . $image->getClientOriginalExtension();
-            $image->move($routeSaveImg, $imgCourse);
-            $data['image'] = "$imgCourse";
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $data['image'] = $request->file('image')->store('public/courses');
+        } else {
+            unset($data['image']);
         }
 
         Course::create($data);

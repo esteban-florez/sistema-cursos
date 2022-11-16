@@ -8,7 +8,7 @@
       <div class="card">
         <div class="row no-gutters">
           <div class="col-sm-5">
-            <img class="w-100" src="/img/{{ $course->image }}" alt="Imagen del curso">
+            <img class="w-100" src="courses/{{ $course->image }}" alt="Imagen del curso">
           </div>
           <div class="col-sm-7 d-flex align-items-center">
             <div class="card-body">

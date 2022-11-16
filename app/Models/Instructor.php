@@ -100,4 +100,14 @@ class Instructor extends Authenticatable
             }
         );
     }
+
+    public static function getOptions()
+    {
+        $instructors = self::all(['id', 'name', 'lastname']);
+        $instructors = $instructors->mapWithKeys(function ($instructor) {
+            return [$instructor->id => $instructor->FullName];
+        })->sortKeys();
+        
+        return $instructors;
+    }
 }

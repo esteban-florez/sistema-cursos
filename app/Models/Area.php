@@ -22,4 +22,15 @@ class Area extends Model
     {
         return $this->hasMany(Course::class);
     }
+
+    public static function getOptions()
+    {
+        $areas = self::all(['id', 'name']);
+        $areas = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->sortKeys();
+        
+        return $areas;
+    }
+
 }
