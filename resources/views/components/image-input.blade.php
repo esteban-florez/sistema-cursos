@@ -1,4 +1,4 @@
-@props(['required' => false, 'profile' => false])
+@props(['required' => false, 'profile' => false, 'image' => null])
 
 @push('js')
   <script defer src="{{ asset('js/imgPreview.js') }}"></script>
@@ -8,7 +8,8 @@
 @endpush
 
 @php
-  $placeholder = $profile ? 'user-placeholder.png' : 'placeholder.jpg';
+  $placeholder = $profile ? 'img/user-placeholder.png' : 'img/placeholder.jpg';
+  $image = $image ?? $placeholder;
 @endphp
 {{-- no borrar por ahora xd --}}
 {{-- <div class="image-input-container d-flex justify-content-center align-items-center" id="previewWrapper">
@@ -24,7 +25,7 @@
   Añadir imagen:
 </label>
 <div class="image-input-container" id="previewWrapper">
-  <img class="img-cover" src="{{ asset("img/{$placeholder}") }}" alt="Portada del Curso" id="previewImg"> 
+  <img class="img-cover" src="{{ asset($image) }}" alt="Portada del Curso" id="previewImg"> 
   <input type="file" name="image" id="imgInput" accept="image/*">
 </div>
 @error('image')
