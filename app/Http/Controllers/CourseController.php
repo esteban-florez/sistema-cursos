@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
 use Illuminate\Http\Request;
+use App\Models\Area;
 use App\Models\Course;
 use App\Models\Instructor;
 use App\Services\RequestFile;
@@ -51,18 +51,18 @@ class CourseController extends Controller
 
         $data = $request->validate([
             'name' => ['required', 'max:30'],
-            'image' => ['image', 'max:1024'],
-            'instructor_id' => ['required'],
-            'area_id' => ['required'],
+            'image' => ['required', 'file', 'image', 'max:2048'],
+            'instructor_id' => ['required', 'integer', 'numeric'],
+            'area_id' => ['required', 'integer', 'numeric'],
             'description' => ['required', 'max:255'],
-            'total_price' => ['required'],
-            'price_ins' => ['required'],
-            'start_ins' => ['required'],
-            'end_ins' => ['required'],
-            'start_course' => ['required'],
-            'end_course' => ['required'],
-            'duration' => ['required'],
-            'student_limit' => ['required'],
+            'total_price' => ['required', 'integer', 'numeric'],
+            'price_ins' => ['required', 'integer', 'numeric'],
+            'start_ins' => ['required', 'date'],
+            'end_ins' => ['required', 'date'],
+            'start_course' => ['required', 'date'],
+            'end_course' => ['required', 'date'],
+            'duration' => ['required', 'integer', 'numeric'],
+            'student_limit' => ['required', 'integer', 'numeric'],
             'start_time' => ['required'],
             'end_time' => ['required'],
         ]);
@@ -84,9 +84,12 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $courses)
     {
-        //
+        return view('courses.show', [
+            'courses' => $courses,
+            ]
+        );
     }
 
     /**
@@ -95,9 +98,17 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $courses)
     {
-        //
+        $instructors = Instructor::getOptions();
+        $areas = Area::getOptions();
+
+        return view('courses.edit', [
+            'courses' => $courses,
+            'instructors' => $instructors, 
+            'areas' => $areas
+            ]
+        );
     }
 
     /**
@@ -107,9 +118,35 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $courses)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'max:30'],
+            'image' => ['required', 'file', 'image', 'max:2048'],
+            'instructor_id' => ['required', 'integer', 'numeric'],
+            'area_id' => ['required', 'integer', 'numeric'],
+            'description' => ['required', 'max:255'],
+            'total_price' => ['required', 'integer', 'numeric'],
+            'price_ins' => ['required', 'integer', 'numeric'],
+            'start_ins' => ['required', 'date'],
+            'end_ins' => ['required', 'date'],
+            'start_course' => ['required', 'date'],
+            'end_course' => ['required', 'date'],
+            'duration' => ['required', 'integer', 'numeric'],
+            'student_limit' => ['required', 'integer', 'numeric'],
+            'start_time' => ['required'],
+            'end_time' => ['required'],
+        ]);
+
+        if (RequestFile::check('image')) {
+            $data['image'] = RequestFile::store('image', 'public/courses');
+        } else {
+            unset($data['image']);
+        }
+
+        $courses->update($data);
+
+        return redirect()->route('courses.index');
     }
 
     /**
@@ -118,7 +155,7 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $courses)
     {
         //
     }

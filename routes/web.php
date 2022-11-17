@@ -94,20 +94,8 @@ Route::resource('areas', AreaController::class)
 
 // Courses routes
 
-Route::group([
-    'controller' => CourseController::class,
-    'middleware' => 'admin',
-], function(){
-    Route::get('courses', 'index')
-        ->name('courses.index');
-
-    Route::get('register-course', 'create')
-        ->name('courses.create');
-        
-    Route::post('register-course', 'store')
-        ->name('courses.store');
-});
-
+Route::resource('courses', CourseController::class)
+    ->middleware('auth:instructor', 'admin');
 
 // Misc
 

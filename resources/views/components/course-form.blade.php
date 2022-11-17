@@ -1,4 +1,4 @@
-@props(['action', 'areas', 'instructors', 'edit' => false, 'user' => null])
+@props(['action', 'areas', 'instructors', 'edit' => false])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
   @if ($edit)
@@ -10,7 +10,7 @@
       <x-image-input required/>
     </div>
     <div class="col-sm-6 col-md-8">
-      <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" required>
+      <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" value="{{ old('name') ?? $courses->name ?? '' }}" required>
         Nombre:
       </x-field>
       <x-select name="instructor_id" id="instructorId" :options="$instructors" required>
@@ -39,27 +39,27 @@
       </div>
     </div>
     <div class="col-12">
-      <x-textarea name="description" id="description" rows="2" maxlength="2000" placeholder="Descripción del curso" required>
+      <x-textarea name="description" id="description" rows="2" maxlength="2000" placeholder="Descripción del curso" value="{{ old('description') ?? $courses->description ?? '' }}" required>
         Descripción del curso:
       </x-textarea>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="start_ins" id="startIns" required>
+      <x-field type="date" name="start_ins" id="startIns" value="{{ old('start_ins') ?? $courses->start_ins ?? '' }}" required>
         Incio de Inscripciones:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="end_ins" id="endIns" required>
+      <x-field type="date" name="end_ins" id="endIns" value="{{ old('end_ins') ?? $courses->end_ins ?? '' }}" required>
         Fin de Inscripciones:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="start_course" id="startCourse" required>
+      <x-field type="date" name="start_course" value="{{ old('start_course') ?? $courses->start_course ?? '' }}" id="startCourse" required>
         Incio de Curso:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="end_course" id="endCourse" required>
+      <x-field type="date" name="end_course" value="{{ old('end_course') ?? $courses->end_course ?? '' }}" id="endCourse" required>
         Fin de Curso:
       </x-field>
     </div>
@@ -73,17 +73,17 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <x-field type="number" name="student_limit" id="studentLimit" placeholder="Ej. 15" required>
+      <x-field type="number" name="student_limit" id="studentLimit" placeholder="Ej. 15" value="{{ old('student_limit') ?? $courses->student_limit ?? '' }}" required>
         Máx. de Estudiantes:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="time" name="start_time" id="startTime" required>
+      <x-field type="time" name="start_time" id="startTime" value="{{ old('start_time') ?? $courses->start_time ?? '' }}" required>
         Hora de Inicio:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="time" name="end_time" id="endTime" required>
+      <x-field type="time" name="end_time" id="endTime" value="{{ old('end_time') ?? $courses->end_time ?? '' }}" required>
         Hora de Cierre:
       </x-field>
     </div>
