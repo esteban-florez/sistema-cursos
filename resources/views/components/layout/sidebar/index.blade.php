@@ -1,5 +1,5 @@
 @php
-  $currentUser = Auth::guard('instructor')->user() ?? Auth::user();
+  $currentUser = user();
 @endphp
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
