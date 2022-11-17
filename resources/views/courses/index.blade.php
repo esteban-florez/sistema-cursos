@@ -28,6 +28,7 @@
             ]"
             :details="route('courses.show', $course->id)"
             :edit="route('courses.edit', $course->id)"
+            :delete="route('courses.destroy', $course->id)"
           />
         </x-slot>
         <x-slot name="pagination">

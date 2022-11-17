@@ -47,8 +47,6 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $data = $request->validate([
             'name' => ['required', 'max:30'],
             'image' => ['required', 'file', 'image', 'max:2048'],
@@ -98,13 +96,13 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $courses)
+    public function edit(Course $course)
     {
         $instructors = Instructor::getOptions();
         $areas = Area::getOptions();
 
         return view('courses.edit', [
-            'courses' => $courses,
+            'course' => $course,
             'instructors' => $instructors, 
             'areas' => $areas
             ]
@@ -118,11 +116,11 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $courses)
+    public function update(Request $request, Course $course)
     {
         $data = $request->validate([
             'name' => ['required', 'max:30'],
-            'image' => ['required', 'file', 'image', 'max:2048'],
+            'image' => ['nullable', 'file', 'image', 'max:2048'],
             'instructor_id' => ['required', 'integer', 'numeric'],
             'area_id' => ['required', 'integer', 'numeric'],
             'description' => ['required', 'max:255'],
@@ -144,7 +142,7 @@ class CourseController extends Controller
             unset($data['image']);
         }
 
-        $courses->update($data);
+        $course->update($data);
 
         return redirect()->route('courses.index');
     }
@@ -155,8 +153,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $courses)
+    public function destroy(Course $course)
     {
-        //
+        $course->delete();
+
+        return redirect()->route('courses.index');
     }
 }

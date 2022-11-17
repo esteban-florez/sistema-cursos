@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Area;
 use App\Models\Course;
+use App\Models\Instructor;
 use Illuminate\Database\Seeder;
 
 class CourseSeeder extends Seeder
@@ -14,11 +16,6 @@ class CourseSeeder extends Seeder
      */
     public function run()
     {
-        Course::factory([
-            'name' => 'Programación Web',
-            'description' => 'Curso de Programación Web con HTML, CSS, JavaScript, PHP, y MySQL',
-            'total_price' => 45,
-            'price_ins' => 10,
-        ]);
+        
     }
 }

@@ -31,4 +31,8 @@ class Course extends Model
     {
         return $this->hasMany(Registry::class);
     }
+
+    public function area() {
+        return $this->belongsTo(Area::class);
+    }
 }
