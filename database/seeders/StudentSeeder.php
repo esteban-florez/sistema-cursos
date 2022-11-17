@@ -23,6 +23,6 @@ class StudentSeeder extends Seeder
             'first_lastname' => 'Florez',
         ])->create();
 
-        Student::factory(10)->create();
+        Student::factory(14)->create();
     }
 }

@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Area;
+use App\Models\Instructor;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Date;
 
 class CourseFactory extends Factory
 {
@@ -24,7 +25,7 @@ class CourseFactory extends Factory
 
         return [
             'name' => $this->faker->words(2),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->text(200),
             'total_price' => $this->faker->randomElement([25, 30, 45, 50]),
             'price_ins' => $this->faker->randomElement([5, 10, 15]),
             'start_ins' => $start_ins,
@@ -36,6 +37,8 @@ class CourseFactory extends Factory
             'start_time' => $start_time,
             'end_time' => $end_time,
             'image' => 'img/programacion.jpg',
+            'area_id' => Area::factory(),
+            'instructor_id' => Instructor::factory(),
         ];
     }
 }

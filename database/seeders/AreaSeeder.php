@@ -16,6 +16,6 @@ class AreaSeeder extends Seeder
     {
         Area::truncate();
 
-        Area::factory(10)->create();
+        Area::factory(15)->create();
     }
 }

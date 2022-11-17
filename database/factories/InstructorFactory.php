@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Area;
 
 class InstructorFactory extends Factory
 {
@@ -26,6 +27,7 @@ class InstructorFactory extends Factory
             'degree' => $this->faker->jobTitle,
             'birth' => $this->faker->date,
             'is_admin' => false,
+            'area_id' => Area::factory(),
         ];
     }
 }

@@ -23,17 +23,15 @@ class InstructorSeeder extends Seeder
             'name' => 'Edeblangel',
             'lastname' => 'Vanegas',
             'is_admin' => true,
-        ])->for(Area::factory())->create();
+        ])->create();
             
         Instructor::factory([
             'email' => 'teacher@example.com',
             'password' => 'teacher',
             'name' => 'Elías',
             'lastname' => 'Vargas',
-        ])->for(Area::factory())->create();
+        ])->create();
             
-        Instructor::factory(3)->for(Area::factory())->create();
-        Instructor::factory(3)->for(Area::factory())->create();
-        Instructor::factory(4)->for(Area::factory())->create();
+        Instructor::factory(13)->create();
     }
 }
