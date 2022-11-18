@@ -84,6 +84,8 @@ class CourseController extends Controller
      */
     public function show(Course $courses)
     {
+        $courses = Course::all();
+
         return view('courses.show', [
             'courses' => $courses,
             ]

@@ -5,11 +5,7 @@ h2, h3, h4, h5 {
   height: 17rem;
   object-fit: cover;
 }
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 5.3rem;
-}
+
 .description {
   font-size: 1.1rem;
   font-weight: normal;
