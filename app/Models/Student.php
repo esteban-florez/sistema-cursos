@@ -104,8 +104,8 @@ class Student extends Authenticatable
         return 'Estudiante';
     }
 
-    public function getUptaAttribute()
+    public function getIsUptaAttribute($isUpta)
     {
-        return $this->is_upta ? 'Sí' : 'No';
+        return $isUpta ? 'Sí' : 'No';
     }
 }
