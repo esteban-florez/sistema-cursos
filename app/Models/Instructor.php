@@ -80,7 +80,7 @@ class Instructor extends Authenticatable
         return $this->is_admin ? 'Sí' : 'No';
     }
 
-    public function scopeFilters($query, $adminFilter, $sortColumn, $search)
+    public function scopeFilters($query, $filters, $sortColumn, $search)
     {
         return $query->when(
             $sortColumn,
@@ -88,10 +88,13 @@ class Instructor extends Authenticatable
                 return $query->orderBy($sortColumn);
             }
         )->when(
-            $adminFilter,
-            function ($query, $adminFilter) {
-                $isAdmin = $adminFilter === 'true';
-                return $query->where('is_admin', '=', $isAdmin);
+            $filters,
+            function ($query, $filters) {
+                foreach($filters as $filter => $value) {
+                    $value = $value === 'true'; 
+                    $query->where($filter, '=', $value);
+                }
+                return $query;
             }
         )->when(
             $search,

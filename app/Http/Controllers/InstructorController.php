@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Instructor;
+use App\Services\QueryString;
 use App\Services\RequestFile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -18,17 +19,17 @@ class InstructorController extends Controller
      */
     public function index(Request $request)
     {
+        $filters = QueryString::filters();
         $search = $request->input('search', '');
-        $adminFilter = $request->input('admin', '');
         $sortColumn = $request->input('sort', '');
 
-        $instructors = Instructor::filters($adminFilter, $sortColumn, $search)
+        $instructors = Instructor::filters($filters, $sortColumn, $search)
             ->paginate(10)
             ->withQueryString();
 
         return view('instructors.index', [
             'instructors' => $instructors,
-            'filter' => $adminFilter,
+            'filters' => $filters,
             'sort' => $sortColumn,
             'search' => $search,
         ]);

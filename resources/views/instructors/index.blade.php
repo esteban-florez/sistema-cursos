@@ -2,7 +2,9 @@
   <x-layout.bar>
     <x-search placeholder="Buscar instructor..." :value="$search" name="search" :action="route(Route::currentRouteName())">
       <x-slot name="hidden">
-        <input type="hidden" name="admin" value="{{ $filter }}">
+        @foreach ($filters as $filter => $value)
+          <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
+        @endforeach
         <input type="hidden" name="sort" value="{{ $sort }}">
       </x-slot>
     </x-search>
@@ -13,7 +15,7 @@
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         <x-slot name="filters">
-          <x-select :options="['' => 'Todos', 'true' => 'Sí', 'false' => 'No']" id="admin" name="admin" :selected="$filter">
+          <x-select :options="['' => 'Todos', 'true' => 'Sí', 'false' => 'No']" id="isAdmin" name="filters|is_admin" :selected="$filters['is_admin'] ?? ''">
             ¿Administrador?
           </x-select>
         </x-slot>
