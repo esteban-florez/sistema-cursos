@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,13 @@ Route::get('test', function () {
     return view('test');
 })->name('test');
 
+Route::post('test', function () {
+    dd([
+        request()->input('filters|is_admin', ''),
+        request()->input('filters|gender', )
+    ]);
+});
+
 Route::redirect('/', 'login')->middleware('guest');
 
 
@@ -31,7 +39,6 @@ Route::redirect('/', 'login')->middleware('guest');
 Route::group([
     'controller' => AuthController::class
 ], function () {
-    
     Route::group([
         'middleware' => 'guest'
     ], function () {
@@ -92,19 +99,23 @@ Route::resource('areas', AreaController::class)
     ->except('create')
     ->middleware('auth:instructor');
 
+
 // Courses routes
 
 Route::resource('courses', CourseController::class)
     ->middleware('auth:instructor', 'admin');
 
+
+// Students routes
+
+Route::resource('students', StudentController::class)
+    ->middleware('auth:instructor', 'admin');
+
+
 // Misc
 
 Route::view('home', 'home')->name('home')
     ->middleware('auth', 'prevent-back');
-
-Route::get('students', function () {
-    return 'en proceso :3';
-})->name('students.index');
 
 Route::view('pagos', 'pagos')->name('pagos')
     ->middleware('auth');

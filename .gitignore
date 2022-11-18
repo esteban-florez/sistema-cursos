@@ -16,3 +16,4 @@ yarn-error.log
 *.html
 /database/schema
 whatiwasdoing.md
+/resources/views/test.blade.php
