@@ -73,7 +73,8 @@ class CourseController extends Controller
 
         Course::create($data);
 
-        return redirect()->route('courses.index');
+        return redirect()->route('courses.index')
+            ->withSuccess( 'El curso se ha añadido con éxito' );
     }
 
     /**
@@ -146,7 +147,8 @@ class CourseController extends Controller
 
         $course->update($data);
 
-        return redirect()->route('courses.index');
+        return redirect()->route('courses.index')
+            ->withSuccess( 'El curso se ha editado con éxito' );
     }
 
     /**
@@ -159,6 +161,7 @@ class CourseController extends Controller
     {
         $course->delete();
 
-        return redirect()->route('courses.index');
+        return redirect()->route('courses.index')
+            ->withSuccess( 'El curso se ha eliminado con éxito' );
     }
 }

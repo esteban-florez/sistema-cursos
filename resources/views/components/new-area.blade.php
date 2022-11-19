@@ -10,7 +10,7 @@
   <p>Los campos con <i class="fas fa-asterisk text-danger"></i> son obligatorios.</p>
     <form method="POST" action="{{ route('areas.store') }}">
     @csrf
-    <x-field name="name" id="name" placeholder="Escribe el nombre del área" required>
+    <x-field name="name" id="name" placeholder="Escribe el nombre del área" autocomplete="off" required>
       Nombre:
     </x-field>
     <x-field type="checkbox" name="is_pnf" id="isPnf">
