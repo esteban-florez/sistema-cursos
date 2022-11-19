@@ -8,11 +8,12 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Course;
 use App\Models\Club;
 use App\Models\Area;
-use App\Models\Accesors\UserAccesors;
+use App\Models\Shared\QueryScopes;
+use App\Models\Shared\UserAccesors;
 
 class Instructor extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes;
 
     /**
      * The attributes that are not mass assignable.
@@ -39,6 +40,8 @@ class Instructor extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static $searchColumn = 'name';
 
     public function clubs()
     {
@@ -78,30 +81,6 @@ class Instructor extends Authenticatable
     public function getAdminAttribute()
     {
         return $this->is_admin ? 'Sí' : 'No';
-    }
-
-    public function scopeFilters($query, $filters, $sortColumn, $search)
-    {
-        return $query->when(
-            $sortColumn,
-            function ($query, $sortColumn) {
-                return $query->orderBy($sortColumn);
-            }
-        )->when(
-            $filters,
-            function ($query, $filters) {
-                foreach($filters as $filter => $value) {
-                    $value = $value === 'true'; 
-                    $query->where($filter, '=', $value);
-                }
-                return $query;
-            }
-        )->when(
-            $search,
-            function ($query, $search) {
-                return $query->where('name', 'like', "%{$search}%");
-            }
-        );
     }
 
     public static function getOptions()

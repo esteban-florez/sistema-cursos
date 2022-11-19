@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Accesors;
+namespace App\Models\Shared;
 
 trait UserAccesors
 {
