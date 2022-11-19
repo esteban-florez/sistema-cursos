@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
-use App\Services\QueryString;
+use App\Services\Input;
 use Illuminate\Validation\Rules\Password;
-use App\Services\RequestFile;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,7 @@ class StudentController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = QueryString::filters();
+        $filters = Input::getFilters();
         $sortColumn = $request->input('sort', '');
         $search = $request->input('search', '');
 
@@ -74,8 +73,8 @@ class StudentController extends Controller
 
         Student::create($data);
 
-        if (RequestFile::check('image')) {
-            $data['image'] = RequestFile::store('image', 'public/profiles');
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/profiles');
         } else {
             unset($data['image']);
         }
@@ -141,8 +140,8 @@ class StudentController extends Controller
             'birth' => ['required', 'date'],
         ]);
 
-        if (RequestFile::check('image')) {
-            $data['image'] = RequestFile::store('image', 'public/profiles');
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/profiles');
         } else {
             unset($data['image']);
         }

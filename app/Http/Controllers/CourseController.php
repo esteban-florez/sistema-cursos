@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Course;
 use App\Models\Instructor;
-use App\Services\RequestFile;
+use App\Services\Input;
 
 class CourseController extends Controller
 {
@@ -65,8 +65,8 @@ class CourseController extends Controller
             'end_time' => ['required'],
         ]);
 
-        if (RequestFile::check('image')) {
-            $data['image'] = RequestFile::store('image', 'public/courses');
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/courses');
         } else {
             unset($data['image']);
         }
@@ -139,8 +139,8 @@ class CourseController extends Controller
             'end_time' => ['required'],
         ]);
 
-        if (RequestFile::check('image')) {
-            $data['image'] = RequestFile::store('image', 'public/courses');
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/courses');
         } else {
             unset($data['image']);
         }

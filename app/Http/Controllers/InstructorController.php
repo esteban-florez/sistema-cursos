@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Instructor;
-use App\Services\QueryString;
-use App\Services\RequestFile;
+use App\Services\Input;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
@@ -19,7 +18,7 @@ class InstructorController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = QueryString::filters();
+        $filters = Input::getFilters();
         $search = $request->input('search', '');
         $sortColumn = $request->input('sort', '');
 
@@ -76,8 +75,8 @@ class InstructorController extends Controller
             'birth' => ['required', 'date'],
         ]);
 
-        if (RequestFile::check('image')) {
-            $data['image'] = RequestFile::store('image', 'public/profiles');
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/profiles');
         } else {
             unset($data['image']);
         }
@@ -147,8 +146,8 @@ class InstructorController extends Controller
             'birth' => ['required', 'date'],
         ]);
 
-        if (RequestFile::check('image')) {
-            $data['image'] = RequestFile::store('image', 'public/profiles');
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/profiles');
         } else {
             unset($data['image']);
         }
