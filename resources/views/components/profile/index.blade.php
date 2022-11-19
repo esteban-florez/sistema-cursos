@@ -4,6 +4,7 @@
       <x-profile.widget 
         :name="$user->full_name"
         :role="$user->role"
+        :image="$user->image"
         :course-count="1"
         :club-count="2"
         :nose-count="3"
