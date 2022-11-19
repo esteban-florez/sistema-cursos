@@ -25,6 +25,7 @@ class StudentFactory extends Factory
             'phone' => rand(pow(10, 11-1), pow(10, 11)-1),
             'address' => $this->faker->address,
             'grade' => $this->faker->randomElement(['school', 'high', 'tsu', 'college']),
+            'is_upta' => $this->faker->boolean(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
