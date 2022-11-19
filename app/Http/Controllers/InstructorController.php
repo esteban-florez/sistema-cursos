@@ -83,7 +83,8 @@ class InstructorController extends Controller
 
         Instructor::create($data);
 
-        return redirect()->route('instructors.index');
+        return redirect()->route('instructors.index')
+            ->withSuccess( 'El instructor se ha añadido con éxito' );
     }
 
     /**
@@ -153,7 +154,8 @@ class InstructorController extends Controller
 
         $instructor->update($data);
 
-        return redirect()->route('instructors.index');
+        return redirect()->route('instructors.index')
+            ->withWarning( 'El instructor se ha editado con éxito' );
     }
 
     /**
@@ -166,6 +168,7 @@ class InstructorController extends Controller
     {
         $instructor->delete();
 
-        return redirect()->route('instructors.index');
+        return redirect()->route('instructors.index')
+            ->withDanger( 'El instructor se ha eliminado con exito' );
     }
 }

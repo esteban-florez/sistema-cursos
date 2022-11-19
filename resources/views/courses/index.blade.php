@@ -16,6 +16,9 @@
     </div>
   </x-layout.bar>
   <section class="container-fluid">
+    <x-alerts type="success" icon="plus-circle"/>
+    <x-alerts type="warning" icon="edit"/>
+    <x-alerts type="danger" icon="times-circle"/>
     @forelse ($courses as $course)
       <x-table>
         <x-slot name="header">
