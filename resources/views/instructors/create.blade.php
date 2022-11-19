@@ -12,5 +12,4 @@
       />
     </div>
   </section>
-  
 </x-layout.main>
