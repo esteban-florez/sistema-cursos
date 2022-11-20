@@ -17,7 +17,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::paginate(10);
 
         return view('courses.index', ['courses' => $courses]);
     }
@@ -83,12 +83,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $courses)
+    public function show(Course $course)
     {
-        $courses = Course::all();
-
         return view('courses.show', [
-            'courses' => $courses,
+            'course' => $course,
             ]
         );
     }
@@ -148,7 +146,7 @@ class CourseController extends Controller
         $course->update($data);
 
         return redirect()->route('courses.index')
-            ->withSuccess('El curso se ha editado con éxito');
+            ->withWarning('El curso se ha editado con éxito');
     }
 
     /**
@@ -162,6 +160,6 @@ class CourseController extends Controller
         $course->delete();
 
         return redirect()->route('courses.index')
-            ->withSuccess('El curso se ha eliminado con éxito');
+            ->withDanger('El curso se ha eliminado con éxito');
     }
 }

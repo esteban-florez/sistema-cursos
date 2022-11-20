@@ -19,19 +19,19 @@
     <x-alerts type="success" icon="plus-circle"/>
     <x-alerts type="warning" icon="edit"/>
     <x-alerts type="danger" icon="times-circle"/>
-    @forelse ($courses as $course)
-      <x-table>
-        <x-slot name="header">
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Instructor</th>
-          <th>Precio</th>
-          <th>Martícula</th>
-          <th>Estado</th>
-          <th>Duración</th>
-          <th>Acciones</th>
-        </x-slot>
-        <x-slot name="body">
+    <x-table>
+      <x-slot name="header">
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Instructor</th>
+        <th>Precio</th>
+        <th>Martícula</th>
+        <th>Estado</th>
+        <th>Duración</th>
+        <th>Acciones</th>
+      </x-slot>
+      <x-slot name="body">
+        @forelse ($courses as $course)
           <x-row :data="[
             $course->id,
             $course->name,
@@ -45,17 +45,17 @@
             :edit="route('courses.edit', $course->id)"
             :delete="route('courses.destroy', $course->id)"
           />
+        @empty
+          <div class="contenedor">
+            <h2 class="coursent">No hay cursos disponibles</h2>
+          </div>
+        @endforelse
         </x-slot>
         <x-slot name="pagination">
           <div class="pagination-container">
-            <!-- TODO -> Hacer la paginación -->
+            {{ $courses->links() }}
           </div>
         </x-slot>
       </x-table>
-    @empty
-      <div class="contenedor">
-        <h2 class="coursent">No hay cursos disponibles</h2>
-      </div>
-    @endforelse
   </section>
 </x-layout.main>
