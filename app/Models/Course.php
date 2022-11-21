@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class Course extends Model
 {
@@ -64,5 +65,10 @@ class Course extends Model
         $endIns = Carbon::createFromFormat('Y-m-d', $endIns);
 
         return $endIns->format('m/d/Y');
+    }
+
+    public function getExcerptAttribute()
+    {
+        return Str::words($this->description, 8);
     }
 }

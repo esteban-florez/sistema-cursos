@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\MarketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -131,6 +132,20 @@ Route::group([
 
 });
 
+
+// Course market
+
+Route::group([
+    'middleware' => 'auth:student',
+    'prefix' => 'market',
+    'as' => 'market.'
+], function () {
+    Route::get('/', [MarketController::class, 'index'])
+        ->name('index');
+
+    Route::get('/{course}', [MarketController::class, 'show'])
+        ->name('show');
+});
 
 // Misc
 
