@@ -18,6 +18,8 @@ class MarketController extends Controller
 
     public function show(Course $course)
     {
-
+        return view('market.show', [
+            'course' => $course,
+        ]);
     }
 }

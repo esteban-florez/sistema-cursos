@@ -143,8 +143,11 @@ Route::group([
     Route::get('/', [MarketController::class, 'index'])
         ->name('index');
 
-    Route::get('/{course}', [MarketController::class, 'show'])
+    Route::get('{course}', [MarketController::class, 'show'])
         ->name('show');
+
+    Route::get('create', [MarketController::class, 'create'])
+        ->name('create');
 });
 
 // Misc
