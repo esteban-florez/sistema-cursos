@@ -1,18 +1,12 @@
-/* .price-badge {
-  font-size: 1.3rem;
-  float: right;
-  margin-top: 0.25rem;
-} */
-
-.contenedor {
+.empty-container {
   height: 25rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.coursent {
-  font-size: 4rem;  
+.empty {
+  font-size: 2rem;  
   color: rgba(131, 158, 170, 0.4);
   text-align: center;
 }
@@ -31,7 +25,7 @@
     justify-content: center;
   }
 
-  /* .courses-grid div:not(.badge, .card-body) {
-    height: 100%;
-  } */
+  .empty {
+    font-size: 3.3rem;
+  }
 }

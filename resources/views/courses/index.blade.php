@@ -1,6 +1,6 @@
 <x-layout.main title="Cursos">
   @push('css')
-    <link rel="stylesheet" href="{{ asset('css/cursos-user.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush
   <x-layout.bar>
     <!-- TODO -> Hacer que el bar este funcione -->
@@ -46,8 +46,8 @@
             :delete="route('courses.destroy', $course->id)"
           />
         @empty
-          <div class="contenedor">
-            <h2 class="coursent">No hay cursos disponibles</h2>
+          <div class="empty-container">
+            <h2 class="empty">No hay cursos disponibles</h2>
           </div>
         @endforelse
         </x-slot>
