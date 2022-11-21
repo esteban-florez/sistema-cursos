@@ -55,20 +55,33 @@ class Course extends Model
 
     public function getStartInsAttribute($startIns) 
     {
-        $startIns = Carbon::createFromFormat('Y-m-d', $startIns);
-
-        return $startIns->format('m/d/Y');
+        return $this->formatDate($startIns);
     }
 
     public function getEndInsAttribute($endIns) 
     {
-        $endIns = Carbon::createFromFormat('Y-m-d', $endIns);
+        return $this->formatDate($endIns);
+    }
 
-        return $endIns->format('m/d/Y');
+    public function getStartCourseAttribute($startCourse) 
+    {
+        return $this->formatDate($startCourse);
+    }
+
+    public function getEndCourseAttribute($endCourse) 
+    {
+        return $this->formatDate($endCourse);
     }
 
     public function getExcerptAttribute()
     {
         return Str::words($this->description, 8);
+    }
+
+    private function formatDate($format)
+    {
+        $date = Carbon::createFromFormat('Y-m-d', $format);
+
+        return $date->format('d/m/Y');
     }
 }

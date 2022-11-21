@@ -1,4 +1,4 @@
-<x-layout.main title="Curso de {{ $course->name }}">
+<x-layout.main title="{{ $course->name }}">
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles-curso.css') }}">
   @endpush
