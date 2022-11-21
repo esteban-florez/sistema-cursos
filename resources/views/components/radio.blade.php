@@ -1,9 +1,9 @@
 @props(['options', 'notitle' => false, 'firstEmpty' => false, 'checked' => ''])
 {{-- TODO -> mover lógica a una clase de componente --}}
 @unless ($notitle)
-<div class="p-3">
-  <h5>{{ $slot }}</h5>
+<h5>{{ $slot }}</h5>
 @endunless
+<div class="mb-3">
   @foreach ($options as $value => $label)
   @php
     $id = $value;
@@ -26,8 +26,8 @@
     </label>
   </div>
   @endforeach
-@unless ($notitle)
 </div>
-@endunless
+
 @error($attributes->get('name'))
+  <p class="text-danger">{{ $message }}</p>
 @enderror

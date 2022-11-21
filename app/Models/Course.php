@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
+use App\Models\Shared\QueryScopes;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, QueryScopes;
 
     /**
      * The attributes that are not mass assignable.
@@ -18,6 +19,8 @@ class Course extends Model
      * @var array<int, string>
      */
     protected $guarded = ['id'];
+
+    protected static $searchColumn = 'name';
 
     public function instructor()
     {

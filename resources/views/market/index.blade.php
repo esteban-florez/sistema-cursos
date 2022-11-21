@@ -8,6 +8,13 @@
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
         Filtros
       </x-button>
+      <x-slot name="filtersCollapse">
+        <x-filters-collapse>
+          <x-slot name="sorts">
+            <x-radio :options="['date' => 'Fecha de publicación', 'name' => 'Nombre', 'total_price' => 'Precio']" name="sort" :checked="$sort" notitle first-empty/>
+          </x-slot>
+        </x-filters-collapse>
+      </x-slot>
   </x-layout.bar>
   <section class="container-fluid">
     <div class="courses-grid">

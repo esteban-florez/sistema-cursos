@@ -6,6 +6,8 @@ trait QueryScopes
 {
     public function scopeFilters($query, $filters, $sortColumn, $search)
     {
+        // TODO -> hacer que pueda buscar por mas de un atributo
+        // TODO -> hacer que pueda ordenar asc y desc
         $searchColumn = self::$searchColumn;
         return $query->when(
             $sortColumn,
