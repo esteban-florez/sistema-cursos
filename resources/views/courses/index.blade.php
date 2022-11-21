@@ -1,6 +1,6 @@
 <x-layout.main title="Cursos">
   @push('css')
-  <link rel="stylesheet" href="{{ asset('css/cursos-user.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cursos-user.css') }}">
   @endpush
   <section class="container-fluid">
     @forelse($courses as $course)

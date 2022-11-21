@@ -47,7 +47,7 @@
       <x-layout.sidebar.item icon="basketball-ball">
         Clubes
         <x-slot name="menu">
-          <x-layout.sidebar.item url="#" icon="list">
+          <x-layout.sidebar.item :url="route('club.index')" icon="list">
             Lista de clubes
           </x-layout.sidebar.item>
           @isnt('admin')

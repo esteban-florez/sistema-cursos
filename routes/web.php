@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\ClubController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -108,6 +109,25 @@ Route::group([
         ->name('courses.store');
 });
 
+//Club routes
+
+//Route::resource('club', ClubController::class);
+
+Route::group([
+    'controller'=> ClubController::class,
+    'prefix'=>'club'
+], function(){
+    Route::get('/', 'index')
+        ->name('club.index');
+
+    Route::get('register', 'create')
+        ->name('club.create');
+
+    Route::post('guardar', 'store')
+        ->name('club.store');
+
+});
+
 
 // Misc
 
@@ -120,3 +140,4 @@ Route::get('students', function () {
 
 Route::view('pagos', 'pagos')->name('pagos')
     ->middleware('auth');
+
