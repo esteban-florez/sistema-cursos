@@ -1,12 +1,12 @@
 @php
-  $currentUser = Auth::guard('instructor')->user() ?? Auth::user();
+  $currentUser = user();
 @endphp
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <div class="sidebar mt-0 h-100">
   <div class="user-panel my-3 pb-3 d-flex align-items-center">
     <div class="image pl-2">
-    <img src="{{ asset('img/sample1.jpg') }}" class="img-circle elevation-2" alt="Imagen del usuario">
+    <img src="{{ asset($currentUser->image) }}" class="img-circle elevation-2" alt="Imagen del usuario">
     </div>
     <div class="info">
       <p class="d-block text-white m-0">{{ $currentUser->full_name }}</p>

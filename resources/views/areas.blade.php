@@ -14,10 +14,14 @@
     <x-button icon="plus" color="success" hide-text="sm" data-target="#newAreaModal" data-toggle="modal">Añadir</x-button>
   </x-layout.bar>
   <section class="container-fluid">
+    <!-- TODO -> Traducir los errores -->
     @if($errors->any())
       <p class="alert alert-warning">Hubo un error: {{ $errors->first() }}</p>
     @endif
-    <div class="row px-3">
+    <x-alerts type="success" icon="plus-circle"/>
+    <x-alerts type="warning" icon="edit"/>
+    <x-alerts type="danger" icon="times-circle"/>
+    <div class="row px-2">
       @forelse($areas as $area)
         <x-area-card :area="$area"/>
       @empty

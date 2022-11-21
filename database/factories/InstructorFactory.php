@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Area;
 
 class InstructorFactory extends Factory
 {
@@ -18,7 +19,6 @@ class InstructorFactory extends Factory
             'lastname' => $this->faker->lastName,
             'ci' => $this->faker->unique()->randomNumber(8, true),
             'ci_type' => $this->faker->randomElement(['V', 'E']),
-            'image' => 'image.jpg',
             'gender' => $this->faker->randomElement(['male', 'female']),
             'phone' => rand(pow(10, 11-1), pow(10, 11)-1),
             'address' => $this->faker->address,
@@ -26,8 +26,8 @@ class InstructorFactory extends Factory
             'password' => $this->faker->password(8),
             'degree' => $this->faker->jobTitle,
             'birth' => $this->faker->date,
-            'area_id' => 1,
             'is_admin' => false,
+            'area_id' => Area::factory(),
         ];
     }
 }

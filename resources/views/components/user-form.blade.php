@@ -22,7 +22,7 @@
     <div class="row">
       @if ($image)
         <div class="col-12 col-md-4">
-          <x-image-input required/>
+          <x-image-input :image="$user->image ?? null" profile/>
         </div>
         <div class="col-md-8">
           <x-field type="email" name="email" id="email" placeholder="email@ejemplo.com" value="{{ old('email') ?? $user->email ?? '' }}" required>
@@ -147,7 +147,7 @@
         Volver al listado
       </x-button>
       <x-button type="submit" color="success" icon="check">
-        Registrar
+        Aceptar
       </x-button>
     </div>
   </div>

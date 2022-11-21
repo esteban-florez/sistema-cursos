@@ -4,9 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,13 @@ Route::get('test', function () {
     return view('test');
 })->name('test');
 
+Route::post('test', function () {
+    dd([
+        request()->input('filters|is_admin', ''),
+        request()->input('filters|gender', )
+    ]);
+});
+
 Route::redirect('/', 'login')->middleware('guest');
 
 
@@ -32,7 +40,6 @@ Route::redirect('/', 'login')->middleware('guest');
 Route::group([
     'controller' => AuthController::class
 ], function () {
-    
     Route::group([
         'middleware' => 'guest'
     ], function () {
@@ -74,10 +81,10 @@ function () {
 
 // Signup routes
 
-Route::get('signup', [StudentController::class, 'create'])
+Route::get('signup', [RegisterController::class, 'create'])
     ->name('students.create');
 
-Route::post('register', [StudentController::class, 'store'])
+Route::post('register', [RegisterController::class, 'store'])
     ->name('students.store');
 
 
@@ -93,21 +100,17 @@ Route::resource('areas', AreaController::class)
     ->except('create')
     ->middleware('auth:instructor');
 
+
 // Courses routes
 
-Route::group([
-    'controller' => CourseController::class,
-    'middleware' => 'admin',
-], function(){
-    Route::get('courses', 'index')
-        ->name('courses.index');
+Route::resource('courses', CourseController::class)
+    ->middleware('auth:instructor', 'admin');
 
-    Route::get('register-course', 'create')
-        ->name('courses.create');
-        
-    Route::post('register-course', 'store')
-        ->name('courses.store');
-});
+
+// Students routes
+
+Route::resource('students', StudentController::class)
+    ->middleware('auth:instructor', 'admin');
 
 //Club routes
 
@@ -133,10 +136,6 @@ Route::group([
 
 Route::view('home', 'home')->name('home')
     ->middleware('auth', 'prevent-back');
-
-Route::get('students', function () {
-    return 'en proceso :3';
-})->name('students.index');
 
 Route::view('pagos', 'pagos')->name('pagos')
     ->middleware('auth');

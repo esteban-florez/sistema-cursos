@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Instructor;
+use App\Services\Input;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class InstructorController extends Controller
@@ -16,17 +18,17 @@ class InstructorController extends Controller
      */
     public function index(Request $request)
     {
+        $filters = Input::getFilters();
         $search = $request->input('search', '');
-        $adminFilter = $request->input('admin', '');
         $sortColumn = $request->input('sort', '');
 
-        $instructors = Instructor::filters($adminFilter, $sortColumn, $search)
+        $instructors = Instructor::filters($filters, $sortColumn, $search)
             ->paginate(10)
             ->withQueryString();
 
         return view('instructors.index', [
             'instructors' => $instructors,
-            'filter' => $adminFilter,
+            'filters' => $filters,
             'sort' => $sortColumn,
             'search' => $search,
         ]);
@@ -39,10 +41,7 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        $areas = Area::all(['id', 'name']);
-        $areas = $areas->mapWithKeys(function ($area) {
-            return [$area->id => $area->name];
-        })->sortKeys();
+        $areas = Area::getOptions();
 
         return view('instructors.create', [
             'areas' => $areas,
@@ -58,27 +57,34 @@ class InstructorController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'alpha', 'max:20'],
-            'lastname' => ['required', 'alpha', 'max:20'],
-            'ci' => ['required', 'integer', 'numeric', 'unique:instructors,ci'],
+            'name' => ['required', 'max:30'],
+            'lastname' => ['required', 'max:30'],
+            'ci' => ['required', 'integer', 'numeric', 'unique:instructors'],
             'ci_type' => ['required', 'in:V,E'],
-            'image' => ['nullable', 'image'],
+            'image' => ['nullable', 'file','image', 'max:2048'],
             'gender' => ['required', 'in:male,female'],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:instructors,email'],
+            'email' => ['required', 'email', 'max:50', 'unique:instructors'],
             'password' => [
-                'required', 'max:255', 'confirmed', 
+                'required', 'max:50', 'confirmed', 
                 Password::min(8)->letters()->mixedCase()->numbers()->symbols()
             ],
-            'degree' => ['required', 'max:255'], 
+            'degree' => ['required', 'max:100'], 
             'area_id' => ['required', 'integer', 'numeric'],
             'birth' => ['required', 'date'],
         ]);
 
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/profiles');
+        } else {
+            unset($data['image']);
+        }
+
         Instructor::create($data);
 
-        return redirect()->route('instructors.index');
+        return redirect()->route('instructors.index')
+            ->withSuccess('El instructor se ha añadido con éxito');
     }
 
     /**
@@ -102,10 +108,7 @@ class InstructorController extends Controller
      */
     public function edit(Instructor $instructor)
     {
-        $areas = Area::all(['id', 'name']);
-        $areas = $areas->mapWithKeys(function ($area) {
-            return [$area->id => $area->name];
-        })->sortKeys();
+        $areas = Area::getOptions();
 
         return view('instructors.edit', [
             'instructor' => $instructor,
@@ -122,7 +125,37 @@ class InstructorController extends Controller
      */
     public function update(Request $request, Instructor $instructor)
     {
-        //
+        $uniqueIgnore = Rule::unique('instructors')->ignoreModel($instructor);
+
+        $data = $request->validate([
+            'name' => ['required', 'max:30'],
+            'lastname' => ['required', 'max:30'],
+            'ci' => ['required', 'integer', 'numeric', $uniqueIgnore],
+            'ci_type' => ['required', 'in:V,E'],
+            'image' => ['nullable', 'file','image', 'max:2048'],
+            'gender' => ['required', 'in:male,female'],
+            'phone' => ['required', 'digits:11'],
+            'address' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:50', $uniqueIgnore],
+            'password' => [
+                'required', 'max:50', 'confirmed', 
+                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
+            ],
+            'degree' => ['required', 'max:100'], 
+            'area_id' => ['required', 'integer', 'numeric'],
+            'birth' => ['required', 'date'],
+        ]);
+
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/profiles');
+        } else {
+            unset($data['image']);
+        }
+
+        $instructor->update($data);
+
+        return redirect()->route('instructors.index')
+            ->withWarning('El instructor se ha editado con éxito');
     }
 
     /**
@@ -133,6 +166,9 @@ class InstructorController extends Controller
      */
     public function destroy(Instructor $instructor)
     {
-        //
+        $instructor->delete();
+
+        return redirect()->route('instructors.index')
+            ->withDanger('El instructor se ha eliminado con exito');
     }
 }

@@ -1,15 +1,11 @@
-h2, h3, h4, h5 {
+h3, h4, h5 {
   margin: 0px;
 }
 .img-course {
   height: 17rem;
   object-fit: cover;
 }
-.sticky {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 5.3rem;
-}
+
 .description {
   font-size: 1.1rem;
   font-weight: normal;
@@ -21,4 +17,14 @@ h2, h3, h4, h5 {
 .progress-bar {
 	font-weight: bold;
 	font-size: .9rem;
+}
+
+@media screen and (min-width: 576px) {
+  .details-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 70%));
+    gap: 1rem;
+    justify-content: center;
+  }
 }

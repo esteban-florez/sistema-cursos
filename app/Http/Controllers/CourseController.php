@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Area;
 use Illuminate\Http\Request;
+use App\Models\Area;
 use App\Models\Course;
 use App\Models\Instructor;
+use App\Services\Input;
 
 class CourseController extends Controller
 {
@@ -16,7 +17,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::paginate(10);
 
         return view('courses.index', ['courses' => $courses]);
     }
@@ -28,11 +29,13 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::all();
-        $areas = Area::all();
+        $instructors = Instructor::getOptions();
+        $areas = Area::getOptions();
 
-        return view('courses.create', 
-            ['instructors' => $instructors, 'areas' => $areas]
+        return view('courses.create', [
+            'instructors' => $instructors, 
+            'areas' => $areas
+            ]
         );
     }
 
@@ -44,36 +47,34 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
         $data = $request->validate([
             'name' => ['required', 'max:30'],
-            'image' => ['nullable','image', 'max:1024'],
-            'instructor_id' => ['required'],
-            'area_id' => ['required'],
+            'image' => ['required', 'file', 'image', 'max:2048'],
+            'instructor_id' => ['required', 'integer', 'numeric'],
+            'area_id' => ['required', 'integer', 'numeric'],
             'description' => ['required', 'max:255'],
-            'total_price' => ['required'],
-            'price_ins' => ['required'],
-            'start_date' => ['required'],
-            'end_date' => ['required'],
-            'start_course' => ['required'],
-            'end_course' => ['required'],
-            'duration' => ['required'],
-            'student_limit' => ['required'],
+            'total_price' => ['required', 'integer', 'numeric'],
+            'price_ins' => ['required', 'integer', 'numeric'],
+            'start_ins' => ['required', 'date'],
+            'end_ins' => ['required', 'date'],
+            'start_course' => ['required', 'date'],
+            'end_course' => ['required', 'date'],
+            'duration' => ['required', 'integer', 'numeric'],
+            'student_limit' => ['required', 'integer', 'numeric'],
             'start_time' => ['required'],
             'end_time' => ['required'],
         ]);
 
-        if($image = $data['image']){
-            $routeSaveImg = 'img/';
-            $imgCourse = date('YmdHis'). '.' . $image->getClientOriginalExtension();
-            $image->move($routeSaveImg, $imgCourse);
-            $data['image'] = "$imgCourse";
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/courses');
+        } else {
+            unset($data['image']);
         }
 
         Course::create($data);
 
-        return redirect()->route('courses.index');
+        return redirect()->route('courses.index')
+            ->withSuccess('El curso se ha añadido con éxito');
     }
 
     /**
@@ -82,9 +83,12 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        //
+        return view('courses.show', [
+            'course' => $course,
+            ]
+        );
     }
 
     /**
@@ -93,9 +97,17 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        //
+        $instructors = Instructor::getOptions();
+        $areas = Area::getOptions();
+
+        return view('courses.edit', [
+            'course' => $course,
+            'instructors' => $instructors, 
+            'areas' => $areas
+            ]
+        );
     }
 
     /**
@@ -105,9 +117,36 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required', 'max:30'],
+            'image' => ['nullable', 'file', 'image', 'max:2048'],
+            'instructor_id' => ['required', 'integer', 'numeric'],
+            'area_id' => ['required', 'integer', 'numeric'],
+            'description' => ['required', 'max:255'],
+            'total_price' => ['required', 'integer', 'numeric'],
+            'price_ins' => ['required', 'integer', 'numeric'],
+            'start_ins' => ['required', 'date'],
+            'end_ins' => ['required', 'date'],
+            'start_course' => ['required', 'date'],
+            'end_course' => ['required', 'date'],
+            'duration' => ['required', 'integer', 'numeric'],
+            'student_limit' => ['required', 'integer', 'numeric'],
+            'start_time' => ['required'],
+            'end_time' => ['required'],
+        ]);
+
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/courses');
+        } else {
+            unset($data['image']);
+        }
+
+        $course->update($data);
+
+        return redirect()->route('courses.index')
+            ->withWarning('El curso se ha editado con éxito');
     }
 
     /**
@@ -116,8 +155,11 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        //
+        $course->delete();
+
+        return redirect()->route('courses.index')
+            ->withDanger('El curso se ha eliminado con éxito');
     }
 }

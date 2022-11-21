@@ -7,11 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Course;
 use App\Models\Club;
-use App\Models\Accesors\UserAccesors;
+use App\Models\Area;
+use App\Models\Shared\QueryScopes;
+use App\Models\Shared\UserAccesors;
 
 class Instructor extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes;
 
     /**
      * The attributes that are not mass assignable.
@@ -39,6 +41,8 @@ class Instructor extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static $searchColumn = 'name';
+
     public function clubs()
     {
         return $this->hasMany(Club::class);
@@ -47,6 +51,11 @@ class Instructor extends Authenticatable
     public function courses()
     {
         return $this->hasMany(Course::class);
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
     }
 
     public function getNamesAttribute()
@@ -74,24 +83,14 @@ class Instructor extends Authenticatable
         return $this->is_admin ? 'Sí' : 'No';
     }
 
-    public function scopeFilters($query, $adminFilter, $sortColumn, $search)
+    public static function getOptions()
     {
-        return $query->when(
-            $sortColumn,
-            function ($query, $sortColumn) {
-                return $query->orderBy($sortColumn);
-            }
-        )->when(
-            $adminFilter,
-            function ($query, $adminFilter) {
-                $isAdmin = $adminFilter === 'true';
-                return $query->where('is_admin', '=', $isAdmin);
-            }
-        )->when(
-            $search,
-            function ($query, $search) {
-                return $query->where('name', 'like', "%{$search}%");
-            }
-        );
+        // TODO -> un poquito de DRY no estaría mal
+        $instructors = self::all(['id', 'name', 'lastname']);
+        $instructors = $instructors->mapWithKeys(function ($instructor) {
+            return [$instructor->id => $instructor->full_name];
+        })->sortKeys();
+        
+        return $instructors;
     }
 }

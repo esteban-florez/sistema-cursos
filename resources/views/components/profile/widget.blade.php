@@ -1,4 +1,4 @@
-@props(['name', 'role', 'image' => 'img/rudy.jpg', 'courseCount', 'clubCount', 'noseCount'])
+@props(['name', 'role', 'image', 'courseCount', 'clubCount', 'noseCount'])
 
 <div class="card card-widget widget-user card-profile mb-3 mx-2">
   <div class="widget-user-header bg-primary">

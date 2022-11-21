@@ -20,3 +20,9 @@ if (!function_exists('getCurrentRole')) {
         return 'instructor';
     }
 }
+
+if (!function_exists('user')) {
+    function user() {
+        return Auth::guard('instructor')->user() ?? Auth::user();
+    }
+}

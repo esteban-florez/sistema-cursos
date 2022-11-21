@@ -9,8 +9,8 @@
     <td>{{ $cell }}</td>
   @endforeach
   @if($actions)
-    <td>
-      <div class="d-flex gap-1 align-items-center h-100">
+    <td class="px-2">
+      <div class="d-flex gap-1 justify-content-center align-items-center h-100">
         @if ($edit)
           <x-button class="btn-sm" :url="$edit" color="warning" icon="edit" hide-text="md">
             Editar

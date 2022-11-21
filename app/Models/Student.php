@@ -7,11 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Member;
 use App\Models\Registry;
-use App\Models\Accesors\UserAccesors;
+use App\Models\Shared\QueryScopes;
+use App\Models\Shared\UserAccesors;
 
 class Student extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes;
 
     /**
      * The attributes that are not mass assignable.
@@ -39,6 +40,15 @@ class Student extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected static $searchColumn = 'first_name';
+
+    // TODO -> se me ocurrió poner las estructuras como esta en los respectivos modelos, de modo que así se puedan usar, quizás solo dentro de los modelos ("protected"), o en todos lados, como para pasar datos a selects y tal ("public"). Por ahora sigamos como vamos xD
+    protected static $grades = [
+        'school' => 'Primaria',
+        'high' => 'Bachillerato',
+        'tsu' => 'TSU',
+        'college' => 'Pregrado'
+    ];
     /**
      * Get all the memberships of a Student.
      * 
@@ -104,8 +114,20 @@ class Student extends Authenticatable
         return 'Estudiante';
     }
 
-    public function getUptaAttribute()
+    public function getIsUptaAttribute($isUpta)
     {
-        return $this->is_upta ? 'Sí' : 'No';
+        return $isUpta ? 'Sí' : 'No';
+    }
+
+    public function getGradeAttribute($grade)
+    {
+        $grades = [
+            'school' => 'Primaria',
+            'high' => 'Bachillerato',
+            'tsu' => 'TSU',
+            'college' => 'Pregrado'
+        ];
+        
+        return $grades[$grade];
     }
 }

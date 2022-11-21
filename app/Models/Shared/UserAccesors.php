@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Accesors;
+namespace App\Models\Shared;
 
 trait UserAccesors
 {
@@ -29,6 +29,11 @@ trait UserAccesors
         return $gender === 'male' ? 'Masculino' : 'Femenino';
     }
 
+
+    public function getImageAttribute($image)
+    {
+        return $image ?? 'img/user-placeholder.png';
+    }
     // TODO -> crear un getRawGender accesor
 
     public function setPasswordAttribute($password)
