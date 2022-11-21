@@ -24,7 +24,7 @@ class CourseFactory extends Factory
         // TODO -> start time a veces es mas tarde que end time xd
 
         return [
-            'name' => $this->faker->words(2),
+            'name' => implode(' ', $this->faker->words(2)),
             'description' => $this->faker->text(200),
             'total_price' => $this->faker->randomElement([25, 30, 45, 50]),
             'price_ins' => $this->faker->randomElement([5, 10, 15]),
