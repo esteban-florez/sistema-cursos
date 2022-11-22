@@ -8,6 +8,7 @@ use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use App\Models\Registry;
 
 class Course extends Model
 {
@@ -27,14 +28,11 @@ class Course extends Model
         return $this->belongsTo(Instructor::class);
     }
 
-    /**
-     * Get all the registries of a Course.
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function registries()
+    public function students()
     {
-        return $this->hasMany(Registry::class);
+        return $this->belongsToMany(Course::class, 'registries')
+            ->withTimestamps()
+            ->withPivot(['id', 'approval']);
     }
 
     public function area() 

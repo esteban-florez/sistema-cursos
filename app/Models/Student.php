@@ -42,6 +42,7 @@ class Student extends Authenticatable
 
     protected static $searchColumn = 'first_name';
 
+    
     // TODO -> se me ocurrió poner las estructuras como esta en los respectivos modelos, de modo que así se puedan usar, quizás solo dentro de los modelos ("protected"), o en todos lados, como para pasar datos a selects y tal ("public"). Por ahora sigamos como vamos xD
     protected static $grades = [
         'school' => 'Primaria',
@@ -59,14 +60,22 @@ class Student extends Authenticatable
         return $this->hasMany(Member::class);
     }
 
-    /**
-     * Get all the registries of a Student.
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function registries()
+    public function courses()
     {
-        return $this->hasMany(Registry::class);
+        return $this->belongsToMany(Course::class, 'registries')
+            ->withTimestamps()
+            ->withPivot(['id', 'approval']);
+    }
+
+    public function enroll(Course $course)
+    {
+        // TODO -> por ahora así, pero no se, me suena que hay que hacer cosas con ManyToMany y el metodo associate()
+        $registry = Registry::create([
+            'student_id' => $this->id,
+            'course_id' => $course->id
+        ]);
+
+        return $registry;
     }
 
     /**
