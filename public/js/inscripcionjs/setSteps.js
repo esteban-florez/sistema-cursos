@@ -1,5 +1,6 @@
 import { finalTemplate, onlineTemplate, cashTemplate } from './stepperTemplates.js';
 import TEST_VALUES from './testValues.js';
+import getPrices from './getPrices.js';
 
 const dataPerType = {
   'Pago Móvil': TEST_VALUES.pagoMovilData,
@@ -11,7 +12,7 @@ function setSteps(stepsOptions) {
 
   let templateData = {
     ...stepsOptions,
-    amount: currency === '$' ? TEST_VALUES.priceDollars : TEST_VALUES.priceBs,
+    amount: getPrices(currency),
   };
 
   let confirmStepTemplate;
@@ -39,7 +40,7 @@ function setSteps(stepsOptions) {
       });
     }
 
-    next.addEventListener('click', e => sendForm(e, stepsOptions));
+    next.onclick = e => sendForm(e, stepsOptions);
   }, 0);
   
 }
@@ -49,14 +50,17 @@ function sendForm(e, stepsOptions) {
   const refInput = document.querySelector('#refInput');
   const trueRefInput = document.querySelector('input[name="ref"]');
   const typeInput = document.querySelector('input[name="type"]');
+  const amountInput = document.querySelector('input[name="amount"]');
   const button = document.querySelector('button[type="submit"]');
   const payType = getPayType(stepsOptions);
+  const amount = getPrices(currency);
 
   if (type === 'online') {
     trueRefInput.setAttribute('value', refInput.value);
   }
 
   typeInput.setAttribute('value', payType);
+  amountInput.setAttribute('value', amount)
 
   button.click();
 }

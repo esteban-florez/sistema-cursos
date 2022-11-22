@@ -1,4 +1,4 @@
-const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount} ${currency}` : `${currency}${amount}`;
+const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount},00 ${currency}` : `${currency}${amount},00`;
 
 const generateDataPair = ({title, data}) => `<li class="list-group-item d-flex justify-content-between">
   <span>${title}</span>

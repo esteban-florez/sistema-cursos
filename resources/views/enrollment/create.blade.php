@@ -106,12 +106,12 @@
         </div>
       </div> -->
   </section>
-  <form class="d-none" method="GET" 
+  <form data-amount="{{ $course->total_price }}" class="d-none" method="GET" 
   <!-- action="{{ route('enrollment.store', $course->id) }}" -->
   >
     <input type="hidden" name="date" value="{{ Date::now()->format('Y-m-d') }}">
     <input type="hidden" name="ref" value="">
-    <input type="hidden" name="amount" value="{{ $course->total_price }}">
+    <input type="hidden" name="amount" value="">
     <input type="hidden" name="type" value="">
     <button type="submit"></button>
   </form>
