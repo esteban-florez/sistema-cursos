@@ -3,7 +3,7 @@ import { findSelectedCheckbox } from '../utils.js';
 import { updateStepperControls, enableNextButton } from './stepperControls.js';
 import setSteps from './setSteps.js';
 let stepsOptions = {};
-
+console.log(prices);
 const stepperId = Symbol.for('stepperID');
 
 const payTypes = {

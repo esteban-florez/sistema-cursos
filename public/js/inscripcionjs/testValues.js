@@ -35,7 +35,6 @@ const TEST_VALUES = {
       data: 'Corriente',
     },
   ],
-  price: '45,00',
 };
 
 export default TEST_VALUES;

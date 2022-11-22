@@ -16,11 +16,10 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->string('status');
-            $table->string('ref');
-            $table->string('amount');
-            $table->string('type');
-            $table->string('mode');
+            $table->enum('status', ['pending', 'confirmed', 'rejected'])->default('pending');
+            $table->number('ref');
+            $table->number('amount');
+            $table->enum('type', ['movil', 'transfer', 'dollars', 'bs']);
             $table->foreignId('registry_id')->constrained('registries');
             $table->timestamps();
         });

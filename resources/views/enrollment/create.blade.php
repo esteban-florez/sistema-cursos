@@ -10,7 +10,7 @@
   @endpush
   @push('js')
     <script defer type="module" src="{{ asset('js/inscripcionjs/inscripcionStepper.js') }}"></script>  
-    <script defer type="module" src="{{ asset('js/inscripcionjs/responsiveStepper.js') }}"></script>  
+    <script defer src="{{ asset('js/inscripcionjs/responsiveStepper.js') }}"></script>  
   @endpush
   <section class="container-fluid">
     {{-- TODO -> dividir en componentes --}}
@@ -106,4 +106,13 @@
         </div>
       </div> -->
   </section>
+  <form class="d-none" method="GET" 
+  <!-- action="{{ route('enrollment.store', $course->id) }}" -->
+  >
+    <input type="hidden" name="date" value="{{ Date::now()->format('Y-m-d') }}">
+    <input type="hidden" name="ref" value="">
+    <input type="hidden" name="amount" value="{{ $course->total_price }}">
+    <input type="hidden" name="type" value="">
+    <button type="submit"></button>
+  </form>
 </x-layout.main>

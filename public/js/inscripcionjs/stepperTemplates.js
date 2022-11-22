@@ -26,7 +26,7 @@ function onlineTemplate({title, data, amount, currency}) {
     <i class="fas fa-info-circle fa-lg mr-2"></i>
     <p class="font-weight-normal d-inline">Luego de realizar ${article} ${lowerTitle}, introduzca el número de referencia.</p>
   </div>
-  <form>
+  <form id="refForm">
     <label for="refInput">Referencia</label>
     <input class="form-control" type="number" placeholder="Ingrese la referencia..." id="refInput">
     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -49,7 +49,7 @@ function cashTemplate({amount, currency }) {
   <div class="d-flex justify-content-between">
     <div>
       <button type="button" class="btn btn-secondary" data-stepper="previous">Volver</button>
-      <button type="button" class="btn btn-info" data-stepper="next">Confirmar</button>
+      <button type="button" class="btn btn-info" data-stepper="next" id="payNextButton">Confirmar</button>
     </div>
     <button type="button" class="btn btn-danger" data-stepper="reset">Cancelar</button>
   </div>`
