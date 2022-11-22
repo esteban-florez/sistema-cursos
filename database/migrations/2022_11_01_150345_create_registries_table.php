@@ -15,8 +15,7 @@ class CreateRegistriesTable extends Migration
     {
         Schema::create('registries', function (Blueprint $table) {
             $table->id();
-            $table->boolean('approval');
-            $table->boolean('solvency');
+            $table->boolean('approval')->default(false);
             $table->foreignId('course_id')->constrained();
             $table->foreignId('student_id')->constrained();
             $table->timestamps();

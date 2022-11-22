@@ -1,4 +1,4 @@
-import { finalTemplate, onlineTemplate, cashTemplate } from './stepperTemplates.js';
+import { onlineTemplate, cashTemplate } from './stepperTemplates.js';
 import TEST_VALUES from './testValues.js';
 import getPrices from './getPrices.js';
 
@@ -8,7 +8,7 @@ const dataPerType = {
 }
 
 function setSteps(stepsOptions) {
-  const { type, title, currency } = stepsOptions;
+  const { title, currency } = stepsOptions;
 
   let templateData = {
     ...stepsOptions,
@@ -16,7 +16,6 @@ function setSteps(stepsOptions) {
   };
 
   let confirmStepTemplate;
-  const finalStepTemplate = finalTemplate(type);
   
   if (stepsOptions.type === 'online') {
     templateData.data = dataPerType[title];
@@ -26,7 +25,6 @@ function setSteps(stepsOptions) {
   }
 
   document.querySelector('#confirmStep').innerHTML = confirmStepTemplate;
-  document.querySelector('#finalStep').innerHTML = finalStepTemplate;
 
   // TODO -> mejorar esto si es posible
   setTimeout(() => {
@@ -45,8 +43,8 @@ function setSteps(stepsOptions) {
   
 }
 
-function sendForm(e, stepsOptions) {
-  const { type, currency, title } = stepsOptions;
+function sendForm(_, stepsOptions) {
+  const { type, currency } = stepsOptions;
   const refInput = document.querySelector('#refInput');
   const trueRefInput = document.querySelector('input[name="ref"]');
   const typeInput = document.querySelector('input[name="type"]');

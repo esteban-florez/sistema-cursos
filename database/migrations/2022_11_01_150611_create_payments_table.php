@@ -17,8 +17,8 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->date('date');
             $table->enum('status', ['pending', 'confirmed', 'rejected'])->default('pending');
-            $table->number('ref');
-            $table->number('amount');
+            $table->unsignedInteger('ref')->nullable();
+            $table->unsignedInteger('amount');
             $table->enum('type', ['movil', 'transfer', 'dollars', 'bs']);
             $table->foreignId('registry_id')->constrained('registries');
             $table->timestamps();

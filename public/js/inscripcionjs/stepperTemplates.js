@@ -55,16 +55,13 @@ function cashTemplate({amount, currency }) {
   </div>`
 }
 
-function finalTemplate(type) {
-  const onlineText = 'Su inscripción ha sido registrada con éxito. El administrador verificará su pago en los próximos días.';
-  const cashText = 'Su inscripción ha sido registrada con éxito. Diríjase a la sede de la UPTA en La Victoria para consignar su pago y confirmar su inscripción.';
+function fillFinalParagraph(type) {
+  const onlineText = 'Su inscripción ha sido registrada con éxito. El administrador verificará su pago en los próximos días. Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.';
+  const cashText = 'Su inscripción ha sido registrada con éxito. Ahora debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y después llevarla impresa a la sede de la UPTA en La Victoria para realizar su pago y confirmar su inscripción.';
   
-  return `<h3>Inscripción finalizada</h3>
-<div class="alert alert-success mt-3">
-  <i class="fas fa-info-circle fa-lg mr-2"></i>
-  <p class="font-weight-normal d-inline">${type === 'online' ? onlineText : cashText}</p>
-</div>
-<a class="text-primary" href="pagos-user.html" type="button">Ir a mis pagos</a>`;
+  document.querySelector('#finalParagraph').innerText = 
+    (type === 'movil' || type === 'transfer') 
+      ? onlineText : cashText;
 }
 
-export { cashTemplate, finalTemplate, onlineTemplate, };
+export { cashTemplate, fillFinalParagraph, onlineTemplate, };

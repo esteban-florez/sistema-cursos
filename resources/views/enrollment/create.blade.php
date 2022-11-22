@@ -67,7 +67,17 @@
           </form>
         </div>
         <div class="content fade callout callout-info" id="confirmStep"></div>
-        <div class="content fade callout callout-success" id="finalStep"></div>
+        <div class="content fade callout callout-success" id="finalStep">
+          <h3>Inscripción finalizada</h3>
+          <div class="alert alert-success mt-3">
+            <i class="fas fa-info-circle fa-lg mr-2"></i>
+            <p class="font-weight-normal d-inline" id="finalParagraph"></p>
+          </div>
+          {{-- TODO -> ruta para imprimir planilla --}}
+          <x-button icon="file">
+            Descargar Planilla de Inscripción
+          </x-button>
+        </div>
       </div>
     </div>
     <!-- <div class="col-12 d-md-none course-data-card">
@@ -106,13 +116,20 @@
         </div>
       </div> -->
   </section>
-  <form data-amount="{{ $course->total_price }}" class="d-none" method="GET" 
-  <!-- action="{{ route('enrollment.store', $course->id) }}" -->
+  <form
+    data-amount="{{ $course->total_price }}"
+    class="d-none"
+    method="POST"
+    action="{{ route('enrollment.store', $course->id) }}"
   >
+    @csrf
     <input type="hidden" name="date" value="{{ Date::now()->format('Y-m-d') }}">
     <input type="hidden" name="ref" value="">
     <input type="hidden" name="amount" value="">
     <input type="hidden" name="type" value="">
     <button type="submit"></button>
   </form>
+  <script>
+    let enrolledType = '{{ $enrolledType }}';
+  </script>
 </x-layout.main>

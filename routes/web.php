@@ -10,6 +10,7 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\StudentPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -114,6 +115,10 @@ Route::resource('courses', CourseController::class)
 Route::resource('students', StudentController::class)
     ->middleware('auth:instructor', 'admin');
 
+Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
+    ->middleware('auth:student')
+    ->name('students.payments.index');
+
 //Club routes
 
 //Route::resource('club', ClubController::class);
@@ -157,10 +162,10 @@ Route::group([
     'as' => 'enrollment.'
 ], function () {
     Route::get('{course}',[EnrollmentController::class, 'create'])
-    ->name('create');
+        ->name('create');
 
     Route::post('{course}',[EnrollmentController::class, 'store'])
-    ->name('store');
+        ->name('store');
 });
 
 // Misc
