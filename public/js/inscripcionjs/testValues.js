@@ -36,7 +36,6 @@ const TEST_VALUES = {
     },
   ],
   price: '45,00',
-  inscription: '15,00',
 };
 
 export default TEST_VALUES;

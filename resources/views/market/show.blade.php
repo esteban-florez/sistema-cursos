@@ -29,7 +29,7 @@
         </div>
         <div class="d-flex justify-content-between mt-3">
           <x-button :url="route('market.index')" color="secondary" icon="times">Volver al listado</x-button>
-          <x-button :url="route('market.create')" icon="clipboard-list">Inscribirse</x-button>
+          <x-button :url="route('enrollment.create', $course->id)" icon="clipboard-list">Inscribirse</x-button>
         </div>
       </div>
     </div>  

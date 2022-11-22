@@ -1,10 +1,5 @@
 import { finalTemplate, onlineTemplate, cashTemplate } from './stepperTemplates.js';
-import TEST_VALUES from './testValues.js'; 
-
-const pricesPerMode = {
-  unico: TEST_VALUES.price,
-  cuotas: TEST_VALUES.inscription,
-}
+import TEST_VALUES from './testValues.js';
 
 const dataPerType = {
   'Pago Móvil': TEST_VALUES.pagoMovilData,
@@ -12,11 +7,11 @@ const dataPerType = {
 }
 
 function setSteps(stepsOptions) {
-  const { mode, type, title } = stepsOptions;
+  const { type, title } = stepsOptions;
 
   let templateData = {
     ...stepsOptions,
-    amount: pricesPerMode[mode],
+    amount: TEST_VALUES.price,
   };
 
   let confirmStepTemplate;

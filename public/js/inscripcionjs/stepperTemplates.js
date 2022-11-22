@@ -1,12 +1,11 @@
 const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount} ${currency}` : `${currency}${amount}`;
-const generateAmountDescription = payMode => payMode === 'cuotas' ? 'Monto de inscripción: ' : 'Monto total: ';
 
 const generateDataPair = ({title, data}) => `<li class="list-group-item d-flex justify-content-between">
   <span>${title}</span>
   <span class="font-weight-bold text-break">${data}</span>
 </li>`;
 
-function onlineTemplate({title, data, mode, amount, currency}) {
+function onlineTemplate({title, data, amount, currency}) {
   const lowerTitle = title.toLowerCase();
   const article = title === 'Transferencia' ? 'la' : 'el';
   let paymentData = data.reduce((prev, next) => {
@@ -14,7 +13,7 @@ function onlineTemplate({title, data, mode, amount, currency}) {
     return prev;
   }, '');
   paymentData += generateDataPair({
-    title: generateAmountDescription(mode),
+    title: 'Monto total: ',
     data: generateAmount(amount, currency),
   }); 
 
@@ -40,10 +39,10 @@ function onlineTemplate({title, data, mode, amount, currency}) {
   </form>`;
 }
 
-function cashTemplate({amount, currency, mode}) {
+function cashTemplate({amount, currency }) {
   return `<h3>Pago en Efectivo (${currency})</h3>
   <h5>
-    ${generateAmountDescription(mode)} 
+    Monto total:  
     <span class="text-success">${generateAmount(amount, currency)}</span>
   </h5>
   <p>¿Desea confirmar su pago?</p>

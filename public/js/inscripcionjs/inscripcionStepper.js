@@ -1,5 +1,5 @@
 'use strict';
-import {findSelectedCheckbox, uncheckCheckboxes} from '../utils.js';
+import { findSelectedCheckbox } from '../utils.js';
 import { updateStepperControls, enableNextButton } from './stepperControls.js';
 import setSteps from './setSteps.js';
 let stepsOptions = {};
@@ -27,9 +27,7 @@ const payTypes = {
   },
 }
 
-let modeChecks = document.querySelectorAll('input[name="modo-pago"]');
 let typeChecks = document.querySelectorAll('input[name="tipo-pago"]');
-modeChecks = Array.from(modeChecks);
 typeChecks = Array.from(typeChecks);
 
 function initStepper() {
@@ -40,16 +38,6 @@ function initStepper() {
 
 document.addEventListener('DOMContentLoaded', initStepper);
 document.addEventListener('DOMContentLoaded', () => updateStepperControls());
-
-modeChecks.forEach(checkbox => checkbox.addEventListener('input', () => {
-  const selectedCheck = findSelectedCheckbox(modeChecks);
-  stepsOptions.mode = selectedCheck.value;
-
-  uncheckCheckboxes(typeChecks);
-  document.querySelector('#typeNextButton').setAttribute('disabled', 'disabled');
-
-  enableNextButton('mode');
-}));
 
 typeChecks.forEach(checkbox => checkbox.addEventListener('input', () => {
   const selectedCheck = findSelectedCheckbox(typeChecks);

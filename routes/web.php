@@ -9,6 +9,7 @@ use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MarketController;
+use App\Http\Controllers\EnrollmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -145,9 +146,21 @@ Route::group([
 
     Route::get('{course}', [MarketController::class, 'show'])
         ->name('show');
+});
 
-    Route::get('create', [MarketController::class, 'create'])
-        ->name('create');
+
+// Course enrollment
+
+Route::group([
+    'middleware' => 'auth:student',
+    'prefix' => 'enrollment',
+    'as' => 'enrollment.'
+], function () {
+    Route::get('{course}',[EnrollmentController::class, 'create'])
+    ->name('create');
+
+    Route::post('{course}',[EnrollmentController::class, 'store'])
+    ->name('store');
 });
 
 // Misc
