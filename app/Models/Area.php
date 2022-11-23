@@ -23,13 +23,19 @@ class Area extends Model
         return $this->hasMany(Course::class);
     }
 
-    public static function getOptions()
+    public static function getOptions($withDefault = false)
     {
         $areas = self::all(['id', 'name']);
-        $areas = $areas->mapWithKeys(function ($area) {
+
+        $options = $areas->mapWithKeys(function ($area) {
             return [$area->id => $area->name];
-        })->sortKeys();
-        
-        return $areas;
+        })->sortKeys()->all();
+
+        if ($withDefault) {
+            $defaultOptions = ['' => 'Todos'];
+            return $defaultOptions + $options;
+        }
+
+        return $options;
     }
 }

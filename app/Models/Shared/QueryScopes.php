@@ -18,7 +18,12 @@ trait QueryScopes
             $filters,
             function ($query, $filters) {
                 foreach($filters as $filter => $value) {
-                    $value = $value === 'true'; 
+                    if($value === 'true') {
+                        $value = true;
+                    }
+                    else if($value === 'false') {
+                        $value = false; 
+                    }
                     $query->where($filter, '=', $value);
                 }
                 return $query;
