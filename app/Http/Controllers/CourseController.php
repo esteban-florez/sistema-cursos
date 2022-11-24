@@ -15,11 +15,24 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::paginate(10);
+        $filters = Input::getFilters();
+        $search = $request->input('search', '');
+        $sortColumn = $request->input('sort', '');
+        $areas = Area::getOptions(true);
 
-        return view('courses.index', ['courses' => $courses]);
+        $courses = Course::filters($filters, $sortColumn, $search)
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('courses.index', [
+            'courses' => $courses,
+            'filters' => $filters,
+            'sort' => $sortColumn,
+            'search' => $search,
+            'areas' => $areas,
+        ]);
     }
 
     /**

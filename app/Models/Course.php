@@ -8,7 +8,6 @@ use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
-use App\Models\Registry;
 
 class Course extends Model
 {
@@ -42,16 +41,12 @@ class Course extends Model
 
     public function getStartTimeAttribute($startTime) 
     {
-        $newStartTime = Carbon::createFromFormat('H:i:s', $startTime);
-
-        return $newStartTime->format('g:i A');
+        return $this->formatTime($startTime);
     }
 
     public function getEndTimeAttribute($endTime) 
     {
-        $newEndTime = Carbon::createFromFormat('H:i:s', $endTime);
-
-        return $newEndTime->format('g:i A');
+        return $this->formatTime($endTime);
     }
 
     public function getStartInsAttribute($startIns) 
@@ -84,5 +79,11 @@ class Course extends Model
         $date = Carbon::createFromFormat('Y-m-d', $format);
 
         return $date->format('d/m/Y');
+    }
+
+    private function formatTime($format) {
+        $time = Carbon::createFromFormat('H:i:s', $format);
+
+        return $time->format('g:i A');
     }
 }

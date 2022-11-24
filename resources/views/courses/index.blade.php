@@ -3,8 +3,13 @@
     <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush
   <x-layout.bar>
-    <!-- TODO -> Hacer que el bar este funcione -->
-    <x-search placeholder="Buscar curso..." name="search">
+    <x-search placeholder="Buscar curso..." :value="$search" name="search" :action="route(Route::currentRouteName())">
+      <x-slot name="hidden">
+        @foreach ($filters as $filter => $value)
+          <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
+        @endforeach
+        <input type="hidden" name="sort" value="{{ $sort }}">
+      </x-slot>
     </x-search>
     <div>
       <x-button icon="plus" color="success" hide-text="sm" :url="route('courses.create')">
@@ -14,6 +19,18 @@
         Filtros
       </x-button>
     </div>
+    <x-slot name="filtersCollapse">
+      <x-filters-collapse>
+        <x-slot name="filters">
+          <x-select :options="$areas" id="areaId" name="filters|area_id" :selected="$filters['area_id'] ?? ''">
+            Área de Formación
+          </x-select>
+        </x-slot>
+        <x-slot name="sorts">
+          <x-radio :options="['name' => 'Nombre', 'total_price' => 'Precio', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
+        </x-slot>
+      </x-filters-collapse>
+    </x-slot>
   </x-layout.bar>
   <section class="container-fluid">
     <x-alerts type="success" icon="plus-circle"/>
