@@ -9,6 +9,7 @@ use App\Models\Member;
 use App\Models\Registry;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
+use Illuminate\Support\Facades\Date;
 
 class Student extends Authenticatable
 {
@@ -138,5 +139,11 @@ class Student extends Authenticatable
         ];
         
         return $grades[$grade];
+    }
+
+    public function getAgeAttribute()
+    {
+        $birth = Date::createFromFormat('Y-m-d', $this->birth);
+        return now()->year - $birth->year;
     }
 }

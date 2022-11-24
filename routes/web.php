@@ -157,16 +157,21 @@ Route::group([
 // Course enrollment
 
 Route::group([
+    'controller' => EnrollmentController::class,
     'middleware' => 'auth:student',
     'prefix' => 'enrollment',
-    'as' => 'enrollment.'
+    'as' => 'enrollment.',
 ], function () {
-    Route::get('{course}',[EnrollmentController::class, 'create'])
+    Route::get('{course}', 'create')
         ->name('create');
 
-    Route::post('{course}',[EnrollmentController::class, 'store'])
+    Route::post('{course}', 'store')
         ->name('store');
+    
+    Route::get('{registry}/download', 'download')
+        ->name('download');
 });
+
 
 // Misc
 
