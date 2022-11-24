@@ -162,12 +162,17 @@ Route::group([
     'prefix' => 'enrollment',
     'as' => 'enrollment.',
 ], function () {
-    Route::get('{course}', 'create')
-        ->name('create');
-
-    Route::post('{course}', 'store')
-        ->name('store');
+    Route::middleware('enroll')->group(function () {
+        Route::get('{course}', 'create')
+            ->name('create');
     
+        Route::post('{course}', 'store')
+            ->name('store');
+    });
+    
+    Route::get('{registry}/success', 'success')
+        ->name('success');
+
     Route::get('{registry}/download', 'download')
         ->name('download');
 });

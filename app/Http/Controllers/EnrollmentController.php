@@ -14,7 +14,6 @@ class EnrollmentController extends Controller
     {
         return view('enrollment.create', [
             'course' => $course,
-            'enrolledType' => session()->get('enrolledType', 'null'),
         ]);
     }
 
@@ -33,7 +32,17 @@ class EnrollmentController extends Controller
 
         $payment = Payment::create($data);
 
-        return redirect()->route('enrollment.create', $course->id)->with('enrolledType', $payment->type);
+        return redirect()
+            ->route('enrollment.success', $registry->id)
+            ->with('enrolledType', $payment->type);
+    }
+
+    public function success(Registry $registry)
+    {
+        return view('enrollment.success', [
+            'registry' => $registry,
+            'enrolledType' => $registry->payment->type,
+        ]);
     }
 
     public function download(Registry $registry)
