@@ -8,13 +8,7 @@ trait QueryScopes
     {
         // TODO -> hacer que pueda buscar por mas de un atributo
         // TODO -> hacer que pueda ordenar asc y desc
-        $searchColumn = self::$searchColumn;
         return $query->when(
-            $sortColumn,
-            function ($query, $sortColumn) {
-                return $query->orderBy($sortColumn);
-            }
-        )->when(
             $filters,
             function ($query, $filters) {
                 foreach($filters as $filter => $value) {
@@ -28,10 +22,16 @@ trait QueryScopes
                 }
                 return $query;
             }
+            )->when(
+                $search,
+                function ($query, $search) {
+                    $searchColumn = self::$searchColumn;
+                    return $query->where($searchColumn, 'like', "%{$search}%");
+                }
         )->when(
-            $search,
-            function ($query, $search) use($searchColumn) {
-                return $query->where($searchColumn, 'like', "%{$search}%");
+            $sortColumn,
+            function ($query, $sortColumn) {
+                return $query->orderBy($sortColumn);
             }
         );
     }
