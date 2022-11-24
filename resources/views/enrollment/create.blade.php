@@ -67,17 +67,7 @@
           </form>
         </div>
         <div class="content fade callout callout-info" id="confirmStep"></div>
-        <div class="content fade callout callout-success" id="finalStep">
-          <h3>Inscripción finalizada</h3>
-          <div class="alert alert-success mt-3">
-            <i class="fas fa-info-circle fa-lg mr-2"></i>
-            <p class="font-weight-normal d-inline" id="finalParagraph"></p>
-          </div>
-          {{-- TODO -> ruta para imprimir planilla --}}
-          <x-button icon="file">
-            Descargar Planilla de Inscripción
-          </x-button>
-        </div>
+        <div class="content fade callout callout-success" id="finalStep"></div>
       </div>
     </div>
     <!-- <div class="col-12 d-md-none course-data-card">
@@ -129,7 +119,4 @@
     <input type="hidden" name="type" value="">
     <button type="submit"></button>
   </form>
-  <script>
-    let enrolledType = '{{ $enrolledType }}';
-  </script>
 </x-layout.main>

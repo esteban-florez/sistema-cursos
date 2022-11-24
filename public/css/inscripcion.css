@@ -25,6 +25,11 @@
   display: none;
 }
 
+.callout a {
+  color: #fff;
+  text-decoration: none;
+}
+
 @media (max-width: 520px) {
   .bs-stepper .step-trigger {
     -ms-flex-direction: initial;

@@ -10,7 +10,6 @@
         @endforeach
         <input type="hidden" name="sort" value="{{ $sort }}">
       </x-slot>
-    </x-search>
     <div>
       <x-button icon="plus" color="success" hide-text="sm" :url="route('courses.create')">
         Añadir

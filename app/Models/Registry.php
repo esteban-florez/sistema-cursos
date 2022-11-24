@@ -24,8 +24,8 @@ class Registry extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function payments()
-    {
+    public function payment()
+    {   
         return $this->hasOne(Payment::class);
     }
 }
