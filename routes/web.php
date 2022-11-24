@@ -8,6 +8,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\StudentPaymentController;
@@ -119,9 +120,14 @@ Route::get('students/{student}/payments', [StudentPaymentController::class, 'ind
     ->middleware('auth:student')
     ->name('students.payments.index');
 
-//Club routes
 
-//Route::resource('club', ClubController::class);
+// Payments routes
+
+Route::resource('payments', PaymentController::class)
+    ->middleware('auth:instructor', 'admin');
+
+
+//Club routes
 
 Route::group([
     'controller'=> ClubController::class,
