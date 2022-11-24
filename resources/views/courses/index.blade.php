@@ -4,6 +4,7 @@
   @endpush
   <x-layout.bar>
     <!-- TODO -> Hacer que el bar este funcione -->
+    <!-- TODO -> Hacer un mejor diseño para esta interfaz -->
     <x-search placeholder="Buscar curso..." name="search">
     </x-search>
     <div>
