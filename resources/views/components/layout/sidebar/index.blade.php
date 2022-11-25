@@ -18,9 +18,16 @@
       <x-layout.sidebar.item icon="graduation-cap">
         Cursos
         <x-slot name="menu">
+          @is('student')
+          <x-layout.sidebar.item :url="route('market.index')" icon="list">
+            Lista de cursos
+          </x-layout.sidebar.item>
+          @endis
+          @isnt('student')
           <x-layout.sidebar.item :url="route('courses.index')" icon="list">
             Lista de cursos
           </x-layout.sidebar.item>
+          @endisnt
           @is('admin')
           <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
             Registrar curso
