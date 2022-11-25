@@ -23,7 +23,7 @@
   }}
 >
   @isset($icon)
-  <i class="fas fa-{{ $icon }} m-none mr-{{$hideText}}-1"></i>
+  <i class="fas fa-{{ $icon }}"></i>
   @endisset
   <span
     @isset($hideText)
