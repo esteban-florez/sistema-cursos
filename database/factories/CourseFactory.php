@@ -27,7 +27,6 @@ class CourseFactory extends Factory
             'name' => implode(' ', $this->faker->words(2)),
             'description' => $this->faker->text(200),
             'total_price' => $this->faker->randomElement([25, 30, 45, 50]),
-            'price_ins' => $this->faker->randomElement([5, 10, 15]),
             'start_ins' => $start_ins,
             'end_ins' => $end_ins,
             'start_course' => $start_course,

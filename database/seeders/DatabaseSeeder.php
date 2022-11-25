@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(StudentSeeder::class);
         $this->call(InstructorSeeder::class);
         $this->call(CourseSeeder::class);
+        $this->call(RegistrySeeder::class);
+        $this->call(PaymentSeeder::class);
 
         Schema::enableForeignKeyConstraints();
     }

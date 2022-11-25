@@ -16,6 +16,10 @@ class AreaSeeder extends Seeder
     {
         Area::truncate();
 
-        Area::factory(15)->create();
+        Area::factory([
+            'name' => 'Informática',
+            'is_pnf' => true,
+            'pnf_name' => 'Informática',
+        ])->create();
     }
 }

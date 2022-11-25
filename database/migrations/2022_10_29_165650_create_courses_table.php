@@ -14,12 +14,12 @@ class CreateCoursesTable extends Migration
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
+            // TODO -> falta añadir que días de la semana son las clases xD
             $table->id();
             $table->string('name');
             $table->string('image');
             $table->text('description');
             $table->integer('total_price');
-            $table->integer('price_ins');
             $table->date('start_ins');
             $table->date('end_ins');
             $table->date('start_course');

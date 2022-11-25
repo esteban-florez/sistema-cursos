@@ -18,6 +18,7 @@ class CreateRegistriesTable extends Migration
             $table->boolean('approval')->default(false);
             $table->foreignId('course_id')->constrained();
             $table->foreignId('student_id')->constrained();
+            $table->string('unique')->unique();
             $table->timestamps();
         });
     }

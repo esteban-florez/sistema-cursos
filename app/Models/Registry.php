@@ -28,4 +28,9 @@ class Registry extends Model
     {   
         return $this->hasOne(Payment::class);
     }
+
+    public function setUniqueAttribute()
+    {
+        $this->attributes['unique'] = "{$this->student_id}-{$this->course_id}";
+    }
 }
