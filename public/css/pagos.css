@@ -1,6 +1,8 @@
 .callout {
   border-left: solid .5rem;
   margin-bottom: .5rem;
+  width: 100%;
+  min-width: 280px;
 }
 
 .callout-secondary {
@@ -14,6 +16,13 @@
 .pay-callout h4 {
   font-size: 1.2rem;
   text-align: center;
+}
+
+.payments-grid {
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  place-items: center;
 }
 
 @media screen and (min-width: 768px) {

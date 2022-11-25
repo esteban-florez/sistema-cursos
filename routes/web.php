@@ -123,6 +123,10 @@ Route::get('students/{student}/payments', [StudentPaymentController::class, 'ind
 
 // Payments routes
 
+Route::get('payments/pending', [PaymentController::class, 'pending'])
+    ->middleware('auth:instructor', 'admin')    
+    ->name('payments.pending');
+
 Route::resource('payments', PaymentController::class)
     ->middleware('auth:instructor', 'admin');
 

@@ -26,6 +26,7 @@ class PaymentFactory extends Factory
             'date' => now()->format('Y-m-d'),
             'ref' => $ref,
             'type' => $type,
+            'amount' => $this->faker->randomFloat(2, 0, 1000),
         ];
     }
 }

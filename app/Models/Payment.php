@@ -20,11 +20,21 @@ class Payment extends Model
 
     public function student()
     {
-        return $this->registry->student();
+        return $this->registry()
+            ->first()
+            ->student();
     }
 
     public function course()
     {
-        return $this->registry->course();
+        return $this->registry()
+            ->first()
+            ->course();
+    }
+
+    public function getAmountAttribute($amount)
+    {
+        $currency = $this->type === 'dollars' ? '$' : 'Bs.D.';
+        return "{$amount} {$currency}";
     }
 }

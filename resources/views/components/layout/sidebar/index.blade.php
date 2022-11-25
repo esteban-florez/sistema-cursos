@@ -98,13 +98,8 @@
             Lista de pagos
           </x-layout.sidebar.item>
           @is('admin')
-          <x-layout.sidebar.item url="#" icon="check">
+          <x-layout.sidebar.item :url="route('payments.pending')" icon="check">
             Por verificar
-          </x-layout.sidebar.item>
-          @endis
-          @is('student')
-          <x-layout.sidebar.item url="#" icon="receipt">
-            Cuotas pendientes
           </x-layout.sidebar.item>
           @endis
         </x-slot>
