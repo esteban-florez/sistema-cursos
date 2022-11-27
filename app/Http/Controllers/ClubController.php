@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\Instructor;
+use App\Services\Input;
 
 class ClubController extends Controller
 {
@@ -42,14 +43,29 @@ class ClubController extends Controller
 
     public function store(Request $request) 
     {
-        $data = $request->except("_token");
+        // $data = $request->except("_token");
 
-        if ($image = $data['image']){
-            $routeSaveImg = 'img/';
-            $imgClub = date('YmdHis'). '.' . $image->getClientOriginalExtension();
-            $image->move($routeSaveImg, $imgClub);
-            $data['image'] = "$imgClub";
+        $data = $request->validate([
+            'name' => ['required', 'max:30'],
+            'image' => ['required', 'file', 'image', 'max:2048'],
+            'description' => ['required', 'max:255'],
+            'day' => ['required', 'in:mo,tu,we,th,fr,sa,su'],
+            'start_hour' => ['required'],
+            'end_hour' => ['required'],
+        ]);
+
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/clubs');
+        } else {
+            unset($data['image']);
         }
+
+        // if ($image = $data['image']){
+        //     $routeSaveImg = 'img/';
+        //     $imgClub = date('YmdHis'). '.' . $image->getClientOriginalExtension();
+        //     $image->move($routeSaveImg, $imgClub);
+        //     $data['image'] = "$imgClub";
+        // }
 
         Club::create($data);
 

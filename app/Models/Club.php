@@ -12,6 +12,8 @@ class Club extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function instructor()
     {
         return $this->belongsTo(Instructor::class);
