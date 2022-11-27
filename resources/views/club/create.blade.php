@@ -12,9 +12,12 @@
               <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" required>
                 Nombre:
               </x-field>
-              <x-field name="description" id="description" placeholder="Nombre de descripcion" autocomplete="off" required>
+              <x-select name="instructor_id" id="instructor" :options= "$instructors" required>
+                Instructor:
+              </x-select>
+              <x-textarea name="description" id="description" placeholder="Nombre de descripcion" autocomplete="off" required>
                 Descripcion:
-              </x-field>
+              </x-textarea>
               <x-select name="day" id="day" :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'Th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" :selected="old('day') ?? $club->day ?? ''" required>
                 Días:
               </x-select>
