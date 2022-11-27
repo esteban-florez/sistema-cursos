@@ -1,7 +1,4 @@
 <x-layout.main title="Club">
-  @push('css')
-    <link rel= "stylesheet" href= "{{ asset('css/club.user.css') }}">
-  @endpush
   <section class="container-fluid">
     @if ($clubs!=null)
       <div class="container-fluid">
@@ -23,7 +20,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($clubs as @club)
+                    @foreach ($clubs as $club)
                     <tr>
                       <td>{{ $club->id }}</td>
                       <td>{{ $club->name }}</td>
@@ -39,24 +36,26 @@
                       </td>
                     </tr>
                   @endforeach
-                  <div class="card-footer">
-                    <ul class="pagination pagination-sm m-0 d-flex justify-content-center">
-                      <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                  </div>
-              </div>
+                </tbody>
+              </table>
+                <div class="card-footer">
+                  <ul class="pagination pagination-sm m-0 d-flex justify-content-center">
+                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                  </ul>
+                </div>
             </div>
           </div>
         </div>
       </div>
-    @else
-      <div class="contenedor">
-        <h2 class="coursent">No hay clubs disponibles</h2>
-      </div>
-    @endif  
-  </section>
-<x-layout.main
+    </div>
+  @else
+    <div class="contenedor">
+      <h2 class="coursent">No hay clubs disponibles</h2>
+    </div>
+  @endif  
+</section>
+</x-layout.main>

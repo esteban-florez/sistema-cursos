@@ -63,7 +63,7 @@
           </x-layout.sidebar.item>
           @endisnt
           @is('admin')
-          <x-layout.sidebar.item url="#" icon="plus">
+          <x-layout.sidebar.item :url="route('club.create')" icon="plus">
             Registrar club
           </x-layout.sidebar.item>
           @endis
