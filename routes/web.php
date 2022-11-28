@@ -128,7 +128,8 @@ Route::get('payments/pending', [PaymentController::class, 'pending'])
     ->name('payments.pending');
 
 Route::resource('payments', PaymentController::class)
-    ->middleware('auth:instructor', 'admin');
+    ->middleware('auth:instructor', 'admin')
+    ->only('index', 'update', 'destroy');
 
 
 //Club routes

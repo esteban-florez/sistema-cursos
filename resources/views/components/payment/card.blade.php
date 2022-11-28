@@ -21,20 +21,6 @@
       Ver detalles
     </a>
   </div>
-  <form method="POST" class="d-inline" action="{{ route('payments.update', $payment->id) }}">
-    @csrf
-    @method('PUT')
-    <input type="hidden" name="status" value="confirmed">
-    <x-button type="submit" color="success" icon="check">
-      Aceptar
-    </x-button>
-  </form>
-  <form method="POST" class="d-inline" action="{{ route('payments.update', $payment->id) }}">
-    <input type="hidden" name="status" value="rejected">
-    @csrf
-    @method('PUT')
-    <x-button type="submit" color="danger" icon="times">
-      Rechazar
-    </x-button>
-  </form>
+  <x-payment.status-button :id="$payment->id" type="confirmed"/>
+  <x-payment.status-button :id="$payment->id" type="rejected"/>
 </div>

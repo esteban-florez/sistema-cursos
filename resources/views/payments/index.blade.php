@@ -1,4 +1,7 @@
 <x-layout.main title="Pagos">
+  @push('js')
+    <script defer type="module" src="{{ asset('js/payments/editPayment.js') }}"></script>
+  @endpush
   <x-layout.bar>
     <div class="d-flex align-items-center gap-1">
       <span class="h6 mb-0">Buscar por cédula: </span>  
@@ -49,10 +52,21 @@
             $payment->type,
             $payment->status,
             ]"
-            :details="route('payments.show', $payment->id)"
-            :edit="route('payments.edit', $payment->id)"
             :delete="route('payments.destroy', $payment->id)"
-          />
+          >
+            @if($payment->status === 'Pendiente')
+            <x-slot name="extraActions">
+              <x-payment.status-button :id="$payment->id" type="confirmed" sm/>
+              <x-payment.status-button :id="$payment->id" type="rejected" sm/>
+            </x-slot>
+            @else
+            <x-slot name="extraActions">
+              <x-button class="btn-sm" color="warning" icon="edit">
+                Editar
+              </x-button>
+            </x-slot>
+            @endif
+          </x-row>
         @empty
           {{-- TODO -> arreglar el empty state que se vea bonito --}}
           <p class="w-100 text-center text-muted">No hay usuarios registrado actualmente</p>

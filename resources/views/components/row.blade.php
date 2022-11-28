@@ -9,8 +9,9 @@
     <td>{{ $cell }}</td>
   @endforeach
   @if($actions)
-    <td class="px-2">
-      <div class="d-flex gap-1 justify-content-center align-items-center h-100">
+  <td class="px-2">
+    <div class="d-flex gap-1 justify-content-center align-items-center h-100">
+        {{ $extraActions ?? '' }}
         @if ($edit)
           <x-button class="btn-sm" :url="$edit" color="warning" icon="edit" hide-text="md">
             Editar
@@ -25,7 +26,7 @@
         <form method="POST" action="{{ $delete }}">
           @csrf
           @method('DELETE')
-          <x-button class="btn-sm" type="submit" color="danger" icon="times" hide-text="md">
+          <x-button class="btn-sm" type="submit" color="danger" icon="trash" hide-text="md">
             Eliminar
           </x-button>
         </form>

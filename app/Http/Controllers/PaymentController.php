@@ -26,7 +26,7 @@ class PaymentController extends Controller
             'filters' => $filters,
             'sort' => $sort,
             'search' => $search,
-            'courses' => Course::getOptions(),
+            'courses' => Course::getOptions(true),
             'types' => Payment::$types,
             'statuses' => Payment::$statuses,
         ]);
@@ -42,13 +42,6 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function show(Payment $payment)
-    {
-        return view('payments.show', [
-            'payment' => $payment,
-        ]);
-    }
-
     public function update(Request $request, Payment $payment)
     {
         $data = $request->validate([
@@ -57,6 +50,13 @@ class PaymentController extends Controller
 
         $payment->update($data);
         
+        return redirect()->route('payments.index');
+    }
+
+    public function destroy(Payment $payment)
+    {
+        $payment->delete();
+
         return redirect()->route('payments.index');
     }
 }
