@@ -53,6 +53,11 @@ class Payment extends Model
         return static::$statuses[$status];
     }
 
+    public function getDateAttribute($date)
+    {
+        return formatDate($date);
+    }
+
     public function scopeFilters($query, $filters)
     {
         return $query->when($filters, function ($query, $filters) {

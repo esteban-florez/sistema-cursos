@@ -41,32 +41,32 @@ class Course extends Model
 
     public function getStartTimeAttribute($startTime) 
     {
-        return $this->formatTime($startTime);
+        return formatTime($startTime);
     }
 
     public function getEndTimeAttribute($endTime) 
     {
-        return $this->formatTime($endTime);
+        return formatTime($endTime);
     }
 
     public function getStartInsAttribute($startIns) 
     {
-        return $this->formatDate($startIns);
+        return formatDate($startIns);
     }
 
     public function getEndInsAttribute($endIns) 
     {
-        return $this->formatDate($endIns);
+        return formatDate($endIns);
     }
 
     public function getStartCourseAttribute($startCourse) 
     {
-        return $this->formatDate($startCourse);
+        return formatDate($startCourse);
     }
 
     public function getEndCourseAttribute($endCourse) 
     {
-        return $this->formatDate($endCourse);
+        return formatDate($endCourse);
     }
 
     public function getExcerptAttribute()
@@ -74,16 +74,19 @@ class Course extends Model
         return Str::words($this->description, 8);
     }
 
-    private function formatDate($format)
+    public static function getOptions($withDefault = false)
     {
-        $date = Carbon::createFromFormat('Y-m-d', $format);
+        $areas = self::all(['id', 'name']);
 
-        return $date->format('d/m/Y');
-    }
+        $options = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->sortKeys()->all();
 
-    private function formatTime($format) {
-        $time = Carbon::createFromFormat('H:i:s', $format);
+        if ($withDefault) {
+            $defaultOptions = ['' => 'Todos'];
+            return $defaultOptions + $options;
+        }
 
-        return $time->format('g:i A');
-    }
+        return $options;
+    } 
 }

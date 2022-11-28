@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Date;
 
 if (!function_exists('guards')) {
     /**
@@ -39,5 +40,19 @@ if (!function_exists('user')) {
      */
     function user() {
         return Auth::guard('instructor')->user() ?? Auth::user();
+    }
+}
+
+if (!function_exists('formatDate')) {
+    function formatDate($dbDate) {
+        $date = Date::createFromFormat('Y-m-d', $dbDate);
+        return $date->format('d/m/Y');
+    }
+}
+
+if (!function_exists('formatTime')) {
+    function formatTime($dbTime) {
+        $time = Date::createFromFormat('H:i:s', $dbTime);
+        return $time->format('g:i A');
     }
 }
