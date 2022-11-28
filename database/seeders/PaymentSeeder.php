@@ -17,8 +17,10 @@ class PaymentSeeder extends Seeder
     {
         Payment::truncate();
 
-        Payment::factory([
-            'registry_id' => Registry::first()->id,
-        ])->create();
+        for ($i = 1; $i <= Registry::count(); $i++) { 
+            Payment::factory([
+                'registry_id' => $i,
+            ])->create();
+        }
     }
 }
