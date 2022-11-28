@@ -1,6 +1,40 @@
 <x-layout.main title="Club">
   <section class="container-fluid">
-    @if ($clubs!=null)
+    <x-table>
+      <x-slot name="header">
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Instructor</th>
+        <th>Día</th>
+        <th>Hora de Inicio</th>
+        <th>Hora de Cierre</th>
+        <th>Acciones</th>
+      </x-slot>
+      <x-slot name="body">
+        @forelse ($clubs as $club)
+          <x-row :data="[
+            $club->id,
+            $club->name,
+            $club->instructor_id,
+            $club->day,
+            $club->start_hour,
+            $club->end_hour,
+            ]"
+          />
+        @empty
+          <div class="empty-container">
+            <h2 class="empty">No hay clubs disponibles</h2>
+          </div>
+        @endforelse
+      </x-slot>
+      <x-slot name="pagination">
+        <div class="pagination-container">
+          
+        </div>
+      </x-slot>
+    </x-table>
+
+    <!-- @if ($clubs!=null)
       <div class="container-fluid">
         <div class="row">
            <div class="col-12">
@@ -52,10 +86,10 @@
         </div>
       </div>
     </div>
-  @else
-    <div class="contenedor">
-      <h2 class="coursent">No hay clubs disponibles</h2>
-    </div>
-  @endif  
-</section>
+    @else
+      <div class="contenedor">
+        <h2 class="coursent">No hay clubs disponibles</h2>
+      </div>
+    @endif   -->
+  </section>
 </x-layout.main>

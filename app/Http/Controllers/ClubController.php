@@ -29,8 +29,9 @@ class ClubController extends Controller
     {
         $instructors = Instructor::getOptions();
         
-        return view('club.create',
-            ['instructors' => $instructors]);
+        return view('club.create', [
+            'instructors' => $instructors
+        ]);
     }
     //return view ('club.create');
 
@@ -52,6 +53,7 @@ class ClubController extends Controller
             'day' => ['required', 'in:mo,tu,we,th,fr,sa,su'],
             'start_hour' => ['required'],
             'end_hour' => ['required'],
+            'instructor_id' => ['required', 'integer', 'numeric'],
         ]);
 
         if (Input::checkFile('image')) {
