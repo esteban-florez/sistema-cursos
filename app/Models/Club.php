@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Member;
 use App\Models\Inventory;
 use App\Models\Instructor;
+use App\Models\Shared\QueryScopes;
 
 class Club extends Model
 {
-    use HasFactory;
+    use HasFactory, QueryScopes;
 
     protected $guarded = ['id'];
 
@@ -27,5 +28,15 @@ class Club extends Model
     public function inventories()
     {
         return $this->belongsTo(Inventory::class);
+    }
+
+    public function getStartHourAttribute($startHour) 
+    {
+        return formatTime($startHour);
+    }
+
+    public function getEndHourAttribute($endHour) 
+    {
+        return formatTime($endHour);
     }
 }

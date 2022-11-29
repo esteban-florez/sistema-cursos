@@ -134,20 +134,23 @@ Route::resource('payments', PaymentController::class)
 
 //Club routes
 
-Route::group([
-    'controller'=> ClubController::class,
-    'prefix'=>'club'
-], function(){
-    Route::get('/', 'index')
-        ->name('club.index');
+Route::resource('club', ClubController::class)
+    ->middleware('auth:instructor', 'admin');
 
-    Route::get('register', 'create')
-        ->name('club.create');
+// Route::group([
+//     'controller'=> ClubController::class,
+//     'prefix'=>'club'
+// ], function(){
+//     Route::get('/', 'index')
+//         ->name('club.index');
 
-    Route::post('guardar', 'store')
-        ->name('club.store');
+//     Route::get('register', 'create')
+//         ->name('club.create');
 
-});
+//     Route::post('guardar', 'store')
+//         ->name('club.store');
+
+// });
 
 
 // Course market

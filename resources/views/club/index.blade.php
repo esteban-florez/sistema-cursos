@@ -1,5 +1,35 @@
 <x-layout.main title="Club">
+  <x-layout.bar>
+    <x-search placeholder="Buscar club..." :value="$search" name="search" :action="route(Route::currentRouteName())">
+      <x-slot name="hidden">
+        @foreach ($filters as $filter => $value)
+          <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
+        @endforeach
+        <input type="hidden" name="sort" value="{{ $sort }}">
+      </x-slot>
+    </x-search>
+    <div>
+      <x-button icon="plus" color="success" hide-text="sm" :url="route('club.create')">
+        Añadir
+      </x-button>
+      <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
+        Filtros
+      </x-button>
+    </div>
+    <x-slot name="filtersCollapse">
+      <x-filters-collapse>
+        <x-slot name="filters">
+          <x-select :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'Th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" id="day" name="filters|day" :selected="$filters['day'] ?? ''">
+            Días:
+          </x-select>
+        </x-slot>
+      </x-filters-collapse>
+    </x-slot>
+  </x-layout.bar>
   <section class="container-fluid">
+    <x-alerts type="success" icon="plus-circle"/>
+    <x-alerts type="warning" icon="edit"/>
+    <x-alerts type="danger" icon="times-circle"/>
     <x-table>
       <x-slot name="header">
         <th>ID</th>
@@ -20,6 +50,8 @@
             $club->start_hour,
             $club->end_hour,
             ]"
+            :edit="route('club.edit', $club->id)"
+            :delete="route('club.destroy', $club->id)"
           />
         @empty
           <div class="empty-container">

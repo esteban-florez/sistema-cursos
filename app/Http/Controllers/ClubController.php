@@ -14,10 +14,22 @@ class ClubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clubs = Club::all();
-        return view('club.index')->with('clubs', $clubs);
+        $filters = Input::getFilters();
+        $search = $request->input('search', '');
+        $sortColumn = $request->input('sort', '');
+
+        $clubs = Club::filters($filters, $sortColumn, $search)
+            ->paginate(10)
+            ->withQueryString();
+        
+        return view('club.index', [
+            'clubs' => $clubs,
+            'filters' => $filters,
+            'sort' => $sortColumn,
+            'search' => $search,
+        ]);
     }
 
     /**
@@ -30,7 +42,7 @@ class ClubController extends Controller
         $instructors = Instructor::getOptions();
         
         return view('club.create', [
-            'instructors' => $instructors
+            'instructors' => $instructors,
         ]);
     }
     //return view ('club.create');
@@ -62,31 +74,11 @@ class ClubController extends Controller
             unset($data['image']);
         }
 
-        // if ($image = $data['image']){
-        //     $routeSaveImg = 'img/';
-        //     $imgClub = date('YmdHis'). '.' . $image->getClientOriginalExtension();
-        //     $image->move($routeSaveImg, $imgClub);
-        //     $data['image'] = "$imgClub";
-        // }
-
         Club::create($data);
 
-        return redirect()->route('club.index');
+        return redirect()->route('club.index')
+            ->withSuccess('El club se ha añadido con éxito');
     }
-
-    /** $club->id = $request->get('id');
-        *$club->name = $request->get('name');
-        *$club->description = $request->get('description');
-        *$club->image = $request->get('image');
-        *$club->day = $request->get('day');
-        *$club->start_hour = $request->get('start_hour');
-        *$club->end_hour = $request->get('end_hour');
-        *$club->instructor_id = $request->get('instructor_id');
-
-        *$club->save();
-
-        *return redirect('/club');
-    */ 
 
 
     /**
@@ -106,10 +98,14 @@ class ClubController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Club $club)
     {
-        $club = Club::find($id);
-        return view ('club.edit')->with('club',$club);
+        $instructors = Instructor::getOptions();
+
+        return view ('club.edit', [
+            'club' => $club,
+            'instructors' => $instructors
+        ]);
     }
 
     /**
@@ -119,22 +115,28 @@ class ClubController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Club $club)
     {
-        $club = Club::find($id);
+        $data = $request->validate([
+            'name' => ['required', 'max:30'],
+            'image' => ['required', 'file', 'image', 'max:2048'],
+            'description' => ['required', 'max:255'],
+            'day' => ['required', 'in:mo,tu,we,th,fr,sa,su'],
+            'start_hour' => ['required'],
+            'end_hour' => ['required'],
+            'instructor_id' => ['required', 'integer', 'numeric'],
+        ]);
 
-        $club->id = $request->get('id');
-        $club->name = $request->get('name');
-        $club->description = $request->get('description');
-        $club->image = $request->get('image');
-        $club->day = $request->get('day');
-        $club->start_hour = $request->get('start_hour');
-        $club->end_hour = $request->get('end_hour');
-        $club->instructor_id = $request->get('git');
+        if (Input::checkFile('image')) {
+            $data['image'] = Input::storeFile('image', 'public/clubs');
+        } else {
+            unset($data['image']);
+        }
 
-        $club->save();
+        $club->update($data);
 
-        return redirect('/club');
+        return redirect()->route('club.index')
+            ->withWarning('El club se ha editado con éxito');;
     }
 
     /**
@@ -143,10 +145,11 @@ class ClubController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Club $club)
     {
-        $club = Club::find($id);
         $club->delete();
-        return redirect('/club');
+
+        return redirect()->route('club.index')
+            ->withDanger('El club se ha eliminado con éxito');
     }
 }
