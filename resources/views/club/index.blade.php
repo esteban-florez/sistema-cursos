@@ -61,7 +61,7 @@
       </x-slot>
       <x-slot name="pagination">
         <div class="pagination-container">
-          
+          {{ $clubs->links() }}
         </div>
       </x-slot>
     </x-table>
