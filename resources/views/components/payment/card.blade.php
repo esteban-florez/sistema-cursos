@@ -17,10 +17,10 @@
     </span>
   </p>  
   <div class="mb-2">
-    <a href="{{ route('payments.show', $payment->id) }}">
+    <a href>
       Ver detalles
     </a>
   </div>
-  <x-payment.status-button :id="$payment->id" type="confirmed"/>
-  <x-payment.status-button :id="$payment->id" type="rejected"/>
+  <x-payment.status-button :id="$payment->id" type="confirmed" color="success"/>
+  <x-payment.status-button :id="$payment->id" type="rejected" color="danger"/>
 </div>

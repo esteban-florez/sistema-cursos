@@ -56,8 +56,8 @@
           >
             @if($payment->status === 'Pendiente')
             <x-slot name="extraActions">
-              <x-payment.status-button :id="$payment->id" type="confirmed" sm/>
-              <x-payment.status-button :id="$payment->id" type="rejected" sm/>
+              <x-payment.status-button :id="$payment->id" type="confirmed" color="success" sm/>
+              <x-payment.status-button :id="$payment->id" type="rejected" color="warning" sm/>
             </x-slot>
             @else
             <x-slot name="extraActions">

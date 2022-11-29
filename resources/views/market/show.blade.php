@@ -23,10 +23,6 @@
           <h3>Precio Total</h3>
           <h3>{{ $course->total_price }}$</h3>
         </div>
-        <div class="d-flex justify-content-between text-muted">
-          <h5>Precio de inscripción</h5>
-          <h5>{{ $course->price_ins }}$</h5>
-        </div>
         <div class="d-flex justify-content-between mt-3">
           <x-button :url="route('market.index')" color="secondary" icon="times">Volver al listado</x-button>
           <x-button :url="route('enrollment.create', $course->id)" icon="clipboard-list">Inscribirse</x-button>

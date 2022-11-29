@@ -1,8 +1,7 @@
-@props(['id', 'type', 'sm' => false])
+@props(['id', 'type', 'sm' => false, 'color' => null])
 
 @php
   $isConfirmed = $type === 'confirmed';
-  $color = $isConfirmed ? 'success' : 'warning';
   $icon = $isConfirmed ? 'check' : 'times';
 @endphp
 

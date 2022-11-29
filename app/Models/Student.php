@@ -73,7 +73,8 @@ class Student extends Authenticatable
         // TODO -> por ahora así, pero no se, me suena que hay que hacer cosas con ManyToMany y el metodo associate()
         $registry = Registry::create([
             'student_id' => $this->id,
-            'course_id' => $course->id
+            'course_id' => $course->id,
+            'unique' => null,
         ]);
 
         return $registry;
