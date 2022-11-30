@@ -6,7 +6,7 @@
     <x-search placeholder="Buscar curso..." name="search">
     </x-search>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
-        Filtros
+        Ordenar por
       </x-button>
       <x-slot name="filtersCollapse">
         <x-filters-collapse>

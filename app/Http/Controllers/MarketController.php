@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
-use App\Services\Input;
 
 class MarketController extends Controller
 {
     public function index(Request $request)
     {
-        $filters = Input::getFilters();
+        $student = user();
         $sortColumn = $request->input('sort', '');
         $search = $request->input('search', '');
 
-        $courses = Course::filters($filters, $sortColumn, $search)
+        $courses = Course::availables($student)
+            ->notBoughtBy($student)
+            ->filters(false, $sortColumn, $search)
             ->latest()
             ->paginate(10)
             ->withQueryString();

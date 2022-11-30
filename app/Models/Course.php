@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
-use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
 class Course extends Model
@@ -29,7 +29,7 @@ class Course extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Course::class, 'registries')
+        return $this->belongsToMany(Student::class, 'registries')
             ->withTimestamps()
             ->withPivot(['id', 'approval']);
     }
@@ -72,6 +72,38 @@ class Course extends Model
     public function getExcerptAttribute()
     {
         return Str::words($this->description, 8);
+    }
+
+    public function getStudentCountAttribute()
+    {
+        return Registry::where('course_id', $this->id)
+            ->count();
+    }
+
+    public function scopeAvailables($query)
+    {
+        // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery
+        $courses = Course::withCount('students')->get();
+        
+        $ids = $courses->filter(function ($course) {
+            return $course->students_count < $course->student_limit;
+        })->map(function ($course) {
+            return $course->id;
+        })->values()->all();
+        
+        return $query->whereIn('id', $ids);
+    }
+    
+    public function scopeNotBoughtBy($query, $student)
+    {
+        $ids = $student->courses->pluck('id');
+        $query->whereNotIn('id', $ids);
+    }
+
+    public function scopeBoughtBy($query, $student)
+    {
+        $ids = $student->courses->pluck('id');
+        $query->whereIn('id', $ids);
     }
 
     public static function getOptions($withDefault = false)
