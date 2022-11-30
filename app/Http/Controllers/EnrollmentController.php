@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\Registry;
-use App\Services\Document;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class EnrollmentController extends Controller
 {
@@ -50,26 +50,18 @@ class EnrollmentController extends Controller
         $student = $registry->student;
         $course = $registry->course;
 
-        $data = [
-            'coursename' => $course->name,
-            'names' => $student->names,
-            'lastnames' => $student->lastnames,
-            'phone' => $student->phone,
-            'gender' => $student->gender,
-            'email' => $student->email,
-            'address' => $student->address,
-            'grade' => $student->grade,
-            'ci' => $student->full_ci,
-            'age' => $student->age,
+        $pdf = PDF::loadView('pdf.enroll', [
+            'student' => $student,
+            'course' => $course,
             'date' => now()->format('d/m/Y'),
-        ];
+        ]);
 
-        $fileName = "{$student->full_name} - Planilla de Inscripción";
-
-        $filePath = Document::generateWord('enroll', $fileName, $data);
-
+        $filename = "{$student->full_name} - Planilla de Inscripción.pdf"; 
+        $path = public_path($filename);
+        $pdf->save($filename);
+        
         return response()
-            ->download($filePath)
+            ->download($path)
             ->deleteFileAfterSend();
     }
 }
