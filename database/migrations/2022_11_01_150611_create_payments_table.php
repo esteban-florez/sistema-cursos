@@ -15,6 +15,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            // TODO -> esto no hace falta
             $table->date('date');
             $table->enum('status', ['pending', 'confirmed', 'rejected'])->default('pending');
             $table->unsignedFloat('amount');
