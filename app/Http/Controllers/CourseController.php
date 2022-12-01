@@ -42,8 +42,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::getOptions();
-        $areas = Area::getOptions();
+        $instructors = Instructor::getOptions(true);
+        $areas = Area::getOptions(true);
 
         return view('courses.create', [
             'instructors' => $instructors, 

@@ -83,14 +83,19 @@ class Instructor extends Authenticatable
         return $this->is_admin ? 'Sí' : 'No';
     }
 
-    public static function getOptions()
+    public static function getOptions($withDefault = false)
     {
-        // TODO -> un poquito de DRY no estaría mal
         $instructors = self::all(['id', 'name', 'lastname']);
-        $instructors = $instructors->mapWithKeys(function ($instructor) {
+
+        $options = $instructors->mapWithKeys(function ($instructor) {
             return [$instructor->id => $instructor->full_name];
-        })->sortKeys();
-        
-        return $instructors;
+        })->sortKeys()->all();
+
+        if ($withDefault) {
+            $defaultOptions = ['' => 'Seleccionar...'];
+            return $defaultOptions + $options;
+        }
+
+        return $options;
     }
 }

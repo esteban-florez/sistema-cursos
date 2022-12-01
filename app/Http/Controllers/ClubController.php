@@ -39,7 +39,7 @@ class ClubController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::getOptions();
+        $instructors = Instructor::getOptions(true);
         
         return view('club.create', [
             'instructors' => $instructors,

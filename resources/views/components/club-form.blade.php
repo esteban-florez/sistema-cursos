@@ -16,7 +16,7 @@
       <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $club->instructor_id ?? ''" required>
         Instructor:
       </x-select>
-      <x-select name="day" id="day" :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'Th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" :selected="old('day') ?? $club->day ?? ''" required>
+      <x-select name="day" id="day" :options="['' => 'Seleccionar...', 'mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'Th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" :selected="old('day') ?? $club->day ?? ''" required>
         Días:
       </x-select>
     </div>

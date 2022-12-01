@@ -41,7 +41,7 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        $areas = Area::getOptions();
+        $areas = Area::getOptions(true);
 
         return view('instructors.create', [
             'areas' => $areas,
