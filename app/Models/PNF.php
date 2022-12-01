@@ -35,7 +35,7 @@ class PNF extends Model
         })->sortKeys()->all();
 
         if ($withDefault) {
-            $defaultOptions = ['' => 'Todos'];
+            $defaultOptions = ['' => 'Seleccionar'];
             return $defaultOptions + $options;
         }
 

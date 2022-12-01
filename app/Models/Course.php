@@ -80,6 +80,20 @@ class Course extends Model
             ->count();
     }
 
+    public function getDaysAttribute($daysString)
+    {
+        $days = collect(explode(',', $daysString));
+        return $days->map(function ($day) {
+            return getWeekDay($day);
+        })->join(', ', ' y ');
+    }
+
+    public function setDaysAttribute($daysArray)
+    {
+        $this->attributes['days'] = collect($daysArray)
+            ->join(',');
+    }
+
     public function scopeAvailables($query)
     {
         // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery
@@ -115,7 +129,7 @@ class Course extends Model
         })->sortKeys()->all();
 
         if ($withDefault) {
-            $defaultOptions = ['' => 'Todos'];
+            $defaultOptions = ['' => 'Seleccionar'];
             return $defaultOptions + $options;
         }
 

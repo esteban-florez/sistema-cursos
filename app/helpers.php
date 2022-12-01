@@ -56,3 +56,33 @@ if (!function_exists('formatTime')) {
         return $time->format('g:i A');
     }
 }
+
+if (!function_exists('getWeekDay')) {
+    function getWeekDay($day) {
+        $week = [
+            'mo' => 'Lunes',
+            'tu' => 'Martes',
+            'we' => 'Miércoles',
+            'th' => 'Jueves',
+            'fr' => 'Viernes',
+            'sa' => 'Sábado',
+            'su' => 'Domingo',
+        ];
+
+        return $week[$day];
+    }
+}
+
+if (!function_exists('week')) {
+    function week() {
+        return [
+            'mo' => 'Lunes',
+            'tu' => 'Martes',
+            'we' => 'Miércoles',
+            'th' => 'Jueves',
+            'fr' => 'Viernes',
+            'sa' => 'Sábado',
+            'su' => 'Domingo',
+        ];
+    }
+}

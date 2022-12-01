@@ -91,7 +91,7 @@ class Instructor extends Authenticatable
         })->sortKeys()->all();
 
         if ($withDefault) {
-            $defaultOptions = ['' => 'Todos'];
+            $defaultOptions = ['' => 'Seleccionar'];
             return $defaultOptions + $options;
         }
 

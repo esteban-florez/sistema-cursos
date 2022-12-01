@@ -44,6 +44,8 @@
 
 - Quizas hagamos tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
 
+- Quizás sea innecesario tener los set y los enum en inglés en la base de datos, podríamos ponerlos de una en español y con el formato listo para mostrar, así nos ahorraríamos arrays asociativos de traducción y tal. Realmente para esto sería bueno un Enum de PHP pero no existen en esta versión xd.
+
 # Correciones Anyerg:
 
 ## Myriam:
@@ -53,8 +55,6 @@
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
 - Un select de PNF en areas, las areas que no pertenezcan a un PNF pertenecerán a  "Extensión Universitaria".
-- Añadir los días del curso.
-- Cambiar la frase de "Clases: " por "Fecha de clases: " o algo así, en "market.show".
 - Terminar la tabla de cursos del admin.
 
 ## Esteban: 

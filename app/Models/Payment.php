@@ -11,14 +11,14 @@ class Payment extends Model
     use HasFactory;
 
     public static $statuses = [
-        '' => 'Todos',
+        '' => 'Seleccionar',
         'pending' => 'Pendiente',
         'confirmed' => 'Confirmado',
         'rejected' => 'Rechazado',
     ];
 
     public static $types = [
-        '' => 'Todos',
+        '' => 'Seleccionar',
         'movil' => 'Pago Móvil',
         'bs' => 'Efectivo (Bs.D.)',
         'dollars' => 'Efectivo ($)',

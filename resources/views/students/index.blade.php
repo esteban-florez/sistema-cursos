@@ -15,7 +15,7 @@
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         <x-slot name="filters">
-          <x-select :options="['' => 'Todos', 'true' => 'Sí', 'false' => 'No']" id="isUpta" name="filters|is_upta" :selected="$filter['is_upta'] ?? ''">
+          <x-select :options="['' => 'Seleccionar', 'true' => 'Sí', 'false' => 'No']" id="isUpta" name="filters|is_upta" :selected="$filter['is_upta'] ?? ''">
             ¿UPTA?
           </x-select>
         </x-slot>
