@@ -20,12 +20,14 @@ class CreateCoursesTable extends Migration
             $table->string('image');
             $table->text('description');
             $table->integer('total_price');
+            $table->integer('reserv_price')->nullable();
             $table->date('start_ins');
             $table->date('end_ins');
             $table->date('start_course');
             $table->date('end_course');
             $table->integer('duration');
             $table->integer('student_limit');
+            $table->set('days', ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']);
             $table->time('start_time');
             $table->time('end_time');
             $table->foreignId('instructor_id')->constrained();
