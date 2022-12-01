@@ -16,16 +16,15 @@ class RegistrySeeder extends Seeder
     {
         Registry::truncate();
         
-        for ($i = 1; $i <= 5; $i++) { 
-            
-            if ($i !== 1) {
-                Registry::create([
-                    'student_id' => $i,
-                    'course_id' => $i,
-                    'unique' => null,
-                ]);
-            }
+        for ($i = 1; $i <= 5; $i++) {
+            Registry::create([
+                'student_id' => $i,
+                'course_id' => $i,
+                'unique' => null,
+            ]);
+        }
 
+        for ($i = 2; $i <= 5; $i++) {
             Registry::create([
                 'student_id' => $i,
                 'course_id' => 1,
