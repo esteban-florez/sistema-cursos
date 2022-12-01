@@ -21,7 +21,7 @@
       </x-select>
     </div>
     <div class="col-12 col-sm-6 mb-3">
-      <label class="form-label" for="totalPrice"><i class="fas fa-asterisk text-danger mr-1"></i>Precio Total:</label>
+      <label class="form-label" for="totalPrice"><i class="fas fa-asterisk text-danger mr-1"></i>Monto Total:</label>
       <div class="input-group flex-nowrap">
         <input class="form-control" type="number" id="totalPrice" name="total_price" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" required/>
         <div class="input-group-append">
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="col-12 col-sm-6 mb-3">
-      <label class="form-label" for="priceIns"><i class="fas fa-asterisk text-danger mr-1"></i>Precio de Inscripción:</label>
+      <label class="form-label" for="priceIns"><i class="fas fa-asterisk text-danger mr-1"></i>Monto de Inscripción:</label>
       <div class="input-group flex-nowrap">
         <input class="form-control w-50" type="number" id="priceIns" name="price_ins" placeholder="Ej. 5" value="{{ old('price_ins') ?? $course->price_ins ?? '' }}" required/>
         <div class="input-group-append">

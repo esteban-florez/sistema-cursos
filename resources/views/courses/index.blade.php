@@ -27,7 +27,7 @@
           </x-select>
         </x-slot>
         <x-slot name="sorts">
-          <x-radio :options="['name' => 'Nombre', 'total_price' => 'Precio', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
+          <x-radio :options="['name' => 'Nombre', 'total_price' => 'Monto', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
         </x-slot>
       </x-filters-collapse>
     </x-slot>
@@ -41,7 +41,7 @@
         <th>ID</th>
         <th>Nombre</th>
         <th>Instructor</th>
-        <th>Precio</th>
+        <th>Monto</th>
         <th>Martícula</th>
         <th>Estado</th>
         <th>Duración</th>

@@ -21,7 +21,7 @@
           <span class="mb-1"><b>Estudiantes:</b> 10 / {{ $course->student_limit }}</span>
         </div>
         <div class="d-flex justify-content-between text-success mt-3">
-          <h3>Precio total</h3>
+          <h3>Monto total</h3>
           <h3>{{ $course->total_price }}$</h3>
         </div>
         <div class="d-flex justify-content-between mt-3">
