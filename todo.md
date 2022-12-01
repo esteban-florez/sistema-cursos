@@ -29,17 +29,60 @@
 - Artículos se quita el codigo.
 - Interfaz de inventario, que tenga todos, un link dentro de Sidebar->Clubes->Inventarios.
 - Pagos con collapse (mirian).
+
+# Problemas generales / ideas rikolinas:
+
+- Depurar el css al final del proyecto.
+
 - Añadir slugs.
-
-# Cosas mas como de arquitectura que hay que decidir/solucionar:
-
-- Arreglar el hecho de que un ciclo esté linkeado a un curso, hace que dicho ciclo pueda cambiar parte de sus datos cuando sea editado dicho curso:
-  - Opción 1: hacer que el ciclo no tenga el id del curso, sino que tome todos sus datos dentro de su propia tabla. Lo chimbo es la duplicación de información.
-  - Opción 2: hacer que el ciclo tenga el id del curso, y al momento de finalizar se mueva el ciclo a una tabla de ciclos finalizados, teniendo en ese caso si los datos del curso. Igual se duplica la info, pero un poquititititito menos.
-  - Opción 3: se me está ocurriendo buscar un mecanismo para que la referencia del ciclo finalizado al curso, *detecte* el cambio en el curso al que referencia y cree un registro con los datos anteriores al cambio, para así mantener sus datos originales. O algo así.
 
 - También ocurre que los cursos y clubes podrían no ser solamente un día a la semana, sino multiples, y cada día quizas tendría horas propias. Una solucion es implementar lo del horario de forma mas compleja, con Drag'n Drop maybe.
 
 - Pensar un poco en la naturaleza concurrente del proyecto, y errores que pueden haber y tal.
 
 - También está la cuestión de recuperación de base de datos, me dijeron que con "tarea programada", hay que investigar.
+
+- Quizas hagamos tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
+
+# Correciones Anyerg:
+
+## Myriam:
+
+- Hacer el home.
+- Poner fecha y hora el home.
+- Ejemplos de referencia de pago, agregar tooltip o placeholder.
+- Hacer hoja con datos reales para hacer los registros el día de la presentación.
+- Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
+- Poner valor predeterminado "Seleccionar..." en todos los select.
+- Crear tabla de PNFs con todos los PNF.
+- Un select de PNF en areas, las areas que no pertenezcan a un PNF pertenecerán a  "Extensión Universitaria".
+- Cambiar la palabra "precio" a "monto" en todos lados. "Precio de inscripción" se cambia por "Monto de reservación".
+- Añadir los días del curso.
+- Cambiar la frase de "Clases: " por "Fecha de clases: " o algo así, en "market.show".
+- Terminar la tabla de cursos del admin.
+
+## Esteban: 
+
+- Implementar el límite de estudiantes.
+- Hacer todos los seeders con datos reales para la presentación.
+- Correciones de la interfaz que mandó la profe de proyecto.
+
+## Tareas a largo plazo:
+
+- Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
+- Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
+- Crear rol de preparador, posible rol de secretaria.
+
+## Indicaciones generales:
+
+- Hacer que se pueda hacer una reservación de curso, con monto de reservación. Tiempo para formalizar inscripción y finalizar pago. El monto de reservación es opcional en caso de pagos completos (hay que convencer a Edeblangel de esto xd).
+
+- Se deben mostrar el estado de inscripción en matrícula (reservado, inscrito). Que el sistema liberar el cupo reservado si no se ha confirmado la inscripción en un tiempo, preguntar a Edeblangel el tiempo antes de liberar un cupo reservado.
+
+- Para los certificados: si el curso no es ligado a un PNF firma el instructor y firma el coordinador del DVS. Cuando es ligado a un PNF firman el instructor, la rectora y firma el jefe de departamento del PNF.
+
+- El proceso de inventario depende los artículos, al no tratarse de consumibles inmediatos sino con el tiempo, deberían registrarse en el inventario ingresos de artículos y "desincorporación" de artículo. Un solo inventario, del DVS.
+
+- Fecha de adquisición, fecha de desincorporación y el por qué de la desincorporación del artículo. Lo cual nos lleva a un estado actual de inventario, y a un historial de inventario.
+
+- El inventario sale un préstamo a los clubs, y se liga al responsable del mismo ya sea instructor o preparador. Control de prestamos.
