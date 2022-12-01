@@ -50,10 +50,8 @@
 
 - Hacer el home.
 - Poner fecha y hora el home.
-- Ejemplos de referencia de pago, agregar tooltip o placeholder.
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
-- Poner valor predeterminado "Seleccionar..." en todos los select.
 - Un select de PNF en areas, las areas que no pertenezcan a un PNF pertenecerán a  "Extensión Universitaria".
 - Cambiar la palabra "precio" a "monto" en todos lados. "Precio de inscripción" se cambia por "Monto de reservación".
 - Añadir los días del curso.

@@ -19,7 +19,7 @@
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         <x-slot name="filters">
-          <x-select :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'Th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" id="day" name="filters|day" :selected="$filters['day'] ?? ''">
+          <x-select :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'Th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" id="day" name="filters|day" :selected="$filters['day'] ?? ''" default>
             Días:
           </x-select>
         </x-slot>

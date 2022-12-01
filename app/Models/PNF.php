@@ -25,4 +25,20 @@ class PNF extends Model
         'Sistemas de Calidad y Ambiente',
         'Telecomunicaciones',
     ];
+
+    public static function getOptions($withDefault = true)
+    {
+        $areas = self::all(['id', 'name']);
+
+        $options = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->sortKeys()->all();
+
+        if ($withDefault) {
+            $defaultOptions = ['' => 'Todos'];
+            return $defaultOptions + $options;
+        }
+
+        return $options;
+    }
 }

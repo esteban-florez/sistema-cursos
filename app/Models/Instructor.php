@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Course;
 use App\Models\Club;
-use App\Models\Area;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
 
@@ -53,9 +52,9 @@ class Instructor extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
-    public function area()
+    public function instructor()
     {
-        return $this->belongsTo(Area::class);
+        return $this->belongsTo(instructor::class);
     }
 
     public function getNamesAttribute()
@@ -83,14 +82,19 @@ class Instructor extends Authenticatable
         return $this->is_admin ? 'Sí' : 'No';
     }
 
-    public static function getOptions()
+    public static function getOptions($withDefault = true)
     {
-        // TODO -> un poquito de DRY no estaría mal
         $instructors = self::all(['id', 'name', 'lastname']);
-        $instructors = $instructors->mapWithKeys(function ($instructor) {
+
+        $options = $instructors->mapWithKeys(function ($instructor) {
             return [$instructor->id => $instructor->full_name];
-        })->sortKeys();
-        
-        return $instructors;
+        })->sortKeys()->all();
+
+        if ($withDefault) {
+            $defaultOptions = ['' => 'Todos'];
+            return $defaultOptions + $options;
+        }
+
+        return $options;
     }
 }

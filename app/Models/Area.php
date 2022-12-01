@@ -11,7 +11,7 @@ class Area extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id', 'es_upta'];
+    protected $guarded = ['id'];
 
     public function instructors()
     {
@@ -23,7 +23,7 @@ class Area extends Model
         return $this->hasMany(Course::class);
     }
 
-    public static function getOptions($withDefault = false)
+    public static function getOptions($withDefault = true)
     {
         $areas = self::all(['id', 'name']);
 

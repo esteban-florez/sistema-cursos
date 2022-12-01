@@ -106,7 +106,7 @@ class Course extends Model
         $query->whereIn('id', $ids);
     }
 
-    public static function getOptions($withDefault = false)
+    public static function getOptions($withDefault = true)
     {
         $areas = self::all(['id', 'name']);
 
@@ -120,5 +120,5 @@ class Course extends Model
         }
 
         return $options;
-    } 
+    }
 }

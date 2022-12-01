@@ -20,7 +20,7 @@ class CourseController extends Controller
         $filters = Input::getFilters();
         $search = $request->input('search', '');
         $sortColumn = $request->input('sort', '');
-        $areas = Area::getOptions(true);
+        $areas = Area::getOptions();
 
         $courses = Course::filters($filters, $sortColumn, $search)
             ->paginate(10)
