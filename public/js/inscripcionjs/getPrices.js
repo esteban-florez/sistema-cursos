@@ -3,7 +3,7 @@ function getPrices(currency) {
 	const amount = +form.dataset.amount;
 	
 	if (currency !== '$') {
-		return amount * +document.querySelector('html').dataset.dolarPrice;
+		return amount * +localStorage.getItem('usd-price')
 	}
 
 	return amount;

@@ -58,6 +58,7 @@
 
 ## Esteban: 
 
+- CRU de datos para pagos.
 - Correciones de la interfaz que mandó la profe de proyecto.
 
 ## Tareas a largo plazo:
