@@ -38,7 +38,6 @@
     <x-alerts type="danger" icon="times-circle"/>
     <x-table>
       <x-slot name="header">
-        <th>ID</th>
         <th>Nombre</th>
         <th>Instructor</th>
         <th>Monto</th>
@@ -50,13 +49,12 @@
       <x-slot name="body">
         @forelse ($courses as $course)
           <x-row :data="[
-            $course->id,
             $course->name,
-            $course->instructor_id,
-            $course->total_price,
-            $course->student_limit,
-            $course->duration,
-            $course->duration,
+            $course->instructor->full_name,
+            $course->total_price . ' $',
+            $course->student_diff,
+            $course->status,
+            $course->duration_hours,
             ]"
             :details="route('courses.show', $course->id)"
             :edit="route('courses.edit', $course->id)"

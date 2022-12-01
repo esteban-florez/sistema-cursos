@@ -55,12 +55,10 @@
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
 - Un select de PNF en areas, las areas que no pertenezcan a un PNF pertenecerán a  "Extensión Universitaria".
-- Terminar la tabla de cursos del admin.
 
 ## Esteban: 
 
 - Correciones de la interfaz que mandó la profe de proyecto.
-- Eliminar botón de cambiar contraseña.
 
 ## Tareas a largo plazo:
 

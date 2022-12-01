@@ -18,9 +18,7 @@
             <x-profile.data :data="$user->email">
               Correo Electrónico:
             </x-profile.data>
-            <x-button class="mt-3" :url="'#'" color="secondary" icon="edit">
-              Cambiar contraseña
-            </x-button>
+            {{-- TODO -> aqui va un boton de cambiar contraseña en caso de que el que vea el perfil sea el usuario autenticado --}}
           </ul>
         </div>
       </div>

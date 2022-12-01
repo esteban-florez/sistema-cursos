@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
 
 class Course extends Model
@@ -80,6 +80,11 @@ class Course extends Model
             ->count();
     }
 
+    public function getStudentDiffAttribute()
+    {
+        return "{$this->student_count} / {$this->student_limit}";
+    }
+
     public function getDaysAttribute($daysString)
     {
         $days = collect(explode(',', $daysString));
@@ -92,6 +97,38 @@ class Course extends Model
     {
         $this->attributes['days'] = collect($daysArray)
             ->join(',');
+    }
+
+    public function getStatusAttribute()
+    {
+        $now = now()->getTimestamp();
+        $insStart = Date::createFromFormat('Y-m-d', $this->getRawOriginal('start_ins'))->getTimestamp();
+        $insEnd = Date::createFromFormat('Y-m-d', $this->getRawOriginal('end_ins'))->getTimestamp();
+        $courseStart = Date::createFromFormat('Y-m-d', $this->getRawOriginal('start_course'))->getTimestamp();
+        $courseEnd = Date::createFromFormat('Y-m-d', $this->getRawOriginal('end_course'))->getTimestamp();
+
+        if($now < $insStart) {
+            return 'Pre-inscripciones';
+        }
+
+        if($now < $insEnd) {
+            return 'Inscipciones';
+        }
+
+        if($now < $courseStart) {
+            return 'Pre-curso';
+        }
+
+        if($now < $courseEnd) {
+            return 'En curso';
+        }
+
+        return 'Finalizado';
+    }
+
+    public function getDurationHoursAttribute()
+    {
+        return "{$this->duration} hrs.";
     }
 
     public function scopeAvailables($query)
