@@ -9,6 +9,8 @@
     <script defer src="{{ asset('js/bs-stepper.min.js') }}"></script>
   @endpush
   @push('js')
+    {{-- TODO -> si la api falla, puede ser que no se cargue a tiempo el precio del dolar y no se muestren correctamente los montos en bolivares, toca arreglar eso --}}
+    <script src="{{ asset('js/inscripcionjs/dolar.js') }}"></script>
     <script defer type="module" src="{{ asset('js/inscripcionjs/inscripcionStepper.js') }}"></script>  
     <script defer src="{{ asset('js/inscripcionjs/responsiveStepper.js') }}"></script>  
   @endpush

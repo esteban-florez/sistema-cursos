@@ -54,7 +54,6 @@
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
 - Poner valor predeterminado "Seleccionar..." en todos los select.
-- Crear tabla de PNFs con todos los PNF.
 - Un select de PNF en areas, las areas que no pertenezcan a un PNF pertenecerán a  "Extensión Universitaria".
 - Cambiar la palabra "precio" a "monto" en todos lados. "Precio de inscripción" se cambia por "Monto de reservación".
 - Añadir los días del curso.
@@ -63,9 +62,8 @@
 
 ## Esteban: 
 
-- Implementar el límite de estudiantes.
-- Hacer todos los seeders con datos reales para la presentación.
 - Correciones de la interfaz que mandó la profe de proyecto.
+- Eliminar botón de cambiar contraseña.
 
 ## Tareas a largo plazo:
 

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
 
+        $this->call(PNFSeeder::class);
         $this->call(AreaSeeder::class);
         $this->call(StudentSeeder::class);
         $this->call(InstructorSeeder::class);

@@ -37,8 +37,8 @@ class CourseFactory extends Factory
             'start_time' => $start_time,
             'end_time' => $end_time,
             'image' => 'img/programacion.jpg',
-            'area_id' => Area::factory(),
-            'instructor_id' => Instructor::factory(),
+            'area_id' => Area::all()->random()->id,
+            'instructor_id' => Instructor::all()->random()->id,
         ];
     }
 }
