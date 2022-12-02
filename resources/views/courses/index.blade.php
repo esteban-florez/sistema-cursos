@@ -40,10 +40,12 @@
       <x-slot name="header">
         <th>Nombre</th>
         <th>Instructor</th>
-        <th>Monto</th>
-        <th>Martícula</th>
-        <th>Estado</th>
+        <th>Inscripciones</th>
+        <th>Fecha</th>
         <th>Duración</th>
+        <th>Martícula</th>
+        <th>Monto</th>
+        <th>Estado</th>
         <th>Acciones</th>
       </x-slot>
       <x-slot name="body">
@@ -51,10 +53,12 @@
           <x-row :data="[
             $course->name,
             $course->instructor->full_name,
-            $course->total_price . ' $',
-            $course->student_diff,
-            $course->status,
+            $course->start_ins . ' al ' . $course->end_ins,
+            $course->start_course . ' al ' . $course->end_course,
             $course->duration_hours,
+            $course->student_diff,
+            $course->total_price . ' $',
+            $course->status,
             ]"
             :details="route('courses.show', $course->id)"
             :edit="route('courses.edit', $course->id)"
