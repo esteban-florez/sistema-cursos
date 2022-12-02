@@ -19,17 +19,17 @@ class EnrollmentController extends Controller
 
     public function store(Request $request, Course $course)
     {
-        $inscription = user()->enroll($course);
-        
         $data = $request->validate([
             'date' => ['required', 'date'],
             'ref' => ['nullable', 'integer', 'numeric'],
-            'amount' => ['required', 'integer', 'numeric'],
+            'amount' => ['required', 'numeric'],
             'type' => ['required', 'in:movil,transfer,dollars,bs'],
         ]);
 
+        $inscription = user()->enroll($course);
+        
         $data['inscription_id'] = $inscription->id;
-
+        
         $payment = Payment::create($data);
 
         return redirect()

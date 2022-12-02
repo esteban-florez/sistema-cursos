@@ -12,6 +12,13 @@
     <script defer type="module" src="{{ asset('js/inscripcionjs/inscripcionStepper.js') }}"></script>  
     <script defer src="{{ asset('js/inscripcionjs/responsiveStepper.js') }}"></script>  
   @endpush
+  <section>
+    @if($errors->any())
+    @foreach ($errors->all() as $item)
+      <p>{{ $item }}</p>
+    @endforeach
+    @endif
+  </section>
   <section class="container-fluid">
     {{-- TODO -> dividir en componentes --}}
     <div class="bs-stepper">
