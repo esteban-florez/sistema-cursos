@@ -52,11 +52,6 @@ class Instructor extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
-    public function instructor()
-    {
-        return $this->belongsTo(instructor::class);
-    }
-
     public function getNamesAttribute()
     {
         return $this->name;

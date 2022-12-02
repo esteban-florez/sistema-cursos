@@ -15,6 +15,9 @@
   </div>
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">
+      <x-layout.sidebar.item :url="route('home')" icon="home">
+        Home
+      </x-layout.sidebar.item>
       <x-layout.sidebar.item icon="graduation-cap">
         Cursos
         <x-slot name="menu">

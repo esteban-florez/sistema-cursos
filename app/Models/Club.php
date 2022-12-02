@@ -8,6 +8,7 @@ use App\Models\Member;
 use App\Models\Inventory;
 use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
+use Illuminate\Support\Str;
 
 class Club extends Model
 {
@@ -38,5 +39,10 @@ class Club extends Model
     public function getEndHourAttribute($endHour) 
     {
         return formatTime($endHour);
+    }
+
+    public function getExcerptAttribute()
+    {
+        return Str::words($this->description, 8);
     }
 }

@@ -28,14 +28,14 @@ class PNF extends Model
 
     public static function getOptions($withDefault = true)
     {
-        $areas = self::all(['id', 'name']);
+        $pnfs = self::all(['id', 'name']);
 
-        $options = $areas->mapWithKeys(function ($area) {
-            return [$area->id => $area->name];
+        $options = $pnfs->mapWithKeys(function ($pnf) {
+            return [$pnf->id => $pnf->name];
         })->sortKeys()->all();
 
         if ($withDefault) {
-            $defaultOptions = ['' => 'Seleccionar'];
+            $defaultOptions = ['' => 'Seleccionar...'];
             return $defaultOptions + $options;
         }
 
