@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Payment;
-use App\Models\Registry;
+use App\Models\Inscription;
 
 
 class PaymentSeeder extends Seeder
@@ -18,17 +18,17 @@ class PaymentSeeder extends Seeder
     {
         Payment::truncate();
         
-        Registry::all()
-        ->each(function ($registry) {
+        Inscription::all()
+        ->each(function ($inscription) {
                 $type = collect(['movil', 'transfer', 'dollars', 'bs'])->random();
                 $amount = null;
                 $ref = null;
 
                 if ($type === 'dollars' || $type === 'bs') {
                     $ref = null;
-                    $amount = $registry->course->total_price;
+                    $amount = $inscription->course->total_price;
                 } else {
-                    $amount = $registry->course->total_price * 13.2;
+                    $amount = $inscription->course->total_price * 13.2;
                     if($type === 'movil') {
                         $ref = rand(pow(10, 3), pow(10, 4) - 1);
                     } else {
@@ -40,7 +40,7 @@ class PaymentSeeder extends Seeder
                     'type' => $type,
                     'amount' => $amount,
                     'ref' => $ref,
-                    'registry_id' => $registry->id,
+                    'inscription_id' => $inscription->id,
                 ]);
             });
     }

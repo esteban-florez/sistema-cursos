@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Payment;
-use App\Models\Registry;
+use App\Models\Inscription;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class EnrollmentController extends Controller
@@ -19,7 +19,7 @@ class EnrollmentController extends Controller
 
     public function store(Request $request, Course $course)
     {
-        $registry = user()->enroll($course);
+        $inscription = user()->enroll($course);
         
         $data = $request->validate([
             'date' => ['required', 'date'],
@@ -28,27 +28,27 @@ class EnrollmentController extends Controller
             'type' => ['required', 'in:movil,transfer,dollars,bs'],
         ]);
 
-        $data['registry_id'] = $registry->id;
+        $data['inscription_id'] = $inscription->id;
 
         $payment = Payment::create($data);
 
         return redirect()
-            ->route('enrollment.success', $registry->id)
+            ->route('enrollment.success', $inscription->id)
             ->with('enrolledType', $payment->type);
     }
 
-    public function success(Registry $registry)
+    public function success(Inscription $inscription)
     {
         return view('enrollment.success', [
-            'registry' => $registry,
-            'enrolledType' => $registry->payment->type,
+            'inscription' => $inscription,
+            'enrolledType' => $inscription->payment->type,
         ]);
     }
 
-    public function download(Registry $registry)
+    public function download(Inscription $inscription)
     {
-        $student = $registry->student;
-        $course = $registry->course;
+        $student = $inscription->student;
+        $course = $inscription->course;
 
         $pdf = PDF::loadView('pdf.enroll', [
             'student' => $student,

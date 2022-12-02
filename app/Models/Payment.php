@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Registry;
+use App\Models\Inscription;
 
 class Payment extends Model
 {
@@ -27,9 +27,9 @@ class Payment extends Model
     
     protected $guarded = ['id'];
     
-    public function registry()
+    public function inscription()
     {
-        return $this->belongsTo(Registry::class);
+        return $this->belongsTo(Inscription::class);
     }
 
     public function getAmountAttribute($amount)
@@ -63,11 +63,11 @@ class Payment extends Model
         return $query->when($filters, function ($query, $filters) {
             foreach($filters as $filter => $value) {
                 if ($filter === 'course_id') {
-                    $ids = Registry::where('course_id', $value)
+                    $ids = Inscription::where('course_id', $value)
                         ->pluck('id')
                         ->all();
                         
-                    $query->whereIn('registry_id', $ids);
+                    $query->whereIn('inscription_id', $ids);
                     continue;
                 }
 
@@ -92,11 +92,11 @@ class Payment extends Model
                 ->first()
                 ->id;
             
-            $ids = Registry::where('student_id', $id)
+            $ids = Inscription::where('student_id', $id)
                 ->pluck('id')
                 ->all();
 
-            return $query->whereIn('registry_id', $ids);
+            return $query->whereIn('inscription_id', $ids);
         });
     }
 

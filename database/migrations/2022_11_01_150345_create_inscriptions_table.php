@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistriesTable extends Migration
+class CreateInscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRegistriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('registries', function (Blueprint $table) {
+        Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
             $table->boolean('approval')->default(false);
             $table->foreignId('course_id')->constrained();
@@ -30,6 +30,6 @@ class CreateRegistriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registries');
+        Schema::dropIfExists('inscriptions');
     }
 }

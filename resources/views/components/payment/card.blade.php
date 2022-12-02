@@ -19,8 +19,8 @@
   <div class="mb-2">
     <a href data-details="{{ json_encode([
       'payment' => $payment,
-      'course' => $payment->registry->course,
-      'student' => $payment->registry->student
+      'course' => $payment->inscription->course,
+      'student' => $payment->inscription->student
     ]) }}">
       Ver detalles
     </a>

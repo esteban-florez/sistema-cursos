@@ -44,8 +44,8 @@
       <x-slot name="body">
         @forelse ($payments as $payment)
           <x-row :data="[
-            $payment->registry->student->full_ci,
-            $payment->registry->course->name,
+            $payment->inscription->student->full_ci,
+            $payment->inscription->course->name,
             $payment->amount,
             $payment->date,
             $payment->ref,

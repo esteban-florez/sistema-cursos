@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Member;
-use App\Models\Registry;
+use App\Models\Inscription;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
 use Illuminate\Support\Facades\Date;
@@ -63,7 +63,7 @@ class Student extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'registries')
+        return $this->belongsToMany(Course::class, 'inscriptions')
             ->withTimestamps()
             ->withPivot(['id', 'approval']);
     }
@@ -71,13 +71,13 @@ class Student extends Authenticatable
     public function enroll(Course $course)
     {
         // TODO -> por ahora así, pero no se, me suena que hay que hacer cosas con ManyToMany y el metodo associate()
-        $registry = Registry::create([
+        $inscription = Inscription::create([
             'student_id' => $this->id,
             'course_id' => $course->id,
             'unique' => null,
         ]);
 
-        return $registry;
+        return $inscription;
     }
 
     /**

@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Registry;
+use App\Models\Inscription;
 
-class RegistrySeeder extends Seeder
+class InscriptionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,10 +14,10 @@ class RegistrySeeder extends Seeder
      */
     public function run()
     {
-        Registry::truncate();
+        Inscription::truncate();
         
         for ($i = 1; $i <= 5; $i++) {
-            Registry::create([
+            Inscription::create([
                 'student_id' => $i,
                 'course_id' => $i,
                 'unique' => null,
@@ -25,7 +25,7 @@ class RegistrySeeder extends Seeder
         }
 
         for ($i = 2; $i <= 5; $i++) {
-            Registry::create([
+            Inscription::create([
                 'student_id' => $i,
                 'course_id' => 1,
                 'unique' => null,

@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedFloat('amount');
             $table->unsignedInteger('ref')->nullable();
             $table->enum('type', ['movil', 'transfer', 'dollars', 'bs']);
-            $table->foreignId('registry_id')->constrained();
+            $table->foreignId('inscription_id')->constrained();
             $table->timestamps();
         });
     }

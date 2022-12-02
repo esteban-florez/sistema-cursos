@@ -29,7 +29,7 @@ class Course extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'registries')
+        return $this->belongsToMany(Student::class, 'inscriptions')
             ->withTimestamps()
             ->withPivot(['id', 'approval']);
     }
@@ -76,7 +76,7 @@ class Course extends Model
 
     public function getStudentCountAttribute()
     {
-        return Registry::where('course_id', $this->id)
+        return Inscription::where('course_id', $this->id)
             ->count();
     }
 

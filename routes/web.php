@@ -187,10 +187,10 @@ Route::group([
             ->name('store');
     });
     
-    Route::get('{registry}/success', 'success')
+    Route::get('{inscription}/success', 'success')
         ->name('success');
 
-    Route::get('{registry}/download', 'download')
+    Route::get('{inscription}/download', 'download')
         ->name('download');
 });
 

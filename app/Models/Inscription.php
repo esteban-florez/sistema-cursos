@@ -8,7 +8,7 @@ use App\Models\Student;
 use App\Models\Course;
 use App\Models\Payment;
 
-class Registry extends Model
+class Inscription extends Model
 {
     use HasFactory;
 
