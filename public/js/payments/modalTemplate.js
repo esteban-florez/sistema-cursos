@@ -4,7 +4,7 @@ const detailsModal = ({id, courseName, studentName, amount, date, ref, type, sta
       <div class="modal-header bg-dark">
         <h4 class="modal-title">Detalles del pago</h4>
         <button type="button" class="close" data-dismiss="modal">
-          <span class="text-white">×</span>
+          <span class="text-white">&times;</span>
         </button>
       </div>
       <div class="modal-body">

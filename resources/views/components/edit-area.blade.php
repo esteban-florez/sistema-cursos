@@ -5,7 +5,7 @@
     <h4 class="modal-title">Editar área de formación</h4>
     <a href="{{ route('areas.index') }}">
       <button type="button" class="close">
-        <span>&times;</span>
+        <span class="text-white">&times;</span>
       </button>
     </a>
   </x-slot>

@@ -4,7 +4,7 @@
   <x-slot name="header">
     <h4 class="modal-title">Registrar área de formación</h4>
     <button type="button" class="close" data-dismiss="modal">
-      <span>&times;</span>
+      <span class="text-white">&times;</span>
     </button>
   </x-slot>
   <p>Los campos con <i class="fas fa-asterisk text-danger"></i> son obligatorios.</p>
