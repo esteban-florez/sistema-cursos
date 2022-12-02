@@ -8,11 +8,7 @@
           <h3 class="m-0">{{ Str::ucfirst($area->name) }}</h3>
           <p class="m-0">PNF:  
             <span class="font-weight-bold">
-            @if($area->is_pnf)
-              PNF en {{ Str::ucfirst($area->pnf_name) }}.
-            @else
-              N/A.
-            @endif
+              {{ $area->pnf->name }}
             </span>
           </p>
         </div>

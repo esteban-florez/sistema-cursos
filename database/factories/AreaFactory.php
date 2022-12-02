@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\PNF;
 
 class AreaFactory extends Factory
 {
@@ -17,8 +18,7 @@ class AreaFactory extends Factory
 
         return [
             'name' => $this->faker->unique()->company,
-            'is_pnf' => $is_pnf,
-            'pnf_name' => $is_pnf ? $this->faker->unique()->jobTitle : null,
+            'pnf_id' => PNF::all()->random()->id,
         ];
     }
 }

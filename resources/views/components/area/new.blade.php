@@ -1,4 +1,4 @@
-@props(['id'])
+@props(['id', 'pnfs'])
 
 <x-modal :id="$id">
   <x-slot name="header">
@@ -13,12 +13,9 @@
     <x-field name="name" id="name" placeholder="Escribe el nombre del área" autocomplete="off" required>
       Nombre:
     </x-field>
-    <x-field type="checkbox" name="is_pnf" id="isPnf">
-      ¿Se corresponde a un PNF?
-    </x-field>
-    <x-field name="pnf_name" id="pnfName" placeholder="Escribe el nombre del PNF..." disabled>
-      Nombre del PNF:
-    </x-field>
+    <x-select name="pnf_id" id="pnfId" :options="$pnfs" required>
+      PNF:
+    </x-select>
     <x-button color="secondary" data-dismiss="modal" icon="times">Cancelar</x-button>
     <x-button color="success" type="submit" icon="check">Aceptar</x-button>
   </form>

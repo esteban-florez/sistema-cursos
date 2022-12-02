@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
 use App\Models\Course;
+use App\Models\PNF;
 
 class Area extends Model
 {
@@ -16,6 +17,11 @@ class Area extends Model
     public function instructors()
     {
         return $this->hasMany(Instructor::class);
+    }
+
+    public function pnf()
+    {
+        return $this->belongsTo(PNF::class);
     }
 
     public function courses()
