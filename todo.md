@@ -58,7 +58,12 @@
 ## Esteban: 
 
 - Correciones de la interfaz que mandó la profe de proyecto.
+
+## Esteban: 
+
+- Realizar matrícula (ver indicaciones generales).
 - Añadir links y hacer las breadcrumbs.
+- Añadir imagenes distintas para cada curso y club.
 
 ## Tareas a largo plazo:
 
