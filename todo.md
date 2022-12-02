@@ -54,16 +54,13 @@
 - Poner fecha y hora el home.
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
+- Añadir seeders de club con sus imagenes.
 
 ## Esteban: 
 
 - Correciones de la interfaz que mandó la profe de proyecto.
-
-## Esteban: 
-
 - Realizar matrícula (ver indicaciones generales).
 - Añadir links y hacer las breadcrumbs.
-- Añadir imagenes distintas para cada curso y club.
 
 ## Tareas a largo plazo:
 

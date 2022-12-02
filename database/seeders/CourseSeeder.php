@@ -29,6 +29,7 @@ class CourseSeeder extends Seeder
             'start_time' => '08:00:00',
             'end_time' => '12:00:00',
             'days' => 'sa',
+            'image' => 'img/programacion-web.jpg',
             'area_id' => 1,
             'instructor_id' => 2,
         ])->create();
@@ -44,6 +45,7 @@ class CourseSeeder extends Seeder
             'start_time' => '09:00:00',
             'end_time' => '12:00:00',
             'days' => 'tu,th',
+            'image' => 'img/javascript.jpg',
             'area_id' => 1,
             'instructor_id' => 3,
         ])->create();
@@ -59,6 +61,7 @@ class CourseSeeder extends Seeder
             'start_time' => '09:00:00',
             'end_time' => '11:00:00',
             'days' => 'mo',
+            'image' => 'img/administracion.jpg',
             'area_id' => 1,
             'instructor_id' => 3,
         ])->create();
@@ -74,6 +77,7 @@ class CourseSeeder extends Seeder
             'start_time' => '14:00:00',
             'end_time' => '16:00:00',
             'days' => 'sa',
+            'image' => 'img/cocina.jpg',
             'area_id' => 3,
             'instructor_id' => 7,
         ])->create();
@@ -89,6 +93,7 @@ class CourseSeeder extends Seeder
             'start_time' => '14:00:00',
             'end_time' => '16:00:00',
             'days' => 'sa',
+            'image' => 'img/matematicas.jpg',
             'area_id' => 10,
             'instructor_id' => 14,
         ])->create();
