@@ -136,7 +136,7 @@
               </x-layout.sidebar.item>
             </x-slot>
           </x-layout.sidebar.item>
-          <x-layout.sidebar.item url="#" icon="file-invoice">
+          <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
             Credenciales de pago
           </x-layout.sidebar.item>
           <x-layout.sidebar.item url="#" icon="database">

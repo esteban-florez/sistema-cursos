@@ -55,17 +55,19 @@
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
 - Un select de PNF en areas, las areas que no pertenezcan a un PNF pertenecerán a  "Extensión Universitaria".
+- Poner soft deletes.
 
 ## Esteban: 
 
-- CRU de datos para pagos.
 - Correciones de la interfaz que mandó la profe de proyecto.
+- Añadir links y hacer las breadcrumbs.
 
 ## Tareas a largo plazo:
 
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
 - Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
 - Crear rol de preparador, posible rol de secretaria.
+- Traducir los errores de validación. Y mejorar como se muestran en algunas vistas.
 
 ## Indicaciones generales:
 

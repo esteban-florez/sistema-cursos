@@ -7,10 +7,13 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\CredentialsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\MovilCredentialsController;
+use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\StudentPaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -189,6 +192,26 @@ Route::group([
 
     Route::get('{registry}/download', 'download')
         ->name('download');
+});
+
+
+// Credentials routes
+
+Route::middleware('auth:instructor', 'admin')->group(function () {
+    Route::get('credentials', [CredentialsController::class, 'index'])
+        ->name('credentials.index');
+    
+    Route::post('movil-credentials', [MovilCredentialsController::class, 'store'])
+        ->name('movil.store');
+    
+    Route::put('movil-credentials', [MovilCredentialsController::class, 'update'])
+        ->name('movil.update');
+    
+    Route::post('transfer-credentials', [TransferCredentialsController::class, 'store'])
+        ->name('transfer.store');
+    
+    Route::put('transfer-credentials', [TransferCredentialsController::class, 'update'])
+        ->name('transfer.update');
 });
 
 
