@@ -8,10 +8,11 @@ use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use HasFactory, QueryScopes;
+    use HasFactory, QueryScopes, SoftDeletes;
 
     /**
      * The attributes that are not mass assignable.

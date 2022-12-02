@@ -20,6 +20,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedInteger('ref')->nullable();
             $table->enum('type', ['movil', 'transfer', 'dollars', 'bs']);
             $table->foreignId('inscription_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

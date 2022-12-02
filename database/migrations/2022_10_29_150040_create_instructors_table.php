@@ -30,6 +30,7 @@ class CreateInstructorsTable extends Migration
             $table->date('birth');
             $table->boolean('is_admin')->default(false);
             $table->foreignId('area_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
