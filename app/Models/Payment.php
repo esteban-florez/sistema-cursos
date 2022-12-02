@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Inscription;
+use Illuminate\Support\Facades\Date;
 
 class Payment extends Model
 {
@@ -53,9 +54,10 @@ class Payment extends Model
         return static::$statuses[$status];
     }
 
-    public function getDateAttribute($date)
+    public function getUpdatedAtAttribute($date)
     {
-        return formatDate($date);
+        return Date::createFromFormat('Y-m-d H:i:s', $date)
+            ->format('d/m/Y');
     }
 
     public function scopeFilters($query, $filters)

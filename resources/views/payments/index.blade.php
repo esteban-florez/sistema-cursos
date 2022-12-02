@@ -47,7 +47,7 @@
             $payment->inscription->student->full_ci,
             $payment->inscription->course->name,
             $payment->amount,
-            $payment->date,
+            $payment->updated_at,
             $payment->ref,
             $payment->type,
             $payment->status,
