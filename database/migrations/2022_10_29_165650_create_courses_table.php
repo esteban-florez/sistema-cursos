@@ -32,6 +32,7 @@ class CreateCoursesTable extends Migration
             $table->time('end_time');
             $table->foreignId('instructor_id')->constrained();
             $table->foreignId('area_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

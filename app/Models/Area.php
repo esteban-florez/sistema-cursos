@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
 use App\Models\Course;
 use App\Models\PNF;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Area extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
 

@@ -9,11 +9,12 @@ use App\Models\Membership;
 use App\Models\Inscription;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Date;
 
 class Student extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors, QueryScopes;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes, SoftDeletes;
 
     /**
      * The attributes that are not mass assignable.

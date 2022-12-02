@@ -17,6 +17,7 @@ class CreateAreasTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->foreignId('pnf_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

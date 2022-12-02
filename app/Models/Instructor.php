@@ -9,10 +9,11 @@ use App\Models\Course;
 use App\Models\Club;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Instructor extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors, QueryScopes;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes, SoftDeletes;
 
     /**
      * The attributes that are not mass assignable.

@@ -9,10 +9,11 @@ use App\Models\Inventory;
 use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Club extends Model
 {
-    use HasFactory, QueryScopes;
+    use HasFactory, QueryScopes, SoftDeletes;
 
     protected $guarded = ['id'];
 

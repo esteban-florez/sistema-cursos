@@ -32,6 +32,7 @@ class CreateStudentsTable extends Migration
             $table->enum('grade', ['school', 'high', 'tsu', 'college']);
             $table->date('birth');
             $table->boolean('is_upta')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }
