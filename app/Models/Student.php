@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Member;
+use App\Models\Membership;
 use App\Models\Inscription;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
@@ -58,7 +58,7 @@ class Student extends Authenticatable
      */
     public function memberships()
     {
-        return $this->hasMany(Member::class);
+        return $this->hasMany(Membership::class);
     }
 
     public function courses()

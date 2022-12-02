@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
 use App\Models\Club;
 
-class Member extends Model
+class Membership extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function students() {
+    public function student() {
         return $this->belongsTo(Student::class);
     }
 
