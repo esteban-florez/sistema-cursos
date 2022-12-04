@@ -54,7 +54,6 @@
 - Poner fecha y hora el home.
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
-- Añadir seeders de club con sus imagenes.
 
 ## Esteban: 
 
