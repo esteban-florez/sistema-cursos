@@ -23,7 +23,7 @@
     <x-alerts type="danger" icon="times-circle"/>
     <div class="row px-2">
       @forelse($areas as $area)
-        <x-area-card :area="$area"/>
+        <x-area.card :area="$area"/>
       @empty
         <div class="card">
           <div class="card-body">
@@ -35,10 +35,10 @@
   </section>
   <x-slot name="extra">
     @if($edit)
-    <x-edit-area :area="$areaToEdit" id="editAreaModal"></x-edit-area>
+    <x-area.edit :pnfs="$pnfs" :area="$areaToEdit" id="editAreaModal"></x-area.edit>
     <script defer src="{{ asset('js/popup.js') }}"></script>
     @else
-    <x-new-area id="newAreaModal"></x-new-area>
+    <x-area.new id="newAreaModal" :pnfs="$pnfs"></x-area.new>
     @endif
   </x-slot>
 </x-layout.main>

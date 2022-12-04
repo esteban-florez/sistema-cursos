@@ -3,8 +3,7 @@ function getPrices(currency) {
 	const amount = +form.dataset.amount;
 	
 	if (currency !== '$') {
-		// TODO -> aqui habría que meter de alguna manera el precio del dolar de hoy
-		return amount * 10;
+		return amount * +localStorage.getItem('usd-price')
 	}
 
 	return amount;

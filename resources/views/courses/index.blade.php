@@ -27,7 +27,7 @@
           </x-select>
         </x-slot>
         <x-slot name="sorts">
-          <x-radio :options="['name' => 'Nombre', 'total_price' => 'Precio', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
+          <x-radio :options="['name' => 'Nombre', 'total_price' => 'Monto', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
         </x-slot>
       </x-filters-collapse>
     </x-slot>
@@ -38,25 +38,27 @@
     <x-alerts type="danger" icon="times-circle"/>
     <x-table>
       <x-slot name="header">
-        <th>ID</th>
         <th>Nombre</th>
         <th>Instructor</th>
-        <th>Precio</th>
-        <th>Martícula</th>
-        <th>Estado</th>
+        <th>Inscripciones</th>
+        <th>Fecha</th>
         <th>Duración</th>
+        <th>Martícula</th>
+        <th>Monto</th>
+        <th>Estado</th>
         <th>Acciones</th>
       </x-slot>
       <x-slot name="body">
         @forelse ($courses as $course)
           <x-row :data="[
-            $course->id,
             $course->name,
-            $course->instructor_id,
-            $course->total_price,
-            $course->student_limit,
-            $course->duration,
-            $course->duration,
+            $course->instructor->full_name,
+            $course->start_ins . ' al ' . $course->end_ins,
+            $course->start_course . ' al ' . $course->end_course,
+            $course->duration_hours,
+            $course->student_diff,
+            $course->total_price . ' $',
+            $course->status,
             ]"
             :details="route('courses.show', $course->id)"
             :edit="route('courses.edit', $course->id)"

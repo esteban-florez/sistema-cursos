@@ -109,7 +109,7 @@
         </x-field>
       </div>
       <div class="{{ $type === 'student' ? 'col-md-4' : 'col-md-6' }}">
-        <x-select name="gender" id="gender" :options="['female' => 'Femenino', 'male' => 'Masculino']" :selected="old('gender') ?? $gender ?? ''" required>
+        <x-select name="gender" id="gender" :options="['female' => 'Femenino', 'male' => 'Masculino']" :selected="old('gender') ?? $gender ?? ''" default required>
           Sexo:
         </x-select>
       </div>
@@ -120,7 +120,7 @@
       </div>
       @if ($type === 'student')
       <div class="col-md-4">
-        <x-select name="grade" id="grade" :options="['school' => 'Primaria', 'high' => 'Bachillerato', 'tsu' => 'TSU', 'college' => 'Pregrado']" :selected="old('grade') ?? $user->grade ?? ''" required>
+        <x-select name="grade" id="grade" :options="['school' => 'Primaria', 'high' => 'Bachillerato', 'tsu' => 'TSU', 'college' => 'Pregrado']" :selected="old('grade') ?? $user->grade ?? ''" default required>
           Grado de Instrucción:
         </x-select>
       </div>

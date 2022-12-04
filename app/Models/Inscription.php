@@ -8,17 +8,18 @@ use App\Models\Student;
 use App\Models\Course;
 use App\Models\Payment;
 
-class Registry extends Model
+class Inscription extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
+    
     public function student()
     {
         return $this->belongsTo(Student::class);
     }
-
+    
     public function course()
     {
         return $this->belongsTo(Course::class);
@@ -31,6 +32,7 @@ class Registry extends Model
 
     public function setUniqueAttribute()
     {
+        // TODO -> test default attribute value on unique
         $this->attributes['unique'] = "{$this->student_id}-{$this->course_id}";
     }
 }

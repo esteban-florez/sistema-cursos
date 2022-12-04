@@ -7,10 +7,14 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\CredentialsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MovilCredentialsController;
+use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\StudentPaymentController;
 use Illuminate\Support\Facades\Route;
 
@@ -128,25 +132,29 @@ Route::get('payments/pending', [PaymentController::class, 'pending'])
     ->name('payments.pending');
 
 Route::resource('payments', PaymentController::class)
-    ->middleware('auth:instructor', 'admin');
+    ->middleware('auth:instructor', 'admin')
+    ->only('index', 'update', 'destroy');
 
 
 //Club routes
 
-Route::group([
-    'controller'=> ClubController::class,
-    'prefix'=>'club'
-], function(){
-    Route::get('/', 'index')
-        ->name('club.index');
+Route::resource('club', ClubController::class)
+    ->middleware('auth:instructor', 'admin');
 
-    Route::get('register', 'create')
-        ->name('club.create');
+// Route::group([
+//     'controller'=> ClubController::class,
+//     'prefix'=>'club'
+// ], function(){
+//     Route::get('/', 'index')
+//         ->name('club.index');
 
-    Route::post('guardar', 'store')
-        ->name('club.store');
+//     Route::get('register', 'create')
+//         ->name('club.create');
 
-});
+//     Route::post('guardar', 'store')
+//         ->name('club.store');
+
+// });
 
 
 // Course market
@@ -180,17 +188,39 @@ Route::group([
             ->name('store');
     });
     
-    Route::get('{registry}/success', 'success')
+    Route::get('{inscription}/success', 'success')
         ->name('success');
 
-    Route::get('{registry}/download', 'download')
+    Route::get('{inscription}/download', 'download')
         ->name('download');
+});
+
+
+// 
+
+// Credentials routes
+
+Route::middleware('auth:instructor', 'admin')->group(function () {
+    Route::get('credentials', [CredentialsController::class, 'index'])
+        ->name('credentials.index');
+    
+    Route::post('movil-credentials', [MovilCredentialsController::class, 'store'])
+        ->name('movil.store');
+    
+    Route::put('movil-credentials', [MovilCredentialsController::class, 'update'])
+        ->name('movil.update');
+    
+    Route::post('transfer-credentials', [TransferCredentialsController::class, 'store'])
+        ->name('transfer.store');
+    
+    Route::put('transfer-credentials', [TransferCredentialsController::class, 'update'])
+        ->name('transfer.update');
 });
 
 
 // Misc
 
-Route::view('home', 'home')->name('home')
+Route::get('home', ([HomeController::class, 'index']))->name('home')
     ->middleware('auth', 'prevent-back');
 
 Route::view('pagos', 'pagos')->name('pagos')

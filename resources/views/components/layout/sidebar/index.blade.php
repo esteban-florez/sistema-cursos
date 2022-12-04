@@ -15,6 +15,9 @@
   </div>
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu">
+      <x-layout.sidebar.item :url="route('home')" icon="home">
+        Home
+      </x-layout.sidebar.item>
       <x-layout.sidebar.item icon="graduation-cap">
         Cursos
         <x-slot name="menu">
@@ -136,7 +139,7 @@
               </x-layout.sidebar.item>
             </x-slot>
           </x-layout.sidebar.item>
-          <x-layout.sidebar.item url="#" icon="file-invoice">
+          <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
             Credenciales de pago
           </x-layout.sidebar.item>
           <x-layout.sidebar.item url="#" icon="database">

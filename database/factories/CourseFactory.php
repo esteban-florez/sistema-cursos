@@ -27,6 +27,7 @@ class CourseFactory extends Factory
             'name' => implode(' ', $this->faker->words(2)),
             'description' => $this->faker->text(200),
             'total_price' => $this->faker->randomElement([25, 30, 45, 50]),
+            'reserv_price' => $this->faker->randomElement([5, 8, 10]),
             'start_ins' => $start_ins,
             'end_ins' => $end_ins,
             'start_course' => $start_course,
@@ -36,8 +37,8 @@ class CourseFactory extends Factory
             'start_time' => $start_time,
             'end_time' => $end_time,
             'image' => 'img/programacion.jpg',
-            'area_id' => Area::factory(),
-            'instructor_id' => Instructor::factory(),
+            'area_id' => Area::all()->random()->id,
+            'instructor_id' => Instructor::all()->random()->id,
         ];
     }
 }

@@ -1,4 +1,4 @@
-const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount},00 ${currency}` : `${currency}${amount},00`;
+const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount} ${currency}` : `${currency}${amount}`;
 
 const generateDataPair = ({title, data}) => `<li class="list-group-item d-flex justify-content-between">
   <span>${title}</span>
@@ -7,7 +7,8 @@ const generateDataPair = ({title, data}) => `<li class="list-group-item d-flex j
 
 function onlineTemplate({title, data, amount, currency}) {
   const lowerTitle = title.toLowerCase();
-  const article = title === 'Transferencia' ? 'la' : 'el';
+  const isTransfer = title === 'Transferencia'; 
+  const article = isTransfer ? 'la' : 'el';
   let paymentData = data.reduce((prev, next) => {
     prev += generateDataPair(next);
     return prev;
@@ -28,7 +29,7 @@ function onlineTemplate({title, data, amount, currency}) {
   </div>
   <form id="refForm">
     <label for="refInput">Referencia</label>
-    <input class="form-control" type="number" placeholder="Ingrese la referencia..." id="refInput">
+    <input class="form-control" type="number" placeholder="Ej. ${!isTransfer ? '1234' : '123567890'}" id="refInput">
     <div class="d-flex justify-content-between align-items-center mt-3">
       <div>
         <button type="button" class="btn btn-secondary" data-stepper="previous">Volver</button>

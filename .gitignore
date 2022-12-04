@@ -15,5 +15,5 @@ yarn-error.log
 /.vscode
 *.html
 /database/schema
-whatiwasdoing.md
-/resources/views/test.blade.php
+current.md
+presentacion.md

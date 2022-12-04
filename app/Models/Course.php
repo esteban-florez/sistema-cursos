@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Course extends Model
 {
-    use HasFactory, QueryScopes;
+    use HasFactory, QueryScopes, SoftDeletes;
 
     /**
      * The attributes that are not mass assignable.
@@ -29,7 +30,7 @@ class Course extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Course::class, 'registries')
+        return $this->belongsToMany(Student::class, 'inscriptions')
             ->withTimestamps()
             ->withPivot(['id', 'approval']);
     }
@@ -41,49 +42,135 @@ class Course extends Model
 
     public function getStartTimeAttribute($startTime) 
     {
-        return $this->formatTime($startTime);
+        return formatTime($startTime);
     }
 
     public function getEndTimeAttribute($endTime) 
     {
-        return $this->formatTime($endTime);
+        return formatTime($endTime);
     }
 
     public function getStartInsAttribute($startIns) 
     {
-        return $this->formatDate($startIns);
+        return formatDate($startIns);
     }
 
     public function getEndInsAttribute($endIns) 
     {
-        return $this->formatDate($endIns);
+        return formatDate($endIns);
     }
 
     public function getStartCourseAttribute($startCourse) 
     {
-        return $this->formatDate($startCourse);
+        return formatDate($startCourse);
     }
 
     public function getEndCourseAttribute($endCourse) 
     {
-        return $this->formatDate($endCourse);
+        return formatDate($endCourse);
     }
 
     public function getExcerptAttribute()
     {
-        return Str::words($this->description, 8);
+        return Str::words($this->description, 7);
     }
 
-    private function formatDate($format)
+    public function getStudentCountAttribute()
     {
-        $date = Carbon::createFromFormat('Y-m-d', $format);
-
-        return $date->format('d/m/Y');
+        return Inscription::where('course_id', $this->id)
+            ->count();
     }
 
-    private function formatTime($format) {
-        $time = Carbon::createFromFormat('H:i:s', $format);
+    public function getStudentDiffAttribute()
+    {
+        return "{$this->student_count} / {$this->student_limit}";
+    }
 
-        return $time->format('g:i A');
+    public function getDaysAttribute($daysString)
+    {
+        $days = collect(explode(',', $daysString));
+        return $days->map(function ($day) {
+            return getWeekDay($day);
+        })->join(', ', ' y ');
+    }
+
+    public function setDaysAttribute($daysArray)
+    {
+        $this->attributes['days'] = collect($daysArray)
+            ->join(',');
+    }
+
+    public function getStatusAttribute()
+    {
+        $now = now()->getTimestamp();
+        $insStart = Date::createFromFormat('Y-m-d', $this->getRawOriginal('start_ins'))->getTimestamp();
+        $insEnd = Date::createFromFormat('Y-m-d', $this->getRawOriginal('end_ins'))->getTimestamp();
+        $courseStart = Date::createFromFormat('Y-m-d', $this->getRawOriginal('start_course'))->getTimestamp();
+        $courseEnd = Date::createFromFormat('Y-m-d', $this->getRawOriginal('end_course'))->getTimestamp();
+
+        if($now < $insStart) {
+            return 'Pre-inscripciones';
+        }
+
+        if($now < $insEnd) {
+            return 'Inscipciones';
+        }
+
+        if($now < $courseStart) {
+            return 'Pre-curso';
+        }
+
+        if($now < $courseEnd) {
+            return 'En curso';
+        }
+
+        return 'Finalizado';
+    }
+
+    public function getDurationHoursAttribute()
+    {
+        return "{$this->duration} hrs.";
+    }
+
+    public function scopeAvailables($query)
+    {
+        // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery
+        $courses = Course::withCount('students')->get();
+        
+        $ids = $courses->filter(function ($course) {
+            return $course->students_count < $course->student_limit;
+        })->map(function ($course) {
+            return $course->id;
+        })->values()->all();
+        
+        return $query->whereIn('id', $ids);
+    }
+    
+    public function scopeNotBoughtBy($query, $student)
+    {
+        $ids = $student->courses->pluck('id');
+        $query->whereNotIn('id', $ids);
+    }
+
+    public function scopeBoughtBy($query, $student)
+    {
+        $ids = $student->courses->pluck('id');
+        $query->whereIn('id', $ids);
+    }
+
+    public static function getOptions($withDefault = true)
+    {
+        $areas = self::all(['id', 'name']);
+
+        $options = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->sortKeys()->all();
+
+        if ($withDefault) {
+            $defaultOptions = ['' => 'Seleccionar'];
+            return $defaultOptions + $options;
+        }
+
+        return $options;
     }
 }

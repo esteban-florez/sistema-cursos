@@ -13,28 +13,23 @@
   <p class="text-bold m-0">
     Fecha: 
     <span class="font-weight-normal">
-      {{ $payment->date }}
+      {{ $payment->updated_at }}
     </span>
-  </p>  
+  </p> 
   <div class="mb-2">
-    <a href="{{ route('payments.show', $payment->id) }}">
+    {{-- TODO -> esto toco arreglarlo a la machinberra por ahora --}}
+    @php
+      $payment->date = $payment->updated_at;
+      unset($payment->updated_at);
+    @endphp
+    <a href data-details="{{ json_encode([
+      'payment' => $payment,
+      'course' => $payment->inscription->course,
+      'student' => $payment->inscription->student
+    ]) }}">
       Ver detalles
     </a>
   </div>
-  <form method="POST" class="d-inline" action="{{ route('payments.update', $payment->id) }}">
-    @csrf
-    @method('PUT')
-    <input type="hidden" name="status" value="confirmed">
-    <x-button type="submit" color="success" icon="check">
-      Aceptar
-    </x-button>
-  </form>
-  <form method="POST" class="d-inline" action="{{ route('payments.update', $payment->id) }}">
-    <input type="hidden" name="status" value="rejected">
-    @csrf
-    @method('PUT')
-    <x-button type="submit" color="danger" icon="times">
-      Rechazar
-    </x-button>
-  </form>
+  <x-payment.status-button :id="$payment->id" type="confirmed" color="success"/>
+  <x-payment.status-button :id="$payment->id" type="rejected" color="danger"/>
 </div>

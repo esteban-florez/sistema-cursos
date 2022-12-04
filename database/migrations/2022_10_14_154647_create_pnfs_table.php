@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistriesTable extends Migration
+class CreatePnfsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateRegistriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('registries', function (Blueprint $table) {
+        Schema::create('pnfs', function (Blueprint $table) {
             $table->id();
-            $table->boolean('approval')->default(false);
-            $table->foreignId('course_id')->constrained();
-            $table->foreignId('student_id')->constrained();
-            $table->string('unique')->unique();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateRegistriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registries');
+        Schema::dropIfExists('pnfs');
     }
 }

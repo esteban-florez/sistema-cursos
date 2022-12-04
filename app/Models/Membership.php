@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Student;
 use App\Models\Club;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Member extends Model
+class Membership extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
 
-    public function students() {
+    public function student() {
         return $this->belongsTo(Student::class);
     }
 

@@ -21,7 +21,7 @@
       </x-select>
     </div>
     <div class="col-12 col-sm-6 mb-3">
-      <label class="form-label" for="totalPrice"><i class="fas fa-asterisk text-danger mr-1"></i>Precio Total:</label>
+      <label class="form-label" for="totalPrice"><i class="fas fa-asterisk text-danger mr-1"></i>Monto Total:</label>
       <div class="input-group flex-nowrap">
         <input class="form-control" type="number" id="totalPrice" name="total_price" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" required/>
         <div class="input-group-append">
@@ -30,9 +30,9 @@
       </div>
     </div>
     <div class="col-12 col-sm-6 mb-3">
-      <label class="form-label" for="priceIns"><i class="fas fa-asterisk text-danger mr-1"></i>Precio de Inscripción:</label>
+      <label class="form-label" for="reservPrice"><i class="fas fa-asterisk text-danger mr-1"></i>Monto de Reservación:</label>
       <div class="input-group flex-nowrap">
-        <input class="form-control w-50" type="number" id="priceIns" name="price_ins" placeholder="Ej. 5" value="{{ old('price_ins') ?? $course->price_ins ?? '' }}" required/>
+        <input class="form-control w-50" type="number" id="reservPrice" name="reserv_price" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" required/>
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon1">$</span>
         </div>
@@ -77,12 +77,17 @@
         Máx. de Estudiantes:
       </x-field>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
+      <x-select name="days[]" id="days" :options="week()" default multiple required>
+        Días de clases:
+      </x-select>
+    </div>
+    <div class="col-sm-4">
       <x-field type="time" name="start_time" id="startTime" value="{{ old('start_time') ?? $course->start_time ?? '' }}" required>
         Hora de Inicio:
       </x-field>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
       <x-field type="time" name="end_time" id="endTime" value="{{ old('end_time') ?? $course->end_time ?? '' }}" required>
         Hora de Cierre:
       </x-field>

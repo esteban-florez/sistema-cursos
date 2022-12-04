@@ -121,16 +121,6 @@ span.fab {
   margin-bottom: 0;
 }
 
-.callout a {
-  color: #007bff;
-  text-decoration: none;
-  background-color: transparent;
-}
-
-.callout a:hover {
-  color: #007bff;
-}
-
 @media screen and (min-width: 768px) {
   .bar form {
     width: 50%;

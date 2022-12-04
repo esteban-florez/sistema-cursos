@@ -5,15 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Member;
-use App\Models\Registry;
+use App\Models\Membership;
+use App\Models\Inscription;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Date;
 
 class Student extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors, QueryScopes;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes, SoftDeletes;
 
     /**
      * The attributes that are not mass assignable.
@@ -58,12 +59,12 @@ class Student extends Authenticatable
      */
     public function memberships()
     {
-        return $this->hasMany(Member::class);
+        return $this->hasMany(Membership::class);
     }
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'registries')
+        return $this->belongsToMany(Course::class, 'inscriptions')
             ->withTimestamps()
             ->withPivot(['id', 'approval']);
     }
@@ -71,12 +72,13 @@ class Student extends Authenticatable
     public function enroll(Course $course)
     {
         // TODO -> por ahora así, pero no se, me suena que hay que hacer cosas con ManyToMany y el metodo associate()
-        $registry = Registry::create([
+        $inscription = Inscription::create([
             'student_id' => $this->id,
-            'course_id' => $course->id
+            'course_id' => $course->id,
+            'unique' => null,
         ]);
 
-        return $registry;
+        return $inscription;
     }
 
     /**

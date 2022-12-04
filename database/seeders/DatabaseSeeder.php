@@ -16,12 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
 
+        $this->call(PNFSeeder::class);
         $this->call(AreaSeeder::class);
         $this->call(StudentSeeder::class);
         $this->call(InstructorSeeder::class);
+        $this->call(ClubSeeder::class);
         $this->call(CourseSeeder::class);
-        $this->call(RegistrySeeder::class);
+        $this->call(InscriptionSeeder::class);
         $this->call(PaymentSeeder::class);
+        $this->call(MovilCredentialsSeeder::class);
+        $this->call(TransferCredentialsSeeder::class);
 
         Schema::enableForeignKeyConstraints();
     }

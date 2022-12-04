@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Payment;
-use App\Models\Registry;
-use App\Services\Document;
+use App\Models\Inscription;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class EnrollmentController extends Controller
 {
@@ -19,57 +19,49 @@ class EnrollmentController extends Controller
 
     public function store(Request $request, Course $course)
     {
-        $registry = user()->enroll($course);
-        
         $data = $request->validate([
             'date' => ['required', 'date'],
             'ref' => ['nullable', 'integer', 'numeric'],
-            'amount' => ['required', 'integer', 'numeric'],
+            'amount' => ['required', 'numeric'],
             'type' => ['required', 'in:movil,transfer,dollars,bs'],
         ]);
 
-        $data['registry_id'] = $registry->id;
-
+        $inscription = user()->enroll($course);
+        
+        $data['inscription_id'] = $inscription->id;
+        
         $payment = Payment::create($data);
 
         return redirect()
-            ->route('enrollment.success', $registry->id)
+            ->route('enrollment.success', $inscription->id)
             ->with('enrolledType', $payment->type);
     }
 
-    public function success(Registry $registry)
+    public function success(Inscription $inscription)
     {
         return view('enrollment.success', [
-            'registry' => $registry,
-            'enrolledType' => $registry->payment->type,
+            'inscription' => $inscription,
+            'enrolledType' => $inscription->payment->type,
         ]);
     }
 
-    public function download(Registry $registry)
+    public function download(Inscription $inscription)
     {
-        $student = $registry->student;
-        $course = $registry->course;
+        $student = $inscription->student;
+        $course = $inscription->course;
 
-        $data = [
-            'coursename' => $course->name,
-            'names' => $student->names,
-            'lastnames' => $student->lastnames,
-            'phone' => $student->phone,
-            'gender' => $student->gender,
-            'email' => $student->email,
-            'address' => $student->address,
-            'grade' => $student->grade,
-            'ci' => $student->full_ci,
-            'age' => $student->age,
+        $pdf = PDF::loadView('pdf.enroll', [
+            'student' => $student,
+            'course' => $course,
             'date' => now()->format('d/m/Y'),
-        ];
+        ]);
 
-        $fileName = "{$student->full_name} - Planilla de Inscripción";
-
-        $filePath = Document::generateWord('enroll', $fileName, $data);
-
+        $filename = "{$student->full_name} - Planilla de Inscripción.pdf"; 
+        $path = public_path($filename);
+        $pdf->save($filename);
+        
         return response()
-            ->download($filePath)
+            ->download($path)
             ->deleteFileAfterSend();
     }
 }

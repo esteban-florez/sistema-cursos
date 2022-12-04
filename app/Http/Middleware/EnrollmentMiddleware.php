@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Registry;
+use App\Models\Inscription;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -20,11 +20,11 @@ class EnrollmentMiddleware
         $course = $request->route('course');
         $student = user();
 
-        $registry = Registry::where('course_id', $course->id)
+        $inscription = Inscription::where('course_id', $course->id)
             ->where('student_id', $student->id)
             ->first();
 
-        if ($registry !== null) {
+        if ($inscription !== null) {
             return redirect()->route('market.index');
         }
         

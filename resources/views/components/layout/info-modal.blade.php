@@ -2,7 +2,7 @@
   <x-slot name="header">
     <h4 class="modal-title">Contáctanos</h4>
     <button type="button" class="close" data-dismiss="modal">
-      <span>&times;</span>
+      <span class="text-white">&times;</span>
     </button>
   </x-slot>
   <h5>Redes Sociales: </h5>

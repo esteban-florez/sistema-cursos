@@ -29,17 +29,56 @@
 - Artículos se quita el codigo.
 - Interfaz de inventario, que tenga todos, un link dentro de Sidebar->Clubes->Inventarios.
 - Pagos con collapse (mirian).
+
+# Problemas generales / ideas rikolinas:
+
+- Depurar el css al final del proyecto.
+
 - Añadir slugs.
-
-# Cosas mas como de arquitectura que hay que decidir/solucionar:
-
-- Arreglar el hecho de que un ciclo esté linkeado a un curso, hace que dicho ciclo pueda cambiar parte de sus datos cuando sea editado dicho curso:
-  - Opción 1: hacer que el ciclo no tenga el id del curso, sino que tome todos sus datos dentro de su propia tabla. Lo chimbo es la duplicación de información.
-  - Opción 2: hacer que el ciclo tenga el id del curso, y al momento de finalizar se mueva el ciclo a una tabla de ciclos finalizados, teniendo en ese caso si los datos del curso. Igual se duplica la info, pero un poquititititito menos.
-  - Opción 3: se me está ocurriendo buscar un mecanismo para que la referencia del ciclo finalizado al curso, *detecte* el cambio en el curso al que referencia y cree un registro con los datos anteriores al cambio, para así mantener sus datos originales. O algo así.
 
 - También ocurre que los cursos y clubes podrían no ser solamente un día a la semana, sino multiples, y cada día quizas tendría horas propias. Una solucion es implementar lo del horario de forma mas compleja, con Drag'n Drop maybe.
 
 - Pensar un poco en la naturaleza concurrente del proyecto, y errores que pueden haber y tal.
 
 - También está la cuestión de recuperación de base de datos, me dijeron que con "tarea programada", hay que investigar.
+
+- Quizas hagamos tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
+
+- Quizás sea innecesario tener los set y los enum en inglés en la base de datos, podríamos ponerlos de una en español y con el formato listo para mostrar, así nos ahorraríamos arrays asociativos de traducción y tal. Realmente para esto sería bueno un Enum de PHP pero no existen en esta versión xd.
+
+# Correciones Anyerg:
+
+## Myriam:
+
+- Hacer el home.
+- Poner fecha y hora el home.
+- Hacer hoja con datos reales para hacer los registros el día de la presentación.
+- Realizar matrícula (ver indicaciones generales) (esto en realidad es entre los dos).
+- Añadir seeders de club con sus imagenes.
+
+## Esteban: 
+
+- Correciones de la interfaz que mandó la profe de proyecto.
+- Realizar matrícula (ver indicaciones generales).
+- Añadir links y hacer las breadcrumbs.
+
+## Tareas a largo plazo:
+
+- Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
+- Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
+- Crear rol de preparador, posible rol de secretaria.
+- Traducir los errores de validación. Y mejorar como se muestran en algunas vistas.
+
+## Indicaciones generales:
+
+- Hacer que se pueda hacer una reservación de curso, con monto de reservación. Tiempo para formalizar inscripción y finalizar pago. El monto de reservación es opcional en caso de pagos completos (hay que convencer a Edeblangel de esto xd).
+
+- Se deben mostrar el estado de inscripción en matrícula (reservado, inscrito). Que el sistema liberar el cupo reservado si no se ha confirmado la inscripción en un tiempo, preguntar a Edeblangel el tiempo antes de liberar un cupo reservado.
+
+- Para los certificados: si el curso no es ligado a un PNF firma el instructor y firma el coordinador del DVS. Cuando es ligado a un PNF firman el instructor, la rectora y firma el jefe de departamento del PNF.
+
+- El proceso de inventario depende los artículos, al no tratarse de consumibles inmediatos sino con el tiempo, deberían registrarse en el inventario ingresos de artículos y "desincorporación" de artículo. Un solo inventario, del DVS.
+
+- Fecha de adquisición, fecha de desincorporación y el por qué de la desincorporación del artículo. Lo cual nos lleva a un estado actual de inventario, y a un historial de inventario.
+
+- El inventario sale un préstamo a los clubs, y se liga al responsable del mismo ya sea instructor o preparador. Control de prestamos.

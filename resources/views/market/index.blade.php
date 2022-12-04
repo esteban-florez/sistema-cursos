@@ -6,12 +6,12 @@
     <x-search placeholder="Buscar curso..." name="search">
     </x-search>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
-        Filtros
+        Ordenar por
       </x-button>
       <x-slot name="filtersCollapse">
         <x-filters-collapse>
           <x-slot name="sorts">
-            <x-radio :options="['date' => 'Fecha de publicación', 'name' => 'Nombre', 'total_price' => 'Precio']" name="sort" :checked="$sort" notitle first-empty/>
+            <x-radio :options="['date' => 'Fecha de publicación', 'name' => 'Nombre', 'total_price' => 'Monto']" name="sort" :checked="$sort" notitle first-empty/>
           </x-slot>
         </x-filters-collapse>
       </x-slot>

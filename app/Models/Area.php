@@ -6,16 +6,23 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instructor;
 use App\Models\Course;
+use App\Models\PNF;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Area extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $guarded = ['id', 'es_upta'];
+    protected $guarded = ['id'];
 
     public function instructors()
     {
         return $this->hasMany(Instructor::class);
+    }
+
+    public function pnf()
+    {
+        return $this->belongsTo(PNF::class);
     }
 
     public function courses()
@@ -23,7 +30,7 @@ class Area extends Model
         return $this->hasMany(Course::class);
     }
 
-    public static function getOptions($withDefault = false)
+    public static function getOptions($withDefault = true)
     {
         $areas = self::all(['id', 'name']);
 
@@ -32,7 +39,7 @@ class Area extends Model
         })->sortKeys()->all();
 
         if ($withDefault) {
-            $defaultOptions = ['' => 'Todos'];
+            $defaultOptions = ['' => 'Seleccionar'];
             return $defaultOptions + $options;
         }
 

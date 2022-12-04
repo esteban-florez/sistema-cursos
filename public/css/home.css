@@ -1,0 +1,72 @@
+.carousel-item > img {
+  height: 14rem;
+  object-fit: cover;
+  border-radius: .3rem;
+}
+
+.carousel-indicators > li {
+  height: .6rem;
+  width: .6rem;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+
+.payment-container {
+  height: 14rem;
+}
+
+.empty-container {
+  height: 11.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty {
+  font-size: 2rem;  
+  color: rgba(131, 158, 170, 0.4);
+  text-align: center;
+  font-weight: 600;
+}
+
+.courses-grid img {
+  height: 11rem;
+  object-fit: cover;
+}
+
+.courses-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 90%));
+  gap: 1rem;
+  justify-content: center;
+}
+
+.courses-grid-admin img {
+  height: 11rem;
+  object-fit: cover;
+}
+
+.courses-grid-admin {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 60%));
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media screen and (min-width: 576px) {
+  .carousel-item > img {
+    height: 18.8rem;
+  } 
+}
+
+@media screen and (min-width: 1180px) {
+  .courses-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(20rem, 50%));
+    gap: 1rem;
+    justify-content: center;
+  }
+}

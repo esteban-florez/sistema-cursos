@@ -20,7 +20,7 @@ class CourseController extends Controller
         $filters = Input::getFilters();
         $search = $request->input('search', '');
         $sortColumn = $request->input('sort', '');
-        $areas = Area::getOptions(true);
+        $areas = Area::getOptions();
 
         $courses = Course::filters($filters, $sortColumn, $search)
             ->paginate(10)
@@ -67,13 +67,14 @@ class CourseController extends Controller
             'area_id' => ['required', 'integer', 'numeric'],
             'description' => ['required', 'max:255'],
             'total_price' => ['required', 'integer', 'numeric'],
-            'price_ins' => ['required', 'integer', 'numeric'],
+            'reserv_price' => ['required', 'integer', 'numeric'],
             'start_ins' => ['required', 'date'],
             'end_ins' => ['required', 'date'],
             'start_course' => ['required', 'date'],
             'end_course' => ['required', 'date'],
             'duration' => ['required', 'integer', 'numeric'],
             'student_limit' => ['required', 'integer', 'numeric'],
+            'days' => ['required', 'array'],
             'start_time' => ['required'],
             'end_time' => ['required'],
         ]);
@@ -139,13 +140,14 @@ class CourseController extends Controller
             'area_id' => ['required', 'integer', 'numeric'],
             'description' => ['required', 'max:255'],
             'total_price' => ['required', 'integer', 'numeric'],
-            'price_ins' => ['required', 'integer', 'numeric'],
+            'reserv_price' => ['required', 'integer', 'numeric'],
             'start_ins' => ['required', 'date'],
             'end_ins' => ['required', 'date'],
             'start_course' => ['required', 'date'],
             'end_course' => ['required', 'date'],
             'duration' => ['required', 'integer', 'numeric'],
             'student_limit' => ['required', 'integer', 'numeric'],
+            'days' => ['required', 'array'],
             'start_time' => ['required'],
             'end_time' => ['required'],
         ]);

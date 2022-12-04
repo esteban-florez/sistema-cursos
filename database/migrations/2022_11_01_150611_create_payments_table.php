@@ -15,12 +15,12 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
             $table->enum('status', ['pending', 'confirmed', 'rejected'])->default('pending');
             $table->unsignedFloat('amount');
             $table->unsignedInteger('ref')->nullable();
             $table->enum('type', ['movil', 'transfer', 'dollars', 'bs']);
-            $table->foreignId('registry_id')->constrained('registries');
+            $table->foreignId('inscription_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

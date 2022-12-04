@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\PNF;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
@@ -10,16 +11,19 @@ class AreaController extends Controller
     public function index()
     {
         $areas = Area::all();
+        $pnfs = PNF::getOptions();
 
-        return view('areas', ['areas' => $areas]);
+        return view('areas', [
+            'areas' => $areas,
+            'pnfs' => $pnfs,
+        ]);
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|unique:areas|max:255',
-            'is_pnf' => 'nullable',
-            'pnf_name' => 'required_if:is_pnf,1|unique:areas|max:255'
+            'name' => ['required', 'unique:areas', 'max:255'],
+            'pnf_id' => ['required']
         ]);
 
         Area::create($data);
@@ -31,10 +35,12 @@ class AreaController extends Controller
     public function edit(Area $area)
     {
         $areas = Area::all();
+        $pnfs = PNF::getOptions();
 
         return view('areas', [
             'areas' => $areas,
-            'areaToEdit' => $area
+            'areaToEdit' => $area,
+            'pnfs' => $pnfs
         ]);
     }
 
@@ -42,12 +48,8 @@ class AreaController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'max:255'],
-            'is_pnf' => 'nullable',
-            'pnf_name' => ['required_if:is_pnf,1', 'max:255']
+            'pnf_id' => ['required']
         ]);
-
-        $data['is_pnf'] = $data['is_pnf'] ?? false;
-        $data['pnf_name'] = $data['pnf_name'] ?? null;
 
         $area->update($data);
         // TODO -> hacer que mande error y tal si salió algo mal

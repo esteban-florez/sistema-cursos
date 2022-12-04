@@ -7,13 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Course;
 use App\Models\Club;
-use App\Models\Area;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Instructor extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors, QueryScopes;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes, SoftDeletes;
 
     /**
      * The attributes that are not mass assignable.
@@ -53,11 +53,6 @@ class Instructor extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
-    public function area()
-    {
-        return $this->belongsTo(Area::class);
-    }
-
     public function getNamesAttribute()
     {
         return $this->name;
@@ -83,14 +78,19 @@ class Instructor extends Authenticatable
         return $this->is_admin ? 'Sí' : 'No';
     }
 
-    public static function getOptions()
+    public static function getOptions($withDefault = true)
     {
-        // TODO -> un poquito de DRY no estaría mal
         $instructors = self::all(['id', 'name', 'lastname']);
-        $instructors = $instructors->mapWithKeys(function ($instructor) {
+
+        $options = $instructors->mapWithKeys(function ($instructor) {
             return [$instructor->id => $instructor->full_name];
-        })->sortKeys();
-        
-        return $instructors;
+        })->sortKeys()->all();
+
+        if ($withDefault) {
+            $defaultOptions = ['' => 'Seleccionar'];
+            return $defaultOptions + $options;
+        }
+
+        return $options;
     }
 }
