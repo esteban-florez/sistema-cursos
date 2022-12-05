@@ -74,7 +74,7 @@ class Course extends Model
 
     public function getExcerptAttribute()
     {
-        return Str::words($this->description, 8);
+        return Str::words($this->description, 7);
     }
 
     public function getStudentCountAttribute()

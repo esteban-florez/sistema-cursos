@@ -12,6 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\StudentPaymentController;
@@ -229,7 +230,7 @@ Route::middleware('auth:instructor', 'admin')->group(function () {
 
 // Misc
 
-Route::view('home', 'home')->name('home')
+Route::get('home', ([HomeController::class, 'index']))->name('home')
     ->middleware('auth', 'prevent-back');
 
 Route::view('pagos', 'pagos')->name('pagos')

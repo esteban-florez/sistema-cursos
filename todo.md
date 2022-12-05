@@ -55,9 +55,7 @@
 - Hacer el home.
 - Poner fecha y hora el home.
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
-- Añadir fechas en tabla de cursos.
 - Correciones de la interfaz que mandó la profe de proyecto.
-- Añadir imagenes distintas para cada curso y club.
 
 ## Esteban: 
 
@@ -65,7 +63,6 @@
 - Cuadrar las cantidades de estudiantes para que se pueda probar la paginación en Martícula.
 - Realizar matrícula (ver indicaciones generales).
 - Añadir links y hacer las breadcrumbs.
-- Corregir cosas del perfil.
 
 ## Tareas a largo plazo:
 

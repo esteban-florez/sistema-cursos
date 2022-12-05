@@ -12,7 +12,7 @@
 }
 
 .payment-container {
-  height: 14.2rem;
+  height: 14rem;
 }
 
 .empty-container {
@@ -29,8 +29,44 @@
   font-weight: 600;
 }
 
+.courses-grid img {
+  height: 11rem;
+  object-fit: cover;
+}
+
+.courses-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 90%));
+  gap: 1rem;
+  justify-content: center;
+}
+
+.courses-grid-admin img {
+  height: 11rem;
+  object-fit: cover;
+}
+
+.courses-grid-admin {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 60%));
+  gap: 1rem;
+  justify-content: center;
+}
+
 @media screen and (min-width: 576px) {
   .carousel-item > img {
-    height: 19rem;
+    height: 18.8rem;
+  } 
+}
+
+@media screen and (min-width: 1180px) {
+  .courses-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(20rem, 50%));
+    gap: 1rem;
+    justify-content: center;
   }
 }
