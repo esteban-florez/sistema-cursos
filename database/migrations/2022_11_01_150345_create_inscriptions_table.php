@@ -15,10 +15,12 @@ class CreateInscriptionsTable extends Migration
     {
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
-            $table->boolean('approval')->default(false);
+            $table->dateTime('confirmed_at')->nullable();
+            $table->dateTime('approved_at')->nullable();
             $table->foreignId('course_id')->constrained();
             $table->foreignId('student_id')->constrained();
             $table->string('unique')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

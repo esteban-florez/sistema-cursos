@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
@@ -30,9 +29,12 @@ class Course extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'inscriptions')
-            ->withTimestamps()
-            ->withPivot(['id', 'approval']);
+        return $this->belongsToMany(Student::class, 'inscriptions');
+    }
+
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class);
     }
 
     public function area() 
@@ -77,6 +79,7 @@ class Course extends Model
 
     public function getStudentCountAttribute()
     {
+        // TODO -> no es muy bueno que un accesor haga esta logica, pero por ahora no lo cambiaré, simplemente intentare usarlo lo menos posible, igual que el siguiente accesor que depende en este
         return Inscription::where('course_id', $this->id)
             ->count();
     }
@@ -113,7 +116,7 @@ class Course extends Model
         }
 
         if($now < $insEnd) {
-            return 'Inscipciones';
+            return 'Inscripciones';
         }
 
         if($now < $courseStart) {

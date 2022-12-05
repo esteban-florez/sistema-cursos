@@ -64,9 +64,12 @@ class Student extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'inscriptions')
-            ->withTimestamps()
-            ->withPivot(['id', 'approval']);
+        return $this->belongsToMany(Course::class, 'inscriptions');
+    }
+
+    public function inscriptions()
+    {
+        return $this->hasMany(Inscription::class);
     }
 
     public function enroll(Course $course)
