@@ -15,6 +15,8 @@ use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\StudentPaymentController;
+use App\Http\Controllers\CourseStudentsController;
+use App\Http\Controllers\InscriptionConfirmationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -195,7 +197,15 @@ Route::group([
 });
 
 
-// 
+// Inscriptions routes
+
+Route::get('courses/{course}/students', [CourseStudentsController::class, 'index'])
+    ->name('courses.students.index');
+
+Route::patch('inscriptions/{inscription}/confirmation', 
+[InscriptionConfirmationController::class, 'update'])
+    ->name('inscription.confirmation');
+
 
 // Credentials routes
 

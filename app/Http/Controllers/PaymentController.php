@@ -50,7 +50,7 @@ class PaymentController extends Controller
 
         $payment->update($data);
         
-        return redirect()->route('payments.index');
+        return redirect()->route('payments.pending');
     }
 
     public function destroy(Payment $payment)
