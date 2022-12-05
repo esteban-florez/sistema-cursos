@@ -46,6 +46,8 @@
 
 - Quizás sea innecesario tener los set y los enum en inglés en la base de datos, podríamos ponerlos de una en español y con el formato listo para mostrar, así nos ahorraríamos arrays asociativos de traducción y tal. Realmente para esto sería bueno un Enum de PHP pero no existen en esta versión xd.
 
+- Hacer diferentes las rutas de la matrícula para cada estado de curso.
+
 # Correciones Anyerg:
 
 ## Myriam:
@@ -55,12 +57,15 @@
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
 - Añadir fechas en tabla de cursos.
 - Correciones de la interfaz que mandó la profe de proyecto.
+- Añadir imagenes distintas para cada curso y club.
 
 ## Esteban: 
 
+- Cuadrar bien el estado de los registrados en los cursos en los seeder para que se puedan ver las funcionalidades de Matrícula.
+- Cuadrar las cantidades de estudiantes para que se pueda probar la paginación en Martícula.
 - Realizar matrícula (ver indicaciones generales).
 - Añadir links y hacer las breadcrumbs.
-- Añadir imagenes distintas para cada curso y club.
+- Corregir cosas del perfil.
 
 ## Tareas a largo plazo:
 

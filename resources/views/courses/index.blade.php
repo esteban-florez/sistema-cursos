@@ -27,7 +27,7 @@
           </x-select>
         </x-slot>
         <x-slot name="sorts">
-          <x-radio :options="['name' => 'Nombre', 'total_price' => 'Monto', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
+          <x-radio :options="['' => 'Fecha de creación', 'name' => 'Nombre', 'total_price' => 'Monto', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
         </x-slot>
       </x-filters-collapse>
     </x-slot>
@@ -59,7 +59,13 @@
             :details="route('courses.show', $course->id)"
             :edit="route('courses.edit', $course->id)"
             :delete="route('courses.destroy', $course->id)"
-          />
+          >
+          <x-slot name="extraActions">
+            <x-button class="btn-sm" color="secondary" :url="route('courses.students.index', $course->id)" icon="clipboard-list">
+              Matrícula
+            </x-button>
+          </x-slot>
+        </x-row>
         @empty
           <div class="empty-container">
             <h2 class="empty">No hay cursos disponibles</h2>

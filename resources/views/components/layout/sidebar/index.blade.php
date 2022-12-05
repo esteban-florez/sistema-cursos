@@ -48,9 +48,6 @@
           <x-layout.sidebar.item :url="route('areas.index')" icon="chalkboard-teacher">
             Áreas de formación
           </x-layout.sidebar.item>
-          <x-layout.sidebar.item url="#" icon="clipboard-list">
-            Matrícula
-          </x-layout.sidebar.item>
           @endisnt
         </x-slot>
       </x-layout.sidebar.item>

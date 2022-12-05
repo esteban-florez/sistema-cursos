@@ -25,8 +25,10 @@
           <h3>{{ $course->total_price }}$</h3>
         </div>
         <div class="d-flex justify-content-between mt-3">
-          <x-button url="#" class="btn-lg" color="secondary" icon="clipboard-list">Matrícula</x-button>
-          <x-button url="{{ route('courses.edit', $course->id) }}" class="btn-lg" icon="edit">Editar</x-button>
+          <x-button :url="route('courses.students.index', $course->id)" class="btn-lg" color="secondary" icon="clipboard-list">
+            Matrícula
+          </x-button>
+          <x-button :url="route('courses.edit', $course->id)" class="btn-lg" icon="edit">Editar</x-button>
         </div>
       </div>
     </div>  

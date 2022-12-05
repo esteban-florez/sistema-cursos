@@ -121,6 +121,20 @@ span.fab {
   margin-bottom: 0;
 }
 
+.empty-container {
+  height: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty {
+  font-size: 2rem;  
+  color: rgba(131, 158, 170, 0.4);
+  text-align: center;
+}
+
+
 @media screen and (min-width: 768px) {
   .bar form {
     width: 50%;
