@@ -35,6 +35,10 @@
 }
 
 .payment-container {
+  height: 12.6rem;
+}
+
+.payment-container-admin {
   height: 14rem;
 }
 
@@ -78,6 +82,17 @@
   } 
 }
 
+@media screen and (min-width: 991px) {
+  .stadistics-container {
+    height: 7.5rem;
+  }
+  
+  .small-box > .inner {
+    height: 6.4rem;
+    display: inline-grid;
+    align-items: center;
+  }
+}
 @media screen and (min-width: 1180px) {
   .cards-grid {
     width: 100%;

@@ -25,7 +25,7 @@
                 <h2 class="mb-0">¡Últimos cursos!</h2>
               </div>
               <div class="col-sm-3 text-sm-right">
-                <a href="{{ route('payments.pending') }}" class="mt-1">
+                <a href="{{ route('market.index') }}" class="mt-1">
                   <span>Ver más</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
@@ -44,7 +44,17 @@
         </div>
         <div class="card card-dark mt-3">
           <div class="card-header">
-            <h5 class="mb-0">Pagos pendientes</h5>
+            <div class="row d-flex align-items-center w-100">
+              <div class="col-12">
+                <h5 class="mb-0">Pagos pendientes</h5>
+              </div>
+              <div class="col-12">
+                <a href="#" class="mt-1">
+                  <span>Ver más</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
           </div>
           <div class="card-body p-3 payment-container">
             <!-- <div class="card mb-2">
@@ -101,18 +111,18 @@
         <div class="card">
           <div class="card-header">
             <div class="row d-flex align-items-center w-100">
-              <div class="col-sm-9">
+              <div class="col-lg-9">
                 <h3 class="mb-0">Pagos pendientes</h3>
               </div>
-              <div class="col-sm-3 text-sm-right">
-                <a href="{{ route('payments.pending') }}" class="mt-1">
+              <div class="col-lg-3 text-lg-right">
+                <a href="#" class="mt-1">
                   <span>Ver más</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
               </div>
             </div>
           </div>
-          <div class="card-body p-3 payment-container">
+          <div class="card-body p-3 payment-container-admin">
             <!-- <div class="card mb-2">
               <div class="card-body p-2">
                 <h5>Programación Web</h5>
@@ -140,7 +150,17 @@
         </div>
         <div class="card card-dark mt-md-3">
           <div class="card-header">
-            <h5 class="mb-0">Estadísticas Generales</h5>
+            <div class="row d-flex align-items-center w-100">
+              <div class="col-12">
+                <h5 class="mb-0">Estadísticas generales</h5>
+              </div>
+              <div class="col-12">
+                <a href="#" class="mt-1">
+                  <span>Ver más</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
           </div>
           <div class="card-body stadistics-container p-2">
             <div class="row">
