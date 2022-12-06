@@ -28,8 +28,24 @@
   color: black;
 }
 
+.carousel-text p {
+  font-size: 0.8rem;
+  text-align: justify;
+  color: black;
+}
+
 .payment-container {
   height: 14rem;
+}
+
+.stadistics-container {
+  height: 9rem;
+}
+
+.small-box > .inner {
+  height: 7.8rem;
+  display: inline-grid;
+  align-items: center;
 }
 
 .empty-container {
@@ -46,30 +62,14 @@
   font-weight: 600;
 }
 
-.courses-grid img {
-  height: 11rem;
+.cards-grid img {
+  height: 12.5rem;
   object-fit: cover;
 }
 
-.courses-grid {
-  width: 100%;
+.cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 90%));
   gap: 1rem;
-  justify-content: center;
-}
-
-.courses-grid-admin img {
-  height: 11rem;
-  object-fit: cover;
-}
-
-.courses-grid-admin {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(28rem, 60%));
-  gap: 1rem;
-  justify-content: center;
 }
 
 @media screen and (min-width: 576px) {
@@ -79,7 +79,7 @@
 }
 
 @media screen and (min-width: 1180px) {
-  .courses-grid {
+  .cards-grid {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, minmax(20rem, 50%));
