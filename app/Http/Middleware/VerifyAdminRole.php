@@ -18,7 +18,7 @@ class VerifyAdminRole
     public function handle(Request $request, Closure $next)
     {
         if (Auth::guard('instructor')->user()->is_admin != true) {
-            abort(403);
+            redirect()->route('home');
         }
 
         return $next($request);
