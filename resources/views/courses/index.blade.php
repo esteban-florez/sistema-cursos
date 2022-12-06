@@ -43,7 +43,7 @@
         <th>Inscripciones</th>
         <th>Fecha</th>
         <th>Duración</th>
-        <th>Martícula</th>
+        <th>Matrícula</th>
         <th>Monto</th>
         <th>Estado</th>
         <th>Acciones</th>
@@ -65,7 +65,7 @@
             :delete="route('courses.destroy', $course->id)"
           >
           <x-slot name="extraActions">
-            <x-button class="btn-sm" color="secondary" :url="route('courses.students.index', $course->id)" icon="clipboard-list">
+            <x-button class="btn-sm" color="secondary" :url="route('inscriptions.index', ['course' => $course->id])" icon="clipboard-list">
               Matrícula
             </x-button>
           </x-slot>

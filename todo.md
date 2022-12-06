@@ -64,8 +64,6 @@
 - Busqueda en areas.
 - Realizar aprobación de estudiantes.
 - Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet.
-- Cursos y clubes en perfil.
-- Configurar correos con Gmail.
 - Añadir links de creación de áreas en los sitios donde se selecciona área.
 
 ## Tareas a largo plazo:
@@ -74,6 +72,8 @@
 - Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
 - Crear rol de preparador, posible rol de secretaria.
 - Traducir los errores de validación. Y mejorar como se muestran en algunas vistas.
+- Cursos y clubes en perfil.
+- Correos con Gmail.
 
 ## Indicaciones generales:
 

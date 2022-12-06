@@ -13,12 +13,14 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\MarketController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InscriptionApprovalController;
 use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\StudentPaymentController;
-use App\Http\Controllers\CourseStudentsController;
+use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\InscriptionConfirmationController;
 use App\Http\Controllers\PendingPaymentController;
+use FontLib\Table\Type\name;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -190,16 +192,21 @@ Route::group([
 
 // Inscriptions routes
 
-Route::get('courses/{course}/students', [CourseStudentsController::class, 'index'])
+Route::get('inscriptions', [InscriptionController::class, 'index'])
     ->middleware('auth:instructor')
-    ->name('courses.students.index');
+    ->name('inscriptions.index');
+
+Route::put('inscriptions/{inscription}/approval', 
+[InscriptionApprovalController::class, 'update'])
+    ->middleware('auth:instructor')
+    ->name('inscriptions.approval');
 
 Route::put('inscriptions/{inscription}/confirmation', 
 [InscriptionConfirmationController::class, 'update'])
     ->middleware('auth:instructor')
-    ->name('inscription.confirmation');
+    ->name('inscriptions.confirmation');
 
-
+    
 // Credentials routes
 
 Route::middleware('auth:instructor', 'admin')->group(function () {
