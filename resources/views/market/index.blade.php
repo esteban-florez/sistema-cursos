@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush
   <x-layout.bar>
-    <x-search placeholder="Buscar curso..." name="search">
+    <x-search placeholder="Buscar curso..." name="search" :value="$search">
     </x-search>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
         Ordenar por

@@ -18,7 +18,7 @@
         <div class="card-body register-card-body">
           <x-user-form
             type="student"
-            :action="route('students.store')"
+            :action="route('register.store')"
           />
         </div>
       </div>

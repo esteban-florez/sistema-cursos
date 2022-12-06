@@ -13,6 +13,9 @@ class InscriptionConfirmationController extends Controller
             'confirmed_at' => now(),
         ]);
         
-        return redirect()->route('courses.students.index', $inscription->course->id);
+        return redirect()
+            ->route('inscriptions.index', [
+                'course' => $inscription->course->id
+                ]);
     }
 }

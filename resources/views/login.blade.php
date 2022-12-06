@@ -42,7 +42,7 @@
           </form>
           <hr>
           <div class="social-auth-links text-center mb-3">
-            <x-button url="{{ route('students.create') }}" color="success" class="btn-block">
+            <x-button url="{{ route('register.create') }}" color="success" class="btn-block">
               ¿No tienes una cuenta? Regístrate.
             </x-button>
           </div>

@@ -6,21 +6,40 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\Inscription;
+use App\Models\MovilCredentials;
+use App\Models\TransferCredentials;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use stdClass;
 
 class EnrollmentController extends Controller
 {
     public function create(Course $course)
     {
+        $credentials = new stdClass;
+        $credentials->movil = MovilCredentials::first();
+        $credentials->transfer = TransferCredentials::first();
+
         return view('enrollment.create', [
             'course' => $course,
+            'credentials' => $credentials,
         ]);
     }
 
     public function store(Request $request, Course $course)
     {
+        // TODO -> Mejorar este codigo. Esto es para prevenir que la ref sea nula en caso de que elijan transfer o movil.
+        $type = $request->input('type');
+
+        if ($type === 'transfer' || $type === 'movil') {
+            if ($request->input('ref') === null) {
+                return redirect()
+                    ->back()
+                    ->withDanger('El campo de referencia no puede estar vacío.');
+            }
+        }
+
         $data = $request->validate([
-            'date' => ['required', 'date'],
+            'date' => ['required', 'date'], // TODO -> esto no es necesario ya
             'ref' => ['nullable', 'integer', 'numeric'],
             'amount' => ['required', 'numeric'],
             'type' => ['required', 'in:movil,transfer,dollars,bs'],
@@ -39,6 +58,11 @@ class EnrollmentController extends Controller
 
     public function success(Inscription $inscription)
     {
+        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
+        if ($inscription->student_id !== user()->id) {
+            return redirect()->route('home');
+        }
+
         return view('enrollment.success', [
             'inscription' => $inscription,
             'enrolledType' => $inscription->payment->type,
@@ -47,6 +71,11 @@ class EnrollmentController extends Controller
 
     public function download(Inscription $inscription)
     {
+        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
+        if ($inscription->student_id !== user()->id) {
+            return redirect()->route('home');
+        }
+
         $student = $inscription->student;
         $course = $inscription->course;
 

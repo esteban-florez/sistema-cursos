@@ -20,7 +20,7 @@ class CourseSeeder extends Seeder
             'name' => 'Programación Web',
             'description' => 'Curso de Programación Web con HTML, CSS, JavaScript, PHP, MySQL. Aprende las bases del desarrollo web con este curso básico perfecto para principiantes.',
             'total_price' => 45,
-            'start_ins' => '2022-12-05',
+            'start_ins' => '2022-12-02', // TODO -> modificada por presentación
             'end_ins' => '2022-12-11',
             'start_course' => '2022-12-12',
             'end_course' => '2023-01-08',
@@ -63,7 +63,7 @@ class CourseSeeder extends Seeder
             'days' => 'mo',
             'image' => 'img/administracion.jpg',
             'area_id' => 1,
-            'instructor_id' => 3,
+            'instructor_id' => 6,
         ])->create();
 
         Course::factory([

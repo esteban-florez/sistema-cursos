@@ -1,15 +1,16 @@
 import { onlineTemplate, cashTemplate } from './stepperTemplates.js';
-import TEST_VALUES from './testValues.js';
+import getCredentials from './getCredentials.js';
 import getPrices from './getPrices.js';
 
+const credentials = getCredentials();
+
 const dataPerType = {
-  'Pago Móvil': TEST_VALUES.pagoMovilData,
-  'Transferencia': TEST_VALUES.transferenciaData,
+  'Pago Móvil': credentials.movil,
+  'Transferencia': credentials.transfer,
 }
 
 function setSteps(stepsOptions) {
   const { title, currency } = stepsOptions;
-
   let templateData = {
     ...stepsOptions,
     amount: getPrices(currency),

@@ -69,7 +69,10 @@
           </x-row>
         @empty
           {{-- TODO -> arreglar el empty state que se vea bonito --}}
-          <p class="w-100 text-center text-muted">No hay usuarios registrado actualmente</p>
+          <div class="alert alert-info mx-3 mt-3 d-flex align-items-center gap-2">
+            <i class="fas fa-info-circle"></i>
+            <p class="h5 m-0">No existen pagos registrados actualmente.</p>
+          </div>
         @endforelse
       </x-slot>
       <x-slot name="pagination">

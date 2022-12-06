@@ -4,7 +4,8 @@
   if(isset($user)) {
     $gender = $user->getRawOriginal('gender');
     $phone = (int) $user->phone;
-  } 
+  }
+  $back = $type === 'instructor' ? 'instructors.index' : 'students.index' ; 
 @endphp
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
@@ -143,8 +144,8 @@
       </div>
     </div>
     <div class="d-flex justify-content-between">
-      <x-button :url="route('instructors.index')" color="secondary" icon="times">
-        Volver al listado
+      <x-button :url="route($back)" color="secondary" icon="times">
+        Volver
       </x-button>
       <x-button type="submit" color="success" icon="check">
         Aceptar

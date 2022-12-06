@@ -21,7 +21,7 @@ class ClubFactory extends Factory
             'name' => implode(' ', $this->faker->words(2)),
             'description' => $this->faker->text(100),
             'image' => 'img/programacion.jpg',
-            'day' => $this->faker->randomElement(['mo', 'tu', 'we', 'Th', 'fr', 'sa', 'su']),
+            'day' => $this->faker->randomElement(['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']),
             'start_hour' => $start_hour,
             'end_hour' => $end_hour,
             'instructor_id' => Instructor::all()->random()->id,

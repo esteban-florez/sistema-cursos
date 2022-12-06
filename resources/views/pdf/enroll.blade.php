@@ -69,6 +69,7 @@
       padding: 2rem 0;
       width: 700px;
       margin: 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     header {

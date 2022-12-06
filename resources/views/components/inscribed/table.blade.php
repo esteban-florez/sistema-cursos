@@ -1,4 +1,4 @@
-@props(['students', 'course'])
+@props(['inscriptions', 'course'])
 
 <x-table>
   <x-slot name="header">
@@ -13,35 +13,51 @@
     </tr>
   </x-slot>
   <x-slot name="body">
-    @foreach ($students as $student)
-      @unless($course->status !== 'Inscripciones' && $student->inscription->status === 'En reserva')
+    @foreach ($inscriptions as $inscription)
+      @php
+        $student = $inscription->student;
+      @endphp
       <x-row
         :data="[
             $student->full_name,
             $student->full_ci,
             $student->is_upta,
-            $student->inscription->payment->status,
-            $student->inscription->status,
-            $student->inscription->approved,
+            $inscription->payment->status,
+            $inscription->status,
+            $inscription->approved,
           ]"
         :details="route('students.show', $student->id)"
       >
         <x-slot name="extraActions">
-          @unless($student->inscription->status === 'Inscrito')
-          <form action="{{ route('inscription.confirmation', $student->inscription->id) }}" method="POST">
+          @unless($inscription->status === 'Inscrito')
+          <form action="{{ route('inscriptions.confirmation', $inscription->id) }}" method="POST">
             @csrf
-            @method('PATCH')
+            @method('PUT')
             <x-button type="submit" class="btn-sm" color="success" icon="check">
               Inscribir
             </x-button>
           </form>
           @endunless
+          @unless($inscription->status !== 'Finalizado')
+            @php
+              $isApproved = isset($inscription->approved_at);
+              $color = $isApproved ? 'danger' : 'success';
+              $text = $isApproved ? 'Reprobar' : 'Aprobar';
+              $icon = $isApproved ? 'times' : 'check';
+            @endphp
+            <form action="{{ route('inscriptions.approval', $inscription->id) }}" method="POST">
+              @csrf
+              @method('PUT')
+              <x-button type="submit" class="btn-sm" color="{{ $color }}" icon="{{ $icon }}">
+                {{ $text }}
+              </x-button>
+            </form>
+          @endunless
         </x-slot>
       </x-row>
-      @endunless
     @endforeach
   </x-slot>
   <x-slot name="pagination">
-    {{ $students->links() }}
+    {{ $inscriptions->links() }}
   </x-slot>
 </x-table>

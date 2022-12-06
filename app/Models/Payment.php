@@ -36,7 +36,7 @@ class Payment extends Model
 
     public function getAmountAttribute($amount)
     {
-        $currency = $this->type === 'dollars' ? '$' : 'Bs.D.';
+        $currency = $this->type === 'Efectivo ($)' ? '$' : 'Bs.D.';
         return "{$amount} {$currency}";
     }
 
@@ -93,7 +93,7 @@ class Payment extends Model
             // TODO -> también debe servir para cédula de extranjero
             $id = Student::where('ci', (int) $search)
                 ->first()
-                ->id;
+                ->id ?? 0;
             
             $ids = Inscription::where('student_id', $id)
                 ->pluck('id')
