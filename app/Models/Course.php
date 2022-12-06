@@ -135,9 +135,22 @@ class Course extends Model
         return "{$this->duration} hrs.";
     }
 
+    public function scopeOnInscriptions($query)
+    {
+        // TODO -> debe haber mejores maneras de hacer estos cuatro scopeQuery, y evitar tanta repetición de codigo.
+        $courses = Course::all();
+        
+        $ids = $courses->filter(function ($course) {
+            return $course->status === 'Inscripciones';
+        })->map(function ($course) {
+            return $course->id;
+        })->values()->all();
+        
+        return $query->whereIn('id', $ids);
+    }
+
     public function scopeAvailables($query)
     {
-        // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery
         $courses = Course::withCount('students')->get();
         
         $ids = $courses->filter(function ($course) {
@@ -151,13 +164,19 @@ class Course extends Model
     
     public function scopeNotBoughtBy($query, $student)
     {
-        $ids = $student->courses->pluck('id');
+        $ids = $student->inscriptions->map(function ($inscription) {
+            return $inscription->course_id;
+        });
+
         $query->whereNotIn('id', $ids);
     }
 
     public function scopeBoughtBy($query, $student)
     {
-        $ids = $student->courses->pluck('id');
+        $ids = $student->inscriptions->map(function ($inscription) {
+            return $inscription->course_id;
+        });
+        
         $query->whereIn('id', $ids);
     }
 
