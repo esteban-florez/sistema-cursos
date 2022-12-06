@@ -18,7 +18,7 @@ class CourseStudentsController extends Controller
             // solucion medio fea para evitar n+1 query con pivot table
             $students = $course
                 ->students()
-                ->paginate();
+                ->paginate(10);
             
             for($i = 0; $i < $inscriptions->count(); $i++) {
                 $students[$i]->setRelation('inscription', $inscriptions[$i]);
@@ -36,7 +36,7 @@ class CourseStudentsController extends Controller
             $students = $course
                 ->students()
                 ->whereIn('students.id', $ids)
-                ->paginate();
+                ->paginate(10);
             
             $cursor = 0;
             foreach($students as $student) {

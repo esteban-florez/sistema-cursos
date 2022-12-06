@@ -1,5 +1,6 @@
 @props(['header', 'body'])
 
+{{-- TODO -> este componente hay que cambiarlo para que maneje por si mismo el empty state --}}
 <div class="card mx-2">
   <div class="card-body table-responsive p-0">
     <table class="table table-bordered text-center mb-0">
