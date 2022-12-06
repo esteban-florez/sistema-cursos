@@ -30,7 +30,7 @@
           @unless($student->inscription->status === 'Inscrito')
           <form action="{{ route('inscription.confirmation', $student->inscription->id) }}" method="POST">
             @csrf
-            @method('PATCH')
+            @method('PUT')
             <x-button type="submit" class="btn-sm" color="success" icon="check">
               Inscribir
             </x-button>

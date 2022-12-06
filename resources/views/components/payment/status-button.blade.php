@@ -5,7 +5,7 @@
   $icon = $isConfirmed ? 'check' : 'times';
 @endphp
 
-<form method="POST" class="d-inline" action="{{ route('payments.update', $id) }}">
+<form method="POST" class="d-inline" action="{{ route('pending.update', $id) }}">
   @csrf
   @method('PUT')
   <input type="hidden" name="status" value="{{ $type }}">

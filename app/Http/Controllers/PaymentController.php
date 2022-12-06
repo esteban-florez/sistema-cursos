@@ -31,27 +31,6 @@ class PaymentController extends Controller
             'statuses' => Payment::$statuses,
         ]);
     }
-    
-    public function pending()
-    {
-        $payments = Payment::where('status', 'pending')
-            ->paginate(10);
-
-        return view('payments.pending', [
-            'payments' => $payments,
-        ]);
-    }
-
-    public function update(Request $request, Payment $payment)
-    {
-        $data = $request->validate([
-            'status' => ['required', 'in:confirmed,rejected'],
-        ]);
-
-        $payment->update($data);
-        
-        return redirect()->route('payments.pending');
-    }
 
     public function destroy(Payment $payment)
     {

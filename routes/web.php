@@ -18,6 +18,7 @@ use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\StudentPaymentController;
 use App\Http\Controllers\CourseStudentsController;
 use App\Http\Controllers\InscriptionConfirmationController;
+use App\Http\Controllers\PendingPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,10 +93,10 @@ function () {
 // Signup routes
 
 Route::get('signup', [RegisterController::class, 'create'])
-    ->name('students.create');
+    ->name('register.create');
 
 Route::post('register', [RegisterController::class, 'store'])
-    ->name('students.store');
+    ->name('register.store');
 
 
 // Instructors routes
@@ -129,34 +130,23 @@ Route::get('students/{student}/payments', [StudentPaymentController::class, 'ind
 
 // Payments routes
 
-Route::get('payments/pending', [PaymentController::class, 'pending'])
+Route::get('pending-payments', [PendingPaymentController::class, 'index'])
     ->middleware('auth:instructor', 'admin')    
-    ->name('payments.pending');
+    ->name('pending.index');
+
+Route::put('pending-payments/{payment}', [PendingPaymentController::class, 'index'])
+    ->middleware('auth:instructor', 'admin')    
+    ->name('pending.update');
 
 Route::resource('payments', PaymentController::class)
     ->middleware('auth:instructor', 'admin')
-    ->only('index', 'update', 'destroy');
+    ->only('index', 'destroy');
 
 
 //Club routes
 
 Route::resource('club', ClubController::class)
     ->middleware('auth:instructor', 'admin');
-
-// Route::group([
-//     'controller'=> ClubController::class,
-//     'prefix'=>'club'
-// ], function(){
-//     Route::get('/', 'index')
-//         ->name('club.index');
-
-//     Route::get('register', 'create')
-//         ->name('club.create');
-
-//     Route::post('guardar', 'store')
-//         ->name('club.store');
-
-// });
 
 
 // Course market
@@ -195,16 +185,18 @@ Route::group([
 
     Route::get('{inscription}/download', 'download')
         ->name('download');
-});
+}); 
 
 
 // Inscriptions routes
 
 Route::get('courses/{course}/students', [CourseStudentsController::class, 'index'])
+    ->middleware('auth:instructor')
     ->name('courses.students.index');
 
-Route::patch('inscriptions/{inscription}/confirmation', 
+Route::put('inscriptions/{inscription}/confirmation', 
 [InscriptionConfirmationController::class, 'update'])
+    ->middleware('auth:instructor')
     ->name('inscription.confirmation');
 
 
