@@ -63,6 +63,7 @@
 - Cuadrar las cantidades de estudiantes para que se pueda probar la paginación en Martícula.
 - Realizar matrícula (ver indicaciones generales).
 - Añadir links y hacer las breadcrumbs.
+- Busqueda en areas.
 
 ## Tareas a largo plazo:
 
