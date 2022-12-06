@@ -29,7 +29,7 @@ function onlineTemplate({title, data, amount, currency}) {
   </div>
   <form id="refForm">
     <label for="refInput">Referencia</label>
-    <input class="form-control" type="number" placeholder="Ej. ${!isTransfer ? '1234' : '123567890'}" id="refInput">
+    <input class="form-control" type="number" placeholder="Ej. ${!isTransfer ? '1234' : '123567890'}" id="refInput" required>
     <div class="d-flex justify-content-between align-items-center mt-3">
       <div>
         <button type="button" class="btn btn-secondary" data-stepper="previous">Volver</button>

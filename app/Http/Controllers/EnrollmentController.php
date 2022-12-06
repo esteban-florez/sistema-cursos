@@ -19,8 +19,19 @@ class EnrollmentController extends Controller
 
     public function store(Request $request, Course $course)
     {
+        // TODO -> Mejorar este codigo. Esto es para prevenir que la ref sea nula en caso de que elijan transfer o movil.
+        $type = $request->input('type');
+
+        if ($type === 'transfer' || $type === 'movil') {
+            if ($request->input('ref') === null) {
+                return redirect()
+                    ->back()
+                    ->withDanger('El campo de referencia no puede estar vacío.');
+            }
+        }
+
         $data = $request->validate([
-            'date' => ['required', 'date'],
+            'date' => ['required', 'date'], // TODO -> esto no es necesario ya
             'ref' => ['nullable', 'integer', 'numeric'],
             'amount' => ['required', 'numeric'],
             'type' => ['required', 'in:movil,transfer,dollars,bs'],

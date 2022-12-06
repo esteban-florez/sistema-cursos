@@ -7,7 +7,9 @@ function getDolarPrice() {
     })
     .catch(err => {
       console.log(err)
-      getDolarPrice()
+      if (!localStorage.getItem('usd-price')) {
+        getDolarPrice()
+      }
     })
 }
 

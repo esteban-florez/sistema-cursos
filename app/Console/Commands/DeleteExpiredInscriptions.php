@@ -51,7 +51,7 @@ class DeleteExpiredInscriptions extends Command
                 $inscription->delete();
             }
         });
-        echo "Pruned successfully.\n";
+        echo "Removed expired inscriptions successfully.\n";
         return 0;
     }
 }

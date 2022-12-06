@@ -59,11 +59,14 @@
 
 ## Esteban: 
 
-- Cuadrar bien el estado de los registrados en los cursos en los seeder para que se puedan ver las funcionalidades de Matrícula.
-- Cuadrar las cantidades de estudiantes para que se pueda probar la paginación en Martícula.
 - Realizar matrícula (ver indicaciones generales).
 - Añadir links y hacer las breadcrumbs.
 - Busqueda en areas.
+- Realizar aprobación de estudiantes.
+- Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet.
+- Cursos y clubes en perfil.
+- Configurar correos con Gmail.
+- Añadir links de creación de áreas en los sitios donde se selecciona área.
 
 ## Tareas a largo plazo:
 

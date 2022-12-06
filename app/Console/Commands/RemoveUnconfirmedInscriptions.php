@@ -49,6 +49,8 @@ class RemoveUnconfirmedInscriptions extends Command
                 $inscription->delete();
             });
         });
+
+        echo "Removed unconfirmed inscriptions successfully.\n";
         return 0;
     }
 }
