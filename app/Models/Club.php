@@ -46,4 +46,9 @@ class Club extends Model
     {
         return Str::words($this->description, 8);
     }
+
+    public function getDayAttribute($day)
+    {
+        return getWeekDay($day);
+    }
 }

@@ -61,13 +61,15 @@
 
 - Añadir links y hacer las breadcrumbs.
 - Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet.
+- Arreglar inputs, autcomplete off.
+- Bug en edición de cosa con fechas, horas y días.
 
 ## Tareas a largo plazo:
 
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
 - Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
 - Crear rol de preparador, posible rol de secretaria.
-- Traducir los errores de validación. Y mejorar como se muestran e n algunas vistas.
+- Traducir los errores de validación. Y mejorar como se muestran en algunas vistas.
 - Cursos y clubes en perfil.
 - Correos con Gmail.
 

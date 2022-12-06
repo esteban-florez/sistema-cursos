@@ -10,14 +10,14 @@
       <x-image-input :image="$club->image ?? null" required/>
     </div>
     <div class="col-sm-6 col-md-8">
-      <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" value="{{ old('name') ?? $club->name ?? '' }}" required>
+      <x-field name="name" id="name" placeholder="Nombre del Club" autocomplete="off" value="{{ old('name') ?? $club->name ?? '' }}" required>
         Nombre:
       </x-field>
       <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $club->instructor_id ?? ''" required>
         Instructor:
       </x-select>
-      <x-select name="day" id="day" :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'Th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" :selected="old('day') ?? $club->day ?? ''" default required>
-        Días:
+      <x-select name="day" id="day" :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" :selected="old('day') ?? $club->day ?? ''" default required>
+        Día:
       </x-select>
     </div>
     <div class="col-sm-6">
