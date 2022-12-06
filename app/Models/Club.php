@@ -44,6 +44,6 @@ class Club extends Model
 
     public function getExcerptAttribute()
     {
-        return Str::words($this->description, 7);
+        return Str::words($this->description, 8);
     }
 }

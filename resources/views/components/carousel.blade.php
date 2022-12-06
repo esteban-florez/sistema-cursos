@@ -15,10 +15,7 @@
       <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
         <div class="carousel-text">
           <h5>{{ $item->name }}</h5>
-          <button url="{{ $details }}" class="btn btn-primary btn-sm mb-1">
-            <span class="font-weight-bold">Detalles</span>
-            <i class="fas fa-arrow-right ml-1"></i>
-          </button>
+          <button url="{{ $details }}" class="btn btn-dark btn-sm mb-1">Ver detalles</button>
         </div>
         <img src="{{ $item->image }}" class="w-100" alt="{{ $item->name }}">
       </div>
