@@ -1,3 +1,4 @@
+import getBackLink from './getBackLink.js'
 const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount} ${currency}` : `${currency}${amount}`;
 
 const generateDataPair = ({title, data}) => `<li class="list-group-item d-flex justify-content-between">
@@ -35,7 +36,7 @@ function onlineTemplate({title, data, amount, currency}) {
         <button type="button" class="btn btn-secondary" data-stepper="previous">Volver</button>
         <button type="button" class="btn btn-info" data-stepper="next" id="payNextButton">Confirmar</button>
       </div>
-      <button type="button" class="btn btn-danger" data-stepper="reset">Cancelar</button>
+      <a class="btn btn-danger" href="${getBackLink()}">Cancelar</a>
     </div>
   </form>`;
 }
@@ -52,7 +53,7 @@ function cashTemplate({amount, currency }) {
       <button type="button" class="btn btn-secondary" data-stepper="previous">Volver</button>
       <button type="button" class="btn btn-info" data-stepper="next" id="payNextButton">Confirmar</button>
     </div>
-    <button type="button" class="btn btn-danger" data-stepper="reset">Cancelar</button>
+    <a class="btn btn-danger" href="${getBackLink()}">Cancelar</a>
   </div>`
 }
 

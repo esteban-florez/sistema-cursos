@@ -63,7 +63,9 @@
                 <button class="btn btn-secondary" type="button" data-stepper="previous">Volver</button>
                 <button class="btn btn-info" type="button" data-stepper="next" id="typeNextButton" disabled>Siguiente</button>
               </div>
-              <button class="btn btn-danger" type="button" data-stepper="reset">Cancelar</button>
+              <a class="btn btn-danger" href="{{ route('market.index') }}">
+                Cancelar
+              </a>
             </div>
           </form>
         </div>
@@ -71,44 +73,11 @@
         <div class="content fade callout callout-success" id="finalStep"></div>
       </div>
     </div>
-    <!-- <div class="col-12 d-md-none course-data-card">
-        <div class="card card-dark collapsed-card">
-          <div class="card-header">
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-            <h3 class="mb-0">Datos del curso: </h3>
-          </div>
-          <div class="card-body">
-            <h5>Nombre: </h5>
-            <p class="mb-3">Curso de Programación Web</p>
-            <h5>Fecha: </h5>
-            <p class="mb-3">11-02-2022 al 13-03-2022</p>
-            <h5>Monto total: </h5>
-            <p class="mb-3">$45</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 d-none d-md-block course-data-card">
-        <div class="card card-dark">
-          <div class="card-header">
-            <h3 class="mb-0">Datos del curso: </h3>
-          </div>
-          <div class="card-body">
-            <h5>Nombre: </h5>
-            <p class="mb-3">Curso de Programación Web</p>
-            <h5>Fecha: </h5>
-            <p class="mb-3">11-02-2022 al 13-03-2022</p>
-            <h5>Monto total: </h5>
-            <p class="mb-3">$45</p>
-          </div>
-        </div>
-      </div> -->
   </section>
   <form
     data-amount="{{ $course->total_price }}"
+    data-credentials="{{ json_encode($credentials) }}"
+    data-back="{{ route('market.index') }}"
     class="d-none"
     method="POST"
     action="{{ route('enrollment.store', $course->id) }}"

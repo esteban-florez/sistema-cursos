@@ -6,14 +6,22 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\Inscription;
+use App\Models\MovilCredentials;
+use App\Models\TransferCredentials;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use stdClass;
 
 class EnrollmentController extends Controller
 {
     public function create(Course $course)
     {
+        $credentials = new stdClass;
+        $credentials->movil = MovilCredentials::first();
+        $credentials->transfer = TransferCredentials::first();
+
         return view('enrollment.create', [
             'course' => $course,
+            'credentials' => $credentials,
         ]);
     }
 

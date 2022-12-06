@@ -145,7 +145,7 @@ class StudentSeeder extends Seeder
             'gender' => 'female',
             'phone' => '04129329021',
             'address' => 'Urb. Corocito Calle 6, Santa Cruz de Aragua.',
-            'email' => 'katha<3@example.com',
+            'email' => 'kathalt3@example.com',
             'password' => 'password',
             'grade' => 'high',
             'birth' => '2004-07-06',
