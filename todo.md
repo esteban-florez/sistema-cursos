@@ -59,19 +59,15 @@
 
 ## Esteban: 
 
-- Realizar matrícula (ver indicaciones generales).
 - Añadir links y hacer las breadcrumbs.
-- Busqueda en areas.
-- Realizar aprobación de estudiantes.
 - Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet.
-- Añadir links de creación de áreas en los sitios donde se selecciona área.
 
 ## Tareas a largo plazo:
 
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
 - Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
 - Crear rol de preparador, posible rol de secretaria.
-- Traducir los errores de validación. Y mejorar como se muestran en algunas vistas.
+- Traducir los errores de validación. Y mejorar como se muestran e n algunas vistas.
 - Cursos y clubes en perfil.
 - Correos con Gmail.
 

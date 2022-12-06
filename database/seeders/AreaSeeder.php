@@ -66,9 +66,10 @@ class AreaSeeder extends Seeder
             'pnf_id' => 1,
         ]);
 
-        Area::create([
-            'name' => 'Ninjutsu',
-            'pnf_id' => 1,
-        ]);
+        // xD!!
+        // Area::create([
+        //     'name' => 'Ninjutsu',
+        //     'pnf_id' => 1,
+        // ]);
     }
 }

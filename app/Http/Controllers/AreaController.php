@@ -8,14 +8,20 @@ use Illuminate\Http\Request;
 
 class AreaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $areas = Area::all();
+        $search = $request->input('search', '');
+        
+        $areas = Area::when($search, function ($query, $search) {
+            return $query->where('name', 'like', "%{$search}%");
+        })->get();
+
         $pnfs = PNF::getOptions();
 
         return view('areas', [
             'areas' => $areas,
             'pnfs' => $pnfs,
+            'search' => $search,
         ]);
     }
 
@@ -28,7 +34,7 @@ class AreaController extends Controller
 
         Area::create($data);
 
-        return redirect()->route('areas.index')
+        return redirect()->back()
             ->withSuccess('El área se ha añadido con éxito');
     }
 

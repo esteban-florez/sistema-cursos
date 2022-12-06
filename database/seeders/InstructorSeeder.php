@@ -228,19 +228,20 @@ class InstructorSeeder extends Seeder
             'area_id' => 10,
         ]);
 
-        Instructor::create([
-            'name' => 'Kakashi',
-            'lastname' => 'Hatake',
-            'ci' => 77777777, 
-            'ci_type' => 'E',
-            'gender' => 'male',
-            'phone' => '04127777777',
-            'address' => 'Konohagakure',
-            'email' => 'kakashi@konoha.com',
-            'password' => 'konoha',
-            'degree' => 'Jonin de Konoha',
-            'birth' => '1989-02-10',
-            'area_id' => 11,
-        ]);
+        // xD!!
+        // Instructor::create([
+        //     'name' => 'Kakashi',
+        //     'lastname' => 'Hatake',
+        //     'ci' => 77777777, 
+        //     'ci_type' => 'E',
+        //     'gender' => 'male',
+        //     'phone' => '04127777777',
+        //     'address' => 'Konohagakure',
+        //     'email' => 'kakashi@konoha.com',
+        //     'password' => 'konoha',
+        //     'degree' => 'Jonin de Konoha',
+        //     'birth' => '1989-02-10',
+        //     'area_id' => 11,
+        // ]);
     }
 }

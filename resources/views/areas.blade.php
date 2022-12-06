@@ -10,7 +10,7 @@
     <script defer src="{{ asset('js/areas.js') }}"></script>
   @endpush
   <x-layout.bar>
-    <x-search placeholder="Buscar área..."/>
+    <x-search name="search" :action="route(Route::currentRouteName())" placeholder="Buscar área..." :value="$search"/>
     <x-button icon="plus" color="success" hide-text="sm" data-target="#newAreaModal" data-toggle="modal">Añadir</x-button>
   </x-layout.bar>
   <section class="container-fluid">
