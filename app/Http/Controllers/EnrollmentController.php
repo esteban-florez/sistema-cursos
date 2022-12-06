@@ -58,6 +58,11 @@ class EnrollmentController extends Controller
 
     public function success(Inscription $inscription)
     {
+        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
+        if ($inscription->student_id !== user()->id) {
+            return redirect()->route('home');
+        }
+
         return view('enrollment.success', [
             'inscription' => $inscription,
             'enrolledType' => $inscription->payment->type,
@@ -66,6 +71,11 @@ class EnrollmentController extends Controller
 
     public function download(Inscription $inscription)
     {
+        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
+        if ($inscription->student_id !== user()->id) {
+            return redirect()->route('home');
+        }
+
         $student = $inscription->student;
         $course = $inscription->course;
 

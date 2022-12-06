@@ -21,4 +21,7 @@
   <span class="badge badge-{{ $badgeColors[$course->status] }} badge-4">
     {{ $course->status }}
   </span>
+  <x-button icon="file" hide-text="md" :url="route('inscriptions.download', ['course' => $course->id])">
+    Generar PDF
+  </x-button>
 </div>

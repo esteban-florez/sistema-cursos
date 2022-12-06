@@ -20,7 +20,6 @@ use App\Http\Controllers\StudentPaymentController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\InscriptionConfirmationController;
 use App\Http\Controllers\PendingPaymentController;
-use FontLib\Table\Type\name;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -195,6 +194,10 @@ Route::group([
 Route::get('inscriptions', [InscriptionController::class, 'index'])
     ->middleware('auth:instructor')
     ->name('inscriptions.index');
+
+Route::get('inscriptions/download', [InscriptionController::class, 'download'])
+    ->middleware('auth:instructor')
+    ->name('inscriptions.download');
 
 Route::put('inscriptions/{inscription}/approval', 
 [InscriptionApprovalController::class, 'update'])
