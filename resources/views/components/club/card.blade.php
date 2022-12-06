@@ -3,7 +3,7 @@
 <div class="card{{$last ? '' : ' mb-0'}}">
   <div class="row no-gutters">
     <div class="col-sm-5">
-      <img class="w-100" src="{{ $club->image }}" alt="Imagen del curso">
+      <img class="w-100 rounded-left" src="{{ $club->image }}" alt="Imagen del curso">
     </div>
     <div class="col-sm-7 d-flex align-items-center">
       <div class="card-body">

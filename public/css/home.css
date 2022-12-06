@@ -11,6 +11,23 @@
   margin-left: 1rem;
 }
 
+.carousel-text {
+  position: absolute;
+  right: 45%;
+  bottom: 17%;
+  left: 10%;
+  color: rgb(132, 144, 158);
+  background-color: rgba(235, 235, 235, 0.8);
+  border-radius: 10px;
+  padding: 4px;
+  text-align: center;
+}
+
+.carousel-text h5 {
+  text-align: center;
+  color: black;
+}
+
 .payment-container {
   height: 14rem;
 }
