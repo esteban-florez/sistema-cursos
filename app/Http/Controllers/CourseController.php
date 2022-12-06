@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Course;
 use App\Models\Instructor;
+use App\Models\PNF;
 use App\Services\Input;
 
 class CourseController extends Controller
@@ -44,12 +45,13 @@ class CourseController extends Controller
     {
         $instructors = Instructor::getOptions();
         $areas = Area::getOptions();
+        $pnfs = PNF::getOptions();
 
         return view('courses.create', [
             'instructors' => $instructors, 
-            'areas' => $areas
-            ]
-        );
+            'areas' => $areas,
+            'pnfs' => $pnfs,
+        ]);
     }
 
     /**
@@ -115,13 +117,14 @@ class CourseController extends Controller
     {
         $instructors = Instructor::getOptions();
         $areas = Area::getOptions();
+        $pnfs = PNF::getOptions();
 
         return view('courses.edit', [
             'course' => $course,
             'instructors' => $instructors, 
-            'areas' => $areas
-            ]
-        );
+            'areas' => $areas,
+            'pnfs' => $pnfs,
+        ]);
     }
 
     /**

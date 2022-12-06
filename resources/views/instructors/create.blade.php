@@ -8,6 +8,7 @@
         type="instructor"
         :areas="$areas"
         :action="route('instructors.store')"
+        :pnfs="$pnfs"
         image
       />
     </div>

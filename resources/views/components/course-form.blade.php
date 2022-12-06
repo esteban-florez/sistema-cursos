@@ -1,4 +1,4 @@
-@props(['action', 'areas', 'instructors', 'edit' => false, 'course' => null])
+@props(['action', 'areas', 'instructors', 'pnfs', 'edit' => false, 'course' => null])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
   @if ($edit)
@@ -10,14 +10,17 @@
       <x-image-input :image="$course->image ?? null" required/>
     </div>
     <div class="col-sm-6 col-md-8">
-      <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" value="{{ old('name') ?? $course->name ?? '' }}" required>
+      <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" :value="old('name') ?? $course->name ?? ''" required>
         Nombre:
       </x-field>
-      <x-select name="instructor_id" id="instructorId" :options="$instructors" required>
+      <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $course->instructor_id ?? ''" required>
         Instructores:
       </x-select>
-      <x-select name="area_id" id="areaId" :options="$areas" required>
+      <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $course->area_id ?? ''" required>
         Área de Formación:
+        <x-slot name="extra">
+          <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
+        </x-slot>
       </x-select>
     </div>
     <div class="col-12 col-sm-6 mb-3">
@@ -102,3 +105,4 @@
     </x-button>
   </div>
 </form>
+<x-area.new id="newAreaModal" :pnfs="$pnfs"/>

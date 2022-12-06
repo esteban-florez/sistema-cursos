@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Area;
 use App\Models\Instructor;
+use App\Models\PNF;
 use App\Services\Input;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -21,7 +22,7 @@ class InstructorController extends Controller
         $filters = Input::getFilters();
         $search = $request->input('search', '');
         $sortColumn = $request->input('sort', '');
-
+        
         $instructors = Instructor::filters($filters, $sortColumn, $search)
             ->paginate(10)
             ->withQueryString();
@@ -33,7 +34,7 @@ class InstructorController extends Controller
             'search' => $search,
         ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -42,9 +43,11 @@ class InstructorController extends Controller
     public function create()
     {
         $areas = Area::getOptions();
+        $pnfs = PNF::getOptions();
 
         return view('instructors.create', [
             'areas' => $areas,
+            'pnfs' => $pnfs,
         ]);
     }
 
@@ -109,10 +112,12 @@ class InstructorController extends Controller
     public function edit(Instructor $instructor)
     {
         $areas = Area::getOptions();
+        $pnfs = PNF::getOptions();
 
         return view('instructors.edit', [
             'instructor' => $instructor,
             'areas' => $areas,
+            'pnfs' => $pnfs,
         ]);
     }
 

@@ -1,4 +1,4 @@
-@props(['type', 'areas' => null, 'image' => false, 'action', 'user' => null, 'edit' => false])
+@props(['type', 'pnfs' => null, 'areas' => null, 'image' => false, 'action', 'user' => null, 'edit' => false])
 
 @php
   if(isset($user)) {
@@ -134,6 +134,9 @@
       <div class="col-md-6">
         <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $user->area_id ?? ''" required>
           Área de Formación:
+          <x-slot name="extra">
+            <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
+          </x-slot>
         </x-select>
       </div>
       @endif
@@ -153,3 +156,6 @@
     </div>
   </div>
 </form>
+@if ($type === 'instructor')
+<x-area.new id="newAreaModal" :pnfs="$pnfs"/>
+@endif

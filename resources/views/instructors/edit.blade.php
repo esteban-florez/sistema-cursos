@@ -9,6 +9,7 @@
         :areas="$areas"
         :action="route('instructors.update', $instructor->id)"
         :user="$instructor"
+        :pnfs="$pnfs"
         image
         edit
       />

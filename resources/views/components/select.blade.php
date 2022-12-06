@@ -1,4 +1,5 @@
 @props(['options', 'selected' => '', 'default' => false])
+
 @php
  $required = $attributes->get('required'); 
 @endphp
@@ -15,9 +16,10 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
     @endif
     @foreach ($options as $value => $label)
       @php
-        $isSelected = $selected === (string) $value;
+        $isSelected = (string) $selected === (string) $value;
       @endphp
       <option value="{{ $value }}"@if($isSelected)selected @endif>{{ $label }}</option>
     @endforeach
   </select>
+  {{ $extra ?? '' }}
 </div>
