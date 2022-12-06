@@ -36,7 +36,7 @@ class Payment extends Model
 
     public function getAmountAttribute($amount)
     {
-        $currency = $this->type === 'dollars' ? '$' : 'Bs.D.';
+        $currency = $this->type === 'Efectivo ($)' ? '$' : 'Bs.D.';
         return "{$amount} {$currency}";
     }
 
