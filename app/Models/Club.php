@@ -17,6 +17,8 @@ class Club extends Model
 
     protected $guarded = ['id'];
 
+    protected static $searchColumn = 'name';
+
     public function instructor()
     {
         return $this->belongsTo(Instructor::class);
