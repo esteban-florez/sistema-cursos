@@ -35,9 +35,10 @@
           <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
             Registrar curso
           </x-layout.sidebar.item>
-          <x-layout.sidebar.item url="#" icon="book">
+          {{-- TODO -> comentado hasta que funcione --}}
+          {{-- <x-layout.sidebar.item url="#" icon="book">
             Expedientes
-          </x-layout.sidebar.item>
+          </x-layout.sidebar.item> --}}
           @endis
           @isnt('admin')
           <x-layout.sidebar.item url="#" icon="star">
@@ -67,14 +68,6 @@
             Registrar club
           </x-layout.sidebar.item>
           @endis
-          @isnt('student')
-          <x-layout.sidebar.item url="#" icon="shopping-basket">
-            Artículos
-          </x-layout.sidebar.item>
-          <x-layout.sidebar.item url="#" icon="users">
-            Miembros
-          </x-layout.sidebar.item>
-          @endisnt
         </x-slot>
       </x-layout.sidebar.item>
       @isnt('student')

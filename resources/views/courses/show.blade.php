@@ -1,9 +1,8 @@
-<x-layout.main title="Curso de {{ Str::title($course->name) }}">
+<x-layout.main title="{{ $course->name }}">
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles-curso.css') }}">
   @endpush
   <!-- TODO -> Terminar de pasar los datos y hacer las cards como un componente -->
-
   <section class="container-fluid details-grid mt-3">
     <div class="card">
       <img src="{{ asset($course->image) }}" class="w-100 img-fluid img-course rounded elevation-1" alt="Imagen del curso">

@@ -38,7 +38,7 @@
             </x-button>
           </form>
           @endunless
-          @unless($inscription->status !== 'Finalizado')
+          @unless($course->status !== 'Finalizado')
             @php
               $isApproved = isset($inscription->approved_at);
               $color = $isApproved ? 'danger' : 'success';

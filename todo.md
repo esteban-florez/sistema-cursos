@@ -36,6 +36,8 @@
 
 - Añadir slugs.
 
+- ¿Cuando borras un registro, que pasa con sus registros relacionados?
+
 - También ocurre que los cursos y clubes podrían no ser solamente un día a la semana, sino multiples, y cada día quizas tendría horas propias. Una solucion es implementar lo del horario de forma mas compleja, con Drag'n Drop maybe.
 
 - Pensar un poco en la naturaleza concurrente del proyecto, y errores que pueden haber y tal.
@@ -59,10 +61,11 @@
 
 ## Esteban: 
 
-- Añadir links y hacer las breadcrumbs.
+- Hacer las breadcrumbs.
 - Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet.
 - Arreglar inputs, autcomplete off.
-- Bug en edición de cosa con fechas, horas y días.
+- Bug en edición de cosa con fechas, horas y días. Pasar todo a casts de dates.
+- Terminar el perfil, tanto de estudiante como instructor.
 
 ## Tareas a largo plazo:
 

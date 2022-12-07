@@ -35,7 +35,7 @@ class CourseSeeder extends Seeder
         ])->create();
 
         Course::factory([
-            'name' => 'JavaScript Desde Cero',
+            'name' => 'JavaScript desde Cero',
             'description' => 'Curso de JavaScript para principiantes en la programación. Aprende uno de los lenguajes mas usados en la actualidad y preparate para ser un desarrollador web.',
             'start_ins' => '2022-12-01',
             'end_ins' => '2022-12-07',

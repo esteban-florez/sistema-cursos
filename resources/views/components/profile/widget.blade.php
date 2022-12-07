@@ -12,23 +12,16 @@
   </div>
   <div class="card-footer">
     <div class="row">
-      <div class="col-4 border-right">
+      <div class="col-6 border-right">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Cursos</h5>
           <p class="profile-number badge badge-dark m-0 mt-2">{{ $courseCount }}</p>
         </div>
       </div>
-      <div class="col-4 border-right">
+      <div class="col-6">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Clubes</h5>
           <p class="profile-number badge badge-dark m-0 mt-2">{{ $clubCount }}</p>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="description-block">
-          {{-- TODO -> encontrar que númerito poner aquí --}}
-          <h5 class="m-0 text-truncate">Nose</h5>
-          <p class="profile-number badge badge-dark m-0 mt-2">{{ $noseCount }}</p>
         </div>
       </div>
     </div>

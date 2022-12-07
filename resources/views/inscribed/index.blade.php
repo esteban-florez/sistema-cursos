@@ -1,9 +1,8 @@
 <x-layout.main title="Matrícula">
-
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/listados.css') }}">
   @endpush
-  {{-- TODO -> por ahora no se pudo búsqueda, pero sería bueno --}}
+  {{-- TODO -> comentado hasta que funcione. Por ahora no se pudo búsqueda, pero sería bueno --}}
   {{-- <x-layout.bar>
     <x-search :action="route(Route::currentRouteName())" placeholder="Buscar estudiantes..." :value="$search">
       <x-slot name="hidden">
