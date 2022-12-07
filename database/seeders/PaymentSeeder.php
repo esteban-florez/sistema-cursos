@@ -25,17 +25,20 @@ class PaymentSeeder extends Seeder
                 $ref = null;
 
                 if ($type === 'dollars' || $type === 'bs') {
-                    $ref = null;
-                    $amount = $inscription->course->total_price;
                 } else {
-                    $amount = $inscription->course->total_price * 14.65;
                     if($type === 'movil') {
                         $ref = rand(pow(10, 3), pow(10, 4) - 1);
                     } else {
                         $ref = rand(pow(10, 7), pow(10, 8) - 1);
                     }
                 }
-
+                
+                if ($type !== 'dollars') {
+                    $amount = $inscription->course->total_price * 14.65;
+                } else {
+                    $amount = $inscription->course->total_price;
+                }
+                
                 Payment::create([
                     'type' => $type,
                     'amount' => $amount,

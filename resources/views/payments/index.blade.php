@@ -59,12 +59,6 @@
               <x-payment.status-button :id="$payment->id" type="confirmed" color="success" sm/>
               <x-payment.status-button :id="$payment->id" type="rejected" color="warning" sm/>
             </x-slot>
-            @else
-            <x-slot name="extraActions">
-              <x-button class="btn-sm" color="warning" icon="edit">
-                Editar
-              </x-button>
-            </x-slot>
             @endif
           </x-row>
         @empty

@@ -9,8 +9,11 @@ class PendingPaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::where('status', 'pending')
-            ->paginate(10);
+        // TODO -> n + 1 queries here
+        $payments = Payment::with('inscription')
+            ->where('status', 'pending')
+            ->paginate(9)
+            ->withQueryString();
 
         return view('payments.pending', [
             'payments' => $payments,
@@ -22,9 +25,12 @@ class PendingPaymentController extends Controller
         $data = $request->validate([
             'status' => ['required', 'in:confirmed,rejected'],
         ]);
-
+        logger('lel');
+        $operation = $request->input('status') === 'confirmed' ? 'confirmado' : 'rechazado';
         $payment->update($data);
         
-        return redirect()->route('payments.pending');
+        return redirect()
+            ->back()
+            ->withSuccess("El pago se ha {$operation} de forma exitosa.");
     }
 }

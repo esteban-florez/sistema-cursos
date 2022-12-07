@@ -135,7 +135,7 @@ Route::get('pending-payments', [PendingPaymentController::class, 'index'])
     ->middleware('auth:instructor', 'admin')    
     ->name('pending.index');
 
-Route::put('pending-payments/{payment}', [PendingPaymentController::class, 'index'])
+Route::put('pending-payments/{payment}', [PendingPaymentController::class, 'update'])
     ->middleware('auth:instructor', 'admin')    
     ->name('pending.update');
 

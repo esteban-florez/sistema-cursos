@@ -59,6 +59,7 @@
 ## Esteban: 
 
 - Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet (probar alla).
+- Poner precio del dólar en los seeders mañana.
 - Bug en edición de cosa con fechas, horas y días. Pasar todo a casts de dates.
 - Terminar el perfil, tanto de estudiante como instructor.
 
