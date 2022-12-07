@@ -147,7 +147,7 @@ Route::resource('payments', PaymentController::class)
 //Club routes
 
 Route::resource('club', ClubController::class)
-    ->middleware('auth:instructor', 'admin');
+    ->middleware('auth'); //por ahora así pa que se vea el show en students too
 
 
 // Course market

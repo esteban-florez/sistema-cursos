@@ -1,4 +1,4 @@
-@props(['items', 'details'])
+@props(['items', 'detailUrl'])
 
 <div id="carouselIndicators" class="carousel slide" data-ride="carousel" data-interval="7000">
   <ol class="carousel-indicators">
@@ -15,7 +15,7 @@
       <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
         <div class="carousel-text">
           <h5>{{ $item->name }}</h5>
-          <button url="{{ $details }}" class="btn btn-dark btn-sm mb-1">Ver detalles</button>
+          <x-button :url="route($detailUrl , $item->id)" color="dark" class="btn-sm mb-1">Ver detalles</x-button>
         </div>
         <img src="{{ $item->image }}" class="w-100" alt="{{ $item->name }}">
       </div>
