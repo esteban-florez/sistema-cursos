@@ -51,4 +51,9 @@ class Club extends Model
     {
         return getWeekDay($day);
     }
+
+    public function getRawDayAttribute()
+    {
+        return $this->getRawOriginal('day');
+    }
 }
