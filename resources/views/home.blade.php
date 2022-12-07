@@ -7,6 +7,10 @@
   <script defer src="{{ asset('js/time.js') }}"></script>
   @endpush
 
+  @php
+    $currentUser = user();
+  @endphp
+
   <!-- Hay muchas cosas que arreglar aquí en el home, pero, yastoi harta ptm jasjajskajk -->
 
   <!-- TODO -> Hacer que me lleve a los detalles de todas las cards -->
@@ -16,66 +20,35 @@
 
   @is('student')
   <section class="container fluid px-sm-4">
-    <div class="row mt-3">
-      <div class="col-md-7 col-lg-8">
-        <div class="card mb-2">
-          <div class="card-header">
-            <div class="row d-flex align-items-center w-100">
-              <div class="col-sm-9">
-                <h2 class="mb-0">¡Últimos cursos!</h2>
-              </div>
-              <div class="col-sm-3 text-sm-right">
-                <a href="{{ route('market.index') }}" class="mt-1">
-                  <span>Ver más</span>
-                  <i class="fas fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <x-carousel :items="$courses" :details="route('market.show', '$courses->id')"/>
+    <div class="row w-100 mt-2 ml-0">
+      <div class="col-lg-7">
+        <div class="card w-100 d-md-inline-block d-none mb-3 p-3">
+          <h4 class="text-center mt-2">Bienvenid@ {{ $currentUser->full_name }}</h4>
         </div>
       </div>
-      <div class="col-md-5 col-lg-4">
-        <div class="card w-100 d-md-inline-block d-none mb-0">
+      <div class="col-lg-5">
+        <div class="card w-100 d-md-inline-block d-none">
           <div class="card-body d-flex flex-column justify-content-center align-items-center py-2">
             <h3 class="mb-0" id="time">{{ date('g:i A') }}</h3>
-            <h5 class="mb-0" id="date">{{ date('d/m/Y') }}</h5>
-          </div>
-        </div>
-        <div class="card card-dark mt-3">
-          <div class="card-header">
-            <div class="row d-flex align-items-center w-100">
-              <div class="col-12">
-                <h5 class="mb-0">Pagos pendientes</h5>
-              </div>
-              <div class="col-12">
-                <a href="#" class="mt-1">
-                  <span>Ver más</span>
-                  <i class="fas fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="card-body p-3 payment-container">
-            <!-- <div class="card mb-2">
-              <div class="card-body p-2">
-                <h5>Programación Web</h5>
-                <h6 class="mb-0 text-success">Monto total: 45$</h6>
-              </div>
-            </div>
-            <div class="card mb-2">
-              <div class="card-body p-2">
-                <h5>Programación Web</h5>
-                <h6 class="mb-0 text-success">Monto total: 45$</h6>
-              </div>
-            </div> -->
-            <div class="empty-container">
-              <div class="empty">No hay pagos pendientes</div>
-            </div>
+            <h5 class="mb-1" id="date">{{ date('d/m/Y') }}</h5>
           </div>
         </div>
       </div>
     </div>
+    <div class="card mb-2 p-3">
+      <div class="row d-flex align-items-center w-100">
+        <div class="col-sm-9">
+          <h2 class="mb-0">¡Últimos cursos!</h2>
+        </div>
+        <div class="col-sm-3 text-sm-right">
+          <a href="{{ route('market.index') }}" class="mt-1">
+            <span>Ver más</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <x-carousel :items="$courses" :details="route('market.show', '$courses->id')"/>
     <div class="card">
       <div class="card-header">
         <div class="row d-flex align-items-center w-100">
@@ -115,7 +88,7 @@
                 <h3 class="mb-0">Pagos pendientes</h3>
               </div>
               <div class="col-lg-3 text-lg-right">
-                <a href="#" class="mt-1">
+                <a href="{{ route('pending.index') }}" class="mt-1">
                   <span>Ver más</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
@@ -123,21 +96,19 @@
             </div>
           </div>
           <div class="card-body p-3 payment-container-admin">
-            <!-- <div class="card mb-2">
-              <div class="card-body p-2">
-                <h5>Programación Web</h5>
-                <h6 class="mb-0 text-success">Monto total: 45$</h6>
+            @forelse ($payments as $payment)
+              <div class="callout callout-secondary mb-2 p-0">
+                <div class="card-body p-2">
+                  <h5 class="mb-0 text-success">{{ $payment->amount }}</h5>
+                  <p class="mb-0"><b>Referencia:</b> {{ $payment->ref ?? 'N/A' }}</p>
+                  <p class="mb-0"><b>Fecha:</b> {{ $payment->updated_at }}</p>
+                </div>
               </div>
-            </div>
-            <div class="card mb-2">
-              <div class="card-body p-2">
-                <h5>Programación Web</h5>
-                <h6 class="mb-0 text-success">Monto total: 45$</h6>
+            @empty
+              <div class="empty-container">
+                <div class="empty">No hay pagos pendientes</div>
               </div>
-            </div> -->
-            <div class="empty-container">
-              <div class="empty">No hay pagos pendientes</div>
-            </div>
+            @endforelse
           </div>
         </div>
       </div>
