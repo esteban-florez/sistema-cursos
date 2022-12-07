@@ -60,11 +60,12 @@
 
 - Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet (probar alla).
 - Poner precio del dólar en los seeders mañana.
-- Bug en edición de cosa con fechas, horas y días. Pasar todo a casts de dates.
-- Terminar el perfil, tanto de estudiante como instructor.
+- Bug en edición de cosa con fechas, horas y días. si da chance mañana lo hago.
 
 ## Tareas a largo plazo:
 
+- Terminar el perfil, tanto de estudiante como instructor.
+- Pasar todo a casts de dates.
 - Correciones de la interfaz que mandó la profe de proyecto.
 - Hacer las breadcrumbs.
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
