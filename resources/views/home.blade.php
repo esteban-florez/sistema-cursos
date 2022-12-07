@@ -48,8 +48,8 @@
         </div>
       </div>
     </div>
-    <x-carousel :items="$courses" :details="route('market.show', '$courses->id')"/>
-    <div class="card">
+    <x-carousel :items="$courses" detailUrl="market.show"/>
+    <div class="card mt-3">
       <div class="card-header">
         <div class="row d-flex align-items-center w-100">
           <div class="col-sm-9">
@@ -66,7 +66,22 @@
       <div class="card-body">
         <div class="cards-grid">
           @forelse($clubs as $club)
-          <x-club.card :club="$club"/>
+          <div class="card">
+            <div class="row no-gutters">
+              <div class="col-sm-5">
+                <img class="w-100 rounded-left" src="{{ $club->image }}" alt="Imagen del curso">
+              </div>
+              <div class="col-sm-7 d-flex align-items-center">
+                <div class="card-body">
+                  <h5 class="mb-2">{{ $club->name }}</h5>
+                  <p class="card-text">{{ $club->excerpt }}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <x-button url="{{ route('club.show', $club->id) }}">Detalles</x-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           @empty
           <div class="empty-container">
             <h2 class="empty">No hay clubs disponibles</h2>
@@ -179,7 +194,23 @@
           <div class="card-body">
             <div class="cards-grid">
               @forelse($courses as $course)
-                <x-course.card :course="$course"/>
+              <div class="card">
+                <div class="row no-gutters">
+                  <div class="col-sm-5">
+                    <img class="w-100" src="{{ $course->image }}" alt="Imagen del curso">
+                  </div>
+                  <div class="col-sm-7 d-flex align-items-center">
+                    <div class="card-body">
+                      <h5 class="mb-2">{{ $course->name }}</h5>
+                      <p class="card-text">{{ $course->excerpt }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <x-button url="{{ route('courses.show', $course->id) }}">Detalles</x-button>
+                        <h4 class="text-success mb-0">{{ $course->total_price }} $</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               @empty
                 <div class="empty-container">
                   <h2 class="empty">No hay cursos disponibles</h2>
@@ -207,7 +238,22 @@
           <div class="card-body">
             <div class="cards-grid">
               @forelse($clubs as $club)
-              <x-club.card :club="$club"/>
+              <div class="card">
+                <div class="row no-gutters">
+                  <div class="col-sm-5">
+                    <img class="w-100 rounded-left" src="{{ $club->image }}" alt="Imagen del curso">
+                  </div>
+                  <div class="col-sm-7 d-flex align-items-center">
+                    <div class="card-body">
+                      <h5 class="mb-2">{{ $club->name }}</h5>
+                      <p class="card-text">{{ $club->excerpt }}</p>
+                      <div class="d-flex justify-content-between align-items-center">
+                        <x-button url="{{ route('club.show', $club->id) }}">Detalles</x-button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               @empty
               <div class="empty-container">
                 <h2 class="empty">No hay clubs disponibles</h2>
