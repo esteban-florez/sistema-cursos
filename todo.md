@@ -54,21 +54,19 @@
 
 ## Myriam:
 
-- Hacer el home.
-- Poner fecha y hora el home.
 - Hacer hoja con datos reales para hacer los registros el día de la presentación.
-- Correciones de la interfaz que mandó la profe de proyecto.
 
 ## Esteban: 
 
-- Hacer las breadcrumbs.
-- Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet.
-- Arreglar inputs, autcomplete off.
+- Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet (probar alla).
+- Arreglar inputs, autocomplete off.
 - Bug en edición de cosa con fechas, horas y días. Pasar todo a casts de dates.
 - Terminar el perfil, tanto de estudiante como instructor.
 
 ## Tareas a largo plazo:
 
+- Correciones de la interfaz que mandó la profe de proyecto.
+- Hacer las breadcrumbs.
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
 - Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
 - Crear rol de preparador, posible rol de secretaria.

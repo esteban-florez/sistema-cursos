@@ -7,7 +7,7 @@
   @csrf
   <div class="row d-flex align-items-center">
     <div class="col-sm-6 col-md-4 mb-3">
-      <x-image-input :image="$club->image ?? null" required/>
+      <x-image-input :image="$club->image ?? null" :required="!$edit"/>
     </div>
     <div class="col-sm-6 col-md-8">
       <x-field name="name" id="name" placeholder="Nombre del Club" autocomplete="off" value="{{ old('name') ?? $club->name ?? '' }}" required>

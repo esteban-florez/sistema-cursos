@@ -5,7 +5,7 @@
     'Pre-inscripciones' => 'dark',
     'Inscripciones' => 'info',
     'Pre-curso' => 'dark',
-    'En curso' => 'primary',
+    'En curso' => 'success',
     'Finalizado' => 'danger',
   ]; 
 @endphp
@@ -17,10 +17,13 @@
   </p>
 </div>
 <div class="d-flex align-items-center gap-3">
-  <span class="h5 m-0">Estado: </span>
-  <span class="badge badge-{{ $badgeColors[$course->status] }} badge-4">
+  <span class="h5 m-0">
+    Estado: 
+    <b class="h5 m-0 text-{{ $badgeColors[$course->status] }} text-bold">
     {{ $course->status }}
+    </b>
   </span>
+  
   <x-button icon="file" hide-text="md" :url="route('inscriptions.download', ['course' => $course->id])">
     Generar PDF
   </x-button>
