@@ -18,7 +18,7 @@
             <input type="hidden" name="email" value="{{ $email }}">
             <input type="hidden" name="token" value="{{ $token }}">
             <div class="input-group mb-3">
-              <input class="form-control" id="password" type="password" name="password" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
+              <input autocomplete="off" class="form-control" id="password" type="password" name="password" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
               <div class="input-group-append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
                   <span class="fas fa-eye"></span>
@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="input-group mb-3">
-              <input class="form-control" id="passwordConfirmation" type="password" name="password_confirmation" placeholder="Confirma la contraseña..." minlength="8" maxlength="20" required>
+              <input autocomplete="off" class="form-control" id="passwordConfirmation" type="password" name="password_confirmation" placeholder="Confirma la contraseña..." minlength="8" maxlength="20" required>
               <div class="input-group-append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
                   <span class="fas fa-eye"></span>

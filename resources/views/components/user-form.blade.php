@@ -101,7 +101,7 @@
             <option value="V">V-</option>
             <option value="E">E-</option>
           </select>
-          <input class="form-control" type="number" name="ci" placeholder="12345678" id="ci" value="{{ old('ci') ?? $user->ci ?? '' }}" required>
+          <input autocomplete="off" class="form-control" type="number" name="ci" placeholder="12345678" id="ci" value="{{ old('ci') ?? $user->ci ?? '' }}" required>
         </div>
       </div>
       <div class="col-md-6">

@@ -26,7 +26,7 @@
     <div class="col-12 col-sm-6 mb-3">
       <label class="form-label" for="totalPrice"><i class="fas fa-asterisk text-danger mr-1"></i>Monto Total:</label>
       <div class="input-group flex-nowrap">
-        <input class="form-control" type="number" id="totalPrice" name="total_price" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" required/>
+        <input autocomplete="off" class="form-control" type="number" id="totalPrice" name="total_price" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" required/>
         <div class="input-group-append">
           <span class="input-group-text" id="basic-addon1">$</span>
         </div>
@@ -34,6 +34,7 @@
     </div>
     <div class="col-12 col-sm-6 mb-3">
       <label class="form-label" for="reservPrice"><i class="fas fa-asterisk text-danger mr-1"></i>Monto de Reservación:</label>
+      {{-- TODO -> quitar required cuando el monto sea opcional en el futuro --}}
       <div class="input-group flex-nowrap">
         <input class="form-control w-50" type="number" id="reservPrice" name="reserv_price" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" required/>
         <div class="input-group-append">
@@ -69,7 +70,7 @@
     <div class="col-sm-6 mb-3">
       <label class="form-label" for="duration">Duración del curso:</label>
       <div class="input-group">
-        <input class="form-control" type="number" name="duration" id="duration" placeholder="Ej. 80" value="{{ old('duration') ?? $course->duration ?? '' }}" required/>
+        <input autocomplete="off" class="form-control" type="number" name="duration" id="duration" placeholder="Ej. 80" value="{{ old('duration') ?? $course->duration ?? '' }}" required/>
         <div class="input-group-append">
           <span class="input-group-text">horas</span>
         </div>
@@ -81,7 +82,7 @@
       </x-field>
     </div>
     <div class="col-sm-4">
-      <x-select name="days[]" id="days" :options="week()" default multiple required>
+      <x-select name="days[]" id="days" :options="week()" :selected="old('days') ?? $course->days_arr ?? ''" default multiple required>
         Días de clases:
       </x-select>
     </div>

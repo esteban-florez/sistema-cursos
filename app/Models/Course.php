@@ -97,6 +97,11 @@ class Course extends Model
         })->join(', ', ' y ');
     }
 
+    public function getDaysArrAttribute()
+    {
+        return collect(explode(',', $this->getRawOriginal('days')));
+    }
+
     public function setDaysAttribute($daysArray)
     {
         $this->attributes['days'] = collect($daysArray)

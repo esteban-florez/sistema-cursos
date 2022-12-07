@@ -17,7 +17,7 @@
           <form action="{{ route('password.email') }}" method="POST">
             @csrf
             <div class="input-group mb-3">
-              <input class="form-control" type="email" name="email" placeholder="Correo electrónico">
+              <input autocomplete="off" class="form-control" type="email" name="email" placeholder="Correo electrónico">
               <div class="input-group-append">
                 <div class="input-group-text bg-white">
                   <span class="fa fa-envelope"></span>

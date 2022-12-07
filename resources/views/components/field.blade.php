@@ -16,7 +16,7 @@
       'form-control' => !$isCheckbox,
       'form-check-input' => $isCheckbox,
       ])
-    ->merge(['type' => 'text'])
+    ->merge(['type' => 'text', 'autocomplete' => 'off'])
     }}
   >
   @if ($isCheckbox)
