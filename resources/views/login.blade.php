@@ -11,7 +11,7 @@
       <div class="card">
         @if(session('status'))
           <div class="alert alert-primary" role="alert">
-            Fino
+            Recuperación de contraseña exitosa
           </div>
         @endif
         <div class="card-body login-card-body">
