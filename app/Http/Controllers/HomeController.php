@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Course;
 use App\Models\Payment;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {

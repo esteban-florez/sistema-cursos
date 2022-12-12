@@ -45,7 +45,6 @@ class ClubController extends Controller
             'instructors' => $instructors,
         ]);
     }
-    //return view ('club.create');
 
     /**
      * Store a newly created resource in storage.
@@ -56,8 +55,6 @@ class ClubController extends Controller
 
     public function store(Request $request) 
     {
-        // $data = $request->except("_token");
-
         $data = $request->validate([
             'name' => ['required', 'max:30'],
             'image' => ['required', 'file', 'image', 'max:2048'],

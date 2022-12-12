@@ -14,8 +14,6 @@ class AreaFactory extends Factory
      */
     public function definition()
     {
-        $is_pnf = $this->faker->boolean();
-
         return [
             'name' => $this->faker->unique()->company,
             'pnf_id' => PNF::all()->random()->id,

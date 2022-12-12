@@ -30,9 +30,9 @@ class PNF extends Model
     {
         $pnfs = self::all(['id', 'name']);
 
-        $options = $pnfs->mapWithKeys(function ($pnf) {
-            return [$pnf->id => $pnf->name];
-        })->sortKeys()->all();
+        $options = $pnfs->mapWithKeys(fn($pnf) => [$pnf->id => $pnf->name])
+            ->sortKeys()
+            ->all();
 
         if ($withDefault) {
             $defaultOptions = ['' => 'Seleccionar...'];

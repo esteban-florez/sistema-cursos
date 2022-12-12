@@ -12,9 +12,9 @@ class AreaController extends Controller
     {
         $search = $request->input('search', '');
         
-        $areas = Area::when($search, function ($query, $search) {
-            return $query->where('name', 'like', "%{$search}%");
-        })->get();
+        $areas = Area::when($search, fn($query, $search) => 
+            $query->where('name', 'like', "%{$search}%"))
+            ->get();
 
         $pnfs = PNF::getOptions();
 

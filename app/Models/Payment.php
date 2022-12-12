@@ -105,8 +105,7 @@ class Payment extends Model
 
     public function scopeSort($query, $sortColumn)
     {
-        return $query->when($sortColumn, function ($query, $sortColumn) {
-            return $query->orderBy($sortColumn);
-        });
+        return $query->when($sortColumn, fn($query, $sortColumn) => 
+            $query->orderBy($sortColumn));
     }
 }

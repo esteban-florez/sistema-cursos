@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    private function loggedIn(Request $request)
-    {
-        $request->session()->regenerate();
-        return redirect()->home();
-    }
-
     public function login() {
         return view('login');
     }
@@ -29,22 +23,28 @@ class AuthController extends Controller
                 return $this->loggedIn($request);
             }
         }
-
+        
         return back()->withErrors([
             'email' => 'Las credenciales no son válidas.',
         ]);
     }
-
+    
     public function logout(Request $request)
     {
         foreach (guards() as $guard) {
             Auth::guard($guard)->logout();
         }
-    
+        
         $request->session()->invalidate();
-    
+        
         $request->session()->regenerateToken();
-    
+        
         return redirect()->route('login');
+    }
+
+    private function loggedIn(Request $request)
+    {
+        $request->session()->regenerate();
+        return redirect()->home();
     }
 }

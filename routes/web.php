@@ -55,7 +55,7 @@ Route::group([
     Route::group([
         'middleware' => 'guest'
     ], function () {
-        Route::view('login', 'login')
+        Route::get('login', 'login')
             ->name('login')
             ->middleware('prevent-back');
         

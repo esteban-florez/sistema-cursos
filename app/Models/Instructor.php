@@ -82,9 +82,9 @@ class Instructor extends Authenticatable
     {
         $instructors = self::all(['id', 'name', 'lastname']);
 
-        $options = $instructors->mapWithKeys(function ($instructor) {
-            return [$instructor->id => $instructor->full_name];
-        })->sortKeys()->all();
+        $options = $instructors->mapWithKeys(fn($instructor) => 
+            [$instructor->id => $instructor->full_name])
+            ->sortKeys()->all();
 
         if ($withDefault) {
             $defaultOptions = ['' => 'Seleccionar'];

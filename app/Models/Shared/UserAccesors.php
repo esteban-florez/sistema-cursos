@@ -29,7 +29,6 @@ trait UserAccesors
         return $gender === 'male' ? 'Masculino' : 'Femenino';
     }
 
-
     public function getImageAttribute($image)
     {
         return $image ?? 'img/user-placeholder.png';

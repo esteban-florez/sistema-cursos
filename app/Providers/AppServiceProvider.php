@@ -29,13 +29,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        Blade::if('is', function ($role) {
-            return $role === getCurrentRole();
-        });
+        Blade::if('is', fn($role) => $role === getCurrentRole());
 
-        Blade::if('isnt', function ($role) {
-            return $role !== getCurrentRole();
-        });
+        Blade::if('isnt', fn($role) => $role !== getCurrentRole());
 
         Paginator::useBootstrap();
     }

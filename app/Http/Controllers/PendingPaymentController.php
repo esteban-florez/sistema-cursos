@@ -25,7 +25,7 @@ class PendingPaymentController extends Controller
         $data = $request->validate([
             'status' => ['required', 'in:confirmed,rejected'],
         ]);
-        logger('lel');
+        
         $operation = $request->input('status') === 'confirmed' ? 'confirmado' : 'rechazado';
         $payment->update($data);
         

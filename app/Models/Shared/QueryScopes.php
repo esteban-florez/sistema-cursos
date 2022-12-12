@@ -4,6 +4,8 @@ namespace App\Models\Shared;
 
 trait QueryScopes
 {
+    protected static $searchColumn;
+
     public function scopeFilters($query, $filters, $sortColumn, $search)
     {
         // TODO -> hacer que pueda buscar por mas de un atributo
@@ -28,11 +30,6 @@ trait QueryScopes
                     $searchColumn = self::$searchColumn;
                     return $query->where($searchColumn, 'like', "%{$search}%");
                 }
-        )->when(
-            $sortColumn,
-            function ($query, $sortColumn) {
-                return $query->orderBy($sortColumn);
-            }
-        );
+        )->when($sortColumn, fn($query, $sortColumn) => $query->orderBy($sortColumn));
     }
 }

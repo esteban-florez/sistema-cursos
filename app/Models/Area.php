@@ -34,9 +34,9 @@ class Area extends Model
     {
         $areas = self::all(['id', 'name']);
 
-        $options = $areas->mapWithKeys(function ($area) {
-            return [$area->id => $area->name];
-        })->sortKeys()->all();
+        $options = $areas->mapWithKeys(fn($area) => [$area->id => $area->name])
+            ->sortKeys()
+            ->all();
 
         if ($withDefault) {
             $defaultOptions = ['' => 'Seleccionar'];

@@ -7,7 +7,7 @@ if (!function_exists('guards')) {
     /**
      * Retrive application auth guards.
      * 
-     * @return string
+     * @return array
      */
     function guards()
     {
