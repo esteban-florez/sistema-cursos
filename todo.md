@@ -36,6 +36,8 @@
 
 - Añadir slugs.
 
+- Sistema de notificaciones.
+
 - ¿Cuando borras un registro, que pasa con sus registros relacionados?
 
 - También ocurre que los cursos y clubes podrían no ser solamente un día a la semana, sino multiples, y cada día quizas tendría horas propias. Una solucion es implementar lo del horario de forma mas compleja, con Drag'n Drop maybe.
@@ -44,38 +46,45 @@
 
 - También está la cuestión de recuperación de base de datos, me dijeron que con "tarea programada", hay que investigar.
 
-- Quizas hagamos tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
-
-- Quizás sea innecesario tener los set y los enum en inglés en la base de datos, podríamos ponerlos de una en español y con el formato listo para mostrar, así nos ahorraríamos arrays asociativos de traducción y tal. Realmente para esto sería bueno un Enum de PHP pero no existen en esta versión xd.
-
 - Hacer diferentes las rutas de la matrícula para cada estado de curso.
 
 # Correciones Anyerg:
 
 ## Myriam:
 
-- Hacer hoja con datos reales para hacer los registros el día de la presentación.
-
 ## Esteban: 
 
-- Meter un precio del dolar farso pa la presentación porque weno, no va a haber internet (probar alla).
-- Poner precio del dólar en los seeders mañana.
-- Bug en edición de cosa con fechas, horas y días. si da chance mañana lo hago.
+- Hacer tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
+- Pasar todo a casts de dates.
+- Usar "Inicio" en vez de "Home" en el sidebar.
+- Fecha de inscripción en cursos con letra más grande.
+- Orden cronológico en los formatos (basicamente, que cédula salga primero en las credenciales y así).
+- Traducir sets y enums de la base de datos. Formato correcto.
 
 ## Tareas a largo plazo:
 
-- Terminar el perfil, tanto de estudiante como instructor.
-- Pasar todo a casts de dates.
-- Correciones de la interfaz que mandó la profe de proyecto.
+- Bug en edición de cosa con fechas, horas y días.
+- Reporte de pago (IG)
+- Arreglar búsquedas de cursos con código (IG).
+- Añadir edición de pagos (ver indicaciones generales).
+- Validaciones en fechas de curso, que sean coherentes.
+- Mínimos y máximos razonables en fechas, cantidades, etc.
+- Mejoras de formularios (validación, comodidad, formatos) con JavaScript en el Frontend.
+- Terminar el perfil, tanto de estudiante como instructor, con cursos y clubes "propios".
 - Hacer las breadcrumbs.
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
 - Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
 - Crear rol de preparador, posible rol de secretaria.
 - Traducir los errores de validación. Y mejorar como se muestran en algunas vistas.
-- Cursos y clubes en perfil.
 - Correos con Gmail.
 
 ## Indicaciones generales:
+
+- ¿Reporte de pago? o ¿reporte de todos los pagos?
+
+- Los pagos no pueden quedarse en simplemente confirmados o rechazados, deben poder editarse. De igual modo, el estudiante puede editar sus pagos registrados, y si lo hace, el pago volverá a su estado de pendiente.
+
+- Las búsquedas de Cursos y Estudiante en matrícula que sean por un código, que el codigo se vaya formando mediante "nesting", ejemplo: estudiante pertenece a curso, su codigo tiene el codigo del curso + variación.
 
 - Hacer que se pueda hacer una reservación de curso, con monto de reservación. Tiempo para formalizar inscripción y finalizar pago. El monto de reservación es opcional en caso de pagos completos (hay que convencer a Edeblangel de esto xd).
 
