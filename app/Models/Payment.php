@@ -11,21 +11,6 @@ use Illuminate\Support\Facades\Date;
 class Payment extends Model
 {
     use HasFactory, SoftDeletes;
-
-    public static $statuses = [
-        '' => 'Seleccionar',
-        'pending' => 'Pendiente',
-        'confirmed' => 'Confirmado',
-        'rejected' => 'Rechazado',
-    ];
-
-    public static $types = [
-        '' => 'Seleccionar',
-        'movil' => 'Pago Móvil',
-        'bs' => 'Efectivo (Bs.D.)',
-        'dollars' => 'Efectivo ($)',
-        'transfer' => 'Transferencia',
-    ];
     
     protected $guarded = ['id'];
     
@@ -43,16 +28,6 @@ class Payment extends Model
     public function getRefAttribute($ref)
     {
         return $ref ?? '----';
-    }
-
-    public function getTypeAttribute($type)
-    {
-        return static::$types[$type];
-    }
-
-    public function getStatusAttribute($status)
-    {
-        return static::$statuses[$status];
     }
 
     public function getUpdatedAtAttribute($date)

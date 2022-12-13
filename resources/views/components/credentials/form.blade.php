@@ -31,7 +31,7 @@
     <x-field name="account" id="account" placeholder="Ej. 02052050450284012969" :value="old('account') ?? $credential->account ?? ''" required>
       Nro. de cuenta: 
     </x-field>
-    <x-select name="type" id="type" :options="['Corriente' => 'Corriente', 'Ahorro' => 'Ahorro']" :selected="old('type') ?? $credential->type ?? ''" required default>
+    <x-select name="type" id="type" :options="accountTypes()->pairs()" :selected="old('type') ?? $credential->type ?? null" required default>
       Tipo de cuenta: 
     </x-select>
     @else

@@ -30,18 +30,13 @@ class Area extends Model
         return $this->hasMany(Course::class);
     }
 
-    public static function getOptions($withDefault = true)
+    public static function getOptions()
     {
         $areas = self::all(['id', 'name']);
 
         $options = $areas->mapWithKeys(fn($area) => [$area->id => $area->name])
             ->sortKeys()
             ->all();
-
-        if ($withDefault) {
-            $defaultOptions = ['' => 'Seleccionar'];
-            return $defaultOptions + $options;
-        }
 
         return $options;
     }

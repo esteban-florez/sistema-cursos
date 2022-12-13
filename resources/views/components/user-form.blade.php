@@ -110,7 +110,7 @@
         </x-field>
       </div>
       <div class="{{ $type === 'student' ? 'col-md-4' : 'col-md-6' }}">
-        <x-select name="gender" id="gender" :options="['female' => 'Femenino', 'male' => 'Masculino']" :selected="old('gender') ?? $gender ?? ''" default required>
+        <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $gender ?? null" default required>
           Sexo:
         </x-select>
       </div>
@@ -121,7 +121,7 @@
       </div>
       @if ($type === 'student')
       <div class="col-md-4">
-        <x-select name="grade" id="grade" :options="['school' => 'Primaria', 'high' => 'Bachillerato', 'tsu' => 'TSU', 'college' => 'Pregrado']" :selected="old('grade') ?? $user->grade ?? ''" default required>
+        <x-select name="grade" id="grade" :options="grades()->pairs()" :selected="old('grade') ?? $user->grade ?? null" default required>
           Grado de Instrucción:
         </x-select>
       </div>
@@ -132,7 +132,7 @@
         </x-field>
       </div>
       <div class="col-md-6">
-        <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $user->area_id ?? ''" required>
+        <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $user->area_id ?? null" required>
           Área de Formación:
           <x-slot name="extra">
             <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>

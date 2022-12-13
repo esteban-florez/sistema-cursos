@@ -15,7 +15,7 @@
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         <x-slot name="filters">
-          <x-select :options="['' => 'Seleccionar', 'true' => 'Sí', 'false' => 'No']" id="isAdmin" name="filters|is_admin" :selected="$filters['is_admin'] ?? ''">
+          <x-select :options="['true' => 'Sí', 'false' => 'No']" id="isAdmin" name="filters|is_admin" :selected="$filters['is_admin'] ?? null">
             ¿Administrador?
           </x-select>
         </x-slot>

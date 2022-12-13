@@ -13,10 +13,10 @@
       <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" :value="old('name') ?? $course->name ?? ''" required>
         Nombre:
       </x-field>
-      <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $course->instructor_id ?? ''" required>
+      <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $course->instructor_id ?? null" required>
         Instructores:
       </x-select>
-      <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $course->area_id ?? ''" required>
+      <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $course->area_id ?? null" required>
         Área de Formación:
         <x-slot name="extra">
           <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
@@ -82,7 +82,7 @@
       </x-field>
     </div>
     <div class="col-sm-4">
-      <x-select name="days[]" id="days" :options="week()" :selected="old('days') ?? $course->days_arr ?? ''" default multiple required>
+      <x-select name="days[]" id="days" :options="days()->pairs()" :selected="old('days') ?? $course->days_arr ?? null" default multiple required>
         Días de clases:
       </x-select>
     </div>

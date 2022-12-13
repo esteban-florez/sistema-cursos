@@ -29,8 +29,6 @@ class PaymentController extends Controller
             'sort' => $sort,
             'search' => $search,
             'courses' => Course::getOptions(),
-            'types' => Payment::$types,
-            'statuses' => Payment::$statuses,
         ]);
     }
 

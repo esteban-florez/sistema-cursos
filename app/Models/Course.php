@@ -91,10 +91,8 @@ class Course extends Model
 
     public function getDaysAttribute($daysString)
     {
-        $days = collect(explode(',', $daysString));
-        return $days->map(function ($day) {
-            return getWeekDay($day);
-        })->join(', ', ' y ');
+        return collect(explode(',', $daysString))
+            ->join(', ', ' y ');
     }
 
     public function getDaysArrAttribute()
@@ -185,18 +183,13 @@ class Course extends Model
         $query->whereIn('id', $ids);
     }
 
-    public static function getOptions($withDefault = true)
+    public static function getOptions()
     {
         $areas = self::all(['id', 'name']);
 
         $options = $areas->mapWithKeys(function ($area) {
             return [$area->id => $area->name];
         })->sortKeys()->all();
-
-        if ($withDefault) {
-            $defaultOptions = ['' => 'Seleccionar'];
-            return $defaultOptions + $options;
-        }
 
         return $options;
     }

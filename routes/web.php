@@ -38,10 +38,7 @@ Route::get('test', function () {
 })->name('test');
 
 Route::post('test', function () {
-    dd([
-        request()->input('filters|is_admin', ''),
-        request()->input('filters|gender', )
-    ]);
+    dd(request()->input('sel'));
 });
 
 Route::redirect('/', 'login')->middleware('guest');

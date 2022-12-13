@@ -26,19 +26,14 @@ class PNF extends Model
         'Telecomunicaciones',
     ];
 
-    public static function getOptions($withDefault = true)
+    public static function getOptions()
     {
         $pnfs = self::all(['id', 'name']);
 
         $options = $pnfs->mapWithKeys(fn($pnf) => [$pnf->id => $pnf->name])
             ->sortKeys()
             ->all();
-
-        if ($withDefault) {
-            $defaultOptions = ['' => 'Seleccionar...'];
-            return $defaultOptions + $options;
-        }
-
+            
         return $options;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
         Blade::if('is', fn($role) => $role === getCurrentRole());
 
         Blade::if('isnt', fn($role) => $role !== getCurrentRole());
+
+        Collection::macro('pairs', fn() =>
+            $this->mapWithKeys(fn($value) => 
+                [$value => $value]));
 
         Paginator::useBootstrap();
     }

@@ -1,7 +1,7 @@
-@props(['options', 'selected' => '', 'default' => false])
+@props(['options', 'selected' => null])
 
 @php
- $required = $attributes->get('required');
+  $required = $attributes->get('required');
 @endphp
 {{-- TODO -> estos componentes de seleccionar opciones, cuyas opciones pueden venir desde
 una tabla, se podría hacer que tengan una clase propia de componente, y que ellos mismos agarren su info xd
@@ -14,17 +14,17 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
   @endisset
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   <select class="form-control" {{ $attributes }}>
-    @if ($default)
-      <option>Seleccionar...</option>
-    @endif
+    <option value="" @unless($selected)selected @endunless>Seleccionar...</option>
     @foreach ($options as $value => $label)
       @php
         $isSelected = null;
-        if($attributes->get('multiple') !== null && $selected !== '') {
-          $selected = collect($selected);
-          $isSelected = $selected->contains((string) $value);
-        } else {
-          $isSelected = (string) $selected === (string) $value;
+        if (isset($selected)) {
+          if($attributes->get('multiple') !== null) {
+            $selected = collect($selected);
+            $isSelected = $selected->contains((string) $value);
+          } else {
+            $isSelected = (string) $selected === (string) $value;
+          }
         }
       @endphp
       <option value="{{ $value }}"@if($isSelected)selected @endif>{{ $label }}</option>

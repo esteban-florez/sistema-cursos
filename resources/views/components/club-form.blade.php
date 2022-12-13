@@ -13,10 +13,10 @@
       <x-field name="name" id="name" placeholder="Nombre del Club" autocomplete="off" value="{{ old('name') ?? $club->name ?? '' }}" required>
         Nombre:
       </x-field>
-      <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $club->instructor_id ?? ''" required>
+      <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $club->instructor_id ?? null" required>
         Instructor:
       </x-select>
-      <x-select name="day" id="day" :options="['mo' => 'Lunes', 'tu' => 'Martes', 'we' => 'Miércoles', 'th' => 'Jueves', 'fr' => 'Viernes', 'sa' => 'Sábado', 'su' => 'Domingo']" :selected="old('day') ?? $club->raw_day ?? ''" default required>
+      <x-select name="day" id="day" :options="days()->pairs()" :selected="old('day') ?? $club->raw_day ?? null" default required>
         Día:
       </x-select>
     </div>

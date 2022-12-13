@@ -22,7 +22,7 @@
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         <x-slot name="filters">
-          <x-select :options="$areas" id="areaId" name="filters|area_id" :selected="$filters['area_id'] ?? ''">
+          <x-select :options="$areas" id="areaId" name="filters|area_id" :selected="$filters['area_id'] ?? null">
             Área de Formación
           </x-select>
         </x-slot>
