@@ -20,8 +20,8 @@ class CreateStudentsTable extends Migration
             $table->string('first_lastname');
             $table->string('second_lastname')->nullable();
             $table->integer('ci')->unique();
-            $table->enum('ci_type', ['V', 'E'])->default('V');
-            $table->enum('gender', ['male', 'female']);
+            $table->enum('ci_type', ciTypes()->all())->default('V');
+            $table->enum('gender', genders()->all());
             $table->string('image')->nullable();
             $table->string('phone');
             $table->string('address');
@@ -29,7 +29,7 @@ class CreateStudentsTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->enum('grade', ['school', 'high', 'tsu', 'college']);
+            $table->enum('grade', grades()->all());
             $table->date('birth');
             $table->boolean('is_upta')->default(false);
             $table->softDeletes();

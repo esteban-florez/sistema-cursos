@@ -27,7 +27,7 @@ class CreateCoursesTable extends Migration
             $table->date('end_course');
             $table->integer('duration');
             $table->integer('student_limit');
-            $table->set('days', ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']);
+            $table->set('days', days()->all());
             $table->time('start_time');
             $table->time('end_time');
             $table->foreignId('instructor_id')->constrained();

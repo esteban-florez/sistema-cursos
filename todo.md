@@ -59,7 +59,6 @@
 - Usar "Inicio" en vez de "Home" en el sidebar.
 - Fecha de inscripción en cursos con letra más grande.
 - Orden cronológico en los formatos (basicamente, que cédula salga primero en las credenciales y así).
-- Traducir sets y enums de la base de datos. Formato correcto.
 - Añadir logo de la universidad a los formatos.
 - Analizar la situación del home. (Muestra cursos no disponibles, y también algunos en los que ya se registró el usuario).
 

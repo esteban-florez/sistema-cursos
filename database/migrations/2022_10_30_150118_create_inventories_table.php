@@ -16,7 +16,7 @@ class CreateInventoriesTable extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
             $table->integer('amount');
-            $table->enum('operation', ['+', '-']);
+            $table->enum('operation', operations()->all());
             $table->foreignId('item_id')->constrained();
             $table->foreignId('club_id')->constrained();
             $table->timestamps();

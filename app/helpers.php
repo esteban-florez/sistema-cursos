@@ -57,32 +57,66 @@ if (!function_exists('formatTime')) {
     }
 }
 
-if (!function_exists('getWeekDay')) {
-    function getWeekDay($day) {
-        $week = [
-            'mo' => 'Lunes',
-            'tu' => 'Martes',
-            'we' => 'Miércoles',
-            'th' => 'Jueves',
-            'fr' => 'Viernes',
-            'sa' => 'Sábado',
-            'su' => 'Domingo',
-        ];
-
-        return $week[$day];
+if (!function_exists('week')) {
+    function days() {
+        return collect([
+            'Lunes',
+            'Martes',
+            'Miércoles',
+            'Jueves',
+            'Viernes',
+            'Sábado',
+            'Domingo',
+        ]);
     }
 }
 
-if (!function_exists('week')) {
-    function week() {
-        return [
-            'mo' => 'Lunes',
-            'tu' => 'Martes',
-            'we' => 'Miércoles',
-            'th' => 'Jueves',
-            'fr' => 'Viernes',
-            'sa' => 'Sábado',
-            'su' => 'Domingo',
-        ];
+if (!function_exists('genders')) {
+    function genders() {
+        return collect(['Masculino', 'Femenino']);
+    }
+}
+
+if (!function_exists('grades')) {
+    function grades() {
+        return collect(['Primaria', 'Bachillerato', 'TSU', 'Superior']);
+    }
+}
+
+if (!function_exists('ciTypes')) {
+    function ciTypes() {
+        return collect(['V', 'E']);
+    }
+}
+
+if (!function_exists('operations')) {
+    function operations() {
+        return collect(['+', '-']);
+    }
+}
+
+if (!function_exists('payStatuses')) {
+    function payStatuses() {
+        return collect(['Pendiente', 'Confirmado', 'Rechazado']);
+    }
+}
+
+if (!function_exists('payTypes')) {
+    function payTypes() {
+        return collect([
+            'Pago Móvil',
+            'Transferencia',
+            'Efectivo ($)',
+            'Efectivo (Bs.D.)'
+        ]);
+    }
+}
+
+if (!function_exists('accountTypes')) {
+    function accountTypes() {
+        return collect([
+            'Corriente',
+            'Ahorro',
+        ]);
     }
 }

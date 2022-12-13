@@ -18,9 +18,9 @@ class CreateInstructorsTable extends Migration
             $table->string('name');
             $table->string('lastname');
             $table->integer('ci')->unique();
-            $table->enum('ci_type', ['V', 'E'])->default('V');
+            $table->enum('ci_type', ciTypes()->all())->default('V');
             $table->string('image')->nullable();
-            $table->enum('gender', ['male', 'female']);
+            $table->enum('gender', genders()->all());
             $table->string('phone');
             $table->string('address');
             $table->string('email')->unique();
