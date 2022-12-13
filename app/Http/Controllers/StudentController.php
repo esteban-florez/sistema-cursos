@@ -21,7 +21,9 @@ class StudentController extends Controller
         $sortColumn = $request->input('sort', '');
         $search = $request->input('search', '');
 
-        $students = Student::filters($filters, $sortColumn, $search)
+        $students = Student::filters($filters)
+            ->search($search)
+            ->sort($sortColumn)
             ->paginate(10)
             ->withQueryString();
 

@@ -23,7 +23,9 @@ class InstructorController extends Controller
         $search = $request->input('search', '');
         $sortColumn = $request->input('sort', '');
         
-        $instructors = Instructor::filters($filters, $sortColumn, $search)
+        $instructors = Instructor::filters($filters)
+            ->search($search)
+            ->sort($sortColumn)
             ->paginate(10)
             ->withQueryString();
 

@@ -16,7 +16,8 @@ class MarketController extends Controller
         $courses = Course::availables($student)
             ->notBoughtBy($student)
             ->onInscriptions()
-            ->filters(false, $sortColumn, $search)
+            ->search($search)
+            ->sort($sortColumn)
             ->latest()
             ->paginate(10)
             ->withQueryString();

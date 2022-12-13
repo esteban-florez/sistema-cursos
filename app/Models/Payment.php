@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Inscription;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Date;
+use App\Models\Shared\QueryScopes;
 
 class Payment extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, QueryScopes;
     
     protected $guarded = ['id'];
     
@@ -49,11 +50,11 @@ class Payment extends Model
                     continue;
                 }
 
-                if ($value === 'true') {
-                    $value = true;
-                } else if ($value === 'false') {
-                    $value = false; 
-                }
+                $value = match ($value) {
+                    'true' => true,
+                    'false' => false,
+                    default => $value,
+                };
 
                 $query->where($filter, '=', $value);
             }
@@ -65,7 +66,6 @@ class Payment extends Model
     public function scopeSearch($query, $search)
     {
         return $query->when($search, function ($query, $search) {
-            // TODO -> también debe servir para cédula de extranjero
             $id = Student::where('ci', (int) $search)
                 ->first()
                 ->id ?? 0;
@@ -76,11 +76,5 @@ class Payment extends Model
 
             return $query->whereIn('inscription_id', $ids);
         });
-    }
-
-    public function scopeSort($query, $sortColumn)
-    {
-        return $query->when($sortColumn, fn($query, $sortColumn) => 
-            $query->orderBy($sortColumn));
     }
 }

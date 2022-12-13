@@ -23,7 +23,9 @@ class CourseController extends Controller
         $sortColumn = $request->input('sort', '');
         $areas = Area::getOptions();
 
-        $courses = Course::filters($filters, $sortColumn, $search)
+        $courses = Course::filters($filters)
+            ->search($search)
+            ->sort($sortColumn)
             ->paginate(10)
             ->withQueryString();
 
