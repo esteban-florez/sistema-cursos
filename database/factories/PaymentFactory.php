@@ -16,10 +16,10 @@ class PaymentFactory extends Factory
     {
         if($this->faker->boolean()) {
             $ref = $this->faker->randomNumber(4, true);
-            $type = $this->faker->randomElement(['movil', 'transfer']);
+            $type = $this->faker->randomElement(payTypes()->take(2));
         } else {
             $ref = null;
-            $type = $this->faker->randomElement(['dollars', 'bs']);
+            $type = $this->faker->randomElement(payTypes()->reverse()->take(2));
         }
 
         return [

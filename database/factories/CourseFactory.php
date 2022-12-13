@@ -36,6 +36,7 @@ class CourseFactory extends Factory
             'student_limit' => $this->faker->randomElement([15, 20, 40, 50]),
             'start_time' => $start_time,
             'end_time' => $end_time,
+            'days' => $this->faker->randomElements(days(), collect([1, 2, 3])->random()),
             'image' => 'img/programacion.jpg',
             'area_id' => Area::all()->random()->id,
             'instructor_id' => Instructor::all()->random()->id,

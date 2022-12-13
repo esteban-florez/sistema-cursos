@@ -4,8 +4,6 @@ namespace App\Models\Shared;
 
 trait QueryScopes
 {
-    protected static $searchColumn;
-
     public function scopeFilters($query, $filters, $sortColumn, $search)
     {
         // TODO -> hacer que pueda buscar por mas de un atributo
