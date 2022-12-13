@@ -12,5 +12,6 @@ function getDolarPrice() {
       }
     })
 }
-
+// parseFloat(document.querySelector('#dolar strong').innerText.replaceAll(',', '.'))
+// para futuros planes, con la pagina del BCV
 getDolarPrice()

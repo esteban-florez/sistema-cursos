@@ -61,6 +61,7 @@
 - Orden cronológico en los formatos (basicamente, que cédula salga primero en las credenciales y así).
 - Añadir logo de la universidad a los formatos.
 - Analizar la situación del home. (Muestra cursos no disponibles, y también algunos en los que ya se registró el usuario).
+- Hacer FormRequests classes.
 
 ## Tareas a largo plazo:
 

@@ -82,7 +82,7 @@
       </x-field>
     </div>
     <div class="col-sm-4">
-      <x-select name="days[]" id="days" :options="days()->pairs()" :selected="old('days') ?? $course->days_arr ?? null" default multiple required>
+      <x-select name="days[]" id="days" :options="days()->pairs()" :selected="old('days') ?? $course->days_arr ?? null" multiple required>
         Días de clases:
       </x-select>
     </div>
