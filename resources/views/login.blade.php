@@ -4,9 +4,7 @@
     <div class="login-box my-3">
       <x-circle-logo />
       <div class="login-logo">
-        <a class="text-white" href="#">
-          <h1 class="font-weight-normal">Iniciar Sesión</h1>
-        </a>
+        <h1 class="font-weight-normal text-white">Iniciar Sesión</h1>
       </div>
       <div class="card">
         @if(session('status'))

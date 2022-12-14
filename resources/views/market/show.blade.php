@@ -2,27 +2,27 @@
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles-curso.css') }}">
   @endpush
-  {{-- TODO -> esto es simplemente un copia con un par de cambios, realmente deberíamos tener esto como un componente que se pueda usar tanto aqui como en "courses.show" --}}
+  {{-- TODO* -> esto es simplemente un copia con un par de cambios, realmente deberíamos tener esto como un componente que se pueda usar tanto aqui como en "courses.show" --}}
   <section class="container-fluid details-grid mt-3">
     <div class="card">
       <img src="{{ asset($course->image) }}" class="w-100 img-fluid img-course rounded elevation-1" alt="Imagen del curso">
       <div class="card-header">
         <h2>Información del curso</h2>
-        <span>Incripciones: {{ $course->start_ins }} al {{ $course->end_ins }}</span>
+        <span>Incripciones: {{ $course->ins_date }}</span>
       </div>
       <div class="card-body">
         <p class="description">{{ $course->description }}</p>
         <div class="border rounded d-flex flex-column p-3">
-          <span class="mb-1"><b>Fechas de clases:</b> {{ $course->start_course }} al {{ $course->end_course }}</span>
+          <span class="mb-1"><b>Fechas de clases:</b> {{ $course->date }}</span>
           <span class="mb-1"><b>Días de clases:</b> {{ $course->days_list }}.</span>
-          <span class="mb-1"><b>Hora:</b> {{ $course->start_time }} - {{ $course->end_time }}</span>
+          <span class="mb-1"><b>Hora:</b> {{ $course->hours }}</span>
           <span class="mb-1"><b>Instructor:</b> {{ $course->instructor->full_name }}</span>
           <span class="mb-1"><b>Área:</b> {{ $course->area->name }}</span>
           <span class="mb-1"><b>Estudiantes:</b> {{ $course->student_count }} / {{ $course->student_limit }}</span>
         </div>
         <div class="d-flex justify-content-between text-success mt-3">
           <h3>Monto Total</h3>
-          <h3>{{ $course->total_price }}$</h3>
+          <h3>{{ $course->total_amount }}</h3>
         </div>
         <div class="d-flex justify-content-between text-secondary">
           <h5 class="m-0">Monto de Reservación</h5>

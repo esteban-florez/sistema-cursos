@@ -29,8 +29,8 @@
       <div class="col-lg-5">
         <div class="card w-100 d-md-inline-block d-none">
           <div class="card-body d-flex flex-column justify-content-center align-items-center py-2">
-            <h3 class="mb-0" id="time">{{ date('g:i A') }}</h3>
-            <h5 class="mb-1" id="date">{{ date('d/m/Y') }}</h5>
+            <h3 class="mb-0" id="time">{{ now()->format(TF) }}</h3>
+            <h5 class="mb-1" id="date">{{ now()->format(DF) }}</h5>
           </div>
         </div>
       </div>
@@ -130,8 +130,8 @@
       <div class="col-md-5">
         <div class="card w-100 d-md-inline-block d-none mb-0">
           <div class="card-body d-flex flex-column justify-content-center align-items-center py-2">
-            <h3 class="mb-0" id="time">{{ date('g:i A') }}</h3>
-            <h5 class="mb-0" id="date">{{ date('d/m/Y') }}</h5>
+            <h3 class="mb-0" id="time">{{ now()->format(TF) }}</h3>
+            <h5 class="mb-0" id="date">{{ now()->format(DF) }}</h5>
           </div>
         </div>
         <div class="card card-dark mt-md-3">

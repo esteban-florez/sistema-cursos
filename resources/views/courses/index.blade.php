@@ -53,11 +53,11 @@
           <x-row :data="[
             $course->name,
             $course->instructor->full_name,
-            $course->start_ins . ' al ' . $course->end_ins,
-            $course->start_course . ' al ' . $course->end_course,
+            $course->ins_date,
+            $course->date,
             $course->duration_hours,
             $course->student_diff,
-            $course->total_price . ' $',
+            $course->total_amount,
             $course->phase,
             ]"
             :details="route('courses.show', $course->id)"

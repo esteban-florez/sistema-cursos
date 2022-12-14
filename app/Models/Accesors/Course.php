@@ -42,6 +42,31 @@ trait Course
         return "{$this->duration} hrs.";
     }
 
+    public function getDateAttribute()
+    {
+        return "{$this->start_course->format(DF)} al {$this->end_course->format(DF)}";
+    }
+    
+    public function getInsDateAttribute()
+    {
+        return "{$this->start_ins->format(DF)} al {$this->end_ins->format(DF)}";
+    }
+    
+    public function getHoursAttribute()
+    {
+        return "{$this->start_time->format(TF)} a {$this->end_time->format(TF)}";
+    }
+
+    public function getTotalAmount()
+    {
+        return "{$this->total_price}$";
+    }
+
+    public function getReservAmount()
+    {
+        return "{$this->reserv_price}$";
+    }
+
     public function setDaysAttribute($daysArray)
     {
         $this->attributes['days'] = collect($daysArray)
