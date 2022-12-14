@@ -33,8 +33,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-    return view('test');
+Route::get('test/{course}', function (App\Models\Course $course) {
+    return view('test', compact('course'));
 })->name('test');
 
 Route::post('test', function () {

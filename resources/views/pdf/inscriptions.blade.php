@@ -139,7 +139,7 @@
   <ul role="list">
     <li><span>Instructor:</span> {{ $course->instructor->full_name }}</li>
     <li><span>Fecha:</span> {{ $date }}</li>
-    <li><span>Fase del curso:</span> {{ $course->status }}</li>
+    <li><span>Fase del curso:</span> {{ $course->phase }}</li>
   </ul>
   <table>
     <thead>

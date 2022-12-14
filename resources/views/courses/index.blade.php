@@ -58,7 +58,7 @@
             $course->duration_hours,
             $course->student_diff,
             $course->total_price . ' $',
-            $course->status,
+            $course->phase,
             ]"
             :details="route('courses.show', $course->id)"
             :edit="route('courses.edit', $course->id)"

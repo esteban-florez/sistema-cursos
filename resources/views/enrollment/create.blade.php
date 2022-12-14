@@ -83,7 +83,7 @@
     action="{{ route('enrollment.store', $course->id) }}"
   >
     @csrf
-    <input type="hidden" name="date" value="{{ Date::now()->format('Y-m-d') }}">
+    <input type="hidden" name="date" value="{{ now()->format(DV) }}">
     <input type="hidden" name="ref" value="">
     <input type="hidden" name="amount" value="">
     <input type="hidden" name="type" value="">

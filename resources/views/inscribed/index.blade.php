@@ -16,7 +16,7 @@
         <x-inscribed.header :course="$course" :inscriptions="$inscriptions"/>
       </div>
       <div class="card list-bottom">
-        @if($course->status === 'Pre-inscripciones' || $inscriptions->total() === 0)
+        @if($course->phase === 'Pre-inscripciones' || $inscriptions->total() === 0)
           <div class="alert alert-info mx-3 mt-3 d-flex align-items-center gap-2">
             <i class="fas fa-info-circle"></i>
             <p class="h5 m-0">Este curso aún no posee estudiantes matriculados.</p>

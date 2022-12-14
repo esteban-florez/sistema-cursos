@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\Accesors\Course as Accesors;
 class Course extends Model
 {
-    use HasFactory, QueryScopes, SoftDeletes;
+    use HasFactory, QueryScopes, SoftDeletes, Accesors;
 
     /**
      * The attributes that are not mass assignable.
@@ -19,6 +17,15 @@ class Course extends Model
      * @var array<int, string>
      */
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'start_ins' => 'date',
+        'end_ins' => 'date',
+        'start_course' => 'date',
+        'end_course' => 'date',
+        'start_time' => 'datetime',
+        'end_time' => 'datetime',
+    ];
 
     protected static $searchColumn = 'name';
 
@@ -42,109 +49,13 @@ class Course extends Model
         return $this->belongsTo(Area::class);
     }
 
-    public function getStartTimeAttribute($startTime) 
-    {
-        return formatTime($startTime);
-    }
-
-    public function getEndTimeAttribute($endTime) 
-    {
-        return formatTime($endTime);
-    }
-
-    public function getStartInsAttribute($startIns) 
-    {
-        return formatDate($startIns);
-    }
-
-    public function getEndInsAttribute($endIns) 
-    {
-        return formatDate($endIns);
-    }
-
-    public function getStartCourseAttribute($startCourse) 
-    {
-        return formatDate($startCourse);
-    }
-
-    public function getEndCourseAttribute($endCourse) 
-    {
-        return formatDate($endCourse);
-    }
-
-    public function getExcerptAttribute()
-    {
-        return Str::words($this->description, 8);
-    }
-
-    public function getStudentCountAttribute()
-    {
-        // TODO -> no es muy bueno que un accesor haga esta logica, pero por ahora no lo cambiaré, simplemente intentare usarlo lo menos posible, igual que el siguiente accesor que depende en este
-        return Inscription::where('course_id', $this->id)
-            ->count();
-    }
-
-    public function getStudentDiffAttribute()
-    {
-        return "{$this->student_count} / {$this->student_limit}";
-    }
-
-    public function getDaysAttribute($daysString)
-    {
-        return collect(explode(',', $daysString))
-            ->join(', ', ' y ');
-    }
-
-    public function getDaysArrAttribute()
-    {
-        return collect(explode(',', $this->getRawOriginal('days')));
-    }
-
-    public function setDaysAttribute($daysArray)
-    {
-        $this->attributes['days'] = collect($daysArray)
-            ->join(',');
-    }
-
-    public function getStatusAttribute()
-    {
-        $now = now()->getTimestamp();
-        $insStart = Date::createFromFormat('Y-m-d', $this->getRawOriginal('start_ins'))->getTimestamp();
-        $insEnd = Date::createFromFormat('Y-m-d', $this->getRawOriginal('end_ins'))->getTimestamp();
-        $courseStart = Date::createFromFormat('Y-m-d', $this->getRawOriginal('start_course'))->getTimestamp();
-        $courseEnd = Date::createFromFormat('Y-m-d', $this->getRawOriginal('end_course'))->getTimestamp();
-
-        if($now < $insStart) {
-            return 'Pre-inscripciones';
-        }
-
-        if($now < $insEnd) {
-            return 'Inscripciones';
-        }
-
-        if($now < $courseStart) {
-            return 'Pre-curso';
-        }
-
-        if($now < $courseEnd) {
-            return 'En curso';
-        }
-
-        return 'Finalizado';
-    }
-
-    public function getDurationHoursAttribute()
-    {
-        return "{$this->duration} hrs.";
-    }
-
     public function scopeOnInscriptions($query)
     {
         // TODO -> debe haber mejores maneras de hacer estos cuatro scopeQuery, y evitar tanta repetición de codigo.
         $courses = Course::all();
         
         $ids = $courses->filter(function ($course) {
-            return $course->status === 'Inscripciones';
+            return $course->phase === 'Inscripciones';
         })->map(function ($course) {
             return $course->id;
         })->values()->all();
@@ -192,5 +103,27 @@ class Course extends Model
         })->sortKeys()->all();
 
         return $options;
+    }
+
+    private function currentPhase()
+    {
+        $now = now()->getTimestamp();
+        $startIns = $this->start_ins->getTimestamp();
+        $endIns = $this->end_ins->getTimestamp();
+        $startCourse = $this->start_course->getTimestamp();
+        $endCourse = $this->end_course->getTimestamp();
+
+        return match(true) {
+            $now < $startIns => 'Pre-inscripciones',
+            $now < $endIns => 'Inscripciones',
+            $now < $startCourse => 'Pre-curso',
+            $now < $endCourse => 'En curso',
+            default => 'Finalizado',
+        };
+    }
+
+    private function studentCount()
+    {
+        return $this->students()->count();
     }
 }

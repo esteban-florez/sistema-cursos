@@ -40,7 +40,7 @@ class RemoveUnconfirmedInscriptions extends Command
     {
         $courses = Course::all();
         $courses->reject(function ($course) {
-            return $course->status === 'Inscripciones';
+            return $course->phase === 'Inscripciones';
         })->each(function ($course) {
             $unconfirmed = $course->inscriptions()
                 ->whereNull('inscriptions.confirmed_at');

@@ -24,7 +24,7 @@ class EnrollmentMiddleware
             return redirect()->route('market.index');
         }
 
-        if ($course->status !== 'Inscripciones') {
+        if ($course->phase !== 'Inscripciones') {
             return redirect()->route('market.index');
         }
 

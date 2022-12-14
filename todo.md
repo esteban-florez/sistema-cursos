@@ -56,6 +56,7 @@
 
 - Hacer tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
 - Pasar todo a casts de dates.
+- Arreglar fecha y hora en el Inicio.
 - Usar "Inicio" en vez de "Home" en el sidebar.
 - Fecha de inscripción en cursos con letra más grande.
 - Orden cronológico en los formatos (basicamente, que cédula salga primero en las credenciales y así).
