@@ -7,7 +7,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,6 +36,9 @@ class AppServiceProvider extends ServiceProvider
         Collection::macro('pairs', fn() =>
             $this->mapWithKeys(fn($value) => 
                 [$value => $value]));
+
+        Collection::macro('ids', fn() => 
+            $this->map(fn($model) => $model->id));
 
         Paginator::useBootstrap();
     }

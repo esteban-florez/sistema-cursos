@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Accesors\Course as Accesors;
+
 class Course extends Model
 {
     use HasFactory, QueryScopes, SoftDeletes, Accesors;
@@ -52,44 +53,39 @@ class Course extends Model
     public function scopeOnInscriptions($query)
     {
         // TODO -> debe haber mejores maneras de hacer estos cuatro scopeQuery, y evitar tanta repetición de codigo.
-        $courses = Course::all();
+        $courses = self::all();
         
-        $ids = $courses->filter(function ($course) {
-            return $course->phase === 'Inscripciones';
-        })->map(function ($course) {
-            return $course->id;
-        })->values()->all();
+        $ids = $courses->filter(fn($course) => $course->phase === 'Inscripciones')
+            ->ids();
         
         return $query->whereIn('id', $ids);
     }
 
     public function scopeAvailables($query)
     {
-        $courses = Course::withCount('students')->get();
+        $courses = self::withCount('students')->get();
         
-        $ids = $courses->filter(function ($course) {
-            return $course->students_count < $course->student_limit;
-        })->map(function ($course) {
-            return $course->id;
-        })->values()->all();
+        $ids = $courses->filter(fn($course) => 
+            $course->students_count < $course->student_limit)
+            ->ids();
         
         return $query->whereIn('id', $ids);
     }
     
     public function scopeNotBoughtBy($query, $student)
     {
-        $ids = $student->inscriptions->map(function ($inscription) {
-            return $inscription->course_id;
-        });
+        $ids = $student
+            ->inscriptions
+            ->ids();
 
         $query->whereNotIn('id', $ids);
     }
 
     public function scopeBoughtBy($query, $student)
     {
-        $ids = $student->inscriptions->map(function ($inscription) {
-            return $inscription->course_id;
-        });
+        $ids = $student
+            ->inscriptions
+            ->ids();
         
         $query->whereIn('id', $ids);
     }
@@ -98,9 +94,9 @@ class Course extends Model
     {
         $areas = self::all(['id', 'name']);
 
-        $options = $areas->mapWithKeys(function ($area) {
-            return [$area->id => $area->name];
-        })->sortKeys()->all();
+        $options = $areas->mapWithKeys(fn($area) => [$area->id => $area->name])
+            ->sortKeys()
+            ->all();
 
         return $options;
     }
