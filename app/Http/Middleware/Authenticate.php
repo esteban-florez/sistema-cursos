@@ -19,7 +19,7 @@ class Authenticate extends Middleware
      */
     public function handle($request, Closure $next, ...$guards)
     {
-        $guards = empty($guards) ? ['instructor', 'student'] : $guards;
+        $guards = empty($guards) ? guards() : $guards;
 
         $this->authenticate($request, $guards);
 

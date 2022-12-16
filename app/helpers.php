@@ -35,6 +35,12 @@ if (!function_exists('getCurrentRole')) {
     }
 }
 
+if (!function_exists('checkRole')) {
+    function checkRole($role) {
+        return $role === getCurrentRole();
+    }
+}
+
 if (!function_exists('user')) {
     /**
      * Returns current logged user.
