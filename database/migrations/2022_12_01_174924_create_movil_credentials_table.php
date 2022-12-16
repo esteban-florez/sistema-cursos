@@ -15,9 +15,9 @@ class CreateMovilCredentialsTable extends Migration
     {
         Schema::create('movil_credentials', function (Blueprint $table) {
             $table->id();
-            $table->string('phone');
-            $table->string('bank');
             $table->string('ci');
+            $table->string('bank');
+            $table->string('phone');
             $table->timestamps();
         });
     }

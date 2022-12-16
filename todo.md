@@ -55,7 +55,6 @@
 ## Esteban: 
 
 - Arreglar todos los in:talcosa en las reglas de validación de todo el proyecto.
-- Orden cronológico en los formatos (basicamente, que cédula salga primero en las credenciales y así).
 - Añadir logo de la universidad a los formatos.
 - Reporte de pago (IG)
 - Añadir edición de pagos (IG).
