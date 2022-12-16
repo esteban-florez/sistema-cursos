@@ -2,7 +2,7 @@ h3, h4, h5 {
   margin: 0px;
 }
 
-.img-club {
+.img-course {
   height: 17rem;
   object-fit: cover;
 }
@@ -11,6 +11,15 @@ h3, h4, h5 {
   font-size: 1.1rem;
   font-weight: normal;
   text-align: justify;
+}
+
+.progress {
+	height: 1.5rem;
+}
+
+.progress-bar {
+	font-weight: bold;
+	font-size: .9rem;
 }
 
 @media screen and (min-width: 576px) {

@@ -1,6 +1,6 @@
 <x-layout.main title="Curso de {{ Str::title($club->name) }}">
   @push ('css')
-    <link rel="stylesheet" href="{{ asset('css/detalles-club.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">
   @endpush
 
   <section class="container-fluid details-grid mt-3">
