@@ -54,10 +54,7 @@
 
 ## Esteban: 
 
-- Fecha de inscripción en cursos con letra más grande.
 - Arreglar todos los in:talcosa en las reglas de validación de todo el proyecto.
-- Arreglar fecha y hora en el Inicio.
-- Usar "Inicio" en vez de "Home" en el sidebar.
 - Orden cronológico en los formatos (basicamente, que cédula salga primero en las credenciales y así).
 - Añadir logo de la universidad a los formatos.
 - Reporte de pago (IG)

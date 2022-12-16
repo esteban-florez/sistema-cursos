@@ -1,32 +1,52 @@
-let html = document.getElementById("time");
-let date = document.getElementById("date");
+const time = document.querySelector('#time')
+const date = document.querySelector('#date')
 
-monthNames = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+const monthNames = [
+	'enero',
+	'febrero',
+	'marzo',
+	'abril',
+	'mayo',
+	'junio',
+	'julio',
+	'agosto',
+	'septiembre',
+	'octubre',
+	'noviembre',
+	'diciembre',
+]
 
-const update = () => {
-	time = new Date();
-
-	day = time.getDate();
-	month = time.getMonth();
-	year = time.getFullYear();
-	hours = time.getHours();
-	minutes = time.getMinutes();
-	day_night = "AM";	
-
-	if(hours>12)
-		day_night = "PM";
-		hours = hours - 12;
-
-	if(hours<10)
-		hours = "0" + hours;
-
-	if(minutes<10)
-		minutes = "0" + minutes;
-
-	html.innerHTML = hours + ":" + minutes + " " + day_night;
-	date.innerHTML = day + " de " + monthNames[month] + " del " + year;
+const appendZero = (num) => {
+	let str = `${num}`
+	return str.length < 2 ? str = `0${str}` : str
 }
 
-setInterval(update, 1000);
+const updateDate = () => {
+	const currentTime = new Date()
+	const day = currentTime.getDate()
+	const month = currentTime.getMonth()
+	const year = currentTime.getFullYear()
 
-update();
+	date.innerHTML = `${day} de ${monthNames[month]} del ${year}` 
+}
+
+const updateTime = () => {
+	const currentTime = new Date()
+
+	let hours = currentTime.getHours()
+	let minutes = currentTime.getMinutes()
+	let stamp = 'AM'
+
+	if (hours > 12) {
+		hours -= 12
+		stamp = 'PM'
+	}
+
+	time.innerHTML = `${appendZero(hours)}:${appendZero(minutes)} ${stamp}`
+}
+
+setInterval(updateTime, 1000)
+setInterval(updateDate, 60000)
+
+updateDate()
+updateTime()
