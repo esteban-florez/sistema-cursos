@@ -14,8 +14,8 @@ class PaymentController extends Controller
     {
         // TODO -> n + 1 queries here
         $filters = Input::getFilters();
-        $sort = $request->input('sort', '');
-        $search = $request->input('search', '');
+        $sort = $request->input('sort');
+        $search = $request->input('search');
         
         $payments = Payment::filters($filters)
             ->search($search)

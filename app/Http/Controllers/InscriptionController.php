@@ -12,7 +12,7 @@ class InscriptionController extends Controller
     public function index(Request $request)
     {
         $course = Course::findOrFail($request->input('course'));
-        $search = $request->input('search', '');
+        $search = $request->input('search');
         // Quizas ya no ponga dos controladores separados, no quedo tan fea la solución, o quizá si, no sé
         $inscriptions = Inscription::with('payment', 'student')
             ->whereBelongsTo($course)

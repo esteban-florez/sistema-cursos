@@ -10,10 +10,10 @@ class MarketController extends Controller
     public function index(Request $request)
     {
         $student = user();
-        $sortColumn = $request->input('sort', '');
-        $search = $request->input('search', '');
+        $sortColumn = $request->input('sort');
+        $search = $request->input('search');
 
-        $courses = Course::availables($student)
+        $courses = Course::availables()
             ->notBoughtBy($student)
             ->onInscriptions()
             ->search($search)

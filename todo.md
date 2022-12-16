@@ -54,25 +54,24 @@
 
 ## Esteban: 
 
-- Hacer tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
-- Pasar todo a casts de dates.
+- Fecha de inscripción en cursos con letra más grande.
+- Arreglar todos los in:talcosa en las reglas de validación de todo el proyecto.
 - Arreglar fecha y hora en el Inicio.
 - Usar "Inicio" en vez de "Home" en el sidebar.
-- Fecha de inscripción en cursos con letra más grande.
 - Orden cronológico en los formatos (basicamente, que cédula salga primero en las credenciales y así).
 - Añadir logo de la universidad a los formatos.
-- Analizar la situación del home. (Muestra cursos no disponibles, y también algunos en los que ya se registró el usuario).
-- Hacer FormRequests classes.
-
-## Tareas a largo plazo:
-
-- Bug en edición de cosa con fechas, horas y días.
 - Reporte de pago (IG)
-- Arreglar búsquedas de cursos con código (IG).
-- Añadir edición de pagos (ver indicaciones generales).
+- Añadir edición de pagos (IG).
 - Validaciones en fechas de curso, que sean coherentes.
 - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Mejoras de formularios (validación, comodidad, formatos) con JavaScript en el Frontend.
+- Arreglar búsquedas de cursos con código (IG).
+
+## Tareas a largo plazo:
+
+- Analizar la situación del home. (Muestra cursos no disponibles, y también algunos en los que ya se registró el usuario).
+- Hacer tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
+- Bug en edición de cosa con fechas, horas y días.
 - Terminar el perfil, tanto de estudiante como instructor, con cursos y clubes "propios".
 - Hacer las breadcrumbs.
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).

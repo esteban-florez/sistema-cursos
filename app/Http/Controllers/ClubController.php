@@ -17,8 +17,8 @@ class ClubController extends Controller
     public function index(Request $request)
     {
         $filters = Input::getFilters();
-        $search = $request->input('search', '');
-        $sortColumn = $request->input('sort', '');
+        $search = $request->input('search');
+        $sortColumn = $request->input('sort');
 
         $clubs = Club::filters($filters)
             ->search($search)

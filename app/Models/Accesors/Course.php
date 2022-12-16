@@ -57,12 +57,12 @@ trait Course
         return "{$this->start_time->format(TF)} a {$this->end_time->format(TF)}";
     }
 
-    public function getTotalAmount()
+    public function getTotalAmountAttribute()
     {
         return "{$this->total_price}$";
     }
 
-    public function getReservAmount()
+    public function getReservAmountAttribute()
     {
         return "{$this->reserv_price}$";
     }

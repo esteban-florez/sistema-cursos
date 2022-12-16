@@ -18,8 +18,8 @@ class StudentController extends Controller
     public function index(Request $request)
     {
         $filters = Input::getFilters();
-        $sortColumn = $request->input('sort', '');
-        $search = $request->input('search', '');
+        $sortColumn = $request->input('sort');
+        $search = $request->input('search');
 
         $students = Student::filters($filters)
             ->search($search)

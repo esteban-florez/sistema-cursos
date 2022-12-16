@@ -19,8 +19,8 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $filters = Input::getFilters();
-        $search = $request->input('search', '');
-        $sortColumn = $request->input('sort', '');
+        $search = $request->input('search');
+        $sortColumn = $request->input('sort');
         $areas = Area::getOptions();
 
         $courses = Course::filters($filters)
