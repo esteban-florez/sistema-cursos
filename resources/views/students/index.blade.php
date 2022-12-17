@@ -45,7 +45,7 @@
             $student->full_ci,
             $student->tel,
             $student->email,
-            $student->is_upta,
+            $student->upta,
             ]"
             :details="route('students.show', $student->id)"
             :edit="route('students.edit', $student->id)"

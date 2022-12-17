@@ -9,12 +9,12 @@ use App\Models\Membership;
 use App\Models\Inscription;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
+use App\Models\Accesors\Student as Accesors;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Date;
 
 class Student extends Authenticatable
 {
-    use HasFactory, Notifiable, UserAccesors, QueryScopes, SoftDeletes;
+    use HasFactory, Notifiable, UserAccesors, QueryScopes, SoftDeletes, Accesors;
 
     /**
      * The attributes that are not mass assignable.
@@ -40,18 +40,11 @@ class Student extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birth' => 'datetime',
     ];
 
     protected static $searchColumn = 'first_name';
 
-    
-    // TODO -> se me ocurrió poner las estructuras como esta en los respectivos modelos, de modo que así se puedan usar, quizás solo dentro de los modelos ("protected"), o en todos lados, como para pasar datos a selects y tal ("public"). Por ahora sigamos como vamos xD
-    protected static $grades = [
-        'school' => 'Primaria',
-        'high' => 'Bachillerato',
-        'tsu' => 'TSU',
-        'college' => 'Pregrado'
-    ];
     /**
      * Get all the memberships of a Student.
      * 
@@ -82,73 +75,5 @@ class Student extends Authenticatable
         ]);
 
         return $inscription;
-    }
-
-    /**
-     * Accesor for the "name" attribute of a Student.
-     * 
-     * @return string
-     */
-    public function getNameAttribute()
-    {
-        return $this->first_name;
-    }
-    
-    /**
-     * Accesor for the "lastname" attribute of a Student.
-     * 
-     * @return string
-     */
-    public function getLastnameAttribute()
-    {
-        return $this->first_lastname;
-    }
-
-    public function getNamesAttribute()
-    {
-        return "{$this->first_name} {$this->second_name}";
-    }
-
-    public function getLastnamesAttribute()
-    {
-        return "{$this->first_lastname} {$this->second_lastname}";
-    }
-
-    public function getFullNameAttribute()
-    {
-        return "{$this->first_name} {$this->first_lastname}";
-    }
-
-    /**
-     * Accesor for the "role" attribute of a Student.
-     * 
-     * @return string
-     */
-    public function getRoleAttribute()
-    {
-        return 'Estudiante';
-    }
-
-    public function getIsUptaAttribute($isUpta)
-    {
-        return $isUpta ? 'Sí' : 'No';
-    }
-
-    public function getGradeAttribute($grade)
-    {
-        $grades = [
-            'school' => 'Primaria',
-            'high' => 'Bachillerato',
-            'tsu' => 'TSU',
-            'college' => 'Pregrado'
-        ];
-        
-        return $grades[$grade];
-    }
-
-    public function getAgeAttribute()
-    {
-        $birth = Date::createFromFormat('Y-m-d', $this->birth);
-        return now()->year - $birth->year;
     }
 }

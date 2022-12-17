@@ -21,7 +21,7 @@
         :data="[
             $student->full_name,
             $student->full_ci,
-            $student->is_upta,
+            $student->upta,
             $inscription->payment->status,
             $inscription->status,
             $inscription->approved,
