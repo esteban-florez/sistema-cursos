@@ -115,3 +115,9 @@ if (!function_exists('accountTypes')) {
         ]);
     }
 }
+
+if (!function_exists('base64')) {
+    function base64($path) {
+        return base64_encode(file_get_contents(public_path($path)));
+    }
+}

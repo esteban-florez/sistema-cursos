@@ -2,7 +2,6 @@
 
 @php
   if(isset($user)) {
-    $gender = $user->getRawOriginal('gender');
     $phone = (int) $user->phone;
   }
   $back = $type === 'instructor' ? 'instructors.index' : 'students.index' ; 
@@ -110,7 +109,7 @@
         </x-field>
       </div>
       <div class="{{ $type === 'student' ? 'col-md-4' : 'col-md-6' }}">
-        <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $gender ?? null" default required>
+        <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $user->gender ?? null" default required>
           Sexo:
         </x-select>
       </div>

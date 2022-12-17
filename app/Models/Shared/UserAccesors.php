@@ -24,16 +24,10 @@ trait UserAccesors
         return implode($phone);
     }
 
-    public function getGenderAttribute($gender)
-    {
-        return $gender === 'male' ? 'Masculino' : 'Femenino';
-    }
-
     public function getImageAttribute($image)
     {
         return $image ?? 'img/user-placeholder.png';
     }
-    // TODO -> crear un getRawGender accesor
 
     public function setPasswordAttribute($password)
     {

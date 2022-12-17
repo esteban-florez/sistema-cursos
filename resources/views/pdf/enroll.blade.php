@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{ $student->full_name }} - Planilla de Inscripción</title>
   <style>
     /* Box sizing rules */
     *,
@@ -49,12 +44,6 @@
       text-decoration-skip-ink: auto;
     }
 
-    /* Make images easier to work with */
-    img,
-    picture {
-      max-width: 100%;
-    }
-
     /* Inherit fonts for inputs and buttons */
     input,
     button,
@@ -78,6 +67,7 @@
       width: 700px;
       margin: 0 auto;
       position: relative;
+      left: 3rem;
     }
 
     .bold-italic {
@@ -154,9 +144,17 @@
       position: absolute;
       left: 35px;
     }
+
+    img {
+      position: absolute;
+      top: 3rem;
+      left: 1rem;
+      width: 6rem;
+    }
   </style>
 </head>
 <body>
+  <img src="data:image/png;base64, {{ $logo }}"/>
   <header>
     <p>REPUBLICA BOLIVARIANA DE VENEZUELA</p>
     <p>MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA</p>
@@ -216,4 +214,3 @@
     </tbody>
   </table>
 </body>
-</html>

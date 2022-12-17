@@ -55,7 +55,6 @@
 ## Esteban: 
 
 - Arreglar todos los in:talcosa en las reglas de validación de todo el proyecto.
-- Añadir logo de la universidad a los formatos.
 - Reporte de pago (IG)
 - Añadir edición de pagos (IG).
 - Validaciones en fechas de curso, que sean coherentes.

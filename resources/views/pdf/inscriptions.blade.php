@@ -44,13 +44,6 @@
         text-decoration-skip-ink: auto;
       }
   
-      /* Make images easier to work with */
-      img,
-      picture {
-        max-width: 100%;
-        display: block;
-      }
-  
       /* Inherit fonts for inputs and buttons */
       input,
       button,
@@ -87,6 +80,7 @@
       width: 700px;
       margin: 0 auto;
       position: relative;
+      left: 3rem;
     }
 
     .bold-italic {
@@ -125,9 +119,17 @@
     span {
       font-weight: bold;
     }
+
+    img {
+      position: absolute;
+      top: 2rem;
+      left: 3rem;
+      width: 6rem;
+    }
   </style>
 </head>
 <body>
+  <img src="data:image/png;base64, {{ $logo }}"/>
   <header>
     <p>REPUBLICA BOLIVARIANA DE VENEZUELA</p>
     <p>MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA</p>
@@ -160,7 +162,7 @@
         <tr>
           <td>{{ $student->full_name }}</td>
           <td>{{ $student->full_ci }}</td>
-          <td>{{ $student->is_upta }}</td>
+          <td>{{ $student->upta }}</td>
           <td>{{ $inscription->payment->status }}</td>
           <td>{{ $inscription->status }}</td>
           <td>{{ $inscription->approved }}</td>

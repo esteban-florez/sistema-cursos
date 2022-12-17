@@ -83,6 +83,7 @@ class EnrollmentController extends Controller
             'student' => $student,
             'course' => $course,
             'date' => now()->format('d/m/Y'),
+            'logo' => base64('img/logo-upta.png'),
         ]);
 
         $filename = "{$student->full_name} - Planilla de Inscripción.pdf"; 

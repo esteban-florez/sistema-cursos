@@ -39,6 +39,7 @@ class InscriptionController extends Controller
             'inscriptions' => $inscriptions,
             'course' => $course,
             'date' => now()->format('d/m/Y'),
+            'logo' => base64('img/logo-upta.png'),
         ])->setPaper('a4', 'landscape');
 
         $filename = "{$course->name} - Matrícula.pdf"; 
