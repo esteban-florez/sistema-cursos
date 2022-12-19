@@ -8,16 +8,24 @@
       </div>
       <div class="card">
         @if(session('status'))
-          <div class="alert alert-primary" role="alert">
+          <div class="alert alert-primary m-0" role="alert">
             Recuperación de contraseña exitosa
+          </div>
+        @endif
+        @if(session('registered'))
+          <div class="alert alert-primary m-0" role="alert">
+            {{ session('registered') }}
           </div>
         @endif
         <div class="card-body login-card-body">
           <form action="{{ route('auth') }}" method="POST">
             @csrf
             @error('email')
-            <div class="alert alert-danger">
-              <p>Crendenciales invalidas</p>
+            <div class="alert alert-danger" id="error" role="alert">
+              <p class="m-0">Crendenciales invalidas</p>
+              <x-button data-dismiss="alert">
+                <i class="fas fa-times"></i>
+              </x-button>
             </div>
             @enderror
             <div class="input-group mb-3">

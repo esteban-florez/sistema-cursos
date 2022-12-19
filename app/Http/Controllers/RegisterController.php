@@ -28,14 +28,16 @@ class RegisterController extends Controller
             'ci_type' => ['required', 'in:V,E'],
             'email' => ['required', 'email', 'max:50', 'unique:students'],
             'birth' => ['required', 'date'],
-            'gender' => ['required', 'in:male,female'],
+            'gender' => ['required', 'in:'.genders()->join(',')],
             'phone' => ['required', 'digits:11'],
-            'grade' => ['required', 'in:school,high,tsu,college'],
+            'grade' => ['required', 'in:'.grades()->join(',')],
             'address' => ['required', 'string', 'max:255'],
         ]);
-        
+
         Student::create($student);
 
-        return redirect()->route('login');
+        return redirect()
+            ->route('login')
+            ->with('registered', '¡Te has registrado con éxito!');
     }
 }
