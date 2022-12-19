@@ -57,11 +57,15 @@ class ClubController extends Controller
 
     public function store(Request $request) 
     {
+        // TODO -> pasar a FormRequest y poner bien
+        $days = days()->join(',');
+        $daysRule = "in:{$days}";
+
         $data = $request->validate([
             'name' => ['required', 'max:30'],
             'image' => ['required', 'file', 'image', 'max:2048'],
             'description' => ['required', 'max:255'],
-            'day' => ['required', 'in:mo,tu,we,th,fr,sa,su'],
+            'day' => ['required', $daysRule],
             'start_hour' => ['required'],
             'end_hour' => ['required'],
             'instructor_id' => ['required', 'integer', 'numeric'],
@@ -119,11 +123,15 @@ class ClubController extends Controller
      */
     public function update(Request $request, Club $club)
     {
+        // TODO -> pasar a FormRequest y poner bien
+        $days = days()->join(',');
+        $daysRule = "in:{$days}";
+
         $data = $request->validate([
             'name' => ['required', 'max:30'],
-            'image' => ['required', 'file', 'image', 'max:2048'],
+            'image' => ['nullable', 'file', 'image', 'max:2048'],
             'description' => ['required', 'max:255'],
-            'day' => ['required', 'in:mo,tu,we,th,fr,sa,su'],
+            'day' => ['required', $daysRule],
             'start_hour' => ['required'],
             'end_hour' => ['required'],
             'instructor_id' => ['required', 'integer', 'numeric'],

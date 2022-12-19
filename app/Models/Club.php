@@ -19,6 +19,11 @@ class Club extends Model
 
     protected static $searchColumn = 'name';
 
+    protected $casts = [
+        'start_hour' => 'datetime',
+        'end_hour' => 'datetime',
+    ];
+
     public function instructor()
     {
         return $this->belongsTo(Instructor::class);
@@ -34,14 +39,9 @@ class Club extends Model
         return $this->belongsTo(Inventory::class);
     }
 
-    public function getStartHourAttribute($startHour) 
+    public function getHourAttribute()
     {
-        return formatTime($startHour);
-    }
-
-    public function getEndHourAttribute($endHour) 
-    {
-        return formatTime($endHour);
+        return "{$this->start_hour->format(TF)} a {$this->end_hour->format(TF)}";
     }
 
     public function getExcerptAttribute()

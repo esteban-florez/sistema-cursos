@@ -49,8 +49,8 @@
             $club->name,
             $club->instructor->full_name,
             $club->day,
-            $club->start_hour,
-            $club->end_hour,
+            $club->start_hour->format(TF),
+            $club->end_hour->format(TF),
             ]"
             :details="route('club.show', $club->id)"
             :edit="route('club.edit', $club->id)"
