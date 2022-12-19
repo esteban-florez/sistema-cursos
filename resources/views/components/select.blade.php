@@ -30,5 +30,10 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
       <option value="{{ $value }}"@if($isSelected)selected @endif>{{ $label }}</option>
     @endforeach
   </select>
+  @error($attributes->get('name'))
+    <p class="text-danger">
+      {{ $message }}
+    </p>
+  @enderror
   {{ $extra ?? '' }}
 </div>

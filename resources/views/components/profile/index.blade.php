@@ -39,7 +39,7 @@
             <x-profile.data :data="$user->full_ci">
               Cedula de Identidad:
             </x-profile.data>
-            <x-profile.data :data="$user->birth">
+            <x-profile.data :data="$user->birth->format(DF)">
               Fecha de Nacimiento:
               {{-- TODO -> mostrar fecha bonita en español --}}
             </x-profile.data>

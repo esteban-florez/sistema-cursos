@@ -10,7 +10,7 @@ function onlineTemplate({title, data, amount, currency}) {
   const lowerTitle = title.toLowerCase();
   const isTransfer = title === 'Transferencia'; 
   const article = isTransfer ? 'la' : 'el';
-  console.log(data)
+
   let paymentData = data.reduce((prev, next) => {
     prev += generateDataPair(next);
     return prev;

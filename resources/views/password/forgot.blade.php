@@ -9,7 +9,7 @@
       <div class="card">
         @if(session('status'))
           <div class="alert alert-primary" role="alert">
-            {{session('status') === 'passwords.sent' ? 'El link se ha enviado a su correo' : 'Hubo un error en el envío del correo, intente mas tarde'}}
+            {{session('status') === 'passwords.sent' ? 'El enlace para la recuperación de contraseña fué enviado tu correo.' : 'Hubo un error en el envío del correo, intenta mas tarde.'}}
           </div>
         @endif
         <div class="card-body login-card-body">
