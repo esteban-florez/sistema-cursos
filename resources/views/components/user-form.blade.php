@@ -1,9 +1,7 @@
 @props(['type', 'pnfs' => null, 'areas' => null, 'image' => false, 'action', 'user' => null, 'edit' => false])
 
 @php
-  if(isset($user)) {
-    $phone = (int) $user->phone;
-  }
+  // TODO -> aqui te redirige patras dependiendo, pero incluso en el registro normal de estudiantes te redirige a students.index lo cual no tiene sentido, pero funciona igual debido a los middleware, igual hay que arreglarlo
   $back = $type === 'instructor' ? 'instructors.index' : 'students.index' ; 
 @endphp
 
@@ -104,7 +102,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? $user->birth ?? '' }}" required>
+        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? $user?->birth->format(DV) ?? '' }}" required>
           Fecha de nacimiento:
         </x-field>
       </div>
@@ -114,7 +112,7 @@
         </x-select>
       </div>
       <div class="{{ $type === 'student' ? 'col-md-4' : 'col-md-6' }}">
-        <x-field type="number" name="phone" id="phone" placeholder="04128970019" value="{{ old('phone') ?? $phone ?? '' }}" required>
+        <x-field type="number" name="phone" id="phone" placeholder="04128970019" value="{{ old('phone') ?? $user->phone ?? '' }}" required>
           Número de Teléfono: 
         </x-field>
       </div>
