@@ -33,16 +33,15 @@ class EnrollmentController extends Controller
         if ($type === 'transfer' || $type === 'movil') {
             if ($request->input('ref') === null) {
                 return redirect()
-                    ->back()
-                    ->withDanger('El campo de referencia no puede estar vacío.');
+                ->back()
+                ->withDanger('El campo de referencia no puede estar vacío.');
             }
         }
-
+        
         $data = $request->validate([
-            'date' => ['required', 'date'], // TODO -> esto no es necesario ya
-            'ref' => ['nullable', 'integer', 'numeric'],
+            'ref' => ['nullable', 'integer', 'numeric', 'max:10', 'min:4'],
             'amount' => ['required', 'numeric'],
-            'type' => ['required', 'in:movil,transfer,dollars,bs'],
+            'type' => ['required', 'in:'.payTypes()->join(',')],
         ]);
 
         $inscription = user()->enroll($course);

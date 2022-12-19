@@ -3,7 +3,8 @@ function getPrices(currency) {
 	const amount = +form.dataset.amount;
 	
 	if (currency !== '$') {
-		return amount * +localStorage.getItem('usd-price')
+		const currentPrice = +localStorage.getItem('usd-price') 
+		return (amount * currentPrice).toFixed(2)
 	}
 
 	return amount;

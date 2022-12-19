@@ -1,15 +1,39 @@
-@props(['id', 'type', 'sm' => false, 'color' => null])
+@props(['id', 'value', 'sm' => false, 'color' => null])
 
 @php
-  $isConfirmed = $type === 'confirmed';
-  $icon = $isConfirmed ? 'check' : 'times';
+  // TODO -> ponerle un nombre serio a esta variable antes de presentar final JAKSDJASKD
+  $mapeoPapa = [
+    'Confirmado' => [
+      'icon' => 'check',
+      'color' => 'success',
+    ],
+    'Rechazado' => [
+      'icon' => 'times',
+      'color' => 'warning',
+    ],
+    'Pendiente' => [
+      'icon' => 'clock',
+      'color' => 'secondary',
+    ],
+  ];
+
+  $content = match ($value) {
+    'Confirmado' => 'Confirmar',
+    'Rechazado' => 'Rechazar',
+    default => $value, 
+  }
 @endphp
 
 <form method="POST" class="d-inline" action="{{ route('pending.update', $id) }}">
   @csrf
   @method('PUT')
-  <input type="hidden" name="status" value="{{ $type }}">
-  <x-button class="{{ $sm ? 'btn-sm' : '' }}" type="submit" :color="$color" :icon="$icon">
-    {{ $isConfirmed ? 'Confirmar' : 'Rechazar' }}
+  <input type="hidden" name="status" value="{{ $value }}">
+  <x-button 
+    :color="$color ?? $mapeoPapa[$value]['color']"
+    :icon="$mapeoPapa[$value]['icon']"
+    class="{{ $sm ? 'btn-sm' : '' }}"
+    type="submit"
+  >
+    {{ $content }}
   </x-button>
 </form>

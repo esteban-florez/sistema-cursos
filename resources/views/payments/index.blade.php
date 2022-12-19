@@ -54,12 +54,13 @@
             ]"
             :delete="route('payments.destroy', $payment->id)"
           >
-            @if($payment->status === 'Pendiente')
             <x-slot name="extraActions">
-              <x-payment.status-button :id="$payment->id" type="confirmed" color="success" sm/>
-              <x-payment.status-button :id="$payment->id" type="rejected" color="warning" sm/>
+              @foreach (payStatuses() as $status)
+                @unless($status === $payment->status)
+                  <x-payment.status-button :id="$payment->id" :value="$status" sm/>
+                @endunless
+              @endforeach
             </x-slot>
-            @endif
           </x-row>
         @empty
           {{-- TODO -> arreglar el empty state que se vea bonito --}}

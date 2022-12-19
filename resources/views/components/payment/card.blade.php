@@ -30,6 +30,6 @@
       Ver detalles
     </a>
   </div>
-  <x-payment.status-button :id="$payment->id" type="confirmed" color="success"/>
-  <x-payment.status-button :id="$payment->id" type="rejected" color="danger"/>
+  <x-payment.status-button :id="$payment->id" value="Confirmado" />
+  <x-payment.status-button :id="$payment->id" value="Rechazado" color="danger"/>
 </div>

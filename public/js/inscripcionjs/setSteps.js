@@ -66,13 +66,14 @@ function sendForm(_, stepsOptions) {
 
 function getPayType({type, currency, title}) {
   const types = {
+    // TODO -> hay que reworkear esto para que sea menos enredado e lleno de cosas innecesarias
     cash: {
-      $: 'dollars',
-      'Bs.D.': 'bs',
+      $: 'Efectivo ($)',
+      'Bs.D.': 'Efectivo (Bs.D.)',
     },
     online: {
-      'Pago Móvil': 'movil',
-      'Transferencia': 'transfer',
+      'Pago Móvil': 'Pago Móvil',
+      'Transferencia': 'Transferencia',
     },
   }
 

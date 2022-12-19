@@ -11,7 +11,7 @@ class PendingPaymentController extends Controller
     {
         // TODO -> n + 1 queries here
         $payments = Payment::with('inscription')
-            ->where('status', 'pending')
+            ->where('status', 'Pendiente')
             ->paginate(9)
             ->withQueryString();
 
@@ -20,15 +20,17 @@ class PendingPaymentController extends Controller
         ]);
     }
 
+    // TODO -> pasar este método a un PaymentStatusController
     public function update(Request $request, Payment $payment)
     {
         $data = $request->validate([
-            'status' => ['required', 'in:confirmed,rejected'],
+            'status' => ['required', 'in:Confirmado,Rechazado,Pendiente'],
         ]);
         
-        $operation = $request->input('status') === 'confirmed' ? 'confirmado' : 'rechazado';
         $payment->update($data);
         
+        $operation = lcfirst($request->input('status'));
+
         return redirect()
             ->back()
             ->withSuccess("El pago se ha {$operation} de forma exitosa.");

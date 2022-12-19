@@ -22,3 +22,4 @@
 - Crear rol de preparador, posible rol de secretaria.
 - Traducir los errores de validación. Y mejorar como se muestran en algunas vistas.
 - Correos con Gmail.
+- Más errores de validación en Enrollment@store
