@@ -1,4 +1,4 @@
-<x-layout.main title="Registrar Curso">
+<x-layout.main title="Registrar curso">
   <section class="container-fluid">
     <x-alerts type="success" icon="check"/>
     <div class="card mx-sm-3">

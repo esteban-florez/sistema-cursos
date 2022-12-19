@@ -33,7 +33,7 @@
         <h5 class="m-0">{{ $course->reserv_amount }}</h5>
       </div>
       <div class="d-flex justify-content-between align-items-center mt-3">
-        @is('instructor')
+        @isnt('student')
           <x-button
             :url="route('inscriptions.index', ['course' => $course->id])"
             class="btn-lg"
