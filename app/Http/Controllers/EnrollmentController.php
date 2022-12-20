@@ -37,9 +37,9 @@ class EnrollmentController extends Controller
                 ->withDanger('El campo de referencia no puede estar vacío.');
             }
         }
-        
+
         $data = $request->validate([
-            'ref' => ['nullable', 'integer', 'numeric', 'max:10', 'min:4'],
+            'ref' => ['nullable', 'integer', 'numeric', 'digits_between:4,10'],// TODO -> aqui pueden pasar cosas raras si incluyen uno o más ceros al inicio de la referencia
             'amount' => ['required', 'numeric'],
             'type' => ['required', 'in:'.payTypes()->join(',')],
         ]);
