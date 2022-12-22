@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAreaRequest;
 use App\Models\Area;
 use App\Models\PNF;
 use Illuminate\Http\Request;
@@ -25,12 +26,9 @@ class AreaController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreAreaRequest $request)
     {
-        $data = $request->validate([
-            'name' => ['required', 'unique:areas', 'max:255'],
-            'pnf_id' => ['required']
-        ]);
+        $data = $request->validated();
 
         Area::create($data);
 
@@ -52,10 +50,7 @@ class AreaController extends Controller
 
     public function update(Request $request, Area $area)
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:255'],
-            'pnf_id' => ['required']
-        ]);
+        $data = $request->validated();
 
         $area->update($data);
         // TODO -> hacer que mande error y tal si salió algo mal

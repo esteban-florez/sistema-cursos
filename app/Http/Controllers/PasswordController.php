@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 
 class PasswordController extends Controller
 {
+    // TODO -> aun no me decido si "crudizar" estos metodos a pasar a FormRequest, o no
     public function forgot() {
         return view('password.forgot');
     }

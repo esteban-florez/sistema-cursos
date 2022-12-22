@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Services\Input;
 use Illuminate\Validation\Rules\Password;
@@ -51,27 +53,9 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        $data = $request->validate([
-            'first_name' => ['required', 'max:30'],
-            'second_name' => ['nullable', 'max:30'],
-            'first_lastname' => ['required', 'max:30'],
-            'second_lastname' => ['nullable', 'max:30'],
-            'password' => [
-                'required', 'confirmed', 'max:50',
-                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
-            ],
-            'image' => ['nullable', 'file','image', 'max:2048'],
-            'ci' => ['required', 'integer', 'numeric', 'unique:students'],
-            'ci_type' => ['required', 'in:V,E'],
-            'email' => ['required', 'email', 'max:50', 'unique:students'],
-            'birth' => ['required', 'date'],
-            'gender' => ['required', 'in:'.genders()->join(',')],
-            'phone' => ['required', 'digits:11'],
-            'grade' => ['required', 'in:'.grades()->join(',')],
-            'address' => ['required', 'string', 'max:255'],
-        ]);
+        $data = $request->validated();
 
         Student::create($data);
 
@@ -118,29 +102,10 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(UpdateStudentRequest $request, Student $student)
     {
-        $uniqueIgnore = Rule::unique('students')->ignoreModel($student);
-
-        $data = $request->validate([
-            'first_name' => ['required', 'max:30'],
-            'second_name' => ['nullable', 'max:30'],
-            'first_lastname' => ['required', 'max:30'],
-            'second_lastname' => ['nullable', 'max:30'],
-            'ci' => ['required', 'integer', 'numeric', $uniqueIgnore],
-            'ci_type' => ['required', 'in:V,E'],
-            'image' => ['nullable', 'file', 'image', 'max:2048'],
-            'gender' => ['required', 'in:'.genders()->join(',')],
-            'phone' => ['required', 'digits:11'],
-            'address' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:50', $uniqueIgnore],
-            'password' => [
-                'required', 'max:50', 'confirmed', 
-                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
-            ],
-            'grade' => ['required', 'in:'.grades()->join(',')],
-            'birth' => ['required', 'date'],
-        ]);
+        // TODO -> no funcionando actualmente
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/profiles');

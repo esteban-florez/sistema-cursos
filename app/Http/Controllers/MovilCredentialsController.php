@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMovilCredentialsRequest;
+use App\Http\Requests\UpdateMovilCredentialsRequest;
 use App\Models\MovilCredentials;
-use Illuminate\Http\Request;
 
 class MovilCredentialsController extends Controller
 {
@@ -13,13 +14,9 @@ class MovilCredentialsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMovilCredentialsRequest $request)
     {
-        $data = $request->validate([
-            'ci' => ['required', 'string', 'max:12'],
-            'bank' => ['required', 'string'],
-            'phone' => ['required', 'string', 'size:12'],
-        ]);
+        $data = $request->validated();
 
         MovilCredentials::create($data);
 
@@ -34,13 +31,9 @@ class MovilCredentialsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpdateMovilCredentialsRequest $request)
     {
-        $data = $request->validate([
-            'ci' => ['required', 'string', 'max:12'],
-            'bank' => ['required', 'string'],
-            'phone' => ['required', 'string', 'size:12'],
-        ]);
+        $data = $request->validated();
 
         MovilCredentials::first()->update($data);
 

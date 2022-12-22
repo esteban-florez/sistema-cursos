@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreClubRequest;
+use App\Http\Requests\UpdateClubRequest;
 use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\Instructor;
@@ -55,21 +57,9 @@ class ClubController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request) 
+    public function store(StoreClubRequest $request) 
     {
-        // TODO -> pasar a FormRequest y poner bien
-        $days = days()->join(',');
-        $daysRule = "in:{$days}";
-
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'image' => ['required', 'file', 'image', 'max:2048'],
-            'description' => ['required', 'max:255'],
-            'day' => ['required', $daysRule],
-            'start_hour' => ['required'],
-            'end_hour' => ['required'],
-            'instructor_id' => ['required', 'integer', 'numeric'],
-        ]);
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/clubs');
@@ -121,21 +111,9 @@ class ClubController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Club $club)
+    public function update(UpdateClubRequest $request, Club $club)
     {
-        // TODO -> pasar a FormRequest y poner bien
-        $days = days()->join(',');
-        $daysRule = "in:{$days}";
-
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'image' => ['nullable', 'file', 'image', 'max:2048'],
-            'description' => ['required', 'max:255'],
-            'day' => ['required', $daysRule],
-            'start_hour' => ['required'],
-            'end_hour' => ['required'],
-            'instructor_id' => ['required', 'integer', 'numeric'],
-        ]);
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/clubs');

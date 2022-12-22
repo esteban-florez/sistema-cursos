@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Course;
@@ -62,26 +64,9 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'image' => ['required', 'file', 'image', 'max:2048'],
-            'instructor_id' => ['required', 'integer', 'numeric'],
-            'area_id' => ['required', 'integer', 'numeric'],
-            'description' => ['required', 'max:255'],
-            'total_price' => ['required', 'integer', 'numeric'],
-            'reserv_price' => ['required', 'integer', 'numeric'],
-            'start_ins' => ['required', 'date'],
-            'end_ins' => ['required', 'date'],
-            'start_course' => ['required', 'date'],
-            'end_course' => ['required', 'date'],
-            'duration' => ['required', 'integer', 'numeric'],
-            'student_limit' => ['required', 'integer', 'numeric'],
-            'days' => ['required', 'array'],
-            'start_time' => ['required'],
-            'end_time' => ['required'],
-        ]);
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/courses');
@@ -136,26 +121,9 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(UpdateCourseRequest $request, Course $course)
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'image' => ['nullable', 'file', 'image', 'max:2048'],
-            'instructor_id' => ['required', 'integer', 'numeric'],
-            'area_id' => ['required', 'integer', 'numeric'],
-            'description' => ['required', 'max:255'],
-            'total_price' => ['required', 'integer', 'numeric'],
-            'reserv_price' => ['required', 'integer', 'numeric'],
-            'start_ins' => ['required', 'date'],
-            'end_ins' => ['required', 'date'],
-            'start_course' => ['required', 'date'],
-            'end_course' => ['required', 'date'],
-            'duration' => ['required', 'integer', 'numeric'],
-            'student_limit' => ['required', 'integer', 'numeric'],
-            'days' => ['required', 'array'],
-            'start_time' => ['required'],
-            'end_time' => ['required'],
-        ]);
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/courses');

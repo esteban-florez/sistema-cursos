@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreInstructorRequest;
+use App\Http\Requests\UpdateInstructorRequest;
 use App\Models\Area;
 use App\Models\Instructor;
 use App\Models\PNF;
 use App\Services\Input;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 
 class InstructorController extends Controller
 {
@@ -59,26 +59,9 @@ class InstructorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreInstructorRequest $request)
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'lastname' => ['required', 'max:30'],
-            'ci' => ['required', 'integer', 'numeric', 'unique:instructors'],
-            'ci_type' => ['required', 'in:V,E'],
-            'image' => ['nullable', 'file','image', 'max:2048'],
-            'gender' => ['required', 'in:male,female'],
-            'phone' => ['required', 'digits:11'],
-            'address' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:50', 'unique:instructors'],
-            'password' => [
-                'required', 'max:50', 'confirmed', 
-                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
-            ],
-            'degree' => ['required', 'max:100'], 
-            'area_id' => ['required', 'integer', 'numeric'],
-            'birth' => ['required', 'date'],
-        ]);
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/profiles');
@@ -130,28 +113,10 @@ class InstructorController extends Controller
      * @param  \App\Models\Instructor  $instructor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Instructor $instructor)
+    public function update(UpdateInstructorRequest $request, Instructor $instructor)
     {
-        $uniqueIgnore = Rule::unique('instructors')->ignoreModel($instructor);
-
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'lastname' => ['required', 'max:30'],
-            'ci' => ['required', 'integer', 'numeric', $uniqueIgnore],
-            'ci_type' => ['required', 'in:V,E'],
-            'image' => ['nullable', 'file','image', 'max:2048'],
-            'gender' => ['required', 'in:male,female'],
-            'phone' => ['required', 'digits:11'],
-            'address' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:50', $uniqueIgnore],
-            'password' => [
-                'required', 'max:50', 'confirmed', 
-                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
-            ],
-            'degree' => ['required', 'max:100'], 
-            'area_id' => ['required', 'integer', 'numeric'],
-            'birth' => ['required', 'date'],
-        ]);
+        // TODO -> no funcionando actualmente
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/profiles');

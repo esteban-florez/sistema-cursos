@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTransferCredentialsRequest;
+use App\Http\Requests\UpdateTransferCredentialsRequest;
 use App\Models\TransferCredentials;
 use Illuminate\Http\Request;
 
@@ -13,15 +15,9 @@ class TransferCredentialsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTransferCredentialsRequest $request)
     {
-        $data = $request->validate([
-            'ci' => ['required', 'string', 'max:12'],
-            'bank' => ['required', 'string'],
-            'name' => ['required', 'string'],
-            'type' => ['required', 'string', 'in:Corriente,Ahorro'],
-            'account' => ['required', 'string', 'max:20'],
-        ]);
+        $data = $request->validated();
 
         TransferCredentials::create($data);
 
@@ -36,15 +32,9 @@ class TransferCredentialsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(UpdateTransferCredentialsRequest $request)
     {
-        $data = $request->validate([
-            'ci' => ['required', 'string', 'max:12'],
-            'bank' => ['required', 'string'],
-            'name' => ['required', 'string'],
-            'type' => ['required', 'string', 'in:Corrient,Ahorro'],
-            'account' => ['required', 'string', 'max:20'],
-        ]);
+        $data = $request->validated();
 
         TransferCredentials::first()->update($data);
 

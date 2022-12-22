@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdatePendingPaymentRequest;
 use App\Models\Payment;
-use Illuminate\Http\Request;
 
 class PendingPaymentController extends Controller
 {
@@ -21,11 +21,9 @@ class PendingPaymentController extends Controller
     }
 
     // TODO -> pasar este método a un PaymentStatusController
-    public function update(Request $request, Payment $payment)
+    public function update(UpdatePendingPaymentRequest $request, Payment $payment)
     {
-        $data = $request->validate([
-            'status' => ['required', 'in:Confirmado,Rechazado,Pendiente'],
-        ]);
+        $data = $request->validated();
         
         $payment->update($data);
         

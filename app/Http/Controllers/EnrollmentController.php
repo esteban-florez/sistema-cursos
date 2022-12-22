@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePaymentRequest;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\Inscription;
@@ -25,7 +25,7 @@ class EnrollmentController extends Controller
         ]);
     }
 
-    public function store(Request $request, Course $course)
+    public function store(StorePaymentRequest $request, Course $course)
     {
         // TODO -> Mejorar este codigo. Esto es para prevenir que la ref sea nula en caso de que elijan transfer o movil.
         $type = $request->input('type');
@@ -38,11 +38,7 @@ class EnrollmentController extends Controller
             }
         }
 
-        $data = $request->validate([
-            'ref' => ['nullable', 'integer', 'numeric', 'digits_between:4,10'],// TODO -> aqui pueden pasar cosas raras si incluyen uno o más ceros al inicio de la referencia
-            'amount' => ['required', 'numeric'],
-            'type' => ['required', 'in:'.payTypes()->join(',')],
-        ]);
+        $data = $request->validated();
 
         $inscription = user()->enroll($course);
         
