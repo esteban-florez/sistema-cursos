@@ -26,10 +26,10 @@
           <x-field type="email" name="email" id="email" placeholder="email@ejemplo.com" value="{{ old('email') ?? $user->email ?? '' }}" required>
             Correo Electrónico:
           </x-field>
-          <x-field type="password" name="password" id="password" placeholder="Escriba la contraseña..." required>
+          <x-field type="password" name="password" id="password" placeholder="Escriba la contraseña..." :required="!$edit">
             Contraseña:
           </x-field>
-          <x-field type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Confirme la contraseña..." required>
+          <x-field type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Confirme la contraseña..." :required="!$edit">
             Confirmar contraseña:
           </x-field>
         </div>
@@ -40,12 +40,12 @@
           </x-field>
         </div>
         <div class="col-md-4">
-          <x-field type="password" name="password" id="password" placeholder="Escriba la contraseña..." required>
+          <x-field type="password" name="password" id="password" placeholder="Escriba la contraseña..." :required="!$edit">
             Contraseña:
           </x-field>
         </div>
         <div class="col-md-4">
-          <x-field type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Confirme la contraseña..." required>
+          <x-field type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Confirme la contraseña..." :required="!$edit">
             Confirmar contraseña:
           </x-field>
         </div>

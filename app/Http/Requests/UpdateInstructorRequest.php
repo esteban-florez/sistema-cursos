@@ -25,7 +25,7 @@ class UpdateInstructorRequest extends FormRequest
      */
     public function rules()
     {
-        // TODO -> getting around this
+        $instructor = $this->route('instructor');
         $uniqueIgnore = Rule::unique('instructors')
             ->ignoreModel($instructor);
 
@@ -35,7 +35,7 @@ class UpdateInstructorRequest extends FormRequest
             'ci' => ['required', 'integer', 'numeric', $uniqueIgnore],
             'ci_type' => ['required', 'in:V,E'],
             'image' => ['nullable', 'file','image', 'max:2048'],
-            'gender' => ['required', 'in:male,female'],
+            'gender' => ['required', 'in:'.genders()->join(',')],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:50', $uniqueIgnore],

@@ -39,6 +39,7 @@ class Instructor extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birth' => 'datetime',
     ];
 
     protected static $searchColumn = 'name';

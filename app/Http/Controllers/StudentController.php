@@ -104,7 +104,6 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        // TODO -> no funcionando actualmente
         $data = $request->validated();
 
         if (Input::checkFile('image')) {

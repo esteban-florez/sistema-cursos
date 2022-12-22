@@ -9,9 +9,9 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
   ademas que este bicho tiene demasiada logica
 --}}
 <div class="mb-3">
-  @isset($required)
-  <i class="mr-1 fas fa-asterisk text-danger"></i>
-  @endisset
+  @if($required)
+    <i class="mr-1 fas fa-asterisk text-danger"></i>
+  @endif
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   <select class="form-control" {{ $attributes }}>
     <option value="" @unless($selected)selected @endunless>Seleccionar...</option>

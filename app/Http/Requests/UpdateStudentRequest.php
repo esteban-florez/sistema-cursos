@@ -25,6 +25,7 @@ class UpdateStudentRequest extends FormRequest
      */
     public function rules()
     {
+        $student = $this->route('student');
         $uniqueIgnore = Rule::unique('students')
             ->ignoreModel($student);
 

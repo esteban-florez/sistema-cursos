@@ -68,6 +68,7 @@
       </x-field>
     </div>
     <div class="col-sm-6 mb-3">
+      {{-- TODO -> añadir asterisco, y más adelante hacer un componente para este tipo de inputs --}}
       <label class="form-label" for="duration">Duración del curso:</label>
       <div class="input-group">
         <input autocomplete="off" class="form-control" type="number" name="duration" id="duration" placeholder="Ej. 80" value="{{ old('duration') ?? $course->duration ?? '' }}" required/>

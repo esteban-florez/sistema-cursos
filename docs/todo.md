@@ -2,12 +2,11 @@
 
 ## Esteban: 
 
-- Arreglar todos los in:talcosa en las reglas de validación de todo el proyecto.
-- Reporte de pago (IG)
-- Añadir edición de pagos (IG).
 - Validaciones en fechas de curso, que sean coherentes.
 - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Mejoras de formularios (validación, comodidad, formatos) con JavaScript en el Frontend.
+- Reporte de pago (IG)
+- Añadir edición de pagos (IG).
 - Arreglar búsquedas de cursos con código (IG).
 
 ## Tareas a largo plazo:

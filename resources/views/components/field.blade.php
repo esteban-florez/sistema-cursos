@@ -4,19 +4,21 @@
 @endphp
 
 <div @class(['form-check' => $isCheckbox, 'mb-3'])>
-  @isset($required)
-  <i class="mr-1 fas fa-asterisk text-danger"></i>
-  @endisset
+  @if($required)
+    <i class="mr-1 fas fa-asterisk text-danger"></i>
+  @endif
   @unless ($isCheckbox)
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   @endunless
-  <input @if($isCheckbox)value="1"@endif{{
-    $attributes
-    ->class([
-      'form-control' => !$isCheckbox,
-      'form-check-input' => $isCheckbox,
-      ])
-    ->merge(['type' => 'text', 'autocomplete' => 'off'])
+  <input
+    @if($isCheckbox)value="1"@endif
+    {{
+      $attributes
+        ->class([
+          'form-control' => !$isCheckbox,
+          'form-check-input' => $isCheckbox,
+          ])
+        ->merge(['type' => 'text', 'autocomplete' => 'off'])
     }}
   >
   @if ($isCheckbox)

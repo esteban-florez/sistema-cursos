@@ -115,7 +115,6 @@ class InstructorController extends Controller
      */
     public function update(UpdateInstructorRequest $request, Instructor $instructor)
     {
-        // TODO -> no funcionando actualmente
         $data = $request->validated();
 
         if (Input::checkFile('image')) {

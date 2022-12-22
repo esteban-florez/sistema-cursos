@@ -20,7 +20,7 @@
 
 <label class="form-label">
   @if ($required)
-  <i class="fas fa-asterisk text-danger mr-1"></i>
+    <i class="fas fa-asterisk text-danger mr-1"></i>
   @endif
   Añadir imagen:
 </label>
