@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Course;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\App;
 
 class UpdateCourseRequest extends FormRequest
 {
@@ -40,13 +38,8 @@ class UpdateCourseRequest extends FormRequest
             'duration' => ['required', 'integer', 'numeric'],
             'student_limit' => ['required', 'integer', 'numeric'],
             'days' => ['required', 'array'],
-            'start_time' => ['required'],
-            'end_time' => ['required'],
+            'start_hour' => ['required'],
+            'end_hour' => ['required'],
         ];
-    }
-
-    public function attributes()
-    {
-        return Course::$attrNames;
     }
 }

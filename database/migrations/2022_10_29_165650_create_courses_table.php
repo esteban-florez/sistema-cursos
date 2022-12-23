@@ -14,7 +14,6 @@ class CreateCoursesTable extends Migration
     public function up()
     {
         Schema::create('courses', function (Blueprint $table) {
-            // TODO -> falta añadir que días de la semana son las clases xD
             $table->id();
             $table->string('name');
             $table->string('image');

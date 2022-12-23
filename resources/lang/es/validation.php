@@ -22,8 +22,8 @@ return [
     'alpha_dash' => ':attribute solo puede contener letras, números, guiones y guiones bajos.',
     'alpha_num' => ':attribute solo puede contener letras y números.',
     'array' => ':attribute debe ser un array.',
-    'before' => 'La fecha de :attribute debe ser una fecha antes de :date.',
-    'before_or_equal' => 'La fecha de :attribute debe ser una fecha antes de o igual :date.',
+    'before' => ':attribute debe ser una fecha antes de :date.',
+    'before_or_equal' => ':attribute debe ser una fecha antes de o igual :date.',
     'between' => [
         'numeric' => ':attribute debe estar entre :min y :max.',
         'file' => 'El tamaño de :attribute debe estar entre :min y :max kilobytes.',
@@ -33,9 +33,9 @@ return [
     'boolean' => ':attribute debe ser verdadero o falso.',
     'confirmed' => ':attribute y su confirmación no coinciden.',
     'current_password' => 'La contraseña es incorrecta.',
-    'date' => 'La fecha de :attribute no es una fecha válida.',
-    'date_equals' => 'La fecha de :attribute debe ser una fecha igual a :date.',
-    'date_format' => 'La fecha de :attribute debe tener el formato :format.',
+    'date' => ':attribute no es una fecha válida.',
+    'date_equals' => ':attribute debe ser una fecha igual a :date.',
+    'date_format' => ':attribute debe tener el formato :format.',
     'declined' => ':attribute debe ser rechazado.',
     'declined_if' => ':attribute debe ser rechazado si :other es :value.',
     'different' => ':attribute y :other deben ser diferentes.',
@@ -158,6 +158,75 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // TODO -> a veces hay conflictos entre algunos nombres de atributos que se repiten en distintas tablas, pero me imagino que se pueden sustituir en los sitios según sea necesario.
+
+        // Student and Instructor attributes
+        'first_name' => 'El primer nombre',
+        'second_name' => 'El segundo nombre',
+        'first_lastname' => 'El primer apellido',
+        'second_lastname' => 'El segundo apellido',
+        'ci' => 'La cédula',
+        'ci_type' => 'El tipo de cédula',
+        'email' => 'El correo electrónico',
+        'birth' => 'La fecha de nacimiento',
+        'password' => 'La contraseña',
+        'password_confirmation' => 'La confirmación de contraseña',
+        'grade' => 'El grado de instrucción',
+        'gender' => 'El sexo',
+        'image' => 'La imagen',
+        'phone' => 'El teléfono',
+        'address' => 'La dirección',
+        'name' => 'El nombre',
+        'lastname' => 'El apellido',
+        'degree' => 'La titulación',
+        
+        // Course and Club attributes
+
+        'description' => 'La descripción',
+        'total_price' => 'El monto total',
+        'reserv_price' => 'El monto de reserva',
+        'start_ins' => 'inicio de inscripciones',
+        'end_ins' => 'fin de inscripciones',
+        'start_course' => 'inicio del curso',
+        'end_course' => 'fin del curso',
+        'duration' => 'La duración',
+        'student_limit' => 'El límite de estudiantes',
+        'days' => 'Los días',
+        'start_hour' => 'La hora de inicio',
+        'end_hour' => 'La hora de cierre',
+        'day' => 'El día',
+
+        // Item attributes
+        'code' => 'El código',
+
+        // Inventories attributes
+        'amount' => 'El monto',
+        'operation' => 'La operación',
+
+        // Inscription attributes
+        'confirmed_at' => 'La fecha de confirmación',
+        'approved_at' => 'La fecha de aprobación',
+        'unique' => 'El campo único',
+
+        // Payment attributes
+        'status' => 'El estado',
+        'ref' => 'La referencia',
+        'type' => 'El tipo de pago',
+
+        // Credentials attributes
+        'bank' => 'El banco',
+        'account' => 'El número de cuenta',
+
+        // Foreign key attributes
+        'instructor_id' => 'El instructor',
+        'area_id' => 'El área',
+        'pnf_id' => 'El PNF',
+        'item_id' => 'El artículo',
+        'club_id' => 'El club',
+        'student_id' => 'El estudiante',
+        'inscription_id' => 'La inscripción',
+        'payment_id' => 'El pago',
+    ],
 
 ];
