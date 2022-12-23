@@ -1,78 +1,10 @@
 <head>
-  <style>
-    /* Box sizing rules */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    /* Remove default margin */
-    body,
-    h1,
-    h2,
-    h3,
-    h4,
-    p,
-    figure,
-    blockquote,
-    dl,
-    dd {
-      margin: 0;
-    }
-
-    /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-    ul,
-    ol {
-      list-style: none;
-    }
-
-    /* Set core root defaults */
-    html:focus-within {
-      scroll-behavior: smooth;
-    }
-
-    /* Set core body defaults */
-    body {
-      min-height: 100vh;
-      text-rendering: optimizeLegibility;
-      line-height: 1.5;
-    }
-
-    /* A elements that don't have a class get default styles */
-    a:not([class]) {
-      text-decoration-skip-ink: auto;
-    }
-
-    /* Inherit fonts for inputs and buttons */
-    input,
-    button,
-    textarea,
-    select {
-      font: inherit;
-    }
-  </style>
+  <link rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
   <style>
     body {
-      text-align: center;
       padding: 2rem 0;
       width: 700px;
       margin: 0 auto;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    header {
-      font-size: 11pt;
-      line-height: 13pt;
-      width: 700px;
-      margin: 0 auto;
-      position: relative;
-      left: 3rem;
-    }
-
-    .bold-italic {
-      font-style: italic;
-      font-weight: bold;
     }
 
     .title-box {
@@ -84,11 +16,6 @@
       padding-top: 4px;
       border-radius: 4px;
       font-size: 13pt;
-    }
-
-    .header-title {
-      font-size: 13pt;
-      margin-top: 4px;
     }
 
     h1 {

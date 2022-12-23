@@ -1,96 +1,8 @@
 <head>
-  <style>
-    /* Box sizing rules */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-  
-      /* Remove default margin */
-      body,
-      h1,
-      h2,
-      h3,
-      h4,
-      p,
-      figure,
-      blockquote,
-      dl,
-      dd {
-        margin: 0;
-      }
-  
-      /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-      ul[role="list"],
-      ol[role="list"] {
-        list-style: none;
-      }
-  
-      /* Set core root defaults */
-      html:focus-within {
-        scroll-behavior: smooth;
-      }
-  
-      /* Set core body defaults */
-      body {
-        min-height: 100vh;
-        text-rendering: optimizeSpeed;
-        line-height: 1.5;
-      }
-  
-      /* A elements that don't have a class get default styles */
-      a:not([class]) {
-        text-decoration-skip-ink: auto;
-      }
-  
-      /* Inherit fonts for inputs and buttons */
-      input,
-      button,
-      textarea,
-      select {
-        font: inherit;
-      }
-  
-      /* Remove all animations and transitions for people that prefer not to see them */
-      @media (prefers-reduced-motion: reduce) {
-        html:focus-within {
-        scroll-behavior: auto;
-        }
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-          scroll-behavior: auto !important;
-        }
-      }
-  </style>
+  <link rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
   <style>
     body {
-      text-align: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 2rem;
-    }
-
-    header {
-      font-size: 11pt;
-      line-height: 13pt;
-      width: 700px;
-      margin: 0 auto;
-      position: relative;
-      left: 3rem;
-    }
-
-    .bold-italic {
-      font-style: italic;
-      font-weight: bold;
-    }
-
-    .header-title {
-      font-size: 13pt;
-      margin-top: 4px;
     }
 
     h1 {
@@ -101,8 +13,6 @@
       display: flex;
       justify-content: space-between;
       padding: 0 12rem;
-      /* text-align: left; */
-      /* margin-left: 8rem; */
     }
 
     table {
@@ -138,7 +48,7 @@
     <p class="bold-italic header-title">DEPARTAMENTO DE VINCULACIÓN SOCIO INTEGRAL</p>
   </header>
   <h1>Matrícula del Curso: {{ $course->name }}</h1>
-  <ul role="list">
+  <ul class="style-none">
     <li><span>Instructor:</span> {{ $course->instructor->full_name }}</li>
     <li><span>Fecha:</span> {{ $date }}</li>
     <li><span>Fase del curso:</span> {{ $course->phase }}</li>
