@@ -24,30 +24,11 @@ class Course extends Model
         'end_ins' => 'date',
         'start_course' => 'date',
         'end_course' => 'date',
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
+        'start_hour' => 'datetime',
+        'end_hour' => 'datetime',
     ];
 
     protected static $searchColumn = 'name';
-
-    public static $attrNames = [
-        'name' => 'El nombre',
-        'image' => 'La imagen',
-        'instructor_id' => 'El instructor',
-        'area_id' => 'El área',
-        'description' => 'La descripción',
-        'total_price' => 'El monto total',
-        'reserv_price' => 'El monto de reserva',
-        'start_ins' => 'inicio de inscripciones',
-        'end_ins' => 'fin de inscripciones',
-        'start_course' => 'inicio del curso',
-        'end_course' => 'fin del curso',
-        'duration' => 'La duración',
-        'student_limit' => 'El límite de estudiantes',
-        'days' => 'Los días',
-        'start_time' => 'La hora de inicio',
-        'end_time' => 'La hora de cierre',
-    ];
 
     public function instructor()
     {

@@ -19,8 +19,8 @@ class CourseFactory extends Factory
         $start_course = $this->faker->dateTimeThisMonth($end_course);
         $end_ins = $this->faker->dateTimeThisMonth($start_course);
         $start_ins = $this->faker->dateTimeThisMonth($end_ins);
-        $end_time = $this->faker->time();
-        $start_time = $this->faker->time('H:i:s', $end_time);
+        $end_hour = $this->faker->time();
+        $start_hour = $this->faker->time('H:i:s', $end_hour);
         // TODO -> start time a veces es mas tarde que end time xd
 
         return [
@@ -34,8 +34,8 @@ class CourseFactory extends Factory
             'end_course' => $end_course,
             'duration' => $this->faker->randomNumber(2, true),
             'student_limit' => $this->faker->randomElement([15, 20, 40, 50]),
-            'start_time' => $start_time,
-            'end_time' => $end_time,
+            'start_hour' => $start_hour,
+            'end_hour' => $end_hour,
             'days' => $this->faker->randomElements(days(), collect([1, 2, 3])->random()),
             'image' => 'img/programacion.jpg',
             'area_id' => Area::all()->random()->id,

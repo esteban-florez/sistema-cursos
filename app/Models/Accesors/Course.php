@@ -54,7 +54,7 @@ trait Course
     
     public function getHoursAttribute()
     {
-        return "{$this->start_time->format(TF)} a {$this->end_time->format(TF)}";
+        return "{$this->start_hour->format(TF)} a {$this->end_hour->format(TF)}";
     }
 
     public function getTotalAmountAttribute()

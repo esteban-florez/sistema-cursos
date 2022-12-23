@@ -28,8 +28,8 @@ class CreateCoursesTable extends Migration
             $table->integer('duration');
             $table->integer('student_limit');
             $table->set('days', days()->all());
-            $table->time('start_time');
-            $table->time('end_time');
+            $table->time('start_hour');
+            $table->time('end_hour');
             $table->foreignId('instructor_id')->constrained();
             $table->foreignId('area_id')->constrained();
             $table->softDeletes();

@@ -88,12 +88,12 @@
       </x-select>
     </div>
     <div class="col-sm-4">
-      <x-field type="time" name="start_time" id="startTime" value="{{ old('start_time') ?? $course?->start_time->format(TV) ?? '' }}" required>
+      <x-field type="time" name="start_hour" id="startTime" value="{{ old('start_hour') ?? $course?->start_hour->format(TV) ?? '' }}" required>
         Hora de Inicio:
       </x-field>
     </div>
     <div class="col-sm-4">
-      <x-field type="time" name="end_time" id="endTime" value="{{ old('end_time') ?? $course?->end_time->format(TV) ?? '' }}" required>
+      <x-field type="time" name="end_hour" id="endTime" value="{{ old('end_hour') ?? $course?->end_hour->format(TV) ?? '' }}" required>
         Hora de Cierre:
       </x-field>
     </div>
