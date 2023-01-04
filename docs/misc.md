@@ -1,5 +1,7 @@
 # Problemas generales / ideas rikolinas:
 
+- Regla de validación "exclude", para evitar meter cosas en el array que no queremos xd (imagenes)
+
 - Depurar el css al final del proyecto.
 
 - Añadir slugs.
