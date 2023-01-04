@@ -25,6 +25,6 @@
   <label class="form-check-label" for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   @endif
   @error($attributes->get('name'))
-    <p class="text-danger">{{$message}}</p>
+    <p class="text-danger">{{ ucfirst($message) }}</p>
   @enderror
 </div>

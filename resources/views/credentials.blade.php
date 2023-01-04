@@ -5,7 +5,7 @@
       <p>Ocurrieron los siguientes errores: </p>
       <ul>
         @foreach ($errors->all() as $message)
-          <li>{{ $message }}</li>
+          <li>{{ ucfirst($message) }}</li>
         @endforeach
       </ul>
     </div>

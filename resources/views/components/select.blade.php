@@ -32,7 +32,7 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
   </select>
   @error($attributes->get('name'))
     <p class="text-danger">
-      {{ $message }}
+      {{ ucfirst($message) }}
     </p>
   @enderror
   {{ $extra ?? '' }}

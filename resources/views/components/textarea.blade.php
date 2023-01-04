@@ -7,6 +7,6 @@
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   <textarea autocomplete="off" class="form-control" {{ $attributes }}>{{ $content }}</textarea>
   @error($attributes->get('name'))
-  <p class="text-danger">{{$message}}</p>
+    <p class="text-danger">{{ ucfirst($message) }}</p>
   @enderror
 </div>
