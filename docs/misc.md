@@ -1,5 +1,7 @@
 # Problemas generales / ideas rikolinas:
 
+- Realmente no sé si sea conveniente poner lo de "after:now" en las reglas de validación de fechas de curso, por ahora no lo pondré.
+
 - Regla de validación "exclude", para evitar meter cosas en el array que no queremos xd (imagenes)
 
 - Depurar el css al final del proyecto.

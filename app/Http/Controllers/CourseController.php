@@ -70,8 +70,6 @@ class CourseController extends Controller
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/courses');
-        } else {
-            unset($data['image']);
         }
 
         Course::create($data);
@@ -127,8 +125,6 @@ class CourseController extends Controller
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/courses');
-        } else {
-            unset($data['image']);
         }
 
         $course->update($data);

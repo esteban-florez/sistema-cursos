@@ -49,7 +49,7 @@
     </div>
     <div class="col-sm-6">
       <x-field type="date" name="start_ins" id="startIns" value="{{ old('start_ins') ?? $course?->start_ins->format(DV) ?? '' }}" required>
-        Incio de Inscripciones:
+        Inicio de Inscripciones:
       </x-field>
     </div>
     <div class="col-sm-6">
@@ -59,12 +59,12 @@
     </div>
     <div class="col-sm-6">
       <x-field type="date" name="start_course" value="{{ old('start_course') ?? $course?->start_course->format(DV) ?? '' }}" id="startCourse" required>
-        Incio de Curso:
+        Inicio del Curso:
       </x-field>
     </div>
     <div class="col-sm-6">
       <x-field type="date" name="end_course" value="{{ old('end_course') ?? $course?->end_course->format(DV) ?? '' }}" id="endCourse" required>
-        Fin de Curso:
+        Fin del Curso:
       </x-field>
     </div>
     <div class="col-sm-6 mb-3">

@@ -2,7 +2,6 @@
 
 ## Esteban: 
 
-- Validaciones en fechas de curso, que sean coherentes.
 - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Mejoras de formularios (validación, comodidad, formatos) con JavaScript en el Frontend.
 - Reporte de pago (IG)
