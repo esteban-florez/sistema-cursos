@@ -2,7 +2,6 @@
 
 ## Esteban: 
 
-- Mínimos y máximos razonables en fechas, cantidades, etc.
 - Mejoras de formularios (validación, comodidad, formatos) con JavaScript en el Frontend.
 - Reporte de pago (IG)
 - Añadir edición de pagos para el estudiante (IG).
@@ -10,6 +9,7 @@
 
 ## Tareas a largo plazo:
 
+- Mínimos y máximos razonables en fechas, cantidades, etc.
 - Analizar la situación del home. (Muestra cursos no disponibles, y también algunos en los que ya se registró el usuario).
 - Hacer tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
 - Terminar el perfil, tanto de estudiante como instructor, con cursos y clubes "propios".

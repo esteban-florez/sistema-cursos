@@ -99,6 +99,12 @@
             <option value="E">E-</option>
           </select>
           <input autocomplete="off" class="form-control" type="number" name="ci" placeholder="12345678" id="ci" value="{{ old('ci') ?? $user->ci ?? '' }}" required>
+          @error('ci')
+            <p class="text-danger">{{ ucfirst($message) }}</p>
+          @enderror
+          @error('ci_type')
+            <p class="text-danger">{{ ucfirst($message) }}</p>
+          @enderror
         </div>
       </div>
       <div class="col-md-6">

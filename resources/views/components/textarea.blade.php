@@ -5,7 +5,7 @@
   <i class="mr-1 fas fa-asterisk text-danger"></i>
   @endif
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
-  <textarea autocomplete="off" class="form-control" {{ $attributes }}>{{ $content }}</textarea>
+  <textarea class="form-control" autocomplete="off" {{ $attributes }}>{{ $content }}</textarea>
   @error($attributes->get('name'))
     <p class="text-danger">{{ ucfirst($message) }}</p>
   @enderror

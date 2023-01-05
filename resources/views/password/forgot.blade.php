@@ -20,7 +20,7 @@
               <input autocomplete="off" class="form-control" type="email" name="email" placeholder="Correo electrónico">
               <div class="input-group-append">
                 <div class="input-group-text bg-white">
-                  <span class="fa fa-envelope"></span>
+                  <i class="fa fa-envelope"></i>
                 </div>
               </div>
             </div>
