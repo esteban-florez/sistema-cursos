@@ -23,30 +23,15 @@
         </x-slot>
       </x-select>
     </div>
-    <div class="col-12 col-sm-6 mb-3">
-      <label for="totalPrice">
-        <i class="fas fa-asterisk text-danger mr-1"></i>
+    <div class="col-12 col-sm-6">
+      <x-input-group type="number" name="total_price" id="totalPrice" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" addon="$" required>
         Monto Total:
-      </label>
-      <div class="input-group flex-nowrap">
-        <input autocomplete="off" class="form-control" type="number" id="totalPrice" name="total_price" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" required/>
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon1">$</span>
-        </div>
-      </div>
+      </x-input-group>
     </div>
-    <div class="col-12 col-sm-6 mb-3">
-      <label for="reservPrice">
-        <i class="fas fa-asterisk text-danger mr-1"></i>
+    <div class="col-12 col-sm-6">
+      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" addon="$" required>
         Monto de Reservación:
-      </label>
-      {{-- TODO -> quitar required cuando el monto sea opcional en el futuro --}}
-      <div class="input-group flex-nowrap">
-        <input class="form-control w-50" type="number" id="reservPrice" name="reserv_price" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" required/>
-        <div class="input-group-append">
-          <span class="input-group-text" id="basic-addon1">$</span>
-        </div>
-      </div>
+      </x-input-group>
     </div>
     <div class="col-12">
       <x-textarea name="description" id="description" rows="4" maxlength="255" placeholder="Descripción del curso" :content="old('description') ?? $course->description ?? ''" required>
@@ -73,15 +58,10 @@
         Fin del Curso:
       </x-field>
     </div>
-    <div class="col-sm-6 mb-3">
-      {{-- TODO -> añadir asterisco, y más adelante hacer un componente para este tipo de inputs --}}
-      <label for="duration">Duración del curso:</label>
-      <div class="input-group">
-        <input autocomplete="off" class="form-control" type="number" name="duration" id="duration" placeholder="Ej. 40" value="{{ old('duration') ?? $course->duration ?? '' }}" required/>
-        <div class="input-group-append">
-          <span class="input-group-text">horas</span>
-        </div>
-      </div>
+    <div class="col-sm-6">
+      <x-input-group type="number" name="duration" id="duration" placeholder="Ej. 5" value="{{ old('duration') ?? $course->duration ?? '' }}" addon="horas" required>
+        Duración del curso:
+      </x-input-group>
     </div>
     <div class="col-sm-6">
       <x-field type="number" name="student_limit" id="studentLimit" placeholder="Ej. 15" value="{{ old('student_limit') ?? $course->student_limit ?? '' }}" required>
