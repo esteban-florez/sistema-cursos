@@ -16,14 +16,14 @@ return [
     'accepted' => ':attribute debe ser aceptado.',
     'accepted_if' => ':attribute debe ser aceptado si :other es :value.',
     'active_url' => ':attribute no es una URL válida.',
-    'after' => ':attribute debe ser una fecha después de :date.',
-    'after_or_equal' => ':attribute debe ser una fecha después de o igual a :date.',
+    'after' => ':attribute debe ser después de :date.',
+    'after_or_equal' => ':attribute debe ser después de o igual a :date.',
     'alpha' => ':attribute solo puede contener letras.',
     'alpha_dash' => ':attribute solo puede contener letras, números, guiones y guiones bajos.',
     'alpha_num' => ':attribute solo puede contener letras y números.',
     'array' => ':attribute debe ser un array.',
-    'before' => ':attribute debe ser una fecha antes de :date.',
-    'before_or_equal' => ':attribute debe ser una fecha antes de o igual :date.',
+    'before' => ':attribute debe ser antes de :date.',
+    'before_or_equal' => ':attribute debe ser antes de o igual :date.',
     'between' => [
         'numeric' => ':attribute debe estar entre :min y :max.',
         'file' => 'El tamaño de :attribute debe estar entre :min y :max kilobytes.',
@@ -130,6 +130,7 @@ return [
     'uploaded' => ':attribute no pudo ser subida con éxito.',
     'url' => ':attribute debe ser una URL válida.',
     'uuid' => ':attribute debe ser un UUID válido.',
+    'valid_id' => ':attribute seleccionado no es válido.',
 
     /*
     |--------------------------------------------------------------------------

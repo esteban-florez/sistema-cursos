@@ -14,7 +14,9 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
   @endif
   <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   <select class="form-control" {{ $attributes }}>
-    <option value="" @unless($selected)selected @endunless>Seleccionar...</option>
+    @unless($attributes->get('multiple'))
+      <option value="" @unless($selected)selected @endunless>Seleccionar...</option>
+    @endunless
     @foreach ($options as $value => $label)
       @php
         $isSelected = null;
