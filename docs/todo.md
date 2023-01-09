@@ -11,7 +11,6 @@
 
 - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Analizar la situación del home. (Muestra cursos no disponibles, y también algunos en los que ya se registró el usuario).
-- Hacer tables y modelos pivot para facilitar la relación de pagos-cursos-estudiantes-matriculas. (Relacion no binaria).
 - Terminar el perfil, tanto de estudiante como instructor, con cursos y clubes "propios".
 - Hacer las breadcrumbs.
 - Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).

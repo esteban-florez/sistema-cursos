@@ -12,12 +12,12 @@ class PaymentController extends Controller
     // TODO -> falta el edit y update
     public function index(Request $request)
     {
-        // TODO -> n + 1 queries here
         $filters = Input::getFilters();
         $sort = $request->input('sort');
         $search = $request->input('search');
         
-        $payments = Payment::filters($filters)
+        $payments = Payment::with('inscription.student', 'inscription.course')
+            ->filters($filters)
             ->search($search)
             ->sort($sort)
             ->paginate(10)

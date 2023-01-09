@@ -9,8 +9,7 @@ class PendingPaymentController extends Controller
 {
     public function index()
     {
-        // TODO -> n + 1 queries here
-        $payments = Payment::with('inscription')
+        $payments = Payment::with('inscription.student', 'inscription.course')
             ->where('status', 'Pendiente')
             ->paginate(9)
             ->withQueryString();
@@ -28,6 +27,8 @@ class PendingPaymentController extends Controller
         $payment->update($data);
         
         $operation = lcfirst($request->input('status'));
+
+        // TODO -> esta alerta se ve rara xd
 
         return redirect()
             ->back()
