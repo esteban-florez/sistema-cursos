@@ -36,7 +36,7 @@
               </div>
             </div>
             @error('password')
-              <p class="text-red">{{ ucfirst($message) }}</p>
+              <p class="text-danger">{{ ucfirst($message) }}</p>
             @enderror
             <div class="input-group mb-3">
               <input autocomplete="off" class="form-control" id="passwordConfirmation" type="password" name="password_confirmation" placeholder="Confirma la contraseña..." minlength="8" maxlength="20" required>

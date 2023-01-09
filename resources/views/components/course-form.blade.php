@@ -10,7 +10,7 @@
       <x-image-input :image="$course->image ?? null" :required="!$edit"/>
     </div>
     <div class="col-sm-6 col-md-8">
-      <x-field name="name" id="name" placeholder="Nombre del Curso" autocomplete="off" :value="old('name') ?? $course->name ?? ''" required>
+      <x-field name="name" id="name" placeholder="Ej. Desarrollo Web" autocomplete="off" :value="old('name') ?? $course->name ?? ''" required>
         Nombre:
       </x-field>
       <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $course->instructor_id ?? null" required>
@@ -34,7 +34,7 @@
       </x-input-group>
     </div>
     <div class="col-12">
-      <x-textarea name="description" id="description" rows="4" maxlength="255" placeholder="Descripción del curso" :content="old('description') ?? $course->description ?? ''" required>
+      <x-textarea name="description" id="description" rows="4" maxlength="255" placeholder="Ej. Aprende desarrollo web desde cero con este curso." :content="old('description') ?? $course->description ?? ''" required>
         Descripción del curso:
       </x-textarea>
     </div>

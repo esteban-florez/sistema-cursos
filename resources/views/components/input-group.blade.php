@@ -25,6 +25,6 @@
     </div>
   </div>
   @error($attributes->get('name'))
-    <p class="text-red">{{ ucfirst($message) }}</p>
+    <p class="text-danger">{{ ucfirst($message) }}</p>
   @enderror
 </div>

@@ -29,5 +29,5 @@
   <input type="file" name="image" id="imgInput" accept="image/*">
 </div>
 @error('image')
-  <p class="text-red">{{ ucfirst($message) }}</p>
+  <p class="text-danger">{{ ucfirst($message) }}</p>
 @enderror

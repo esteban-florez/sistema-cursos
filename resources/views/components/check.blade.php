@@ -1,19 +1,19 @@
 @props([])
 
-<div class="mb-3">
+<div class="form-check mb-3">
   @if($attributes->get('required'))
     <i class="mr-1 fas fa-asterisk text-danger"></i>
   @endif
-  <label for="{{ $attributes->get('id') }}">{{ $slot }}</label>
   <input
-    {{
+    {{ 
       $attributes
-        ->class([
-          'form-control',
-          ])
-        ->merge(['type' => 'text', 'autocomplete' => 'off'])
+        ->class(['form-check-input'])
+        ->merge(['autocomplete' => 'off'])
     }}
-  >
+  />
+  <label class="form-check-label" for="{{ $attributes->get('id') }}">
+    {{ $slot }}
+  </label>
   @error($attributes->get('name'))
     <p class="text-danger">{{ ucfirst($message) }}</p>
   @enderror
