@@ -7,7 +7,12 @@
       <span class="h6 mb-0">Buscar por cédula: </span>  
       <x-search placeholder="Ej. 12345678" name="search" :value="$search"/>
     </div>
-    <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>
+    <div>
+      <x-button icon="file" hide-text="md" :url="route('payments.download')">
+        Generar PDF
+      </x-button>
+      <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>
+    </div>
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         {{-- TODO -> en todos los filtros, hay que mejorar un poco el HTML, en el sentido de que se repite mucho esto, hay que ver como se hace. --}}

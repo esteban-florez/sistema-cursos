@@ -1,7 +1,5 @@
 ## Indicaciones generales:
 
-- ¿Reporte de pago? o ¿reporte de todos los pagos?
-
 - Los pagos no pueden quedarse en simplemente confirmados o rechazados, deben poder editarse. De igual modo, el estudiante puede editar sus pagos registrados, y si lo hace, el pago volverá a su estado de pendiente.
 
 - Las búsquedas de Cursos y Estudiante en matrícula que sean por un código, que el codigo se vaya formando mediante "nesting", ejemplo: estudiante pertenece a curso, su codigo tiene el codigo del curso + variación.

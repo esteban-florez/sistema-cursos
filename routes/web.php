@@ -136,10 +136,13 @@ Route::put('pending-payments/{payment}', [PendingPaymentController::class, 'upda
     ->middleware('auth:instructor', 'admin')    
     ->name('pending.update');
 
+Route::get('payments/download', [PaymentController::class, 'download'])
+    ->middleware('auth:instructor', 'admin')
+    ->name('payments.download');
+
 Route::resource('payments', PaymentController::class)
     ->middleware('auth:instructor', 'admin')
     ->only('index', 'destroy');
-
 
 //Club routes
 
