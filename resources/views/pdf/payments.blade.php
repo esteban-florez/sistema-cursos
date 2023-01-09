@@ -74,7 +74,7 @@
           <td> {{ $payment->inscription->student->full_ci }} </td>
           <td> {{ $payment->inscription->course->name }} </td>
           <td> {{ $payment->amount }} </td>
-          <td> {{ $payment->updated_at }} </td>
+          <td> {{ $payment->updated_at->format(DF) }} </td>
           <td> {{ $payment->ref }} </td>
           <td> {{ $payment->type }} </td>
           <td> {{ $payment->status }} </td>

@@ -52,7 +52,7 @@
             $payment->inscription->student->full_ci,
             $payment->inscription->course->name,
             $payment->amount,
-            $payment->updated_at,
+            $payment->updated_at->format(DF),
             $payment->ref,
             $payment->type,
             $payment->status,

@@ -38,7 +38,7 @@ class InscriptionController extends Controller
         $pdf = PDF::loadView('pdf.inscriptions', [
             'inscriptions' => $inscriptions,
             'course' => $course,
-            'date' => now()->format('d/m/Y'),
+            'date' => now()->format(DF),
             'logo' => base64('img/logo-upta.png'),
         ])->setPaper('a4', 'landscape');
 

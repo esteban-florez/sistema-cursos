@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Inscription;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Date;
 use App\Models\Shared\QueryScopes;
 
 class Payment extends Model
@@ -29,12 +28,6 @@ class Payment extends Model
     public function getRefAttribute($ref)
     {
         return $ref ?? '----';
-    }
-
-    public function getUpdatedAtAttribute($date)
-    {
-        return Date::createFromFormat('Y-m-d H:i:s', $date)
-            ->format('d/m/Y');
     }
 
     public function scopeFilters($query, $filters)

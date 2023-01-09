@@ -77,7 +77,7 @@ class EnrollmentController extends Controller
         $pdf = PDF::loadView('pdf.enroll', [
             'student' => $student,
             'course' => $course,
-            'date' => now()->format('d/m/Y'),
+            'date' => now()->format(DF),
             'logo' => base64('img/logo-upta.png'),
         ]);
 
