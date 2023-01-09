@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password as PasswordRule;
 
 class PasswordController extends Controller
 {
@@ -25,8 +26,9 @@ class PasswordController extends Controller
         );
         
         return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => $status])
-            : back()->withErrors(['email' => 'El email es incorrecto.']);
+            ? back()->with(['status' => $status])
+            : back()
+                ->withErrors(['email' => trans('passwords.user')]);
     }
         
     public function edit($token, $email) {
@@ -41,7 +43,10 @@ class PasswordController extends Controller
         $request->validate([
             'token' => 'required',
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8', 'max:20', 'confirmed']
+            'password' => [
+                'required', 'max:20', 'confirmed', 
+                PasswordRule::min(8)->letters()->mixedCase()->numbers()->symbols()
+            ],
         ]);
 
         $status = Password::reset(
@@ -59,6 +64,6 @@ class PasswordController extends Controller
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('login')->with(['status' => $status])
             : back()
-                ->withErrors(['email' => 'Error en la recuperación de contraseña.']);
+                ->withErrors(['email' => trans('passwords.failure')]);
     }
 }

@@ -15,8 +15,9 @@ return [
 
     'reset' => '¡Tu contraseña ha sido restaurada!',
     'sent' => '¡Hemos enviado el link de restauración de contraseña a tu correo!',
-    'throttled' => 'Por favor espere 5 minutos antes de volver a intentar.',
+    'throttled' => 'Por favor espera 5 minutos antes de volver a intentar.',
     'token' => 'Este token de restauración de contraseña es inválido.',
-    'user' => 'No existe ningún usuario registrado con esa dirección de correo electrónico.',
+    'user' => 'No existe ningún usuario registrado con esta dirección de correo electrónico.',
+    'failure' => '¡Lo sentimos! Tu contraseña no pudo ser restaurada.'
 
 ];

@@ -8,10 +8,15 @@
       </div>
       <div class="card">
         @if(session('status'))
-          <div class="alert alert-primary" role="alert">
-            {{session('status') === 'passwords.sent' ? 'El enlace para la recuperación de contraseña fué enviado tu correo.' : 'Hubo un error en el envío del correo, intenta mas tarde.'}}
+          <div class="alert alert-primary mb-0" role="alert">
+            {{ __(session('status')) }}
           </div>
         @endif
+        @error('email')
+          <div class="alert alert-danger mb-0" role="alert">
+            {{ $message }}
+          </div>
+        @enderror
         <div class="card-body login-card-body">
           <p class="login-box-msg">Por favor ingrese su correo electrónico para recibir un código de verificación.</p>
           <form action="{{ route('password.email') }}" method="POST">
@@ -30,9 +35,6 @@
           <div class="d-flex justify-content-center">
             <a class="d-inline-block mx-auto" href="{{ route('login') }}">Iniciar Sesión</a>
           </div>
-          @error('email')
-            <p>{{$errors->first()}}</p>
-          @enderror
         </div>
       </div>
     </div>

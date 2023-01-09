@@ -6,8 +6,6 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Services\Input;
-use Illuminate\Validation\Rules\Password;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller

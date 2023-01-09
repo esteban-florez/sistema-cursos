@@ -8,8 +8,8 @@
       </div>
       <div class="card">
         @if(session('status'))
-          <div class="alert alert-primary m-0" role="alert">
-            Recuperación de contraseña exitosa
+          <div class="alert alert-primary mb-0" role="alert">
+            {{ __(session('status')) }}
           </div>
         @endif
         @if(session('registered'))
