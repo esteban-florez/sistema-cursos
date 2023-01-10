@@ -1,0 +1,14 @@
+.payments-flex {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.payment-card {
+  width: 20rem;
+}
+
+.payment-card h4 {
+  width: 90%;
+}

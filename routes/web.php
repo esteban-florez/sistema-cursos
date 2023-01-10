@@ -20,6 +20,7 @@ use App\Http\Controllers\StudentPaymentController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\InscriptionConfirmationController;
 use App\Http\Controllers\PendingPaymentController;
+use App\Http\Controllers\StudentPaymentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +42,8 @@ Route::post('test', function () {
     dd(request()->input('sel'));
 });
 
-Route::redirect('/', 'login')->middleware('guest');
+Route::redirect('/', 'login')
+    ->middleware('guest');
 
 
 // Auth routes
@@ -209,7 +211,7 @@ Route::put('inscriptions/{inscription}/confirmation',
     ->middleware('auth:instructor')
     ->name('inscriptions.confirmation');
 
-    
+
 // Credentials routes
 
 Route::middleware('auth:instructor', 'admin')->group(function () {
@@ -230,11 +232,13 @@ Route::middleware('auth:instructor', 'admin')->group(function () {
 });
 
 
+// My Payments routes
+
+Route::get('student-payments', [StudentPaymentsController::class, 'index'])
+    ->middleware('auth:student')
+    ->name('student-payments.index');
+
 // Misc
 
-Route::get('home', ([HomeController::class, 'index']))->name('home')
+Route::get('home', [HomeController::class, 'index'])->name('home')
     ->middleware('auth', 'prevent-back');
-
-Route::view('pagos', 'pagos')->name('pagos')
-    ->middleware('auth');
-

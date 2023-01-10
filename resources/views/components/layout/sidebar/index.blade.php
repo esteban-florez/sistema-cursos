@@ -87,10 +87,15 @@
       <x-layout.sidebar.item icon="money-bill">
         Pagos
         <x-slot name="menu">
+          @is('student')
+          <x-layout.sidebar.item :url="route('student-payments.index')" icon="list">
+            Mis pagos
+          </x-layout.sidebar.item>
+          @endis
+          @is('admin')
           <x-layout.sidebar.item :url="route('payments.index')" icon="list">
             Lista de pagos
           </x-layout.sidebar.item>
-          @is('admin')
           <x-layout.sidebar.item :url="route('pending.index')" icon="check">
             Por verificar
           </x-layout.sidebar.item>
