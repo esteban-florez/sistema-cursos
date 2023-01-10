@@ -16,11 +16,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionApprovalController;
 use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
-use App\Http\Controllers\StudentPaymentController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\InscriptionConfirmationController;
 use App\Http\Controllers\PendingPaymentController;
-use App\Http\Controllers\StudentPaymentsController;
+use App\Http\Controllers\StudentPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -234,7 +233,7 @@ Route::middleware('auth:instructor', 'admin')->group(function () {
 
 // My Payments routes
 
-Route::get('student-payments', [StudentPaymentsController::class, 'index'])
+Route::get('student-payments', [StudentPaymentController::class, 'index'])
     ->middleware('auth:student')
     ->name('student-payments.index');
 
