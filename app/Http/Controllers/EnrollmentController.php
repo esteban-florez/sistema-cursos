@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePaymentRequest;
+use App\Http\Requests\PaymentRequest;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\Inscription;
@@ -25,7 +25,7 @@ class EnrollmentController extends Controller
         ]);
     }
 
-    public function store(StorePaymentRequest $request, Course $course)
+    public function store(PaymentRequest $request, Course $course)
     {
         // TODO -> Mejorar este codigo. Esto es para prevenir que la ref sea nula en caso de que elijan transfer o movil.
         $type = $request->input('type');

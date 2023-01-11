@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentRequest;
 use App\Models\Payment;
 use App\Models\Course;
 use App\Services\Input;
@@ -10,7 +11,6 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class PaymentController extends Controller
 {
-    // TODO -> falta el edit y update
     public function index(Request $request)
     {
         $filters = Input::getFilters();
@@ -33,11 +33,34 @@ class PaymentController extends Controller
         ]);
     }
 
+    public function edit(Payment $payment)
+    {
+        return view('payments.edit', [
+            'payment' => $payment,
+        ]);
+    }
+
+    public function update(PaymentRequest $request, Payment $payment)
+    {
+        $data = $request->validated();
+
+        $payment->update([
+            ...$data,
+            'status' => 'Pendiente',
+        ]);
+
+        return redirect()
+            ->route('students-payments.index', user()->id)
+            ->withWarning('El pago se ha actualizado exitosamente.');
+    }
+
     public function destroy(Payment $payment)
     {
         $payment->delete();
 
-        return redirect()->route('payments.index');
+        return redirect()
+            ->route('payments.index')
+            ->withDanger('El pago se ha eliminado exitosamente.');
     }
 
     public function download()
