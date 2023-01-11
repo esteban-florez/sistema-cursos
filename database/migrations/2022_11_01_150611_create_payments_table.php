@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->id();
             $table->enum('status', payStatuses()->all())->default('Pendiente');
             $table->unsignedFloat('amount');
-            $table->unsignedInteger('ref')->nullable();
+            $table->string('ref')->nullable();
             $table->enum('type', payTypes()->all());
             $table->foreignId('inscription_id')->constrained();
             $table->softDeletes();

@@ -20,31 +20,17 @@ class PaymentSeeder extends Seeder
         
         Inscription::all()
         ->each(function ($inscription) {
-                $type = payTypes()->random();
-                $amount = null;
-                $ref = null;
+            $payment = Payment::factory([
+                'inscription_id' => $inscription->id
+            ])->make();
 
-                if ($type === 'Efectivo ($)' || $type === 'Efectivo (Bs.D.)') {
-                } else {
-                    if($type === 'Pago Móvil') {
-                        $ref = rand(pow(10, 3), pow(10, 4) - 1);
-                    } else {
-                        $ref = rand(pow(10, 7), pow(10, 8) - 1);
-                    }
-                }
-                
-                if ($type !== 'Efectivo ($)') {
-                    $amount = $inscription->course->total_price * 14.65;
-                } else {
-                    $amount = $inscription->course->total_price;
-                }
-                
-                Payment::create([
-                    'type' => $type,
-                    'amount' => $amount,
-                    'ref' => $ref,
-                    'inscription_id' => $inscription->id,
-                ]);
-            });
+            if ($payment->type !== 'Efectivo ($)') {
+                $payment->amount = $inscription->course->total_price * 18.65;
+            } else {
+                $payment->amount = $inscription->course->total_price;
+            }
+
+            $payment->save();
+        });
     }
 }

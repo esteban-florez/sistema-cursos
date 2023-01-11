@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Inscription;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PaymentFactory extends Factory
@@ -14,16 +13,15 @@ class PaymentFactory extends Factory
      */
     public function definition()
     {
-        if($this->faker->boolean()) {
-            $ref = $this->faker->randomNumber(4, true);
-            $type = $this->faker->randomElement(payTypes()->take(2));
-        } else {
-            $ref = null;
-            $type = $this->faker->randomElement(payTypes()->reverse()->take(2));
-        }
+        $type = payTypes()->random();
 
+        $ref = match ($type) {
+            'Pago Móvil' => randomNumericString(4),
+            'Transferencia' => randomNumericString(10),
+            default => null
+        };
+        
         return [
-            'date' => now()->format('Y-m-d'),
             'ref' => $ref,
             'type' => $type,
             'amount' => $this->faker->randomFloat(2, 0, 1000),
