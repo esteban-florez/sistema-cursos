@@ -16,4 +16,5 @@ yarn-error.log
 *.html
 /database/schema
 current.md
-presentacion.md
+/resources/views/test.blade.php
+/routes/test.php

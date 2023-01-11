@@ -1,6 +1,6 @@
 <x-layout.main title="Mis pagos">
   @push('css')
-    <link rel="stylesheet" href="{{ asset('css/student-payments.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/students-payments.css') }}">
   @endpush
   <section class="container-fluid mt-2 payments-flex" style="column-gap: 1rem;">
     @foreach ($payments as $payment)

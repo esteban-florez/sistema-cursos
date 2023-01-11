@@ -33,14 +33,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-    return view('test');
-})->name('test');
-
-Route::post('test', function () {
-    dd(request());
-});
-
 Route::redirect('/', 'login')
     ->middleware('guest');
 
@@ -92,9 +84,11 @@ function () {
 // Signup routes
 
 Route::get('signup', [RegisterController::class, 'create'])
+    ->middleware('guest')
     ->name('register.create');
 
 Route::post('register', [RegisterController::class, 'store'])
+    ->middleware('guest')
     ->name('register.store');
 
 
@@ -143,7 +137,7 @@ Route::get('payments/download', [PaymentController::class, 'download'])
 
 Route::resource('payments', PaymentController::class)
     ->middleware('auth')
-    ->only('index', 'destroy');
+    ->only('index', 'edit', 'update', 'destroy');
 
 //Club routes
 
@@ -236,7 +230,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
     ->middleware('auth')
-    ->name('student-payments.index');
+    ->name('students-payments.index');
 
 
 // Misc
