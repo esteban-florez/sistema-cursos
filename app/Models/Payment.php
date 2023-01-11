@@ -19,15 +19,10 @@ class Payment extends Model
         return $this->belongsTo(Inscription::class);
     }
 
-    public function getAmountAttribute($amount)
+    public function getFullAmountAttribute()
     {
         $currency = $this->type === 'Efectivo ($)' ? '$' : 'Bs.D.';
-        return "{$amount} {$currency}";
-    }
-
-    public function getRefAttribute($ref)
-    {
-        return $ref ?? '----';
+        return "{$this->amount} {$currency}";
     }
 
     public function scopeFilters($query, $filters)

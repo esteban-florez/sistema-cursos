@@ -51,9 +51,9 @@
           <x-row :data="[
             $payment->inscription->student->full_ci,
             $payment->inscription->course->name,
-            $payment->amount,
+            $payment->full_amount,
             $payment->updated_at->format(DF),
-            $payment->ref,
+            $payment->ref ?? '----',
             $payment->type,
             $payment->status,
             ]"

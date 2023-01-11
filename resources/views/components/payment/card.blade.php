@@ -2,12 +2,12 @@
 
 <div class="callout callout-secondary mb-0">
   <h4 class="text-bold m-0"> 
-    {{ $payment->amount }}
+    {{ $payment->full_amount }}
   </h4>
   <p class="text-bold m-0">
     Referencia: 
     <span class="font-weight-normal">
-      {{ $payment->ref ?? 'N/A' }}
+      {{ $payment->ref ?? '----' }}
     </span>
   </p>
   <p class="text-bold m-0">
