@@ -121,3 +121,9 @@ if (!function_exists('base64')) {
         return base64_encode(file_get_contents(public_path($path)));
     }
 }
+
+if (!function_exists('randomNumericString')) {
+    function randomNumericString($length) {
+        return (string) rand(pow(10, $length - 1), pow(10, $length)-1);
+    }
+}
