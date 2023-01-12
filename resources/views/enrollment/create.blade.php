@@ -63,7 +63,7 @@
                 <button class="btn btn-secondary" type="button" data-stepper="previous">Volver</button>
                 <button class="btn btn-info" type="button" data-stepper="next" id="typeNextButton" disabled>Siguiente</button>
               </div>
-              <a class="btn btn-danger" href="{{ route('market.index') }}">
+              <a class="btn btn-danger" href="{{ route('available-courses.index') }}">
                 Cancelar
               </a>
             </div>
@@ -77,7 +77,7 @@
   <form
     data-amount="{{ $course->total_price }}"
     data-credentials="{{ json_encode($credentials) }}"
-    data-back="{{ route('market.index') }}"
+    data-back="{{ route('available-courses.index') }}"
     class="d-none"
     method="POST"
     action="{{ route('enrollment.store', $course->id) }}"

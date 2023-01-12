@@ -8,7 +8,7 @@ use App\Models\Payment;
 
 class HomeController extends Controller
 {
-    public function index() 
+    public function __invoke()
     {
         $clubs = Club::all()->last()->take(2)->get();
         $courses = Course::all()->last()->take(2)->get();

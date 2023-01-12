@@ -19,13 +19,13 @@ class EnrollmentMiddleware
     {
         $course = $request->route('course');
         $student = user();
-        // TODO -> hacer que redirija al market.index con un mensaje de error según el caso
+        // TODO -> hacer que redirija al available-courses.index con un mensaje de error según el caso
         if ($course->student_count >= $course->student_limit) {
-            return redirect()->route('market.index');
+            return redirect()->route('available-courses.index');
         }
 
         if ($course->phase !== 'Inscripciones') {
-            return redirect()->route('market.index');
+            return redirect()->route('available-courses.index');
         }
 
         $inscription = Inscription::where('course_id', $course->id)
@@ -33,7 +33,7 @@ class EnrollmentMiddleware
             ->first();
         
         if ($inscription !== null) {
-            return redirect()->route('market.index');
+            return redirect()->route('available-courses.index');
         }
         
         return $next($request);

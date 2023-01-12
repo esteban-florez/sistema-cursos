@@ -52,7 +52,7 @@
         @endis
         @is('student')
           <x-button 
-            :url="route('market.index')"
+            :url="route('available-courses.index')"
             color="secondary"
             icon="times"
           >

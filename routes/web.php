@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AvailableCourseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
@@ -10,7 +11,6 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CredentialsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\MarketController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InscriptionApprovalController;
@@ -18,6 +18,7 @@ use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\InscriptionConfirmationController;
+use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\StudentPaymentController;
 use Illuminate\Support\Facades\Route;
@@ -36,24 +37,22 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', 'login')
     ->middleware('guest');
 
-
 // Auth routes
-
 Route::group([
     'controller' => AuthController::class
 ], function () {
     Route::group([
         'middleware' => 'guest'
     ], function () {
-        Route::get('login', 'login')
+        Route::get('login', 'create')
             ->name('login')
             ->middleware('prevent-back');
         
-        Route::post('auth', 'authenticate')
+        Route::post('auth', 'store')
             ->name('auth');
     });
     
-    Route::get('logout', 'logout')
+    Route::get('logout', 'destroy')
         ->name('logout')
         ->middleware('auth');
 });
@@ -83,110 +82,82 @@ function () {
 
 // Signup routes
 
-Route::get('signup', [RegisterController::class, 'create'])
-    ->middleware('guest')
-    ->name('register.create');
-
-Route::post('register', [RegisterController::class, 'store'])
-    ->middleware('guest')
-    ->name('register.store');
-
-
-// Instructors routes
-
-Route::resource('instructors', InstructorController::class)
-    ->middleware('auth');
-
-
-// Areas routes
-
-Route::resource('areas', AreaController::class)
-    ->except('create')
-    ->middleware('auth');
-
-
-// Courses routes
-
-Route::resource('courses', CourseController::class)
-    ->middleware('auth');
-
-
-// Students routes
-
-Route::resource('students', StudentController::class)
-    ->middleware('auth');
-
-Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
-    ->middleware('auth')
-    ->name('students.payments.index');
-
-
-// Payments routes
-
-Route::get('pending-payments', [PendingPaymentController::class, 'index'])
-    ->middleware('auth')    
-    ->name('pending.index');
-
-Route::put('pending-payments/{payment}', [PendingPaymentController::class, 'update'])
-    ->middleware('auth')    
-    ->name('pending.update');
-
-Route::get('payments/download', [PaymentController::class, 'download'])
-    ->middleware('auth')
-    ->name('payments.download');
-
-Route::resource('payments', PaymentController::class)
-    ->middleware('auth')
-    ->only('index', 'edit', 'update', 'destroy');
-
-//Club routes
-
-Route::resource('club', ClubController::class)
-    ->middleware('auth'); //por ahora así pa que se vea el show en students too
-
-
-// Course market
-
 Route::group([
-    'middleware' => 'auth',
-    'prefix' => 'market',
-    'as' => 'market.'
+    'controller' => RegisterController::class,
+    'middleware' => 'guest',
+    'as' => 'register',
 ], function () {
-    Route::get('/', [MarketController::class, 'index'])
-        ->name('index');
-
-    Route::get('{course}', [MarketController::class, 'show'])
-        ->name('show');
+    Route::get('signup', 'create')
+        ->name('create');
+    
+    Route::post('register', 'store')
+        ->name('store');
 });
 
-
-// Course enrollment
-
-Route::group([
-    'controller' => EnrollmentController::class,
-    'middleware' => 'auth',
-    'prefix' => 'enrollment',
-    'as' => 'enrollment.',
-], function () {
-    Route::middleware('enroll')->group(function () {
-        Route::get('{course}', 'create')
-            ->name('create');
-    
-        Route::post('{course}', 'store')
-            ->name('store');
-    });
-    
-    Route::get('{inscription}/success', 'success')
-        ->name('success');
-
-    Route::get('{inscription}/download', 'download')
-        ->name('download');
-}); 
-
-
-// Inscriptions routes
-
 Route::middleware('auth')->group(function () {
+    // Instructors routes
+    Route::resource('instructors', InstructorController::class);
+
+    // Areas routes
+    Route::resource('areas', AreaController::class)
+        ->except('create');
+
+    // Courses routes
+    Route::resource('courses', CourseController::class);
+
+    // Students routes
+    Route::resource('students', StudentController::class);
+
+    // Payments routes
+    Route::get('pending-payments', [PendingPaymentController::class, 'index'])
+        ->name('pending-payments.index');
+
+    Route::patch('payments/{payment}/status', [PaymentStatusController::class, 'update'])
+        ->name('payments.status.update');
+
+    Route::get('payments/download', [PaymentController::class, 'download'])
+        ->name('payments.download');
+
+    Route::resource('payments', PaymentController::class)
+        ->except('create', 'store', 'show');
+
+    // Club routes
+    Route::resource('club', ClubController::class);
+
+    // Available Courses routes
+    Route::group([
+        'controller' => AvailableCourseController::class,
+        'as' => 'available-courses.'
+    ], function () {
+        Route::get('available-courses/', 'index')
+            ->name('index');
+
+        Route::get('available-courses/{course}', 'show')
+            ->name('show');
+    });
+
+    // Enrollment routes
+    Route::group([
+        'controller' => EnrollmentController::class,
+        'prefix' => 'enrollment',
+        'as' => 'enrollment.',
+    ], function () {
+        Route::middleware('enroll')->group(function () {
+            Route::get('{course}', 'create')
+                ->name('create');
+        
+            Route::post('{course}', 'store')
+                ->name('store');
+        });
+        
+        Route::get('{inscription}/success', 'success')
+            ->name('success');
+
+        Route::get('{inscription}/download', 'download')
+            ->name('download');
+    }); 
+
+    // Inscriptions routes
     Route::controller(InscriptionController::class)->group(function () {
         Route::get('inscriptions', 'index')
             ->name('inscriptions.index');
@@ -202,13 +173,8 @@ Route::middleware('auth')->group(function () {
     Route::put('inscriptions/{inscription}/confirmation', 
     [InscriptionConfirmationController::class, 'update'])
         ->name('inscriptions.confirmation');
-});
 
-
-
-// Credentials routes
-
-Route::middleware('auth')->group(function () {
+    // Credentials routes
     Route::get('credentials', [CredentialsController::class, 'index'])
         ->name('credentials.index');
     
@@ -223,17 +189,13 @@ Route::middleware('auth')->group(function () {
     
     Route::put('transfer-credentials', [TransferCredentialsController::class, 'update'])
         ->name('transfer.update');
+
+    // Students-Payments routes
+    Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
+        ->name('students-payments.index');
+
+    // Home routes
+    Route::get('home', HomeController::class)
+        ->middleware('prevent-back')
+        ->name('home');
 });
-
-
-// Student Payment routes
-
-Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
-    ->middleware('auth')
-    ->name('students-payments.index');
-
-
-// Misc
-
-Route::get('home', [HomeController::class, 'index'])->name('home')
-    ->middleware('auth', 'prevent-back');

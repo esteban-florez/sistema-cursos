@@ -22,7 +22,7 @@
         Cursos
         <x-slot name="menu">
           @is('student')
-          <x-layout.sidebar.item :url="route('market.index')" icon="list">
+          <x-layout.sidebar.item :url="route('available-courses.index')" icon="list">
             Lista de cursos
           </x-layout.sidebar.item>
           @endis
@@ -96,7 +96,7 @@
           <x-layout.sidebar.item :url="route('payments.index')" icon="list">
             Lista de pagos
           </x-layout.sidebar.item>
-          <x-layout.sidebar.item :url="route('pending.index')" icon="check">
+          <x-layout.sidebar.item :url="route('pending-payments.index')" icon="check">
             Por verificar
           </x-layout.sidebar.item>
           @endis

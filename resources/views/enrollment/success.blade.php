@@ -49,7 +49,7 @@
           <x-button :url="route('enrollment.download', $inscription->id)" icon="file">
             Descargar Planilla de Inscripción
           </x-button>
-          <x-button :url="route('market.index')" color="secondary">
+          <x-button :url="route('available-courses.index')" color="secondary">
             Ir al listado de cursos
           </x-button>
         </div>

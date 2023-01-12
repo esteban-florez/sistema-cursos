@@ -24,9 +24,9 @@
   }
 @endphp
 
-<form method="POST" class="d-inline" action="{{ route('pending.update', $id) }}">
+<form method="POST" class="d-inline" action="{{ route('payments.status.update', $id) }}">
   @csrf
-  @method('PUT')
+  @method('PATCH')
   <input type="hidden" name="status" value="{{ $value }}">
   <x-button 
     :color="$color ?? $mapeoPapa[$value]['color']"

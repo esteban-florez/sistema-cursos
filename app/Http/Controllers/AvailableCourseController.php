@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 
-class MarketController extends Controller
+class AvailableCourseController extends Controller
 {
     public function index(Request $request)
     {
@@ -22,7 +22,7 @@ class MarketController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('market.index', [
+        return view('available-courses.index', [
             'courses' => $courses,
             'sort' => $sortColumn,
             'search' => $search,
@@ -31,7 +31,7 @@ class MarketController extends Controller
 
     public function show(Course $course)
     {
-        return view('market.show', [
+        return view('available-courses.show', [
             'course' => $course,
         ]);
     }

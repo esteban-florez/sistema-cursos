@@ -41,14 +41,14 @@
           <h2 class="mb-0">¡Últimos cursos!</h2>
         </div>
         <div class="col-sm-3 text-sm-right">
-          <a href="{{ route('market.index') }}" class="mt-1">
+          <a href="{{ route('available-courses.index') }}" class="mt-1">
             <span>Ver más</span>
             <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
     </div>
-    <x-carousel :items="$courses" detailUrl="market.show"/>
+    <x-carousel :items="$courses" detailUrl="available-courses.show"/>
     <div class="card mt-3">
       <div class="card-header">
         <div class="row d-flex align-items-center w-100">
@@ -103,7 +103,7 @@
                 <h3 class="mb-0">Pagos pendientes</h3>
               </div>
               <div class="col-lg-3 text-lg-right">
-                <a href="{{ route('pending.index') }}" class="mt-1">
+                <a href="{{ route('pending-payments.index') }}" class="mt-1">
                   <span>Ver más</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
