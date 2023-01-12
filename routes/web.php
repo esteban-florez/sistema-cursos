@@ -85,7 +85,7 @@ function () {
 Route::group([
     'controller' => RegisterController::class,
     'middleware' => 'guest',
-    'as' => 'register',
+    'as' => 'register.',
 ], function () {
     Route::get('signup', 'create')
         ->name('create');
@@ -125,16 +125,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('club', ClubController::class);
 
     // Available Courses routes
-    Route::group([
-        'controller' => AvailableCourseController::class,
-        'as' => 'available-courses.'
-    ], function () {
-        Route::get('available-courses/', 'index')
-            ->name('index');
-
-        Route::get('available-courses/{course}', 'show')
-            ->name('show');
-    });
+    Route::get('available-courses', [AvailableCourseController::class])
+        ->name('available-courses.index');
 
     // Enrollment routes
     Route::group([

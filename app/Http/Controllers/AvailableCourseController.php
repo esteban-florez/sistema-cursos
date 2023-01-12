@@ -7,7 +7,7 @@ use App\Models\Course;
 
 class AvailableCourseController extends Controller
 {
-    public function index(Request $request)
+    public function __invoke(Request $request)
     {
         $student = user();
         $sortColumn = $request->input('sort');
@@ -26,13 +26,6 @@ class AvailableCourseController extends Controller
             'courses' => $courses,
             'sort' => $sortColumn,
             'search' => $search,
-        ]);
-    }
-
-    public function show(Course $course)
-    {
-        return view('available-courses.show', [
-            'course' => $course,
         ]);
     }
 }
