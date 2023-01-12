@@ -1,5 +1,5 @@
 @php
-  $course = $payment->inscription->course;
+  $course = $payment->enrollment->course;
 @endphp
 
 <x-layout.main title="Editar pago">
@@ -28,7 +28,7 @@
                 Referencia:
               </x-field>
               <div class="d-flex gap-2">
-                <x-button color="secondary" icon="arrow-left" :url="route('students-payments.index', user()->id)">
+                <x-button color="secondary" icon="arrow-left" :url="route('students.payments.index', user()->id)">
                   Volver
                 </x-button>
                 <x-button color="success" icon="check" type="submit">

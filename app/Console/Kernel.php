@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inscriptions:expired')->daily();
-        $schedule->command('inscriptions:unconfirmed')->daily();
+        $schedule->command('enrollments:expired')->daily();
+        $schedule->command('enrollments:unconfirmed')->daily();
     }
 
     /**

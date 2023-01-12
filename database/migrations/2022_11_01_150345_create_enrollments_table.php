@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInscriptionsTable extends Migration
+class CreateEnrollmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateInscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('inscriptions', function (Blueprint $table) {
+        Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
             $table->timestamp('confirmed_at')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->foreignId('course_id')->constrained();
             $table->foreignId('student_id')->constrained();
-            $table->string('unique')->unique();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +31,6 @@ class CreateInscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inscriptions');
+        Schema::dropIfExists('enrollments');
     }
 }

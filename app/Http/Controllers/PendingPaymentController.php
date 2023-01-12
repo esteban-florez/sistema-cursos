@@ -8,7 +8,7 @@ class PendingPaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::with('inscription.student', 'inscription.course')
+        $payments = Payment::with('enrollment.student', 'enrollment.course')
             ->where('status', 'Pendiente')
             ->paginate(9)
             ->withQueryString();

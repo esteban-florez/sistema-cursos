@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Course;
 use App\Models\Student;
 
-class InscriptionFactory extends Factory
+class EnrollmentFactory extends Factory
 {
     /**
      * Define the model's default state.

@@ -88,7 +88,7 @@
         Pagos
         <x-slot name="menu">
           @is('student')
-          <x-layout.sidebar.item :url="route('students-payments.index', $currentUser->id)" icon="list">
+          <x-layout.sidebar.item :url="route('students.payments.index', $currentUser->id)" icon="list">
             Mis pagos
           </x-layout.sidebar.item>
           @endis

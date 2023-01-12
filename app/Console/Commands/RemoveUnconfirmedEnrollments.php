@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use App\Models\Course;
 use Illuminate\Console\Command;
 
-class RemoveUnconfirmedInscriptions extends Command
+class RemoveUnconfirmedEnrollments extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'inscriptions:unconfirmed';
+    protected $signature = 'enrollments:unconfirmed';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Remove unconfirmed inscriptions from active Courses.';
+    protected $description = 'Remove unconfirmed enrollments from active Courses.';
 
     /**
      * Create a new command instance.
@@ -42,15 +42,15 @@ class RemoveUnconfirmedInscriptions extends Command
         $courses->reject(function ($course) {
             return $course->phase === 'Inscripciones';
         })->each(function ($course) {
-            $unconfirmed = $course->inscriptions()
-                ->whereNull('inscriptions.confirmed_at');
+            $unconfirmed = $course->enrollments()
+                ->whereNull('enrollments.confirmed_at');
             
-            $unconfirmed->each(function ($inscription) {
-                $inscription->delete();
+            $unconfirmed->each(function ($enrollment) {
+                $enrollment->delete();
             });
         });
 
-        echo "Removed unconfirmed inscriptions successfully.\n";
+        echo "Removed unconfirmed enrollments successfully.\n";
         return 0;
     }
 }

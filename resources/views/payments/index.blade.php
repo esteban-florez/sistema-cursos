@@ -8,7 +8,7 @@
       <x-search placeholder="Ej. 12345678" name="search" :value="$search"/>
     </div>
     <div>
-      <x-button icon="file" hide-text="md" :url="route('payments.download')">
+      <x-button icon="file" hide-text="md" :url="route('payments-pdf.index')">
         Generar PDF
       </x-button>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>
@@ -49,8 +49,8 @@
       <x-slot name="body">
         @forelse ($payments as $payment)
           <x-row :data="[
-            $payment->inscription->student->full_ci,
-            $payment->inscription->course->name,
+            $payment->enrollment->student->full_ci,
+            $payment->enrollment->course->name,
             $payment->full_amount,
             $payment->updated_at->format(DF),
             $payment->ref ?? '----',

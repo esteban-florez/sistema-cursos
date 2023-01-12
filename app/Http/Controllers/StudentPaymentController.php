@@ -14,12 +14,12 @@ class StudentPaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with('inscription.course')
-            ->whereHas('inscription', fn($query) => 
-                $query->where('inscriptions.student_id', user()->id))
+        $payments = Payment::with('enrollment.course')
+            ->whereHas('enrollment', fn($query) => 
+                $query->where('enrollments.student_id', user()->id))
             ->paginate(6);
 
-        return view('students-payments.index', [
+        return view('students.payments.index', [
             'payments' => $payments,
         ]);
     }

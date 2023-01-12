@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InstructorSeeder::class);
         $this->call(ClubSeeder::class);
         $this->call(CourseSeeder::class);
-        $this->call(InscriptionSeeder::class);
+        $this->call(EnrollmentSeeder::class);
         $this->call(PaymentSeeder::class);
         $this->call(MovilCredentialsSeeder::class);
         $this->call(TransferCredentialsSeeder::class);

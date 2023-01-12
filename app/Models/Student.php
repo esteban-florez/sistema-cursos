@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Membership;
-use App\Models\Inscription;
+use App\Models\Enrollment;
 use App\Models\Shared\QueryScopes;
 use App\Models\Shared\UserAccesors;
 use App\Models\Accesors\Student as Accesors;
@@ -57,23 +57,22 @@ class Student extends Authenticatable
 
     public function courses()
     {
-        return $this->belongsToMany(Course::class, 'inscriptions');
+        return $this->belongsToMany(Course::class, 'enrollments');
     }
 
-    public function inscriptions()
+    public function enrollments()
     {
-        return $this->hasMany(Inscription::class);
+        return $this->hasMany(Enrollment::class);
     }
 
     public function enroll(Course $course)
     {
         // TODO -> por ahora así, pero no se, me suena que hay que hacer cosas con ManyToMany y el metodo associate()
-        $inscription = Inscription::create([
+        $enrollment = Enrollment::create([
             'student_id' => $this->id,
             'course_id' => $course->id,
-            'unique' => null,
         ]);
 
-        return $inscription;
+        return $enrollment;
     }
 }

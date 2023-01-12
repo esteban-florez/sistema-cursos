@@ -11,13 +11,14 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CredentialsController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InscriptionApprovalController;
+use App\Http\Controllers\EnrollmentApprovalController;
 use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
-use App\Http\Controllers\InscriptionController;
-use App\Http\Controllers\InscriptionConfirmationController;
+use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\EnrollmentConfirmationController;
+use App\Http\Controllers\EnrollmentPDFController;
+use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\StudentPaymentController;
@@ -57,7 +58,6 @@ Route::group([
         ->middleware('auth');
 });
 
-
 // Password recovery
 
 Route::group([
@@ -78,7 +78,6 @@ function () {
     Route::post('reset-password', 'reset')
         ->name('reset');
 });
-
 
 // Signup routes
 
@@ -115,9 +114,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('payments/{payment}/status', [PaymentStatusController::class, 'update'])
         ->name('payments.status.update');
 
-    Route::get('payments/download', [PaymentController::class, 'download'])
-        ->name('payments.download');
-
     Route::resource('payments', PaymentController::class)
         ->except('create', 'store', 'show');
 
@@ -131,63 +127,74 @@ Route::middleware('auth')->group(function () {
     // Enrollment routes
     Route::group([
         'controller' => EnrollmentController::class,
-        'prefix' => 'enrollment',
-        'as' => 'enrollment.',
+        'as' => 'enrollments.',
     ], function () {
+        Route::get('enrollments', 'index')
+            ->name('index');
+
         Route::middleware('enroll')->group(function () {
-            Route::get('{course}', 'create')
+            Route::get('enrollments/create', 'create')
                 ->name('create');
         
-            Route::post('{course}', 'store')
+            Route::post('enrollments', 'store')
                 ->name('store');
         });
-        
-        Route::get('{inscription}/success', 'success')
+        // TODO -> ruta de success por crudizar
+        Route::get('enrollments/{enrollment}/success', 'success')
             ->name('success');
-
-        Route::get('{inscription}/download', 'download')
-            ->name('download');
     }); 
 
-    // Inscriptions routes
-    Route::controller(InscriptionController::class)->group(function () {
-        Route::get('inscriptions', 'index')
-            ->name('inscriptions.index');
-        
-        Route::get('inscriptions/download', 'download')
-            ->name('inscriptions.download');
-    });
+    Route::patch('enrollments/{enrollment}/approval', 
+    [EnrollmentApprovalController::class, 'update'])
+        ->name('enrollments.approval.update');
     
-    Route::put('inscriptions/{inscription}/approval', 
-    [InscriptionApprovalController::class, 'update'])
-        ->name('inscriptions.approval');
-    
-    Route::put('inscriptions/{inscription}/confirmation', 
-    [InscriptionConfirmationController::class, 'update'])
-        ->name('inscriptions.confirmation');
+    Route::patch('enrollments/{enrollment}/confirmation', 
+    [EnrollmentConfirmationController::class, 'update'])
+        ->name('enrollments.confirmation.update');
 
     // Credentials routes
     Route::get('credentials', [CredentialsController::class, 'index'])
         ->name('credentials.index');
-    
-    Route::post('movil-credentials', [MovilCredentialsController::class, 'store'])
-        ->name('movil.store');
-    
-    Route::put('movil-credentials', [MovilCredentialsController::class, 'update'])
-        ->name('movil.update');
-    
-    Route::post('transfer-credentials', [TransferCredentialsController::class, 'store'])
-        ->name('transfer.store');
-    
-    Route::put('transfer-credentials', [TransferCredentialsController::class, 'update'])
-        ->name('transfer.update');
 
-    // Students-Payments routes
+    Route::controller(MovilCredentialsController::class)->group(function () {
+        Route::post('movil-credentials', 'store')
+            ->name('movil.store');
+        
+        Route::put('movil-credentials', 'update')
+            ->name('movil.update');
+    });
+
+    Route::controller(TransferCredentialsController::class)->group(function () {
+        Route::post('transfer-credentials', 'store')
+            ->name('transfer.store');
+        
+        Route::put('transfer-credentials', 'update')
+            ->name('transfer.update');
+    });
+
+    // Students Payments routes
     Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
-        ->name('students-payments.index');
+        ->name('students.payments.index');
 
     // Home routes
     Route::get('home', HomeController::class)
         ->middleware('prevent-back')
         ->name('home');
+
+    // PDF routes
+    Route::group([
+        'controller' => EnrollmentPDFController::class,
+        'as' => 'enrollments-pdf.'
+    ], function () {
+        Route::get('enrollments-pdf', 'index')
+            ->name('index');
+    
+        Route::get('enrollments-pdf/{enrollment}', 'show')
+            ->name('show');
+    });
+
+    Route::get('payments-pdf', [PaymentPDFController::class, 'index'])
+        ->name('payments.download');
 });
+
+

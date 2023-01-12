@@ -71,8 +71,8 @@
     <tbody>
       @foreach ($payments as $payment)
         <tr>
-          <td> {{ $payment->inscription->student->full_ci }} </td>
-          <td> {{ $payment->inscription->course->name }} </td>
+          <td> {{ $payment->enrollment->student->full_ci }} </td>
+          <td> {{ $payment->enrollment->course->name }} </td>
           <td> {{ $payment->full_amount }} </td>
           <td> {{ $payment->updated_at->format(DF) }} </td>
           <td> {{ $payment->ref ?? '----' }} </td>

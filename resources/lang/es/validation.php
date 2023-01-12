@@ -206,7 +206,7 @@ return [
         'amount' => 'el monto',
         'operation' => 'la operación',
 
-        // Inscription attributes
+        // Enrollment attributes
         'confirmed_at' => 'la fecha de confirmación',
         'approved_at' => 'la fecha de aprobación',
         'unique' => 'el campo único',
@@ -227,7 +227,7 @@ return [
         'item_id' => 'el artículo',
         'club_id' => 'el club',
         'student_id' => 'el estudiante',
-        'inscription_id' => 'la inscripción',
+        'enrollment_id' => 'la matrícula',
         'payment_id' => 'el pago',
     ],
 

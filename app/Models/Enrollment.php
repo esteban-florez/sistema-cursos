@@ -9,7 +9,7 @@ use App\Models\Course;
 use App\Models\Payment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Inscription extends Model
+class Enrollment extends Model
 {
     use HasFactory, SoftDeletes;
 

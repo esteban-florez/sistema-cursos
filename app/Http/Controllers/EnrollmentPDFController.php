@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Course;
+use App\Models\Enrollment;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Http\Request;
+
+class EnrollmentPDFController extends Controller
+{
+    public function index(Request $request)
+    {
+        $course = Course::with('instructor')
+            ->findOrFail($request->input('course'));
+ 
+        $enrollments = Enrollment::with('payment', 'student')
+            ->whereBelongsTo($course)
+            ->get();
+        
+        $pdf = PDF::loadView('pdf.enrollments', [
+            'enrollments' => $enrollments,
+            'course' => $course,
+            'date' => now()->format(DF),
+            'logo' => base64('img/logo-upta.png'),
+        ])->setPaper('a4', 'landscape');
+
+        $filename = "{$course->name} - Matrícula.pdf"; 
+        $path = public_path($filename);
+        $pdf->save($filename);
+        
+        return response()
+            ->download($path)
+            ->deleteFileAfterSend();
+    }
+
+    public function show(Enrollment $enrollment)
+    {
+        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
+        if ($enrollment->student_id !== user()->id) {
+            return redirect()->route('home');
+        }
+
+        $student = $enrollment->student;
+        $course = $enrollment->course;
+
+        $pdf = PDF::loadView('pdf.enroll', [
+            'student' => $student,
+            'course' => $course,
+            'date' => now()->format(DF),
+            'logo' => base64('img/logo-upta.png'),
+        ]);
+
+        $filename = "{$student->full_name} - Planilla de Inscripción.pdf"; 
+        $path = public_path($filename);
+        $pdf->save($filename);
+        
+        return response()
+            ->download($path)
+            ->deleteFileAfterSend();
+    }
+}

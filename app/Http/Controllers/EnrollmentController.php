@@ -5,28 +5,47 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PaymentRequest;
 use App\Models\Course;
 use App\Models\Payment;
-use App\Models\Inscription;
+use App\Models\Enrollment;
 use App\Models\MovilCredentials;
 use App\Models\TransferCredentials;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Http\Request;
 use stdClass;
 
 class EnrollmentController extends Controller
 {
-    public function create(Course $course)
+    public function index(Request $request)
     {
+        $course = Course::findOrFail($request->input('course'));
+        $search = $request->input('search');
+        
+        $enrollments = Enrollment::with('payment', 'student')
+            ->whereBelongsTo($course)
+            ->paginate(10)
+            ->withQueryString();
+        
+        return view('enrollments.index', [
+            'course' => $course,
+            'enrollments' => $enrollments,
+            'search' => $search,
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        $course = Course::findOrFail($request->input('course'));
         $credentials = new stdClass;
         $credentials->movil = MovilCredentials::first();
         $credentials->transfer = TransferCredentials::first();
 
-        return view('enrollment.create', [
+        return view('enrollments.create', [
             'course' => $course,
             'credentials' => $credentials,
         ]);
     }
 
-    public function store(PaymentRequest $request, Course $course)
+    public function store(PaymentRequest $request)
     {
+        $course = Course::findOrFail($request->input('course'));
         // TODO -> Mejorar este codigo. Esto es para prevenir que la ref sea nula en caso de que elijan transfer o movil.
         $type = $request->input('type');
 
@@ -40,53 +59,27 @@ class EnrollmentController extends Controller
 
         $data = $request->validated();
 
-        $inscription = user()->enroll($course);
+        $enrollment = user()->enroll($course);
         
-        $data['inscription_id'] = $inscription->id;
+        $data['enrollment_id'] = $enrollment->id;
         
         $payment = Payment::create($data);
 
         return redirect()
-            ->route('enrollment.success', $inscription->id)
+            ->route('enrollments.success', $enrollment->id)
             ->with('enrolledType', $payment->type);
     }
 
-    public function success(Inscription $inscription)
+    public function success(Enrollment $enrollment)
     {
         // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
-        if ($inscription->student_id !== user()->id) {
+        if ($enrollment->student_id !== user()->id) {
             return redirect()->route('home');
         }
 
-        return view('enrollment.success', [
-            'inscription' => $inscription,
-            'enrolledType' => $inscription->payment->type,
+        return view('enrollments.success', [
+            'enrollment' => $enrollment,
+            'enrolledType' => $enrollment->payment->type,
         ]);
-    }
-
-    public function download(Inscription $inscription)
-    {
-        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
-        if ($inscription->student_id !== user()->id) {
-            return redirect()->route('home');
-        }
-
-        $student = $inscription->student;
-        $course = $inscription->course;
-
-        $pdf = PDF::loadView('pdf.enroll', [
-            'student' => $student,
-            'course' => $course,
-            'date' => now()->format(DF),
-            'logo' => base64('img/logo-upta.png'),
-        ]);
-
-        $filename = "{$student->full_name} - Planilla de Inscripción.pdf"; 
-        $path = public_path($filename);
-        $pdf->save($filename);
-        
-        return response()
-            ->download($path)
-            ->deleteFileAfterSend();
     }
 }

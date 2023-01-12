@@ -3,10 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Inscription;
+use App\Models\Enrollment;
 use Illuminate\Support\Facades\Date;
 
-class InscriptionSeeder extends Seeder
+class EnrollmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,21 +15,21 @@ class InscriptionSeeder extends Seeder
      */
     public function run()
     {
-        Inscription::truncate();
+        Enrollment::truncate();
         
         // Curso en inscripciones
         for($i = 1; $i <= 5; $i++) {
-            Inscription::create([
+            Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 1,
                 'unique' => null,
             ]);
         }
 
-        // Curso inscripciones para probar lo de inscriptions:expired
+        // Curso inscripciones para probar lo de enrollments:expired
         for ($i = 2; $i <= 12; $i++) {
             if($i === 2) {
-                Inscription::create([
+                Enrollment::create([
                     'student_id' => $i,
                     'course_id' => 2,
                     'unique' => null,
@@ -38,7 +38,7 @@ class InscriptionSeeder extends Seeder
                 continue;
             }
 
-            Inscription::create([
+            Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 2,
                 'unique' => null,
@@ -49,8 +49,8 @@ class InscriptionSeeder extends Seeder
         for ($i = 2; $i < 10; $i++) { 
             if($i === 2) {
                 // Estudiante no confirmado a proposito para probar 
-                // lo de inscriptions:unconfirmed
-                Inscription::create([
+                // lo de enrollments:unconfirmed
+                Enrollment::create([
                     'student_id' => $i,
                     'course_id' => 4,
                     'unique' => null,
@@ -58,7 +58,7 @@ class InscriptionSeeder extends Seeder
                 continue;
             }
             
-            Inscription::create([
+            Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 4,
                 'unique' => null,
@@ -68,7 +68,7 @@ class InscriptionSeeder extends Seeder
         
         // Curso finalizado
         for ($i = 2; $i < 10; $i++) { 
-            Inscription::create([
+            Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 5,
                 'unique' => null,

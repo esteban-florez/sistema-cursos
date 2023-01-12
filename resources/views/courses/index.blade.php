@@ -65,7 +65,7 @@
             :delete="route('courses.destroy', $course->id)"
           >
           <x-slot name="extraActions">
-            <x-button class="btn-sm" color="secondary" :url="route('inscriptions.index', ['course' => $course->id])" icon="clipboard-list">
+            <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course->id])" icon="clipboard-list">
               Matrícula
             </x-button>
           </x-slot>

@@ -8,7 +8,7 @@
   <section class="container-fluid mt-2 payments-flex" style="column-gap: 1rem;">
     @foreach ($payments as $payment)
       @php
-        $course = $payment->inscription->course;
+        $course = $payment->enrollment->course;
       @endphp
       <div class="card payment-card position-relative">
         <div class="card-body">

@@ -24,8 +24,8 @@
     @endphp
     <a href data-details="{{ json_encode([
       'payment' => $payment,
-      'course' => $payment->inscription->course,
-      'student' => $payment->inscription->student
+      'course' => $payment->enrollment->course,
+      'student' => $payment->enrollment->student
     ]) }}">
       Ver detalles
     </a>

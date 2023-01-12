@@ -2,25 +2,25 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Inscription;
+use App\Models\Enrollment;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Date;
 
-class DeleteExpiredInscriptions extends Command
+class DeleteExpiredEnrollments extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'inscriptions:expired';
+    protected $signature = 'enrollments:expired';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Remove expired inscriptions from database.';
+    protected $description = 'Remove expired enrollments from database.';
 
     /**
      * Create a new command instance.
@@ -39,19 +39,19 @@ class DeleteExpiredInscriptions extends Command
      */
     public function handle()
     {
-        $inscriptions = Inscription::whereNull('confirmed_at');
+        $enrollments = Enrollment::whereNull('confirmed_at');
 
-        $inscriptions->each(function ($inscription) {
-            $created = Date::createFromFormat('Y-m-d H:i:s', $inscription->created_at);
+        $enrollments->each(function ($enrollment) {
+            $created = Date::createFromFormat('Y-m-d H:i:s', $enrollment->created_at);
             $midDate = Date::createMidnightDate($created->year, $created->month, $created->day);
             $now = now();
             $midNow = Date::createMidnightDate($now->year, $now->month, $now->day);
             // TODO -> esta cantidad de días la pone Edeblangel, toca preguntar
             if($midDate->diffInDays($midNow) >= 3) {
-                $inscription->delete();
+                $enrollment->delete();
             }
         });
-        echo "Removed expired inscriptions successfully.\n";
+        echo "Removed expired enrollments successfully.\n";
         return 0;
     }
 }

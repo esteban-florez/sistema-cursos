@@ -37,36 +37,27 @@ class Course extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'inscriptions');
+        return $this->belongsToMany(Student::class, 'enrollments');
     }
 
-    public function inscriptions()
+    public function enrollments()
     {
-        return $this->hasMany(Inscription::class);
+        return $this->hasMany(Enrollment::class);
     }
 
     public function area() 
     {
         return $this->belongsTo(Area::class);
     }
-
-    public function scopeOnInscriptions($query)
-    {
-        // TODO -> debe haber mejores maneras de hacer estos cuatro scopeQuery, y evitar tanta repetición de codigo.
-        $courses = self::all();
-        
-        $ids = $courses->filter(fn($course) => $course->phase === 'Inscripciones')
-            ->ids();
-        
-        return $query->whereIn('id', $ids);
-    }
-
+    
     public function scopeAvailables($query)
     {
+        // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery, y evitar tanta repetición de codigo.
         $courses = self::withCount('students')->get();
         
-        $ids = $courses->filter(fn($course) => 
-            $course->students_count < $course->student_limit)
+        $ids = $courses
+            ->filter(fn($course) => $course->students_count < $course->student_limit)
+            ->filter(fn($course) => $course->phase === 'Inscripciones')
             ->ids();
         
         return $query->whereIn('id', $ids);

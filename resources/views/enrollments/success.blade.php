@@ -46,7 +46,7 @@
             <i class="fas fa-info-circle fa-lg mr-2"></i>
             <p class="font-weight-normal d-inline" id="finalParagraph"></p>
           </div>
-          <x-button :url="route('enrollment.download', $inscription->id)" icon="file">
+          <x-button :url="route('enrollments-pdf.show', $enrollment->id)" icon="file">
             Descargar Planilla de Inscripción
           </x-button>
           <x-button :url="route('available-courses.index')" color="secondary">

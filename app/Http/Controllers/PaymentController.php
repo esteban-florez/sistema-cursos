@@ -7,7 +7,6 @@ use App\Models\Payment;
 use App\Models\Course;
 use App\Services\Input;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class PaymentController extends Controller
 {
@@ -17,7 +16,7 @@ class PaymentController extends Controller
         $sort = $request->input('sort');
         $search = $request->input('search');
         
-        $payments = Payment::with('inscription.student', 'inscription.course')
+        $payments = Payment::with('enrollment.student', 'enrollment.course')
             ->filters($filters)
             ->search($search)
             ->sort($sort)
@@ -50,7 +49,7 @@ class PaymentController extends Controller
         ]);
 
         return redirect()
-            ->route('students-payments.index', user()->id)
+            ->route('students.payments.index', user()->id)
             ->withWarning('El pago se ha actualizado exitosamente.');
     }
 
@@ -61,25 +60,5 @@ class PaymentController extends Controller
         return redirect()
             ->route('payments.index')
             ->withDanger('El pago se ha eliminado exitosamente.');
-    }
-
-    public function download()
-    {
-        $payments = Payment::with('inscription.course', 'inscription.student')
-            ->get();
-
-        $pdf = PDF::loadView('pdf.payments', [
-            'payments' => $payments,
-            'date' => now()->format(DF),
-            'logo' => base64('img/logo-upta.png'),
-        ])->setPaper('a4', 'landscape');
-
-        $filename = "Reporte de Pagos - Vinculación Social.pdf"; 
-        $path = public_path($filename);
-        $pdf->save($filename);
-        
-        return response()
-            ->download($path)
-            ->deleteFileAfterSend();
     }
 }

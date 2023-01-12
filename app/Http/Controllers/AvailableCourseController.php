@@ -15,7 +15,6 @@ class AvailableCourseController extends Controller
 
         $courses = Course::availables()
             ->notBoughtBy($student)
-            ->onInscriptions()
             ->search($search)
             ->sort($sortColumn)
             ->latest()

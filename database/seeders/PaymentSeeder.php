@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Payment;
-use App\Models\Inscription;
+use App\Models\Enrollment;
 
 
 class PaymentSeeder extends Seeder
@@ -18,16 +18,16 @@ class PaymentSeeder extends Seeder
     {
         Payment::truncate();
         
-        Inscription::all()
-        ->each(function ($inscription) {
+        Enrollment::all()
+        ->each(function ($enrollment) {
             $payment = Payment::factory([
-                'inscription_id' => $inscription->id
+                'enrollment_id' => $enrollment->id
             ])->make();
 
             if ($payment->type !== 'Efectivo ($)') {
-                $payment->amount = $inscription->course->total_price * 18.65;
+                $payment->amount = $enrollment->course->total_price * 18.65;
             } else {
-                $payment->amount = $inscription->course->total_price;
+                $payment->amount = $enrollment->course->total_price;
             }
 
             $payment->save();

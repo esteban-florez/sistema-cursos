@@ -5,7 +5,7 @@
         :name="$user->full_name"
         :role="$user->role"
         :image="$user->image"
-        :course-count="$user->inscriptions->count()"
+        :course-count="$user->enrollments->count()"
         :club-count="0"
       />
       <div class="card card-info mx-2">

@@ -35,7 +35,7 @@
       <div class="d-flex justify-content-between align-items-center mt-3">
         @isnt('student')
           <x-button
-            :url="route('inscriptions.index', ['course' => $course->id])"
+            :url="route('enrollments.index', ['course' => $course->id])"
             class="btn-lg"
             color="secondary"
             icon="clipboard-list"
@@ -60,7 +60,7 @@
           </x-button>
           @if(!$registered)
             <x-button 
-            :url="route('enrollment.create', $course->id)"
+            :url="route('enrollments.create', $course->id)"
             icon="clipboard-list"
             >
               Inscribirse

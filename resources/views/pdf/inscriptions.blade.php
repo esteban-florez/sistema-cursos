@@ -65,17 +65,17 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($inscriptions as $inscription)
+      @foreach ($enrollments as $enrollment)
       @php
-        $student = $inscription->student;
+        $student = $enrollment->student;
       @endphp
         <tr>
           <td>{{ $student->full_name }}</td>
           <td>{{ $student->full_ci }}</td>
           <td>{{ $student->upta }}</td>
-          <td>{{ $inscription->payment->status }}</td>
-          <td>{{ $inscription->status }}</td>
-          <td>{{ $inscription->approved }}</td>
+          <td>{{ $enrollment->payment->status }}</td>
+          <td>{{ $enrollment->status }}</td>
+          <td>{{ $enrollment->approved }}</td>
         </tr>
       @endforeach
     </tbody>

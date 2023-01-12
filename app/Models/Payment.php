@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Inscription;
+use App\Models\Enrollment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\QueryScopes;
 
@@ -14,9 +14,9 @@ class Payment extends Model
     
     protected $guarded = ['id'];
     
-    public function inscription()
+    public function enrollment()
     {
-        return $this->belongsTo(Inscription::class);
+        return $this->belongsTo(Enrollment::class);
     }
 
     public function getFullAmountAttribute()
@@ -30,11 +30,11 @@ class Payment extends Model
         return $query->when($filters, function ($query, $filters) {
             foreach($filters as $filter => $value) {
                 if ($filter === 'course_id') {
-                    $ids = Inscription::where('course_id', $value)
+                    $ids = Enrollment::where('course_id', $value)
                         ->pluck('id')
                         ->all();
                         
-                    $query->whereIn('inscription_id', $ids);
+                    $query->whereIn('enrollment_id', $ids);
                     continue;
                 }
 
@@ -58,11 +58,11 @@ class Payment extends Model
                 ->first()
                 ->id ?? 0;
             
-            $ids = Inscription::where('student_id', $id)
+            $ids = Enrollment::where('student_id', $id)
                 ->pluck('id')
                 ->all();
 
-            return $query->whereIn('inscription_id', $ids);
+            return $query->whereIn('enrollment_id', $ids);
         });
     }
 }

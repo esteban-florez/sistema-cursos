@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Inscription;
+use App\Models\Enrollment;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -28,11 +28,11 @@ class EnrollmentMiddleware
             return redirect()->route('available-courses.index');
         }
 
-        $inscription = Inscription::where('course_id', $course->id)
+        $enrollment = Enrollment::where('course_id', $course->id)
             ->where('student_id', $student->id)
             ->first();
         
-        if ($inscription !== null) {
+        if ($enrollment !== null) {
             return redirect()->route('available-courses.index');
         }
         
