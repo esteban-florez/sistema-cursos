@@ -15,8 +15,9 @@
               @csrf
               @method('PUT')
               <h4>
-                Curso: <a href="{{ route('courses.show', $course->id) }}">{{ $course->name }}</a>
+                Curso: <a class="text-bold" href="{{ route('courses.show', $course->id) }}">{{ $course->name }}</a>
               </h4>
+              <x-payment.status :payment="$payment"/>
               <hr>
               <x-select name="type" :options="payTypes()->pairs()" :selected="old('type') ?? $payment->type">
                 Tipo de pago:
