@@ -22,7 +22,6 @@ class EnrollmentSeeder extends Seeder
             Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 1,
-                'unique' => null,
             ]);
         }
 
@@ -32,7 +31,6 @@ class EnrollmentSeeder extends Seeder
                 Enrollment::create([
                     'student_id' => $i,
                     'course_id' => 2,
-                    'unique' => null,
                     'created_at' => Date::create(2022, 12, 2),
                 ]);
                 continue;
@@ -41,7 +39,6 @@ class EnrollmentSeeder extends Seeder
             Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 2,
-                'unique' => null,
             ]);    
         }
 
@@ -53,7 +50,6 @@ class EnrollmentSeeder extends Seeder
                 Enrollment::create([
                     'student_id' => $i,
                     'course_id' => 4,
-                    'unique' => null,
                 ]);
                 continue;
             }
@@ -61,7 +57,6 @@ class EnrollmentSeeder extends Seeder
             Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 4,
-                'unique' => null,
                 'confirmed_at' => Date::create(2022, 12, 6),
             ]);
         }
@@ -71,7 +66,6 @@ class EnrollmentSeeder extends Seeder
             Enrollment::create([
                 'student_id' => $i,
                 'course_id' => 5,
-                'unique' => null,
                 'confirmed_at' => Date::create(2022, 12, 6),
             ]);
         }

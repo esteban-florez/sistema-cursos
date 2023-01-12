@@ -10,7 +10,7 @@
         <h5 class="mb-2">{{ $course->name }}</h5>
         <p class="card-text">{{ $course->excerpt }}</p>
         <div class="d-flex justify-content-between align-items-center">
-          <x-button url="{{ route('available-courses.show', $course->id) }}">Detalles</x-button>
+          <x-button url="{{ route('courses.show', $course->id) }}">Detalles</x-button>
           <h4 class="text-success mb-0">{{ $course->total_price }} $</h4>
         </div>
       </div>

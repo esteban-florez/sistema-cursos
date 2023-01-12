@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <x-carousel :items="$courses" detailUrl="available-courses.show"/>
+    <x-carousel :items="$courses" detailUrl="courses.show"/>
     <div class="card mt-3">
       <div class="card-header">
         <div class="row d-flex align-items-center w-100">

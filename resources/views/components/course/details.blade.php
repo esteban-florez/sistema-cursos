@@ -60,7 +60,7 @@
           </x-button>
           @if(!$registered)
             <x-button 
-            :url="route('enrollments.create', $course->id)"
+            :url="route('enrollments.create', ['course' => $course->id])"
             icon="clipboard-list"
             >
               Inscribirse

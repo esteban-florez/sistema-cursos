@@ -121,7 +121,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('club', ClubController::class);
 
     // Available Courses routes
-    Route::get('available-courses', [AvailableCourseController::class])
+    Route::get('available-courses', [AvailableCourseController::class, 'index'])
         ->name('available-courses.index');
 
     // Enrollment routes

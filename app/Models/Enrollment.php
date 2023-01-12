@@ -30,12 +30,6 @@ class Enrollment extends Model
         return $this->hasOne(Payment::class);
     }
 
-    public function setUniqueAttribute()
-    {
-        // TODO -> test default attribute value on unique
-        $this->attributes['unique'] = "{$this->student_id}-{$this->course_id}";
-    }
-
     public function getStatusAttribute()
     {
         if($this->confirmed_at !== null) {

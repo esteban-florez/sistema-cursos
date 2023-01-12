@@ -80,7 +80,7 @@
     data-back="{{ route('available-courses.index') }}"
     class="d-none"
     method="POST"
-    action="{{ route('enrollments.store', $course->id) }}"
+    action="{{ route('enrollments.store', ['course' => $course->id]) }}"
   >
     @csrf
     <input type="hidden" name="date" value="{{ now()->format(DV) }}">
