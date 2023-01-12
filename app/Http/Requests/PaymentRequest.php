@@ -25,9 +25,11 @@ class PaymentRequest extends FormRequest
     {
         return [
             'ref' => [
-                'required_if:type,'.payTypes()->take(2)->join(','),
+                // TODO -> buscar una solución a este hack medio loco de nullable + required_if
+                'nullable',
                 'numeric',
                 'digits_between:4,10',
+                'required_if:type,'.payTypes()->take(2)->join(','),
             ],
             'amount' => [
                 'required',

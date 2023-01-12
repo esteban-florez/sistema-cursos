@@ -20,7 +20,7 @@
     {{-- TODO -> esto toco arreglarlo a la machinberra por ahora --}}
     @php
       $payment->date = $payment->updated_at->format(DF);
-      unset($payment->updated_at->format(DF));
+      unset($payment->updated_at);
     @endphp
     <a href data-details="{{ json_encode([
       'payment' => $payment,

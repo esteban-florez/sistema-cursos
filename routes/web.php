@@ -194,7 +194,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('payments-pdf', [PaymentPDFController::class, 'index'])
-        ->name('payments.download');
+        ->name('payments-pdf.index');
 });
 
 
