@@ -23,7 +23,7 @@ class ClubSeeder extends Seeder
             'start_hour' => '08:00:00',
             'end_hour' => '12:00:00',
             'image' => 'img/futbol.jpg',
-            'instructor_id' => 2,
+            'user_id' => 2,
         ])->create();
         
         Club::factory([
@@ -33,7 +33,7 @@ class ClubSeeder extends Seeder
             'start_hour' => '08:00:00',
             'end_hour' => '12:00:00',
             'image' => 'img/voleibol.jpg',
-            'instructor_id' => 2,
+            'user_id' => 2,
         ])->create();
 
         Club::factory([
@@ -43,7 +43,7 @@ class ClubSeeder extends Seeder
             'start_hour' => '08:00:00',
             'end_hour' => '11:00:00',
             'image' => 'img/baloncesto.jpg',
-            'instructor_id' => 4,
+            'user_id' => 4,
         ])->create();
 
         Club::factory([
@@ -53,7 +53,7 @@ class ClubSeeder extends Seeder
             'start_hour' => '08:00:00',
             'end_hour' => '12:00:00',
             'image' => 'img/beisbol.jpg',
-            'instructor_id' => 4,
+            'user_id' => 4,
         ])->create();
 
         Club::factory([
@@ -63,7 +63,7 @@ class ClubSeeder extends Seeder
             'start_hour' => '10:00:00',
             'end_hour' => '12:00:00',
             'image' => 'img/salsa.jpg',
-            'instructor_id' => 2,
+            'user_id' => 2,
         ])->create();
     }
 }

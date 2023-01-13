@@ -30,7 +30,7 @@ class EnrollmentMiddleware
         }
 
         $enrollment = Enrollment::where('course_id', $course->id)
-            ->where('student_id', $student->id)
+            ->where('user_id', $student->id)
             ->first();
         
         if ($enrollment !== null) {

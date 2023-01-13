@@ -17,8 +17,8 @@ class UserSeeder extends Seeder
         User::truncate();
 
         User::create([
-            'name' => 'Edeblangel',
-            'lastname' => 'Vanegas',
+            'first_name' => 'Edeblangel',
+            'first_lastname' => 'Vanegas',
             'ci' => 14189212,
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -34,8 +34,8 @@ class UserSeeder extends Seeder
         ]);
         
         User::create([
-            'name' => 'Elías',
-            'lastname' => 'Vargas',
+            'first_name' => 'Elías',
+            'first_lastname' => 'Vargas',
             'ci' => 10238923,
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -51,8 +51,8 @@ class UserSeeder extends Seeder
         ]);       
         
         User::create([
-            'name' => 'Jackson',
-            'lastname' => 'Pérez',
+            'first_name' => 'Jackson',
+            'first_lastname' => 'Pérez',
             'ci' => 12930202, 
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -68,8 +68,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Ana',
-            'lastname' => 'García',
+            'first_name' => 'Ana',
+            'first_lastname' => 'García',
             'ci' => 13242093, 
             'ci_type' => 'V',
             'gender' => 'Femenino',
@@ -85,8 +85,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Vicente',
-            'lastname' => 'Sifuentes',
+            'first_name' => 'Vicente',
+            'first_lastname' => 'Sifuentes',
             'ci' => 20183921, 
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -102,8 +102,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Lucas',
-            'lastname' => 'Diaz',
+            'first_name' => 'Lucas',
+            'first_lastname' => 'Diaz',
             'ci' => 9348192, 
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -119,8 +119,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Ramón',
-            'lastname' => 'Rojas',
+            'first_name' => 'Ramón',
+            'first_lastname' => 'Rojas',
             'ci' => 14829923, 
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -137,8 +137,8 @@ class UserSeeder extends Seeder
 
         
         User::create([
-            'name' => 'Adelaida',
-            'lastname' => 'Arias',
+            'first_name' => 'Adelaida',
+            'first_lastname' => 'Arias',
             'ci' => 23920122, 
             'ci_type' => 'V',
             'gender' => 'Femenino',
@@ -154,8 +154,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Héctor',
-            'lastname' => 'Valenzuela',
+            'first_name' => 'Héctor',
+            'first_lastname' => 'Valenzuela',
             'ci' => 16732132, 
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -171,8 +171,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Mario',
-            'lastname' => 'Lopez',
+            'first_name' => 'Mario',
+            'first_lastname' => 'Lopez',
             'ci' => 8923123, 
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -188,8 +188,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Luisa',
-            'lastname' => 'Perez',
+            'first_name' => 'Luisa',
+            'first_lastname' => 'Perez',
             'ci' => 24898201, 
             'ci_type' => 'E',
             'gender' => 'Femenino',
@@ -205,8 +205,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Lisbeth',
-            'lastname' => 'Ramirez',
+            'first_name' => 'Lisbeth',
+            'first_lastname' => 'Ramirez',
             'ci' => 23102932, 
             'ci_type' => 'V',
             'gender' => 'Femenino',
@@ -222,8 +222,8 @@ class UserSeeder extends Seeder
         ]);       
 
         User::create([
-            'name' => 'Dario',
-            'lastname' => 'Marquez',
+            'first_name' => 'Dario',
+            'first_lastname' => 'Marquez',
             'ci' => 18492002, 
             'ci_type' => 'V',
             'gender' => 'Masculino',
@@ -239,8 +239,8 @@ class UserSeeder extends Seeder
         ]);       
         
         User::create([
-            'name' => 'Yainally',
-            'lastname' => 'Arriechi',
+            'first_name' => 'Yainally',
+            'first_lastname' => 'Arriechi',
             'ci' => 19032812, 
             'ci_type' => 'V',
             'gender' => 'Femenino',
@@ -257,8 +257,8 @@ class UserSeeder extends Seeder
 
         // xD!!
         User::create([
-            'name' => 'Kakashi',
-            'lastname' => 'Hatake',
+            'first_name' => 'Kakashi',
+            'first_lastname' => 'Hatake',
             'ci' => 77777777, 
             'ci_type' => 'E',
             'gender' => 'Masculino',
@@ -418,7 +418,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'first_name' => 'Lucas',
+            'first_name' => 'Ricado',
             'second_name' => 'Eduardo',
             'first_lastname' => 'García',
             'second_lastname' => 'Romero',
@@ -427,7 +427,7 @@ class UserSeeder extends Seeder
             'gender' => 'Masculino',
             'phone' => '04129329032',
             'address' => 'Urb. Corocito Calle 6, Santa Cruz de Aragua.',
-            'email' => 'lucas@example.com',
+            'email' => 'ricardo@example.com',
             'password' => 'password',
             'grade' => 'Bachillerato',
             'birth' => '2003-04-06',

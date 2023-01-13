@@ -18,8 +18,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PNFSeeder::class);
         $this->call(AreaSeeder::class);
-        $this->call(StudentSeeder::class);
-        $this->call(InstructorSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(ClubSeeder::class);
         $this->call(CourseSeeder::class);
         $this->call(EnrollmentSeeder::class);

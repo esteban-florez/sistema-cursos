@@ -32,12 +32,12 @@ class Course extends Model
 
     public function instructor()
     {
-        return $this->belongsTo(Instructor::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'enrollments');
+        return $this->belongsToMany(User::class, 'enrollments');
     }
 
     public function enrollments()

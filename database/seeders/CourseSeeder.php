@@ -31,7 +31,7 @@ class CourseSeeder extends Seeder
             'days' => ['Martes', 'Sábado'],
             'image' => 'img/programacion-web.jpg',
             'area_id' => 1,
-            'instructor_id' => 2,
+            'user_id' => 2,
         ])->create();
 
         Course::factory([
@@ -47,7 +47,7 @@ class CourseSeeder extends Seeder
             'days' => ['Martes', 'Jueves'],
             'image' => 'img/javascript.jpg',
             'area_id' => 1,
-            'instructor_id' => 3,
+            'user_id' => 3,
         ])->create();
 
         Course::factory([
@@ -63,7 +63,7 @@ class CourseSeeder extends Seeder
             'days' => ['Lunes', 'Miércoles', 'Jueves'],
             'image' => 'img/administracion.jpg',
             'area_id' => 1,
-            'instructor_id' => 6,
+            'user_id' => 6,
         ])->create();
 
         Course::factory([
@@ -79,7 +79,7 @@ class CourseSeeder extends Seeder
             'days' => 'Sábado',
             'image' => 'img/cocina.jpg',
             'area_id' => 3,
-            'instructor_id' => 7,
+            'user_id' => 7,
         ])->create();
         
         Course::factory([
@@ -95,7 +95,7 @@ class CourseSeeder extends Seeder
             'days' => 'Sábado',
             'image' => 'img/matematicas.jpg',
             'area_id' => 10,
-            'instructor_id' => 14,
+            'user_id' => 14,
         ])->create();
     }
 }
