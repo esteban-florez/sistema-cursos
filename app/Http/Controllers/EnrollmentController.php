@@ -9,6 +9,7 @@ use App\Models\Enrollment;
 use App\Models\MovilCredentials;
 use App\Models\TransferCredentials;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use stdClass;
 
 class EnrollmentController extends Controller
@@ -59,7 +60,7 @@ class EnrollmentController extends Controller
 
         $data = $request->validated();
 
-        $enrollment = user()->enroll($course);
+        $enrollment = Auth::user()->enroll($course);
         
         $data['enrollment_id'] = $enrollment->id;
         
@@ -73,7 +74,7 @@ class EnrollmentController extends Controller
     public function success(Enrollment $enrollment)
     {
         // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
-        if ($enrollment->student_id !== user()->id) {
+        if ($enrollment->student_id !== Auth::user()->id) {
             return redirect()->route('home');
         }
 

@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
 
 class AvailableCourseController extends Controller
 {
     public function index(Request $request)
     {
-        $student = user();
+        $student = Auth::user();
         $sortColumn = $request->input('sort');
         $search = $request->input('search');
 

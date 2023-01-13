@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,9 +30,9 @@ class AppServiceProvider extends ServiceProvider
         // Esto se queda comentado de ahora en adelante, para que los strings sean de 255 max, la solución es configurar algo en la base de datos, busquen en internet xd
         // Schema::defaultStringLength(191);
 
-        Blade::if('is', fn($role) => $role === getCurrentRole());
+        Blade::if('is', fn($role) => $role === Auth::user()->role);
 
-        Blade::if('isnt', fn($role) => $role !== getCurrentRole());
+        Blade::if('isnt', fn($role) => $role !== Auth::user()->role);
 
         Collection::macro('pairs', fn() =>
             $this->mapWithKeys(fn($value) => 

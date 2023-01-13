@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EnrollmentMiddleware
 {
@@ -19,7 +20,7 @@ class EnrollmentMiddleware
     public function handle(Request $request, Closure $next)
     {
         $course = Course::findOrFail($request->input('course'));
-        $student = user();
+        $student = Auth::user();
         // TODO -> hacer que redirija al available-courses.index con un mensaje de error según el caso
         if ($course->student_count >= $course->student_limit) {
             return redirect()->route('available-courses.index');

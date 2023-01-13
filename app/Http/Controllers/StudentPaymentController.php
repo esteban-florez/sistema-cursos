@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentPaymentController extends Controller
 {
@@ -16,7 +17,7 @@ class StudentPaymentController extends Controller
     {
         $payments = Payment::with('enrollment.course')
             ->whereHas('enrollment', fn($query) => 
-                $query->where('enrollments.student_id', user()->id))
+                $query->where('enrollments.student_id', Auth::user()->id))
             ->paginate(6);
 
         return view('students-payments.index', [
