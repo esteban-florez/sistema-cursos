@@ -14,6 +14,10 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, QueryScopes, SoftDeletes;
 
+    const ROLE_ADMIN = 1;
+    const ROLE_INSTRUCTOR = 2;
+    const ROLE_STUDENT = 3;
+
     /**
      * The attributes that are not mass assignable.
      *
@@ -82,6 +86,18 @@ class User extends Authenticatable
         ]);
 
         return $enrollment;
+    }
+
+    /** --------------- Query Scopes --------------- */
+
+    public function scopeInstructors($query)
+    {
+        return $query->where('role', User::ROLE_INSTRUCTOR);
+    }
+
+    public function scopeStudents($query)
+    {
+        return $query->where('role', User::ROLE_STUDENT);
     }
 
     /** --------------- Accesors and Mutators --------------- */

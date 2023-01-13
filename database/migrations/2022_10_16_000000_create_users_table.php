@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->date('birth');
             $table->boolean('is_upta')->default(false);
-            $table->foreignId('role_id')->constrained();
+            $table->integer('role');
             $table->softDeletes();
             $table->timestamps();
             // Student fields

@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Area;
+use App\Models\User;
 
 class StudentFactory extends Factory
 {
@@ -31,6 +32,9 @@ class StudentFactory extends Factory
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             'degree' => $this->faker->jobTitle,
             'area_id' => Area::factory(),
+            'role' => $this->faker->randomElement(
+                [User::ROLE_INSTRUCTOR, User::ROLE_STUDENT]
+            ),
         ];
     }
 
