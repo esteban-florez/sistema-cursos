@@ -1,16 +1,16 @@
 @php
-  $currentUser = user();
+  $user = auth()->user();
 @endphp
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <div class="sidebar mt-0 h-100">
   <div class="user-panel my-3 pb-3 d-flex align-items-center">
     <div class="image pl-2">
-    <img src="{{ asset($currentUser->image) }}" class="img-circle elevation-2" alt="Imagen del usuario">
+    <img src="{{ asset($user->image) }}" class="img-circle elevation-2" alt="Imagen del usuario">
     </div>
     <div class="info">
-      <p class="d-block text-white m-0">{{ $currentUser->full_name }}</p>
-      <span class="text-bold text-muted">{{ $currentUser->role }}</span>
+      <p class="d-block text-white m-0">{{ $user->full_name }}</p>
+      <span class="text-bold text-muted">{{ $user->role_name }}</span>
     </div>
   </div>
   <nav class="mt-2">
@@ -88,7 +88,7 @@
         Pagos
         <x-slot name="menu">
           @is('student')
-          <x-layout.sidebar.item :url="route('students.payments.index', $currentUser->id)" icon="list">
+          <x-layout.sidebar.item :url="route('students.payments.index', $user->id)" icon="list">
             Mis pagos
           </x-layout.sidebar.item>
           @endis

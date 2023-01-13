@@ -1,7 +1,7 @@
 @props(['course'])
 
 @php
-  $registered = user()
+  $registered = auth()->user()
   ->courses
   ->ids()
   ->contains($course->id);

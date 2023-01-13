@@ -3,7 +3,7 @@
     <div class="col-md-5 col-xl-4">
       <x-profile.widget 
         :name="$user->full_name"
-        :role="$user->role"
+        :role="$user->role_name"
         :image="$user->image"
         :course-count="$user->enrollments->count()"
         :club-count="0"
@@ -46,15 +46,16 @@
             <x-profile.data :data="$user->tel">
               Número de Teléfono:
             </x-profile.data>
-            @if ($user->role === 'Estudiante')
+            @is('student', $user)
             <x-profile.data :data="$user->grade">
               Grado de Instrucción:
             </x-profile.data>
-            @else
+            @endis
+            @is('instructor', $user)
             <x-profile.data :data="$user->degree">
               Titulación:
             </x-profile.data>
-            @endif
+            @endis
             <x-profile.data :data="$user->address">
               Dirección:
             </x-profile.data>

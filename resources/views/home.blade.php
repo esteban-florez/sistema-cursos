@@ -7,10 +7,6 @@
   <script defer src="{{ asset('js/time.js') }}"></script>
   @endpush
 
-  @php
-    $currentUser = user();
-  @endphp
-
   <!-- Hay muchas cosas que arreglar aquí en el home, pero, yastoi harta ptm jasjajskajk -->
 
   <!-- TODO -> Hacer que me lleve a los detalles de todas las cards -->
@@ -23,7 +19,7 @@
     <div class="row w-100 mt-2 ml-0">
       <div class="col-lg-7">
         <div class="card w-100 d-md-inline-block d-none mb-3 p-3">
-          <h4 class="text-center mt-2">Bienvenid@ {{ $currentUser->full_name }}</h4>
+          <h4 class="text-center mt-2">Bienvenid@ {{ auth()->user()->full_name }}</h4>
         </div>
       </div>
       <div class="col-lg-5">

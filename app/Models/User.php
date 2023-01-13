@@ -152,6 +152,11 @@ class User extends Authenticatable
         return $image ?? 'img/user-placeholder.png';
     }
 
+    public function getRoleNameAttribute()
+    {
+        return roleNames()->get($this->role);
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = bcrypt($password);

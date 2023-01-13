@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 define('DV', 'Y-m-d');
 define('TV', 'H:i');
 define('DF', 'd/m/Y');
@@ -65,6 +67,16 @@ if (!function_exists('accountTypes')) {
         return collect([
             'Corriente',
             'Ahorro',
+        ]);
+    }
+}
+
+if (!function_exists('roleNames')) {
+    function roleNames() {
+        return collect([
+            User::ROLE_ADMIN => 'Administrador',
+            User::ROLE_INSTRUCTOR => 'Instructor',
+            User::ROLE_STUDENT => 'Estudiante',
         ]);
     }
 }
