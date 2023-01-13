@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 1,
-            'role' => 1,
+            'role' => User::ROLE_ADMIN,
         ]);
         
         User::create([
@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 1,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
         
         User::create([
@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-05-11',
             'is_upta' => true,
             'area_id' => 1,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -81,7 +81,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-03-23',
             'is_upta' => true,
             'area_id' => 1,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -98,7 +98,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 1,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -115,7 +115,7 @@ class UserSeeder extends Seeder
             'birth' => '1990-01-12',
             'is_upta' => true,
             'area_id' => 2,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -132,7 +132,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 3,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         
@@ -150,7 +150,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 4,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -167,7 +167,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 5,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -184,7 +184,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 6,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -201,7 +201,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 7,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -218,7 +218,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 8,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
 
         User::create([
@@ -235,7 +235,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 9,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);       
         
         User::create([
@@ -252,7 +252,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 10,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);
 
         // xD!!
@@ -270,7 +270,7 @@ class UserSeeder extends Seeder
             'birth' => '1989-02-10',
             'is_upta' => true,
             'area_id' => 11,
-            'role' => 2,
+            'role' => User::ROLE_INSTRUCTOR,
         ]);
 
         User::create([
@@ -288,7 +288,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '2003-07-07',
             'is_upta' => true,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -306,7 +306,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '2002-10-10',
             'is_upta' => true,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -324,7 +324,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '2003-09-30',
             'is_upta' => true,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -342,7 +342,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '2003-09-30',
             'is_upta' => true,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -360,7 +360,7 @@ class UserSeeder extends Seeder
             'grade' => 'Superior',
             'birth' => '1996-03-02',
             'is_upta' => false,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -378,7 +378,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '1986-11-11',
             'is_upta' => false,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -396,7 +396,7 @@ class UserSeeder extends Seeder
             'grade' => 'TSU',
             'birth' => '1988-09-27',
             'is_upta' => false,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -414,7 +414,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '2004-07-06',
             'is_upta' => false,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -432,7 +432,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '2003-04-06',
             'is_upta' => false,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -450,7 +450,7 @@ class UserSeeder extends Seeder
             'grade' => 'TSU',
             'birth' => '2001-02-07',
             'is_upta' => false,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -468,7 +468,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '2005-02-12',
             'is_upta' => true,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
 
         User::create([
@@ -486,7 +486,7 @@ class UserSeeder extends Seeder
             'grade' => 'Bachillerato',
             'birth' => '1999-03-12',
             'is_upta' => true,
-            'role' => 3,
+            'role' => User::ROLE_STUDENT,
         ]);
     }
 }

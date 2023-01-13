@@ -14,9 +14,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, QueryScopes, SoftDeletes;
 
-    const ROLE_ADMIN = 1;
-    const ROLE_INSTRUCTOR = 2;
-    const ROLE_STUDENT = 3;
+    const ROLE_ADMIN = 'admin';
+    const ROLE_INSTRUCTOR = 'instructor';
+    const ROLE_STUDENT = 'student';
 
     /**
      * The attributes that are not mass assignable.
