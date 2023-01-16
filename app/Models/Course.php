@@ -66,7 +66,7 @@ class Course extends Model
     public function scopeNotBoughtBy($query, $student)
     {
         $ids = $student
-            ->courses
+            ->enrolledCourses
             ->ids();
 
         $query->whereNotIn('id', $ids);
@@ -75,7 +75,7 @@ class Course extends Model
     public function scopeBoughtBy($query, $student)
     {
         $ids = $student
-            ->courses
+            ->enrolledCourses
             ->ids();
         
         $query->whereIn('id', $ids);

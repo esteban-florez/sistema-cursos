@@ -162,9 +162,16 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public static function instructorsAsOptions()
+    public static function getOptions($role = null)
     {
-        $instructors = self::all(['id', 'name', 'lastname']);
+        $cols = ['id', 'first_name', 'first_lastname'];
+        $instructors = null;
+
+        if ($role) {
+            $instructors = User::where('role', $role)->get($cols);
+        } else {
+            $instructors = User::all($cols);
+        }
 
         $options = $instructors->mapWithKeys(fn($instructor) => 
             [$instructor->id => $instructor->full_name])

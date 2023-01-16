@@ -6,7 +6,7 @@ use App\Http\Requests\StoreClubRequest;
 use App\Http\Requests\UpdateClubRequest;
 use Illuminate\Http\Request;
 use App\Models\Club;
-use App\Models\Instructor;
+use App\Models\User;
 use App\Services\Input;
 
 class ClubController extends Controller
@@ -43,7 +43,7 @@ class ClubController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::getOptions();
+        $instructors = User::getOptions('instructor');
         
         return view('club.create', [
             'instructors' => $instructors,
@@ -96,7 +96,7 @@ class ClubController extends Controller
      */
     public function edit(Club $club)
     {
-        $instructors = Instructor::getOptions();
+        $instructors = User::getOptions('instructor');
 
         return view ('club.edit', [
             'club' => $club,

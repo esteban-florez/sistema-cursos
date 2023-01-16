@@ -10,12 +10,12 @@ class AvailableCourseController extends Controller
 {
     public function index(Request $request)
     {
-        $student = Auth::user();
+        $user = Auth::user();
         $sortColumn = $request->input('sort');
         $search = $request->input('search');
 
         $courses = Course::availables()
-            ->notBoughtBy($student)
+            ->notBoughtBy($user)
             ->search($search)
             ->sort($sortColumn)
             ->latest()

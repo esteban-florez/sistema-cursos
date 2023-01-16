@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Course;
-use App\Models\Instructor;
+use App\Models\User;
 use App\Models\PNF;
 use App\Services\Input;
 
@@ -47,7 +47,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::getOptions();
+        $instructors = User::getOptions('instructor');
         $areas = Area::getOptions();
         $pnfs = PNF::getOptions();
 
@@ -100,7 +100,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $instructors = Instructor::getOptions();
+        $instructors = User::getOptions('instructor');
         $areas = Area::getOptions();
         $pnfs = PNF::getOptions();
 

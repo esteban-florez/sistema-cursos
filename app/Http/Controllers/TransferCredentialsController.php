@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTransferCredentialsRequest;
 use App\Http\Requests\UpdateTransferCredentialsRequest;
 use App\Models\TransferCredentials;
-use Illuminate\Http\Request;
 
 class TransferCredentialsController extends Controller
 {
