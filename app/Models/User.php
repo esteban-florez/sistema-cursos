@@ -14,10 +14,6 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, QueryScopes, SoftDeletes;
 
-    const ROLE_ADMIN = 'admin';
-    const ROLE_INSTRUCTOR = 'instructor';
-    const ROLE_STUDENT = 'student';
-
     /**
      * The attributes that are not mass assignable.
      *
@@ -92,12 +88,12 @@ class User extends Authenticatable
 
     public function scopeInstructors($query)
     {
-        return $query->where('role', User::ROLE_INSTRUCTOR);
+        return $query->where('role', 'instructor');
     }
 
     public function scopeStudents($query)
     {
-        return $query->where('role', User::ROLE_STUDENT);
+        return $query->where('role', 'student');
     }
 
     /** --------------- Accesors and Mutators --------------- */
@@ -154,7 +150,13 @@ class User extends Authenticatable
 
     public function getRoleNameAttribute()
     {
-        return roleNames()->get($this->role);
+        $roles = [
+            'admin' => 'Administrador',
+            'instructor' => 'Instructor',
+            'student' => 'Estudiante',
+        ];
+
+        return $roles[$this->role];
     }
 
     public function setPasswordAttribute($password)
@@ -165,16 +167,16 @@ class User extends Authenticatable
     public static function getOptions($role = null)
     {
         $cols = ['id', 'first_name', 'first_lastname'];
-        $instructors = null;
+        $users = null;
 
         if ($role) {
-            $instructors = User::where('role', $role)->get($cols);
+            $users = User::where('role', $role)->get($cols);
         } else {
-            $instructors = User::all($cols);
+            $users = User::all($cols);
         }
 
-        $options = $instructors->mapWithKeys(fn($instructor) => 
-            [$instructor->id => $instructor->full_name])
+        $options = $users->mapWithKeys(fn($user) => 
+            [$user->id => $user->full_name])
             ->sortKeys()->all();
 
         return $options;

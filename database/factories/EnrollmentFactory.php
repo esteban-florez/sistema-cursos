@@ -17,7 +17,7 @@ class EnrollmentFactory extends Factory
     {
         return [
             'course_id' => Course::get('id')->random()->id,
-            'user_id' => User::where('role', User::ROLE_STUDENT)->get()->random()->id,
+            'user_id' => User::where('role', 'student')->get()->random()->id,
         ];
     }
 }

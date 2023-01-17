@@ -20,7 +20,7 @@ class UserPaymentController extends Controller
                 $query->where('enrollments.user_id', Auth::user()->id))
             ->paginate(6);
 
-        return view('students-payments.index', [
+        return view('users-payments.index', [
             'payments' => $payments,
         ]);
     }

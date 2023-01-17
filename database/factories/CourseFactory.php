@@ -39,7 +39,7 @@ class CourseFactory extends Factory
             'days' => $this->faker->randomElements(days(), collect([1, 2, 3])->random()),
             'image' => 'img/programacion.jpg',
             'area_id' => Area::all()->random()->id,
-            'user_id' => User::where('role', User::ROLE_INSTRUCTOR)->get()->random()->id,
+            'user_id' => User::where('role', 'instructor')->get()->random()->id,
         ];
     }
 }

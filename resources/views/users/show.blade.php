@@ -2,5 +2,5 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
   @endpush
-  <x-profile :user="$instructor"></x-profile>
+  <x-profile :user="$user"></x-profile>
 </x-layout.main>

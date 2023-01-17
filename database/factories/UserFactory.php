@@ -33,7 +33,7 @@ class UserFactory extends Factory
             'degree' => $this->faker->jobTitle,
             'area_id' => Area::factory(),
             'role' => $this->faker->randomElement(
-                [User::ROLE_INSTRUCTOR, User::ROLE_STUDENT]
+                ['instructor', 'student']
             ),
         ];
     }

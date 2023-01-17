@@ -38,16 +38,15 @@ class EnrollmentPDFController extends Controller
     public function show(Enrollment $enrollment)
     {
         // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
-        if ($enrollment->student_id !== Auth::user()->id) {
+        if ($enrollment->user_id !== Auth::user()->id) {
             return redirect()->route('home');
         }
 
         $student = $enrollment->student;
-        $course = $enrollment->course;
 
         $pdf = PDF::loadView('pdf.enroll', [
             'student' => $student,
-            'course' => $course,
+            'course' => $enrollment->course,
             'date' => now()->format(DF),
             'logo' => base64('img/logo-upta.png'),
         ]);

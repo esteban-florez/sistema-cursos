@@ -6,10 +6,8 @@ use App\Http\Controllers\AvailableCourseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\CredentialsController;
-use App\Http\Controllers\StudentController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnrollmentApprovalController;
@@ -21,7 +19,8 @@ use App\Http\Controllers\EnrollmentPDFController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
-use App\Http\Controllers\StudentPaymentController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserPaymentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -94,9 +93,6 @@ Route::group([
 });
 
 Route::middleware('auth')->group(function () {
-    // Instructors routes
-    Route::resource('instructors', InstructorController::class);
-
     // Areas routes
     Route::resource('areas', AreaController::class)
         ->except('create');
@@ -104,8 +100,8 @@ Route::middleware('auth')->group(function () {
     // Courses routes
     Route::resource('courses', CourseController::class);
 
-    // Students routes
-    Route::resource('students', StudentController::class);
+    // Users routes
+    Route::resource('users', UserController::class);
 
     // Payments routes
     Route::get('pending-payments', [PendingPaymentController::class, 'index'])
@@ -172,9 +168,9 @@ Route::middleware('auth')->group(function () {
             ->name('transfer.update');
     });
 
-    // Students Payments routes
-    Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
-        ->name('students.payments.index');
+    // Users Payments routes
+    Route::get('users/{user}/payments', [UserPaymentController::class, 'index'])
+        ->name('users.payments.index');
 
     // Home routes
     Route::get('home', HomeController::class)

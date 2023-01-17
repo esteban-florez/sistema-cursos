@@ -17,7 +17,7 @@ class EnrollmentSeeder extends Seeder
     {
         Enrollment::truncate();
 
-        $students = User::where('role', User::ROLE_STUDENT)->get()->skip(1);
+        $students = User::where('role', 'student')->get()->skip(1);
         
         // Curso en inscripciones
         $students->take(14)

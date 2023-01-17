@@ -50,7 +50,7 @@ class PaymentController extends Controller
         ]);
 
         return redirect()
-            ->route('students.payments.index', Auth::user()->id)
+            ->route('users.payments.index', Auth::user()->id)
             ->withWarning('El pago se ha actualizado exitosamente.');
     }
 

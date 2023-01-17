@@ -88,7 +88,7 @@
         Pagos
         <x-slot name="menu">
           @is('student')
-          <x-layout.sidebar.item :url="route('students.payments.index', $user->id)" icon="list">
+          <x-layout.sidebar.item :url="route('users.payments.index', $user->id)" icon="list">
             Mis pagos
           </x-layout.sidebar.item>
           @endis
@@ -123,16 +123,8 @@
       <x-layout.sidebar.item icon="cog">
         Configuración
         <x-slot name="menu">
-          <x-layout.sidebar.item icon="user-alt">
+          <x-layout.sidebar.item :url="route('users.index')" icon="user-alt">
             Usuarios
-            <x-slot name="menu">
-              <x-layout.sidebar.item :url="route('students.index')" icon="user-graduate">
-                Estudiantes
-              </x-layout.sidebar.item>
-              <x-layout.sidebar.item :url="route('instructors.index')" icon="user-tie">
-                Instructores
-              </x-layout.sidebar.item>
-            </x-slot>
           </x-layout.sidebar.item>
           <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
             Credenciales de pago
