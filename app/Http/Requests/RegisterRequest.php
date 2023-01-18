@@ -40,7 +40,6 @@ class RegisterRequest extends FormRequest
                 Password::min(8)->letters()->mixedCase()->numbers()->symbols()
             ],
             'birth' => ['required', 'date', 'before:now'],
-            'role' => ['required', 'in:'.roles()->join(',')],
             'grade' => ['required', 'in:'.grades()->join(',')],
         ];
     }
