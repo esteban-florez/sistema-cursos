@@ -31,7 +31,7 @@ class StoreUserRequest extends FormRequest
             'second_lastname' => ['nullable', 'max:30'],
             'ci' => ['required', 'integer', 'numeric', 'unique:users'],
             'ci_type' => ['required', 'in:'.ciTypes()->join(',')],
-            'image' => ['nullable', 'file', 'image', 'max:2048'],
+            'image' => ['nullable', 'file', 'image', 'max:2048', 'exclude'],
             'gender' => ['required', 'in:'.genders()->join(',')],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'string','max:255'],
@@ -42,9 +42,9 @@ class StoreUserRequest extends FormRequest
             ],
             'birth' => ['required', 'date', 'before:now'],
             'role' => ['required', 'in:'.roles()->join(',')],
-            'grade' => ['nullable', 'in:'.grades()->join(','), 'required_if:role,student'],
-            'degree' => ['nullable', 'string', 'max:100', 'required_if:role,instructor'],
-            'area_id' => ['nullable', 'integer', 'numeric', 'required_if:role,instructor'],
+            'grade' => ['nullable', 'in:'.grades()->join(','), 'required_if:role,Estudiante'],
+            'degree' => ['nullable', 'string', 'max:100', 'required_if:role,Instructor'],
+            'area_id' => ['nullable', 'integer', 'numeric', 'required_if:role,Instructor'],
         ];
     }
 }

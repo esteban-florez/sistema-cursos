@@ -5,8 +5,6 @@
   <section class="container-fluid pb-1">
     <div class="card px-3 pt-2 pb-3">
       <x-user-form 
-        {{-- TODO -> arreglar el user-form --}}
-        :type="null"
         :areas="$areas"
         :action="route('users.store')"
         :pnfs="$pnfs"

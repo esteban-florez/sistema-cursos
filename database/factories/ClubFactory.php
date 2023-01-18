@@ -24,7 +24,7 @@ class ClubFactory extends Factory
             'day' => $this->faker->randomElement(days()),
             'start_hour' => $start_hour,
             'end_hour' => $end_hour,
-            'user_id' => User::where('role', 'instructor')->get()->random()->id,
+            'user_id' => User::where('role', 'Instructor')->get()->random()->id,
         ];
     }
 }

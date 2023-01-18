@@ -14,7 +14,7 @@
   <!-- TODO -> Desglozar partes en varios componentes, mucho código -->
   <!-- TODO -> Hacer que funcionen bien las cards, osea que agarren realmente los ultimos cursos -->
 
-  @is('student')
+  @is('Estudiante')
   <section class="container fluid px-sm-4">
     <div class="row w-100 mt-2 ml-0">
       <div class="col-lg-7">
@@ -88,7 +88,7 @@
     </div>
   </section>
   @endis
-  @is('admin')
+  @is('Administrador')
   <section class="container fluid px-sm-4">
     <div class="row mt-3">
       <div class="col-md-7">

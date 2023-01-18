@@ -47,7 +47,7 @@ class CourseController extends Controller
     public function create()
     {
         return view('courses.create', [
-            'instructors' => User::getOptions('instructor'), 
+            'instructors' => User::getOptions('Instructor'), 
             'areas' => Area::getOptions(),
             'pnfs' => PNF::getOptions(),
         ]);
@@ -97,7 +97,7 @@ class CourseController extends Controller
     {
         return view('courses.edit', [
             'course' => $course,
-            'instructors' => User::getOptions('instructor'), 
+            'instructors' => User::getOptions('Instructor'), 
             'areas' => Area::getOptions(),
             'pnfs' => PNF::getOptions(),
         ]);

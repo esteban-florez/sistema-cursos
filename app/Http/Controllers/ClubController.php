@@ -44,7 +44,7 @@ class ClubController extends Controller
     public function create()
     {
         return view('club.create', [
-            'instructors' => User::getOptions('instructor'),
+            'instructors' => User::getOptions('Instructor'),
         ]);
     }
 
@@ -96,7 +96,7 @@ class ClubController extends Controller
     {
         return view ('club.edit', [
             'club' => $club,
-            'instructors' => User::getOptions('instructor'),
+            'instructors' => User::getOptions('Instructor'),
         ]);
     }
 

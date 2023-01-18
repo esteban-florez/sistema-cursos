@@ -88,12 +88,12 @@ class User extends Authenticatable
 
     public function scopeInstructors($query)
     {
-        return $query->where('role', 'instructor');
+        return $query->where('role', 'Instructor');
     }
 
     public function scopeStudents($query)
     {
-        return $query->where('role', 'student');
+        return $query->where('role', 'Estudiante');
     }
 
     /** --------------- Accesors and Mutators --------------- */
@@ -146,17 +146,6 @@ class User extends Authenticatable
     public function getImageAttribute($image)
     {
         return $image ?? 'img/user-placeholder.png';
-    }
-
-    public function getRoleNameAttribute()
-    {
-        $roles = [
-            'admin' => 'Administrador',
-            'instructor' => 'Instructor',
-            'student' => 'Estudiante',
-        ];
-
-        return $roles[$this->role];
     }
 
     public function setPasswordAttribute($password)

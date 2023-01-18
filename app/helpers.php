@@ -72,19 +72,18 @@ if (!function_exists('accountTypes')) {
 }
 
 if (!function_exists('roles')) {
-    function roles($all = false) {
-        if ($all) {
-            return collect([
-                'admin',
-                'instructor',
-                'student',
-            ]);
+    function roles($withAdmin = false) {
+        $roles =  collect([
+            'Administrador',
+            'Instructor',
+            'Estudiante',
+        ]);
+
+        if ($withAdmin) {
+            return $roles;
         }
 
-        return collect([
-            'instructor',
-            'student',
-        ]);
+        return $roles->skip(1);
     }
 }
 

@@ -48,8 +48,6 @@
             $user->upta,
             ]"
             :details="route('users.show', $user->id)"
-            :edit="route('users.edit', $user->id)"
-            :delete="route('users.destroy', $user->id)"
           />
         @empty
           {{-- TODO -> arreglar el empty state que se vea bonito --}}

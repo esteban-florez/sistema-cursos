@@ -19,6 +19,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        // TODO -> añadir mostrar el rol y el filtro por rol
         $filters = Input::getFilters();
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
@@ -65,8 +66,6 @@ class UserController extends Controller
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/profiles');
-        } else {
-            unset($data['image']);
         }
 
         User::create($data);
@@ -99,7 +98,7 @@ class UserController extends Controller
         $areas = Area::getOptions();
         $pnfs = PNF::getOptions();
 
-        return view('user.edit', [
+        return view('users.edit', [
             'user' => $user,
             'areas' => $areas,
             'pnfs' => $pnfs,
@@ -116,12 +115,6 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
-
-        if (Input::checkFile('image')) {
-            $data['image'] = Input::storeFile('image', 'public/profiles');
-        } else {
-            unset($data['image']);
-        }
 
         $user->update($data);
 
