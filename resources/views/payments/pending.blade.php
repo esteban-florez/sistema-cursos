@@ -5,9 +5,7 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/pagos.css') }}">
   @endpush
-  <x-alerts type="success" icon="plus"/>
-  <x-alerts type="warning" icon="edit"/>
-  <x-alerts type="danger" icon="minus"/>
+  <x-alert />
   <section class="container-fluid pt-2">
     <div class="payments-grid">
       @foreach ($payments as $payment)

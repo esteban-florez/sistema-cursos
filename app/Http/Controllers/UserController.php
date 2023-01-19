@@ -71,7 +71,7 @@ class UserController extends Controller
         User::create($data);
 
         return redirect()->route('users.index')
-            ->withSuccess('El usuario se ha añadido con éxito');
+            ->with('alert', trans('alerts.user.created'));
     }
 
     /**
@@ -119,7 +119,7 @@ class UserController extends Controller
         $user->update($data);
 
         return redirect()->route('users.index')
-            ->withWarning('El usuario se ha editado con éxito');
+            ->with('alert', trans('alerts.users.updated'));
     }
 
     /**
@@ -133,6 +133,6 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('users.index')
-            ->withDanger('El usuario se ha eliminado con exito');
+            ->with('alert', trans('alerts.users.deleted'));
     }
 }

@@ -1,11 +1,18 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Support\Str;
 
 define('DV', 'Y-m-d');
 define('TV', 'H:i');
 define('DF', 'd/m/Y');
 define('TF', 'g:i A');
+
+if (!function_exists('str')) {
+    function str($value) {
+        return Str::of($value);
+    }
+}
 
 if (!function_exists('week')) {
     function days() {

@@ -12,7 +12,7 @@
     <script defer type="module" src="{{ asset('js/inscripcionjs/inscripcionStepper.js') }}"></script>  
     <script defer src="{{ asset('js/inscripcionjs/responsiveStepper.js') }}"></script>  
   @endpush
-  <x-alerts type="danger" icon="exclamation-circle"/>
+  <x-alert />
   <section class="container-fluid">
     {{-- TODO -> dividir en componentes --}}
     {{-- TODO -> 1 --}}

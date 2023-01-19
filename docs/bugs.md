@@ -4,8 +4,6 @@
 
 - Eliminación de cosas causa errores debido a las consecuencias en las relaciones. Añadir onDelete('cascade') a todo basically.
 
-- Las "x" de las alertas están chuecas.
-
 - Los errores de validación de contraseñas no están traducidos.
 
 ### Bugs roles-revamp

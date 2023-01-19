@@ -134,6 +134,11 @@ span.fab {
   text-align: center;
 }
 
+.alert .close {
+  color: #fff;
+  opacity: 1;
+  font-size: 1rem;
+}
 
 @media screen and (min-width: 768px) {
   .bar form {

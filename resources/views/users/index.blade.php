@@ -26,9 +26,7 @@
     </x-slot>
   </x-layout.bar>
   <section class="container-fluid">
-    <x-alerts type="success" icon="user-plus"/>
-    <x-alerts type="warning" icon="user-edit"/>
-    <x-alerts type="danger" icon="user-minus"/>
+    <x-alert />
     @if ($users)
       <x-table>
         <x-slot name="header">

@@ -68,7 +68,7 @@ class ClubController extends Controller
         Club::create($data);
 
         return redirect()->route('clubs.index')
-            ->withSuccess('El club se ha añadido con éxito');
+            ->with('El club se ha añadido con éxito');
     }
 
 
@@ -120,7 +120,7 @@ class ClubController extends Controller
         $club->update($data);
 
         return redirect()->route('clubs.index')
-            ->withWarning('El club se ha editado con éxito');;
+            ->with('alert', trans('alerts.clubs.updated'));
     }
 
     /**
@@ -134,6 +134,6 @@ class ClubController extends Controller
         $club->delete();
 
         return redirect()->route('clubs.index')
-            ->withDanger('El club se ha eliminado con éxito');
+            ->with('alert', trans('alerts.clubs.deleted'));
     }
 }

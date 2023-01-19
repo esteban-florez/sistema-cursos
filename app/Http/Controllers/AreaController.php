@@ -32,8 +32,9 @@ class AreaController extends Controller
 
         Area::create($data);
 
-        return redirect()->back()
-            ->withSuccess('El área se ha añadido con éxito');
+        return redirect()
+            ->back()
+            ->with('alert', trans('alerts.areas.created'));
     }
 
     public function edit(Area $area)
@@ -55,13 +56,13 @@ class AreaController extends Controller
         $area->update($data);
         // TODO -> hacer que mande error y tal si salió algo mal
         return redirect()->route('areas.index')
-            ->withWarning('El área se ha editado con éxito');
+            ->with('alert', trans('alerts.areas.updated'));
     }
 
     public function destroy(Area $area) {
         $area->delete();
         // TODO -> hacer que muestre modal de confirmación
         return redirect()->route('areas.index')
-            ->withDanger('El área se ha eliminado con éxito');
+            ->with('alert', trans('alerts.areas.deleted'));
     }
 }

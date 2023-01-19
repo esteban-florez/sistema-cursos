@@ -54,7 +54,7 @@ class EnrollmentController extends Controller
             if ($request->input('ref') === null) {
                 return redirect()
                 ->back()
-                ->withDanger('El campo de referencia no puede estar vacío.');
+                ->with('alert', 'El campo de referencia no puede estar vacío.'); // TODO -> 1
             }
         }
 

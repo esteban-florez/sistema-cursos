@@ -17,6 +17,6 @@ class PaymentStatusController extends Controller
         
         return redirect()
             ->back()
-            ->withSuccess("El estado del pago se ha actualizado de forma exitosa.");
+            ->with('alert', trans('alerts.payment-status.updated'));
     }
 }

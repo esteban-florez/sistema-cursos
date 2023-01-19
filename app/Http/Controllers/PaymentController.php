@@ -51,7 +51,7 @@ class PaymentController extends Controller
 
         return redirect()
             ->route('users.payments.index', Auth::user()->id)
-            ->withWarning('El pago se ha actualizado exitosamente.');
+            ->with('alert', trans('alerts.payments.updated'));
     }
 
     public function destroy(Payment $payment)
@@ -60,6 +60,6 @@ class PaymentController extends Controller
 
         return redirect()
             ->route('payments.index')
-            ->withDanger('El pago se ha eliminado exitosamente.');
+            ->with('alert', trans('alerts.payments.deleted'));
     }
 }

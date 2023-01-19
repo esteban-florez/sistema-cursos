@@ -18,9 +18,7 @@
     @if($errors->any())
       <p class="alert alert-warning">Hubo un error: {{ $errors->first() }}</p>
     @endif
-    <x-alerts type="success" icon="plus-circle"/>
-    <x-alerts type="warning" icon="edit"/>
-    <x-alerts type="danger" icon="times-circle"/>
+    <x-alert />
     @forelse($areas as $area)
       <div class="row px-2">
         <x-area.card :area="$area"/>

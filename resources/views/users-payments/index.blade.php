@@ -2,9 +2,7 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/students-payments.css') }}">
   @endpush
-  <x-alerts type="success" icon="plus-circle"/>
-  <x-alerts type="warning" icon="edit"/>
-  <x-alerts type="danger" icon="times-circle"/>
+  <x-alert />
   @forelse ($payments as $payment)
     <section class="container-fluid mt-2 payments-flex" style="column-gap: 1rem;">
         @php

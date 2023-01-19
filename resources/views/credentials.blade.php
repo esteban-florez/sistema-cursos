@@ -11,9 +11,7 @@
       </ul>
     </div>
     @endif
-    <x-alerts type="success" icon="plus-circle"/>
-    <x-alerts type="warning" icon="edit"/>
-    <x-alerts type="danger" icon="times-circle"/>
+    <x-alert />
     <div class="row">
       @if($transfer)
         <x-credentials.transfer :data="$transfer" />

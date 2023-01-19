@@ -33,9 +33,7 @@
     </x-slot>
   </x-layout.bar>
   <section class="container-fluid">
-    <x-alerts type="success" icon="plus-circle"/>
-    <x-alerts type="warning" icon="edit"/>
-    <x-alerts type="danger" icon="times-circle"/>
+    <x-alert />
     @if ($courses->isNotEmpty())
       <x-table>
         <x-slot name="header">

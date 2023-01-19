@@ -70,7 +70,7 @@ class CourseController extends Controller
         Course::create($data);
 
         return redirect()->route('courses.index')
-            ->withSuccess('El curso se ha añadido con éxito');
+            ->with('alert', trans('alerts.courses.created'));
     }
 
     /**
@@ -121,7 +121,7 @@ class CourseController extends Controller
         $course->update($data);
 
         return redirect()->route('courses.index')
-            ->withWarning('El curso se ha editado con éxito');
+            ->with('alert', trans('alerts.courses.updated'));
     }
 
     /**
@@ -135,6 +135,6 @@ class CourseController extends Controller
         $course->delete();
 
         return redirect()->route('courses.index')
-            ->withDanger('El curso se ha eliminado con éxito');
+            ->with('alert', trans('alerts.courses.deleted'));
     }
 }

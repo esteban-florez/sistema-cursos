@@ -22,7 +22,7 @@ class MovilCredentialsController extends Controller
 
         return redirect()
             ->route('credentials.index')
-            ->withSuccess('Las credenciales se han añadido con éxito.');
+            ->with('alert', trans('alerts.credentials.created'));
     }
 
     /**
@@ -39,6 +39,6 @@ class MovilCredentialsController extends Controller
 
         return redirect()
             ->route('credentials.index')
-            ->withWarning('Las credenciales se han actualizado con éxito.');
+            ->with('alert', trans('alerts.credentials.updated'));
     }
 }
