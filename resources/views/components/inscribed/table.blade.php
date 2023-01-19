@@ -26,7 +26,7 @@
             $enrollment->status,
             $enrollment->approved,
           ]"
-        :details="route('students.show', $student->id)"
+        :details="route('users.show', $student->id)"
       >
         <x-slot name="extraActions">
           @unless($enrollment->status === 'Inscrito')

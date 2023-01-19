@@ -13,8 +13,8 @@
       <x-field name="name" id="name" placeholder="Ej. Desarrollo Web" autocomplete="off" :value="old('name') ?? $course->name ?? ''" required>
         Nombre:
       </x-field>
-      <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $course->instructor_id ?? null" required>
-        Instructores:
+      <x-select name="user_id" id="userId" :options="$instructors" :selected="old('user_id') ?? $course->user_id ?? null" required>
+        Instructor:
       </x-select>
       <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $course->area_id ?? null" required>
         Área de Formación:

@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Instructor;
-use App\Models\Course;
-use App\Models\PNF;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Area extends Model
@@ -17,7 +14,7 @@ class Area extends Model
 
     public function instructors()
     {
-        return $this->hasMany(Instructor::class);
+        return $this->hasMany(User::class);
     }
 
     public function pnf()

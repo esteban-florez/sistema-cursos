@@ -7,10 +7,6 @@
   <script defer src="{{ asset('js/time.js') }}"></script>
   @endpush
 
-  @php
-    $currentUser = user();
-  @endphp
-
   <!-- Hay muchas cosas que arreglar aquí en el home, pero, yastoi harta ptm jasjajskajk -->
 
   <!-- TODO -> Hacer que me lleve a los detalles de todas las cards -->
@@ -18,12 +14,12 @@
   <!-- TODO -> Desglozar partes en varios componentes, mucho código -->
   <!-- TODO -> Hacer que funcionen bien las cards, osea que agarren realmente los ultimos cursos -->
 
-  @is('student')
+  @is('Estudiante')
   <section class="container fluid px-sm-4">
     <div class="row w-100 mt-2 ml-0">
       <div class="col-lg-7">
         <div class="card w-100 d-md-inline-block d-none mb-3 p-3">
-          <h4 class="text-center mt-2">Bienvenid@ {{ $currentUser->full_name }}</h4>
+          <h4 class="text-center mt-2">Bienvenid@ {{ auth()->user()->full_name }}</h4>
         </div>
       </div>
       <div class="col-lg-5">
@@ -92,7 +88,7 @@
     </div>
   </section>
   @endis
-  @is('admin')
+  @is('Administrador')
   <section class="container fluid px-sm-4">
     <div class="row mt-3">
       <div class="col-md-7">

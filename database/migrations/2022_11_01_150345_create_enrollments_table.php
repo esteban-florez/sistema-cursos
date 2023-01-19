@@ -18,7 +18,7 @@ class CreateEnrollmentsTable extends Migration
             $table->timestamp('confirmed_at')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->foreignId('course_id')->constrained();
-            $table->foreignId('student_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->softDeletes();
             $table->timestamps();
         });

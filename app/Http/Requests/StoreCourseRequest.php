@@ -29,7 +29,7 @@ class StoreCourseRequest extends FormRequest
         return [
             'name' => ['required', 'max:50', 'unique:courses'],
             'image' => ['required', 'file', 'image', 'max:2048', 'exclude'],
-            'instructor_id' => [
+            'user_id' => [
                 'required',
                 'integer',
                 'numeric',

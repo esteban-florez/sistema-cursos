@@ -17,8 +17,8 @@
       <div class="card mb-3">
         <div class="card-body register-card-body">
           <x-user-form
-            type="student"
             :action="route('register.store')"
+            register
           />
         </div>
       </div>

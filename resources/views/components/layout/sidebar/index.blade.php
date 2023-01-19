@@ -1,16 +1,16 @@
 @php
-  $currentUser = user();
+  $user = auth()->user();
 @endphp
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <div class="sidebar mt-0 h-100">
   <div class="user-panel my-3 pb-3 d-flex align-items-center">
     <div class="image pl-2">
-    <img src="{{ asset($currentUser->image) }}" class="img-circle elevation-2" alt="Imagen del usuario">
+    <img src="{{ asset($user->image) }}" class="img-circle elevation-2" alt="Imagen del usuario">
     </div>
     <div class="info">
-      <p class="d-block text-white m-0">{{ $currentUser->full_name }}</p>
-      <span class="text-bold text-muted">{{ $currentUser->role }}</span>
+      <p class="d-block text-white m-0">{{ $user->full_name }}</p>
+      <span class="text-bold text-muted">{{ $user->role }}</span>
     </div>
   </div>
   <nav class="mt-2">
@@ -21,17 +21,17 @@
       <x-layout.sidebar.item icon="graduation-cap">
         Cursos
         <x-slot name="menu">
-          @is('student')
+          @is('Estudiante')
           <x-layout.sidebar.item :url="route('available-courses.index')" icon="list">
             Lista de cursos
           </x-layout.sidebar.item>
           @endis
-          @isnt('student')
+          @isnt('Estudiante')
           <x-layout.sidebar.item :url="route('courses.index')" icon="list">
             Lista de cursos
           </x-layout.sidebar.item>
           @endisnt
-          @is('admin')
+          @is('Administrador')
           <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
             Registrar curso
           </x-layout.sidebar.item>
@@ -40,12 +40,12 @@
             Expedientes
           </x-layout.sidebar.item> --}}
           @endis
-          @isnt('admin')
+          @isnt('Administrador')
           <x-layout.sidebar.item url="#" icon="star">
             Mis cursos
           </x-layout.sidebar.item>
           @endisnt
-          @isnt('student')
+          @isnt('Estudiante')
           <x-layout.sidebar.item :url="route('areas.index')" icon="chalkboard-teacher">
             Áreas de formación
           </x-layout.sidebar.item>
@@ -58,19 +58,19 @@
           <x-layout.sidebar.item :url="route('club.index')" icon="list">
             Lista de clubes
           </x-layout.sidebar.item>
-          @isnt('admin')
+          @isnt('Administrador')
           <x-layout.sidebar.item url="#" icon="star">
             Mis clubes
           </x-layout.sidebar.item>
           @endisnt
-          @is('admin')
+          @is('Administrador')
           <x-layout.sidebar.item :url="route('club.create')" icon="plus">
             Registrar club
           </x-layout.sidebar.item>
           @endis
         </x-slot>
       </x-layout.sidebar.item>
-      @isnt('student')
+      @isnt('Estudiante')
       <x-layout.sidebar.item icon="boxes">
         Inventarios
         <x-slot name="menu">
@@ -83,16 +83,16 @@
         </x-slot>
       </x-layout.sidebar.item>
       @endisnt
-      @isnt('instructor')
+      @isnt('Instructor')
       <x-layout.sidebar.item icon="money-bill">
         Pagos
         <x-slot name="menu">
-          @is('student')
-          <x-layout.sidebar.item :url="route('students.payments.index', $currentUser->id)" icon="list">
+          @is('Estudiante')
+          <x-layout.sidebar.item :url="route('users.payments.index', $user->id)" icon="list">
             Mis pagos
           </x-layout.sidebar.item>
           @endis
-          @is('admin')
+          @is('Administrador')
           <x-layout.sidebar.item :url="route('payments.index')" icon="list">
             Lista de pagos
           </x-layout.sidebar.item>
@@ -103,36 +103,28 @@
         </x-slot>
       </x-layout.sidebar.item>
       @endisnt
-      @isnt('admin')
+      @isnt('Administrador')
       <x-layout.sidebar.item url="#" icon="calendar-alt">
         Horario
       </x-layout.sidebar.item>
       @endisnt
-      @is('admin')
+      @is('Administrador')
       <x-layout.sidebar.item url="#" icon="chart-pie">
         Estadísticas
       </x-layout.sidebar.item>
       @endis
       <div class="divider"></div>
-      @isnt('admin')
+      @isnt('Administrador')
       <x-layout.sidebar.item url="#" icon="user-alt">
         Perfil
       </x-layout.sidebar.item>
       @endisnt
-      @is('admin')
+      @is('Administrador')
       <x-layout.sidebar.item icon="cog">
         Configuración
         <x-slot name="menu">
-          <x-layout.sidebar.item icon="user-alt">
+          <x-layout.sidebar.item :url="route('users.index')" icon="user-alt">
             Usuarios
-            <x-slot name="menu">
-              <x-layout.sidebar.item :url="route('students.index')" icon="user-graduate">
-                Estudiantes
-              </x-layout.sidebar.item>
-              <x-layout.sidebar.item :url="route('instructors.index')" icon="user-tie">
-                Instructores
-              </x-layout.sidebar.item>
-            </x-slot>
           </x-layout.sidebar.item>
           <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
             Credenciales de pago

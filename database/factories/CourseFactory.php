@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Area;
-use App\Models\Instructor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CourseFactory extends Factory
@@ -39,7 +39,7 @@ class CourseFactory extends Factory
             'days' => $this->faker->randomElements(days(), collect([1, 2, 3])->random()),
             'image' => 'img/programacion.jpg',
             'area_id' => Area::all()->random()->id,
-            'instructor_id' => Instructor::all()->random()->id,
+            'user_id' => User::where('role', 'instructor')->get()->random()->id,
         ];
     }
 }

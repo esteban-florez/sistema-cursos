@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
-use App\Models\Student;
+use App\Models\User;
 
 class RegisterController extends Controller
 {
@@ -16,7 +16,7 @@ class RegisterController extends Controller
     {
         $data = $request->validated();
 
-        Student::create($data);
+        User::create($data);
 
         return redirect()
             ->route('login')

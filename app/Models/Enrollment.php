@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Student;
-use App\Models\Course;
-use App\Models\Payment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Enrollment extends Model
@@ -17,7 +14,7 @@ class Enrollment extends Model
 
     public function student()
     {
-        return $this->belongsTo(Student::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     
     public function course()

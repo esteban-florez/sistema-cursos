@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreInstructorRequest;
-use App\Http\Requests\UpdateInstructorRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Area;
-use App\Models\Instructor;
+use App\Models\User;
 use App\Models\PNF;
 use App\Services\Input;
 use Illuminate\Http\Request;
 
-class InstructorController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,18 +19,19 @@ class InstructorController extends Controller
      */
     public function index(Request $request)
     {
+        // TODO -> añadir mostrar el rol y el filtro por rol
         $filters = Input::getFilters();
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
         
-        $instructors = Instructor::filters($filters)
+        $users = User::filters($filters)
             ->search($search)
             ->sort($sortColumn)
             ->paginate(10)
             ->withQueryString();
 
-        return view('instructors.index', [
-            'instructors' => $instructors,
+        return view('users.index', [
+            'users' => $users,
             'filters' => $filters,
             'sort' => $sortColumn,
             'search' => $search,
@@ -47,7 +48,7 @@ class InstructorController extends Controller
         $areas = Area::getOptions();
         $pnfs = PNF::getOptions();
 
-        return view('instructors.create', [
+        return view('users.create', [
             'areas' => $areas,
             'pnfs' => $pnfs,
         ]);
@@ -59,48 +60,46 @@ class InstructorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreInstructorRequest $request)
+    public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/profiles');
-        } else {
-            unset($data['image']);
         }
 
-        Instructor::create($data);
+        User::create($data);
 
-        return redirect()->route('instructors.index')
-            ->withSuccess('El instructor se ha añadido con éxito');
+        return redirect()->route('users.index')
+            ->withSuccess('El usuario se ha añadido con éxito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Instructor $instructor)
+    public function show(User $user)
     {
-        return view('instructors.show',[
-            'instructor' => $instructor,
+        return view('users.show',[
+            'user' => $user,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Instructor $instructor)
+    public function edit(User $user)
     {
         $areas = Area::getOptions();
         $pnfs = PNF::getOptions();
 
-        return view('instructors.edit', [
-            'instructor' => $instructor,
+        return view('users.edit', [
+            'user' => $user,
             'areas' => $areas,
             'pnfs' => $pnfs,
         ]);
@@ -110,36 +109,30 @@ class InstructorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateInstructorRequest $request, Instructor $instructor)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
 
-        if (Input::checkFile('image')) {
-            $data['image'] = Input::storeFile('image', 'public/profiles');
-        } else {
-            unset($data['image']);
-        }
+        $user->update($data);
 
-        $instructor->update($data);
-
-        return redirect()->route('instructors.index')
-            ->withWarning('El instructor se ha editado con éxito');
+        return redirect()->route('users.index')
+            ->withWarning('El usuario se ha editado con éxito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Instructor  $instructor
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Instructor $instructor)
+    public function destroy(User $user)
     {
-        $instructor->delete();
+        $user->delete();
 
-        return redirect()->route('instructors.index')
-            ->withDanger('El instructor se ha eliminado con exito');
+        return redirect()->route('users.index')
+            ->withDanger('El usuario se ha eliminado con exito');
     }
 }

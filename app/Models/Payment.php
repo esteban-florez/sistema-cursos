@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Enrollment;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\QueryScopes;
 
@@ -54,11 +53,12 @@ class Payment extends Model
     public function scopeSearch($query, $search)
     {
         return $query->when($search, function ($query, $search) {
-            $id = Student::where('ci', (int) $search)
+            $id = User::students()
+                ->where('ci', (int) $search)
                 ->first()
                 ->id ?? 0;
             
-            $ids = Enrollment::where('student_id', $id)
+            $ids = Enrollment::where('user_id', $id)
                 ->pluck('id')
                 ->all();
 

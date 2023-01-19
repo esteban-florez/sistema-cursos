@@ -163,7 +163,7 @@ return [
     'attributes' => [
         // TODO -> a veces hay conflictos entre algunos nombres de atributos que se repiten en distintas tablas, pero me imagino que se pueden sustituir en los sitios según sea necesario.
 
-        // Student and Instructor attributes
+        // User attributes
         'first_name' => 'el primer nombre',
         'second_name' => 'el segundo nombre',
         'first_lastname' => 'el primer apellido',
@@ -179,12 +179,11 @@ return [
         'image' => 'la imagen',
         'phone' => 'el teléfono',
         'address' => 'la dirección',
-        'name' => 'el nombre',
-        'lastname' => 'el apellido',
         'degree' => 'la titulación',
         
         // Course and Club attributes
-
+        
+        'name' => 'el nombre',
         'description' => 'la descripción',
         'total_price' => 'el monto total',
         'reserv_price' => 'el monto de reserva',
@@ -209,7 +208,6 @@ return [
         // Enrollment attributes
         'confirmed_at' => 'la fecha de confirmación',
         'approved_at' => 'la fecha de aprobación',
-        'unique' => 'el campo único',
 
         // Payment attributes
         'status' => 'el estado',
@@ -221,12 +219,11 @@ return [
         'account' => 'el número de cuenta',
 
         // Foreign key attributes
-        'instructor_id' => 'el instructor',
+        'user_id' => 'el usuario',
         'area_id' => 'el área',
         'pnf_id' => 'el PNF',
         'item_id' => 'el artículo',
         'club_id' => 'el club',
-        'student_id' => 'el estudiante',
         'enrollment_id' => 'la matrícula',
         'payment_id' => 'el pago',
     ],

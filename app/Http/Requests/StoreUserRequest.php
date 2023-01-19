@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
-class RegisterRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,6 +31,7 @@ class RegisterRequest extends FormRequest
             'second_lastname' => ['nullable', 'max:30'],
             'ci' => ['required', 'integer', 'numeric', 'unique:users'],
             'ci_type' => ['required', 'in:'.ciTypes()->join(',')],
+            'image' => ['nullable', 'file', 'image', 'max:2048', 'exclude'],
             'gender' => ['required', 'in:'.genders()->join(',')],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'string','max:255'],
@@ -40,7 +41,10 @@ class RegisterRequest extends FormRequest
                 Password::min(8)->letters()->mixedCase()->numbers()->symbols()
             ],
             'birth' => ['required', 'date', 'before:now'],
-            'grade' => ['required', 'in:'.grades()->join(',')],
+            'role' => ['required', 'in:'.roles()->join(',')],
+            'grade' => ['nullable', 'in:'.grades()->join(','), 'required_if:role,Estudiante'],
+            'degree' => ['nullable', 'string', 'max:100', 'required_if:role,Instructor'],
+            'area_id' => ['nullable', 'integer', 'numeric', 'required_if:role,Instructor'],
         ];
     }
 }

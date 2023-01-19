@@ -1,7 +1,7 @@
 @props(['course'])
 
 @php
-  $registered = user()
+  $registered = auth()->user()
   ->courses
   ->ids()
   ->contains($course->id);
@@ -33,7 +33,7 @@
         <h5 class="m-0">{{ $course->reserv_amount }}</h5>
       </div>
       <div class="d-flex justify-content-between align-items-center mt-3">
-        @isnt('student')
+        @isnt('Estudiante')
           <x-button
             :url="route('enrollments.index', ['course' => $course->id])"
             class="btn-lg"
@@ -50,7 +50,7 @@
             Editar
           </x-button>
         @endis
-        @is('student')
+        @is('Estudiante')
           <x-button 
             :url="route('available-courses.index')"
             color="secondary"
@@ -68,7 +68,7 @@
           @else
             <p class="h5 m-0 text-primary">Ya estás inscrito en este curso.</p>
           @endif
-        @endis('student')
+        @endis
       </div>
     </div>
   </div>  

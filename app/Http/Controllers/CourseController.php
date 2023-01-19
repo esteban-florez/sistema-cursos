@@ -7,7 +7,7 @@ use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Http\Request;
 use App\Models\Area;
 use App\Models\Course;
-use App\Models\Instructor;
+use App\Models\User;
 use App\Models\PNF;
 use App\Services\Input;
 
@@ -23,7 +23,6 @@ class CourseController extends Controller
         $filters = Input::getFilters();
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
-        $areas = Area::getOptions();
 
         $courses = Course::filters($filters)
             ->search($search)
@@ -36,7 +35,7 @@ class CourseController extends Controller
             'filters' => $filters,
             'sort' => $sortColumn,
             'search' => $search,
-            'areas' => $areas,
+            'areas' => Area::getOptions(),
         ]);
     }
 
@@ -47,14 +46,10 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $instructors = Instructor::getOptions();
-        $areas = Area::getOptions();
-        $pnfs = PNF::getOptions();
-
         return view('courses.create', [
-            'instructors' => $instructors, 
-            'areas' => $areas,
-            'pnfs' => $pnfs,
+            'instructors' => User::getOptions('Instructor'), 
+            'areas' => Area::getOptions(),
+            'pnfs' => PNF::getOptions(),
         ]);
     }
 
@@ -100,15 +95,11 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
-        $instructors = Instructor::getOptions();
-        $areas = Area::getOptions();
-        $pnfs = PNF::getOptions();
-
         return view('courses.edit', [
             'course' => $course,
-            'instructors' => $instructors, 
-            'areas' => $areas,
-            'pnfs' => $pnfs,
+            'instructors' => User::getOptions('Instructor'), 
+            'areas' => Area::getOptions(),
+            'pnfs' => PNF::getOptions(),
         ]);
     }
 

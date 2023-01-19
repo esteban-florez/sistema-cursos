@@ -30,7 +30,7 @@ class StoreClubRequest extends FormRequest
             'day' => ['required', 'in:'.days()->join(',')],
             'start_hour' => ['required'],
             'end_hour' => ['required'],
-            'instructor_id' => ['required', 'integer', 'numeric'],
+            'user_id' => ['required', 'integer', 'numeric'],
         ];
     }
 }

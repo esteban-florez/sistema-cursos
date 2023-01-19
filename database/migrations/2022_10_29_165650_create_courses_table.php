@@ -29,7 +29,7 @@ class CreateCoursesTable extends Migration
             $table->set('days', days()->all());
             $table->time('start_hour');
             $table->time('end_hour');
-            $table->foreignId('instructor_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->foreignId('area_id')->constrained();
             $table->softDeletes();
             $table->timestamps();

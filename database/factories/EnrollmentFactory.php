@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Course;
-use App\Models\Student;
+use App\Models\User;
 
 class EnrollmentFactory extends Factory
 {
@@ -17,7 +17,7 @@ class EnrollmentFactory extends Factory
     {
         return [
             'course_id' => Course::get('id')->random()->id,
-            'student_id' => Student::get('id')->random()->id,
+            'user_id' => User::where('role', 'Estudiante')->get()->random()->id,
         ];
     }
 }

@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Accesors\Course as Accesors;
+use Illuminate\Support\Str;
 
 class Course extends Model
 {
-    use HasFactory, QueryScopes, SoftDeletes, Accesors;
+    use HasFactory, QueryScopes, SoftDeletes;
 
     /**
      * The attributes that are not mass assignable.
@@ -32,12 +32,12 @@ class Course extends Model
 
     public function instructor()
     {
-        return $this->belongsTo(Instructor::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'enrollments');
+        return $this->belongsToMany(User::class, 'enrollments');
     }
 
     public function enrollments()
@@ -63,19 +63,19 @@ class Course extends Model
         return $query->whereIn('id', $ids);
     }
     
-    public function scopeNotBoughtBy($query, $student)
+    public function scopeNotBoughtBy($query, $user)
     {
-        $ids = $student
-            ->courses
+        $ids = $user
+            ->enrolledCourses
             ->ids();
 
         $query->whereNotIn('id', $ids);
     }
 
-    public function scopeBoughtBy($query, $student)
+    public function scopeBoughtBy($query, $user)
     {
-        $ids = $student
-            ->courses
+        $ids = $user
+            ->enrolledCourses
             ->ids();
         
         $query->whereIn('id', $ids);
@@ -112,5 +112,74 @@ class Course extends Model
     private function studentCount()
     {
         return $this->students()->count();
+    }
+
+     /** --------------- Accesors and Mutators --------------- */
+
+    public function getExcerptAttribute()
+    {
+        return Str::words($this->description, 8);
+    }
+
+    public function getStudentCountAttribute()
+    {
+        return $this->studentCount();
+    }
+
+    public function getStudentDiffAttribute()
+    {
+        return "{$this->studentCount()} / {$this->student_limit}";
+    }
+
+    public function getDaysTextAttribute()
+    {
+        return collect(explode(',', $this->days))
+            ->join(', ', ' y ');
+    }
+
+    public function getDaysArrAttribute()
+    {
+        return collect(explode(',', $this->days));
+    }
+
+    public function getPhaseAttribute()
+    {
+        return $this->currentPhase();
+    }
+
+    public function getDurationHoursAttribute()
+    {
+        return "{$this->duration} hrs.";
+    }
+
+    public function getDateAttribute()
+    {
+        return "{$this->start_course->format(DF)} al {$this->end_course->format(DF)}";
+    }
+    
+    public function getInsDateAttribute()
+    {
+        return "{$this->start_ins->format(DF)} al {$this->end_ins->format(DF)}";
+    }
+    
+    public function getHoursAttribute()
+    {
+        return "{$this->start_hour->format(TF)} a {$this->end_hour->format(TF)}";
+    }
+
+    public function getTotalAmountAttribute()
+    {
+        return "{$this->total_price}$";
+    }
+
+    public function getReservAmountAttribute()
+    {
+        return "{$this->reserv_price}$";
+    }
+
+    public function setDaysAttribute($daysArray)
+    {
+        $this->attributes['days'] = collect($daysArray)
+            ->join(',');
     }
 }

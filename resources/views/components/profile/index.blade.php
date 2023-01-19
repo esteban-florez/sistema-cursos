@@ -46,15 +46,16 @@
             <x-profile.data :data="$user->tel">
               Número de Teléfono:
             </x-profile.data>
-            @if ($user->role === 'Estudiante')
+            @is('Estudiante', $user)
             <x-profile.data :data="$user->grade">
               Grado de Instrucción:
             </x-profile.data>
-            @else
+            @endis
+            @is('Instructor', $user)
             <x-profile.data :data="$user->degree">
               Titulación:
             </x-profile.data>
-            @endif
+            @endis
             <x-profile.data :data="$user->address">
               Dirección:
             </x-profile.data>

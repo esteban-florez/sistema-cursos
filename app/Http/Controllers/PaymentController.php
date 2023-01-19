@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Course;
 use App\Services\Input;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
@@ -49,7 +50,7 @@ class PaymentController extends Controller
         ]);
 
         return redirect()
-            ->route('students.payments.index', user()->id)
+            ->route('users.payments.index', Auth::user()->id)
             ->withWarning('El pago se ha actualizado exitosamente.');
     }
 

@@ -31,7 +31,7 @@ class UpdateCourseRequest extends FormRequest
         return [
             'name' => ['required', 'max:50', Rule::unique('courses')->ignore($id)],
             'image' => ['nullable', 'file', 'image', 'max:2048', 'exclude'],
-            'instructor_id' => [
+            'user_id' => [
                 'required',
                 'integer',
                 'numeric',

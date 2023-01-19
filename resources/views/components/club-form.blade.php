@@ -13,7 +13,7 @@
       <x-field name="name" id="name" placeholder="Nombre del Club" autocomplete="off" value="{{ old('name') ?? $club->name ?? '' }}" required>
         Nombre:
       </x-field>
-      <x-select name="instructor_id" id="instructorId" :options="$instructors" :selected="old('instructor_id') ?? $club->instructor_id ?? null" required>
+      <x-select name="user_id" id="userId" :options="$instructors" :selected="old('user_id') ?? $club->user_id ?? null" required>
         Instructor:
       </x-select>
       <x-select name="day" id="day" :options="days()->pairs()" :selected="old('day') ?? $club->day ?? null" default required>

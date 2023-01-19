@@ -18,10 +18,9 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        foreach(guards() as $guard) {
-            if (Auth::guard($guard)->attempt($credentials)) {
-                return $this->loggedIn($request);
-            }
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->home();
         }
         
         return back()->withErrors([
@@ -31,20 +30,12 @@ class AuthController extends Controller
     
     public function destroy(Request $request)
     {
-        foreach (guards() as $guard) {
-            Auth::guard($guard)->logout();
-        }
+        Auth::logout();
         
         $request->session()->invalidate();
         
         $request->session()->regenerateToken();
         
         return redirect()->route('login');
-    }
-
-    private function loggedIn(Request $request)
-    {
-        $request->session()->regenerate();
-        return redirect()->home();
     }
 }
