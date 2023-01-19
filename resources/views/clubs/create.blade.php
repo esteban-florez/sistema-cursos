@@ -3,7 +3,7 @@
     <div class="card mx-sm-3">
       <div class="card-body">
         <x-club-form 
-          :action="route('club.store')" 
+          :action="route('clubs.store')" 
           :instructors="$instructors"
         />
       </div>

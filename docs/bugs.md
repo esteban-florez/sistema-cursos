@@ -17,5 +17,3 @@
 - Editar área bugeada.
 
 - Cuando creas un área de formación desde un formulario con select de areas, se pierden los datos que ya has metido hasta ese momento.
-
-- No se ven pagos estudiantes?

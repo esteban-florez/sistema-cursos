@@ -37,7 +37,7 @@
     </div>
   </div>
   <div class="d-flex justify-content-between align-items-center">
-    <x-button url="{{ route('club.index') }}" color="danger" icon="times">
+    <x-button url="{{ route('clubs.index') }}" color="danger" icon="times">
       Cancelar
     </x-button>
     <x-button type="submit" color="success" icon="check">

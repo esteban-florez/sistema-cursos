@@ -55,7 +55,7 @@
       <x-layout.sidebar.item icon="basketball-ball">
         Clubes
         <x-slot name="menu">
-          <x-layout.sidebar.item :url="route('club.index')" icon="list">
+          <x-layout.sidebar.item :url="route('clubs.index')" icon="list">
             Lista de clubes
           </x-layout.sidebar.item>
           @isnt('Administrador')
@@ -64,7 +64,7 @@
           </x-layout.sidebar.item>
           @endisnt
           @is('Administrador')
-          <x-layout.sidebar.item :url="route('club.create')" icon="plus">
+          <x-layout.sidebar.item :url="route('clubs.create')" icon="plus">
             Registrar club
           </x-layout.sidebar.item>
           @endis

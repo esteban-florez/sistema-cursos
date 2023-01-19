@@ -52,7 +52,7 @@
             <h3 class="mb-0">Clubes destacados</h3>
           </div>
           <div class="col-sm-3 text-sm-right">
-            <a href="{{ route('club.index') }}" class="mt-1">
+            <a href="{{ route('clubs.index') }}" class="mt-1">
               <span>Ver listado</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -72,7 +72,7 @@
                   <h5 class="mb-2">{{ $club->name }}</h5>
                   <p class="card-text">{{ $club->excerpt }}</p>
                   <div class="d-flex justify-content-between align-items-center">
-                    <x-button url="{{ route('club.show', $club->id) }}">Detalles</x-button>
+                    <x-button url="{{ route('clubs.show', $club->id) }}">Detalles</x-button>
                   </div>
                 </div>
               </div>
@@ -224,7 +224,7 @@
                 <h3 class="mb-0">Últimos clubes</h3>
               </div>
               <div class="col-sm-3 text-sm-right">
-                <a href="{{ route('club.index') }}" class="mt-1">
+                <a href="{{ route('clubs.index') }}" class="mt-1">
                   <span>Ver listado</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
@@ -244,7 +244,7 @@
                       <h5 class="mb-2">{{ $club->name }}</h5>
                       <p class="card-text">{{ $club->excerpt }}</p>
                       <div class="d-flex justify-content-between align-items-center">
-                        <x-button url="{{ route('club.show', $club->id) }}">Detalles</x-button>
+                        <x-button url="{{ route('clubs.show', $club->id) }}">Detalles</x-button>
                       </div>
                     </div>
                   </div>

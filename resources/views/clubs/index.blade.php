@@ -9,7 +9,7 @@
       </x-slot>
     </x-search>
     <div>
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('club.create')">
+      <x-button icon="plus" color="success" hide-text="sm" :url="route('clubs.create')">
         Añadir
       </x-button>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
@@ -53,9 +53,9 @@
               $club->start_hour->format(TF),
               $club->end_hour->format(TF),
               ]"
-              :details="route('club.show', $club->id)"
-              :edit="route('club.edit', $club->id)"
-              :delete="route('club.destroy', $club->id)"
+              :details="route('clubs.show', $club->id)"
+              :edit="route('clubs.edit', $club->id)"
+              :delete="route('clubs.destroy', $club->id)"
             />
           @endforeach
         </x-slot>

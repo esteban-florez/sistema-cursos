@@ -18,7 +18,7 @@
         </div>
         <div class="d-flex justify-content-between mt-3">
           <x-button url="#" class="btn-lg" color="secondary" icon="clipboard-list">Miembros</x-button>
-          <x-button url="{{ route('club.edit', $club->id) }}" class="btn-lg" icon="edit">Editar</x-button>
+          <x-button url="{{ route('clubs.edit', $club->id) }}" class="btn-lg" icon="edit">Editar</x-button>
         </div>
       </div>
     </div>  
