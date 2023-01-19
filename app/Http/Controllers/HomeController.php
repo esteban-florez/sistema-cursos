@@ -5,14 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Course;
 use App\Models\Payment;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function __invoke()
     {
-        $clubs = Club::all()->last()->take(2)->get();
-        $courses = Course::all()->last()->take(2)->get();
-        $payments = Payment::all()->last()->take(2)->get();
+        $user = Auth::user();
+        
+        $clubs = Club::latest()
+            ->get()
+            ->take(2);
+
+        $courses = Course::when(
+            $user->role === 'Estudiante',
+            fn($query) => $query->availables()->notBoughtBy($user))
+            ->latest()
+            ->get()
+            ->take(2);
+
+        $payments = Payment::latest()
+            ->get()
+            ->take(2);
 
         return view('home', [
             'clubs' => $clubs,

@@ -10,8 +10,6 @@
 
 ### Bugs roles-revamp
 
-- El home del estudiante muestra cursos no disponibles, y también algunos en los que ya se registró el usuario. Y lo ideal sería que sugirierese cursos que el usuario no se haya registrado.
-
 - Listado de pagos se bugea cuando borras un pago?
 
 - Editar área bugeada.

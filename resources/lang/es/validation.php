@@ -228,4 +228,21 @@ return [
         'payment_id' => 'el pago',
     ],
 
+    'values' => [
+        'birth' => [
+            'now' => 'la fecha actual',
+        ],
+        'start_course' => [
+            'now' => 'la fecha actual',
+        ],
+        'end_course' => [
+            'now' => 'la fecha actual',
+        ],
+        'start_ins' => [
+            'now' => 'la fecha actual',
+        ],
+        'end_ins' => [
+            'now' => 'la fecha actual',
+        ],
+    ],
 ];

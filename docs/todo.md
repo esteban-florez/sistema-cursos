@@ -1,5 +1,7 @@
 ## Myriam:
 
+- Optimizar el home.
+
 ## Esteban:
  
 - Edición del rol de un usuario.
