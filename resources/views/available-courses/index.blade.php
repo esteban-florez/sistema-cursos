@@ -20,11 +20,11 @@
   <section class="container-fluid">
     <div class="courses-grid">
       @forelse($courses as $course)
-      <x-course.card :course="$course" :last="$loop->last"/>
+        <x-course.card :course="$course" :last="$loop->last"/>
       @empty
-      <div class="empty-container">
-        <h2 class="empty">No hay cursos disponibles</h2>
-      </div>
+        <div class="empty-container">
+          <h2 class="empty">No hay cursos disponibles</h2>
+        </div>
       @endforelse
     </div>
   </section>

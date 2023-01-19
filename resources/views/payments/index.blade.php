@@ -35,51 +35,51 @@
     <x-alerts type="success" icon="user-plus"/>
     <x-alerts type="warning" icon="user-edit"/>
     <x-alerts type="danger" icon="user-minus"/>
-    <x-table>
-      <x-slot name="header">
-        <th>Estudiante</th>
-        <th>Curso</th>
-        <th>Monto</th>
-        <th>Fecha</th>
-        <th>Ref.</th>
-        <th>Tipo</th>
-        <th>Estado</th>
-        <th>Acciones</th>
-      </x-slot>
-      <x-slot name="body">
-        @forelse ($payments as $payment)
-          <x-row :data="[
-            $payment->enrollment->student->full_ci,
-            $payment->enrollment->course->name,
-            $payment->full_amount,
-            $payment->updated_at->format(DF),
-            $payment->ref ?? '----',
-            $payment->type,
-            $payment->status,
-            ]"
-            :delete="route('payments.destroy', $payment->id)"
-          >
-            <x-slot name="extraActions">
-              @foreach (payStatuses() as $status)
-                @unless($status === $payment->status)
-                  <x-payment.status-button :id="$payment->id" :value="$status" sm/>
-                @endunless
-              @endforeach
-            </x-slot>
-          </x-row>
-        @empty
-          {{-- TODO -> arreglar el empty state que se vea bonito --}}
-          <div class="alert alert-info mx-3 mt-3 d-flex align-items-center gap-2">
-            <i class="fas fa-info-circle"></i>
-            <p class="h5 m-0">No existen pagos registrados actualmente.</p>
+    @if ($payments->isNotEmpty())
+      <x-table>
+        <x-slot name="header">
+          <th>Estudiante</th>
+          <th>Curso</th>
+          <th>Monto</th>
+          <th>Fecha</th>
+          <th>Ref.</th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </x-slot>
+        <x-slot name="body">
+          @foreach ($payments as $payment)
+            <x-row :data="[
+              $payment->enrollment->student->full_ci,
+              $payment->enrollment->course->name,
+              $payment->full_amount,
+              $payment->updated_at->format(DF),
+              $payment->ref ?? '----',
+              $payment->type,
+              $payment->status,
+              ]"
+              :delete="route('payments.destroy', $payment->id)"
+            >
+              <x-slot name="extraActions">
+                @foreach (payStatuses() as $status)
+                  @unless($status === $payment->status)
+                    <x-payment.status-button :id="$payment->id" :value="$status" sm/>
+                  @endunless
+                @endforeach
+              </x-slot>
+            </x-row>
+          @endforeach
+        </x-slot>
+        <x-slot name="pagination">
+          <div class="pagination-container">
+            {{ $payments->links() }}
           </div>
-        @endforelse
-      </x-slot>
-      <x-slot name="pagination">
-        <div class="pagination-container">
-          {{ $payments->links() }}
-        </div>
-      </x-slot>
-    </x-table>
+        </x-slot>
+      </x-table>
+    @else
+      <div class="empty-container">
+        <h2 class="empty">No hay pagos disponibles</h2>
+      </div>
+    @endif
   </section>
 </x-layout.main>

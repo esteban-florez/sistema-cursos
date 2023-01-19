@@ -29,36 +29,39 @@
     <x-alerts type="success" icon="user-plus"/>
     <x-alerts type="warning" icon="user-edit"/>
     <x-alerts type="danger" icon="user-minus"/>
-    <x-table>
-      <x-slot name="header">
-        <th>Nombre</th>
-        <th>Cédula</th>
-        <th>Teléfono</th>
-        <th>Correo</th>
-        <th>¿UPTA?</th>
-        <th>Acciones</th>
-      </x-slot>
-      <x-slot name="body">
-        @forelse ($users as $user)
-          <x-row :data="[
-            $user->full_name,
-            $user->full_ci,
-            $user->tel,
-            $user->email,
-            $user->upta,
-            ]"
-            :details="route('users.show', $user->id)"
-          />
-        @empty
-          {{-- TODO -> arreglar el empty state que se vea bonito --}}
-          <p class="w-100 text-center text-muted">No hay usuarios registrados actualmente.</p>
-        @endforelse
-      </x-slot>
-      <x-slot name="pagination">
-        <div class="pagination-container">
-          {{ $users->links() }}
-        </div>
-      </x-slot>
-    </x-table>
+    @if ($users)
+      <x-table>
+        <x-slot name="header">
+          <th>Nombre</th>
+          <th>Cédula</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+          <th>¿UPTA?</th>
+          <th>Acciones</th>
+        </x-slot>
+        <x-slot name="body">
+          @foreach ($users as $user)
+            <x-row :data="[
+              $user->full_name,
+              $user->full_ci,
+              $user->tel,
+              $user->email,
+              $user->upta,
+              ]"
+              :details="route('users.show', $user->id)"
+            />
+          @endforeach
+        </x-slot>
+        <x-slot name="pagination">
+          <div class="pagination-container">
+            {{ $users->links() }}
+          </div>
+        </x-slot>
+      </x-table>
+    @else
+      <div class="empty-container">
+        <h2 class="empty">No hay usuarios registrados</h2>
+      </div>
+    @endif
   </section>
 </x-layout.main>

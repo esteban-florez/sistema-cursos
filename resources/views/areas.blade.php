@@ -21,17 +21,15 @@
     <x-alerts type="success" icon="plus-circle"/>
     <x-alerts type="warning" icon="edit"/>
     <x-alerts type="danger" icon="times-circle"/>
-    <div class="row px-2">
-      @forelse($areas as $area)
+    @forelse($areas as $area)
+      <div class="row px-2">
         <x-area.card :area="$area"/>
-      @empty
-        <div class="card">
-          <div class="card-body">
-            <h4 class="text-muted">No existen áreas actualmente.</h4>
-          </div>
-        </div>
-      @endforelse
-    </div>
+      </div>
+    @empty
+      <div class="empty-container">
+        <h2 class="empty">No hay areas registradas</h2>
+      </div>
+    @endforelse
   </section>
   <x-slot name="extra">
     @if($edit)

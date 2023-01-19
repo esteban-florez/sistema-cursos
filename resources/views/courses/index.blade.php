@@ -36,45 +36,42 @@
     <x-alerts type="success" icon="plus-circle"/>
     <x-alerts type="warning" icon="edit"/>
     <x-alerts type="danger" icon="times-circle"/>
-    <x-table>
-      <x-slot name="header">
-        <th>Nombre</th>
-        <th>Instructor</th>
-        <th>Inscripciones</th>
-        <th>Fecha</th>
-        <th>Duración</th>
-        <th>Matrícula</th>
-        <th>Monto</th>
-        <th>Estado</th>
-        <th>Acciones</th>
-      </x-slot>
-      <x-slot name="body">
-        @forelse ($courses as $course)
-          <x-row :data="[
-            $course->name,
-            $course->instructor->full_name,
-            $course->ins_date,
-            $course->date,
-            $course->duration_hours,
-            $course->student_diff,
-            $course->total_amount,
-            $course->phase,
-            ]"
-            :details="route('courses.show', $course->id)"
-            :edit="route('courses.edit', $course->id)"
-            :delete="route('courses.destroy', $course->id)"
-          >
-          <x-slot name="extraActions">
-            <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course->id])" icon="clipboard-list">
-              Matrícula
-            </x-button>
-          </x-slot>
-        </x-row>
-        @empty
-          <div class="empty-container">
-            <h2 class="empty">No hay cursos disponibles</h2>
-          </div>
-        @endforelse
+    @if ($courses->isNotEmpty())
+      <x-table>
+        <x-slot name="header">
+          <th>Nombre</th>
+          <th>Instructor</th>
+          <th>Inscripciones</th>
+          <th>Fecha</th>
+          <th>Duración</th>
+          <th>Matrícula</th>
+          <th>Monto</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </x-slot>
+        <x-slot name="body">
+          @foreach ($courses as $course)
+            <x-row :data="[
+              $course->name,
+              $course->instructor->full_name,
+              $course->ins_date,
+              $course->date,
+              $course->duration_hours,
+              $course->student_diff,
+              $course->total_amount,
+              $course->phase,
+              ]"
+              :details="route('courses.show', $course->id)"
+              :edit="route('courses.edit', $course->id)"
+              :delete="route('courses.destroy', $course->id)"
+            >
+              <x-slot name="extraActions">
+                <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course->id])" icon="clipboard-list">
+                  Matrícula
+                </x-button>
+              </x-slot>
+            </x-row>
+          @endforeach
         </x-slot>
         <x-slot name="pagination">
           <div class="pagination-container">
@@ -82,5 +79,10 @@
           </div>
         </x-slot>
       </x-table>
+    @else
+      <div class="empty-container">
+        <h2 class="empty">No hay cursos disponibles</h2>
+      </div>
+    @endif
   </section>
 </x-layout.main>
