@@ -113,8 +113,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('payments', PaymentController::class)
         ->except('create', 'store', 'show');
 
-    // Club routes
-    Route::resource('club', ClubController::class);
+    // Clubs routes
+    Route::resource('clubs', ClubController::class);
 
     // Available Courses routes
     Route::get('available-courses', [AvailableCourseController::class, 'index'])

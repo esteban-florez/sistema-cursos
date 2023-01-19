@@ -28,7 +28,7 @@ class ClubController extends Controller
             ->paginate(10)
             ->withQueryString();
         
-        return view('club.index', [
+        return view('clubs.index', [
             'clubs' => $clubs,
             'filters' => $filters,
             'sort' => $sortColumn,
@@ -43,7 +43,7 @@ class ClubController extends Controller
      */
     public function create()
     {
-        return view('club.create', [
+        return view('clubs.create', [
             'instructors' => User::getOptions('Instructor'),
         ]);
     }
@@ -67,7 +67,7 @@ class ClubController extends Controller
 
         Club::create($data);
 
-        return redirect()->route('club.index')
+        return redirect()->route('clubs.index')
             ->withSuccess('El club se ha añadido con éxito');
     }
 
@@ -80,7 +80,7 @@ class ClubController extends Controller
      */
     public function show(Club $club)
     {
-        return view('club.show', [
+        return view('clubs.show', [
             'club' => $club,
             ]
         );
@@ -94,7 +94,7 @@ class ClubController extends Controller
      */
     public function edit(Club $club)
     {
-        return view ('club.edit', [
+        return view ('clubs.edit', [
             'club' => $club,
             'instructors' => User::getOptions('Instructor'),
         ]);
@@ -119,7 +119,7 @@ class ClubController extends Controller
 
         $club->update($data);
 
-        return redirect()->route('club.index')
+        return redirect()->route('clubs.index')
             ->withWarning('El club se ha editado con éxito');;
     }
 
@@ -133,7 +133,7 @@ class ClubController extends Controller
     {
         $club->delete();
 
-        return redirect()->route('club.index')
+        return redirect()->route('clubs.index')
             ->withDanger('El club se ha eliminado con éxito');
     }
 }
