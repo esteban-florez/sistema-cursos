@@ -14,7 +14,7 @@
     <x-button icon="plus" color="success" hide-text="sm" data-target="#newAreaModal" data-toggle="modal">Añadir</x-button>
   </x-layout.bar>
   <section class="container-fluid">
-    <!-- TODO -> Traducir los errores -->
+    {{-- TODO -> 1 --}}
     @if($errors->any())
       <p class="alert alert-warning">Hubo un error: {{ $errors->first() }}</p>
     @endif

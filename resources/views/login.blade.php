@@ -13,7 +13,7 @@
           </div>
         @endif
         @if(session('registered'))
-          <div class="alert alert-primary m-0" role="alert">
+          <div class="alert alert-success m-0" role="alert">
             {{ session('registered') }}
           </div>
         @endif
@@ -21,12 +21,9 @@
           <form action="{{ route('auth') }}" method="POST">
             @csrf
             @error('email')
-            <div class="alert alert-danger" id="error" role="alert">
-              <p class="m-0">Crendenciales invalidas</p>
-              <x-button data-dismiss="alert">
-                <i class="fas fa-times"></i>
-              </x-button>
-            </div>
+              <div class="alert alert-danger" role="alert">
+                {{ $message }}
+              </div>
             @enderror
             <div class="input-group mb-3">
               <input type="email" autocomplete="off" class="form-control" placeholder="Correo Electrónico" name="email">

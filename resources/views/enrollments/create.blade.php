@@ -15,6 +15,7 @@
   <x-alerts type="danger" icon="exclamation-circle"/>
   <section class="container-fluid">
     {{-- TODO -> dividir en componentes --}}
+    {{-- TODO -> 1 --}}
     <div class="bs-stepper">
       <div class="bs-stepper-header" role="tablist">
         <div class="step" data-target="#typeStep">

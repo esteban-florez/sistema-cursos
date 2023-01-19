@@ -28,7 +28,7 @@ class PasswordController extends Controller
         return $status === Password::RESET_LINK_SENT
             ? back()->with(['status' => $status])
             : back()
-                ->withErrors(['email' => trans('passwords.user')]);
+                ->withErrors(['invalid' => trans('passwords.user')]);
     }
         
     public function edit($token, $email) {
@@ -64,6 +64,6 @@ class PasswordController extends Controller
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('login')->with(['status' => $status])
             : back()
-                ->withErrors(['email' => trans('passwords.failure')]);
+                ->withErrors(['invalid' => trans('passwords.failure')]);
     }
 }

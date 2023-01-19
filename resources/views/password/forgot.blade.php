@@ -12,7 +12,7 @@
             {{ __(session('status')) }}
           </div>
         @endif
-        @error('email')
+        @error('invalid')
           <div class="alert alert-danger mb-0" role="alert">
             {{ $message }}
           </div>
@@ -29,6 +29,9 @@
                 </div>
               </div>
             </div>
+            @error('email')
+              <p class="text-danger">{{ ucfirst($message) }}</p>
+            @enderror
             <x-button class="btn-block" type="submit">Enviar correo</x-button>
           </form>
           <hr>

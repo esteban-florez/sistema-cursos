@@ -15,7 +15,7 @@
           {{ __(session('status')) }}
         </div>
         @endif
-        @error('email')
+        @error('invalid')
           <div class="alert alert-danger mb-0" role="alert">
             {{ $message }}
           </div>

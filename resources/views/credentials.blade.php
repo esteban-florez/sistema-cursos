@@ -1,5 +1,6 @@
 <x-layout.main title="Credenciales para pagos">
   <section class="container-fluid mt-3">
+    {{-- TODO -> 1 --}}
     @if($errors->any())
     <div class="alert alert-danger">
       <p>Ocurrieron los siguientes errores: </p>
