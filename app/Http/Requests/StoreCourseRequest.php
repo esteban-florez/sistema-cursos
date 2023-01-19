@@ -68,13 +68,13 @@ class StoreCourseRequest extends FormRequest
                 'date',
                 'after:start_course',
             ],
-            'duration' => ['required', 'integer', 'numeric', 'between:4,100'],
-            'student_limit' => ['required', 'integer', 'numeric', 'between:15,40'],
+            'duration' => ['required', 'integer', 'numeric', 'between:4,120'],
+            'student_limit' => ['required', 'integer', 'numeric', 'between:15,60'],
             'days' => ['required', 'array', 'in:'.days()->join(',')],
             'start_hour' => [
                 'required',
                 'before:end_hour',
-                new Interval('end_hour', 4, 'h')
+                new Interval('end_hour', 8, 'h')
             ],
             'end_hour' => [
                 'required',

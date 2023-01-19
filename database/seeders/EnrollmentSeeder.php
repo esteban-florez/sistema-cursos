@@ -43,7 +43,7 @@ class EnrollmentSeeder extends Seeder
             ->each(function ($s, $i) {
                 Enrollment::create([
                     'user_id' => $s->id,
-                    'course_id' => 2,
+                    'course_id' => 4,
                     // Estudiante no confirmado a proposito para probar lo de enrollments:unconfirmed
                     'confirmed_at' => $i === 1 ? null : now()->subDays(1),
                 ]);
@@ -54,7 +54,7 @@ class EnrollmentSeeder extends Seeder
             ->each(function ($s) {
                 Enrollment::create([
                     'user_id' => $s->id,
-                    'course_id' => 2,
+                    'course_id' => 5,
                     'confirmed_at' => now()->subDays(1),
                 ]);
             });

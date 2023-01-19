@@ -2,7 +2,7 @@
 
 @php
   $registered = auth()->user()
-  ->courses
+  ->enrolledCourses
   ->ids()
   ->contains($course->id);
 @endphp

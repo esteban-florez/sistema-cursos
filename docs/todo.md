@@ -1,24 +1,26 @@
 ## Myriam:
 
 ## Esteban:
-
-- Hacer tabla de roles de usuario. Poner los que sean necesarios, y luego dejar lo demás a "actualizaciones" (lol).
-- Hacer sistema de permisos, después de la creación de usuario el admin selecciona con una interfaz los permisos de dicho usuario.
-- Crear rol de preparador.
-- Posible rol de secretaria (preguntar a Edeblangel).
-
+ 
+- Edición del rol de un usuario.
+- Terminar el perfil con cursos y clubes "propios".
+- Hacer las breadcrumbs.
+- Correos con Gmail.
+- Optimizar inscripción en curso (PI).
+- Bug del home (BD).
+- PDF de Listado de Pagos pero filtrado por un status específico.
+- Añadir tooltip para ver formato de contraseñas.
+- Ruta de cambio de contraseña.
+- Ruta de cambio de imagen de perfil.
 
 ## Tareas a largo plazo:
 
-- Terminar el perfil, tanto de estudiante como instructor, con cursos y clubes "propios".
-- Arreglar búsquedas de cursos con código (IG).
-- Hacer las breadcrumbs.
-- Analizar la situación del home. (Muestra cursos no disponibles, y también algunos en los que ya se registró el usuario).
-- Correos con Gmail.
-- Revisar el proceso de inscripción en un curso y ver que se puede optimizar, si es posible que no sea tan JS. O por el contrario, hacerlo full JS con Ajax.
-
+- Crear rol de preparador.
+- Hacer reservaciones de curso (IG).
 * Revisar validaciones:
   - Más errores de validación en Enrollment@store
   - Mejorar como se muestran los errores de validación en algunas vistas.
   - Mínimos y máximos razonables en fechas, cantidades, etc.
   - Mejoras de formularios (validación, comodidad, formatos) con JavaScript en el Frontend.
+- Arreglar búsquedas de cursos con código (IG).
+- Hacer sistema de permisos (Authorization).
