@@ -9,6 +9,12 @@ use Illuminate\Contracts\Validation\Rule;
  */
 class ValidID implements Rule
 {
+    protected $model;
+
+    public function __construct($model = null) {
+        $this->model = $model;
+    }
+
     /**
      * Determine if the validation rule passes.
      *
@@ -18,7 +24,8 @@ class ValidID implements Rule
      */
     public function passes($attribute, $value)
     {
-        $model = ucfirst(explode('_', $attribute)[0]);
+        $model = $this->model ?? 
+            ucfirst(explode('_', $attribute)[0]);
         $class = "App\Models\\$model";
 
         return (bool) $class::find($value);

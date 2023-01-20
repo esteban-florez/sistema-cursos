@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidID;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateAreaRequest extends FormRequest
 {
@@ -24,8 +26,15 @@ class UpdateAreaRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:255'],
-            'pnf_id' => ['required']
+            'name' => [
+                'required',
+                'max:50',
+                Rule::unique('pnfs')->ignore($this->route('area')),
+            ],
+            'pnf_id' => [
+                'required',
+                new ValidID('PNF'),
+            ]
         ];
     }
 }

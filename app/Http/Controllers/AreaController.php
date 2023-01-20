@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAreaRequest;
+use App\Http\Requests\UpdateAreaRequest;
 use App\Models\Area;
 use App\Models\PNF;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class AreaController extends Controller
         ]);
     }
 
-    public function update(Request $request, Area $area)
+    public function update(UpdateAreaRequest $request, Area $area)
     {
         $data = $request->validated();
 

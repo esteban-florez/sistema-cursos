@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidID;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreAreaRequest extends FormRequest
@@ -24,8 +25,12 @@ class StoreAreaRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'unique:areas', 'max:255'],
-            'pnf_id' => ['required']
+            'name' => [
+                'required',
+                'max:50',
+                'unique:areas',
+            ],
+            'pnf_id' => ['required', new ValidID('PNF')]
         ];
     }
 }
