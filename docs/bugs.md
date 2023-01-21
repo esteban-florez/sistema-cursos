@@ -7,7 +7,3 @@
 - Eliminación con SoftDeletes causa que los campos únicos den problemas.
 
  - Los errores de validación de contraseñas no están traducidos.
-
-### Bugs roles-revamp
-
-- Cuando creas un área de formación desde un formulario con select de areas, se pierden los datos que ya has metido hasta ese momento.

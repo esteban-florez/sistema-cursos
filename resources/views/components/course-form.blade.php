@@ -93,4 +93,4 @@
     </x-button>
   </div>
 </form>
-<x-area.new id="newAreaModal" :pnfs="$pnfs"/>
+<x-area.new id="newAreaModal" :pnfs="$pnfs" ajax/>

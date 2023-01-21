@@ -165,5 +165,5 @@
   </div>
 </form>
 @if (!$register)
-  <x-area.new id="newAreaModal" :pnfs="$pnfs"/>
+  <x-area.new id="newAreaModal" :pnfs="$pnfs" ajax/>
 @endif

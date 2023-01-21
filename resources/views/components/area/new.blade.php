@@ -1,4 +1,11 @@
-@props(['id', 'pnfs'])
+@props(['id', 'pnfs', 'ajax' => false])
+
+@if($ajax)
+  @push('js')
+    <script defer src="{{ asset('js/ajax.js') }}"></script>
+    {{-- maybe some day, petite-vue? or alpinejs? XD --}}
+  @endpush
+@endif
 
 <x-modal :id="$id">
   <x-slot name="header">
@@ -8,7 +15,7 @@
     </button>
   </x-slot>
   <p>Los campos con <i class="fas fa-asterisk text-danger"></i> son obligatorios.</p>
-    <form method="POST" action="{{ route('areas.store') }}">
+    <form method="POST" action="{{ route('areas.store') }}" id="areaForm" data-url="{{ route('api.areas.store') }}" data-options="{{ route('api.areas.index') }}">
     @csrf
     <x-field name="name" id="name" placeholder="Escribe el nombre del área" autocomplete="off" required>
       Nombre:

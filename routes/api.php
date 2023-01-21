@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreAreaRequest;
+use App\Models\Area;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,3 +14,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('areas', function () {
+    return Area::all(['id', 'name']);
+})->name('api.areas.index');
+
+Route::post('areas', function (StoreAreaRequest $request) {
+    $data = $request->validated();
+
+    Area::create($data);
+
+    return response('', 201);
+})->name('api.areas.store');
