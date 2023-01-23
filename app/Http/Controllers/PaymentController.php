@@ -18,6 +18,7 @@ class PaymentController extends Controller
         $search = $request->input('search');
         
         $payments = Payment::with('enrollment.student', 'enrollment.course')
+            ->latest()
             ->filters($filters)
             ->search($search)
             ->sort($sort)

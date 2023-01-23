@@ -21,6 +21,7 @@ class EnrollmentController extends Controller
         
         $enrollments = Enrollment::with('payment', 'student')
             ->whereBelongsTo($course)
+            ->latest()
             ->paginate(10)
             ->withQueryString();
         

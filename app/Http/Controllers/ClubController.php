@@ -22,7 +22,8 @@ class ClubController extends Controller
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
 
-        $clubs = Club::filters($filters)
+        $clubs = Club::latest()
+            ->filters($filters)
             ->search($search)
             ->sort($sortColumn)
             ->paginate(10)

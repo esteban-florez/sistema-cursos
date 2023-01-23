@@ -24,7 +24,8 @@ class UserController extends Controller
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
         
-        $users = User::filters($filters)
+        $users = User::latest()
+            ->filters($filters)
             ->search($search)
             ->sort($sortColumn)
             ->paginate(10)

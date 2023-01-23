@@ -18,6 +18,7 @@ class UserPaymentController extends Controller
         $payments = Payment::with('enrollment.course')
             ->whereHas('enrollment', fn($query) => 
                 $query->where('enrollments.user_id', Auth::user()->id))
+            ->latest()
             ->paginate(6);
 
         return view('users-payments.index', [

@@ -16,6 +16,7 @@ class AreaController extends Controller
         
         $areas = Area::when($search, fn($query, $search) => 
             $query->where('name', 'like', "%{$search}%"))
+            ->latest()
             ->get();
 
         $pnfs = PNF::getOptions();

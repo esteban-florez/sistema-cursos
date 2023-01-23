@@ -6,4 +6,6 @@
 
 - Eliminación con SoftDeletes causa que los campos únicos den problemas.
 
- - Los errores de validación de contraseñas no están traducidos.
+- Los errores de validación de contraseñas no están traducidos.
+
+- Si se intentan inscribir en un curso pero aun no han sido registradas credenciales de pago, entonces falla el JS y no se puede realizar la inscripción (getCredentials.js).

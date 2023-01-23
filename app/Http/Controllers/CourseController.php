@@ -24,7 +24,8 @@ class CourseController extends Controller
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
 
-        $courses = Course::filters($filters)
+        $courses = Course::latest()
+            ->filters($filters)
             ->search($search)
             ->sort($sortColumn)
             ->paginate(10)

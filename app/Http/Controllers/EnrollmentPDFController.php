@@ -16,6 +16,7 @@ class EnrollmentPDFController extends Controller
             ->findOrFail($request->input('course'));
  
         $enrollments = Enrollment::with('payment', 'student')
+            ->latest()
             ->whereBelongsTo($course)
             ->get();
         
