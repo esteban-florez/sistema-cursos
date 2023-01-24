@@ -36,10 +36,7 @@ class StoreUserRequest extends FormRequest
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'string','max:255'],
             'email' => ['required', 'email', 'max:50', 'unique:users'],
-            'password' => [
-                'required', 'max:50', 'confirmed', 
-                Password::min(8)->letters()->mixedCase()->numbers()->symbols()
-            ],
+            'password' => ['required', 'max:50', 'confirmed', Password::defaults()],
             'birth' => ['required', 'date', 'before:now'],
             'role' => ['required', 'in:'.roles()->join(',')],
             'grade' => ['nullable', 'in:'.grades()->join(','), 'required_if:role,Estudiante'],

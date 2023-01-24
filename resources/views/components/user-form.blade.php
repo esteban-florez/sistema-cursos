@@ -1,8 +1,10 @@
 @props(['register' => false, 'pnfs' => null, 'areas' => null, 'image' => false, 'action', 'user' => null, 'edit' => false])
 
-@push('js')
-  <script defer src="{{ asset('js/user-form.js') }}"></script>
-@endpush
+@unless ($register)
+    @push('js')
+      <script defer src="{{ asset('js/user-form.js') }}"></script>
+    @endpush
+@endunless
 
 @php
   $backUrl = $edit 
@@ -27,6 +29,7 @@
             <x-image-input :image="$user->image ?? null" profile/>
           </div>
           <div class="col-md-8">
+            <x-password-tooltip/>
             <x-field type="email" name="email" id="email" placeholder="email@ejemplo.com" value="{{ old('email') ?? $user->email ?? '' }}" required>
               Correo Electrónico:
             </x-field>
@@ -44,6 +47,7 @@
             </x-field>
           </div>
           <div class="col-md-4">
+            <x-password-tooltip/>
             <x-field type="password" name="password" id="password" placeholder="Escriba la contraseña..." :required="!$edit">
               Contraseña:
             </x-field>

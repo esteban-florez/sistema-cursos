@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -27,5 +28,12 @@ class AuthServiceProvider extends ServiceProvider
 
         ResetPassword::createUrlUsing(fn($user, $token) => 
             url("/reset-password/{$token}/{$user->email}"));
+
+        Password::defaults(function () {
+            return Password::min(8)
+                ->mixedCase()
+                ->numbers()
+                ->symbols();
+        });
     }
 }

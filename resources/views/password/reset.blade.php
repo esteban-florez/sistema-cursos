@@ -21,7 +21,7 @@
           </div>
         @enderror
         <div class="card-body login-card-body">
-          <span class="badge bg-info help-pass float-right" data-toggle="tooltip" title="La contraseña debe tener entre 8 y 20 caracteres, y debe ser una combinación de mayúsculas, minúsculas, números y símbolos.">?</span>
+          <x-password-tooltip />
           <p class="login-box-msg pb-2">Por favor ingrese su nueva contraseña.</p>
           <form action="{{ route('password.reset') }}" method="POST">
             @csrf

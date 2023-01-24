@@ -43,10 +43,7 @@ class PasswordController extends Controller
         $request->validate([
             'token' => 'required',
             'email' => ['required', 'email'],
-            'password' => [
-                'required', 'max:20', 'confirmed', 
-                PasswordRule::min(8)->letters()->mixedCase()->numbers()->symbols()
-            ],
+            'password' => ['required', 'max:20', 'confirmed', PasswordRule::defaults()],
         ]);
 
         $status = Password::reset(

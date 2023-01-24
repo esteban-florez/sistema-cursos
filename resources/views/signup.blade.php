@@ -16,6 +16,7 @@
       </div>
       <div class="card mb-3">
         <div class="card-body register-card-body">
+          {{-- TODO -> 1 --}}
           <x-user-form
             :action="route('register.store')"
             register

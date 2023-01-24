@@ -1,0 +1,2 @@
+<span class="badge bg-info help-pass float-right" data-toggle="tooltip" title="La contraseña debe tener entre 8 y 20 caracteres, y debe ser una combinación de mayúsculas, minúsculas, números y símbolos.">?</span>
+<script defer src="{{ asset('js/enableTooltip.js') }}"></script>

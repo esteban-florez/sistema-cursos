@@ -25,4 +25,5 @@
   - Mínimos y máximos razonables en fechas, cantidades, etc.
   - Mejoras de formularios con JavaScript en el Frontend (validación, comodidad, formatos).
 - Arreglar búsquedas de cursos con código (IG).
+- Crear las vistas de 404, 403, etc.
 - Hacer sistema de permisos (Authorization).

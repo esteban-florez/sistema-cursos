@@ -3,11 +3,6 @@ const showButtons = document.querySelectorAll(
 const submitButton = document.querySelector(
 	'button[type="submit"]')
 
-// submitButton.addEventListener('click', () => {
-// 	const inputs = document.querySelectorAll('input')
-// 	inputs.forEach(input => input.type = 'password')
-// })
-
 showButtons.forEach(button => {
 	button.addEventListener('click', toggleShowPassword)
 });
@@ -23,8 +18,3 @@ function toggleShowPassword(e) {
 	icon.classList.toggle('fa-eye');
 	icon.classList.toggle('fa-eye-slash')
 }
-
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-

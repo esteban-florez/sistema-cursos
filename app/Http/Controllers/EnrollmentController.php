@@ -36,8 +36,8 @@ class EnrollmentController extends Controller
     {
         $course = Course::findOrFail($request->input('course'));
         $credentials = new stdClass;
-        $credentials->movil = MovilCredentials::first();
-        $credentials->transfer = TransferCredentials::first();
+        $credentials->movil = MovilCredentials::firstOrFail();
+        $credentials->transfer = TransferCredentials::firstOrFail();
 
         return view('enrollments.create', [
             'course' => $course,

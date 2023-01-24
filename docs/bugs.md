@@ -5,7 +5,3 @@
 - Eliminación de cosas causa errores debido a las consecuencias en las relaciones. Añadir onDelete('cascade') a todo basically.
 
 - Eliminación con SoftDeletes causa que los campos únicos den problemas.
-
-- Los errores de validación de contraseñas no están traducidos.
-
-- Si se intentan inscribir en un curso pero aun no han sido registradas credenciales de pago, entonces falla el JS y no se puede realizar la inscripción (getCredentials.js).
