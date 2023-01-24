@@ -88,13 +88,15 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     // Areas routes
     Route::resource('areas', AreaController::class)
-        ->except('create');
+        ->except('create', 'destroy');
 
     // Courses routes
-    Route::resource('courses', CourseController::class);
+    Route::resource('courses', CourseController::class)
+        ->except('destroy');
 
     // Users routes
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)
+        ->except('destroy');
 
     // Payments routes
     Route::get('pending-payments', [PendingPaymentController::class, 'index'])
@@ -107,7 +109,8 @@ Route::middleware('auth')->group(function () {
         ->except('create', 'store', 'show');
 
     // Clubs routes
-    Route::resource('clubs', ClubController::class);
+    Route::resource('clubs', ClubController::class)
+        ->except('destroy');
 
     // Available Courses routes
     Route::get('available-courses', [AvailableCourseController::class, 'index'])

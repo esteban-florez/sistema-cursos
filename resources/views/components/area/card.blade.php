@@ -14,11 +14,6 @@
         </div>
         <div class="area-buttons">
           <x-button :url="route('areas.edit', $area->id)" icon="edit">Editar</x-button>
-          <form method="POST" action="{{ route('areas.destroy', $area->id) }}">
-            @csrf
-            @method('DELETE')
-            <x-button type="submit" icon="trash-alt" color="danger">Eliminar</x-button>
-          </form>
         </div>
       </div>
     </div>

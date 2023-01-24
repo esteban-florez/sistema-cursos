@@ -6,9 +6,6 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/areas.css') }}">
   @endpush
-  @push('js')
-    <script defer src="{{ asset('js/areas.js') }}"></script>
-  @endpush
   <x-layout.bar>
     <x-search name="search" :action="route('areas.index')" placeholder="Buscar área..." :value="$search ?? ''"/>
     <x-button icon="plus" color="success" hide-text="sm" data-target="#newAreaModal" data-toggle="modal">Añadir</x-button>
@@ -19,15 +16,20 @@
       <p class="alert alert-warning">Hubo un error: {{ $errors->first() }}</p>
     @endif
     <x-alert />
-    @forelse($areas as $area)
+    @if ($areas->isNotEmpty())
       <div class="row px-2">
+        @foreach($areas as $area)
         <x-area.card :area="$area"/>
+        @endforeach
       </div>
-    @empty
+    @else
       <div class="empty-container">
         <h2 class="empty">No hay areas registradas</h2>
       </div>
-    @endforelse
+    @endif
+    <div class="d-flex justify-content-center">
+      {{ $areas->links() }}
+    </div>
   </section>
   <x-slot name="extra">
     @if($edit)

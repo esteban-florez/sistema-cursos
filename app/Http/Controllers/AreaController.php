@@ -17,7 +17,8 @@ class AreaController extends Controller
         $areas = Area::when($search, fn($query, $search) => 
             $query->where('name', 'like', "%{$search}%"))
             ->latest()
-            ->get();
+            ->paginate(9)
+            ->withQueryString();
 
         $pnfs = PNF::getOptions();
 
@@ -58,12 +59,5 @@ class AreaController extends Controller
         // TODO -> hacer que mande error y tal si salió algo mal
         return redirect()->route('areas.index')
             ->with('alert', trans('alerts.areas.updated'));
-    }
-
-    public function destroy(Area $area) {
-        $area->delete();
-        // TODO -> hacer que muestre modal de confirmación
-        return redirect()->route('areas.index')
-            ->with('alert', trans('alerts.areas.deleted'));
     }
 }

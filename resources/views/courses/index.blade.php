@@ -61,7 +61,6 @@
               ]"
               :details="route('courses.show', $course->id)"
               :edit="route('courses.edit', $course->id)"
-              :delete="route('courses.destroy', $course->id)"
             >
               <x-slot name="extraActions">
                 <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course->id])" icon="clipboard-list">

@@ -53,7 +53,6 @@
               ]"
               :details="route('clubs.show', $club->id)"
               :edit="route('clubs.edit', $club->id)"
-              :delete="route('clubs.destroy', $club->id)"
             />
           @endforeach
         </x-slot>

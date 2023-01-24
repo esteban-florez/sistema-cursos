@@ -123,18 +123,4 @@ class ClubController extends Controller
         return redirect()->route('clubs.index')
             ->with('alert', trans('alerts.clubs.updated'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Club $club)
-    {
-        $club->delete();
-
-        return redirect()->route('clubs.index')
-            ->with('alert', trans('alerts.clubs.deleted'));
-    }
 }

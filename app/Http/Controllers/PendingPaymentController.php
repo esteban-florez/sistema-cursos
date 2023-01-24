@@ -10,6 +10,7 @@ class PendingPaymentController extends Controller
     {
         $payments = Payment::with('enrollment.student', 'enrollment.course')
             ->where('status', 'Pendiente')
+            ->latest()
             ->paginate(9)
             ->withQueryString();
 

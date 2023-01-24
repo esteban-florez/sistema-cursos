@@ -124,18 +124,4 @@ class CourseController extends Controller
         return redirect()->route('courses.index')
             ->with('alert', trans('alerts.courses.updated'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Course $course)
-    {
-        $course->delete();
-
-        return redirect()->route('courses.index')
-            ->with('alert', trans('alerts.courses.deleted'));
-    }
 }
