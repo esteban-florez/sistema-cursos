@@ -22,7 +22,6 @@ class CreateClubsTable extends Migration
             $table->time('start_hour');
             $table->time('end_hour');
             $table->foreignId('user_id')->constrained();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

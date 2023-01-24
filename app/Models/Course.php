@@ -5,12 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
 class Course extends Model
 {
-    use HasFactory, QueryScopes, SoftDeletes;
+    use HasFactory, QueryScopes;
 
     /**
      * The attributes that are not mass assignable.

@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Club extends Model
 {
-    use HasFactory, QueryScopes, SoftDeletes;
+    use HasFactory, QueryScopes;
 
     protected $guarded = ['id'];
 

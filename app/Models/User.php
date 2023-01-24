@@ -8,11 +8,10 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Membership;
 use App\Models\Enrollment;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, QueryScopes, SoftDeletes;
+    use HasFactory, Notifiable, QueryScopes;
 
     /**
      * The attributes that are not mass assignable.

@@ -31,7 +31,6 @@ class CreateUsersTable extends Migration
             $table->date('birth');
             $table->boolean('is_upta')->default(false);
             $table->enum('role', roles(true)->all())->default('Estudiante');
-            $table->softDeletes();
             $table->timestamps();
             // Student fields
             $table->enum('grade', grades()->all())->nullable();
