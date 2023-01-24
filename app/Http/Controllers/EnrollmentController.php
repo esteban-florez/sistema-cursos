@@ -53,8 +53,7 @@ class EnrollmentController extends Controller
 
         if ($type === 'transfer' || $type === 'movil') {
             if ($request->input('ref') === null) {
-                return redirect()
-                ->back()
+                return back()
                 ->with('alert', 'El campo de referencia no puede estar vacío.'); // TODO -> 1
             }
         }

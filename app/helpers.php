@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Str;
 
 define('DV', 'Y-m-d');
@@ -103,5 +102,17 @@ if (!function_exists('base64')) {
 if (!function_exists('randomNumericString')) {
     function randomNumericString($length) {
         return (string) rand(pow(10, $length - 1), pow(10, $length)-1);
+    }
+}
+
+if (!function_exists('backWithoutQuery')) {
+    /** 
+     * Create a new redirect response to the previous location without query string parameters.
+     * 
+     * @return \Illuminate\Http\RedirectResponse
+    */
+    function backWithoutQuery($status = 302, $headers = []) {
+        $back = explode('?', url()->previous())[0];
+        return redirect($back, $status, $headers);
     }
 }

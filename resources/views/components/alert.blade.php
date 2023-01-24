@@ -13,7 +13,7 @@
 @endphp
 
 @if ($message)
-  <div class="alert alert-{{ $color }} mx-2 d-flex justify-content-between" role="alert">
+  <div class="alert alert-{{ $color }} mx-2 d-flex justify-content-between mb-1" role="alert">
     <div>
       <i class="fas fa-info-circle mr-1 text-white"></i>
       {{ $message }}

@@ -15,8 +15,7 @@ class PaymentStatusController extends Controller
         
         $payment->update($data);
         
-        return redirect()
-            ->back()
+        return backWithoutQuery()
             ->with('alert', trans('alerts.payment-status.updated'));
     }
 }

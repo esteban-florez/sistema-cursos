@@ -1,7 +1,5 @@
 # Bugs detectados:
 
-- Que pasa si estás en la última página de una paginación, y "desapareces" (borrar o editar), todos los elementos de esa página? Pues puede suceder que te quedas con la página vacía xD. Hasta ahora solo me apareció en pagos por verificar debido su redirect()->back()
-
 - Eliminación de cosas causa errores debido a las consecuencias en las relaciones. Añadir onDelete('cascade') a todo basically.
 
 - Eliminación con SoftDeletes causa que los campos únicos den problemas.

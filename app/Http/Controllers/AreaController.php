@@ -34,8 +34,7 @@ class AreaController extends Controller
 
         Area::create($data);
 
-        return redirect()
-            ->back()
+        return back()
             ->with('alert', trans('alerts.areas.created'));
     }
 
