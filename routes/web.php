@@ -34,62 +34,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'login')
-    ->middleware('guest');
+Route::middleware('guest')->group(function () {
+    Route::redirect('/', 'login');
 
-// Auth routes
-Route::group([
-    'controller' => AuthController::class
-], function () {
-    Route::group([
-        'middleware' => 'guest'
-    ], function () {
+    // Auth routes
+    Route::controller(AuthController::class)->group(function () {
         Route::get('login', 'create')
             ->name('login')
             ->middleware('prevent-back');
         
         Route::post('auth', 'store')
             ->name('auth');
+
+        Route::get('logout', 'destroy')
+            ->name('logout')
+            ->withoutMiddleware('guest');
     });
-    
-    Route::get('logout', 'destroy')
-        ->name('logout')
-        ->middleware('auth');
-});
 
-// Password recovery
+    // Password recovery
 
-Route::group([
-    'controller' => PasswordController::class,
-    'middleware' => 'guest',
-    'as' => 'password.',
-],
-function () {
-    Route::get('forgot-password', 'forgot')
-        ->name('forgot');
-    
-    Route::post('forgot-password', 'mail')
-        ->name('email');
-    
-    Route::get('reset-password/{token}/{email}', 'edit')
-        ->name('edit');
-    
-    Route::post('reset-password', 'reset')
-        ->name('reset');
-});
+    Route::group([
+        'controller' => PasswordController::class,
+        'as' => 'password.',
+    ],
+    function () {
+        Route::get('forgot-password', 'forgot')
+            ->name('forgot');
 
-// Signup routes
+        Route::post('forgot-password', 'mail')
+            ->name('email');
 
-Route::group([
-    'controller' => RegisterController::class,
-    'middleware' => 'guest',
-    'as' => 'register.',
-], function () {
-    Route::get('signup', 'create')
-        ->name('create');
-    
-    Route::post('register', 'store')
-        ->name('store');
+        Route::get('reset-password/{token}/{email}', 'edit')
+            ->name('edit');
+
+        Route::post('reset-password', 'reset')
+            ->name('reset');
+    });
+
+    // Signup routes
+
+    Route::group([
+        'controller' => RegisterController::class,
+        'as' => 'register.',
+    ], function () {
+        Route::get('signup', 'create')
+            ->name('create');
+
+        Route::post('register', 'store')
+            ->name('store');
+    });
 });
 
 Route::middleware('auth')->group(function () {

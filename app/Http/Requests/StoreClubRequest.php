@@ -24,7 +24,7 @@ class StoreClubRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:30'],
+            'name' => ['required', 'max:30', 'unique:clubs'],
             'image' => ['required', 'file', 'image', 'max:2048'],
             'description' => ['required', 'max:255'],
             'day' => ['required', 'in:'.days()->join(',')],

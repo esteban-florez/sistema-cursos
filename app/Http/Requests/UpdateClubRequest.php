@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateClubRequest extends FormRequest
 {
@@ -23,8 +24,10 @@ class UpdateClubRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('course');
+
         return [
-            'name' => ['required', 'max:30'],
+            'name' => ['required', 'max:30', Rule::unique('clubs')->ignore($id)],
             'image' => ['nullable', 'file', 'image', 'max:2048'],
             'description' => ['required', 'max:255'],
             'day' => ['required', 'in:'.days()->join(',')],
