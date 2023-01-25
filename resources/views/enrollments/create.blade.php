@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="bs-stepper-content">
-        <div class="content fade callout callout-info" id="typeStep">
+        <div class="content fade callout callout-info initial" id="typeStep">
           <h3>Seleccione el tipo de pago</h3>
           <form>
             <div class="form-check">
