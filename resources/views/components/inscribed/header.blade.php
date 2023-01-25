@@ -13,7 +13,7 @@
 <div class="title-wrapper">
   <h2 class="h3 mb-0 mr-3 text-break">{{ $course->name }}</h2>
   <p class="m-0 h5">
-    {{ $enrollments->total() ?? '0' }} / {{ $course->student_limit }} estudiantes
+    {{ $course->student_diff }} estudiantes
   </p>
 </div>
 <div class="d-flex align-items-center gap-3">

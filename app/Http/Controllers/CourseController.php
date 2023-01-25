@@ -20,11 +20,13 @@ class CourseController extends Controller
      */
     public function index(Request $request)
     {
+        // TODO -> filtrar por fase
         $filters = Input::getFilters();
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
 
         $courses = Course::latest()
+            ->withCount('students')
             ->filters($filters)
             ->search($search)
             ->sort($sortColumn)

@@ -43,4 +43,10 @@ class Enrollment extends Model
     {
         return $this->approved_at !== null ? 'Sí' : 'No';
     }
+
+    public function scopeExpired($query)
+    {
+        $query->where('created_at', '<', now()->subDays(self::EXPIRES_IN)->format(DV))
+            ->whereNull('confirmed_at');
+    }
 }

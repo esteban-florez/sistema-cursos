@@ -39,18 +39,10 @@ class DeleteExpiredEnrollments extends Command
      */
     public function handle()
     {
-        $enrollments = Enrollment::whereNull('confirmed_at');
+        $enrollments = Enrollment::expired()->get();
 
-        $enrollments->each(function ($enrollment) {
-            $created = Date::createFromFormat('Y-m-d H:i:s', $enrollment->created_at);
-            $midDate = Date::createMidnightDate($created->year, $created->month, $created->day);
-            $now = now();
-            $midNow = Date::createMidnightDate($now->year, $now->month, $now->day);
-            
-            if($midDate->diffInDays($midNow) >= Enrollment::EXPIRES_IN) {
-                $enrollment->delete();
-            }
-        });
+        $enrollments->each(fn($enrollment) => $enrollment->delete());
+
         echo "Removed expired enrollments successfully.\n";
         return 0;
     }

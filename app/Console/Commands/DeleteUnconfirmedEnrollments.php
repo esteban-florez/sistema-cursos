@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Course;
 use Illuminate\Console\Command;
 
-class RemoveUnconfirmedEnrollments extends Command
+class DeleteUnconfirmedEnrollments extends Command
 {
     /**
      * The name and signature of the console command.
@@ -19,7 +19,7 @@ class RemoveUnconfirmedEnrollments extends Command
      *
      * @var string
      */
-    protected $description = 'Remove unconfirmed enrollments from active Courses.';
+    protected $description = 'Delete unconfirmed enrollments from active Courses.';
 
     /**
      * Create a new command instance.

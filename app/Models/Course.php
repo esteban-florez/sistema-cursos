@@ -27,6 +27,8 @@ class Course extends Model
         'end_hour' => 'datetime',
     ];
 
+    protected $withCount = ['students'];
+
     protected static $searchColumn = 'name';
 
     public function instructor()
@@ -36,7 +38,8 @@ class Course extends Model
 
     public function students()
     {
-        return $this->belongsToMany(User::class, 'enrollments');
+        return $this->belongsToMany(User::class, 'enrollments')
+            ->wherePivotNull('deleted_at');
     }
 
     public function enrollments()
@@ -48,15 +51,42 @@ class Course extends Model
     {
         return $this->belongsTo(Area::class);
     }
+
+    public function scopePhase($query, $phase)
+    {
+        $now = now()->format(DV);
+
+        switch ($phase) {
+            case 'Pre-inscripciones':
+                $query->where('start_ins', '>', $now);
+                break;
+            case 'Inscripciones':
+                $query->where('start_ins', '<', $now)
+                    ->where('end_ins', '>', $now);
+                break;
+            case 'Pre-curso':
+                $query->where('end_ins', '<', $now)
+                    ->where('start_course', '>', $now);
+                break;
+            case 'En curso':
+                $query->where('start_course', '<', $now)
+                    ->where('end_course', '>', $now);
+                break;
+            case 'Finalizado':
+                $query->where('end_course', '<', $now);
+                break;
+        }   
+    }
     
     public function scopeAvailables($query)
     {
         // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery, y evitar tanta repetición de codigo.
-        $courses = self::withCount('students')->get();
+        $courses = self::phase('Inscripciones')
+            ->withCount('students')
+            ->get();
         
         $ids = $courses
             ->filter(fn($course) => $course->students_count < $course->student_limit)
-            ->filter(fn($course) => $course->phase === 'Inscripciones')
             ->ids();
         
         return $query->whereIn('id', $ids);
@@ -91,28 +121,6 @@ class Course extends Model
         return $options;
     }
 
-    private function currentPhase()
-    {
-        $now = now()->getTimestamp();
-        $startIns = $this->start_ins->getTimestamp();
-        $endIns = $this->end_ins->getTimestamp();
-        $startCourse = $this->start_course->getTimestamp();
-        $endCourse = $this->end_course->getTimestamp();
-
-        return match(true) {
-            $now < $startIns => 'Pre-inscripciones',
-            $now < $endIns => 'Inscripciones',
-            $now < $startCourse => 'Pre-curso',
-            $now < $endCourse => 'En curso',
-            default => 'Finalizado',
-        };
-    }
-
-    private function studentCount()
-    {
-        return $this->students()->count();
-    }
-
      /** --------------- Accesors and Mutators --------------- */
 
     public function getExcerptAttribute()
@@ -120,14 +128,9 @@ class Course extends Model
         return Str::words($this->description, 8);
     }
 
-    public function getStudentCountAttribute()
-    {
-        return $this->studentCount();
-    }
-
     public function getStudentDiffAttribute()
     {
-        return "{$this->studentCount()} / {$this->student_limit}";
+        return "{$this->students_count} / {$this->student_limit}";
     }
 
     public function getDaysTextAttribute()
@@ -143,7 +146,19 @@ class Course extends Model
 
     public function getPhaseAttribute()
     {
-        return $this->currentPhase();
+        $now = now()->getTimestamp();
+        $startIns = $this->start_ins->getTimestamp();
+        $endIns = $this->end_ins->getTimestamp();
+        $startCourse = $this->start_course->getTimestamp();
+        $endCourse = $this->end_course->getTimestamp();
+
+        return match(true) {
+            $now < $startIns => 'Pre-inscripciones',
+            $now < $endIns => 'Inscripciones',
+            $now < $startCourse => 'Pre-curso',
+            $now < $endCourse => 'En curso',
+            default => 'Finalizado',
+        };
     }
 
     public function getDurationHoursAttribute()

@@ -22,7 +22,7 @@ class EnrollmentMiddleware
         $course = Course::findOrFail($request->input('course'));
         $user = Auth::user();
         // TODO -> hacer que redirija al available-courses.index con un mensaje de error según el caso
-        if ($course->student_count >= $course->student_limit) {
+        if ($course->students_count >= $course->student_limit) {
             return redirect()->route('available-courses.index');
         }
 

@@ -58,6 +58,8 @@
     @endforeach
   </x-slot>
   <x-slot name="pagination">
-    {{ $enrollments->links() }}
+    <div class="pagination-container">
+      {{ $enrollments->links() }}
+    </div>
   </x-slot>
 </x-table>

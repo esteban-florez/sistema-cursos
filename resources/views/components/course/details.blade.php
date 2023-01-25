@@ -22,7 +22,7 @@
         <span class="mb-1"><b>Hora:</b> {{ $course->hours }}</span>
         <span class="mb-1"><b>Instructor:</b> {{ $course->instructor->full_name }}</span>
         <span class="mb-1"><b>Área:</b> {{ $course->area->name }}</span>
-        <span class="mb-1"><b>Estudiantes:</b> {{ $course->student_count }} / {{ $course->student_limit }}</span>
+        <span class="mb-1"><b>Estudiantes:</b> {{ $course->students_count }} / {{ $course->student_limit }}</span>
       </div>
       <div class="d-flex justify-content-between text-success mt-3">
         <h3>Monto Total</h3>

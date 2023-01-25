@@ -34,7 +34,7 @@ class EnrollmentSeeder extends Seeder
                 Enrollment::create([
                     'user_id' => $s->id,
                     'course_id' => 2,
-                    'created_at' => $i === 1 ? now()->subDays(7) : now(),
+                    'created_at' => $i === 1 ? now()->subDays(Enrollment::EXPIRES_IN + 1) : now(),
                 ]);
             });
 
