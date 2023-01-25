@@ -1,12 +1,13 @@
-'use strict';
-import { findSelectedCheckbox } from '../utils.js';
-import { updateStepperControls, enableNextButton } from './stepperControls.js';
-import setSteps from './setSteps.js';
-import initStepper from './initStepper.js';
+'use strict'
+// debugger
+import { findSelectedCheckbox } from '../utils.js'
+import { updateStepperControls, enableNextButton } from './stepperControls.js'
+import setSteps from './setSteps.js'
+import initStepper from './initStepper.js'
 
-let stepsOptions = {};
+let stepsOptions = {}
 
-const stepperId = Symbol.for('stepperID');
+const stepperId = Symbol.for('stepperID')
 
 const payTypes = {
   'pago-movil': {
@@ -29,21 +30,23 @@ const payTypes = {
   },
 }
 
-let typeChecks = document.querySelectorAll('input[name="tipo-pago"]');
-typeChecks = Array.from(typeChecks);
+let typeChecks = document.querySelectorAll('input[name="tipo-pago"]')
+typeChecks = Array.from(typeChecks)
 
-document.addEventListener('DOMContentLoaded', () => initStepper(stepperId));
-document.addEventListener('DOMContentLoaded', () => updateStepperControls());
 
 typeChecks.forEach(checkbox => checkbox.addEventListener('input', () => {
-  const selectedCheck = findSelectedCheckbox(typeChecks);
+  const selectedCheck = findSelectedCheckbox(typeChecks)
   
   stepsOptions = { 
     ...stepsOptions, 
     ...payTypes[selectedCheck.value],
-  };
+  }
 
-  setSteps(stepsOptions);
-  updateStepperControls('#confirmStep');
-  enableNextButton('type');
-}));
+  setSteps(stepsOptions)
+  updateStepperControls('#confirmStep')
+  enableNextButton('type')
+}))
+
+
+initStepper(stepperId)
+updateStepperControls()

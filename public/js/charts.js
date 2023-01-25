@@ -22,7 +22,7 @@ const inscritosChart = new Chart(
     },
     options: {}
   }
-);
+)
 
 const porCursoChart = new Chart(
   document.querySelector('#porCursoChart'),
@@ -49,7 +49,7 @@ const porCursoChart = new Chart(
     },
     options: {}
   }
-);
+)
 
 const ingresosCursoChart = new Chart(
   document.querySelector('#ingresosCursoChart'),
@@ -77,7 +77,7 @@ const ingresosCursoChart = new Chart(
     },
     options: {}
   }
-);
+)
 
 const aprobadosChart = new Chart(
   document.querySelector('#aprobadosChart'),
@@ -101,4 +101,4 @@ const aprobadosChart = new Chart(
     },
     options: {}
   }
-);
+)

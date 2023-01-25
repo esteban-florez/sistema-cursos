@@ -25,7 +25,7 @@ function handleTriggerClick(e) {
     console.log(msg)
     $(`#details${payment.id}`).modal()
     $(`#details${payment.id}`).on('hidden.bs.modal', () => {
-      div.remove();
+      div.remove()
     })
   })
 }

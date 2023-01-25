@@ -3,4 +3,4 @@ function getBackLink() {
   return form.dataset.back
 }
 
-export default getBackLink;
+export default getBackLink

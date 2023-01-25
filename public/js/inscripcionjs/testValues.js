@@ -35,6 +35,6 @@ const TEST_VALUES = {
       data: 'Corriente',
     },
   ],
-};
+}
 
-export default TEST_VALUES;
+export default TEST_VALUES

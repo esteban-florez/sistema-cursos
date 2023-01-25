@@ -4,4 +4,4 @@ Promise.resolve().then(() => {
   })
 
   console.log('sometimes i really dont know what to do')
-});
+})

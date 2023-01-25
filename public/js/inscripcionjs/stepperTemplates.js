@@ -1,24 +1,24 @@
 import getBackLink from './getBackLink.js'
-const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount} ${currency}` : `${currency}${amount}`;
+const generateAmount = (amount, currency) => currency === 'Bs.D.' ? `${amount} ${currency}` : `${currency}${amount}`
 
 const generateDataPair = ({title, data}) => `<li class="list-group-item d-flex justify-content-between">
   <span>${title}</span>
   <span class="font-weight-bold text-break">${data}</span>
-</li>`;
+</li>`
 
 function onlineTemplate({title, data, amount, currency}) {
-  const lowerTitle = title.toLowerCase();
-  const isTransfer = title === 'Transferencia'; 
-  const article = isTransfer ? 'la' : 'el';
+  const lowerTitle = title.toLowerCase()
+  const isTransfer = title === 'Transferencia' 
+  const article = isTransfer ? 'la' : 'el'
 
   let paymentData = data.reduce((prev, next) => {
-    prev += generateDataPair(next);
-    return prev;
-  }, '');
+    prev += generateDataPair(next)
+    return prev
+  }, '')
   paymentData += generateDataPair({
     title: 'Monto total: ',
     data: generateAmount(amount, currency),
-  }); 
+  }) 
 
   return `<h3>${title}</h3>
   <h5>Datos: </h5>
@@ -39,7 +39,7 @@ function onlineTemplate({title, data, amount, currency}) {
       </div>
       <a class="btn btn-danger" href="${getBackLink()}">Cancelar</a>
     </div>
-  </form>`;
+  </form>`
 }
 
 function cashTemplate({amount, currency }) {
@@ -59,12 +59,12 @@ function cashTemplate({amount, currency }) {
 }
 
 function fillFinalParagraph(type) {
-  const onlineText = 'Su inscripción ha sido registrada con éxito. El administrador verificará su pago en los próximos días. Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.';
-  const cashText = 'Su inscripción ha sido registrada con éxito. Ahora debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y después llevarla impresa a la sede de la UPTA en La Victoria para realizar su pago y confirmar su inscripción.';
+  const onlineText = 'Su inscripción ha sido registrada con éxito. El administrador verificará su pago en los próximos días. Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.'
+  const cashText = 'Su inscripción ha sido registrada con éxito. Ahora debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y después llevarla impresa a la sede de la UPTA en La Victoria para realizar su pago y confirmar su inscripción.'
   
   document.querySelector('#finalParagraph').innerText = 
     (type === 'movil' || type === 'transfer') 
-      ? onlineText : cashText;
+      ? onlineText : cashText
 }
 
-export { cashTemplate, fillFinalParagraph, onlineTemplate, };
+export { cashTemplate, fillFinalParagraph, onlineTemplate, }
