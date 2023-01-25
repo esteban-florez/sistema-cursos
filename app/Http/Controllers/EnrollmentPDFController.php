@@ -49,6 +49,7 @@ class EnrollmentPDFController extends Controller
             'student' => $student,
             'course' => $enrollment->course,
             'date' => now()->format(DF),
+            'expires' => now()->addDays(Enrollment::EXPIRES_IN)->format(DF),
             'logo' => base64('img/logo-upta.png'),
         ]);
 

@@ -62,8 +62,6 @@ class ClubController extends Controller
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/clubs');
-        } else {
-            unset($data['image']);
         }
 
         Club::create($data);
@@ -114,8 +112,6 @@ class ClubController extends Controller
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/clubs');
-        } else {
-            unset($data['image']);
         }
 
         $club->update($data);

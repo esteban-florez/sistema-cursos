@@ -78,6 +78,10 @@
       left: 1rem;
       width: 6rem;
     }
+
+    .note {
+      padding: 0 2.2rem;
+    }
   </style>
 </head>
 <body>
@@ -110,6 +114,7 @@
         <li>Correo Electrónico: <span>{{ $student->email }}</span></li>
       </ul>
     </section>
+    <p class="note">Nota: Esta planilla debe ser llevada antes del {{ $expires }} al Departamento de Vinculación Social en la UPTA La Victoria, para confirmar la inscripción. </p>
     <section class="small">
       <p>Documentos a Consignar</p>
       <p>(Original y Copia)</p>

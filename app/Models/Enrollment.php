@@ -12,6 +12,9 @@ class Enrollment extends Model
 
     protected $guarded = ['id'];
 
+    // TODO -> esta cantidad de días la pone Edeblangel, toca preguntar
+    const EXPIRES_IN = 7;
+
     public function student()
     {
         return $this->belongsTo(User::class, 'user_id');

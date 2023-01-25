@@ -46,8 +46,8 @@ class DeleteExpiredEnrollments extends Command
             $midDate = Date::createMidnightDate($created->year, $created->month, $created->day);
             $now = now();
             $midNow = Date::createMidnightDate($now->year, $now->month, $now->day);
-            // TODO -> esta cantidad de días la pone Edeblangel, toca preguntar
-            if($midDate->diffInDays($midNow) >= 3) {
+            
+            if($midDate->diffInDays($midNow) >= Enrollment::EXPIRES_IN) {
                 $enrollment->delete();
             }
         });

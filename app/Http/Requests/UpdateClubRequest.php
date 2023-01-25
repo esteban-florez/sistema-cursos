@@ -28,7 +28,7 @@ class UpdateClubRequest extends FormRequest
 
         return [
             'name' => ['required', 'max:30', Rule::unique('clubs')->ignore($id)],
-            'image' => ['nullable', 'file', 'image', 'max:2048'],
+            'image' => ['nullable', 'file', 'image', 'max:2048', 'exclude'],
             'description' => ['required', 'max:255'],
             'day' => ['required', 'in:'.days()->join(',')],
             'start_hour' => ['required'],
