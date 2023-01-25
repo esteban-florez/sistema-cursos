@@ -1,6 +1,6 @@
-@props(['hidden' => '', 'action' => '#'])
+@props(['hidden' => ''])
 
-<form method="GET" action="{{ $action }}">
+<form method="GET">
   {{ $hidden }}
   <div class="input-group">
     <input autcomplete="off" class="form-control" type="search" {{ $attributes }}>

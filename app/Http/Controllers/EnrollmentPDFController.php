@@ -38,10 +38,9 @@ class EnrollmentPDFController extends Controller
 
     public function show(Enrollment $enrollment)
     {
-        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
-        if ($enrollment->user_id !== Auth::user()->id) {
-            return redirect()->route('home');
-        }
+        // if ($enrollment->user_id !== Auth::user()->id) {
+            // return redirect()->route('home');
+        // }
 
         $student = $enrollment->student;
 

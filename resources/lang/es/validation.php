@@ -144,8 +144,11 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'email' => [
+            'unique' => 'Ya existe una cuenta con este correo.',
+        ],
+        'ci' => [
+            'unique' => 'Ya existe una cuenta con esta cédula.',
         ],
     ],
 

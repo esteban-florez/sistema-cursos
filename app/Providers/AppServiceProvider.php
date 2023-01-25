@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Esto se queda comentado de ahora en adelante, para que los strings sean de 255 max, la solución es configurar algo en la base de datos, busquen en internet xd
+        // Traten de buscar en internet como activar la opción "innodb_large_prefix", luego si ven que no pudieron ya descomentan esta línea xddd
         // Schema::defaultStringLength(191);
 
         $checkRole = function ($role, $user = null) {

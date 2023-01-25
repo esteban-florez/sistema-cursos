@@ -1,6 +1,6 @@
 <x-layout.main title="Club">
   <x-layout.bar>
-    <x-search placeholder="Buscar club..." :value="$search" name="search" :action="route(Route::currentRouteName())">
+    <x-search placeholder="Buscar club..." :value="$search" name="search">
       <x-slot name="hidden">
         @foreach ($filters as $filter => $value)
           <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">

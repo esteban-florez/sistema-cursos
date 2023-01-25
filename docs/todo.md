@@ -10,7 +10,6 @@
 - Correos con Gmail.
 - Optimizar inscripción en curso (PI).
 - PDF de Listado de Pagos pero filtrado por un status específico.
-- Añadir tooltip para ver formato de contraseñas.
 - Ruta de cambio de contraseña.
 - Ruta de cambio de imagen de perfil.
 

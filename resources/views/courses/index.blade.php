@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush
   <x-layout.bar>
-    <x-search placeholder="Buscar curso..." :value="$search" name="search" :action="route(Route::currentRouteName())">
+    <x-search placeholder="Buscar curso..." :value="$search" name="search">
       <x-slot name="hidden">
         @foreach ($filters as $filter => $value)
           <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/areas.css') }}">
   @endpush
   <x-layout.bar>
-    <x-search name="search" :action="route('areas.index')" placeholder="Buscar área..." :value="$search ?? ''"/>
+    <x-search name="search" placeholder="Buscar área..." :value="$search ?? ''"/>
     <x-button icon="plus" color="success" hide-text="sm" data-target="#newAreaModal" data-toggle="modal">Añadir</x-button>
   </x-layout.bar>
   <section class="container-fluid">

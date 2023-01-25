@@ -1,6 +1,7 @@
 <x-layout.main title="Usuarios">
   <x-layout.bar>
-    <x-search placeholder="Buscar usuario..." :value="$search" name="search" :action="route(Route::currentRouteName())">
+    {{-- filtro de rol --}}
+    <x-search placeholder="Buscar usuario..." :value="$search" name="search">
       <x-slot name="hidden">
         @foreach ($filters as $filter => $value)
           <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
@@ -18,6 +19,9 @@
           <x-select :options="['true' => 'Sí', 'false' => 'No']" id="isUpta" name="filters|is_upta" :selected="$filters['is_upta'] ?? null">
             ¿UPTA?
           </x-select>
+          <x-select :options="roles()->pairs()" id="role" name="filters|role" :selected="$filters['role'] ?? null">
+            Rol:
+          </x-select>
         </x-slot>
         <x-slot name="sorts">
           <x-radio :options="['date' => 'Fecha', 'first_name' => 'Nombre', 'ci' => 'Cédula']" name="sort" :checked="$sort" notitle first-empty/>
@@ -27,7 +31,7 @@
   </x-layout.bar>
   <section class="container-fluid">
     <x-alert />
-    @if ($users)
+    @if ($users->isNotEmpty())
       <x-table>
         <x-slot name="header">
           <th>Nombre</th>
@@ -35,6 +39,7 @@
           <th>Teléfono</th>
           <th>Correo</th>
           <th>¿UPTA?</th>
+          <th>Rol</th>
           <th>Acciones</th>
         </x-slot>
         <x-slot name="body">
@@ -45,6 +50,7 @@
               $user->tel,
               $user->email,
               $user->upta,
+              $user->role,
               ]"
               :details="route('users.show', $user->id)"
             />

@@ -56,7 +56,7 @@ class AreaController extends Controller
         $data = $request->validated();
 
         $area->update($data);
-        // TODO -> hacer que mande error y tal si salió algo mal
+
         return redirect()->route('areas.index')
             ->with('alert', trans('alerts.areas.updated'));
     }

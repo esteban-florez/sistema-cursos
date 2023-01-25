@@ -10,7 +10,6 @@ use Illuminate\Validation\Rules\Password as PasswordRule;
 
 class PasswordController extends Controller
 {
-    // TODO -> aun no me decido si "crudizar" estos metodos y pasar a FormRequest, o no
     public function forgot() {
         return view('password.forgot');
     }
