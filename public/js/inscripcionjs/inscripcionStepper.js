@@ -1,5 +1,4 @@
 'use strict'
-// debugger
 import { findSelectedCheckbox } from '../utils.js'
 import { updateStepperControls, enableNextButton } from './stepperControls.js'
 import setSteps from './setSteps.js'
@@ -30,9 +29,7 @@ const payTypes = {
   },
 }
 
-let typeChecks = document.querySelectorAll('input[name="tipo-pago"]')
-typeChecks = Array.from(typeChecks)
-
+const typeChecks = [...document.querySelectorAll('input[name="tipo-pago"]')]
 
 typeChecks.forEach(checkbox => checkbox.addEventListener('input', () => {
   const selectedCheck = findSelectedCheckbox(typeChecks)
@@ -46,7 +43,6 @@ typeChecks.forEach(checkbox => checkbox.addEventListener('input', () => {
   updateStepperControls('#confirmStep')
   enableNextButton('type')
 }))
-
 
 initStepper(stepperId)
 updateStepperControls()

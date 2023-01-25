@@ -1,8 +1,4 @@
-const findSelectedCheckbox = checksArray => checksArray.find(check => check.checked === true)
-
-// UNUSED
-const uncheckCheckboxes = checks => {
-  checks.forEach(check => check.checked = false)
+function findSelectedCheckbox (checksArray) {
+  return checksArray.find(check => check.checked === true)
 }
-
-export { findSelectedCheckbox, uncheckCheckboxes }
+export { findSelectedCheckbox }

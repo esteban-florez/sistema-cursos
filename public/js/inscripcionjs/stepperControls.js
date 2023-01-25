@@ -1,8 +1,10 @@
-const setControlListener = control => control.onclick = () => {
-  const stepperId = Symbol.for('stepperID')
-  const stepper = window[stepperId]
-  stepper[control.dataset.stepper]()
-}
+function setControlListener(control) {
+  control.onclick = () => {
+    const stepperId = Symbol.for('stepperID')
+    const stepper = window[stepperId]
+    stepper[control.dataset.stepper]()
+  }
+} 
   
 function updateStepperControls(parentSelector = 'body') {
   const stepperControls = document.querySelectorAll(`${parentSelector} button[data-stepper]`)
