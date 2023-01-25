@@ -9,7 +9,6 @@
 - Hacer las breadcrumbs.
 - Correos con Gmail.
 - Optimizar inscripción en curso (PI).
-- Bug del home (BD).
 - PDF de Listado de Pagos pero filtrado por un status específico.
 - Añadir tooltip para ver formato de contraseñas.
 - Ruta de cambio de contraseña.
