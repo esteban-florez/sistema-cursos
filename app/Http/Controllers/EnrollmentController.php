@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PaymentRequest;
+use App\Http\Requests\EnrollmentRequest;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\Enrollment;
@@ -45,26 +45,18 @@ class EnrollmentController extends Controller
         ]);
     }
 
-    public function store(PaymentRequest $request)
+    public function store(EnrollmentRequest $request)
     {
-        $course = Course::findOrFail($request->input('course'));
-        // TODO -> Mejorar este codigo. Esto es para prevenir que la ref sea nula en caso de que elijan transfer o movil.
-        $type = $request->input('type');
-
-        if ($type === 'transfer' || $type === 'movil') {
-            if ($request->input('ref') === null) {
-                return back()
-                ->with('alert', 'El campo de referencia no puede estar vacío.'); // TODO -> 1
-            }
-        }
-
-        $data = $request->validated();
-
-        $enrollment = Auth::user()->enroll($course);
+        $enrollment = Enrollment::create([
+            'course_id' => Course::findOrFail($request->input('course'))->id,
+            'user_id' => Auth::user()->id,
+            'mode' => $request->safe()->only('mode'),
+        ]);
         
-        $data['enrollment_id'] = $enrollment->id;
-        
-        $payment = Payment::create($data);
+        $payment = Payment::create([
+            ...$request->safe()->except('mode'),
+            'enrollment_id' => $enrollment->id,
+        ]);
 
         return redirect()
             ->route('enrollments.success', $enrollment->id)

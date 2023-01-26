@@ -63,7 +63,26 @@ if (!function_exists('payTypes')) {
             'Pago Móvil',
             'Transferencia',
             'Efectivo ($)',
-            'Efectivo (Bs.D.)'
+            'Efectivo (Bs.D.)',
+        ]);
+    }
+}
+
+if (!function_exists('payCategories')) {
+    function payCategories() {
+        return collect([
+            'Completo',
+            'Reservación',
+            'Restante',
+        ]);
+    }
+}
+
+if (!function_exists('modes')) {
+    function modes() {
+        return collect([
+            'Pago completo',
+            'Reservación',
         ]);
     }
 }

@@ -19,6 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedFloat('amount');
             $table->string('ref')->nullable();
             $table->enum('type', payTypes()->all());
+            $table->enum('category', payCategories()->all());
             $table->foreignId('enrollment_id')->constrained();
             $table->softDeletes();
             $table->timestamps();

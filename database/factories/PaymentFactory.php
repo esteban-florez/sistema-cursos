@@ -24,7 +24,6 @@ class PaymentFactory extends Factory
         return [
             'ref' => $ref,
             'type' => $type,
-            'amount' => $this->faker->randomFloat(2, 0, 1000),
         ];
     }
 }

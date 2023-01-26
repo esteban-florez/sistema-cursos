@@ -25,6 +25,7 @@ class EnrollmentSeeder extends Seeder
                 Enrollment::create([
                     'user_id' => $s->id,
                     'course_id' => 1,
+                    'mode' => modes()->random(),
                 ]);
             });
         
@@ -35,6 +36,7 @@ class EnrollmentSeeder extends Seeder
                     'user_id' => $s->id,
                     'course_id' => 2,
                     'created_at' => $i === 1 ? now()->subDays(Enrollment::EXPIRES_IN + 1) : now(),
+                    'mode' => modes()->random(),
                 ]);
             });
 
@@ -46,6 +48,7 @@ class EnrollmentSeeder extends Seeder
                     'course_id' => 4,
                     // Estudiante no confirmado a proposito para probar lo de enrollments:unconfirmed
                     'confirmed_at' => $i === 1 ? null : now()->subDays(1),
+                    'mode' => modes()->random(),
                 ]);
             });
         
@@ -56,6 +59,7 @@ class EnrollmentSeeder extends Seeder
                     'user_id' => $s->id,
                     'course_id' => 5,
                     'confirmed_at' => now()->subDays(1),
+                    'mode' => modes()->random(),
                 ]);
             });
     }

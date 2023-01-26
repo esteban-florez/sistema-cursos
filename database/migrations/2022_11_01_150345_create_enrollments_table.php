@@ -15,6 +15,7 @@ class CreateEnrollmentsTable extends Migration
     {
         Schema::create('enrollments', function (Blueprint $table) {
             $table->id();
+            $table->enum('mode', modes()->all());
             $table->timestamp('confirmed_at')->nullable();
             $table->timestamp('approved_at')->nullable();
             $table->foreignId('course_id')->constrained();
