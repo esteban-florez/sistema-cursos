@@ -43,7 +43,7 @@ class StoreCourseRequest extends FormRequest
             ],
             'description' => ['required', 'max:255'],
             'total_price' => ['required', 'integer', 'numeric', 'between:20,100'],
-            'reserv_price' => ['required', 'integer', 'numeric', 'between:5,20'],
+            'reserv_price' => ['nullable', 'integer', 'numeric', 'between:5,20'],
             'start_ins' => [
                 'required',
                 'date',

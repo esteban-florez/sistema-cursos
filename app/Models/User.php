@@ -73,17 +73,6 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
-    public function enroll(Course $course)
-    {
-        // TODO -> por ahora así, pero no se, me suena que hay que hacer cosas con ManyToMany y el metodo associate()
-        $enrollment = Enrollment::create([
-            'user_id' => $this->id,
-            'course_id' => $course->id,
-        ]);
-
-        return $enrollment;
-    }
-
     /** --------------- Query Scopes --------------- */
 
     public function scopeInstructors($query)

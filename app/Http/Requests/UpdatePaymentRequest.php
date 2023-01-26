@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentRequest extends FormRequest
+class UpdatePaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,14 +31,9 @@ class PaymentRequest extends FormRequest
                 'digits_between:4,10',
                 'required_if:type,'.payTypes()->take(2)->join(','),
             ],
-            'amount' => [
-                'required',
-                'numeric',
-            ],
-            'type' => [
-                'required',
-                'in:'.payTypes()->join(',')
-            ],
+            'amount' => ['required', 'numeric'],
+            'type' => ['required', 'in:'.payTypes()->join(',')],
+            'category' => ['required', 'in:'.payCategories()->join(',')],
         ];
     }
 }

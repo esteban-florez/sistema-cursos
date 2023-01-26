@@ -29,7 +29,7 @@
       </x-input-group>
     </div>
     <div class="col-12 col-sm-6">
-      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" addon="$" required>
+      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" addon="$">
         Monto de Reservación:
       </x-input-group>
     </div>

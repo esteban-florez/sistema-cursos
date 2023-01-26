@@ -15,10 +15,12 @@ class EnrollmentFactory extends Factory
      */
     public function definition()
     {
+        $course = Course::get(['id', 'reserv_price'])->random();
+
         return [
-            'course_id' => Course::get('id')->random()->id,
+            'course_id' => $course->id,
             'user_id' => User::where('role', 'Estudiante')->get()->random()->id,
-            'mode' => modes()->random(),
+            'mode' => $course->reserv_price ?? false ? modes()->random() : 'Pago completo',
         ];
     }
 }

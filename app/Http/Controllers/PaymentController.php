@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PaymentRequest;
+use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\Payment;
 use App\Models\Course;
 use App\Services\Input;
@@ -41,7 +41,7 @@ class PaymentController extends Controller
         ]);
     }
 
-    public function update(PaymentRequest $request, Payment $payment)
+    public function update(UpdatePaymentRequest $request, Payment $payment)
     {
         $data = $request->validated();
 
