@@ -20,7 +20,7 @@ class EnrollmentFactory extends Factory
         return [
             'course_id' => $course->id,
             'user_id' => User::where('role', 'Estudiante')->get()->random()->id,
-            'mode' => $course->reserv_price ?? false ? modes()->random() : 'Pago completo',
+            'mode' => $course->reserv_price ?? false ? modes()->random() : 'Reservación',
         ];
     }
 }
