@@ -45,4 +45,5 @@ typeChecks.forEach(checkbox => checkbox.addEventListener('input', () => {
 }))
 
 initStepper(stepperId)
+document.querySelector('.initial').classList.remove('initial')
 updateStepperControls()

@@ -73,7 +73,7 @@
           <td>{{ $student->full_name }}</td>
           <td>{{ $student->full_ci }}</td>
           <td>{{ $student->upta }}</td>
-          <td>{{ $enrollment->payment->status }}</td>
+          <td>{{ $enrollment->solvency }}</td>
           <td>{{ $enrollment->status }}</td>
           <td>{{ $enrollment->approved }}</td>
         </tr>

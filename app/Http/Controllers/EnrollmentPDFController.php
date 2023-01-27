@@ -6,7 +6,6 @@ use App\Models\Course;
 use App\Models\Enrollment;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class EnrollmentPDFController extends Controller
 {
@@ -15,8 +14,7 @@ class EnrollmentPDFController extends Controller
         $course = Course::with('instructor')
             ->findOrFail($request->input('course'));
  
-        $enrollments = Enrollment::with('payment', 'student')
-            ->latest()
+        $enrollments = Enrollment::latest()
             ->whereBelongsTo($course)
             ->get();
         

@@ -82,7 +82,6 @@ class Course extends Model
     {
         // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery, y evitar tanta repetición de codigo.
         $courses = self::phase('Inscripciones')
-            ->withCount('students')
             ->get();
         
         $ids = $courses
@@ -195,5 +194,10 @@ class Course extends Model
     {
         $this->attributes['days'] = collect($daysArray)
             ->join(',');
+    }
+
+    public function hasReserv()
+    {
+        return (bool) $this->reserv_price;
     }
 }

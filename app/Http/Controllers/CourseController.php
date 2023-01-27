@@ -26,7 +26,6 @@ class CourseController extends Controller
         $sortColumn = $request->input('sort');
 
         $courses = Course::latest()
-            ->withCount('students')
             ->filters($filters)
             ->search($search)
             ->sort($sortColumn)

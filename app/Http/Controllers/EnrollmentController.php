@@ -19,8 +19,7 @@ class EnrollmentController extends Controller
         $course = Course::findOrFail($request->input('course'));
         $search = $request->input('search');
         
-        $enrollments = Enrollment::with('payment', 'student')
-            ->whereBelongsTo($course)
+        $enrollments = Enrollment::whereBelongsTo($course)
             ->latest()
             ->paginate(10)
             ->withQueryString();
@@ -66,13 +65,14 @@ class EnrollmentController extends Controller
     public function success(Enrollment $enrollment)
     {
         // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
-        if ($enrollment->user_id !== Auth::user()->id) {
-            return redirect()->route('home');
-        }
+        // if ($enrollment->user_id !== Auth::user()->id) {
+        //     return redirect()->route('home');
+        // }
 
         return view('enrollments.success', [
             'enrollment' => $enrollment,
-            'enrolledType' => $enrollment->payment->type,
+            // BROKEN
+            'enrolledType' => 'Pago Móvil',
         ]);
     }
 }

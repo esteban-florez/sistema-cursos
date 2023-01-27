@@ -22,7 +22,7 @@
             $student->full_name,
             $student->full_ci,
             $student->upta,
-            $enrollment->payment->status,
+            $enrollment->solvency,
             $enrollment->status,
             $enrollment->approved,
           ]"

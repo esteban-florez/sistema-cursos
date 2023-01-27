@@ -12,6 +12,8 @@ class Enrollment extends Model
 
     protected $guarded = ['id'];
 
+    protected $with = ['payments', 'student'];
+
     // TODO -> esta cantidad de días la pone Edeblangel, toca preguntar
     const EXPIRES_IN = 7;
 
@@ -25,9 +27,14 @@ class Enrollment extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function payment()
+    public function payments()
     {   
-        return $this->hasOne(Payment::class);
+        return $this->hasMany(Payment::class);
+    }
+
+    public function getSolvencyAttribute()
+    {
+        return $this->payments->every(fn($payment) => $payment->status === 'Confirmado');
     }
 
     public function getStatusAttribute()

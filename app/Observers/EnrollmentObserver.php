@@ -14,7 +14,7 @@ class EnrollmentObserver
      */
     public function deleted(Enrollment $enrollment)
     {
-        $enrollment->payment->delete();
+        $enrollment->payments->each(fn($payment) => $payment->delete());
     }
 
     /**
@@ -25,6 +25,6 @@ class EnrollmentObserver
      */
     public function restored(Enrollment $enrollment)
     {
-        $enrollment->payment->restore();
+        $enrollment->payments->each(fn($payment) => $payment->restore());
     }
 }
