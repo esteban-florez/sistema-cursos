@@ -46,6 +46,7 @@ class EnrollmentController extends Controller
 
     public function store(EnrollmentRequest $request)
     {
+        // BROKEN
         $enrollment = Enrollment::create([
             'course_id' => Course::findOrFail($request->input('course'))->id,
             'user_id' => Auth::user()->id,
