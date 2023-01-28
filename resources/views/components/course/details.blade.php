@@ -28,10 +28,12 @@
         <h3>Monto Total</h3>
         <h3>{{ $course->total_amount }}</h3>
       </div>
-      <div class="d-flex justify-content-between text-secondary">
-        <h5 class="m-0">Monto de Reservación</h5>
-        <h5 class="m-0">{{ $course->reserv_amount }}</h5>
-      </div>
+      @if($course->hasReserv())
+        <div class="d-flex justify-content-between text-secondary">
+          <h5 class="m-0">Monto de Reservación</h5>
+          <h5 class="m-0">{{ $course->reserv_amount }}</h5>
+        </div>
+      @endif
       <div class="d-flex justify-content-between align-items-center mt-3">
         @isnt('Estudiante')
           <x-button

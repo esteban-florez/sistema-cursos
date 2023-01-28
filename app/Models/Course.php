@@ -182,12 +182,12 @@ class Course extends Model
 
     public function getTotalAmountAttribute()
     {
-        return "{$this->total_price}$";
+        return "$ {$this->total_price},00";
     }
 
     public function getReservAmountAttribute()
     {
-        return "{$this->reserv_price}$";
+        return "$ {$this->reserv_price},00";
     }
 
     public function setDaysAttribute($daysArray)

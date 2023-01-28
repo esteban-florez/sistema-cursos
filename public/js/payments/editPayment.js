@@ -8,7 +8,7 @@ triggers.forEach(trigger => trigger.addEventListener('click', handleTriggerClick
 function handleTriggerClick(e) {
   e.preventDefault()
 
-  const { course, student, payment } = JSON.parse(this.dataset.details)
+  const { course, student, payment } = JSON.parse(e.target.dataset.details)
   const courseName = course.name
   const studentName = `${student.first_name} ${student.second_name}`
   
