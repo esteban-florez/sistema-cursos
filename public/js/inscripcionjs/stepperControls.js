@@ -1,7 +1,7 @@
 function setControlListener(control) {
   control.onclick = () => {
-    const stepperId = Symbol.for('stepperID')
-    const stepper = window[stepperId]
+    const stepperSymbol = Symbol.for('stepper')
+    const stepper = window[stepperSymbol]
     stepper[control.dataset.stepper]()
   }
 } 
@@ -12,7 +12,7 @@ function updateStepperControls(parentSelector = 'body') {
 }
 
 function enableNextButton(idPrefix) {
-  const nextButton = document.querySelector(`#${idPrefix}NextButton`)
+  const nextButton = document.querySelector(`#${idPrefix}Next`)
   nextButton.removeAttribute('disabled')
 }
 

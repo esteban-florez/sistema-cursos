@@ -1,3 +1,5 @@
+import { getSerialized } from '../utils.js'
+
 const titles = {
   phone: 'Teléfono: ',
   bank: 'Banco: ',
@@ -7,25 +9,16 @@ const titles = {
   account: 'Nro. de cuenta: ',
 }
 
-const transformCredentials = (credentials) => {
-  const credentialsArr = Object.entries(credentials)
-  const res = []
-  credentialsArr.forEach(pair => {
-    if(pair[0] in titles)
-    res.push({
-      title: titles[pair[0]],
-      data: pair[1],
-    })
-  })
-  return res
+function transformCredentials(credentials) {
+  return Object.entries(credentials)
+    .map(([title, data]) => ({ title: titles[title], data }))
 }
 
-function getCredentials() {
-  const jsonString = document.querySelector('form[data-credentials]').dataset.credentials
-  const credentials =  JSON.parse(jsonString)
+function getCredentials(type) {
+  let credentials = getSerialized('credentials')
 
-  credentials.movil = transformCredentials(credentials.movil)
-  credentials.transfer = transformCredentials(credentials.transfer)
+  credentials = transformCredentials(credentials[type])
+
   return credentials
 }
 

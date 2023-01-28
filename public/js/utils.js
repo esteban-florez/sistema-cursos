@@ -1,4 +1,5 @@
-function findSelectedCheckbox (checksArray) {
-  return checksArray.find(check => check.checked === true)
+function getSerialized(attribute) {
+  return JSON.parse(document.querySelector('#serialized').dataset[attribute])
 }
-export { findSelectedCheckbox }
+
+export { getSerialized }

@@ -35,8 +35,12 @@ class EnrollmentController extends Controller
     {
         $course = Course::findOrFail($request->input('course'));
         $credentials = new stdClass;
-        $credentials->movil = MovilCredentials::firstOrFail();
-        $credentials->transfer = TransferCredentials::firstOrFail();
+        
+        $credentials->movil = MovilCredentials::select(
+            ['ci', 'bank', 'phone'])->firstOrFail();
+        
+        $credentials->transfer = TransferCredentials::select(
+            ['name', 'ci', 'bank', 'account', 'type'])->firstOrFail();
 
         return view('enrollments.create', [
             'course' => $course,
@@ -46,7 +50,6 @@ class EnrollmentController extends Controller
 
     public function store(EnrollmentRequest $request)
     {
-        // BROKEN
         $enrollment = Enrollment::create([
             'course_id' => Course::findOrFail($request->input('course'))->id,
             'user_id' => Auth::user()->id,

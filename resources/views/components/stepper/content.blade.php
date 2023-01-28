@@ -12,7 +12,7 @@
   <div class="callout callout-{{ $calloutColor }}">
     {{ $slot }}
     <div class="d-flex justify-content-between align-items-center mt-3">
-      <div class="d-flex gap-2">
+      <div>
         @if (!$first && !$isFinal)
           <x-button class="btn-outline" color="secondary" data-stepper="previous">
             Volver
