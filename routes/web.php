@@ -52,7 +52,6 @@ Route::middleware('guest')->group(function () {
     });
 
     // Password recovery
-
     Route::group([
         'controller' => PasswordController::class,
         'as' => 'password.',
@@ -72,7 +71,6 @@ Route::middleware('guest')->group(function () {
     });
 
     // Signup routes
-
     Route::group([
         'controller' => RegisterController::class,
         'as' => 'register.',
@@ -188,5 +186,3 @@ Route::middleware('auth')->group(function () {
     Route::get('payments-pdf', [PaymentPDFController::class, 'index'])
         ->name('payments-pdf.index');
 });
-
-

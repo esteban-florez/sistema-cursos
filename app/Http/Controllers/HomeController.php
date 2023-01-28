@@ -14,19 +14,19 @@ class HomeController extends Controller
         $user = Auth::user();
         
         $clubs = Club::latest()
-            ->get()
-            ->take(2);
+            ->limit(2)
+            ->get();
 
         $courses = Course::when(
             $user->role === 'Estudiante',
             fn($query) => $query->availables()->notBoughtBy($user))
             ->latest()
-            ->get()
-            ->take(2);
+            ->limit(2)
+            ->get();
 
         $payments = Payment::latest()
-            ->get()
-            ->take(2);
+            ->limit(2)
+            ->get();
 
         return view('home', [
             'clubs' => $clubs,

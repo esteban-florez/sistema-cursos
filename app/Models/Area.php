@@ -9,7 +9,7 @@ class Area extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     public function instructors()
     {
@@ -31,7 +31,6 @@ class Area extends Model
         $areas = self::all(['id', 'name']);
 
         $options = $areas->mapWithKeys(fn($area) => [$area->id => $area->name])
-            ->sortKeys()
             ->all();
 
         return $options;

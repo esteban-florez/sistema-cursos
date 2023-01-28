@@ -16,7 +16,7 @@ class Course extends Model
      *
      * @var array<int, string>
      */
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     protected $casts = [
         'start_ins' => 'date',

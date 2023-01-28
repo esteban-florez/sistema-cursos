@@ -11,7 +11,7 @@ class Payment extends Model
 {
     use HasFactory, SoftDeletes, QueryScopes;
     
-    protected $guarded = ['id'];
+    protected $guarded = [];
     
     public function enrollment()
     {

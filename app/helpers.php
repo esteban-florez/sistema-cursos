@@ -13,7 +13,7 @@ if (!function_exists('str')) {
     }
 }
 
-if (!function_exists('week')) {
+if (!function_exists('days')) {
     function days() {
         return collect([
             'Lunes',
@@ -98,7 +98,7 @@ if (!function_exists('accountTypes')) {
 
 if (!function_exists('roles')) {
     function roles($withAdmin = false) {
-        $roles =  collect([
+        $roles = collect([
             'Administrador',
             'Instructor',
             'Estudiante',

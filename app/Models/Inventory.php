@@ -9,7 +9,7 @@ class Inventory extends Model
 {
     use HasFactory;
 
-    private $guarded = ['id'];
+    protected $guarded = [];
 
     public function club()
     {

@@ -68,7 +68,6 @@ class EnrollmentController extends Controller
 
     public function success(Enrollment $enrollment)
     {
-        // TODO -> solución por ahora pa que los otros estudiantes no vean las planillas de uno
         // if ($enrollment->user_id !== Auth::user()->id) {
         //     return redirect()->route('home');
         // }

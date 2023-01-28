@@ -11,7 +11,7 @@ class Club extends Model
 {
     use HasFactory, QueryScopes;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     protected static $searchColumn = 'name';
 

@@ -10,7 +10,7 @@ class Enrollment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     protected $with = ['payments', 'student'];
 
@@ -34,7 +34,11 @@ class Enrollment extends Model
 
     public function getSolvencyAttribute()
     {
-        return $this->payments->every(fn($payment) => $payment->status === 'Confirmado');
+        $solvency = $this->payments->every(
+            fn($payment) => $payment->status === 'Confirmado'
+        );
+
+        return $solvency ? 'Solvente' : 'Pendiente';
     }
 
     public function getStatusAttribute()
