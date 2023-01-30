@@ -71,9 +71,9 @@ if (!function_exists('payTypes')) {
 if (!function_exists('payCategories')) {
     function payCategories() {
         return collect([
-            'Completo',
+            'Pago completo',
             'Reservación',
-            'Restante',
+            'Cuota restante',
         ]);
     }
 }
@@ -81,7 +81,7 @@ if (!function_exists('payCategories')) {
 if (!function_exists('modes')) {
     function modes() {
         return collect([
-            'Pago completo',
+            'Un solo pago',
             'Reservación',
         ]);
     }

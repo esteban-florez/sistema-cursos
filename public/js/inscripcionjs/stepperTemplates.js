@@ -11,7 +11,7 @@ function onlineTemplate({type, mode, data, amount}) {
   const article = isTransfer ? 'la' : 'el'
 
   data.push({
-    title: mode === 'Pago completo' ? 'Monto total: ' : 'Monto de reservación: ',
+    title: mode === 'Un solo pago' ? 'Monto total: ' : 'Monto de reservación: ',
     data: amount,
   })
 
@@ -40,7 +40,7 @@ function onlineTemplate({type, mode, data, amount}) {
 function cashTemplate({ amount, type, mode }) {
   return `<h3>Pago en ${type}</h3>
   <h5>
-    ${mode === 'Pago completo' ? 'Monto total: ' : 'Monto de reservación: '}
+    ${mode === 'Un solo pago' ? 'Monto total: ' : 'Monto de reservación: '}
     <span class="text-success">${amount}</span>
   </h5>
   <p>¿Desea confirmar su pago?</p>

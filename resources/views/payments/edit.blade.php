@@ -17,7 +17,10 @@
               <h4>
                 Curso: <a class="text-bold" href="{{ route('courses.show', $course->id) }}">{{ $course->name }}</a>
               </h4>
-              <x-payment.status :payment="$payment"/>
+              <div class="d-flex">
+                <x-payment.status class="mb-0" :payment="$payment"/>
+                <p class="ml-5 mb-0">Categoría: <b>{{ $payment->category }}</b></p>
+              </div>
               <hr>
               <x-select name="type" :options="payTypes()->pairs()" :selected="old('type') ?? $payment->type">
                 Tipo de pago:

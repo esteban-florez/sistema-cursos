@@ -19,6 +19,7 @@
           <x-payment.status :payment="$payment"/>
           <ul class="list-group">
             <li class="list-group-item bg-light">Fecha: <b>{{ $payment->updated_at->format(DF) }}</b></li>
+            <li class="list-group-item bg-light">Categoría: <b>{{ $payment->category }}</b></li>
             <li class="list-group-item bg-light">Referencia: <b>{{ $payment->ref ?? '----' }}</b></li>
             <li class="list-group-item bg-light">Monto: <b>{{ $payment->full_amount }}</b></li>
             <li class="list-group-item bg-light">Tipo: <b>{{ $payment->type }}</b></li>

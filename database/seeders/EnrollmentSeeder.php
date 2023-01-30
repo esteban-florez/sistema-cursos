@@ -36,7 +36,7 @@ class EnrollmentSeeder extends Seeder
                     'user_id' => $s->id,
                     'course_id' => 2,
                     'created_at' => $i === 1 ? now()->subDays(Enrollment::EXPIRES_IN + 1) : now(),
-                    'mode' => 'Pago completo',
+                    'mode' => 'Un solo pago',
                 ]);
             });
 

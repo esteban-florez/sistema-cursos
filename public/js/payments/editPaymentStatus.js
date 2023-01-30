@@ -1,8 +1,7 @@
 'use strict'
 import detailsModal from './modalTemplate.js'
 
-let triggers = document.querySelectorAll('a[data-details]')
-triggers = Array.from(triggers)
+const triggers = [...document.querySelectorAll('a[data-details]')]
 triggers.forEach(trigger => trigger.addEventListener('click', handleTriggerClick))
 
 function handleTriggerClick(e) {
