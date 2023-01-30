@@ -53,13 +53,4 @@ function cashTemplate({ amount, type, mode }) {
   </div>`
 }
 
-function fillFinalParagraph(type) {
-  const onlineText = 'Su inscripción ha sido registrada con éxito. El administrador verificará su pago en los próximos días. Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.'
-  const cashText = 'Su inscripción ha sido registrada con éxito. Ahora debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y después llevarla impresa a la sede de la UPTA en La Victoria para realizar su pago y confirmar su inscripción.'
-  
-  document.querySelector('#finalParagraph').innerText = 
-    (type === 'Pago Móvil' || type === 'Transferencia') 
-      ? onlineText : cashText
-}
-
-export { cashTemplate, fillFinalParagraph, onlineTemplate, }
+export { cashTemplate, onlineTemplate, }

@@ -55,7 +55,7 @@ class User extends Authenticatable
     public function enrolledCourses()
     {
         return $this->belongsToMany(Course::class, 'enrollments')
-            ->wherePivotNotNull('deleted_at');
+            ->wherePivotNull('deleted_at');
     }
 
     public function enrollments()

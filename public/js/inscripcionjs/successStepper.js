@@ -1,9 +1,3 @@
-import { fillFinalParagraph } from './stepperTemplates.js'
 import initStepper from './initStepper.js'
-
-let stepperId = Symbol.for('stepperID')
-// BROKEN
-fillFinalParagraph(enrolledType)
-
-initStepper(stepperId) 
-window[stepperId].to(3)
+const stepper = initStepper()
+stepper.to(stepper._steps.length)

@@ -1,7 +1,6 @@
 function setControlListener(control) {
   control.onclick = () => {
-    const stepperSymbol = Symbol.for('stepper')
-    const stepper = window[stepperSymbol]
+    const stepper = window[Symbol.for('stepper')]
     stepper[control.dataset.stepper]()
   }
 } 

@@ -129,7 +129,7 @@ Route::middleware('auth')->group(function () {
             Route::post('enrollments', 'store')
                 ->name('store');
         });
-        // TODO -> ruta de success por crudizar
+        
         Route::get('enrollments/{enrollment}/success', 'success')
             ->name('success');
     }); 
