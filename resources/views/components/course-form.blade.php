@@ -1,5 +1,8 @@
 @props(['action', 'areas', 'instructors', 'pnfs', 'edit' => false, 'course' => null])
 
+<p class="m-0 font-italic">
+  <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
+</p>
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
   @if ($edit)
     @method('PUT')

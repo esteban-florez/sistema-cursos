@@ -16,6 +16,7 @@
 
 ## Tareas a largo plazo:
 
+- En pagos, renombrar "tipo" a "método", y "categoría" a "tipo".
 - Crear rol de preparador.
 - Hacer reservaciones de curso (IG).
 * Revisar validaciones:

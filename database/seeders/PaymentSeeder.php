@@ -51,7 +51,7 @@ class PaymentSeeder extends Seeder
         ];
 
         if ($payment->type !== 'Efectivo ($)') {
-            $payment->amount = $basePrices[$category] * 20.30;
+            $payment->amount = $basePrices[$category] * 21.73;
         } else {
             $payment->amount = $basePrices[$category];
         }

@@ -1,10 +1,9 @@
 const form = document.querySelector('#areaForm')
 const select = document.querySelector('#areaId')
-const submit = document.querySelector('#areaForm button[type="submit"]')
 const url = form.dataset.url
 const optionsUrl = form.dataset.options
 
-submit.addEventListener('click', (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault()
   const body = new FormData(form)
   
@@ -25,7 +24,6 @@ submit.addEventListener('click', (e) => {
 })
 
 function updateOptions(options) {
-  debugger
   const def = document.createElement('option')
   def.innerText = 'Seleccionar...'
   def.setAttribute('value', '')

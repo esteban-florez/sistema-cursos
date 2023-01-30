@@ -5,7 +5,7 @@
     <div class="card-body">
       <div class="area-card">
         <div class="area-title">
-          <h3 class="m-0">{{ Str::ucfirst($area->name) }}</h3>
+          <h3 class="m-0">{{ str($area->name)->ucfirst() }}</h3>
           <p class="m-0">PNF:  
             <span class="font-weight-bold">
               {{ $area->pnf->name }}

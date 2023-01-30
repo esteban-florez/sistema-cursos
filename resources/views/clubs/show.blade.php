@@ -1,4 +1,4 @@
-<x-layout.main title="Club de {{ Str::title($club->name) }}">
+<x-layout.main title="Club de {{ str($club->name)->title() }}">
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">
   @endpush
@@ -10,7 +10,7 @@
         <h2>Información del club</h2>
       </div>
       <div class="card-body">
-        <p class="description">{{ Str::ucfirst($club->description) }}</p>
+        <p class="description">{{ str($club->description)->ucfirst() }}</p>
         <div class="border rounded d-flex flex-column p-3">
           <span class="mb-1"><b>Día de clases:</b> {{ $club->day }}</span>
           <span class="mb-1"><b>Hora:</b> {{ $club->hour }}</span>

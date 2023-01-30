@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Support\Str;
 
 class Club extends Model
 {
@@ -42,6 +41,6 @@ class Club extends Model
 
     public function getExcerptAttribute()
     {
-        return Str::words($this->description, 8);
+        return str($this->description)->words(8);
     }
 }

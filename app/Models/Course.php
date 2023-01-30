@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Support\Str;
 
 class Course extends Model
 {
@@ -124,7 +123,7 @@ class Course extends Model
 
     public function getExcerptAttribute()
     {
-        return Str::words($this->description, 8);
+        return str($this->description)->words(8);
     }
 
     public function getStudentDiffAttribute()

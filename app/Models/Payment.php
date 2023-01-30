@@ -21,7 +21,10 @@ class Payment extends Model
     public function getFullAmountAttribute()
     {
         $currency = $this->type === 'Efectivo ($)' ? '$' : 'Bs.D.';
-        return "{$this->amount} {$currency}";
+
+        $amount = number_format($this->amount, 2, ',');
+
+        return "{$amount} {$currency}";
     }
 
     public function scopeFilters($query, $filters)
