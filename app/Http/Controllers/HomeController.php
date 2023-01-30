@@ -14,24 +14,36 @@ class HomeController extends Controller
         $user = Auth::user();
         
         $clubs = Club::latest()
+            ->orderby('id', 'desc')
             ->limit(2)
             ->get();
 
         $courses = Course::when(
             $user->role === 'Estudiante',
             fn($query) => $query->availables()->notBoughtBy($user))
-            ->latest()
+            ->orderby('id', 'desc')
             ->limit(2)
             ->get();
 
-        $payments = Payment::latest()
+        $payments = Payment::where('status', 'Pendiente',)
+            ->orderby('id', 'desc')
             ->limit(2)
             ->get();
 
-        return view('home', [
-            'clubs' => $clubs,
-            'courses' => $courses,
-            'payments' => $payments,
-        ]);
+        if ($user->role === 'Administrador') {
+            return view('home.admin', [
+                'clubs' => $clubs,
+                'courses' => $courses,
+                'payments' => $payments,
+            ]);
+        }
+
+        if ($user->role === 'Estudiante') {
+            return view('home', [
+                'clubs' => $clubs,
+                'courses' => $courses,
+                'payments' => $payments,
+            ]);
+        }
     }
 }
