@@ -19,8 +19,8 @@ class PaymentSeeder extends Seeder
         
         Enrollment::all()
             ->each(function ($enrollment) {
-                if ($enrollment->mode === 'Pago completo') {
-                    $payment = $this->createPayment($enrollment, 'Completo');
+                if ($enrollment->mode === 'Un solo pago') {
+                    $payment = $this->createPayment($enrollment, 'Pago completo');
                     $payment->save();
                     return;
                 }
@@ -29,7 +29,7 @@ class PaymentSeeder extends Seeder
                 $payment->save();
 
                 if (rand(0, 1)) {
-                    $payment = $this->createPayment($enrollment,'Restante');
+                    $payment = $this->createPayment($enrollment, 'Cuota restante');
                     $payment->save();
                 }
             });
@@ -45,13 +45,13 @@ class PaymentSeeder extends Seeder
         $course = $enrollment->course;
 
         $basePrices = [
-            'Restante' => $course->total_price - $course->reserv_price,
-            'Completo' => $course->total_price,
+            'Cuota restante' => $course->total_price - $course->reserv_price,
+            'Pago completo' => $course->total_price,
             'Reservación' => $course->reserv_price,
         ];
 
         if ($payment->type !== 'Efectivo ($)') {
-            $payment->amount = $basePrices[$category] * 20.30;
+            $payment->amount = $basePrices[$category] * 21.73;
         } else {
             $payment->amount = $basePrices[$category];
         }

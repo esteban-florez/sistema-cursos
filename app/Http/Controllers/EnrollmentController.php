@@ -53,17 +53,16 @@ class EnrollmentController extends Controller
         $enrollment = Enrollment::create([
             'course_id' => Course::findOrFail($request->input('course'))->id,
             'user_id' => Auth::user()->id,
-            'mode' => $request->safe()->only('mode'),
+            'mode' => $request->safe()->mode,
         ]);
         
-        $payment = Payment::create([
+        Payment::create([
             ...$request->safe()->except('mode'),
             'enrollment_id' => $enrollment->id,
         ]);
 
         return redirect()
-            ->route('enrollments.success', $enrollment->id)
-            ->with('enrolledType', $payment->type);
+            ->route('enrollments.success', $enrollment->id);
     }
 
     public function success(Enrollment $enrollment)
@@ -72,10 +71,14 @@ class EnrollmentController extends Controller
         //     return redirect()->route('home');
         // }
 
+        $payment = $enrollment
+            ->payments()
+            ->whereIn('category', ['Pago completo', 'Reservación'])
+            ->first();
+
         return view('enrollments.success', [
             'enrollment' => $enrollment,
-            // BROKEN
-            'enrolledType' => 'Pago Móvil',
+            'isOnline' => $payment->isOnline(),
         ]);
     }
 }

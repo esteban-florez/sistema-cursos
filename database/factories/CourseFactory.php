@@ -19,23 +19,22 @@ class CourseFactory extends Factory
         $start_course = $this->faker->dateTimeThisMonth($end_course);
         $end_ins = $this->faker->dateTimeThisMonth($start_course);
         $start_ins = $this->faker->dateTimeThisMonth($end_ins);
-        $end_hour = $this->faker->time();
-        $start_hour = $this->faker->time('H:i:s', $end_hour);
-        // TODO -> start time a veces es mas tarde que end time xd
+        $start_hour = rand(8, 10);
+        $end_hour = rand(11, 13);
 
         return [
             'name' => implode(' ', $this->faker->words(2)),
             'description' => $this->faker->text(200),
             'total_price' => $this->faker->randomElement([25, 30, 45, 50]),
             'reserv_price' => $this->faker->boolean() ? $this->faker->randomElement([5, 8, 10]) : null,
-            'start_ins' => $start_ins,
-            'end_ins' => $end_ins,
-            'start_course' => $start_course,
-            'end_course' => $end_course,
+            'start_ins' => $start_ins->format(DV),
+            'end_ins' => $end_ins->format(DV),
+            'start_course' => $start_course->format(DV),
+            'end_course' => $end_course->format(DV),
             'duration' => $this->faker->randomNumber(2, true),
             'student_limit' => $this->faker->randomElement([15, 20, 40, 50]),
-            'start_hour' => $start_hour,
-            'end_hour' => $end_hour,
+            'start_hour' => "{$start_hour}:00",
+            'end_hour' => "{$end_hour}:00",
             'days' => $this->faker->randomElements(days(), collect([1, 2, 3])->random()),
             'image' => 'img/programacion.jpg',
             'area_id' => Area::all()->random()->id,

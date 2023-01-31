@@ -18,10 +18,18 @@ class Payment extends Model
         return $this->belongsTo(Enrollment::class);
     }
 
+    public function isOnline()
+    {
+        return payTypes()->take(2)->contains($this->type);
+    }
+
     public function getFullAmountAttribute()
     {
         $currency = $this->type === 'Efectivo ($)' ? '$' : 'Bs.D.';
-        return "{$this->amount} {$currency}";
+
+        $amount = number_format($this->amount, 2, ',');
+
+        return "{$amount} {$currency}";
     }
 
     public function scopeFilters($query, $filters)

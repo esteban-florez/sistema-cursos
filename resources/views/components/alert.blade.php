@@ -1,5 +1,6 @@
 @php
   $message = session('alert');
+  
   $colors = collect([
     'editado' => 'warning',
     'creado' => 'success',

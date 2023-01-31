@@ -32,7 +32,6 @@ trait QueryScopes
         
     public function scopeSort($query, $sortColumn)
     {
-        // TODO -> hacer que pueda ordenar asc y desc
         return $query->when($sortColumn, fn($query, $sortColumn) => 
             $query->orderBy($sortColumn));
     }

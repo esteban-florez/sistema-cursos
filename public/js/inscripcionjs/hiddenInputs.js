@@ -1,6 +1,6 @@
 function fillCategory(mode) {
   const hidden = document.querySelector('[name="category"]')
-  hidden.value = mode === 'Pago completo' ? 'Completo' : 'Reservación'
+  hidden.value = mode === 'Un solo pago' ? 'Pago completo' : 'Reservación'
 }
 
 function fillAmount(amount) {

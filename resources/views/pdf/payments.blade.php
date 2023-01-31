@@ -63,6 +63,7 @@
         <th>Curso</th>
         <th>Monto</th>
         <th>Fecha</th>
+        <th>Categoría</th>
         <th>Ref.</th>
         <th>Tipo</th>
         <th>Estado</th>
@@ -75,6 +76,7 @@
           <td> {{ $payment->enrollment->course->name }} </td>
           <td> {{ $payment->full_amount }} </td>
           <td> {{ $payment->updated_at->format(DF) }} </td>
+          <td> {{ $payment->category }} </td>
           <td> {{ $payment->ref ?? '----' }} </td>
           <td> {{ $payment->type }} </td>
           <td> {{ $payment->status }} </td>

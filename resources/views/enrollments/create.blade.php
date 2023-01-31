@@ -1,4 +1,4 @@
-<x-layout.main title="Inscripción en Curso">
+<x-layout.main title="Inscripción en curso">
   @php
     $reservation = $course->hasReserv();
   @endphp
@@ -19,16 +19,17 @@
   <section class="container-fluid">
     <x-enrollment-data :credentials="$credentials" :course="$course" />
     {{-- TODO -> 1 --}}
+    {{-- TODO -> mostrar de alguna manera en que curso te estás inscribiendo --}}
     @foreach ($errors->all() as $error)
       <div class="alert alert-danger m-0">
         <li>{{ ucfirst($error) }}</li>
       </div>
     @endforeach
     <form method="POST" action="{{ route('enrollments.store', ['course' => $course->id]) }}">
-      <input type="hidden" name="category" value="{{ $reservation ? '' : 'Completo' }}">
+      <input type="hidden" name="category" value="{{ $reservation ? '' : 'Pago completo' }}">
       <input type="hidden" name="amount">
       @unless ($reservation)
-        <input type="hidden" name="mode" value="Pago completo">
+        <input type="hidden" name="mode" value="Un solo pago">
       @endunless
       @csrf
       <div ref="stepper" class="bs-stepper">

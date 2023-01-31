@@ -1,6 +1,6 @@
 <x-layout.main title="Pagos por verificar">
   @push('js')
-    <script defer type="module" src="{{ asset('js/payments/editPayment.js') }}"></script>
+    <script defer type="module" src="{{ asset('js/payments/editPaymentStatus.js') }}"></script>
   @endpush
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/pagos.css') }}">

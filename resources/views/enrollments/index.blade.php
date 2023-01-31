@@ -2,14 +2,7 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/listados.css') }}">
   @endpush
-  {{-- TODO -> comentado hasta que funcione. Por ahora no se pudo búsqueda, pero sería bueno --}}
-  {{-- <x-layout.bar>
-    <x-search :action="route(Route::currentRouteName())" placeholder="Buscar estudiantes..." :value="$search">
-      <x-slot name="hidden">
-        <input type="hidden" name="course" value="{{ $course->id }}">
-      </x-slot>
-    </x-search>
-  </x-layout.bar> --}}
+  {{-- IMPROVE -> 2 --}}
   <section class="content">
     <div class="container-fluid">
       <div class="card py-2 px-3 mb-0 list-top">

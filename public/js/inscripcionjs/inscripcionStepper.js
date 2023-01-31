@@ -4,7 +4,6 @@ import { updateStepperControls } from './stepperControls.js'
 import setRadioListeners from './setRadioListeners.js'
 import initStepper from './initStepper.js'
 
-const stepperSymbol = Symbol.for('stepper')
 const hasReservation = Boolean(getSerialized('course').reserv_price)
 
 if (hasReservation) {
@@ -13,7 +12,7 @@ if (hasReservation) {
 
 setRadioListeners('type')
 
-initStepper(stepperSymbol)
+initStepper()
 document.querySelector('.initial').classList.remove('initial')
 
 updateStepperControls()

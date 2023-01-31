@@ -20,7 +20,7 @@
       <x-button type="submit">
         Aceptar
       </x-button>
-      <x-button :url="route(Route::currentRouteName())" color="secondary">
+      <x-button :url="url()->current()" color="secondary">
         Resetear
       </x-button>
     </div>

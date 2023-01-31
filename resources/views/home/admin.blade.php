@@ -1,5 +1,4 @@
 <x-layout.main title="Inicio">
-  {{-- TODO -> ver que titulo se le pone, por ahora se quedó inicio --}}
   @push('css')
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
   @endpush

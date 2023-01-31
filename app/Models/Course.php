@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Support\Str;
 
 class Course extends Model
 {
@@ -80,13 +79,12 @@ class Course extends Model
     
     public function scopeAvailables($query)
     {
-        // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery, y evitar tanta repetición de codigo.
         $courses = self::phase('Inscripciones')
             ->get();
         
         $ids = $courses
             ->filter(fn($course) => $course->students_count < $course->student_limit)
-            ->ids();
+            ->modelKeys();
         
         return $query->whereIn('id', $ids);
     }
@@ -95,7 +93,7 @@ class Course extends Model
     {
         $ids = $user
             ->enrolledCourses
-            ->ids();
+            ->modelKeys();
 
         $query->whereNotIn('id', $ids);
     }
@@ -104,7 +102,7 @@ class Course extends Model
     {
         $ids = $user
             ->enrolledCourses
-            ->ids();
+            ->modelKeys();
         
         $query->whereIn('id', $ids);
     }
@@ -124,7 +122,7 @@ class Course extends Model
 
     public function getExcerptAttribute()
     {
-        return Str::words($this->description, 8);
+        return str($this->description)->words(8);
     }
 
     public function getStudentDiffAttribute()

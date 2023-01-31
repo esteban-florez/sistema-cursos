@@ -17,7 +17,11 @@
             <x-profile.data :data="$user->email">
               Correo Electrónico:
             </x-profile.data>
-            {{-- TODO -> aqui va un boton de cambiar contraseña en caso de que el que vea el perfil sea el usuario autenticado --}}
+            @if (Auth::user()->id === $user->id)
+              <x-button class="mt-3" url="#" color="primary">
+                Cambiar contraseña
+              </x-button>
+            @endif
           </ul>
         </div>
       </div>
@@ -41,7 +45,6 @@
             </x-profile.data>
             <x-profile.data :data="$user->birth->format(DF)">
               Fecha de Nacimiento:
-              {{-- TODO -> mostrar fecha bonita en español --}}
             </x-profile.data>
             <x-profile.data :data="$user->tel">
               Número de Teléfono:

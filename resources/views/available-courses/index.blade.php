@@ -4,7 +4,9 @@
   @endpush
   <x-layout.bar>
     <x-search placeholder="Buscar curso..." name="search" :value="$search">
-      {{-- TODO -> añadir aqui los input hidden pa la ordenacion --}}
+      <x-slot name="hidden">
+        <input type="hidden" name="sort" value="{{ $sort }}">
+      </x-slot>
     </x-search>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
         Ordenar por

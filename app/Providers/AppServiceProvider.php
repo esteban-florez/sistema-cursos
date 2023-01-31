@@ -43,9 +43,6 @@ class AppServiceProvider extends ServiceProvider
             $this->mapWithKeys(fn($value) => 
                 [$value => $value]));
 
-        Collection::macro('ids', fn() => 
-            $this->map(fn($model) => $model->id));
-
         Paginator::useBootstrap();
     }
 }

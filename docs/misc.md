@@ -1,5 +1,9 @@
 # Problemas generales / ideas rikolinas:
 
+- Quizás pueda haber conflictos entre algunos nombres de atributos que se repiten en distintas tablas (lang/es/validation.attributes), pero me imagino que se pueden sustituir en los sitios según sea necesario.
+
+- Posibilidad de tener varias credenciales de pago (varios pago movil, varios datos de transferencia)
+
 - Posible rol de secretaria (preguntar a Edeblangel).
 
 - Realmente no sé si sea conveniente poner lo de "after:now" en las reglas de validación de fechas de curso, por ahora no lo pondré.
