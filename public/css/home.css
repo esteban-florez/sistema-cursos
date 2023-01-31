@@ -1,17 +1,17 @@
 .carousel-item > img {
   height: 14rem;
   object-fit: cover;
-  border-radius: .3rem;
+  border-radius: .2rem;
 }
 
 .carousel-indicators > li {
-  height: .6rem;
-  width: .6rem;
+  height: .7rem;
+  width: .7rem;
   border-radius: 50%;
   margin-left: 1rem;
 }
 
-.carousel-text {
+.course-info {
   position: absolute;
   right: 45%;
   bottom: 17%;
@@ -23,30 +23,28 @@
   text-align: center;
 }
 
-.carousel-text h5 {
+.course-info h5 {
   text-align: center;
   color: black;
 }
 
-.carousel-text p {
+.course-info p {
   font-size: 0.8rem;
   text-align: justify;
   color: black;
 }
 
-.payment-container {
-  height: 12.6rem;
+.cards-grid img {
+  height: 12rem;
+  object-fit: cover;
 }
 
-/* .stadistics-container {
-  height: 9rem;
-}
-
-.small-box > .inner {
-  height: 7.8rem;
-  display: inline-grid;
+.bienvenido {
+  height: 4.6rem;
+  display: flex;
   align-items: center;
-} */
+  justify-content: center;
+}
 
 .empty-container {
   height: 11.5rem;
@@ -62,37 +60,8 @@
   font-weight: 600;
 }
 
-.cards-grid img {
-  height: 12rem;
-  object-fit: cover;
-}
-
-/* .cards-grid {
-  display: grid;
-} */
-
 @media screen and (min-width: 576px) {
   .carousel-item > img {
-    height: 18.8rem;
+    height: 19rem;
   } 
 }
-
-@media screen and (min-width: 991px) {
-  /* .stadistics-container {
-    height: 7.5rem;
-  }
-  
-  .small-box > .inner {
-    height: 6.4rem;
-    display: inline-grid;
-    align-items: center;
-  } */
-}
-
-/* @media screen and (min-width: 1180px) {
-  .cards-grid {
-    width: 100%;
-    display: grid;
-    justify-content: center;
-  }
-} */

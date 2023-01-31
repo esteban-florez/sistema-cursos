@@ -39,7 +39,7 @@ class HomeController extends Controller
         }
 
         if ($user->role === 'Estudiante') {
-            return view('home', [
+            return view('home.student', [
                 'clubs' => $clubs,
                 'courses' => $courses,
                 'payments' => $payments,

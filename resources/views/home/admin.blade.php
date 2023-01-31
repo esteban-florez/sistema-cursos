@@ -19,7 +19,7 @@
         </x-home.card>
       </div>
       <div class="col-md-5">
-        <x-time/>
+        <x-time hideHour='md'/>
         <x-home.card col="12" aling="left" title="Estadísticas">
           <x-home.card-stadistic/>
         </x-home.card>

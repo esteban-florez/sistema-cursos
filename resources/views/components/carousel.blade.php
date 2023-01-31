@@ -13,9 +13,9 @@
   <div class="carousel-inner">
     @foreach ($items as $item)
       <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-        <div class="carousel-text">
+        <div class="course-info">
           <h5>{{ $item->name }}</h5>
-          <x-button :url="route($detailUrl , $item->id)" color="dark" class="btn-sm mb-1">Ver detalles</x-button>
+          <x-button :url="route($detailUrl , $item->id)" color="primary" class="btn-sm mb-1">Ver detalles</x-button>
         </div>
         <img src="{{ $item->image }}" class="w-100" alt="{{ $item->name }}">
       </div>
