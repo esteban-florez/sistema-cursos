@@ -3,11 +3,7 @@
 @php
   $required = $attributes->get('required');
 @endphp
-{{-- TODO -> estos componentes de seleccionar opciones, cuyas opciones pueden venir desde
-una tabla, se podría hacer que tengan una clase propia de componente, y que ellos mismos agarren su info xd
-
-  ademas que este bicho tiene demasiada logica
---}}
+{{-- IMPROVE -> 1 --}}
 <div class="mb-3">
   @if($required)
     <i class="mr-1 fas fa-asterisk text-danger"></i>

@@ -12,7 +12,7 @@
   <img src="{{ asset('img/logo-upta.png') }}" alt="Logo de la UPTA" class="brand-image footer-img d-sm-none"
     height="35">
   <ul class="navbar-nav ml-auto">
-    {{-- TODO -> comentado hasta que funcione --}}
+    {{-- comentado hasta que funcione --}}
     {{-- <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
         <i class="far fa-bell navbar-icon"></i>

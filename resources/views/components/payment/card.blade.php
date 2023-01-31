@@ -1,4 +1,12 @@
 @props(['payment'])
+@php
+  $details = [
+    'payment' => $payment->attributesToArray(),
+    'course' => $payment->enrollment->course->name,
+    'student' => $payment->enrollment->student->full_name,
+    'date' => $payment->updated_at->format(DF),  
+  ];
+@endphp
 
 <div class="callout callout-secondary mb-0">
   <h4 class="text-bold m-0"> 
@@ -17,16 +25,7 @@
     </span>
   </p> 
   <div class="mb-2">
-    {{-- TODO -> esto toco arreglarlo a la machinberra por ahora --}}
-    @php
-      $payment->date = $payment->updated_at->format(DF);
-      unset($payment->updated_at);
-    @endphp
-    <a href data-details="{{ json_encode([
-      'payment' => $payment,
-      'course' => $payment->enrollment->course,
-      'student' => $payment->enrollment->student
-    ]) }}">
+    <a href data-details="{{ json_encode($details) }}">
       Ver detalles
     </a>
   </div>

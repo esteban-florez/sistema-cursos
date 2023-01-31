@@ -1,4 +1,4 @@
-const detailsModal = ({id, courseName, studentName, amount, date, ref, type, status, category}) => `<div id="details${id}" class="modal fade" tabindex="-1">
+const detailsModal = ({id, course, student, amount, date, ref, type, status, category}) => `<div id="details${id}" class="modal fade" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header bg-dark">
@@ -11,11 +11,11 @@ const detailsModal = ({id, courseName, studentName, amount, date, ref, type, sta
         <ul class="list-group">
         <li class="list-group-item">
           <h5 class="mb-0 h6 text-muted">Curso: </h5>
-          <h6 class="text-truncate m-0">${courseName}</h6>
+          <h6 class="text-truncate m-0">${course}</h6>
         </li>
         <li class="list-group-item">
           <h5 class="mb-0 h6 text-muted">Estudiante: </h5>
-          <h6 class="text-truncate m-0">${studentName}</h6>
+          <h6 class="text-truncate m-0">${student}</h6>
         </li>
         <li class="list-group-item">
           <h5 class="mb-0 h6 text-muted">Monto: </h5>

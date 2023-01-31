@@ -7,12 +7,10 @@ triggers.forEach(trigger => trigger.addEventListener('click', handleTriggerClick
 function handleTriggerClick(e) {
   e.preventDefault()
 
-  const { course, student, payment } = JSON.parse(e.target.dataset.details)
-  const courseName = course.name
-  const studentName = `${student.first_name} ${student.second_name}`
+  let { course, student, payment, date } = JSON.parse(e.target.dataset.details)
   
   const div = document.createElement('div')
-  div.innerHTML = detailsModal({...payment, courseName, studentName })
+  div.innerHTML = detailsModal({ ...payment, course, student, date })
   document.body.append(div)
 
 

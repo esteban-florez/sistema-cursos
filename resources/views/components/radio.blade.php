@@ -1,5 +1,5 @@
 @props(['options', 'notitle' => false, 'firstEmpty' => false, 'checked' => ''])
-{{-- TODO -> mover lógica a una clase de componente --}}
+{{-- IMPROVE -> 1 --}}
 @unless ($notitle)
 <h5>{{ $slot }}</h5>
 @endunless

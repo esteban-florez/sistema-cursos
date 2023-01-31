@@ -15,7 +15,6 @@
     </div>
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
-        {{-- TODO -> en todos los filtros, hay que mejorar un poco el HTML, en el sentido de que se repite mucho esto, hay que ver como se hace. --}}
         <x-slot name="filters">
           <x-select :options="$courses" id="courseId" name="filters|course_id" :selected="$filters['course_id'] ?? null">
             Curso
@@ -23,10 +22,12 @@
           <x-select :options="payTypes()->pairs()" id="type" name="filters|type" :selected="$filters['type'] ?? null">
             Tipo
           </x-select>
-          {{-- TODO -> hacer que esto se ponga al lado, quizás mas bien convenga renombrar los slots a left y right --}}
-          <x-select :options="payStatuses()->pairs()" id="status" name="filters|status" :selected="$filters['status'] ?? null">
-            Estado
-          </x-select>
+        </x-slot>
+        <x-select :options="payStatuses()->pairs()" id="status" name="filters|status" :selected="$filters['status'] ?? null">
+          Estado
+        </x-select>
+        <x-slot name="sorts">
+          <x-radio :options="['' => 'Fecha', 'amount' => 'Monto']" name="sort" :checked="$sort" notitle/>
         </x-slot>
       </x-filters-collapse>
     </x-slot>

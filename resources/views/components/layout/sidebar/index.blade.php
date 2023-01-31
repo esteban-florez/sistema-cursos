@@ -35,7 +35,7 @@
           <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
             Registrar curso
           </x-layout.sidebar.item>
-          {{-- TODO -> comentado hasta que funcione --}}
+          {{-- comentado hasta que funcione --}}
           {{-- <x-layout.sidebar.item url="#" icon="book">
             Expedientes
           </x-layout.sidebar.item> --}}

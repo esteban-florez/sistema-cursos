@@ -164,8 +164,6 @@ return [
     */
 
     'attributes' => [
-        // TODO -> a veces hay conflictos entre algunos nombres de atributos que se repiten en distintas tablas, pero me imagino que se pueden sustituir en los sitios según sea necesario.
-
         // User attributes
         'first_name' => 'el primer nombre',
         'second_name' => 'el segundo nombre',
@@ -185,7 +183,6 @@ return [
         'degree' => 'la titulación',
         
         // Course and Club attributes
-        
         'name' => 'el nombre',
         'description' => 'la descripción',
         'total_price' => 'el monto total',

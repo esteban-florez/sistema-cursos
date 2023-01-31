@@ -1,8 +1,7 @@
 @props(['id', 'value', 'sm' => false, 'color' => null])
 
 @php
-  // TODO -> ponerle un nombre serio a esta variable antes de presentar final JAKSDJASKD
-  $mapeoPapa = [
+  $styles = [
     'Confirmado' => [
       'icon' => 'check',
       'color' => 'success',
@@ -29,8 +28,8 @@
   @method('PATCH')
   <input type="hidden" name="status" value="{{ $value }}">
   <x-button 
-    :color="$color ?? $mapeoPapa[$value]['color']"
-    :icon="$mapeoPapa[$value]['icon']"
+    :color="$color ?? $styles[$value]['color']"
+    :icon="$styles[$value]['icon']"
     class="{{ $sm ? 'btn-sm' : '' }}"
     type="submit"
   >
