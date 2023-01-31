@@ -3,8 +3,7 @@
 @php
   $registered = auth()->user()
   ->enrolledCourses
-  ->ids()
-  ->contains($course->id);
+  ->contains($course);
 @endphp
 
 <section class="container-fluid details-grid mt-3">

@@ -23,17 +23,16 @@ class UpdatePaymentRequest extends FormRequest
      */
     public function rules()
     {
+
+        // dd($this->all());
         return [
             'ref' => [
-                // TODO -> buscar una solución a este hack medio loco de nullable + required_if
-                'nullable',
+                'required_if:type,'.payTypes()->take(2)->join(','),
                 'numeric',
                 'digits_between:4,10',
-                'required_if:type,'.payTypes()->take(2)->join(','),
             ],
             'amount' => ['required', 'numeric'],
             'type' => ['required', 'in:'.payTypes()->join(',')],
-            'category' => ['required', 'in:'.payCategories()->join(',')],
         ];
     }
 }

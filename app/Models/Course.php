@@ -79,13 +79,12 @@ class Course extends Model
     
     public function scopeAvailables($query)
     {
-        // TODO -> debe haber mejores maneras de hacer estos tres scopeQuery, y evitar tanta repetición de codigo.
         $courses = self::phase('Inscripciones')
             ->get();
         
         $ids = $courses
             ->filter(fn($course) => $course->students_count < $course->student_limit)
-            ->ids();
+            ->modelKeys();
         
         return $query->whereIn('id', $ids);
     }
@@ -94,7 +93,7 @@ class Course extends Model
     {
         $ids = $user
             ->enrolledCourses
-            ->ids();
+            ->modelKeys();
 
         $query->whereNotIn('id', $ids);
     }
@@ -103,7 +102,7 @@ class Course extends Model
     {
         $ids = $user
             ->enrolledCourses
-            ->ids();
+            ->modelKeys();
         
         $query->whereIn('id', $ids);
     }

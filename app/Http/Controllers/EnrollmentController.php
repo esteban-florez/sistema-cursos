@@ -53,7 +53,7 @@ class EnrollmentController extends Controller
         $enrollment = Enrollment::create([
             'course_id' => Course::findOrFail($request->input('course'))->id,
             'user_id' => Auth::user()->id,
-            'mode' => $request->safe()->only('mode'),
+            'mode' => $request->safe()->mode,
         ]);
         
         Payment::create([

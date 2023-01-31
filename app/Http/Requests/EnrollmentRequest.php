@@ -25,10 +25,9 @@ class EnrollmentRequest extends FormRequest
     {
         return [
             'ref' => [
-                'nullable',
+                'required_if:type,'.payTypes()->take(2)->join(','),
                 'numeric',
                 'digits_between:4,10',
-                'required_if:type,'.payTypes()->take(2)->join(','),
             ],
             'amount' => ['required', 'numeric'],
             'type' => ['required', 'in:'.payTypes()->join(',')],
