@@ -23,7 +23,6 @@
       </div>
       <x-enrollment-data :credentials="$credentials" :course="$course" />
       {{-- TODO -> 1 --}}
-      {{-- TODO -> mostrar de alguna manera en que curso te estás inscribiendo --}}
       @foreach ($errors->all() as $error)
         <div class="alert alert-danger m-0">
           <li>{{ ucfirst($error) }}</li>

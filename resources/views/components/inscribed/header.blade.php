@@ -18,7 +18,7 @@
 </div>
 <div class="d-flex align-items-center gap-3">
   <span class="h5 m-0">
-    Estado: 
+    Fase: 
     <b class="h5 m-0 text-{{ $badgeColors[$course->phase] }} text-bold">
     {{ $course->phase }}
     </b>

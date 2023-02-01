@@ -112,6 +112,16 @@ if (!function_exists('roles')) {
     }
 }
 
+if (!function_exists('phases')) {
+    function phases() {
+        return collect([
+            'Inscripciones',
+            'En curso',
+            'Finalizado',
+        ]);
+    }
+}
+
 if (!function_exists('base64')) {
     function base64($path) {
         return base64_encode(file_get_contents(public_path($path)));

@@ -25,6 +25,9 @@
           <x-select :options="$areas" id="areaId" name="filters|area_id" :selected="$filters['area_id'] ?? null">
             Área de Formación
           </x-select>
+          <x-select :options="phases()->pairs()" id="phase" name="filters|phase" :selected="$filters['phase'] ?? null">
+            Fase
+          </x-select>
         </x-slot>
         <x-slot name="sorts">
           <x-radio :options="['' => 'Fecha de creación', 'name' => 'Nombre', 'total_price' => 'Monto', 'duration' => 'Duración']" name="sort" :checked="$sort" notitle/>
@@ -44,7 +47,7 @@
           <th>Duración</th>
           <th>Matrícula</th>
           <th>Monto</th>
-          <th>Estado</th>
+          <th>Fase</th>
           <th>Acciones</th>
         </x-slot>
         <x-slot name="body">
