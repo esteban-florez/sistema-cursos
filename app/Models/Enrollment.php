@@ -14,7 +14,6 @@ class Enrollment extends Model
 
     protected $with = ['payments', 'student'];
 
-    // TODO -> esta cantidad de días la pone Edeblangel, toca preguntar
     const EXPIRES_IN = 7;
 
     public function student()

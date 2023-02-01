@@ -28,7 +28,7 @@ class Course extends Model
 
     protected $withCount = ['students'];
 
-    protected static $searchColumn = 'name';
+    protected $search = ['name'];
 
     public function instructor()
     {

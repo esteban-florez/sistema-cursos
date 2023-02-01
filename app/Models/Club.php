@@ -12,7 +12,7 @@ class Club extends Model
 
     protected $guarded = [];
 
-    protected static $searchColumn = 'name';
+    protected $search = ['name'];
 
     protected $casts = [
         'start_hour' => 'datetime',
