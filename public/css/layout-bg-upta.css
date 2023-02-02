@@ -29,7 +29,8 @@
 
 span.fas,
 span.far,
-span.fab {
+span.fab,
+.btn * {
   pointer-events: none;
 }
 

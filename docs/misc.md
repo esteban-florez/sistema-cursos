@@ -22,6 +22,4 @@
 
 - Quizás sea mejor hacer diferentes las rutas de la matrícula para cada estado de curso. Pero habría que ver si vale la pena.
 
-- Revisar el proceso de inscripción en un curso y ver que se puede optimizar, si es posible que no sea tan JS. O por el contrario, hacerlo full JS con Ajax. También me molesta un poco semánticamente hablando que en la ruta de Enrollment@create se cree el pago, porque en sí para crear la inscripción se necesita crear el pago. Quizás separar en múltiples rutas o no sé.
-
 - Crear una opción para recuperar cupos expirados y ya pagados, con notificación al usuario de que su cupo expiro y que si ya pago haga contacto con el Departamento, y restauración del cupo por el admin (de ser necesario se modifica el student_limit del cursoi).

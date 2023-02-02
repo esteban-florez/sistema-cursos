@@ -7,10 +7,8 @@
 
 ## Esteban:
  
-- Edición del rol de un usuario.
 - Terminar el perfil con cursos y clubes "propios".
 - Hacer las breadcrumbs.
-- Optimizar inscripción en curso (PI).
 - PDF de Listado de Pagos pero filtrado por un status específico.
 - Añadir plugin de selects.
 

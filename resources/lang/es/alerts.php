@@ -18,4 +18,5 @@ return [
     'credentials' => generateAlerts('Las credenciales'),
     'payment-status' => generateAlerts('El estado del pago'),
     'users' => generateAlerts('El usuario'),
+    'user-role' => generateAlerts('El rol del usuario'),
 ];

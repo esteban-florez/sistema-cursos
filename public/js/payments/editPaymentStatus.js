@@ -13,7 +13,6 @@ function handleTriggerClick(e) {
   div.innerHTML = detailsModal({ ...payment, course, student, date })
   document.body.append(div)
 
-
   const promise = new Promise(res => {
     res('loveu')
   })

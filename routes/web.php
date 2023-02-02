@@ -21,6 +21,7 @@ use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPaymentController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -93,6 +94,9 @@ Route::middleware('auth')->group(function () {
         ->except('destroy');
 
     // Users routes
+    Route::patch('users/{user}/role', [UserRoleController::class, 'update'])
+        ->name('users.role.update');
+
     Route::resource('users', UserController::class)
         ->except('destroy');
 
