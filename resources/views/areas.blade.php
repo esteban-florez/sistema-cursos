@@ -3,6 +3,9 @@
 @endphp
 
 <x-layout.main title="Áreas">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('areas.index') }}
+  </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/areas.css') }}">
   @endpush

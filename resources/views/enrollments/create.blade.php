@@ -16,39 +16,43 @@
     <script defer src="{{ asset('js/inscripcionjs/responsiveStepper.js') }}"></script>  
   @endpush
   <x-alert />
-  <section class="container-fluid">
-    <x-enrollment-data :credentials="$credentials" :course="$course" />
-    {{-- TODO -> 1 --}}
-    {{-- TODO -> mostrar de alguna manera en que curso te estás inscribiendo --}}
-    @foreach ($errors->all() as $error)
-      <div class="alert alert-danger m-0">
-        <li>{{ ucfirst($error) }}</li>
+  <section class="container-fluid px-3">
+    <div class="card mt-3">
+      <div class="card px-3 pt-2 m-0 bg-primary">
+        <h2 class="h4 text-center">Curso: {{ $course->name }}</h2>
       </div>
-    @endforeach
-    <form method="POST" action="{{ route('enrollments.store', ['course' => $course->id]) }}">
-      <input type="hidden" name="category" value="{{ $reservation ? '' : 'Pago completo' }}">
-      <input type="hidden" name="amount">
-      @unless ($reservation)
-        <input type="hidden" name="mode" value="Un solo pago">
-      @endunless
-      @csrf
-      <div ref="stepper" class="bs-stepper">
-        <x-stepper.header :reservation="$reservation"/>
-        <div class="bs-stepper-content">  
-          @if ($reservation)
-            <x-stepper.content id="modeStep" first>
-              <h3>Seleccione la modalidad de pago</h3>
-              <x-radio name="mode" :options="modes()->pairs()" required/>
-            </x-stepper.content>            
-          @endif
-          <x-stepper.content id="typeStep" :first="!$reservation">
-            <h3>Seleccione el tipo de pago</h3>
-            <x-radio name="type" :options="payTypes()->pairs()" required/>
-          </x-stepper.content>
-          <x-stepper.content id="confirmStep"></x-stepper.content>
-          <x-stepper.content id="finalStep"></x-stepper.content>
+      <x-enrollment-data :credentials="$credentials" :course="$course" />
+      {{-- TODO -> 1 --}}
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-danger m-0">
+          <li>{{ ucfirst($error) }}</li>
         </div>
-      </div>
-    </form>
+      @endforeach
+      <form method="POST" action="{{ route('enrollments.store', ['course' => $course->id]) }}">
+        <input type="hidden" name="category" value="{{ $reservation ? '' : 'Pago completo' }}">
+        <input type="hidden" name="amount">
+        @unless ($reservation)
+          <input type="hidden" name="mode" value="Un solo pago">
+        @endunless
+        @csrf
+        <div ref="stepper" class="bs-stepper">
+          <x-stepper.header :reservation="$reservation"/>
+          <div class="bs-stepper-content">  
+            @if ($reservation)
+              <x-stepper.content id="modeStep" first>
+                <h3>Seleccione la modalidad de pago</h3>
+                <x-radio name="mode" :options="modes()->pairs()" required/>
+              </x-stepper.content>            
+            @endif
+            <x-stepper.content id="typeStep" :first="!$reservation">
+              <h3>Seleccione el tipo de pago</h3>
+              <x-radio name="type" :options="payTypes()->pairs()" required/>
+            </x-stepper.content>
+            <x-stepper.content id="confirmStep"></x-stepper.content>
+            <x-stepper.content id="finalStep"></x-stepper.content>
+          </div>
+        </div>
+      </form>
+    </div>
   </section>
 </x-layout.main>

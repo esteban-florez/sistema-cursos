@@ -23,10 +23,10 @@ trait QueryScopes
     
     public function scopeSearch($query, $searchText)
     {
-        // TODO -> hacer que pueda buscar por mas de un atributo
         return $query->when($searchText, function ($query, $search) {
-            $searchColumn = self::$searchColumn;
-            return $query->where($searchColumn, 'like', "%{$search}%");
+            foreach($this->search as $column) {
+                $query->orWhere($column, 'like', "%{$search}%");
+            }
         });
     }
         

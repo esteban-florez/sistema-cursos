@@ -1,6 +1,8 @@
 <x-layout.main title="Usuarios">
+  @push('js')
+    <script defer type="module" src="{{ asset('js/user-role/editUserRole.js') }}"></script>
+  @endpush
   <x-layout.bar>
-    {{-- filtro de rol --}}
     <x-search placeholder="Buscar usuario..." :value="$search" name="search">
       <x-slot name="hidden">
         @foreach ($filters as $filter => $value)
@@ -53,7 +55,19 @@
               $user->role,
               ]"
               :details="route('users.show', $user->id)"
-            />
+            >
+              <x-slot name="extraActions">
+                <x-button 
+                  data-id="{{ $user->id }}"
+                  data-role="{{ $user->role }}"
+                  data-name="{{ $user->full_name }}"
+                  class="btn-sm"
+                  color="warning"
+                  icon="user-edit">
+                  Rol
+                </x-button>
+              </x-slot>
+            </x-row>
           @endforeach
         </x-slot>
         <x-slot name="pagination">
@@ -68,4 +82,5 @@
       </div>
     @endif
   </section>
+  <x-users.role-modal/>
 </x-layout.main>

@@ -4,8 +4,6 @@
 
 - Las búsquedas de Cursos y Estudiante en matrícula que sean por un código, que el codigo se vaya formando mediante "nesting", ejemplo: estudiante pertenece a curso, su codigo tiene el codigo del curso + variación.
 
-- Hacer que se pueda hacer una reservación de curso, con monto de reservación. Tiempo para formalizar inscripción y finalizar pago. El monto de reservación es opcional en caso de pagos completos (hay que convencer a Edeblangel de esto xd).
-
 - Se deben mostrar el estado de inscripción en matrícula (reservado, inscrito). Que el sistema liberar el cupo reservado si no se ha confirmado la inscripción en un tiempo, preguntar a Edeblangel el tiempo antes de liberar un cupo reservado.
 
 - Para los certificados: si el curso no es ligado a un PNF firma el instructor y firma el coordinador del DVS. Cuando es ligado a un PNF firman el instructor, la rectora y firma el jefe de departamento del PNF.

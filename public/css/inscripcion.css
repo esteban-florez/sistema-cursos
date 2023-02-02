@@ -1,3 +1,8 @@
+.callout {
+  border-top: solid 1px #ddd;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 .course-data-card,
 .pay-step-box {
   max-width: 33rem;

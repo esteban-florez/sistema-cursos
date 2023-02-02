@@ -17,12 +17,12 @@ function onlineTemplate({type, mode, data, amount}) {
 
   let paymentData = data.reduce((prev, next) => prev.concat(generateDataPair(next)), '')
 
-  return `<h3>${type}</h3>
+  return `<h3 id="onlineTitle">${type}</h3>
   <h5>Datos: </h5>
   <ul class="list-group">
     ${paymentData}
   </ul>
-  <div class="alert alert-info mt-3">
+  <div class="alert alert-primary mt-3">
     <i class="fas fa-info-circle fa-lg mr-2"></i>
     <p class="font-weight-normal d-inline">Luego de realizar ${article} ${lowerType}, introduzca el número de referencia.</p>
   </div>
@@ -31,7 +31,7 @@ function onlineTemplate({type, mode, data, amount}) {
     <div class="d-flex justify-content-between align-items-center mt-3">
       <div>
         <button type="button" class="btn btn-secondary" data-stepper="previous">Volver</button>
-        <button type="submit" class="btn btn-info">Confirmar</button>
+        <button type="submit" class="btn btn-primary">Confirmar</button>
       </div>
       <a class="btn btn-danger" href="${getBackLink()}">Cancelar</a>
     </div>`
@@ -47,7 +47,7 @@ function cashTemplate({ amount, type, mode }) {
   <div class="d-flex justify-content-between">
     <div>
       <button type="button" class="btn btn-secondary" data-stepper="previous">Volver</button>
-      <button type="submit" class="btn btn-info">Confirmar</button>
+      <button type="submit" class="btn btn-primary">Confirmar</button>
     </div>
     <a class="btn btn-danger" href="${getBackLink()}">Cancelar</a>
   </div>`

@@ -3,7 +3,7 @@
 @php
   $id = $attributes->get('id');
   $isFinal = $id === 'finalStep';
-  $calloutColor = $isFinal ? 'success' : 'info';
+  $calloutColor = $isFinal ? 'success' : 'primary';
   $buttonText = $isFinal ? 'Ir al listado de cursos' : 'Cancelar';
   $buttonColor = $isFinal ? 'secondary' : 'danger' ;
 @endphp
@@ -19,11 +19,11 @@
           </x-button>
         @endif
         @if ($id === 'modeStep' || $id === 'typeStep')
-          <x-button color="info" data-stepper="next" disabled id="{{ $id }}Next">
+          <x-button data-stepper="next" disabled id="{{ $id }}Next">
             Siguiente
           </x-button>
         @elseif ($id === 'confirmStep')
-          <x-button color="info" disabled type="submit">
+          <x-button disabled type="submit">
             Siguiente
           </x-button>
         @else

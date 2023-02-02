@@ -28,7 +28,7 @@ class Course extends Model
 
     protected $withCount = ['students'];
 
-    protected static $searchColumn = 'name';
+    protected $search = ['name'];
 
     public function instructor()
     {
@@ -53,28 +53,7 @@ class Course extends Model
 
     public function scopePhase($query, $phase)
     {
-        $now = now()->format(DV);
-
-        switch ($phase) {
-            case 'Pre-inscripciones':
-                $query->where('start_ins', '>', $now);
-                break;
-            case 'Inscripciones':
-                $query->where('start_ins', '<', $now)
-                    ->where('end_ins', '>', $now);
-                break;
-            case 'Pre-curso':
-                $query->where('end_ins', '<', $now)
-                    ->where('start_course', '>', $now);
-                break;
-            case 'En curso':
-                $query->where('start_course', '<', $now)
-                    ->where('end_course', '>', $now);
-                break;
-            case 'Finalizado':
-                $query->where('end_course', '<', $now);
-                break;
-        }   
+        $this->phaseToQuery($query, $phase);
     }
     
     public function scopeAvailables($query)
@@ -105,6 +84,28 @@ class Course extends Model
             ->modelKeys();
         
         $query->whereIn('id', $ids);
+    }
+
+    public function scopeFilters($query, $filters)
+    {
+        return $query->when($filters, function ($query, $filters) {
+            foreach($filters as $filter => $value) {
+                if ($filter === 'phase') {
+                    $this->phaseToQuery($query, $value);
+                    continue;
+                }
+
+                $value = match ($value) {
+                    'true' => true,
+                    'false' => false,
+                    default => $value,
+                };
+
+                $query->where($filter, '=', $value);
+            }
+            
+            return $query;
+        });
     }
 
     public static function getOptions()
@@ -197,5 +198,31 @@ class Course extends Model
     public function hasReserv()
     {
         return (bool) $this->reserv_price;
+    }
+
+    private function phaseToQuery($query, $phase)
+    {
+        $now = now()->format(DV);
+
+        switch ($phase) {
+            case 'Pre-inscripciones':
+                $query->where('start_ins', '>', $now);
+                break;
+            case 'Inscripciones':
+                $query->where('start_ins', '<', $now)
+                    ->where('end_ins', '>', $now);
+                break;
+            case 'Pre-curso':
+                $query->where('end_ins', '<', $now)
+                    ->where('start_course', '>', $now);
+                break;
+            case 'En curso':
+                $query->where('start_course', '<', $now)
+                    ->where('end_course', '>', $now);
+                break;
+            case 'Finalizado':
+                $query->where('end_course', '<', $now);
+                break;
+        }   
     }
 }

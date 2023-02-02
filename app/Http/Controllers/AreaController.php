@@ -41,7 +41,10 @@ class AreaController extends Controller
 
     public function edit(Area $area)
     {
-        $areas = Area::all();
+        $areas = Area::latest()
+            ->paginate(9)
+            ->withQueryString();
+
         $pnfs = PNF::getOptions();
 
         return view('areas', [

@@ -2,6 +2,7 @@
   <main class="content-wrapper">
     <x-layout.title>
       {{ $title }}
+      <x-slot name="breadcrumbs">{{ $breadcrumbs ?? '' }}</x-slot>
     </x-layout.title>
     {{ $slot }}
   </main>

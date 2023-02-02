@@ -40,7 +40,7 @@ class User extends Authenticatable
         'birth' => 'datetime',
     ];
 
-    protected static $searchColumn = 'first_name';
+    protected $search = ['first_name', 'second_name', 'first_lastname', 'second_lastname'];
 
     /**
      * Get all the memberships of a Student.

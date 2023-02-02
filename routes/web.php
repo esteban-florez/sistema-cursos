@@ -21,6 +21,7 @@ use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPaymentController;
+use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,13 +87,16 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     // Areas routes
     Route::resource('areas', AreaController::class)
-        ->except('create', 'destroy');
+        ->except('create', 'show', 'destroy');
 
     // Courses routes
     Route::resource('courses', CourseController::class)
         ->except('destroy');
 
     // Users routes
+    Route::patch('users/{user}/role', [UserRoleController::class, 'update'])
+        ->name('users.role.update');
+
     Route::resource('users', UserController::class)
         ->except('destroy');
 
