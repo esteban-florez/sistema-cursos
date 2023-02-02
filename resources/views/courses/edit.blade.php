@@ -1,4 +1,7 @@
 <x-layout.main title="Editar curso">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('courses.edit', $course) }}
+  </x-slot>
   <section class="container-fluid">
     <x-alert />
     <div class="card mx-sm-3">

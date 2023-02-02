@@ -87,7 +87,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     // Areas routes
     Route::resource('areas', AreaController::class)
-        ->except('create', 'destroy');
+        ->except('create', 'show', 'destroy');
 
     // Courses routes
     Route::resource('courses', CourseController::class)

@@ -7,20 +7,19 @@
 
 ## Esteban:
  
-- Terminar el perfil con cursos y clubes "propios".
 - Hacer las breadcrumbs.
-- PDF de Listado de Pagos pero filtrado por un status específico.
 - Añadir plugin de selects.
+- PDF de Listado de Pagos pero filtrado por un status específico.
+- Terminar el perfil con cursos y clubes "propios".
 
 ## Tareas a largo plazo:
 
-- En pagos, renombrar "tipo" a "método", y "categoría" a "tipo".
 - Crear rol de preparador.
-- Hacer reservaciones de curso (IG).
 * Revisar validaciones:
   - Mejorar como se muestran los errores de validación en algunas vistas - **1**.
   - Mínimos y máximos razonables en fechas, cantidades, etc.
-  - Mejoras de formularios con JavaScript en el Frontend (validación, comodidad, formatos).
 - Arreglar búsquedas de cursos con código (IG).
 - Crear las vistas de 404, 403, etc.
 - Hacer sistema de permisos (Authorization).
+- Depurar el css al final del proyecto.
+- Hacer sistema de notificaciones.

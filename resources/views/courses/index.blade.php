@@ -2,6 +2,9 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('courses.index') }}
+  </x-slot>
   <x-layout.bar>
     <x-search placeholder="Buscar curso..." :value="$search" name="search">
       <x-slot name="hidden">
