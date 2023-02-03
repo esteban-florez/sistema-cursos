@@ -84,14 +84,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {       
-        $user->enrolledCourses();
         $courses = Course::availables()
-            ->BoughtBy($user)
-            ->orderby('id', 'desc')
+            ->boughtBy($user)
+            ->orderBy('id', 'desc')
             ->limit(2)
             ->get();
+
         $clubs = Club::latest()
-            ->orderby('id', 'desc')
+            ->orderBy('id', 'desc')
             ->limit(2)
             ->get();
 
@@ -133,7 +133,14 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('users.index')
-            ->with('alert', trans('alerts.users.updated'));
+        if ($user->role === 'Estudiante') {
+            return redirect()->route('users.show', $user->id)
+                ->with('alert', trans('alerts.profile.updated'));
+        }
+
+        if ($user->role === 'Administrador') {
+            return redirect()->route('users.index')
+                ->with('alert', trans('alerts.users.updated'));
+        }
     }
 }

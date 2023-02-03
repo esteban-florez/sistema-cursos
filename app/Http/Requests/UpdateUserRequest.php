@@ -39,7 +39,6 @@ class UpdateUserRequest extends FormRequest
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'string','max:255'],
             'birth' => ['required', 'date', 'before:now'],
-            'role' => ['required', 'in:'.roles()->join(',')],
             'grade' => ['nullable', 'in:'.grades()->join(','), 'required_if:role,Estudiante'],
             'degree' => ['nullable', 'string', 'max:100', 'required_if:role,Instructor'],
             'area_id' => ['nullable', 'integer', 'numeric', 'required_if:role,Instructor'],

@@ -1,4 +1,4 @@
-@props(['register' => false, 'pnfs' => null, 'areas' => null, 'image' => false, 'action', 'user' => null, 'edit' => false])
+@props(['register' => false, 'pnfs' => null, 'areas' => null, 'image' => false, 'action', 'edit' => false])
 
 @unless ($register)
     @push('js')
@@ -7,6 +7,7 @@
 @endunless
 
 @php
+  $user = auth()->user();
   $backUrl = $edit 
     ? route('users.show', $user->id) 
     : route($register ? 'login' : 'users.index');
@@ -58,10 +59,10 @@
             </x-field>
           </div>
         @endif
-        </div>
       </div>
-      <hr>
-    @endif
+    </div>
+    <hr>
+  @endif
     <div class="container-fluid">
       <h2>Datos personales</h2>
       <div class="row">
@@ -109,21 +110,46 @@
             Fecha de nacimiento:
           </x-field>
         </div>
-        <div @class(['col-md-6' => !$register, 'col-md-4' => $register])>
+        <div @class(['col-md-6' => !$register])>
           <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $user->gender ?? null" required>
             Sexo:
           </x-select>
         </div>
-        <div @class(['col-md-6' => !$register, 'col-md-4' => $register])>
+        <div @class(['col-md-6' => !$register])>
           <x-field type="number" name="phone" id="phone" placeholder="04128970019" value="{{ old('phone') ?? $user->phone ?? '' }}" required>
             Número de Teléfono: 
           </x-field>
         </div>
-        @if ($register)
+        @if ($register || $edit && $user->role === 'Estudiante')
+          <div class="col-md-4">
+            <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $user->gender ?? null" required>
+              Sexo:
+            </x-select>
+          </div>
+          <div class="col-md-4">
+            <x-field type="number" name="phone" id="phone" placeholder="04128970019" value="{{ old('phone') ?? $user->phone ?? '' }}" required>
+              Número de Teléfono: 
+            </x-field>
+          </div>
           <div class="col-md-4">
             <x-select name="grade" id="grade" :options="grades()->pairs()" :selected="old('grade') ?? $user->grade ?? null" required>
               Grado de Instrucción:
             </x-select>
+          </div>
+        @endif
+        @if ($edit && $user->role === 'Instructor')
+          <div class="col-md-6">
+            <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $user->area_id ?? null" required>
+              Área de Formación:
+              <x-slot name="extra">
+                <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
+              </x-slot>
+            </x-select>
+          </div>
+          <div class="col-md-6">
+            <x-field name="degree" id="degree" placeholder="Ej. Ing. en Informática" value="{{ old('degree') ?? $user->degree ?? '' }}" required>
+              Titulación:
+            </x-field>
           </div>
         @endif
         <div class="col-12">
@@ -131,7 +157,7 @@
             Dirección
           </x-textarea>
         </div>
-        @if (!$register)
+        @if (!$register && $user->role === 'Administrador')
           <div class="col-md-6">
             <x-select name="role" id="role" :options="roles()->pairs()" :selected="old('role') ?? $user->role ?? null" required>
               Rol:
@@ -158,7 +184,7 @@
         @endif
       </div>
     </div>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between mx-2">
       <x-button :url="$backUrl" color="secondary" icon="times">
         Volver
       </x-button>
