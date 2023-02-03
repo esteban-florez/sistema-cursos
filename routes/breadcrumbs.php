@@ -2,6 +2,7 @@
 
 use App\Models\Club;
 use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Payment;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
@@ -50,7 +51,7 @@ Breadcrumbs::for('courses.edit', function (Trail $trail, Course $course) {
 
 Breadcrumbs::for('available-courses.index', function (Trail $trail) {
     $trail->parent('courses');
-    $trail->push('Cursos');
+    $trail->push('Lista de cursos');
 });
 
 Breadcrumbs::for('users.index', function (Trail $trail) {
@@ -127,11 +128,9 @@ Breadcrumbs::for('enrollments.create', function (Trail $trail, Course $course) {
     ));
 });
 
-Breadcrumbs::for('enrollments.success', function (Trail $trail, Course $course) {
-    $trail->parent('courses.show', $course);
-    $trail->push('Inscripción en curso', route(
-        'enrollments.success', ['course' => $course->id]
-    ));
+Breadcrumbs::for('enrollments.success', function (Trail $trail, Enrollment $enrollment) {
+    $trail->parent('courses.show', $enrollment->course);
+    $trail->push('Inscripción en curso', route('enrollments.success', $enrollment->id));
 });
 
 Breadcrumbs::for('credentials.index', function (Trail $trail) {
