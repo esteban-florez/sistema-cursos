@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Area;
+use App\Models\Club;
+use App\Models\Course;
 use App\Models\User;
 use App\Models\PNF;
 use App\Services\Input;
@@ -81,9 +83,22 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
-    {
+    {       
+        $user->enrolledCourses();
+        $courses = Course::availables()
+            ->BoughtBy($user)
+            ->orderby('id', 'desc')
+            ->limit(2)
+            ->get();
+        $clubs = Club::latest()
+            ->orderby('id', 'desc')
+            ->limit(2)
+            ->get();
+
         return view('users.show',[
             'user' => $user,
+            'courses' => $courses,
+            'clubs' => $clubs,
         ]);
     }
 

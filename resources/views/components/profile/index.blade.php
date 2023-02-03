@@ -69,23 +69,47 @@
     <div class="col-md-7 col-xl-8">
       <div class="card mx-2 card-dark">
         <div class="card-header">
-          <h3 class="my-2">Mis cursos</h3>
+          <div class="d-flex align-items-center justify-content-between">
+            <h3 class="my-2">Mis cursos</h3>
+            <a href="#" class="mt-1">
+              <span>Ver todos</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
         <div class="card-body">
-          <div class="row no-gutters">
-            <x-profile.course/>
-            <x-profile.course/>
-          </div>
+          @if($user->enrolledCourses())
+            <div class="row no-gutters">
+              @foreach($courses as $course)
+                <x-profile.course :course="$course"/>
+              @endforeach
+            </div>
+          @else
+            <div class="empty-container">
+              <div class="empty">ola</div>
+            </div>
+          @endif
         </div>
       </div>
       <div class="card mx-2 card-dark">
         <div class="card-header">
-          <h3 class="my-2">Mis clubes</h3>
+          <div class="d-flex align-items-center justify-content-between">
+            <h3 class="my-2">Mis clubes</h3>
+            <a href="#" class="mt-1">
+              <span>Ver todos</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
         <div class="card-body">
           <div class="row no-gutters">
-            <x-profile.club/>
-            <x-profile.club/>
+            @forelse($clubs as $club)
+              <!-- <x-profile.club :club="$club"/> -->
+            @empty
+              <div class="empty-container">
+                <div class="empty">ola</div>
+              </div>
+            @endforelse
           </div>
         </div>
       </div>

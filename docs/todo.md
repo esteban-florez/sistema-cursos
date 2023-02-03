@@ -1,6 +1,5 @@
 ## Myriam:
 
-- Optimizar el home.
 - Correos con Gmail.
 - Ruta de cambio de contraseña.
 - Ruta de cambio de imagen de perfil.
