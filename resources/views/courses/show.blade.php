@@ -1,4 +1,4 @@
-<x-layout.main title="{{ $course->name }}">
+<x-layout.main :title="$course->name">
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('courses.show', $course) }}
   </x-slot>

@@ -8,7 +8,7 @@
 
 <section class="container-fluid details-grid mt-3">
   <div class="card">
-    <img src="{{ asset($course->image) }}" class="w-100 img-fluid img-course rounded elevation-1" alt="Imagen del curso">
+    <img src="{{ asset($course->image) }}" class="w-100 img-fluid details-img rounded elevation-1" alt="Imagen del curso">
     <div class="card-header">
       <h2>Información del curso</h2>
       <span class="h4 text-primary">Inscripciones: {{ $course->ins_date }}</span>

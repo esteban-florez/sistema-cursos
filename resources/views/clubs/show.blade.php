@@ -1,11 +1,15 @@
-<x-layout.main title="Club de {{ str($club->name)->title() }}">
+<x-layout.main :title="$club->name">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('clubs.show', $club) }}
+  </x-slot>
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">
   @endpush
 
   <section class="container-fluid details-grid mt-3">
+    {{-- DRY --}}
     <div class="card">
-      <img src="{{ asset($club->image) }}" class="w-100 img-fluid img-club rounded elevation-1" alt="Imagen del club">
+      <img src="{{ asset($club->image) }}" class="w-100 img-fluid details-img rounded elevation-1" alt="Imagen del club">
       <div class="card-header">
         <h2>Información del club</h2>
       </div>

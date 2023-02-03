@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Club;
 use App\Models\Course;
 use App\Models\Payment;
 use App\Models\User;
@@ -8,6 +9,10 @@ use Diglactic\Breadcrumbs\Generator as Trail;
 
 Breadcrumbs::for('courses', function (Trail $trail) {
     $trail->push('Cursos');
+});
+
+Breadcrumbs::for('clubs', function (Trail $trail) {
+    $trail->push('Clubes');
 });
 
 Breadcrumbs::for('payments', function (Trail $trail) {
@@ -86,4 +91,54 @@ Breadcrumbs::for('payments.index', function (Trail $trail) {
 Breadcrumbs::for('payments.edit', function (Trail $trail, User $user, Payment $payment) {
     $trail->parent('users.payments.index', $user->id);
     $trail->push('Editar pago', route('payments.edit', $payment->id));
+});
+
+Breadcrumbs::for('clubs.index', function (Trail $trail) {
+    $trail->parent('clubs');
+    $trail->push('Lista de clubes', route('clubs.index'));
+});
+
+Breadcrumbs::for('clubs.create', function (Trail $trail) {
+    $trail->parent('clubs');
+    $trail->push('Registrar club', route('clubs.create'));
+});
+
+Breadcrumbs::for('clubs.show', function (Trail $trail, Club $club) {
+    $trail->parent('clubs.index');
+    $trail->push($club->name, route('clubs.show', $club->id));
+});
+
+Breadcrumbs::for('clubs.edit', function (Trail $trail, Club $club) {
+    $trail->parent('clubs.show', $club);
+    $trail->push('Editar club', route('clubs.edit', $club->id));
+});
+
+Breadcrumbs::for('enrollments.index', function (Trail $trail, Course $course) {
+    $trail->parent('courses.show', $course);
+    $trail->push('Matrícula', route(
+        'enrollments.index', ['course' => $course->id]
+    ));
+});
+
+Breadcrumbs::for('enrollments.create', function (Trail $trail, Course $course) {
+    $trail->parent('courses.show', $course);
+    $trail->push('Inscripción en curso', route(
+        'enrollments.create', ['course' => $course->id]
+    ));
+});
+
+Breadcrumbs::for('enrollments.success', function (Trail $trail, Course $course) {
+    $trail->parent('courses.show', $course);
+    $trail->push('Inscripción en curso', route(
+        'enrollments.success', ['course' => $course->id]
+    ));
+});
+
+Breadcrumbs::for('credentials.index', function (Trail $trail) {
+    $trail->parent('config');
+    $trail->push('Credenciales de pago', route('credentials.index'));
+});
+
+Breadcrumbs::for('home', function (Trail $trail) {
+    $trail->push('Inicio', route('home'));
 });

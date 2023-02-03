@@ -8,6 +8,8 @@
 
 - En pagos, renombrar "tipo" a "método", y "categoría" a "tipo".
 
+- Quizás sea mejor semánticamente poner CourseEnrollmentController@index en vez de EnrollmentController@index, no se. 
+
 - En todos los filtros, hay que mejorar un poco el HTML, en el sentido de que se repite mucho al momento de la implementación, casi todo se pasa por slots, hay que hacerlo más DRY.
 
 - Los componentes de seleccionar opciones, cuyas opciones pueden venir desde

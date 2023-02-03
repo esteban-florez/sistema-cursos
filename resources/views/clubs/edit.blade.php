@@ -1,4 +1,7 @@
 <x-layout.main title="Editar club">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('clubs.edit', $club) }}
+  </x-slot>
   <section class="container-fluid">
     <div class="card mx-sm-3">
       <div class="card-body">

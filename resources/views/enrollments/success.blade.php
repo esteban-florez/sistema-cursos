@@ -1,4 +1,7 @@
 <x-layout.main title="Inscripción en curso">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('enrollments.success', $course) }}
+  </x-slot>
   @php
     $reservation = $enrollment->mode === 'Reservación';
   @endphp

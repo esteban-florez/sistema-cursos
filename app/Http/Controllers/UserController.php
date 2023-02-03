@@ -84,6 +84,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {       
+        // TODO -> ?????
         $user->enrolledCourses();
         $courses = Course::availables()
             ->BoughtBy($user)

@@ -1,4 +1,7 @@
 <x-layout.main title="Credenciales para pagos">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('credentials.index') }}
+  </x-slot>
   <section class="container-fluid mt-3">
     {{-- TODO -> 1 --}}
     @if($errors->any())
