@@ -1,4 +1,7 @@
 <x-layout.main title="Usuarios">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('users.index') }}
+  </x-slot>
   @push('js')
     <script defer type="module" src="{{ asset('js/user-role/editUserRole.js') }}"></script>
   @endpush

@@ -1,4 +1,7 @@
 <x-layout.main title="Editar usuario">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('users.edit', $user) }}
+  </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
   @endpush

@@ -1,4 +1,7 @@
 <x-layout.main title="Registrar usuario">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('users.create') }}
+  </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
   @endpush

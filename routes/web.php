@@ -93,30 +93,32 @@ Route::middleware('auth')->group(function () {
     Route::resource('courses', CourseController::class)
         ->except('destroy');
 
+    Route::get('available-courses', [AvailableCourseController::class, 'index'])
+        ->name('available-courses.index');
+
     // Users routes
+    Route::resource('users', UserController::class)
+    ->except('destroy');
+
+    Route::get('users/{user}/payments', [UserPaymentController::class, 'index'])
+        ->name('users.payments.index');
+
     Route::patch('users/{user}/role', [UserRoleController::class, 'update'])
         ->name('users.role.update');
 
-    Route::resource('users', UserController::class)
-        ->except('destroy');
-
     // Payments routes
+    Route::resource('payments', PaymentController::class)
+        ->except('create', 'store', 'show');
+
     Route::get('pending-payments', [PendingPaymentController::class, 'index'])
         ->name('pending-payments.index');
 
     Route::patch('payments/{payment}/status', [PaymentStatusController::class, 'update'])
         ->name('payments.status.update');
 
-    Route::resource('payments', PaymentController::class)
-        ->except('create', 'store', 'show');
-
     // Clubs routes
     Route::resource('clubs', ClubController::class)
         ->except('destroy');
-
-    // Available Courses routes
-    Route::get('available-courses', [AvailableCourseController::class, 'index'])
-        ->name('available-courses.index');
 
     // Enrollment routes
     Route::group([
@@ -165,10 +167,6 @@ Route::middleware('auth')->group(function () {
         Route::put('transfer-credentials', 'update')
             ->name('transfer.update');
     });
-
-    // Users Payments routes
-    Route::get('users/{user}/payments', [UserPaymentController::class, 'index'])
-        ->name('users.payments.index');
 
     // Home routes
     Route::get('home', HomeController::class)
