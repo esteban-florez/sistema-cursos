@@ -1,4 +1,7 @@
 <x-layout.main title="Club">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('clubs.index') }}
+  </x-slot>
   <x-layout.bar>
     <x-search placeholder="Buscar club..." :value="$search" name="search">
       <x-slot name="hidden">

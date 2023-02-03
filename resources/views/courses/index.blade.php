@@ -1,10 +1,10 @@
 <x-layout.main title="Cursos">
-  @push('css')
-    <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
-  @endpush
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('courses.index') }}
   </x-slot>
+  @push('css')
+    <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
+  @endpush
   <x-layout.bar>
     <x-search placeholder="Buscar curso..." :value="$search" name="search">
       <x-slot name="hidden">

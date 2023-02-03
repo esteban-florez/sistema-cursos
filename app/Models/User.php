@@ -58,6 +58,11 @@ class User extends Authenticatable
             ->wherePivotNull('deleted_at');
     }
 
+    public function payments()
+    {
+        return $this->hasManyThrough(Payment::class, Enrollment::class);
+    }
+
     public function enrollments()
     {
         return $this->hasMany(Enrollment::class);

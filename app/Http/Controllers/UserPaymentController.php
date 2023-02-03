@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserPaymentController extends Controller
 {
@@ -13,11 +13,11 @@ class UserPaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
         $payments = Payment::with('enrollment.course')
             ->whereHas('enrollment', fn($query) => 
-                $query->where('enrollments.user_id', Auth::user()->id))
+                $query->where('enrollments.user_id', $user->id))
             ->latest()
             ->paginate(6);
 

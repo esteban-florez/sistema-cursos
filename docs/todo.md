@@ -6,7 +6,6 @@
 
 ## Esteban:
  
-- Hacer las breadcrumbs.
 - Añadir plugin de selects.
 - PDF de Listado de Pagos pero filtrado por un status específico.
 - Terminar el perfil con cursos y clubes "propios".

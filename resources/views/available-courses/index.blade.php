@@ -1,4 +1,7 @@
 <x-layout.main title="Cursos">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('available-courses.index') }}
+  </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush

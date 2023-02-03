@@ -3,6 +3,9 @@
 @endphp
 
 <x-layout.main title="Editar pago">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('payments.edit', $payment) }}
+  </x-slot>
   @push('js')
     <script defer src="{{ asset('js/payments-edit.js') }}"></script>
   @endpush

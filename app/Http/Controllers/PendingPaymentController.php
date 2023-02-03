@@ -14,7 +14,7 @@ class PendingPaymentController extends Controller
             ->paginate(9)
             ->withQueryString();
 
-        return view('payments.pending', [
+        return view('pending-payments.index', [
             'payments' => $payments,
         ]);
     }

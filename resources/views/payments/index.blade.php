@@ -1,4 +1,7 @@
 <x-layout.main title="Pagos">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('payments.index') }}
+  </x-slot>
   @push('js')
     <script defer type="module" src="{{ asset('js/payments/editPayment.js') }}"></script>
   @endpush

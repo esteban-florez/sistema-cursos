@@ -1,4 +1,7 @@
 <x-layout.main title="Matrícula">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('enrollments.index', $course) }}
+  </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/listados.css') }}">
   @endpush

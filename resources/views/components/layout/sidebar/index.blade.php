@@ -97,7 +97,7 @@
             Lista de pagos
           </x-layout.sidebar.item>
           <x-layout.sidebar.item :url="route('pending-payments.index')" icon="check">
-            Por verificar
+            Pagos pendientes
           </x-layout.sidebar.item>
           @endis
         </x-slot>
