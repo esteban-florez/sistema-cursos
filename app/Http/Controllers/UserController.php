@@ -73,7 +73,7 @@ class UserController extends Controller
         User::create($data);
 
         return redirect()->route('users.index')
-            ->with('alert', trans('alerts.user.created'));
+            ->with('alert', trans('alerts.users.created'));
     }
 
     /**
