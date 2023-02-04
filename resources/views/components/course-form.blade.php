@@ -1,5 +1,6 @@
 @props(['action', 'areas', 'instructors', 'pnfs', 'edit' => false, 'course' => null])
 
+<x-select2/>
 <p class="m-0 font-italic">
   <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
 </p>

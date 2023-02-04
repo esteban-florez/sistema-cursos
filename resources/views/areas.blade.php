@@ -3,6 +3,7 @@
 @endphp
 
 <x-layout.main title="Áreas">
+  <x-select2/>
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('areas.index') }}
   </x-slot>

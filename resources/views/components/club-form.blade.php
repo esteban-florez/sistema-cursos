@@ -1,5 +1,6 @@
 @props(['action', 'instructors', 'edit' => false, 'club' => null])
 
+<x-select2/>
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
   @if ($edit)
     @method('PUT')

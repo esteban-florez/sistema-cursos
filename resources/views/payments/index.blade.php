@@ -1,4 +1,5 @@
 <x-layout.main title="Pagos">
+  <x-select2/>
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('payments.index') }}
   </x-slot>

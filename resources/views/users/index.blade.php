@@ -1,4 +1,5 @@
 <x-layout.main title="Usuarios">
+  <x-select2/>
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('users.index') }}
   </x-slot>

@@ -1,3 +1,5 @@
+import select2 from '../enableSelect2.js'
+
 const triggers = [...document.querySelectorAll('[data-id]')]
 triggers.forEach(trigger => trigger.addEventListener('click', handleTrigger))
 const form = document.querySelector('#roleModal form')
@@ -15,9 +17,9 @@ function handleTrigger(e) {
   form.setAttribute('action', url)
 
   options.forEach(option => option.removeAttribute('selected'))
-
   options.find(option => option.value === role).setAttribute('selected', '') 
-
+  select2()
+  
   nameSpan.innerText = name
 
   const promise = new Promise(res => {
@@ -26,6 +28,7 @@ function handleTrigger(e) {
 
   promise.then(msg => {
     console.log(msg)
+
     $('#roleModal').modal()
   })
 }

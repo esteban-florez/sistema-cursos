@@ -3,6 +3,7 @@
 @endphp
 
 <x-layout.main title="Editar pago">
+  <x-select2/>
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('payments.edit', $payment) }}
   </x-slot>

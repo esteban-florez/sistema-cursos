@@ -1,4 +1,5 @@
 <x-layout.main title="Club">
+  <x-select2/>
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('clubs.index') }}
   </x-slot>

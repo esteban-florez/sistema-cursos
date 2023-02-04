@@ -23,6 +23,7 @@ class UserPaymentController extends Controller
 
         return view('users-payments.index', [
             'payments' => $payments,
+            'user' => $user,
         ]);
     }
 

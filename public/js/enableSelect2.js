@@ -1,19 +1,16 @@
-const width = '100%'
-const minimumResultsForSearch = Infinity
-const placeholder = 'Seleccionar...'
-
-$(document).ready(() => {
+export default function select2() {
+  const width = '100%'
+  const placeholder = 'Seleccionar...'
+  
   $('select').each((_, el) => {
+    let options = { width }
+  
     if(el.multiple) {
-      enable(el, {width, placeholder})
-    } else if(el.dataset.search === 'search') {
-      enable(el, {width})
-    } else {
-      enable(el, {width, minimumResultsForSearch})
+      options = {...options, placeholder }
     }
+  
+    $(el).select2(options)
   })
-})
-
-function enable(el, options) {
-  $(el).select2(options)
 }
+
+select2()

@@ -12,6 +12,7 @@
     : route($register ? 'login' : 'users.index');
 @endphp
 
+<x-select2/>
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
   @if ($edit)
     @method('PUT')
