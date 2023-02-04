@@ -1,4 +1,5 @@
 <section class="container-fluid mt-2">
+  <x-alert />
   <div class="row no-gutters">
     <div class="col-md-5 col-xl-4">
       <x-profile.widget 
@@ -18,7 +19,7 @@
               Correo Electrónico:
             </x-profile.data>
             @if (Auth::user()->id === $user->id)
-              <x-button class="mt-3" url="#" color="primary">
+              <x-button class="mt-3" url="#">
                 Cambiar contraseña
               </x-button>
             @endif
@@ -27,7 +28,14 @@
       </div>
       <div class="card card-info mx-2">
         <div class="card-header">
-          <h4 class="my-2">Datos personales: </h4>
+          <div class="d-flex align-items-center justify-content-between">
+            <h4 class="my-2">Datos personales: </h4>
+            @if (Auth::user()->id === $user->id)
+              <x-button url="{{ route('users.edit', $user->id) }}" color="info">
+                <i class="fas fa-edit"></i>
+              </x-button>
+            @endif
+          </div>
         </div>
         <div class="card-body">
           <ul class="list-unstyled">
@@ -71,10 +79,12 @@
         <div class="card-header">
           <div class="d-flex align-items-center justify-content-between">
             <h3 class="my-2">Mis cursos</h3>
+            @if (Auth::user()->id === $user->id)
             <a href="#" class="mt-1">
               <span>Ver todos</span>
               <i class="fas fa-arrow-right"></i>
             </a>
+            @endis
           </div>
         </div>
         <div class="card-body">
@@ -95,10 +105,12 @@
         <div class="card-header">
           <div class="d-flex align-items-center justify-content-between">
             <h3 class="my-2">Mis clubes</h3>
-            <a href="#" class="mt-1">
-              <span>Ver todos</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
+            @if (Auth::user()->id === $user->id)
+              <a href="#" class="mt-1">
+                <span>Ver todos</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+            @endis
           </div>
         </div>
         <div class="card-body">

@@ -25,24 +25,23 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         $user = $this->route('user');
-        $uniqueIgnore = Rule::unique('users')
-            ->ignoreModel($user);
 
-        return [
+        $rules = [
             'first_name' => ['required', 'max:30'],
             'second_name' => ['nullable', 'max:30'],
             'first_lastname' => ['required', 'max:30'],
             'second_lastname' => ['nullable', 'max:30'],
-            'ci' => ['required', 'integer', 'numeric', $uniqueIgnore],
+            'ci' => ['required', 'integer', 'numeric', Rule::unique('users')->ignoreModel($user)],
             'ci_type' => ['required', 'in:'.ciTypes()->join(',')],
             'gender' => ['required', 'in:'.genders()->join(',')],
             'phone' => ['required', 'digits:11'],
             'address' => ['required', 'string','max:255'],
             'birth' => ['required', 'date', 'before:now'],
-            'role' => ['required', 'in:'.roles()->join(',')],
-            'grade' => ['nullable', 'in:'.grades()->join(','), 'required_if:role,Estudiante'],
-            'degree' => ['nullable', 'string', 'max:100', 'required_if:role,Instructor'],
-            'area_id' => ['nullable', 'integer', 'numeric', 'required_if:role,Instructor'],
+            'grade' => Rule::when($user->role === "Estudiante", ['required', 'in:'.grades()->join(',')]),
+            'degree' => Rule::when($user->role === "Instructor", ['required', 'string', 'max:100']),
+            'area_id' => Rule::when($user->role === "Instructor", ['required', 'integer', 'numeric']),
         ];
+
+        return $rules;
     }
 }
