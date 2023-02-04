@@ -1,4 +1,3 @@
-'use strict'
 import detailsModal from './modalTemplate.js'
 
 const triggers = [...document.querySelectorAll('a[data-details]')]

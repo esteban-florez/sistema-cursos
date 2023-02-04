@@ -98,7 +98,7 @@ Route::middleware('auth')->group(function () {
 
     // Users routes
     Route::resource('users', UserController::class)
-    ->except('destroy');
+        ->except('destroy');
 
     Route::get('users/{user}/payments', [UserPaymentController::class, 'index'])
         ->name('users.payments.index');

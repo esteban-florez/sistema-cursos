@@ -1,6 +1,6 @@
 <x-layout.main title="Mis pagos">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('users.payments.index', auth()->user()) }}
+    {{ Breadcrumbs::render('users.payments.index', $user) }}
   </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/students-payments.css') }}">

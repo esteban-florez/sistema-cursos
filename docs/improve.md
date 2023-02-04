@@ -20,3 +20,5 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
 - Añadir slugs.
 
 - Buscar en toooodo el código y aplicar DRY
+
+- Los push en blade se repiten burda, y tienen mucho boilerplate

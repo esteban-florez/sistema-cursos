@@ -1,6 +1,5 @@
 ## Myriam:
 
-- Correos con Gmail.
 - Ruta de cambio de contraseña.
 - Ruta de cambio de imagen de perfil.
 
@@ -8,10 +7,10 @@
  
 - Añadir plugin de selects.
 - PDF de Listado de Pagos pero filtrado por un status específico.
-- Terminar el perfil con cursos y clubes "propios".
 
 ## Tareas a largo plazo:
 
+- Terminar el perfil con clubes propios.
 - Crear rol de preparador.
 * Revisar validaciones:
   - Mejorar como se muestran los errores de validación en algunas vistas - **1**.
@@ -20,4 +19,5 @@
 - Crear las vistas de 404, 403, etc.
 - Hacer sistema de permisos (Authorization).
 - Depurar el css al final del proyecto.
+- Correos con Gmail.
 - Hacer sistema de notificaciones.

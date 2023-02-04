@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as Trail;
+use Illuminate\Support\Facades\Auth;
 
 Breadcrumbs::for('courses', function (Trail $trail) {
     $trail->push('Cursos');
@@ -89,8 +90,8 @@ Breadcrumbs::for('payments.index', function (Trail $trail) {
     $trail->push('Lista de pagos', route('payments.index'));
 });
 
-Breadcrumbs::for('payments.edit', function (Trail $trail, User $user, Payment $payment) {
-    $trail->parent('users.payments.index', $user->id);
+Breadcrumbs::for('payments.edit', function (Trail $trail, Payment $payment) {
+    $trail->parent('users.payments.index', Auth::user());
     $trail->push('Editar pago', route('payments.edit', $payment->id));
 });
 
