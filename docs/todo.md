@@ -4,9 +4,9 @@
 - Ruta de cambio de imagen de perfil.
 
 ## Esteban:
- 
-- Añadir plugin de selects.
-- PDF de Listado de Pagos pero filtrado por un status específico.
+
+- Crear "cursos inscritos".
+- Crear "cursos dictados".
 
 ## Tareas a largo plazo:
 

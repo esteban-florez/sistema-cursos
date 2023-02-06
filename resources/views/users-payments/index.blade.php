@@ -28,7 +28,7 @@
             <li class="list-group-item bg-light">Tipo: <b>{{ $payment->type }}</b></li>
           </ul>
           <div class="d-flex align-items-center gap-2 mt-3">
-            @if($payment->status !== 'Aprobado')
+            @if($payment->status !== 'Confirmado')
               <x-button :url="route('payments.edit', $payment->id)" icon="edit" color="warning">
                 Editar
               </x-button>

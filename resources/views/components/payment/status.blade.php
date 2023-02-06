@@ -4,7 +4,7 @@
   $color = match ($payment->status) {
     'Pendiente' => 'secondary',
     'Rechazado' => 'danger',
-    'Aprobado' => 'success',
+    'Confirmado' => 'success',
   };
 @endphp
 

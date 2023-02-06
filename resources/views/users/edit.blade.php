@@ -11,6 +11,7 @@
         :areas="$areas"
         :action="route('users.update', $user->id)"
         :pnfs="$pnfs"
+        :user="$user"
         edit
       />
     </div>

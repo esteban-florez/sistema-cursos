@@ -1,4 +1,4 @@
-const roleSelect = document.querySelector('#role')
+const roleSelect = $('#role')
 const gradeSelect = document.querySelector('#grade')
 const areaSelect = document.querySelector('#areaId')
 const degreeSelect = document.querySelector('#degree')
@@ -14,7 +14,7 @@ const disable = el => {
 }
 
 function update() {
-  const value = roleSelect.selectedOptions[0].value
+  const value = roleSelect.val()
 
   if (value === 'Estudiante') {
     enable(gradeSelect)
@@ -35,6 +35,6 @@ function update() {
   }
 }
 
-roleSelect.addEventListener('change', update)
+roleSelect.on('change', update)
 
 update()

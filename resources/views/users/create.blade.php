@@ -11,7 +11,6 @@
         :areas="$areas"
         :action="route('users.store')"
         :pnfs="$pnfs"
-        image
       />
     </div>
   </section>

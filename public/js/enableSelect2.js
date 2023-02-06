@@ -3,8 +3,12 @@ export default function select2() {
   const placeholder = 'Seleccionar...'
   
   $('select').each((_, el) => {
-    let options = { width }
-  
+    let options = {}
+ 
+    if (el.name !== 'ci_type') {
+      options = { width }
+    }
+
     if(el.multiple) {
       options = {...options, placeholder }
     }
