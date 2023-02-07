@@ -25,12 +25,7 @@
         <h2 class="h4 text-center">Curso: {{ $course->name }}</h2>
       </div>
       <x-enrollment-data :credentials="$credentials" :course="$course" />
-      {{-- TODO -> 1 --}}
-      @foreach ($errors->all() as $error)
-        <div class="alert alert-danger m-0">
-          <li>{{ ucfirst($error) }}</li>
-        </div>
-      @endforeach
+      <x-errors />
       <form method="POST" action="{{ route('enrollments.store', ['course' => $course->id]) }}">
         <input type="hidden" name="category" value="{{ $reservation ? '' : 'Pago completo' }}">
         <input type="hidden" name="amount">

@@ -29,7 +29,7 @@ class UpdateAreaRequest extends FormRequest
             'name' => [
                 'required',
                 'max:50',
-                Rule::unique('pnfs')->ignore($this->route('area')),
+                Rule::unique('areas')->ignore($this->route('area')),
             ],
             'pnf_id' => [
                 'required',

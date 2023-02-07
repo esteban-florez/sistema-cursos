@@ -3,17 +3,8 @@
     {{ Breadcrumbs::render('credentials.index') }}
   </x-slot>
   <section class="container-fluid mt-3">
-    {{-- TODO -> 1 --}}
-    @if($errors->any())
-    <div class="alert alert-danger">
-      <p>Ocurrieron los siguientes errores: </p>
-      <ul>
-        @foreach ($errors->all() as $message)
-          <li>{{ ucfirst($message) }}</li>
-        @endforeach
-      </ul>
-    </div>
-    @endif
+    <x-errors />
+    <x-select2 />
     <x-alert />
     <div class="row">
       @if($transfer)

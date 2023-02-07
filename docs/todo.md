@@ -13,7 +13,6 @@
 - Terminar el perfil con clubes propios.
 - Crear rol de preparador.
 * Revisar validaciones:
-  - Mejorar como se muestran los errores de validación en algunas vistas - **1**.
   - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Arreglar búsquedas de cursos con código (IG).
 - Crear las vistas de 404, 403, etc.

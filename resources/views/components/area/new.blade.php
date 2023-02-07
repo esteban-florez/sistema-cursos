@@ -2,7 +2,7 @@
 
 @if($ajax)
   @push('js')
-    <script defer src="{{ asset('js/ajax.js') }}"></script>
+    <script defer type="module" src="{{ asset('js/ajax.js') }}"></script>
     {{-- maybe some day, petite-vue? or alpinejs? XD --}}
   @endpush
 @endif
@@ -17,7 +17,7 @@
   <p>Los campos con <i class="fas fa-asterisk text-danger"></i> son obligatorios.</p>
     <form method="POST" action="{{ route('areas.store') }}" id="areaForm" data-url="{{ route('api.areas.store') }}" data-options="{{ route('api.areas.index') }}">
     @csrf
-    <x-field name="name" id="name" placeholder="Escribe el nombre del área" autocomplete="off" required>
+    <x-field :name="$ajax ? 'area_name' : 'name'" :id="$ajax ? 'areaName' : 'name'" placeholder="Escribe el nombre del área" autocomplete="off" required>
       Nombre:
     </x-field>
     <x-select name="pnf_id" id="pnfId" :options="$pnfs" required>

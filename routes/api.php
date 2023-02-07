@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Requests\StoreAreaRequest;
 use App\Models\Area;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use App\Rules\ValidID;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,15 @@ Route::get('areas', function () {
     return Area::all(['id', 'name']);
 })->name('api.areas.index');
 
-Route::post('areas', function (StoreAreaRequest $request) {
-    $data = $request->validated();
+Route::post('areas', function (Request $request) {
+    $data = $request->validate([
+        'area_name' => ['required', 'max:50', 'unique:areas,name', 'exclude'],
+        'pnf_id' => ['required', new ValidID('PNF')]
+    ]);
 
-    Area::create($data);
+    $data['name'] = $request->input('area_name');
 
-    return response('', 201);
+    $area = Area::create($data);
+
+    return response($area, 201);
 })->name('api.areas.store');

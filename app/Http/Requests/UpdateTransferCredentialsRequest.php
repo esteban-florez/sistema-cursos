@@ -24,11 +24,11 @@ class UpdateTransferCredentialsRequest extends FormRequest
     public function rules()
     {
         return [
-            'ci' => ['required', 'string', 'max:12'],
+            'ci' => ['required', 'string'],
             'bank' => ['required', 'string'],
             'name' => ['required', 'string'],
             'type' => ['required', 'string', 'in:'.accountTypes()->join(',')],
-            'account' => ['required', 'string', 'max:20'],
+            'account' => ['required', 'string'],
         ];
     }
 }
