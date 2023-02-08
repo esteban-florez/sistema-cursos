@@ -35,10 +35,6 @@
           <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
             Registrar curso
           </x-layout.sidebar.item>
-          {{-- comentado hasta que funcione --}}
-          {{-- <x-layout.sidebar.item url="#" icon="book">
-            Expedientes
-          </x-layout.sidebar.item> --}}
           @endis
           @isnt('Administrador')
           <x-layout.sidebar.item url="#" icon="star">

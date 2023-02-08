@@ -2,10 +2,11 @@
 
 - Ruta de cambio de contraseña.
 - Ruta de cambio de imagen de perfil.
+- Detalle de "Mi curso" estudiante.
 
 ## Esteban:
 
-- Crear "cursos inscritos".
+- Crear "Mis cursos" estudiante.
 - Crear "cursos dictados".
 
 ## Tareas a largo plazo:
