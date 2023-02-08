@@ -61,7 +61,7 @@
         <th>¿UPTA?</th>
         <th>Solvencia</th>
         <th>Cupo</th>
-        <th>¿Aprobado?</th>
+        <th>Aprobación</th>
       </tr>
     </thead>
     <tbody>
@@ -75,7 +75,7 @@
           <td>{{ $student->upta }}</td>
           <td>{{ $enrollment->solvency }}</td>
           <td>{{ $enrollment->status }}</td>
-          <td>{{ $enrollment->approved }}</td>
+          <td>{{ $enrollment->approval }}</td>
         </tr>
       @endforeach
     </tbody>

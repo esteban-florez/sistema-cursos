@@ -207,7 +207,7 @@ return [
 
         // Enrollment attributes
         'confirmed_at' => 'la fecha de confirmación',
-        'approved_at' => 'la fecha de aprobación',
+        'approval' => 'la aprobación',
 
         // Payment attributes
         'status' => 'el estado',

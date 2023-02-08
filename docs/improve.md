@@ -4,6 +4,8 @@
 
 2. Añadir búsqueda de estudiantes.
 
+3. Renombrar accesor a getConfirmation
+
 - Mejoras de formularios con JavaScript en el Frontend (validación, comodidad, formatos).
 
 - En pagos, renombrar "tipo" a "método", y "categoría" a "tipo".

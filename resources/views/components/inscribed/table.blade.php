@@ -8,7 +8,7 @@
       <th>¿UPTA?</th>
       <th>Solvencia</th>
       <th>Cupo</th>
-      <th>¿Aprobado?</th>
+      <th>Aprobación</th>
       <th>Acciones</th>
     </tr>
   </x-slot>
@@ -24,7 +24,7 @@
             $student->upta,
             $enrollment->solvency,
             $enrollment->status,
-            $enrollment->approved,
+            $enrollment->approval,
           ]"
         :details="route('users.show', $student->id)"
       >
@@ -38,21 +38,9 @@
             </x-button>
           </form>
           @endunless
-          @unless($course->phase !== 'Finalizado')
-            @php
-              $isApproved = isset($enrollment->approved_at);
-              $color = $isApproved ? 'danger' : 'success';
-              $text = $isApproved ? 'Reprobar' : 'Aprobar';
-              $icon = $isApproved ? 'times' : 'check';
-            @endphp
-            <form action="{{ route('enrollments.approval.update', $enrollment->id) }}" method="POST">
-              @csrf
-              @method('PATCH')
-              <x-button type="submit" class="btn-sm" color="{{ $color }}" icon="{{ $icon }}">
-                {{ $text }}
-              </x-button>
-            </form>
-          @endunless
+          @if($course->phase === 'Finalizado')
+            <x-inscribed.update-approval-buttons :enrollment="$enrollment"/>
+          @endif
         </x-slot>
       </x-row>
     @endforeach

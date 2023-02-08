@@ -1,5 +1,6 @@
 ## Myriam:
 
+- Arreglar mis cursos en perfil.
 - Ruta de cambio de contraseña.
 - Ruta de cambio de imagen de perfil.
 - Detalle de "Mi curso" estudiante.
@@ -8,6 +9,8 @@
 
 - Crear "Mis cursos" estudiante.
 - Crear "cursos dictados".
+- Quitar deletes en todo y refactorizar expiración de matrícula.
+- Hacer reinicio de cursos de alguna forma.
 
 ## Tareas a largo plazo:
 

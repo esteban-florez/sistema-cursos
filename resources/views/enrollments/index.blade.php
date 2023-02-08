@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/listados.css') }}">
   @endpush
   {{-- IMPROVE -> 2 --}}
+  <x-alert/>
   <section class="content">
     <div class="container-fluid">
       <div class="card py-2 px-3 mb-0 list-top">

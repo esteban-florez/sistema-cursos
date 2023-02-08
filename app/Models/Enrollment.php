@@ -40,6 +40,7 @@ class Enrollment extends Model
         return $solvency ? 'Solvente' : 'Pendiente';
     }
 
+    // IMPROVE -> 3
     public function getStatusAttribute()
     {
         if($this->confirmed_at !== null) {
@@ -47,11 +48,6 @@ class Enrollment extends Model
         } else {
             return 'En reserva';
         }
-    }
-
-    public function getApprovedAttribute()
-    {
-        return $this->approved_at !== null ? 'Sí' : 'No';
     }
 
     public function scopeExpired($query)

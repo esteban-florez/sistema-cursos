@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Enrollment;
+use Illuminate\Http\Request;
 
 class EnrollmentApprovalController extends Controller
 {
-    public function update(Enrollment $enrollment)
+    public function update(Request $request, Enrollment $enrollment)
     {
-        if($enrollment->approved_at) {
-            $enrollment->approved_at = null;
-        } else {
-            $enrollment->approved_at = now();    
-        }
+        $data = $request->validate([
+            'approval' => ['required', 'in:Aprobado,Reprobado'],
+        ]);
 
-        $enrollment->save();
+        $enrollment->update($data);
 
         return redirect()
             ->route('enrollments.index', [
                 'course' => $enrollment->course,
-            ]);
+            ])
+            ->with('alert', trans('alerts.approval.updated'));
     }
 }

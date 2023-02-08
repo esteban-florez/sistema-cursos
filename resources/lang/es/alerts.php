@@ -20,4 +20,5 @@ return [
     'users' => generateAlerts('El usuario'),
     'profile' => generateAlerts('El perfil'),
     'user-role' => generateAlerts('El rol del usuario'),
+    'approval' => generateAlerts('La aprobación'),
 ];
