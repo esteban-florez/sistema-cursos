@@ -60,6 +60,7 @@ class EnrollmentSeeder extends Seeder
                     'course_id' => 5,
                     'confirmed_at' => now()->subDays(1),
                     'mode' => modes()->random(),
+                    'approval' => $s->id === 17 ? 'Aprobado' : 'Por decidir',
                 ]);
             });
     }

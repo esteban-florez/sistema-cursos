@@ -38,7 +38,7 @@
       </div>
     </div>
   </section>
-  <!-- <section class="container fluid px-sm-4">
+  {{-- <section class="container fluid px-sm-4">
     <div class="row w-100 mt-2 ml-0">
       <div class="col-lg-4">
         <div class="card w-100 d-md-inline-block d-none mb-3 p-3">
@@ -67,5 +67,5 @@
         </x-home.card>
       </div>
     </div>
-  </section> -->
-</x-layout.ma>
+  </section> --}}
+</x-layout.main>

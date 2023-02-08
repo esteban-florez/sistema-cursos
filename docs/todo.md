@@ -3,12 +3,12 @@
 - Arreglar mis cursos en perfil.
 - Ruta de cambio de contraseña.
 - Ruta de cambio de imagen de perfil.
-- Detalle de "Mi curso" estudiante.
+- Actualizar detalle de curso para que muestre más cosas si ya estás inscrito en él.
 
 ## Esteban:
 
-- Crear "Mis cursos" estudiante.
-- Crear "cursos dictados".
+- Crear "Cursos dictados".
+- Añadir Certificado de Aprobación.
 - Quitar deletes en todo y refactorizar expiración de matrícula.
 - Hacer reinicio de cursos de alguna forma.
 

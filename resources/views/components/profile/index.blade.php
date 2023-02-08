@@ -96,7 +96,7 @@
             </div>
           @else
             <div class="empty-container">
-              <div class="empty">ola</div>
+              <div class="empty">No tienes cursos actualmente.</div>
             </div>
           @endif
         </div>
@@ -116,10 +116,10 @@
         <div class="card-body">
           <div class="row no-gutters">
             @forelse($clubs as $club)
-              <!-- <x-profile.club :club="$club"/> -->
+              {{-- <x-profile.club :club="$club"/> --}}
             @empty
               <div class="empty-container">
-                <div class="empty">ola</div>
+                <div class="empty">No tienes clubes actualmente.</div>
               </div>
             @endforelse
           </div>

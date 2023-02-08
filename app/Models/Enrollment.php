@@ -43,11 +43,16 @@ class Enrollment extends Model
     // IMPROVE -> 3
     public function getStatusAttribute()
     {
-        if($this->confirmed_at !== null) {
+        if ($this->confirmed_at !== null) {
             return 'Inscrito';
         } else {
             return 'En reserva';
         }
+    }
+
+    public function getExpiresAtAttribute()
+    {
+        return $this->created_at->addDays(self::EXPIRES_IN);
     }
 
     public function scopeExpired($query)

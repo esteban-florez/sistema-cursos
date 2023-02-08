@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/listados.css') }}">
   @endpush
   {{-- IMPROVE -> 2 --}}
+  {{-- TODO -> faltan alertas en los sitios que redirigen a esta vista --}}
   <x-alert/>
   <section class="content">
     <div class="container-fluid">

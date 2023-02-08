@@ -36,11 +36,16 @@
             Registrar curso
           </x-layout.sidebar.item>
           @endis
-          @isnt('Administrador')
+          @is('Estudiante')
+          <x-layout.sidebar.item :url="route('users.enrollments.index', $user->id)" icon="star">
+            Mis cursos
+          </x-layout.sidebar.item>
+          @endis
+          @is('Instructor')
           <x-layout.sidebar.item url="#" icon="star">
             Mis cursos
           </x-layout.sidebar.item>
-          @endisnt
+          @endis
           @isnt('Estudiante')
           <x-layout.sidebar.item :url="route('areas.index')" icon="chalkboard-teacher">
             Áreas de formación
