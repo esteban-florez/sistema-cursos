@@ -1,4 +1,4 @@
-@props(['addon' => null])
+@props(['addon' => null, 'showIcon' => null])
 
 <div class="mb-3">
   @if($slot->isNotEmpty())
@@ -22,6 +22,11 @@
         </span>
       @endif
       {{ $append ?? '' }}
+      @if($showIcon)
+        <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
+          <span class="fas fa-eye"></span>
+        </button>
+      @endif
     </div>
   </div>
   @error($attributes->get('name'))

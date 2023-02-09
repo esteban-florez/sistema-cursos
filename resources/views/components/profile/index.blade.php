@@ -19,7 +19,7 @@
               Correo Electrónico:
             </x-profile.data>
             @if (Auth::user()->id === $user->id)
-              <x-button class="mt-3" url="#">
+              <x-button class="mt-3" url="{{ route('password.change', $user->id) }}">
                 Cambiar contraseña
               </x-button>
             @endif

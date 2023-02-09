@@ -320,7 +320,7 @@ class UserSeeder extends Seeder
             'phone' => '04163138552',
             'address' => 'Calle de Los Cocos N°20-10, Cagua, Edo. Aragua.',
             'email' => 'myriam@example.com',
-            'password' => 'password',
+            'password' => 'Password1.',
             'grade' => 'Bachillerato',
             'birth' => '2003-09-30',
             'is_upta' => true,

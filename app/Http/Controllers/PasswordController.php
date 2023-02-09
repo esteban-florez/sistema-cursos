@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password as PasswordRule;
@@ -61,5 +63,27 @@ class PasswordController extends Controller
             ? redirect()->route('login')->with(['status' => $status])
             : back()
                 ->withErrors(['invalid' => trans('passwords.failure')]);
+    }
+
+    public function change(User $user) 
+    {
+        return view('password.change', [
+            'user' => $user,
+        ]);
+    }
+
+    public function update(Request $request, User $user) 
+    {
+        $user = Auth::user();
+
+        $data = $request->validate([
+            'current_password' => [PasswordRule::defaults(), 'current_password'],
+            'password' => [PasswordRule::defaults(), 'confirmed'],
+        ]);
+
+        $user->update($data);
+
+        return redirect()->route('users.show', $user->id)
+            ->with('alert', trans('alerts.password.updated'));
     }
 }
