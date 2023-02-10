@@ -80,7 +80,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <h3 class="my-2">Mis cursos</h3>
             @if (Auth::user()->id === $user->id)
-            <a href="#" class="mt-1">
+            <a href="{{ route('users.enrollments.index', $user->id) }}" class="mt-1">
               <span>Ver todos</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -88,17 +88,15 @@
           </div>
         </div>
         <div class="card-body">
-          @if($user->enrolledCourses())
-            <div class="row no-gutters">
-              @foreach($courses as $course)
-                <x-profile.course :course="$course"/>
-              @endforeach
-            </div>
-          @else
-            <div class="empty-container">
-              <div class="empty">No tienes cursos actualmente.</div>
-            </div>
-          @endif
+          <div class="row no-gutters">
+            @forelse($enrollments as $enrollment)
+              <x-profile.course :enrollment="$enrollment"/>
+            @empty
+              <div class="empty-container">
+                <div class="empty">No tienes cursos actualmente.</div>
+              </div>
+            @endforelse
+          </div>
         </div>
       </div>
       <div class="card mx-2 card-dark">

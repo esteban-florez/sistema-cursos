@@ -7,7 +7,7 @@
   @endpush
   <x-profile 
     :user="$user" 
-    :courses="$courses"
+    :enrollments="$enrollments"
     :clubs="$clubs"
     />
 </x-layout.main>
