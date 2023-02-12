@@ -142,3 +142,8 @@ Breadcrumbs::for('credentials.index', function (Trail $trail) {
 Breadcrumbs::for('home', function (Trail $trail) {
     $trail->push('Inicio', route('home'));
 });
+
+Breadcrumbs::for('users-enrollments.index', function (Trail $trail) {
+    $trail->parent('courses');
+    $trail->push('Mis cursos');
+});

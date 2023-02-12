@@ -1,4 +1,7 @@
 <x-layout.main title="Mis cursos">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('users-enrollments.index') }}
+  </x-slot>
   @php
     // DRY
     $phasesColors = [
@@ -23,8 +26,8 @@
   <x-layout.bar>
     <x-search name="search" placeholder="Buscar curso..." value="{{ $search }}"/>
   </x-layout.bar>
-  <div class="container-fluid">
-    <div class="row" style="row-gap: 1rem;">
+  <div class="container-fluid px-2">
+    <div class="row px-sm-5" style="row-gap: 1rem;">
       @foreach ($enrollments as $enrollment)
         @php
           $course = $enrollment->course;
@@ -41,11 +44,13 @@
                 alt="Imagen del Curso: {{$course->name }}"
                 style="height: 10rem;">
             </div>
-            <div class="card-body">
-              <h4>{{ $course->name }}</h4>
-              <span class="badge badge-{{ $phaseColor }} badge-3 mb-2">
+            <div class="card-header">
+              <h4 class="mb-0">{{ $course->name }}</h4>
+              <h6 class="mb-0 text-{{ $phaseColor }}">
                 Fase actual: {{ $course->phase }}
-              </span>
+              </h6>
+            </div>
+            <div class="card-body">
               <p class="mb-0">
                 Estado del cupo: <b class="text-{{ $confirmationColor }}">{{ $enrollment->status }}</b> 
               </p>
@@ -53,16 +58,16 @@
                 Solvencia: <b>{{ $enrollment->solvency }}</b> 
               </p>
               @if ($course->phase === 'Inscripciones' && $enrollment->status === 'En reserva')
-                Expiración de reserva: <b>{{ $enrollment->expires_at->format(DF) }}</b>
+              Expiración de reserva: <b>{{ $enrollment->expires_at->format(DF) }}</b>
               @endif
               @if ($course->phase !== 'Inscripciones')
-                <p class="mb-0">
-                  Aprobación: <b class="text-{{ $approvalColor }}">{{ $enrollment->approval }}</b>
-                </p>
+              <p class="mb-0">
+                Aprobación: <b class="text-{{ $approvalColor }}">{{ $enrollment->approval }}</b>
+              </p>
               @endif
               <div class="d-flex align-items-center gap-1 mt-3">
                 @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
-                  <x-button url="#" color="success" icon="arrow-down">
+                  <x-button url="#" color="secondary" icon="arrow-down">
                     Certificado
                   </x-button>
                 @endif

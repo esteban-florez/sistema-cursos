@@ -19,18 +19,17 @@
   color: rgb(132, 144, 158);
   background-color: rgba(235, 235, 235, 0.8);
   border-radius: 10px;
-  padding: 4px;
-  text-align: center;
+  padding: 15px;
 }
 
-.course-info h5 {
-  text-align: center;
-  color: black;
+.carousel-control-next, .carousel-control-prev {
+  width: 3rem;
+  display: flex;
+  justify-content: space-around;
 }
 
-.course-info p {
-  font-size: 0.8rem;
-  text-align: justify;
+.course-info a {
+  text-align: center;
   color: black;
 }
 

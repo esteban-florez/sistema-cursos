@@ -18,9 +18,7 @@ class HomeController extends Controller
             ->limit(2)
             ->get();
 
-        $courses = Course::when(
-            $user->role === 'Estudiante',
-            fn($query) => $query->availables()->notBoughtBy($user))
+        $courses = Course::latest()
             ->orderby('id', 'desc')
             ->limit(2)
             ->get();
