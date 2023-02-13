@@ -14,7 +14,7 @@
   <p class="card-text">{{ $course->excerpt }}</p>
   <div class="d-flex align-items-center gap-1">
     @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
-      <x-button url="#" color="secondary">
+      <x-button url="#" color="success">
         Certificado
       </x-button>
     @endif

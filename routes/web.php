@@ -20,6 +20,7 @@ use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\UserEnrollmentController;
 use App\Http\Controllers\UserPaymentController;
 use App\Http\Controllers\UserRoleController;
@@ -106,6 +107,9 @@ Route::middleware('auth')->group(function () {
     
     Route::get('users/{user}/enrollments', [UserEnrollmentController::class, 'index'])
         ->name('users.enrollments.index');
+
+    Route::get('users/{user}/courses', [UserCourseController::class, 'index'])
+        ->name('users.courses.index');
 
     Route::patch('users/{user}/role', [UserRoleController::class, 'update'])
         ->name('users.role.update');

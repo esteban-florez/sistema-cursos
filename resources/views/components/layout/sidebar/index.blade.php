@@ -42,8 +42,8 @@
           </x-layout.sidebar.item>
           @endis
           @is('Instructor')
-          <x-layout.sidebar.item url="#" icon="star">
-            Mis cursos
+          <x-layout.sidebar.item :url="route('users.courses.index', $user->id)" icon="school">
+            Cursos dictados
           </x-layout.sidebar.item>
           @endis
           @isnt('Estudiante')

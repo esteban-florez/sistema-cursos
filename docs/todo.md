@@ -7,7 +7,6 @@
 
 ## Esteban:
 
-- Crear "Cursos dictados".
 - Añadir Certificado de Aprobación.
 - Pago de cuotas restantes.
 - Hacer reinicio de cursos de alguna forma.

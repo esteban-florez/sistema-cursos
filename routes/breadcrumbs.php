@@ -70,6 +70,10 @@ Breadcrumbs::for('users.show', function (Trail $trail, User $user) {
     $trail->push('Perfil', route('users.show', $user->id));
 });
 
+Breadcrumbs::for('profile', function (Trail $trail) {
+    $trail->push('Perfil');
+});
+
 Breadcrumbs::for('users.edit', function (Trail $trail, User $user) {
     $trail->parent('users.show', $user);
     $trail->push('Editar perfil');
@@ -78,6 +82,16 @@ Breadcrumbs::for('users.edit', function (Trail $trail, User $user) {
 Breadcrumbs::for('users.payments.index', function (Trail $trail, User $user) {
     $trail->parent('payments');
     $trail->push('Mis pagos', route('users.payments.index', $user));
+});
+
+Breadcrumbs::for('users.enrollments.index', function (Trail $trail, User $user) {
+    $trail->parent('courses');
+    $trail->push('Mis cursos', route('users.enrollments.index', $user));
+});
+
+Breadcrumbs::for('users.courses.index', function (Trail $trail, User $user) {
+    $trail->parent('courses');
+    $trail->push('Cursos dictados', route('users.courses.index', $user));
 });
 
 Breadcrumbs::for('pending-payments.index', function (Trail $trail) {
