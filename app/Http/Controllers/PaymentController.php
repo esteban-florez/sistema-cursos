@@ -54,13 +54,4 @@ class PaymentController extends Controller
             ->route('users.payments.index', Auth::user()->id)
             ->with('alert', trans('alerts.payments.updated'));
     }
-
-    public function destroy(Payment $payment)
-    {
-        $payment->delete();
-
-        return redirect()
-            ->route('payments.index')
-            ->with('alert', trans('alerts.payments.deleted'));
-    }
 }

@@ -16,7 +16,6 @@ class CreateMembershipsTable extends Migration
         Schema::create('memberships', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('club_id')->constrained();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

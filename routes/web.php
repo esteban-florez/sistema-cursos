@@ -112,7 +112,7 @@ Route::middleware('auth')->group(function () {
 
     // Payments routes
     Route::resource('payments', PaymentController::class)
-        ->except('create', 'store', 'show');
+        ->only('index', 'edit', 'update');
 
     Route::get('pending-payments', [PendingPaymentController::class, 'index'])
         ->name('pending-payments.index');

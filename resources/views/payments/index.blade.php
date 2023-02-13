@@ -63,7 +63,6 @@
               $payment->type,
               $payment->status,
               ]"
-              :delete="route('payments.destroy', $payment->id)"
             >
               <x-slot name="extraActions">
                 @foreach (payStatuses() as $status)

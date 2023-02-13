@@ -9,7 +9,7 @@
 
 - Crear "Cursos dictados".
 - Añadir Certificado de Aprobación.
-- Quitar deletes en todo y refactorizar expiración de matrícula.
+- Pago de cuotas restantes.
 - Hacer reinicio de cursos de alguna forma.
 
 ## Tareas a largo plazo:

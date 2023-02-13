@@ -45,7 +45,7 @@ class DeleteUnconfirmedEnrollments extends Command
             $unconfirmed = $course->enrollments()
                 ->whereNull('enrollments.confirmed_at')->get();
             
-            $unconfirmed->each(fn($enrollment) =>$enrollment->delete());
+            $unconfirmed->each(fn($enrollment) => $enrollment->delete());
         });
 
         echo "Removed unconfirmed enrollments successfully.\n";

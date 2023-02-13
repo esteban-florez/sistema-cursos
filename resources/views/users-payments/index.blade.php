@@ -33,9 +33,6 @@
                 Editar
               </x-button>
             @endif
-            <x-button icon="trash" color="danger">
-              Eliminar
-            </x-button>
           </div>
         </div>
       </div>
