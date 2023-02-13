@@ -110,6 +110,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('users/{user}/role', [UserRoleController::class, 'update'])
         ->name('users.role.update');
 
+    // Change password routes
+    Route::group([
+        'controller' => PasswordController::class,
+        'as' => 'password.',
+    ],
+    function () {
+        Route::get('user/{user}/change-password', 'change')
+            ->name('change');
+
+        Route::post('update-password', 'update')
+            ->name('update');
+    });
+
     // Payments routes
     Route::resource('payments', PaymentController::class)
         ->only('index', 'edit', 'update');

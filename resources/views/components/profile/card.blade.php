@@ -6,7 +6,7 @@
       <div class="col-md-4">
         <img class="img-fluid h-100 rounded-left img-cover"
           src="{{ $image }}"
-          alt="Imagen del {{ $alt }}: ">
+          alt="{{ $alt }}">
       </div>
       <div class="col-md-8">
         <div class="card-body">

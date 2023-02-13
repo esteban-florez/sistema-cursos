@@ -14,8 +14,10 @@
     @foreach ($items as $item)
       <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
         <div class="course-info">
-          <h5>{{ $item->name }}</h5>
-          <x-button :url="route($detailUrl , $item->id)" color="primary" class="btn-sm mb-1">Ver detalles</x-button>
+          <a href="{{ route($detailUrl , $item->id) }}" class="d-flex justify-content-center align-items-center">
+            <h5 class="mb-1">{{ $item->name }}</h5>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
         </div>
         <img src="{{ $item->image }}" class="w-100" alt="{{ $item->name }}">
       </div>

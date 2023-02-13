@@ -1,11 +1,23 @@
-@props(['course'])
-
-<x-profile.card :image="asset($course->image)" alt="curso">
+@props(['enrollment'])
+@php
+  $course = $enrollment->course;
+  $approvalColors = [
+      'Aprobado' => 'success',
+      'Reprobado' => 'danger',
+      'Por decidir' => 'secondary'
+    ];
+  $approvalColor = $approvalColors[$enrollment->approval];
+@endphp
+<x-profile.card :image="asset($course->image)" alt="Imagen del Curso: {{ $course->name }}">
   <h5 class="mb-0">{{ $course->name }}</h5>
-  <div class="badge badge-success mb-2">{{ $course->approved_at }}</div>
+  <div class="badge badge-{{ $approvalColor }} mb-2">{{ $enrollment->approval }}</div>
   <p class="card-text">{{ $course->excerpt }}</p>
   <div class="d-flex align-items-center gap-1">
-    <x-button color="secondary">Certificado</x-button>
-    <x-button url="{{ route('courses.show', $course->id) }}">Detalles</x-button>
+    @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
+      <x-button url="#" color="secondary">
+        Certificado
+      </x-button>
+    @endif
+    <x-button :url="route('courses.show', $course->id)">Detalles</x-button>
   </div>
 </x-profile.card>

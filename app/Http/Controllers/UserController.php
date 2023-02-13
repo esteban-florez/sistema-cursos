@@ -6,7 +6,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Area;
 use App\Models\Club;
-use App\Models\Course;
 use App\Models\User;
 use App\Models\PNF;
 use App\Services\Input;
@@ -84,11 +83,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {       
-        $courses = Course::availables()
-            ->boughtBy($user)
-            ->orderBy('id', 'desc')
-            ->limit(2)
-            ->get();
+        $enrollments = $user
+            ->enrollments()
+            ->latest()
+            ->paginate(2)
+            ->withQueryString();
 
         $clubs = Club::latest()
             ->orderBy('id', 'desc')
@@ -97,7 +96,7 @@ class UserController extends Controller
 
         return view('users.show',[
             'user' => $user,
-            'courses' => $courses,
+            'enrollments' => $enrollments,
             'clubs' => $clubs,
         ]);
     }
