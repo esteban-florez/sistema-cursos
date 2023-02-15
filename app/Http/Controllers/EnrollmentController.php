@@ -10,7 +10,6 @@ use App\Models\MovilCredentials;
 use App\Models\TransferCredentials;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use stdClass;
 
 class EnrollmentController extends Controller
 {
@@ -34,7 +33,7 @@ class EnrollmentController extends Controller
     public function create(Request $request)
     {
         $course = Course::findOrFail($request->input('course'));
-        $credentials = new stdClass;
+        $credentials = new \stdClass;
         
         $credentials->movil = MovilCredentials::select(
             ['ci', 'bank', 'phone'])->firstOrFail();
@@ -55,11 +54,19 @@ class EnrollmentController extends Controller
             'user_id' => Auth::user()->id,
             'mode' => $request->safe()->mode,
         ]);
-        
+
         Payment::create([
             ...$request->safe()->except('mode'),
             'enrollment_id' => $enrollment->id,
         ]);
+
+        if ($request->input('mode') === 'Reservación') {
+            Payment::create([
+                'category' => 'Cuota restante',
+                'fulfilled' => false,
+                'enrollment_id' => $enrollment->id,
+            ]);
+        }
 
         return redirect()
             ->route('enrollments.success', $enrollment->id);
