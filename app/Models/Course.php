@@ -189,6 +189,13 @@ class Course extends Model
         return "$ {$this->reserv_price},00";
     }
 
+    public function getRemainingAmountAttribute()
+    {
+        $remaining = $this->total_price - $this->reserv_price;
+        
+        return "$ {$remaining},00";
+    }
+
     public function setDaysAttribute($daysArray)
     {
         $this->attributes['days'] = collect($daysArray)

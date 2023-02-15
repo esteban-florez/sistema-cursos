@@ -135,12 +135,6 @@ span.fab,
   text-align: center;
 }
 
-.alert .close {
-  color: #fff;
-  opacity: 1;
-  font-size: 1rem;
-}
-
 .callout.callout-primary {
   border-left-color: #007bff;
 }

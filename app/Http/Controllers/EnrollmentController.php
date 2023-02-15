@@ -15,7 +15,7 @@ class EnrollmentController extends Controller
 {
     public function index(Request $request)
     {
-        $course = Course::findOrFail($request->input('course'));
+        $course = Course::findOrFail($request->query('course'));
         $search = $request->input('search');
         
         $enrollments = Enrollment::whereBelongsTo($course)
@@ -32,7 +32,7 @@ class EnrollmentController extends Controller
 
     public function create(Request $request)
     {
-        $course = Course::findOrFail($request->input('course'));
+        $course = Course::findOrFail($request->query('course'));
         $credentials = new \stdClass;
         
         $credentials->movil = MovilCredentials::select(
@@ -50,7 +50,7 @@ class EnrollmentController extends Controller
     public function store(EnrollmentRequest $request)
     {
         $enrollment = Enrollment::create([
-            'course_id' => Course::findOrFail($request->input('course'))->id,
+            'course_id' => Course::findOrFail($request->query('course'))->id,
             'user_id' => Auth::user()->id,
             'mode' => $request->safe()->mode,
         ]);

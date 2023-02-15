@@ -74,7 +74,7 @@ class Payment extends Model
         });
     }
 
-    public function scopeNotFulfilled($query)
+    public function scopeUnfulfilled($query)
     {
         return $query->withoutGlobalScope('fulfilled')
             ->where('fulfilled', false);

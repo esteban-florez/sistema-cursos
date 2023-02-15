@@ -12,7 +12,7 @@ class EnrollmentPDFController extends Controller
     public function index(Request $request)
     {
         $course = Course::with('instructor')
-            ->findOrFail($request->input('course'));
+            ->findOrFail($request->query('course'));
  
         $enrollments = Enrollment::latest()
             ->whereBelongsTo($course)
