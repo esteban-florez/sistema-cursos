@@ -92,6 +92,9 @@
           <x-layout.sidebar.item :url="route('users.payments.index', $user->id)" icon="list">
             Mis pagos
           </x-layout.sidebar.item>
+          <x-layout.sidebar.item :url="route('unfulfilled-payments.index', ['user' => $user->id])" icon="receipt">
+            Cuotas restantes
+          </x-layout.sidebar.item>
           @endis
           @is('Administrador')
           <x-layout.sidebar.item :url="route('payments.index')" icon="list">

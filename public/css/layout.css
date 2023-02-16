@@ -139,6 +139,11 @@ span.fab,
   border-left-color: #007bff;
 }
 
+.callout a {
+  color: #fff;
+  text-decoration: none;
+}
+
 .breadcrumb {
   margin-bottom: 0;
 }

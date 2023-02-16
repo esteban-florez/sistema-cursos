@@ -19,6 +19,7 @@ use App\Http\Controllers\EnrollmentPDFController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
+use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\UserEnrollmentController;
@@ -136,6 +137,9 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('payments/{payment}/status', [PaymentStatusController::class, 'update'])
         ->name('payments.status.update');
+
+    Route::get('unfulfilled-payments', [UnfulfilledPaymentController::class, 'index'])
+        ->name('unfulfilled-payments.index');
 
     // Clubs routes
     Route::resource('clubs', ClubController::class)

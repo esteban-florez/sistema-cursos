@@ -30,11 +30,6 @@
   display: none;
 }
 
-.callout a {
-  color: #fff;
-  text-decoration: none;
-}
-
 .bs-stepper-content .content.initial {
   display: block !important;
   visibility: visible !important;
