@@ -109,9 +109,14 @@ Breadcrumbs::for('pending-payments.index', function (Trail $trail) {
     $trail->push('Pagos pendientes', route('pending-payments.index'));
 });
 
-Breadcrumbs::for('unfulfilled-payments.index', function (Trail $trail, $user) {
+Breadcrumbs::for('unfulfilled-payments.index', function (Trail $trail, User $user) {
     $trail->parent('payments');
-    $trail->push('Cuotas restantes', route('unfulfilled-payments.index', ['user' => $user]));
+    $trail->push('Cuotas restantes', route('unfulfilled-payments.index', ['user' => $user->id]));
+});
+
+Breadcrumbs::for('unfulfilled-payments.edit', function (Trail $trail, $user) {
+    $trail->parent('unfulfilled-payments.index', $user);
+    $trail->push('Pagar cuota restante');
 });
 
 Breadcrumbs::for('clubs.index', function (Trail $trail) {

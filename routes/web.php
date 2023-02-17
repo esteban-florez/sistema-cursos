@@ -138,8 +138,19 @@ Route::middleware('auth')->group(function () {
     Route::patch('payments/{payment}/status', [PaymentStatusController::class, 'update'])
         ->name('payments.status.update');
 
-    Route::get('unfulfilled-payments', [UnfulfilledPaymentController::class, 'index'])
-        ->name('unfulfilled-payments.index');
+    Route::group([
+        'controller' => UnfulfilledPaymentController::class,
+        'as' => 'unfulfilled-payments.',
+    ], function () {
+        Route::get('unfulfilled-payments', 'index')
+            ->name('index');
+        
+        Route::get('unfulfilled-payments/{payment}/edit', 'edit')
+            ->name('edit');
+    
+        Route::patch('unfulfilled-payments/{payment}', 'update')
+            ->name('update');
+    });
 
     // Clubs routes
     Route::resource('clubs', ClubController::class)

@@ -21,4 +21,5 @@ return [
     'password' => generateAlerts('La contraseña'),
     'user-role' => generateAlerts('El rol del usuario'),
     'approval' => generateAlerts('La aprobación'),
+    'fulfilled' => '¡El pago se ha realizado con éxito!', 
 ];

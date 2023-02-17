@@ -8,7 +8,7 @@
     {{ Breadcrumbs::render('payments.edit', $payment) }}
   </x-slot>
   @push('js')
-    <script defer src="{{ asset('js/payments-edit.js') }}"></script>
+    <script defer src="{{ asset('js/ref-input.js') }}"></script>
   @endpush
   <section class="container-fluid">
     <div class="row justify-content-center">
