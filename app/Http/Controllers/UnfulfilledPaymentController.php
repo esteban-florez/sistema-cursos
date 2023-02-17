@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FulfillPaymentRequest;
 use App\Models\MovilCredentials;
 use App\Models\Payment;
 use App\Models\TransferCredentials;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UnfulfilledPaymentController extends Controller
 {

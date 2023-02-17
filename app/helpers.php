@@ -122,6 +122,25 @@ if (!function_exists('phases')) {
     }
 }
 
+if (!function_exists('spanishDate')) {
+    function spanishDate($date) {
+        $months = [
+            '01' => 'enero', '02' => 'febrero',
+            '03' => 'marzo', '04' => 'abril',
+            '05' => 'mayo', '06' => 'junio',
+            '07' => 'julio', '08' => 'agosto',
+            '09' => 'septiembre', '10' => 'octubre',
+            '11' => 'noviembre', '12' => 'diciembre'
+        ];
+
+        $day = $date->format('d');
+        $month = $months[$date->format('m')];
+        $year = $date->format('Y');
+
+        return "{$day} de {$month} del {$year}";
+    }
+}
+
 if (!function_exists('base64')) {
     function base64($path) {
         return base64_encode(file_get_contents(public_path($path)));

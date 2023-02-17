@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AvailableCourseController;
+use App\Http\Controllers\CertificatePDFController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
@@ -223,4 +224,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('payments-pdf', [PaymentPDFController::class, 'index'])
         ->name('payments-pdf.index');
+
+    Route::get('certificate/{enrollment}', CertificatePDFController::class)
+        ->name('certificate-pdf');
 });

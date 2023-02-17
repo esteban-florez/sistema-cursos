@@ -16,9 +16,10 @@ class PNFSeeder extends Seeder
     {
         PNF::truncate();
         
-        foreach (PNF::$pnfNames as $name) {
+        foreach (PNF::$pnfs as $name => $leader) {
             PNF::create([
                 'name' => $name,
+                'leader' => $leader,
             ]);
         }
     }
