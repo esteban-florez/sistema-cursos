@@ -24,3 +24,7 @@
 .profile-card-shadow {
   box-shadow: 0 0 10px rgb(180, 180, 180);
 }
+
+.empty-container {
+  height: 11.5rem;
+}

@@ -88,15 +88,13 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="row no-gutters">
-            @forelse($enrollments as $enrollment)
-              <x-profile.course :enrollment="$enrollment"/>
-            @empty
-              <div class="empty-container">
-                <div class="empty">No tienes cursos actualmente.</div>
-              </div>
-            @endforelse
-          </div>
+          @forelse($enrollments as $enrollment)
+            <x-profile.course :enrollment="$enrollment"/>
+          @empty
+            <div class="empty-container">
+              <div class="empty">No tienes cursos actualmente.</div>
+            </div>
+          @endforelse
         </div>
       </div>
       <div class="card mx-2 card-dark">
@@ -112,15 +110,13 @@
           </div>
         </div>
         <div class="card-body">
-          <div class="row no-gutters">
-            @forelse($clubs as $club)
-              {{-- <x-profile.club :club="$club"/> --}}
-            @empty
-              <div class="empty-container">
-                <div class="empty">No tienes clubes actualmente.</div>
-              </div>
-            @endforelse
-          </div>
+          @forelse($clubs as $club)
+            {{-- <x-profile.club :club="$club"/> --}}
+          @empty
+            <div class="empty-container">
+              <div class="empty">No tienes clubes actualmente.</div>
+            </div>
+          @endforelse
         </div>
       </div>
     </div>

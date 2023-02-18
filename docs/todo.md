@@ -1,9 +1,7 @@
 ## Myriam:
 
-- Arreglar mis cursos en perfil.
-- Ruta de cambio de contraseña.
 - Ruta de cambio de imagen de perfil.
-- Actualizar detalle de curso para que muestre más cosas si ya estás inscrito en él.
+- Actualizar detalle de curso para que muestre más cosas si ya estás inscrito en él. (proceso)
 
 ## Esteban:
 
