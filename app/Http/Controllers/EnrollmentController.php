@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Enrollment;
 use App\Models\MovilCredentials;
 use App\Models\TransferCredentials;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use stdClass;
@@ -79,6 +80,14 @@ class EnrollmentController extends Controller
         return view('enrollments.success', [
             'enrollment' => $enrollment,
             'isOnline' => $payment->isOnline(),
+        ]);
+    }
+
+    public function show(User $user, Enrollment $enrollment)
+    {
+        return view('users-enrollments.show', [
+            'user' => $user,
+            'enrollment' => $enrollment,
         ]);
     }
 }

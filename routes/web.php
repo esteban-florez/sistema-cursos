@@ -159,6 +159,9 @@ Route::middleware('auth')->group(function () {
         
         Route::get('enrollments/{enrollment}/success', 'success')
             ->name('success');
+
+        Route::get('enrollments/{enrollment}', 'show')
+            ->name('show');
     }); 
 
     Route::patch('enrollments/{enrollment}/approval', 

@@ -148,6 +148,11 @@ Breadcrumbs::for('enrollments.success', function (Trail $trail, Enrollment $enro
     $trail->push('Inscripción en curso', route('enrollments.success', $enrollment->id));
 });
 
+Breadcrumbs::for('enrollments.show', function (Trail $trail, Enrollment $enrollment) {
+    $trail->parent('users-enrollments.index', Auth::user());
+    $trail->push($enrollment->course->name, route('enrollments.show', $enrollment));
+});
+
 Breadcrumbs::for('credentials.index', function (Trail $trail) {
     $trail->parent('config');
     $trail->push('Credenciales de pago', route('credentials.index'));
@@ -159,5 +164,5 @@ Breadcrumbs::for('home', function (Trail $trail) {
 
 Breadcrumbs::for('users-enrollments.index', function (Trail $trail) {
     $trail->parent('courses');
-    $trail->push('Mis cursos');
+    $trail->push('Mis cursos', route('users.enrollments.index', Auth::user()));
 });
