@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AvailableCourseController;
+use App\Http\Controllers\CertificatePDFController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\EnrollmentPDFController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
+use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\UserEnrollmentController;
@@ -137,6 +139,20 @@ Route::middleware('auth')->group(function () {
     Route::patch('payments/{payment}/status', [PaymentStatusController::class, 'update'])
         ->name('payments.status.update');
 
+    Route::group([
+        'controller' => UnfulfilledPaymentController::class,
+        'as' => 'unfulfilled-payments.',
+    ], function () {
+        Route::get('unfulfilled-payments', 'index')
+            ->name('index');
+        
+        Route::get('unfulfilled-payments/{payment}/edit', 'edit')
+            ->name('edit');
+    
+        Route::patch('unfulfilled-payments/{payment}', 'update')
+            ->name('update');
+    });
+
     // Clubs routes
     Route::resource('clubs', ClubController::class)
         ->except('destroy');
@@ -211,4 +227,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('payments-pdf', [PaymentPDFController::class, 'index'])
         ->name('payments-pdf.index');
+
+    Route::get('certificate/{enrollment}', CertificatePDFController::class)
+        ->name('certificate-pdf');
 });

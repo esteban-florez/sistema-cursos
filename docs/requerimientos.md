@@ -9,7 +9,7 @@
 
   ## Gestión de cursos:
   * Catálogo de cursos.
-  - Fases del curso.
+  * Fases del curso.
   * Gestión de matrícula.
   - Generación de horarios.
   * Aprobación de estudiantes.
@@ -30,7 +30,7 @@
   * Recepción de pagos.
   * Clasificación en tipos de pagos.
   * Verificación de pagos.
-  - Cuotas restantes.
+  * Cuotas restantes.
 
 # Requerimientos de salida:
   * Planilla de inscripción en cursos de extensión.

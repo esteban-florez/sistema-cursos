@@ -73,4 +73,17 @@ class Payment extends Model
             return $query->whereIn('enrollment_id', $ids);
         });
     }
+
+    public function scopeUnfulfilled($query)
+    {
+        return $query->withoutGlobalScope('fulfilled')
+            ->where('fulfilled', false);
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope('fulfilled', function ($builder) {
+            $builder->where('fulfilled', true);
+        });
+    }
 }

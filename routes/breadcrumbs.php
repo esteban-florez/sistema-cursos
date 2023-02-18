@@ -94,11 +94,6 @@ Breadcrumbs::for('users.courses.index', function (Trail $trail, User $user) {
     $trail->push('Cursos dictados', route('users.courses.index', $user));
 });
 
-Breadcrumbs::for('pending-payments.index', function (Trail $trail) {
-    $trail->parent('payments');
-    $trail->push('Pagos pendientes', route('pending-payments.index'));
-});
-
 Breadcrumbs::for('payments.index', function (Trail $trail) {
     $trail->parent('payments');
     $trail->push('Lista de pagos', route('payments.index'));
@@ -107,6 +102,21 @@ Breadcrumbs::for('payments.index', function (Trail $trail) {
 Breadcrumbs::for('payments.edit', function (Trail $trail, Payment $payment) {
     $trail->parent('users.payments.index', Auth::user());
     $trail->push('Editar pago', route('payments.edit', $payment->id));
+});
+
+Breadcrumbs::for('pending-payments.index', function (Trail $trail) {
+    $trail->parent('payments');
+    $trail->push('Pagos pendientes', route('pending-payments.index'));
+});
+
+Breadcrumbs::for('unfulfilled-payments.index', function (Trail $trail, User $user) {
+    $trail->parent('payments');
+    $trail->push('Cuotas restantes', route('unfulfilled-payments.index', ['user' => $user->id]));
+});
+
+Breadcrumbs::for('unfulfilled-payments.edit', function (Trail $trail, $user) {
+    $trail->parent('unfulfilled-payments.index', $user);
+    $trail->push('Pagar cuota restante');
 });
 
 Breadcrumbs::for('clubs.index', function (Trail $trail) {

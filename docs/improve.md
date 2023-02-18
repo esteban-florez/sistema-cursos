@@ -24,3 +24,7 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
 - Buscar en toooodo el código y aplicar DRY
 
 - Los push en blade se repiten burda, y tienen mucho boilerplate
+
+- Nestear más cosas en los sitios que se requiera para que no sean puros controladores de index (semánticamente hablando)
+
+- Salirnos de select2 y pasarnos a algo vanilla

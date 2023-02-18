@@ -19,7 +19,7 @@ class EnrollmentMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $course = Course::findOrFail($request->input('course'));
+        $course = Course::findOrFail($request->query('course'));
         $user = Auth::user();
 
         if ($course->students_count >= $course->student_limit) {

@@ -7,10 +7,6 @@
 
 ## Esteban:
 
-- Añadir Certificado de Aprobación.
-- Pago de cuotas restantes.
-- Hacer reinicio de cursos de alguna forma.
-
 ## Tareas a largo plazo:
 
 - Terminar el perfil con clubes propios.

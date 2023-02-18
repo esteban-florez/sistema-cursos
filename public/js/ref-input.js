@@ -5,18 +5,21 @@ const textAddon = document.querySelector('.input-group-text')
 function update() {
   const value = select.selectedOptions[0].value
 
-  if (value.startsWith('Efectivo')) {
+  if (value.startsWith('Efectivo') || value.length === 0) {
     ref.setAttribute('disabled', 'disabled')
   } else {
     ref.removeAttribute('disabled')
   }
 
-  if (value === 'Efectivo ($)') {
-    textAddon.innerText = '$'
-  } else {
-    textAddon.innerText = 'Bs.D.'
+  if (textAddon) {
+    if (value === 'Efectivo ($)') {
+      textAddon.innerText = '$'
+    } else {
+      textAddon.innerText = 'Bs.D.'
+    }
   }
 }
 
-select.addEventListener('change', update)
+$('[name="type"]').on('change', update)
+
 update()

@@ -46,7 +46,7 @@
             @endif
             <div class="d-flex align-items-center gap-1 mt-3">
               @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
-                <x-button url="#" color="success" icon="arrow-down">
+                <x-button :url="route('certificate-pdf', $enrollment->id)" color="success" icon="arrow-down">
                   Certificado
                 </x-button>
               @endif
