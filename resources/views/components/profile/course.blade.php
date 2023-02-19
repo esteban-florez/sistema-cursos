@@ -1,5 +1,6 @@
 @props(['enrollment'])
 @php
+  // DRY
   $course = $enrollment->course;
   $approvalColors = [
       'Aprobado' => 'success',

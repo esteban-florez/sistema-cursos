@@ -92,9 +92,14 @@ class EnrollmentController extends Controller
 
     public function show(User $user, Enrollment $enrollment)
     {
+        $payments = $enrollment->payments;
+        $course = $enrollment->course;
+
         return view('users-enrollments.show', [
             'user' => $user,
             'enrollment' => $enrollment,
+            'payments' => $payments,
+            'course' => $course,
         ]);
     }
 }
