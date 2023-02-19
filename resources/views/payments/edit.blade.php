@@ -22,7 +22,7 @@
                 Curso: <a class="text-bold" href="{{ route('courses.show', $course->id) }}">{{ $course->name }}</a>
               </h4>
               <div class="d-flex">
-                <x-payment.status class="mb-0" :payment="$payment"/>
+                <x-payment.status :payment="$payment"/>
                 <p class="ml-5 mb-0">Categoría: <b>{{ $payment->category }}</b></p>
               </div>
               <hr>

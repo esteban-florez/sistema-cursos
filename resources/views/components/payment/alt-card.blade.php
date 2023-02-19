@@ -2,16 +2,23 @@
 
 @php
   $course = $payment->enrollment->course;
+  $enrollment = $payment->enrollment;
 @endphp
 
-<div class="card payment-card position-relative">
-  <div class="card-body">
-    <a href="{{ route('courses.show', $course->id) }}">
-      <h4 class="text-bold">
+@push('css')
+  <link rel="stylesheet" href="{{ asset('css/students-payments.css') }}">
+@endpush
+
+<div class="card payment-card">
+  <div class="card-header">
+    <a href="{{ route('enrollments.show', $enrollment) }}">
+      <h4 class="text-bold text-truncate mb-0">
         {{ $course->name }}
       </h4>
     </a>
     <x-payment.status :payment="$payment"/>
+  </div>
+  <div class="card-body">
     <ul class="list-group">
       <li class="list-group-item bg-light">Fecha: <b>{{ $payment->updated_at->format(DF) }}</b></li>
       <li class="list-group-item bg-light">Categoría: <b>{{ $payment->category }}</b></li>
