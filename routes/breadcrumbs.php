@@ -139,6 +139,11 @@ Breadcrumbs::for('clubs.edit', function (Trail $trail, Club $club) {
     $trail->push('Editar club', route('clubs.edit', $club->id));
 });
 
+Breadcrumbs::for('users-clubs.index', function (Trail $trail) {
+    $trail->parent('clubs');
+    $trail->push('Lista de clubs');
+});
+
 Breadcrumbs::for('enrollments.index', function (Trail $trail, Course $course) {
     $trail->parent('courses.show', $course);
     $trail->push('Matrícula', route(

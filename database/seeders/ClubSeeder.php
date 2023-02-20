@@ -18,7 +18,7 @@ class ClubSeeder extends Seeder
 
         Club::factory([
             'name' => 'Futbol',
-            'description' => 'El siguiente club es una entidad deportiva que tiene como fin único la práctica del fútbol. Aprende las bases y desarrolla tus habilidades en esta área.',
+            'description' => 'El siguiente club tiene como fin único la práctica de fútbol. Aprende las bases y desarrolla tus habilidades en esta área.',
             'day' => 'Lunes',
             'start_hour' => '08:00:00',
             'end_hour' => '12:00:00',
