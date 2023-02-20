@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AvailableClubController;
 use App\Http\Controllers\AvailableCourseController;
 use App\Http\Controllers\CertificatePDFController;
 use App\Http\Controllers\CourseController;
@@ -21,7 +22,6 @@ use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\UnfulfilledPaymentController;
-use App\Http\Controllers\UserClubController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\UserEnrollmentController;
@@ -158,8 +158,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('clubs', ClubController::class)
         ->except('destroy');
         
-    Route::get('users-clubs', [UserClubController::class, 'index'])
-        ->name('users-clubs.index');
+    Route::get('available-clubs', [AvailableClubController::class, 'index'])
+        ->name('available-clubs.index');
 
     // Enrollment routes
     Route::group([

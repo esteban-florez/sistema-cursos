@@ -6,6 +6,8 @@
 
 ## Esteban:
 
+- Hacer que se pueda editar el jefe de departamento de un PNF (quizás toque mini-CRUD de pnfs).
+
 ## Tareas a largo plazo:
 
 - Terminar el perfil con clubes propios.

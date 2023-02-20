@@ -6,9 +6,9 @@ use App\Models\Club;
 use App\Services\Input;
 use Illuminate\Http\Request;
 
-class UserClubController extends Controller
+class AvailableClubController extends Controller
 {
-        /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

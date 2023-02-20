@@ -3,6 +3,7 @@
   * Registro de cursos de extensión.
   * Registro de instructores.
   * Registro de credenciales de pagos.
+  - Registro de artículos.
   - Registro de preparadores.
 
 # Procesos:
@@ -36,10 +37,9 @@
   * Planilla de inscripción en cursos de extensión.
   * Generación de matrícula de los cursos de extensión.
   * Generación de listado de pagos.
+  * Generación de certificado de aprobación de cursos.
   - Generación de matrícula en los clubes.
-  - Generación de perfil de los instructores.
   - Impresión de horarios.
-  - Certificado de aprobación.
   - Datos estadísticos.
   - Gráficas estadísticas.
 

@@ -139,7 +139,7 @@ Breadcrumbs::for('clubs.edit', function (Trail $trail, Club $club) {
     $trail->push('Editar club', route('clubs.edit', $club->id));
 });
 
-Breadcrumbs::for('users-clubs.index', function (Trail $trail) {
+Breadcrumbs::for('available-clubs.index', function (Trail $trail) {
     $trail->parent('clubs');
     $trail->push('Lista de clubs');
 });
@@ -164,7 +164,7 @@ Breadcrumbs::for('enrollments.success', function (Trail $trail, Enrollment $enro
 });
 
 Breadcrumbs::for('enrollments.show', function (Trail $trail, Enrollment $enrollment) {
-    $trail->parent('users-enrollments.index', Auth::user());
+    $trail->parent('users.enrollments.index', $enrollment->student);
     $trail->push($enrollment->course->name, route('enrollments.show', $enrollment));
 });
 
@@ -177,7 +177,7 @@ Breadcrumbs::for('home', function (Trail $trail) {
     $trail->push('Inicio', route('home'));
 });
 
-Breadcrumbs::for('users-enrollments.index', function (Trail $trail) {
+Breadcrumbs::for('users.enrollments.index', function (Trail $trail, User $user) {
     $trail->parent('courses');
-    $trail->push('Mis cursos', route('users.enrollments.index', Auth::user()));
+    $trail->push('Mis cursos', route('users.enrollments.index', $user));
 });

@@ -57,11 +57,11 @@
         Clubes
         <x-slot name="menu">
           @is('Estudiante')
-          <x-layout.sidebar.item :url="route('users-clubs.index')" icon="list">
+          <x-layout.sidebar.item :url="route('available-clubs.index')" icon="list">
             Lista de clubes
           </x-layout.sidebar.item>
           @endis
-          @is('Administrador')
+          @isnt('Estudiante')
           <x-layout.sidebar.item :url="route('clubs.index')" icon="list">
             Lista de clubes
           </x-layout.sidebar.item>

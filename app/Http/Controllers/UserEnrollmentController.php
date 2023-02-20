@@ -23,6 +23,7 @@ class UserEnrollmentController extends Controller
         return view('users-enrollments.index', [
             'enrollments' => $enrollments,
             'search' => $search,
+            'user' => $user,
         ]);
     }
 }

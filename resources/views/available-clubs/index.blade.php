@@ -1,6 +1,6 @@
 <x-layout.main title="Clubes">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('users-clubs.index') }}
+    {{ Breadcrumbs::render('available-clubs.index') }}
   </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/clubes.css') }}">
@@ -44,7 +44,7 @@
       </x-club.card>
     @empty
       <div class="empty-container">
-        <h2 class="empty">No hay clubes disponibles</h2>
+        <h2 class="empty">No hay clubes disponibles actualmente</h2>
       </div>
     @endforelse
   </section>
