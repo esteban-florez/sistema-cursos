@@ -4,6 +4,7 @@ use App\Models\Club;
 use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\Payment;
+use App\Models\PNF;
 use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as Trail;
@@ -171,6 +172,22 @@ Breadcrumbs::for('enrollments.show', function (Trail $trail, Enrollment $enrollm
 Breadcrumbs::for('credentials.index', function (Trail $trail) {
     $trail->parent('config');
     $trail->push('Credenciales de pago', route('credentials.index'));
+});
+
+Breadcrumbs::for('pnfs.index', function (Trail $trail) {
+    $trail->parent('config');
+    $trail->push('PNFs', route('pnfs.index'));
+});
+
+Breadcrumbs::for('pnfs.create', function (Trail $trail) {
+    $trail->parent('pnfs.index');
+    $trail->push('Añadir PNF', route('pnfs.create'));
+});
+
+Breadcrumbs::for('pnfs.edit', function (Trail $trail, PNF $pnf) {
+    $trail->parent('pnfs.index');
+    $trail->push($pnf->name);
+    $trail->push('Editar PNF', route('pnfs.edit', $pnf));
 });
 
 Breadcrumbs::for('home', function (Trail $trail) {

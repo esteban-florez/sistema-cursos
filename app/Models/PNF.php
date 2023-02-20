@@ -9,6 +9,8 @@ class PNF extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $table = 'pnfs';
 
     public static function getOptions()

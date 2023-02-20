@@ -21,6 +21,7 @@ use App\Http\Controllers\EnrollmentPDFController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
+use App\Http\Controllers\PNFController;
 use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
@@ -211,6 +212,10 @@ Route::middleware('auth')->group(function () {
         Route::put('transfer-credentials', 'update')
             ->name('transfer.update');
     });
+
+    // PNFs routes
+    Route::resource('pnfs', PNFController::class)
+        ->except('show', 'destroy');
 
     // Home routes
     Route::get('home', HomeController::class)

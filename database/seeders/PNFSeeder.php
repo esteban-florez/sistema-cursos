@@ -18,18 +18,18 @@ class PNFSeeder extends Seeder
 
         $pnfs = [
             'Extensión Universitaria' => 'N/A',
-            'Administración' => '(JD Adminitración)',
-            'Agroalimentación' => '(JD Agroalimentación)',
-            'Contaduría Pública' => '(JD Contaduría Pública)',
-            'Electricidad' => '(JD Electricidad)',
-            'Electrónica' => '(JD Electrónica)',
+            'Administración' => 'Carlos Administrador',
+            'Agroalimentación' => 'Juan Agrónomo',
+            'Contaduría Pública' => 'Alberto Contador',
+            'Electricidad' => 'Luis Eléctrico',
+            'Electrónica' => 'Miguel Electrónico',
             'Informática' => 'Anyerg Martínez',
-            'Instrumentación y Control' => '(JD Instrumentación y Control)',
-            'Mantenimiento' => '(JD Mantenimiento)',
-            'Mecánica' => '(JD Mecánica)',
-            'Sistemas de Calidad y Ambiente' => '(JD Sistemas de Calidad y Ambiente)',
-            'Telecomunicaciones' => '(JD Telecomunicaciones)',
-        ]
+            'Instrumentación y Control' => 'Bob el Consructor',
+            'Mantenimiento' => 'Daniel Mantenedor',
+            'Mecánica' => 'Juan Mecánico',
+            'Sistemas de Calidad y Ambiente' => 'Pedro Calidrupi',
+            'Telecomunicaciones' => 'Wilson Psíquico',
+        ];
         
         foreach ($pnfs as $name => $leader) {
             PNF::create([
