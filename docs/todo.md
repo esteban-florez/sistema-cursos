@@ -6,7 +6,8 @@
 
 ## Esteban:
 
-- Hacer que se pueda editar el jefe de departamento de un PNF (quizás toque mini-CRUD de pnfs).
+- Obtener los jefes de Departamento actuales de los PNF.
+- Hacer que se pueda editar el jefe de departamento de un PNF.
 
 ## Tareas a largo plazo:
 
