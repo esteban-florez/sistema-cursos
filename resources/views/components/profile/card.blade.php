@@ -1,17 +1,11 @@
-@props(['image' => null, 'alt'])
-
-<div class="col-sm-6 col-md-12">
-  <div class="card mx-2 profile-card-shadow">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img class="img-fluid h-100 rounded-left img-cover"
-          src="{{ $image }}"
-          alt="{{ $alt }}">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          {{ $slot }}
-        </div>
+<div class="card mx-2 profile-card-shadow">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      {{ $image }}
+    </div>
+    <div class="col-md-8 d-flex align-items-center">
+      <div class="card-body p-3">
+        {{ $body }}
       </div>
     </div>
   </div>

@@ -28,3 +28,15 @@
 .empty-container {
   height: 11.5rem;
 }
+
+.img {
+  height: 12rem;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 980px ) and (max-width: 1233px) {
+  .img {
+    height: 15.2rem;
+    object-fit: cover;
+  }
+}
