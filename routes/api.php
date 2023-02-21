@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Area;
+use App\Models\Course;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Rules\ValidID;
@@ -32,3 +34,22 @@ Route::post('areas', function (Request $request) {
 
     return response($area, 201);
 })->name('api.areas.store');
+
+Route::get('schedule/{user}', function (User $user) {
+    $events = null;
+    
+    // TODO -> añadir clubes
+    if ($user->role === 'Instructor') {
+        $courses = Course::phase('En curso')
+            ->whereBelongsTo($user, 'instructor')
+            ->get();
+    } else {
+        $courses = Course::phase('En curso')
+            ->whereHas('students', fn($query) => $query->where('users.id', $user->id))
+            ->get();
+    }
+
+    $events = [...$courses];
+
+    return $events;
+})->name('api.schedule');

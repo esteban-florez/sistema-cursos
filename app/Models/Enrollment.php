@@ -12,7 +12,7 @@ class Enrollment extends Model
 
     protected $guarded = [];
 
-    protected $with = ['payments', 'student'];
+    protected $with = ['payments', 'student', 'course'];
 
     const EXPIRES_IN = 7;
 
@@ -52,12 +52,6 @@ class Enrollment extends Model
 
     public function getExpiresAtAttribute()
     {
-        return $this->created_at->addDays(self::EXPIRES_IN);
-    }
-
-    public function scopeExpired($query)
-    {
-        $query->where('created_at', '<', now()->subDays(self::EXPIRES_IN)->format(DV))
-            ->whereNull('confirmed_at');
+        return $this->course->end_ins;
     }
 }

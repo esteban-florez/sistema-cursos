@@ -115,7 +115,7 @@
       </x-layout.sidebar.item>
       @endisnt
       @isnt('Administrador')
-      <x-layout.sidebar.item url="#" icon="calendar-alt">
+      <x-layout.sidebar.item :url="route('schedule')" icon="calendar-alt">
         Horario
       </x-layout.sidebar.item>
       @endisnt

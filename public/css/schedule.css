@@ -1,0 +1,69 @@
+.timetable .time-entry.violet {
+  background-color: #AF7AC5;
+  border-color: #AF7AC5;
+}
+
+.timetable .time-entry.violet:hover {
+  background-color: #9B59B6;
+  border-color: #9B59B6;
+}
+
+.timetable .time-entry.blue {
+  background-color: #5DADE2;
+  border-color: #5DADE2;
+}
+
+.timetable .time-entry.blue:hover {
+  background-color: #3498DB;
+  border-color: #3498DB;
+}
+
+.timetable .time-entry.green {
+  background-color: #45B39D;
+  border-color: #45B39D;
+}
+
+.timetable .time-entry.green:hover {
+  background-color: #16A085;
+  border-color: #16A085;
+}
+
+.timetable .time-entry.yellow {
+  background-color: #F4D03F;
+  border-color: #F4D03F;
+}
+
+.timetable .time-entry.yellow:hover {
+  background-color: #F1C40F;
+  border-color: #F1C40F;
+}
+
+.timetable .time-entry.orange {
+  background-color: #F5B041;
+  border-color: #F5B041;
+}
+
+.timetable .time-entry.orange:hover {
+  background-color: #F39C12;
+  border-color: #F39C12;
+}
+
+.timetable .time-entry.gray {
+  background-color: #95A5A6;
+  border-color: #95A5A6;
+}
+
+.timetable .time-entry.gray:hover {
+  background-color: #839192;
+  border-color: #839192;
+}
+
+.timetable .time-entry.red {
+  background-color: #EC7063;
+  border-color: #EC7063;
+}
+
+.timetable .time-entry.red:hover {
+  background-color: #E74C3C;
+  border-color: #E74C3C;
+}

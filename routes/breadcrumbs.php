@@ -190,6 +190,10 @@ Breadcrumbs::for('pnfs.edit', function (Trail $trail, PNF $pnf) {
     $trail->push('Editar PNF', route('pnfs.edit', $pnf));
 });
 
+Breadcrumbs::for('schedule', function (Trail $trail) {
+    $trail->push('Horario');
+});
+
 Breadcrumbs::for('home', function (Trail $trail) {
     $trail->push('Inicio', route('home'));
 });

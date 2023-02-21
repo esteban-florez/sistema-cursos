@@ -217,6 +217,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('pnfs', PNFController::class)
         ->except('show', 'destroy');
 
+    // Schedule route
+    Route::get('schedule', function () {
+        return view('schedule');
+    })->name('schedule');
+
     // Home routes
     Route::get('home', HomeController::class)
         ->middleware('prevent-back')

@@ -6,13 +6,11 @@
 
 ## Esteban:
 
-- Obtener los jefes de Departamento actuales de los PNF.
-- Hacer que se pueda editar el jefe de departamento de un PNF.
+- Hacer horarios.
 
 ## Tareas a largo plazo:
 
 - Terminar el perfil con clubes propios.
-- Crear rol de preparador.
 * Revisar validaciones:
   - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Arreglar búsquedas de cursos con código (IG).
