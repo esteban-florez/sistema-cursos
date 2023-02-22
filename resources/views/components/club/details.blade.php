@@ -1,5 +1,11 @@
 @props(['club'])
 
+@php 
+  $joined = auth()->user()
+    ->joinedClubs
+    ->contains($club);
+@endphp
+
 <section class="container-fluid details-grid mt-3">
   <div class="card">
     <img src="{{ asset($club->image) }}" class="w-100 img-fluid details-img rounded elevation-1" alt="Imagen del club">
@@ -14,7 +20,7 @@
         <span class="mb-1"><b>Instructor:</b> {{ $club->instructor->full_name }}</span>
         <span class="mb-1"><b>Miembros:</b> {{ $club->members_count }}</span>
       </div>
-      <div class="d-flex justify-content-between mt-3">
+      <div class="d-flex justify-content-between align-items-center mt-3">
         @isnt('Estudiante')
           <x-button 
             :url="route('memberships.index', ['club' => $club->id])" 
@@ -41,13 +47,20 @@
           >
             Volver al listado
           </x-button>
-          <x-button 
-            url="#"
-            class="btn-lg"
-            icon="clipboard-list"
-          >
-            Unirse
-          </x-button>
+          @if(!$joined)
+            <form method="POST" action="{{ route('memberships.store', ['club' => $club->id]) }}">
+              @csrf
+              <x-button 
+                class="btn-lg"
+                icon="clipboard-list"
+                type="submit"
+              >
+                Unirse
+              </x-button>
+            </form>
+          @else
+            <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
+          @endif
         @endis
       </div>
     </div>

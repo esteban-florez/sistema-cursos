@@ -89,15 +89,16 @@ class UserController extends Controller
             ->paginate(2)
             ->withQueryString();
 
-        $clubs = Club::latest()
-            ->orderBy('id', 'desc')
-            ->limit(2)
-            ->get();
+        $memberships = $user
+            ->memberships()
+            ->latest()
+            ->paginate(2)
+            ->withQueryString();
 
         return view('users.show',[
             'user' => $user,
             'enrollments' => $enrollments,
-            'clubs' => $clubs,
+            'memberships' => $memberships,
         ]);
     }
 

@@ -163,8 +163,18 @@ Route::middleware('auth')->group(function () {
     Route::get('available-clubs', [AvailableClubController::class, 'index'])
         ->name('available-clubs.index');
 
-    Route::get('memberships', [MembershipController::class, 'index'])
-        ->name('memberships.index');
+
+    // Membership routes
+    Route::group([
+        'controller' => MembershipController::class,
+        'as' => 'memberships.',
+    ], function () {
+        Route::get('memberships', 'index')
+            ->name('index');
+
+        Route::post('memberships', 'store')
+            ->name('store');
+    });
 
     // Enrollment routes
     Route::group([

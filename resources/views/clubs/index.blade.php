@@ -44,6 +44,7 @@
           <th>Día</th>
           <th>Hora de Inicio</th>
           <th>Hora de Cierre</th>
+          <th>Miembros</th>
           <th>Acciones</th>
         </x-slot>
         <x-slot name="body">
@@ -54,6 +55,7 @@
               $club->day,
               $club->start_hour->format(TF),
               $club->end_hour->format(TF),
+              $club->members_count,
               ]"
               :details="route('clubs.show', $club->id)"
               :edit="route('clubs.edit', $club->id)"

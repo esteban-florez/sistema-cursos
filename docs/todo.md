@@ -1,8 +1,9 @@
 ## Myriam:
 
 - Ruta de cambio de imagen de perfil.
-- Intentar lo de Miembros (en proceso).
-- Intentar arreglar error cuando editas los club.
+- Intentar lo de Miembros (faltan detalles).
+- Intentar arreglar error cuando editas los clubes.
+- Hacer que se puedan retirar del club.
 
 - Preguntar más sobre los clubes a Edeblangel.
 
@@ -12,7 +13,6 @@
 
 ## Tareas a largo plazo:
 
-- Terminar el perfil con clubes propios.
 * Revisar validaciones:
   - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Arreglar búsquedas de cursos con código (IG).

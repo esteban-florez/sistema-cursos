@@ -9,7 +9,7 @@
             :role="$user->role"
             :image="$user->image"
             :course-count="$user->enrollments->count()"
-            :club-count="0"
+            :club-count="$user->memberships->count()"
           />
           <div class="card card-info mx-2">
             <div class="card-header">
@@ -116,8 +116,8 @@
           </div>
         </div>
         <div class="card-body">
-          @forelse($clubs as $club)
-            {{-- <x-profile.club :club="$club"/> --}}
+          @forelse($memberships as $membership)
+            <x-profile.club :membership="$membership"/>
           @empty
             <div class="empty-container">
               <div class="empty">No tienes clubes actualmente.</div>

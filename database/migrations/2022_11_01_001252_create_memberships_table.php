@@ -14,8 +14,10 @@ class CreateMembershipsTable extends Migration
     public function up()
     {
         Schema::create('memberships', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('club_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

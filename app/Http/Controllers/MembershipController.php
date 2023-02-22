@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Membership;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MembershipController extends Controller
 {
@@ -46,7 +47,12 @@ class MembershipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Membership::create([
+            'club_id' => Club::findOrFail($request->query('club'))->id,
+            'user_id' => Auth::user()->id,
+        ]);
+        
+        return redirect()->route('available-clubs.index');
     }
 
     /**

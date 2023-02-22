@@ -15,6 +15,6 @@
   <x-profile 
     :user="$user" 
     :enrollments="$enrollments"
-    :clubs="$clubs"
+    :memberships="$memberships"
     />
 </x-layout.main>
