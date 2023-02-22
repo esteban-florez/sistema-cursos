@@ -145,6 +145,13 @@ Breadcrumbs::for('available-clubs.index', function (Trail $trail) {
     $trail->push('Lista de clubs');
 });
 
+Breadcrumbs::for('memberships.index', function (Trail $trail, Club $club) {
+    $trail->parent('clubs.show', $club);
+    $trail->push('Miembros', route(
+        'memberships.index', ['club' => $club->id]
+    ));
+});
+
 Breadcrumbs::for('enrollments.index', function (Trail $trail, Course $course) {
     $trail->parent('courses.show', $course);
     $trail->push('Matrícula', route(

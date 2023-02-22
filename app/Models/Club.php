@@ -19,9 +19,16 @@ class Club extends Model
         'end_hour' => 'datetime',
     ];
 
+    protected $withCount = ['members'];
+
     public function instructor()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'memberships');
     }
 
     public function memberships()

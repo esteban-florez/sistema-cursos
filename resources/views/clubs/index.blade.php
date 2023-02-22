@@ -57,7 +57,13 @@
               ]"
               :details="route('clubs.show', $club->id)"
               :edit="route('clubs.edit', $club->id)"
-            />
+            >
+              <x-slot name="extraActions">
+                <x-button class="btn-sm" color="secondary" :url="route('memberships.index', ['club' => $club->id])" icon="clipboard-list">
+                  Miembros
+                </x-button>
+              </x-slot>
+            </x-row>
           @endforeach
         </x-slot>
         <x-slot name="pagination">

@@ -21,8 +21,8 @@
           <span class="mb-1"><b>Instructor:</b> {{ $club->instructor->full_name }}</span>
         </div>
         <div class="d-flex justify-content-between mt-3">
-          <x-button url="#" class="btn-lg" color="secondary" icon="clipboard-list">Miembros</x-button>
-          <x-button url="{{ route('clubs.edit', $club->id) }}" class="btn-lg" icon="edit">Editar</x-button>
+          <x-button :url="route('memberships.index', ['club' => $club->id])" class="btn-lg" color="secondary" icon="clipboard-list">Miembros</x-button>
+          <x-button :url="route('clubs.edit', $club->id)" class="btn-lg" icon="edit">Editar</x-button>
         </div>
       </div>
     </div>  

@@ -26,7 +26,7 @@ class AvailableClubController extends Controller
             ->paginate(10)
             ->withQueryString();
         
-        return view('users-clubs.index', [
+        return view('available-clubs.index', [
             'clubs' => $clubs,
             'filters' => $filters,
             'sort' => $sortColumn,

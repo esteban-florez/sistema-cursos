@@ -18,6 +18,7 @@ use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\EnrollmentConfirmationController;
 use App\Http\Controllers\EnrollmentPDFController;
+use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
@@ -161,6 +162,9 @@ Route::middleware('auth')->group(function () {
         
     Route::get('available-clubs', [AvailableClubController::class, 'index'])
         ->name('available-clubs.index');
+
+    Route::get('memberships', [MembershipController::class, 'index'])
+        ->name('memberships.index');
 
     // Enrollment routes
     Route::group([
