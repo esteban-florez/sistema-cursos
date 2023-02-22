@@ -3,6 +3,7 @@
     {{ Breadcrumbs::render('clubs.edit', $club) }}
   </x-slot>
   <section class="container-fluid">
+    <x-alert />
     <div class="card mx-sm-3">
       <div class="card-body">
         <x-club-form 

@@ -67,7 +67,7 @@ class ClubController extends Controller
         Club::create($data);
 
         return redirect()->route('clubs.index')
-            ->with('El club se ha añadido con éxito');
+            ->with('alert', trans('alerts.clubs.created'));
     }
 
 

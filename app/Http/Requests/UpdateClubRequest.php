@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidID;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,7 +25,7 @@ class UpdateClubRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('course');
+        $id = $this->route('club');
 
         return [
             'name' => ['required', 'max:30', Rule::unique('clubs')->ignore($id)],
@@ -33,7 +34,12 @@ class UpdateClubRequest extends FormRequest
             'day' => ['required', 'in:'.days()->join(',')],
             'start_hour' => ['required'],
             'end_hour' => ['required'],
-            'user_id' => ['required', 'integer', 'numeric'],
+            'user_id' => [
+                'required', 
+                'integer', 
+                'numeric', 
+                new ValidID,
+            ],
         ];
     }
 }

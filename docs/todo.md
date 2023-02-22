@@ -2,7 +2,6 @@
 
 - Ruta de cambio de imagen de perfil.
 - Intentar lo de Miembros (faltan detalles).
-- Intentar arreglar error cuando editas los clubes.
 - Hacer que se puedan retirar del club.
 
 - Preguntar más sobre los clubes a Edeblangel.
