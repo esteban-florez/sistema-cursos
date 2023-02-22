@@ -1,9 +1,10 @@
 ## Myriam:
 
 - Ruta de cambio de imagen de perfil.
-- Convertir en componente el detalles de club.
 - Intentar lo de Miembros (en proceso).
 - Intentar arreglar error cuando editas los club.
+
+- Preguntar más sobre los clubes a Edeblangel.
 
 ## Esteban:
 
