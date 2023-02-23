@@ -45,8 +45,8 @@ if (!function_exists('ciTypes')) {
     }
 }
 
-if (!function_exists('operations')) {
-    function operations() {
+if (!function_exists('operationTypes')) {
+    function operationTypes() {
         return collect(['+', '-']);
     }
 }

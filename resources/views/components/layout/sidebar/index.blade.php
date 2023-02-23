@@ -78,19 +78,22 @@
           @endis
         </x-slot>
       </x-layout.sidebar.item>
-      @isnt('Estudiante')
+      @is('Administrador')
       <x-layout.sidebar.item icon="boxes">
-        Inventarios
+        Inventario
         <x-slot name="menu">
           <x-layout.sidebar.item url="#" icon="list-alt">
-            Inventario actual
+            Estado actual
           </x-layout.sidebar.item>
           <x-layout.sidebar.item url="#" icon="history">
             Historial
           </x-layout.sidebar.item>
+          <x-layout.sidebar.item :url="route('items.index')" icon="th">
+            Artículos
+          </x-layout.sidebar.item>
         </x-slot>
       </x-layout.sidebar.item>
-      @endisnt
+      @endis
       @isnt('Instructor')
       <x-layout.sidebar.item icon="money-bill">
         Pagos

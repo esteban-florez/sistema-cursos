@@ -22,6 +22,10 @@ Breadcrumbs::for('payments', function (Trail $trail) {
     $trail->push('Pagos');
 });
 
+Breadcrumbs::for('inventory', function (Trail $trail) {
+    $trail->push('Inventario');
+});
+
 Breadcrumbs::for('config', function (Trail $trail) {
     $trail->push('Configuración');
 });
@@ -195,6 +199,11 @@ Breadcrumbs::for('pnfs.edit', function (Trail $trail, PNF $pnf) {
     $trail->parent('pnfs.index');
     $trail->push($pnf->name);
     $trail->push('Editar PNF', route('pnfs.edit', $pnf));
+});
+
+Breadcrumbs::for('items.index', function (Trail $trail) {
+    $trail->parent('inventory');
+    $trail->push('Artículos', route('items.index'));
 });
 
 Breadcrumbs::for('schedule', function (Trail $trail) {

@@ -18,6 +18,7 @@ use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\EnrollmentConfirmationController;
 use App\Http\Controllers\EnrollmentPDFController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
@@ -235,6 +236,10 @@ Route::middleware('auth')->group(function () {
     Route::get('schedule', function () {
         return view('schedule');
     })->name('schedule');
+
+    // Items routes
+    Route::resource('items', ItemController::class)
+        ->only('index', 'store', 'update');
 
     // Home routes
     Route::get('home', HomeController::class)

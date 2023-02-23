@@ -17,11 +17,13 @@
   - Participación en clubes.
   * Catálogo de clubes.
   - Gestión de participantes de clubes.
+  - Prestamos de artículos.
 
   ## Gestión de Inventario:
+  - Ingreso de artículos.
+  - Desincorporacíon de artículos.
   - Estado actual del inventario.
   - Historial de operaciones.
-  - Listado de préstamos.
 
   ## Control de Inscripción:
   * Inscripción en cursos de extensión.
