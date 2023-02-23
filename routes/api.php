@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Area;
+use App\Models\Club;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -38,18 +39,27 @@ Route::post('areas', function (Request $request) {
 Route::get('schedule/{user}', function (User $user) {
     $events = null;
     
-    // TODO -> añadir clubes
     if ($user->role === 'Instructor') {
-        $courses = Course::phase('En curso')
+        $courses = Course::latest()
+            ->phase('En curso')
+            ->whereBelongsTo($user, 'instructor')
+            ->get();
+        
+        $clubs = Club::latest()
             ->whereBelongsTo($user, 'instructor')
             ->get();
     } else {
-        $courses = Course::phase('En curso')
+        $courses = Course::latest()
+            ->phase('En curso')
             ->whereHas('students', fn($query) => $query->where('users.id', $user->id))
+            ->get();
+        
+        $clubs = Club::latest()
+            ->whereHas('members', fn($query) => $query->where('users.id', $user->id))
             ->get();
     }
 
-    $events = [...$courses];
+    $events = [...$courses, ...$clubs];
 
     return $events;
 })->name('api.schedule');

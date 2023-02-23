@@ -28,7 +28,7 @@
   * Límite de cupos.
   * Reservación de cupos.
   * Confirmación de inscripción.
-  - Generación de horarios.
+  * Generación de horarios.
 
   ## Control de Pagos:
   * Recepción de pagos.
@@ -42,7 +42,6 @@
   * Generación de listado de pagos.
   * Generación de certificado de aprobación de cursos.
   - Generación de matrícula en los clubes.
-  - Impresión de horarios.
   - Datos estadísticos.
   - Gráficas estadísticas.
 
