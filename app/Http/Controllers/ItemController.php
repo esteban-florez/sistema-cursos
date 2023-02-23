@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        $items = Item::paginate(10)
+        $items = Item::paginate(6)
             ->withQueryString();
         
         return view('items', [
@@ -32,8 +32,10 @@ class ItemController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'min:4', 'max:100'],
-            'description' => ['required', 'string', 'min:20', 'max:50'],
+            'description' => ['required', 'string', 'min:20', 'max:255'],
         ]);
+
+        $data['code'] = $this->generateCode();
 
         Item::create($data);
 
@@ -61,5 +63,17 @@ class ItemController extends Controller
         return redirect()
             ->route('items.index')
             ->with('alert', trans('alerts.items.updated'));
+    }
+
+    protected function generateCode() {
+        $latestCode = (int) Item::all()
+            ->last()
+            ->code;
+
+        $code = str($latestCode + 1);
+        $length = 5 - $code->length;
+        return $code->prepend(
+            str('0')->repeat($length)
+        );
     }
 }

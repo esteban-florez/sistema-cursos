@@ -1,23 +1,33 @@
 <x-layout.main title="Artículos">
+  @push('js')
+    <script type="module" src="{{ asset('js/items.js') }}"></script>
+  @endpush
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('items.index') }}
   </x-slot>
+  <x-slot name="titleAddon">
+    <x-button color="success" icon="plus" id="addItem" data-toggle="modal" data-target="#createModal">
+      Añadir
+    </x-button>
+  </x-slot>
   <section class="container-fluid">
     @if ($items->isNotEmpty())
-      <div class="row px-1 mt-2">
+      <div class="row mt-2" style="row-gap: 1rem;">
         @foreach ($items as $item)
-          <div class="col-md-4">
-            <div class="card">
-              <div class="card-body">
+          <div class="col-md-4 d-flex">
+            <div class="card h-100 mb-0">
+              <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <h4>{{ $item->name }}</h4>
                 <h6 class="card-subtitle mb-2 text-muted">Código: #{{ $item->code }}</h5>
                 <p class="card-text">{{ $item->description }}</p>
-                <x-button url="#" icon="list">
-                  Operaciones
-                </x-button>
-                <x-button color="warning" icon="edit">
-                  Editar
-                </x-button>
+                <div class="align-self-start">
+                  <x-button url="#" icon="list">
+                    Operaciones
+                  </x-button>
+                  <x-button color="warning" icon="edit">
+                    Editar
+                  </x-button>
+                </div>
               </div>
             </div>  
           </div>
@@ -29,4 +39,8 @@
       </div>
     @endif
   </section>
+  <div class="d-flex justify-content-center mt-3">
+    {{ $items->links() }}
+  </div>
+  <x-items.create-modal id="createModal"/>
 </x-layout.main>

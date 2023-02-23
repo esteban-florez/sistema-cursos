@@ -28,3 +28,5 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
 - Nestear más cosas en los sitios que se requiera para que no sean puros controladores de index (semánticamente hablando)
 
 - Salirnos de select2 y pasarnos a algo vanilla
+
+- Imagen del certificado pixeliá

@@ -26,7 +26,7 @@
           <x-button color="secondary" icon="times" :url="route('pnfs.index')">
             Cancelar
           </x-button>
-          <x-button color="success" icon="times" type="submit">
+          <x-button color="success" icon="check" type="submit">
             Aceptar 
           </x-button>
         </form>

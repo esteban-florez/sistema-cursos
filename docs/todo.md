@@ -3,6 +3,9 @@
 - Ruta de cambio de imagen de perfil.
 - Intentar lo de Miembros (faltan detalles).
 - Hacer que se puedan retirar del club.
+- Modales de confirmación de unirse/retirarse.
+- El PDF de miembros.
+- Calendario bonito.
 
 - Preguntar más sobre los clubes a Edeblangel.
 

@@ -16,7 +16,8 @@ class PNFController extends Controller
     public function index()
     {
         return view('pnfs.index', [
-            'pnfs' => PNF::all(),
+            'pnfs' => PNF::all()
+                ->where('name', '!=', 'Extensión Universitaria'),
         ]);
     }
 

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PaymentSeeder::class);
         $this->call(MovilCredentialsSeeder::class);
         $this->call(TransferCredentialsSeeder::class);
+        $this->call(ItemSeeder::class);
 
         Schema::enableForeignKeyConstraints();
     }

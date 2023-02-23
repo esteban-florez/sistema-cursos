@@ -3,11 +3,11 @@
   * Registro de cursos de extensión.
   * Registro de instructores.
   * Registro de credenciales de pagos.
-  - Registro de artículos.
+  * Registro de artículos.
 
 # Procesos:
 
-  ## Gestión de cursos:
+  ## Gestión de Cursos:
   * Catálogo de cursos.
   * Fases del curso.
   * Gestión de matrícula.
@@ -21,7 +21,7 @@
 
   ## Gestión de Inventario:
   - Ingreso de artículos.
-  - Desincorporacíon de artículos.
+  - Desincorporación de artículos.
   - Estado actual del inventario.
   - Historial de operaciones.
 
