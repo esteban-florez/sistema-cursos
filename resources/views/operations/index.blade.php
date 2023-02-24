@@ -38,7 +38,7 @@
       <x-table>
         <x-slot name="header">
           <th>Código</th>
-          <th>Producto</th>
+          <th>Artículo</th>
           <th>Operación</th>
           <th>Descripción</th>
           <th>Fecha</th>

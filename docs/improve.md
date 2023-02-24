@@ -34,3 +34,7 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
 - Mover enums y sets de helpers a otro sitio.
 
 - Mejorar el mensaje que se muestra tras busquedas y filtros que no traen ningún dato.
+
+- En los componentes de inputs, hacer optional en vez de required, y hacer que el id por defecto sea el mismo name.
+
+- Estandarizar nombres de modales, y hacer que tengan una prop id por defecto.

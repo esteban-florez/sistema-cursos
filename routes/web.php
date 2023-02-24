@@ -18,6 +18,7 @@ use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\EnrollmentConfirmationController;
 use App\Http\Controllers\EnrollmentPDFController;
+use App\Http\Controllers\ItemAmountController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\OperationController;
@@ -238,8 +239,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('items', ItemController::class)
         ->except('create', 'show', 'destroy');
     
+    Route::get('items/amount', [ItemAmountController::class, 'index'])
+        ->name('items.amount.index');
+    
     // Operations routes
-    Route::resource('operations', OperationController::class);
+    Route::resource('operations', OperationController::class)
+        ->only('index', 'store');
+
 
     // Home routes
     Route::get('home', HomeController::class)
