@@ -20,6 +20,7 @@ use App\Http\Controllers\EnrollmentConfirmationController;
 use App\Http\Controllers\EnrollmentPDFController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\OperationController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
@@ -236,6 +237,9 @@ Route::middleware('auth')->group(function () {
     // Items routes
     Route::resource('items', ItemController::class)
         ->except('create', 'show', 'destroy');
+    
+    // Operations routes
+    Route::resource('operations', OperationController::class);
 
     // Home routes
     Route::get('home', HomeController::class)

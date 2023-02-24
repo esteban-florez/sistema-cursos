@@ -85,7 +85,7 @@
           <x-layout.sidebar.item url="#" icon="list-alt">
             Estado actual
           </x-layout.sidebar.item>
-          <x-layout.sidebar.item url="#" icon="history">
+          <x-layout.sidebar.item :url="route('operations.index')" icon="history">
             Historial
           </x-layout.sidebar.item>
           <x-layout.sidebar.item :url="route('items.index')" icon="th">

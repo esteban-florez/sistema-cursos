@@ -31,7 +31,7 @@ class Operation extends Model
     {
         $item = Item::where('code', $text)
             ->first();
-
-        $query->whereBelongsTo($item);
+        
+        $query->when($item, fn($query) => $query->whereBelongsTo($item));
     }
 }

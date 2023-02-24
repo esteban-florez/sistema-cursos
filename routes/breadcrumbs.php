@@ -223,6 +223,11 @@ Breadcrumbs::for('items.edit', function (Trail $trail, Item $item) {
     $trail->push('Editar artículo', route('items.edit', $item->id));
 });
 
+Breadcrumbs::for('operations.index', function (Trail $trail) {
+    $trail->parent('inventory');
+    $trail->push('Historial de inventario', route('operations.index'));
+});
+
 Breadcrumbs::for('schedule', function (Trail $trail) {
     $trail->push('Horario');
 });
