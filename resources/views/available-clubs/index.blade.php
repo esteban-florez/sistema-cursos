@@ -32,20 +32,23 @@
       </x-filters-collapse>
     </x-slot>
   </x-layout.bar>
-  <section class="container-fluid clubs-grid px-3">
-    @forelse($clubs as $club)
-      <x-club.card :club="$club">
-        <p class="card-text">{{ $club->excerpt }}</p>
-        <div class="d-flex align-items-center">
-          <x-button :url="route('clubs.show', $club->id)">
-            Detalles
-          </x-button>
+  <section class="px-3">
+    <x-alert />
+    <div class="container-fluid clubs-grid mt-3">
+      @forelse($clubs as $club)
+        <x-club.card :club="$club">
+          <p class="card-text">{{ $club->excerpt }}</p>
+          <div class="d-flex align-items-center">
+            <x-button :url="route('clubs.show', $club->id)">
+              Detalles
+            </x-button>
+          </div>
+        </x-club.card>
+      @empty
+        <div class="empty-container">
+          <h2 class="empty">No hay clubes disponibles actualmente</h2>
         </div>
-      </x-club.card>
-    @empty
-      <div class="empty-container">
-        <h2 class="empty">No hay clubes disponibles actualmente</h2>
-      </div>
-    @endforelse
+      @endforelse
+    </div>
   </section>
 </x-layout.main>

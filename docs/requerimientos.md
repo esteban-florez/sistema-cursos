@@ -2,6 +2,7 @@
   * Registro de clubes.
   * Registro de cursos de extensión.
   * Registro de instructores.
+  * Registro de Estudiantes.
   * Registro de credenciales de pagos.
   - Registro de artículos.
 

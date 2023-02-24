@@ -11,10 +11,9 @@
   </x-slot>
   <x-slot name="body">
     <h4>{{ $club->name }}</h4>
-    <p class="text-muted">{{ $club->excerpt }}</p>
+    <p class="card-text">{{ $club->excerpt }}</p>
     <div class="d-flex align-items-center gap-1">
-      <x-button color="danger">Retirarse</x-button>
-      <x-button :url="route('clubs.show', $club->id)">Detalles</x-button>
+      <x-button :url="route('clubs.show', $club->id)" icon="list">Detalles</x-button>
     </div>
   </x-slot>
 </x-profile.card>

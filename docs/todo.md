@@ -1,7 +1,6 @@
 ## Myriam:
 
 - Ruta de cambio de imagen de perfil.
-- Intentar lo de Miembros (faltan detalles).
 - Hacer que se puedan retirar del club.
 
 - Preguntar más sobre los clubes a Edeblangel.

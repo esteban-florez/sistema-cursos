@@ -48,16 +48,15 @@
             Volver al listado
           </x-button>
           @if(!$joined)
-            <form method="POST" action="{{ route('memberships.store', ['club' => $club->id]) }}">
-              @csrf
-              <x-button 
-                class="btn-lg"
-                icon="clipboard-list"
-                type="submit"
-              >
-                Unirse
-              </x-button>
-            </form>
+            <x-button 
+              class="btn-lg"
+              icon="clipboard-list"
+              data-toggle="modal"
+              data-target="#clubModal{{ $club->id }}"
+            >
+              Unirse
+            </x-button>
+            <x-club.joined-modal :club="$club" />
           @else
             <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
           @endif

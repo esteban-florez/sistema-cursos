@@ -6,6 +6,8 @@
     'creado' => 'success',
     'eliminado' => 'danger',
     'vacío' => 'danger',
+    'unido' => 'success',
+    'retirado' => 'danger'
   ]);
 
   $color = $colors

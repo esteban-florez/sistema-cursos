@@ -52,7 +52,8 @@ class MembershipController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         
-        return redirect()->route('available-clubs.index');
+        return redirect()->route('available-clubs.index')
+            ->with('alert', trans('alerts.joined'));
     }
 
     /**

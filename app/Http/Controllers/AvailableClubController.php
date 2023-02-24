@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Services\Input;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AvailableClubController extends Controller
 {
@@ -15,14 +16,15 @@ class AvailableClubController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
         $filters = Input::getFilters();
         $search = $request->input('search');
         $sortColumn = $request->input('sort');
 
-        $clubs = Club::latest()
-            ->filters($filters)
+        $clubs = Club::NotJoinedBy($user)
             ->search($search)
             ->sort($sortColumn)
+            ->filters($filters)
             ->paginate(10)
             ->withQueryString();
         
