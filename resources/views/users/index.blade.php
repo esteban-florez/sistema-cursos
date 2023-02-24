@@ -7,14 +7,9 @@
     <script defer type="module" src="{{ asset('js/user-role/editUserRole.js') }}"></script>
   @endpush
   <x-layout.bar>
-    <x-search placeholder="Buscar usuario..." :value="$search" name="search">
-      <x-slot name="hidden">
-        @foreach ($filters as $filter => $value)
-          <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
-        @endforeach
-        <input type="hidden" name="sort" value="{{ $sort }}">
-      </x-slot>
-    </x-search>
+    <x-search 
+      placeholder="Buscar usuario..." :value="$search"
+      name="search" :filters="$search" :sort="$sort"/>
     <div>
       <x-button icon="plus" color="success" hide-text="sm" :url="route('users.create')">Añadir</x-button>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>

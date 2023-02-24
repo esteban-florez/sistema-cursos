@@ -7,14 +7,9 @@
   @endpush
 
   <x-layout.bar>
-    <x-search placeholder="Buscar club..." :value="$search" name="search" autocomplete="off">
-      <x-slot name="hidden">
-        @foreach ($filters as $filter => $value)
-          <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
-        @endforeach
-        <input type="hidden" name="sort" value="{{ $sort }}">
-      </x-slot>
-    </x-search>
+    <x-search 
+      placeholder="Buscar club..."  :value="$search" 
+      name="search" :filters="$filters" :sort="$sort"/>
     <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
       Filtros
     </x-button>

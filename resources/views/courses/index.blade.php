@@ -7,14 +7,9 @@
     <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush
   <x-layout.bar>
-    <x-search placeholder="Buscar curso..." :value="$search" name="search">
-      <x-slot name="hidden">
-        @foreach ($filters as $filter => $value)
-          <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
-        @endforeach
-        <input type="hidden" name="sort" value="{{ $sort }}">
-      </x-slot>
-    </x-search>
+    <x-search 
+      placeholder="Buscar curso..." :value="$search"
+      name="search" :filters="$filters" :sort="$sort"/>
     <div>
       <x-button icon="plus" color="success" hide-text="sm" :url="route('courses.create')">
         Añadir

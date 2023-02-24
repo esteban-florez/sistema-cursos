@@ -1,7 +1,14 @@
-@props(['hidden' => ''])
+@props(['filters' => null, 'sort' => null])
 
 <form method="GET">
-  {{ $hidden }}
+  @if ($filters)
+    @foreach ($filters as $filter => $value)
+      <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
+    @endforeach
+  @endif
+  @if ($sort)
+    <input type="hidden" name="sort" value="{{ $sort }}">
+  @endif
   <div class="input-group">
     <input autcomplete="off" class="form-control" type="search" {{ $attributes }}>
     <div class="input-group-append">

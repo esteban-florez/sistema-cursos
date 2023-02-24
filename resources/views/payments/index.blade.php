@@ -9,7 +9,9 @@
   <x-layout.bar>
     <div class="d-flex align-items-center gap-1">
       <span class="h6 mb-0">Buscar por cédula: </span>  
-      <x-search placeholder="Ej. 12345678" name="search" :value="$search"/>
+      <x-search
+        placeholder="Ej. 12345678" name="search" 
+        :value="$search" :filters="$filters" :sort="$sort"/>
     </div>
     <div>
       <x-button icon="file-download" hide-text="md" :url="route('payments-pdf.index')">
