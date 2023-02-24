@@ -54,9 +54,8 @@
               <x-button class="btn-lg" icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
                 Unirse
               </x-button>
-              <x-club.club-modal 
-                :club="$club" 
-                join
+              <x-club.modal 
+                :club="$club"
               />
             @else
               <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>

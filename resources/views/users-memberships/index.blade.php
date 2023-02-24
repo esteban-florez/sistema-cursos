@@ -13,7 +13,6 @@
         @foreach ($memberships as $membership)
           @php
             $club = $membership->club;
-            $user = Auth::user();
           @endphp
           <div class="col-md-6">
             <x-club.alt-card :club="$club">
@@ -28,10 +27,9 @@
                 <x-button color="danger" data-toggle="modal" data-target="#clubModal">
                   Retirarse
                 </x-button>
-                <x-club.club-modal 
+                <x-club.modal 
                   :club="$club" 
                   :membership="$membership"
-                  :user="$user" 
                 />
               </div>
             </x-club.alt-card>

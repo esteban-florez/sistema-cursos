@@ -41,14 +41,14 @@ class Club extends Model
         return $this->belongsTo(Inventory::class);
     }
     
-        public function scopeNotJoinedBy($query, $user)
-        {
-            $ids = $user
-                ->joinedClubs
-                ->modelKeys();
-    
-            $query->whereNotIn('id', $ids);
-        }
+    public function scopeNotJoinedBy($query, $user)
+    {
+        $ids = $user
+            ->joinedClubs
+            ->modelKeys();
+
+        $query->whereNotIn('id', $ids);
+    }
 
     public function scopeJoinedBy($query, $user)
     {
