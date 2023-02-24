@@ -10,6 +10,7 @@
       Añadir
     </x-button>
   </x-slot>
+  <x-errors />
   <section class="container-fluid">
     @if ($items->isNotEmpty())
       <div class="row mt-2" style="row-gap: 1rem;">
@@ -21,10 +22,10 @@
                 <h6 class="card-subtitle mb-2 text-muted">Código: #{{ $item->code }}</h5>
                 <p class="card-text">{{ $item->description }}</p>
                 <div class="align-self-start">
-                  <x-button url="#" icon="list">
+                  <x-button icon="list">
                     Operaciones
                   </x-button>
-                  <x-button color="warning" icon="edit">
+                  <x-button :url="route('items.edit', $item->id)" color="warning" icon="edit">
                     Editar
                   </x-button>
                 </div>

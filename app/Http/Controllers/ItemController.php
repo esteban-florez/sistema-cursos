@@ -17,7 +17,7 @@ class ItemController extends Controller
         $items = Item::paginate(6)
             ->withQueryString();
         
-        return view('items', [
+        return view('items.index', [
             'items' => $items,
         ]);
     }
@@ -42,6 +42,13 @@ class ItemController extends Controller
         return redirect()
             ->route('items.index')
             ->with('alert', trans('alerts.items.created'));
+    }
+
+    public function edit(Item $item)
+    {
+        return view('items.edit', [
+            'item' => $item,
+        ]);
     }
 
     /**

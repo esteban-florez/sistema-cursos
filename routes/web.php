@@ -235,7 +235,7 @@ Route::middleware('auth')->group(function () {
 
     // Items routes
     Route::resource('items', ItemController::class)
-        ->only('index', 'store', 'update');
+        ->except('create', 'show', 'destroy');
 
     // Home routes
     Route::get('home', HomeController::class)

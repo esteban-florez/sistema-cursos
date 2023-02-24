@@ -3,6 +3,7 @@
 use App\Models\Club;
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Models\Item;
 use App\Models\Payment;
 use App\Models\PNF;
 use App\Models\User;
@@ -214,6 +215,12 @@ Breadcrumbs::for('pnfs.edit', function (Trail $trail, PNF $pnf) {
 Breadcrumbs::for('items.index', function (Trail $trail) {
     $trail->parent('inventory');
     $trail->push('Artículos', route('items.index'));
+});
+
+Breadcrumbs::for('items.edit', function (Trail $trail, Item $item) {
+    $trail->parent('items.index');
+    $trail->push($item->name);
+    $trail->push('Editar artículo', route('items.edit', $item->id));
 });
 
 Breadcrumbs::for('schedule', function (Trail $trail) {
