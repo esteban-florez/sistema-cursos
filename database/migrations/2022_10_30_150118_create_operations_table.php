@@ -17,6 +17,7 @@ class CreateOperationsTable extends Migration
             $table->id();
             $table->integer('amount');
             $table->enum('type', operationTypes()->all());
+            $table->string('reason')->nullable();
             $table->foreignId('item_id')->constrained();
             $table->timestamps();
         });

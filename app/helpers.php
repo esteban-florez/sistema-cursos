@@ -47,7 +47,7 @@ if (!function_exists('ciTypes')) {
 
 if (!function_exists('operationTypes')) {
     function operationTypes() {
-        return collect(['+', '-']);
+        return collect(['Ingreso', 'Desincorporación']);
     }
 }
 

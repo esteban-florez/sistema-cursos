@@ -8,9 +8,7 @@
 
 ## Esteban:
 
-- Mini-CRUD de artículos.
 - Estado actual del inventario con formulario para registrar nuevas operaciones (registro nuevo artículo "inline").
-- Historial de operaciones.
 - PDF de estado actual.
 - PDF de historial de operaciones.
 

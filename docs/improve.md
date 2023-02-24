@@ -30,3 +30,7 @@ una tabla, se podría hacer que tengan una clase propia de componente, y que ell
 - Salirnos de select2 y pasarnos a algo vanilla
 
 - Imagen del certificado pixeliá
+
+- Mover enums y sets de helpers a otro sitio.
+
+- Mejorar el mensaje que se muestra tras busquedas y filtros que no traen ningún dato.

@@ -15,4 +15,14 @@ class Item extends Model
     {
         return $this->hasMany(Operation::class);
     }
+
+    public static function getOptions()
+    {
+        $items = self::all(['id', 'name']);
+
+        $options = $items->mapWithKeys(fn($item) => [$item->id => $item->name])
+            ->all();
+
+        return $options;
+    }
 }
