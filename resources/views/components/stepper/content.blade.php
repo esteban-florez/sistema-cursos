@@ -27,7 +27,7 @@
             Siguiente
           </x-button>
         @else
-        <x-button :url="$pdfUrl" icon="file">
+        <x-button :url="$pdfUrl" icon="file-download">
           Descargar Planilla de Inscripción
         </x-button>
         @endif

@@ -6,6 +6,6 @@
     {{ $club->members_count }} miembros
   </p>
 </div>
-<x-button icon="file" hide-text="md" url="#">
+<x-button icon="file-download" hide-text="md" url="#">
   Generar PDF
 </x-button>

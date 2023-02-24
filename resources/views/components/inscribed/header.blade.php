@@ -24,7 +24,7 @@
     </b>
   </span>
   
-  <x-button icon="file" hide-text="md" :url="route('enrollments-pdf.index', ['course' => $course->id])">
+  <x-button icon="file-download" hide-text="md" :url="route('enrollments-pdf.index', ['course' => $course->id])">
     Generar PDF
   </x-button>
 </div>
