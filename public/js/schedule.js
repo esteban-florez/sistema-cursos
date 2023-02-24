@@ -28,12 +28,11 @@ function initializeTimetable(events) {
   tt.addLocations(['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'])
 
   events.forEach(event => {
-    const { id, name, start_hour, end_hour, days: daysString } = event
-    const days = daysString.split(',')
-    const color = getRandomColor()
+    const { name, start_hour, end_hour } = event
+    const days = getDays(event)
+    
     const options = {
-      class: color,
-      url: `http://127.0.0.1:8000/enrollments/${id}`,
+      class: getRandomColor(),
     }
 
     days.forEach(
@@ -53,4 +52,8 @@ function getRandomColor() {
   const index = Math.floor(Math.random() * colors.length - 1)
   const [ color ] = colors.splice(index, 1)
   return color
+}
+
+function getDays({days, day}) {
+  return days?.split(',') ?? [ day ]
 }

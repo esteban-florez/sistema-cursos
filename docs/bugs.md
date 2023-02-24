@@ -3,3 +3,7 @@
 - Admin no debería ser un usuario normal. No debe listarse, ni tener perfil.
 
 - Cuando dos eventos chocan, se superponen en el horario.
+
+- No se debe editar PNF Extensión Universitaria.
+
+- Traducir campos nuevos.

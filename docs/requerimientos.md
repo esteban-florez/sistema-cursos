@@ -4,11 +4,11 @@
   * Registro de instructores.
   * Registro de Estudiantes.
   * Registro de credenciales de pagos.
-  - Registro de artículos.
+  * Registro de artículos.
 
 # Procesos:
 
-  ## Gestión de cursos:
+  ## Gestión de Cursos:
   * Catálogo de cursos.
   * Fases del curso.
   * Gestión de matrícula.
@@ -18,18 +18,20 @@
   - Participación en clubes.
   * Catálogo de clubes.
   - Gestión de participantes de clubes.
+  - Prestamos de artículos.
 
   ## Gestión de Inventario:
+  - Ingreso de artículos.
+  - Desincorporación de artículos.
   - Estado actual del inventario.
   - Historial de operaciones.
-  - Listado de préstamos.
 
   ## Control de Inscripción:
   * Inscripción en cursos de extensión.
   * Límite de cupos.
   * Reservación de cupos.
   * Confirmación de inscripción.
-  - Generación de horarios.
+  * Generación de horarios.
 
   ## Control de Pagos:
   * Recepción de pagos.
@@ -43,7 +45,6 @@
   * Generación de listado de pagos.
   * Generación de certificado de aprobación de cursos.
   - Generación de matrícula en los clubes.
-  - Impresión de horarios.
   - Datos estadísticos.
   - Gráficas estadísticas.
 

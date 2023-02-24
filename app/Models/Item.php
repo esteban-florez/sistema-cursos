@@ -11,8 +11,8 @@ class Item extends Model
 
     protected $guarded = [];
 
-    public function inventories()
+    public function operations()
     {
-        return $this->hasMany(Inventory::class);
+        return $this->hasMany(Operation::class);
     }
 }

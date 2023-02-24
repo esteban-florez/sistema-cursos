@@ -23,6 +23,7 @@ return [
     'approval' => generateAlerts('La aprobación'),
     'fulfilled' => '¡El pago se ha realizado con éxito!', 
     'pnfs' => generateAlerts('El pnf'),
+    'items' => generateAlerts('El artículo'),
     'joined' => '¡Se ha unido al club con éxito!',
     'retired' => '¡Se ha retirado del club con éxito!',
 ];

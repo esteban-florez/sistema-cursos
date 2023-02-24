@@ -2,12 +2,19 @@
 
 - Ruta de cambio de imagen de perfil.
 - Hacer que se puedan retirar del club.
+- Modales de confirmación de unirse/retirarse.
+- El PDF de miembros.
+- Calendario bonito.
 
 - Preguntar más sobre los clubes a Edeblangel.
 
 ## Esteban:
 
-- Hacer horarios.
+- Mini-CRUD de artículos.
+- Estado actual del inventario con formulario para registrar nuevas operaciones (registro nuevo artículo "inline").
+- Historial de operaciones.
+- PDF de estado actual.
+- PDF de historial de operaciones.
 
 ## Tareas a largo plazo:
 
