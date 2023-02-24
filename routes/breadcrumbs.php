@@ -156,6 +156,16 @@ Breadcrumbs::for('memberships.index', function (Trail $trail, Club $club) {
     ));
 });
 
+Breadcrumbs::for('users.memberships.index', function (Trail $trail, User $user) {
+    $trail->parent('clubs');
+    $trail->push('Mis clubes', route('users.memberships.index', $user->id));
+});
+
+Breadcrumbs::for('memberships.show', function (Trail $trail, $membership) {
+    $trail->parent('users.memberships.index', $membership->member);
+    $trail->push($membership->club->name, route('memberships.show', $membership->id));
+});
+
 Breadcrumbs::for('enrollments.index', function (Trail $trail, Course $course) {
     $trail->parent('courses.show', $course);
     $trail->push('Matrícula', route(

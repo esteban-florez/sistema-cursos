@@ -67,7 +67,7 @@
           </x-layout.sidebar.item>
           @endis
           @isnt('Administrador')
-          <x-layout.sidebar.item url="#" icon="star">
+          <x-layout.sidebar.item :url="route('users.memberships.index', $user->id)" icon="star">
             Mis clubes
           </x-layout.sidebar.item>
           @endisnt

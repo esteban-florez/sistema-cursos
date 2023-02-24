@@ -3,7 +3,7 @@
     {{ Breadcrumbs::render('enrollments.show', $enrollment) }}
   </x-slot>
   @push ('css')
-    <link rel="stylesheet" href="{{ asset('css/mis-cursos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">
   @endpush
 
   <div class="container-fluid px-3 px-lg-4">

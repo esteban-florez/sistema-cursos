@@ -17,7 +17,6 @@ class CreateMembershipsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('club_id')->constrained();
-            $table->softDeletes();
             $table->timestamps();
         });
     }

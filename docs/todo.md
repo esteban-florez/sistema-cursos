@@ -1,8 +1,6 @@
 ## Myriam:
 
 - Ruta de cambio de imagen de perfil.
-- Hacer que se puedan retirar del club.
-- Modales de confirmación de unirse/retirarse.
 - El PDF de miembros.
 - Calendario bonito.
 

@@ -1,4 +1,4 @@
-@props(['club'])
+@props(['club', 'join' => false])
 
 @php 
   $joined = auth()->user()
@@ -8,7 +8,9 @@
 
 <section class="container-fluid details-grid mt-3">
   <div class="card">
-    <img src="{{ asset($club->image) }}" class="w-100 img-fluid details-img rounded elevation-1" alt="Imagen del club">
+    @if (!$join)
+      <img src="{{ asset($club->image) }}" class="w-100 img-fluid details-img rounded elevation-1" alt="Imagen del club">
+    @endif
     <div class="card-header">
       <h2>Información del club</h2>
     </div>
@@ -38,29 +40,29 @@
             Editar
           </x-button>
         @endis
-        @is('Estudiante')
-          <x-button 
-            :url="route('available-clubs.index')"
-            class="btn-lg"
-            color="secondary"
-            icon="times"
-          >
-            Volver al listado
-          </x-button>
-          @if(!$joined)
+        @if (!$join)
+          @is('Estudiante')
             <x-button 
+              :url="route('available-clubs.index')"
               class="btn-lg"
-              icon="clipboard-list"
-              data-toggle="modal"
-              data-target="#clubModal{{ $club->id }}"
+              color="secondary"
+              icon="times"
             >
-              Unirse
+              Volver al listado
             </x-button>
-            <x-club.joined-modal :club="$club" />
-          @else
-            <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
-          @endif
-        @endis
+            @if(!$joined)
+              <x-button class="btn-lg" icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
+                Unirse
+              </x-button>
+              <x-club.club-modal 
+                :club="$club" 
+                join
+              />
+            @else
+              <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
+            @endif
+          @endis
+        @endif
       </div>
     </div>
   </div>  

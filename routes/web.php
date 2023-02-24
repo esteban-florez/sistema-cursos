@@ -28,6 +28,7 @@ use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\UserEnrollmentController;
+use App\Http\Controllers\UserMembershipController;
 use App\Http\Controllers\UserPaymentController;
 use App\Http\Controllers\UserRoleController;
 use Illuminate\Support\Facades\Route;
@@ -114,6 +115,9 @@ Route::middleware('auth')->group(function () {
     Route::get('users/{user}/enrollments', [UserEnrollmentController::class, 'index'])
         ->name('users.enrollments.index');
 
+    Route::get('users/{user}/memberships', [UserMembershipController::class, 'index'])
+        ->name('users.memberships.index');
+
     Route::get('users/{user}/courses', [UserCourseController::class, 'index'])
         ->name('users.courses.index');
 
@@ -166,16 +170,8 @@ Route::middleware('auth')->group(function () {
 
 
     // Membership routes
-    Route::group([
-        'controller' => MembershipController::class,
-        'as' => 'memberships.',
-    ], function () {
-        Route::get('memberships', 'index')
-            ->name('index');
-
-        Route::post('memberships', 'store')
-            ->name('store');
-    });
+    Route::resource('memberships', MembershipController::class)
+        ->except('create', 'edit', 'update');
 
     // Enrollment routes
     Route::group([

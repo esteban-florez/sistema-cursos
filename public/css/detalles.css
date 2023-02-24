@@ -14,13 +14,12 @@ h3, h4, h5 {
   text-align: justify;
 }
 
-.progress {
-	height: 1.5rem;
+.empty-container {
+  height: 8rem;
 }
 
-.progress-bar {
-	font-weight: bold;
-	font-size: .9rem;
+.empty {
+  font-size: 2rem;
 }
 
 @media screen and (min-width: 576px) {
