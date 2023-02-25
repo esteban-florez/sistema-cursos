@@ -8,7 +8,7 @@
   @foreach ($data as $cell)
     <td>{{ $cell }}</td>
   @endforeach
-  @if ($actions)
+  @if ($actions || $extraActions)
   <td class="px-2">
     <div class="d-flex gap-1 justify-content-center align-items-center h-100">
         {{ $extraActions ?? '' }}

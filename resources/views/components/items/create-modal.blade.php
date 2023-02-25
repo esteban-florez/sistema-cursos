@@ -1,4 +1,4 @@
-@props(['id'])
+@props(['id' => 'createItemModal'])
 
 <x-modal :id="$id">
   <x-slot name="header">

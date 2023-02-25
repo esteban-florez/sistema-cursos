@@ -82,8 +82,8 @@
       <x-layout.sidebar.item icon="boxes">
         Inventario
         <x-slot name="menu">
-          <x-layout.sidebar.item url="#" icon="list-alt">
-            Estado actual
+          <x-layout.sidebar.item :url="route('items.amount.index')" icon="list-alt">
+            Inventario actual
           </x-layout.sidebar.item>
           <x-layout.sidebar.item :url="route('operations.index')" icon="history">
             Historial
