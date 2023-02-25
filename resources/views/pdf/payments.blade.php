@@ -1,45 +1,14 @@
 <head>
   <link rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
+  <link rel="stylesheet" href="{{ public_path('css/pdf2.css') }}">
   <style>
-    body {
-      padding: 2rem;
-    }
-
-    h1 {
-      margin-top: 2rem;
-    }
-
-    ul {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 12rem;
-    }
-
     table {
-      margin: 2rem auto 0;
-      text-align: center;
-      width: 100%;
-      border-collapse: collapse;
-    }
-  
-    td, th {
-      border: 1px solid black;
+      width: 100% !important;
     }
 
     td {
       padding-left: 3px;
       padding-right: 3px;
-    }
-
-    span {
-      font-weight: bold;
-    }
-
-    img {
-      position: absolute;
-      top: 2rem;
-      left: 3rem;
-      width: 6rem;
     }
   </style>
 </head>

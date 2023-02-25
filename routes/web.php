@@ -20,6 +20,7 @@ use App\Http\Controllers\EnrollmentConfirmationController;
 use App\Http\Controllers\EnrollmentPDFController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\MembershipPDFController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
@@ -263,4 +264,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('certificate/{enrollment}', CertificatePDFController::class)
         ->name('certificate-pdf');
+
+    Route::get('memberships-pdf', [MembershipPDFController::class, 'index'])
+        ->name('memberships-pdf.index');
 });

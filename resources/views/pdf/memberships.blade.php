@@ -11,11 +11,10 @@
     <p class="bold-italic">"FEDERICO BRITO FIGUEROA"</p>
     <p class="bold-italic header-title">DEPARTAMENTO DE VINCULACIÓN SOCIO INTEGRAL</p>
   </header>
-  <h1>Matrícula del Curso: {{ $course->name }}</h1>
+  <h1>Miembros del Club: {{ $club->name }}</h1>
   <ul class="style-none">
-    <li><span>Instructor:</span> {{ $course->instructor->full_name }}</li>
+    <li><span>Instructor:</span> {{ $club->instructor->full_name }}</li>
     <li><span>Fecha:</span> {{ $date }}</li>
-    <li><span>Fase del curso:</span> {{ $course->phase }}</li>
   </ul>
   <table>
     <thead>
@@ -23,23 +22,17 @@
         <th>Nombre</th>
         <th>Cédula</th>
         <th>¿UPTA?</th>
-        <th>Solvencia</th>
-        <th>Cupo</th>
-        <th>Aprobación</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($enrollments as $enrollment)
+      @foreach ($memberships as $membership)
       @php
-        $student = $enrollment->student;
+        $member = $membership->member;
       @endphp
         <tr>
-          <td>{{ $student->full_name }}</td>
-          <td>{{ $student->full_ci }}</td>
-          <td>{{ $student->upta }}</td>
-          <td>{{ $enrollment->solvency }}</td>
-          <td>{{ $enrollment->status }}</td>
-          <td>{{ $enrollment->approval }}</td>
+          <td>{{ $member->full_name }}</td>
+          <td>{{ $member->full_ci }}</td>
+          <td>{{ $member->upta }}</td>
         </tr>
       @endforeach
     </tbody>
