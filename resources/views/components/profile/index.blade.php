@@ -108,7 +108,7 @@
           <div class="d-flex align-items-center justify-content-between">
             <h3 class="my-2">Mis clubes</h3>
             @if (Auth::user()->id === $user->id)
-              <a href="#" class="mt-1">
+              <a href="{{ route('users.memberships.index', $user->id) }}" class="mt-1">
                 <span>Ver todos</span>
                 <i class="fas fa-arrow-right"></i>
               </a>

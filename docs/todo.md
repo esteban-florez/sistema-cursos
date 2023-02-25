@@ -2,6 +2,7 @@
 
 - Ruta de cambio de imagen de perfil.
 - El PDF de miembros.
+- El texto del modal de confirmación tiene que adaptarse al instructor.
 - Calendario bonito.
 
 - Preguntar más sobre los clubes a Edeblangel.

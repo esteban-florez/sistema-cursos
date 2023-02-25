@@ -22,6 +22,15 @@
           ]"
         :details="route('users.show', $member->id)"
       >
+        <x-slot name="extraActions">
+          <form method="POST" action="{{ route('memberships.destroy', $membership->id) }}">
+            @csrf
+            @method('DELETE')
+            <x-button color="danger" class="btn-sm" type="submit">
+              Retirar
+            </x-button>
+          </form>
+        </x-slot>
       </x-row>
     @endforeach
   </x-slot>

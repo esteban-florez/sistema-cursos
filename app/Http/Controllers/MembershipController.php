@@ -71,9 +71,16 @@ class MembershipController extends Controller
     public function destroy(Membership $membership)
     {
         $user = Auth::user();
+        $club = $membership->club;
         $membership->delete();
 
-        return redirect()->route('users.memberships.index', $user->id)
-            ->with('alert', trans('alerts.retired'));
+        if ($user->role === 'Estudiante') {
+            return redirect()->route('users.memberships.index', $user->id)
+                ->with('alert', trans('alerts.retired'));
+        }
+        else {
+            return redirect()->route('memberships.index', ['club' => $club->id])
+                ->with('alert', trans('alerts.users.retired'));
+        }
     }
 }

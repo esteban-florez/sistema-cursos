@@ -6,6 +6,7 @@ function generateAlerts($resource) {
     return [
         'created' => $baseMsg('creado', $resource),
         'updated' => $baseMsg('editado', $resource),
+        'retired' => $baseMsg('retirado', $resource),
     ];
 }
 
