@@ -22,26 +22,24 @@ class HomeController extends Controller
             ->orderby('id', 'desc')
             ->limit(2)
             ->get();
-
-        $payments = Payment::where('status', 'Pendiente',)
-            ->orderby('id', 'desc')
-            ->limit(2)
+            
+        $payments = Payment::unfulfilled()
+            ->orderBy('id', 'desc')
+            ->limit(1)
             ->get();
 
         if ($user->role === 'Administrador') {
-            return view('home.admin', [
-                'clubs' => $clubs,
-                'courses' => $courses,
-                'payments' => $payments,
-            ]);
+            $payments = Payment::where('status', 'Pendiente',)
+                ->orderBy('id', 'desc')
+                ->limit(2)
+                ->get();
         }
-
-        if ($user->role === 'Estudiante') {
-            return view('home.student', [
-                'clubs' => $clubs,
-                'courses' => $courses,
-                'payments' => $payments,
-            ]);
-        }
+            
+        return view('home.index', [
+            'user' => $user,
+            'clubs' => $clubs,
+            'courses' => $courses,
+            'payments' => $payments,
+        ]);
     }
 }

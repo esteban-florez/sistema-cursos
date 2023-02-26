@@ -1,4 +1,4 @@
-@props(['color' => null, 'col' => null, 'aling' => null, 'title', 'url' => null])
+@props(['color' => null, 'col' => null, 'aling' => 'left', 'title', 'url' => null])
 
 <div class="card card-{{ $color }}">
   <div class="card-header">
