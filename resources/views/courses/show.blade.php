@@ -5,7 +5,9 @@
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">
   @endpush
-  <x-course.details
-    :course="$course"
-  />
+  <div class="details-grid">
+    <x-course.details
+      :course="$course"
+    />
+  </div>
 </x-layout.main>

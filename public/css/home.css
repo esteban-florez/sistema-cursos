@@ -38,6 +38,10 @@
   object-fit: cover;
 }
 
+.callout-secondary {
+  border-left-color: rgb(161, 161, 161);
+}
+
 .bienvenido {
   height: 4.6rem;
   display: flex;

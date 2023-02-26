@@ -5,9 +5,7 @@
   @push('js')
     <script defer type="module" src="{{ asset('js/payments/editPaymentStatus.js') }}"></script>
   @endpush
-  @push('css')
-    <link rel="stylesheet" href="{{ asset('css/pagos.css') }}">
-  @endpush
+
   <x-alert />
   <section class="container-fluid pt-2">
     <div class="payments-grid">

@@ -11,11 +11,11 @@
     ];
   $phaseColor = $phasesColors[$course->phase];
   $registered = auth()->user()
-  ->enrolledCourses
-  ->contains($course);
+    ->enrolledCourses
+    ->contains($course);
 @endphp
 
-<section class="container-fluid details-grid mt-3">
+<section class="container-fluid mt-3">
   <div class="card">
     @if(!$enroll)
       <img src="{{ asset($course->image) }}" class="w-100 img-fluid details-img rounded elevation-1" alt="Imagen del curso">

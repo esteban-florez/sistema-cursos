@@ -25,7 +25,7 @@
           Certificado
         </x-button>
       @endif
-      <x-button icon="list" :url="route('courses.show', $course->id)">Detalles</x-button>
+      <x-button icon="list" :url="route('enrollments.show', $enrollment->id)">Detalles</x-button>
     </div>
   </x-slot>
 </x-profile.card>
