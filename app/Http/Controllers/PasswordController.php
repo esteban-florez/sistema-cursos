@@ -77,7 +77,7 @@ class PasswordController extends Controller
         $user = Auth::user();
 
         $data = $request->validate([
-            'current_password' => [PasswordRule::defaults(), 'current_password'],
+            'current_password' => ['current_password'],
             'password' => [PasswordRule::defaults(), 'confirmed'],
         ]);
 

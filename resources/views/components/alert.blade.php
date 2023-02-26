@@ -7,7 +7,8 @@
     'eliminado' => 'danger',
     'vacío' => 'danger',
     'unido' => 'success',
-    'retirado' => 'danger'
+    'retirado' => 'danger',
+    'registrado' => 'success',
   ]);
 
   $color = $colors

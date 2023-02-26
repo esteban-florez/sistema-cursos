@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OperationRequest;
 use App\Models\Item;
 use App\Models\Operation;
 use App\Services\Input;
@@ -39,11 +40,17 @@ class OperationController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Requests\OperationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(OperationRequest $request)
     {
+        $data = $request->validated();
         
+        Operation::create($data);
+
+        return redirect()
+            ->route('items.amount.index')
+            ->with('alert', trans('alerts.operations'));
     }
 }

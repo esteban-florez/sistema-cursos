@@ -26,20 +26,24 @@ class Item extends Model
         return $options;
     }
 
-    public function getCurrentAmountAttribute()
+    public function getStockAttribute()
+    {
+        $amount = $this->stock();
+        return "{$amount} unidades.";
+    }
+
+    public function stock()
     {
         if ($this->operations->count() < 1) {
-            return "0 unidades.";
+            return 0;
         }
 
-        $amount = $this->operations->reduce(function ($carry, $operation) {
+        return $this->operations->reduce(function ($carry, $operation) {
             if ($operation->type === 'Ingreso') {
                 return $carry + $operation->amount;
             }
 
             return $carry - $operation->amount;
         }, 0);
-
-        return "{$amount} unidades.";
     }
 }

@@ -13,12 +13,12 @@
             <x-slot name="header">
               <th>Código</th>
               <th>Artículo</th>
-              <th>Cantidad</th>
+              <th>Stock</th>
               <th>Acciones</th>
             </x-slot>
             <x-slot name="body">
               @foreach ($items as $item)
-                <x-row :data="['#'.$item->code, $item->name, $item->current_amount]">
+                <x-row :data="['#'.$item->code, $item->name, $item->stock]">
                   <x-slot name="extraActions">
                     <x-button icon="list" class="btn-sm"
                       :url="route('operations.index', ['filters|item_id' => $item->id])">
@@ -46,7 +46,7 @@
             <h5 class="mb-0">Registrar nueva operación</h5>
           </div>
           <div class="card-body">
-            <form action="{{ route('operations.store') }}">
+            <form method="POST" action="{{ route('operations.store') }}">
               @csrf
               <p class="font-italic">
                 <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.

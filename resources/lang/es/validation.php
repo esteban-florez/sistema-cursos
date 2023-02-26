@@ -201,22 +201,29 @@ return [
         // Item attributes
         'code' => 'el código',
 
-        // Inventories attributes
-        'amount' => 'el monto',
-        'operation' => 'la operación',
-
+        // Operation attributes
+        'reason' => 'la descripción',
+        
         // Enrollment attributes
         'confirmed_at' => 'la fecha de confirmación',
         'approval' => 'la aprobación',
-
+        
         // Payment attributes
+        'amount' => 'el monto',
         'status' => 'el estado',
         'ref' => 'la referencia',
         'type' => 'el tipo de pago',
+        'category' => 'la categoría',
 
         // Credentials attributes
         'bank' => 'el banco',
         'account' => 'el número de cuenta',
+
+        // PNF attributes
+        'leader' => 'el Jefe de Departamento',
+
+        // Area attributes
+        'area_name' => 'el nombre',
 
         // Foreign key attributes
         'user_id' => 'el usuario',

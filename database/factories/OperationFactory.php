@@ -14,14 +14,20 @@ class OperationFactory extends Factory
      */
     public function definition()
     {
+        $item = Item::all()->random();
         $amounts = collect([20, 15, 10, 5, 3, 1]);
         $type = operationTypes()->random();
+        $amount = $amounts->random();
+
+        if ($type === 'Desincorporación' && ($item->stock() - $amount < 0)) {
+            $type = 'Ingreso';
+        }
 
         return [
-            'amount' => $amounts->random(),
+            'amount' => $amount,
             'type' => $type,
             'reason' => $type === 'Ingreso' ? null : 'Desgaste por uso', 
-            'item_id' => Item::all()->random()->id,
+            'item_id' => $item->id,
         ];
     }
 }

@@ -7,7 +7,6 @@
 
 ## Esteban:
 
-- Estado actual del inventario con formulario para registrar nuevas operaciones (registro nuevo artículo "inline").
 - PDF de estado actual.
 - PDF de historial de operaciones.
 
