@@ -22,7 +22,7 @@
       style="height: 10rem;">
   </div>
   <div class="card-header">
-    <h4 class="mb-0">{{ $course->name }}</h4>
+    <h4 class="mb-0 text-truncate">{{ $course->name }}</h4>
     <h6 class="mb-0 text-{{ $phaseColor }}">
       Fase actual: {{ $course->phase }}
     </h6>

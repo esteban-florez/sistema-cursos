@@ -3,15 +3,20 @@
 <div class="card mt-2">
   <div class="row no-gutters">
     <div class="col-sm-5">
-      <img class="w-100" src="{{ $club->image }}" alt="Imagen del curso">
+      <img class="w-100" 
+        src="{{ $club->image }}" 
+        alt="Imagen del Club: 
+        {{ $club->name }}"
+        style="height: 9.6rem"
+      >
     </div>
-    <div class="col-sm-7 d-flex align-items-center">
+    <div class="col-sm-7">
       <div class="card-body">
         <h5 class="mb-2">{{ $club->name }}</h5>
-        <p class="card-text">{{ $club->excerpt }}</p>
-        <div class="d-flex justify-content-between align-items-center">
-          <x-button url="{{ route('clubs.show', $club->id) }}">Detalles</x-button>
-        </div>
+        <p class="text-truncate">{{ $club->description }}</p>
+        <x-button url="{{ route('clubs.show', $club->id) }}">
+          Detalles
+        </x-button>
       </div>
     </div>
   </div>

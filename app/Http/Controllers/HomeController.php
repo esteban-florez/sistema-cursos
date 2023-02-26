@@ -18,7 +18,7 @@ class HomeController extends Controller
             ->limit(2)
             ->get();
 
-        $courses = Course::latest()
+        $courses = Course::Availables()
             ->orderby('id', 'desc')
             ->limit(2)
             ->get();
