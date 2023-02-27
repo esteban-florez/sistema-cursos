@@ -15,11 +15,11 @@
       <div class="col-12 col-md-8 col-lg-6">
         <div class="card my-2">
           <div class="card-body">
-            <form method="POST" action="{{ route('payments.update', $payment->id) }}">
+            <form method="POST" action="{{ route('payments.update', $payment) }}">
               @csrf
               @method('PUT')
               <h4>
-                Curso: <a class="text-bold" href="{{ route('courses.show', $course->id) }}">{{ $course->name }}</a>
+                Curso: <a class="text-bold" href="{{ route('courses.show', $course) }}">{{ $course->name }}</a>
               </h4>
               <div class="d-flex">
                 <x-payment.status :payment="$payment"/>
@@ -36,7 +36,7 @@
                 Referencia:
               </x-field>
               <div class="d-flex gap-2">
-                <x-button color="secondary" icon="arrow-left" :url="route('users.payments.index', auth()->user()->id)">
+                <x-button color="secondary" icon="arrow-left" :url="route('users.payments.index', auth()->user())">
                   Volver
                 </x-button>
                 <x-button color="success" icon="check" type="submit">

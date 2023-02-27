@@ -21,11 +21,11 @@
     <p class="card-text">{{ $course->excerpt }}</p>
     <div class="d-flex align-items-center">
       @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
-        <x-button icon="arrow-down" :url="route('certificate-pdf', $enrollment->id)" color="success">
+        <x-button icon="arrow-down" :url="route('certificate-pdf', $enrollment)" color="success">
           Certificado
         </x-button>
       @endif
-      <x-button icon="list" :url="route('enrollments.show', $enrollment->id)">Detalles</x-button>
+      <x-button icon="list" :url="route('enrollments.show', $enrollment)">Detalles</x-button>
     </div>
   </x-slot>
 </x-profile.card>

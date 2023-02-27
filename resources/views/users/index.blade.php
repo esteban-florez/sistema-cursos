@@ -53,7 +53,7 @@
               $user->upta,
               $user->role,
               ]"
-              :details="route('users.show', $user->id)"
+              :details="route('users.show', $user)"
             >
               <x-slot name="extraActions">
                 <x-button 

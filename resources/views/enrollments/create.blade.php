@@ -26,7 +26,7 @@
       </div>
       <x-enrollment-data :credentials="$credentials" :course="$course" />
       <x-errors />
-      <form method="POST" action="{{ route('enrollments.store', ['course' => $course->id]) }}">
+      <form method="POST" action="{{ route('enrollments.store', ['course' => $course]) }}">
         <input type="hidden" name="category" value="{{ $reservation ? '' : 'Pago completo' }}">
         <input type="hidden" name="amount">
         @unless ($reservation)

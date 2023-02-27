@@ -20,10 +20,10 @@
             $member->full_ci,
             $member->upta,
           ]"
-        :details="route('users.show', $member->id)"
+        :details="route('users.show', $member)"
       >
         <x-slot name="extraActions">
-          <form method="POST" action="{{ route('memberships.destroy', $membership->id) }}">
+          <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
             @csrf
             @method('DELETE')
             <x-button color="danger" class="btn-sm" type="submit">

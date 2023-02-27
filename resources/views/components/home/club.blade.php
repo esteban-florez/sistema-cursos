@@ -14,7 +14,7 @@
       <div class="card-body">
         <h5 class="mb-2">{{ $club->name }}</h5>
         <p class="text-truncate">{{ $club->description }}</p>
-        <x-button url="{{ route('clubs.show', $club->id) }}">
+        <x-button url="{{ route('clubs.show', $club) }}">
           Detalles
         </x-button>
       </div>

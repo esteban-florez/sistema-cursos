@@ -26,11 +26,11 @@
             $enrollment->status,
             $enrollment->approval,
           ]"
-        :details="route('users.show', $student->id)"
+        :details="route('users.show', $student)"
       >
         <x-slot name="extraActions">
           @unless($enrollment->status === 'Inscrito')
-          <form action="{{ route('enrollments.confirmation.update', $enrollment->id) }}" method="POST">
+          <form action="{{ route('enrollments.confirmation.update', $enrollment) }}" method="POST">
             @csrf
             @method('PATCH')
             <x-button type="submit" class="btn-sm" color="success" icon="check">

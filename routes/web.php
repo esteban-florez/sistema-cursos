@@ -48,6 +48,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('a', function () {
+    abort(401);
+});
+
 Route::middleware('guest')->group(function () {
     Route::redirect('/', 'login');
 

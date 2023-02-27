@@ -16,7 +16,7 @@
       <div class="card-body">
         <p class="card-text">{{ $club->excerpt }}</p>
         <div class="d-flex justify-content-between align-items-center">
-          <x-button url="{{ route('clubs.show', $club->id) }}">Detalles</x-button>
+          <x-button url="{{ route('clubs.show', $club) }}">Detalles</x-button>
         </div>
       </div>
     </div>

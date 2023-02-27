@@ -70,7 +70,7 @@ class EnrollmentController extends Controller
         }
 
         return redirect()
-            ->route('enrollments.success', $enrollment->id);
+            ->route('enrollments.success', $enrollment);
     }
 
     public function success(Enrollment $enrollment)

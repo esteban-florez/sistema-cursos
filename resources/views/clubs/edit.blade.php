@@ -7,7 +7,7 @@
     <div class="card mx-sm-3">
       <div class="card-body">
         <x-club-form 
-          :action="route('clubs.update', $club->id)" 
+          :action="route('clubs.update', $club)" 
           :instructors="$instructors"
           :club="$club"
           edit

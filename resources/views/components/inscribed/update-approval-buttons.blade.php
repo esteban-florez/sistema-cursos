@@ -21,7 +21,7 @@
 
 @foreach ($states as $value)  
   @if ($enrollment->approval !== $value)
-    <form action="{{ route('enrollments.approval.update', $enrollment->id) }}" method="POST">
+    <form action="{{ route('enrollments.approval.update', $enrollment) }}" method="POST">
       @csrf
       @method('PATCH')
       <input type="hidden" name="approval" value="{{ $value }}">

@@ -13,7 +13,7 @@
     <h4>{{ $club->name }}</h4>
     <p class="card-text">{{ $club->excerpt }}</p>
     <div class="d-flex align-items-center gap-1">
-      <x-button :url="route('clubs.show', $club->id)" icon="list">Detalles</x-button>
+      <x-button :url="route('clubs.show', $club)" icon="list">Detalles</x-button>
     </div>
   </x-slot>
 </x-profile.card>

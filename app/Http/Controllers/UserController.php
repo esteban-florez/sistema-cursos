@@ -25,6 +25,7 @@ class UserController extends Controller
         $sortColumn = $request->input('sort');
         
         $users = User::latest()
+            ->excludeAdmin()
             ->filters($filters)
             ->search($search)
             ->sort($sortColumn)
@@ -82,7 +83,7 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
-    {       
+    {
         $enrollments = $user
             ->enrollments()
             ->latest()
@@ -134,7 +135,7 @@ class UserController extends Controller
         $user->update($data);
 
         if ($user->role === 'Estudiante') {
-            return redirect()->route('users.show', $user->id)
+            return redirect()->route('users.show', $user)
                 ->with('alert', trans('alerts.profile.updated'));
         }
 

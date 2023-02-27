@@ -52,11 +52,11 @@
               $club->end_hour->format(TF),
               $club->members_count,
               ]"
-              :details="route('clubs.show', $club->id)"
-              :edit="route('clubs.edit', $club->id)"
+              :details="route('clubs.show', $club)"
+              :edit="route('clubs.edit', $club)"
             >
               <x-slot name="extraActions">
-                <x-button class="btn-sm" color="secondary" :url="route('memberships.index', ['club' => $club->id])" icon="clipboard-list">
+                <x-button class="btn-sm" color="secondary" :url="route('memberships.index', ['club' => $club])" icon="clipboard-list">
                   Miembros
                 </x-button>
               </x-slot>

@@ -10,7 +10,7 @@
     </a>
   </x-slot>
   <p>Los campos con <i class="fas fa-asterisk text-danger"></i> son obligatorios.</p>
-    <form method="POST" action="{{ route('areas.update', $area->id) }}">
+    <form method="POST" action="{{ route('areas.update', $area) }}">
     @csrf
     @method('PUT')
     <x-field :value="old('name') ?? $area->name ?? ''" name="name" id="name" placeholder="Escribe el nombre del área" required>

@@ -21,10 +21,10 @@
   - Prestamos de artículos.
 
   ## Gestión de Inventario:
-  - Ingreso de artículos.
-  - Desincorporación de artículos.
-  - Estado actual del inventario.
-  - Historial de operaciones.
+  * Ingreso de artículos.
+  * Desincorporación de artículos.
+  * Estado actual del inventario.
+  * Historial de operaciones.
 
   ## Control de Inscripción:
   * Inscripción en cursos de extensión.
@@ -45,6 +45,7 @@
   * Generación de listado de pagos.
   * Generación de certificado de aprobación de cursos.
   - Generación de matrícula en los clubes.
+  - Impresión del estado actual del inventario.
   - Datos estadísticos.
   - Gráficas estadísticas.
 

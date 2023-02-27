@@ -7,7 +7,7 @@
     <div class="card mx-sm-3">
       <div class="card-body">
         <x-course-form 
-          :action="route('courses.update', $course->id)"
+          :action="route('courses.update', $course)"
           :instructors="$instructors"
           :areas="$areas"
           :course="$course"

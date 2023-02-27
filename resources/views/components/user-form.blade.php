@@ -6,7 +6,7 @@
 
 @php
   $backUrl = $edit 
-    ? route('users.show', $user->id) 
+    ? route('users.show', $user) 
     : route('users.index');
 @endphp
 

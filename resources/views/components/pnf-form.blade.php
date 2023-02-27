@@ -1,7 +1,7 @@
 @props(['pnf' => null])
 
 @php
-  $action = $pnf ? route('pnfs.update', $pnf->id) : route('pnfs.store');
+  $action = $pnf ? route('pnfs.update', $pnf) : route('pnfs.store');
 @endphp
 
 <section class="container-fluid">

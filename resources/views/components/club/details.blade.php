@@ -25,7 +25,7 @@
       <div class="d-flex justify-content-between align-items-center mt-3">
         @isnt('Estudiante')
           <x-button 
-            :url="route('memberships.index', ['club' => $club->id])" 
+            :url="route('memberships.index', ['club' => $club])" 
             class="btn-lg"
             color="secondary" 
             icon="clipboard-list"
@@ -33,7 +33,7 @@
             Miembros
           </x-button>
           <x-button 
-            :url="route('clubs.edit', $club->id)" 
+            :url="route('clubs.edit', $club)" 
             class="btn-lg"
             icon="edit"
           >

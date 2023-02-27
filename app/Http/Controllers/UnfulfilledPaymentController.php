@@ -68,7 +68,7 @@ class UnfulfilledPaymentController extends Controller
         return redirect()
             ->route(
                 'unfulfilled-payments.index', [
-                    'user' => $payment->enrollment->student->id
+                    'user' => $payment->enrollment->student,
                 ])
             ->with('alerts', trans('alerts.fulfilled'));
     }
