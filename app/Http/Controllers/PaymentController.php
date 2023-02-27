@@ -51,7 +51,7 @@ class PaymentController extends Controller
         ]);
 
         return redirect()
-            ->route('users.payments.index', Auth::user()->id)
+            ->route('users.payments.index', Auth::user())
             ->with('alert', trans('alerts.payments.updated'));
     }
 }

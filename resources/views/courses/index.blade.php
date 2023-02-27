@@ -61,11 +61,11 @@
               $course->total_amount,
               $course->phase,
               ]"
-              :details="route('courses.show', $course->id)"
-              :edit="route('courses.edit', $course->id)"
+              :details="route('courses.show', $course)"
+              :edit="route('courses.edit', $course)"
             >
               <x-slot name="extraActions">
-                <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course->id])" icon="clipboard-list">
+                <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course])" icon="clipboard-list">
                   Matrícula
                 </x-button>
               </x-slot>

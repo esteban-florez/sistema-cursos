@@ -6,6 +6,6 @@
     Miembros: {{ $club->members_count }}
   </p>
 </div>
-<x-button icon="file-download" hide-text="md" :url="route('memberships-pdf.index', ['club' => $club->id])">
+<x-button icon="file-download" hide-text="md" :url="route('memberships-pdf.index', ['club' => $club])">
   Generar PDF
 </x-button>

@@ -14,7 +14,7 @@ class EnrollmentConfirmationController extends Controller
         
         return redirect()
             ->route('enrollments.index', [
-                'course' => $enrollment->course->id
-                ]);
+                'course' => $enrollment->course
+            ]);
     }
 }

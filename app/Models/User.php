@@ -100,6 +100,11 @@ class User extends Authenticatable
         return $query->where('role', 'Estudiante');
     }
 
+    public function scopeExcludeAdmin($query)
+    {
+        return $query->where('role', '!=', 'Administrador');
+    }
+
     /** --------------- Accesors and Mutators --------------- */
 
     public function getNamesAttribute()

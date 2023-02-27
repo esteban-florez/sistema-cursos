@@ -83,7 +83,7 @@ class PasswordController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('users.show', $user->id)
+        return redirect()->route('users.show', $user)
             ->with('alert', trans('alerts.password.updated'));
     }
 }

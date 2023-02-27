@@ -25,7 +25,7 @@
                   <x-button icon="list">
                     Operaciones
                   </x-button>
-                  <x-button :url="route('items.edit', $item->id)" color="warning" icon="edit">
+                  <x-button :url="route('items.edit', $item)" color="warning" icon="edit">
                     Editar
                   </x-button>
                 </div>

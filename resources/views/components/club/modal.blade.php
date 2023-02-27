@@ -3,8 +3,8 @@
 @php
   $operation = $membership ? 'retirarse del' : 'unirse al';
   $action = $membership 
-    ? route('memberships.destroy', $membership->id) 
-    : route('memberships.store', ['club' => $club->id]);
+    ? route('memberships.destroy', $membership) 
+    : route('memberships.store', ['club' => $club]);
 @endphp
 
 <x-modal id="clubModal">

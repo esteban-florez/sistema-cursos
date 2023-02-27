@@ -14,7 +14,7 @@
     <div class="empty-container">
       <h2 class="empty">No hay ningún evento que mostrar.</h2>
     </div>
-    <div class="timetable" data-url="{{ route('api.schedule', auth()->user()->id) }}">
+    <div class="timetable" data-url="{{ route('api.schedule', auth()->user()) }}">
     </div>
     </section>
 </x-layout.main>

@@ -39,8 +39,7 @@ class ItemController extends Controller
 
         Item::create($data);
 
-        return redirect()
-            ->route('items.index')
+        return back()
             ->with('alert', trans('alerts.items.created'));
     }
 

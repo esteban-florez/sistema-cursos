@@ -19,7 +19,7 @@
                 <h3 class="mb-1">{{ $pnf->name }}</h3>
                 <p class="mb-0">Jefe del Departamento:</p>
                 <p class="text-primary text-bold">{{ $pnf->leader }}</p>
-                <x-button :url="route('pnfs.edit', $pnf->id)" color="warning" icon="edit">
+                <x-button :url="route('pnfs.edit', $pnf)" color="warning" icon="edit">
                   Editar
                 </x-button>
               </div>

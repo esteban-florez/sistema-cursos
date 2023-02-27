@@ -21,7 +21,7 @@
                 <x-row :data="['#'.$item->code, $item->name, $item->stock]">
                   <x-slot name="extraActions">
                     <x-button icon="list" class="btn-sm"
-                      :url="route('operations.index', ['filters|item_id' => $item->id])">
+                      :url="route('operations.index', ['filters|item_id' => $item])">
                       Ver operaciones
                     </x-button>
                   </x-slot>  

@@ -75,11 +75,11 @@ class MembershipController extends Controller
         $membership->delete();
 
         if ($user->role === 'Estudiante') {
-            return redirect()->route('users.memberships.index', $user->id)
+            return redirect()->route('users.memberships.index', $user)
                 ->with('alert', trans('alerts.retired'));
         }
         else {
-            return redirect()->route('memberships.index', ['club' => $club->id])
+            return redirect()->route('memberships.index', ['club' => $club])
                 ->with('alert', trans('alerts.users.retired'));
         }
     }

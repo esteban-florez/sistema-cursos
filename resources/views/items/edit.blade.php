@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
       <div class="card col-md-6 mt-3">
         <div class="card-body">
-          <form method="POST" action="{{ route('items.update', $item->id) }}">
+          <form method="POST" action="{{ route('items.update', $item) }}">
             @csrf
             @method('PUT')
             <h3>Editar artículo</h3>

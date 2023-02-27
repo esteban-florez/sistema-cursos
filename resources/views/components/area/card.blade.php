@@ -11,8 +11,8 @@
           </p>
         </div>
         <div class="area-buttons">
-          <x-button :url="route('areas.edit', $area->id)" color="warning" icon="edit">Editar</x-button>
-          <x-button :url="route('courses.index', ['filters|area_id' => $area->id])" icon="eye">Ver cursos</x-button>
+          <x-button :url="route('areas.edit', $area)" color="warning" icon="edit">Editar</x-button>
+          <x-button :url="route('courses.index', ['filters|area_id' => $area])" icon="eye">Ver cursos</x-button>
         </div>
       </div>
     </div>

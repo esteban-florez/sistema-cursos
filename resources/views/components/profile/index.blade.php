@@ -21,7 +21,7 @@
                   Correo Electrónico:
                 </x-profile.data>
                 @if (Auth::user()->id === $user->id)
-                  <x-button class="my-2" url="{{ route('password.change', $user->id) }}">
+                  <x-button class="my-2" url="{{ route('password.change', $user) }}">
                     Cambiar contraseña
                   </x-button>
                 @endif
@@ -35,7 +35,7 @@
               <div class="d-flex align-items-center justify-content-between">
                 <h4 class="my-2">Datos personales: </h4>
                 @if (Auth::user()->id === $user->id)
-                  <x-button url="{{ route('users.edit', $user->id) }}" color="info">
+                  <x-button url="{{ route('users.edit', $user) }}" color="info">
                     <i class="fas fa-edit"></i>
                   </x-button>
                 @endif
@@ -86,8 +86,8 @@
           <div class="d-flex align-items-center justify-content-between">
             @if($user->role === 'Estudiante')
               <h3 class="my-2">Mis cursos</h3>
-              @if (Auth::user()->id === $user->id)
-              <a href="{{ route('users.enrollments.index', $user->id) }}" class="mt-1">
+              @if (Auth::user() === $user)
+              <a href="{{ route('users.enrollments.index', $user) }}" class="mt-1">
                 <span>Ver todos</span>
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -95,8 +95,8 @@
             @endif
             @if($user->role === 'Instructor')
               <h3 class="my-2">Cursos dictados</h3>
-              @if (Auth::user()->id === $user->id)
-              <a href="{{ route('users.courses.index', $user->id) }}" class="mt-1">
+              @if (Auth::user() === $user)
+              <a href="{{ route('users.courses.index', $user) }}" class="mt-1">
                 <span>Ver todos</span>
                 <i class="fas fa-arrow-right"></i>
               </a>
@@ -130,8 +130,8 @@
           <div class="d-flex align-items-center justify-content-between">
             @if($user->role === 'Estudiante')
               <h3 class="my-2">Mis clubes</h3>
-              @if (Auth::user()->id === $user->id)
-                <a href="{{ route('users.memberships.index', $user->id) }}" class="mt-1">
+              @if (Auth::user() === $user)
+                <a href="{{ route('users.memberships.index', $user) }}" class="mt-1">
                   <span>Ver todos</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
@@ -139,8 +139,8 @@
             @endif
             @if($user->role === 'Instructor')
               <h3 class="my-2">Clubes dictados</h3>
-              @if (Auth::user()->id === $user->id)
-                <a href="{{ route('users.clubs.index', $user->id) }}" class="mt-1">
+              @if (Auth::user() === $user)
+                <a href="{{ route('users.clubs.index', $user) }}" class="mt-1">
                   <span>Ver todos</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>

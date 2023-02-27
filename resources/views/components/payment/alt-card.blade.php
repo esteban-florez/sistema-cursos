@@ -28,7 +28,7 @@
     </ul>
     <div class="d-flex align-items-center gap-2 mt-3">
       @if($payment->status !== 'Confirmado')
-        <x-button :url="route('payments.edit', $payment->id)" icon="edit" color="warning">
+        <x-button :url="route('payments.edit', $payment)" icon="edit" color="warning">
           Editar
         </x-button>
       @endif

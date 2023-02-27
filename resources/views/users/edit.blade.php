@@ -9,7 +9,7 @@
     <div class="card px-3 pt-2 pb-3">
       <x-user-form
         :areas="$areas"
-        :action="route('users.update', $user->id)"
+        :action="route('users.update', $user)"
         :pnfs="$pnfs"
         :user="$user"
         edit
