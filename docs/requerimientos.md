@@ -41,11 +41,11 @@
 
 # Requerimientos de salida:
   * Planilla de inscripción en cursos de extensión.
-  * Generación de matrícula de los cursos de extensión.
-  * Generación de listado de pagos.
-  * Generación de certificado de aprobación de cursos.
-  * Generación de matrícula en los clubes.
-  - Impresión del estado actual del inventario.
+  * Matrícula de los cursos de extensión.
+  * Listado de pagos.
+  * Certificado de aprobación de cursos.
+  * Matrícula en los clubes.
+  - Estado de inventario.
   - Datos estadísticos.
   - Gráficas estadísticas.
 

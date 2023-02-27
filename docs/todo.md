@@ -8,7 +8,6 @@
 ## Esteban:
 
 - PDF de estado actual.
-- PDF de historial de operaciones.
 - Prestamos de artículos.
 
 ## Tareas a largo plazo:
