@@ -16,5 +16,7 @@
     :user="$user" 
     :enrollments="$enrollments"
     :memberships="$memberships"
+    :courses="$courses"
+    :clubs="$clubs"
     />
 </x-layout.main>

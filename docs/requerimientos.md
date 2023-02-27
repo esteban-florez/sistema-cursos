@@ -15,9 +15,9 @@
   * Aprobación de estudiantes.
 
   ## Gestión de Clubes:
-  - Participación en clubes.
+  * Participación en clubes.
   * Catálogo de clubes.
-  - Gestión de participantes de clubes.
+  * Gestión de participantes de clubes.
   - Prestamos de artículos.
 
   ## Gestión de Inventario:
@@ -44,7 +44,7 @@
   * Generación de matrícula de los cursos de extensión.
   * Generación de listado de pagos.
   * Generación de certificado de aprobación de cursos.
-  - Generación de matrícula en los clubes.
+  * Generación de matrícula en los clubes.
   - Datos estadísticos.
   - Gráficas estadísticas.
 

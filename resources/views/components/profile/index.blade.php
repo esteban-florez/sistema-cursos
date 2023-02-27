@@ -8,8 +8,8 @@
             :name="$user->full_name"
             :role="$user->role"
             :image="$user->image"
-            :course-count="$user->enrollments->count()"
-            :club-count="$user->memberships->count()"
+            :enrollment-count="$user->enrollments->count()"
+            :membership-count="$user->memberships->count()"
           />
           <div class="card card-info mx-2">
             <div class="card-header">
@@ -84,45 +84,89 @@
       <div class="card mx-2 card-dark">
         <div class="card-header">
           <div class="d-flex align-items-center justify-content-between">
-            <h3 class="my-2">Mis cursos</h3>
-            @if (Auth::user()->id === $user->id)
-            <a href="{{ route('users.enrollments.index', $user->id) }}" class="mt-1">
-              <span>Ver todos</span>
-              <i class="fas fa-arrow-right"></i>
-            </a>
-            @endis
+            @if($user->role === 'Estudiante')
+              <h3 class="my-2">Mis cursos</h3>
+              @if (Auth::user()->id === $user->id)
+              <a href="{{ route('users.enrollments.index', $user->id) }}" class="mt-1">
+                <span>Ver todos</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+              @endif
+            @endif
+            @if($user->role === 'Instructor')
+              <h3 class="my-2">Cursos dictados</h3>
+              @if (Auth::user()->id === $user->id)
+              <a href="{{ route('users.courses.index', $user->id) }}" class="mt-1">
+                <span>Ver todos</span>
+                <i class="fas fa-arrow-right"></i>
+              </a>
+              @endif
+            @endif
           </div>
         </div>
         <div class="card-body">
-          @forelse($enrollments as $enrollment)
-            <x-profile.course :enrollment="$enrollment"/>
-          @empty
-            <div class="empty-container">
-              <div class="empty">No tienes cursos actualmente.</div>
-            </div>
-          @endforelse
+          @if($user->role === 'Estudiante')
+            @forelse($enrollments as $enrollment)
+              <x-profile.enrollment :enrollment="$enrollment"/>
+            @empty
+              <div class="empty-container">
+                <div class="empty">No tienes cursos actualmente.</div>
+              </div>
+            @endforelse
+          @endif
+          @if($user->role === 'Instructor')
+            @forelse($courses as $course)
+              <x-profile.course :course="$course"/>
+            @empty
+              <div class="empty-container">
+                <div class="empty">No tienes cursos actualmente.</div>
+              </div>
+            @endforelse
+          @endif
         </div>
       </div>
       <div class="card mx-2 card-dark">
         <div class="card-header">
           <div class="d-flex align-items-center justify-content-between">
-            <h3 class="my-2">Mis clubes</h3>
-            @if (Auth::user()->id === $user->id)
-              <a href="{{ route('users.memberships.index', $user->id) }}" class="mt-1">
-                <span>Ver todos</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-            @endis
+            @if($user->role === 'Estudiante')
+              <h3 class="my-2">Mis clubes</h3>
+              @if (Auth::user()->id === $user->id)
+                <a href="{{ route('users.memberships.index', $user->id) }}" class="mt-1">
+                  <span>Ver todos</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              @endif
+            @endif
+            @if($user->role === 'Instructor')
+              <h3 class="my-2">Clubes dictados</h3>
+              @if (Auth::user()->id === $user->id)
+                <a href="{{ route('users.clubs.index', $user->id) }}" class="mt-1">
+                  <span>Ver todos</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              @endif
+            @endif
           </div>
         </div>
         <div class="card-body">
-          @forelse($memberships as $membership)
-            <x-profile.club :membership="$membership"/>
-          @empty
-            <div class="empty-container">
-              <div class="empty">No tienes clubes actualmente.</div>
-            </div>
-          @endforelse
+          @if($user->role === 'Estudiante')
+            @forelse($memberships as $membership)
+              <x-profile.membership :membership="$membership"/>
+            @empty
+              <div class="empty-container">
+                <div class="empty">No tienes clubes actualmente.</div>
+              </div>
+            @endforelse
+          @endif
+          @if($user->role === 'Instructor')
+            @forelse($clubs as $club)
+              <x-profile.club :club="$club"/>
+            @empty
+              <div class="empty-container">
+                <div class="empty">No tienes clubes actualmente.</div>
+              </div>
+            @endforelse
+          @endif
         </div>
       </div>
     </div>

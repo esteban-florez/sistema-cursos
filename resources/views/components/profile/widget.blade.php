@@ -1,4 +1,4 @@
-@props(['name', 'role', 'image', 'courseCount', 'clubCount', 'noseCount'])
+@props(['name', 'role', 'image', 'courseCount' => null, 'clubCount' => null, 'enrollmentCount', 'membershipCount', 'noseCount'])
 
 <div class="card card-widget widget-user card-profile mb-3 mx-2">
   <div class="widget-user-header bg-primary">
@@ -15,12 +15,14 @@
       <div class="col-6 border-right">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Cursos</h5>
+          <p class="profile-number badge badge-dark m-0 mt-2">{{ $enrollmentCount }}</p>
           <p class="profile-number badge badge-dark m-0 mt-2">{{ $courseCount }}</p>
         </div>
       </div>
       <div class="col-6">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Clubes</h5>
+          <p class="profile-number badge badge-dark m-0 mt-2">{{ $membershipCount }}</p>
           <p class="profile-number badge badge-dark m-0 mt-2">{{ $clubCount }}</p>
         </div>
       </div>

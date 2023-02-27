@@ -83,6 +83,14 @@ class UserController extends Controller
      */
     public function show(User $user)
     {       
+        $courses = $user->dictatedCourses()
+            ->latest()
+            ->get();
+            
+        $clubs = $user->dictatedClubs()
+            ->latest()
+            ->get();
+
         $enrollments = $user
             ->enrollments()
             ->latest()
@@ -99,6 +107,8 @@ class UserController extends Controller
             'user' => $user,
             'enrollments' => $enrollments,
             'memberships' => $memberships,
+            'courses' => $courses,
+            'clubs' => $clubs,
         ]);
     }
 

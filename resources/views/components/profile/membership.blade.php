@@ -1,5 +1,7 @@
-@props(['club'])
-
+@props(['membership'])
+@php
+  $club = $membership->club;
+@endphp
 <x-profile.card>
   <x-slot name="image">
     <img class="img-fluid img-cover h-100 rounded-left"
