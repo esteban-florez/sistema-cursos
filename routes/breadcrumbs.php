@@ -100,6 +100,11 @@ Breadcrumbs::for('users.courses.index', function (Trail $trail, User $user) {
     $trail->push('Cursos dictados', route('users.courses.index', $user));
 });
 
+Breadcrumbs::for('users.clubs.index', function (Trail $trail, User $user) {
+    $trail->parent('clubs');
+    $trail->push('Clubes dictados', route('users.clubs.index', $user));
+});
+
 Breadcrumbs::for('payments.index', function (Trail $trail) {
     $trail->parent('payments');
     $trail->push('Lista de pagos', route('payments.index'));

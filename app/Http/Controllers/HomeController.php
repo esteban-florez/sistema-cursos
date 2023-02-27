@@ -35,7 +35,7 @@ class HomeController extends Controller
                 ->get();
         }
             
-        return view('home.index', [
+        return view('home', [
             'user' => $user,
             'clubs' => $clubs,
             'courses' => $courses,

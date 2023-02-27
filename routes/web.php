@@ -28,6 +28,7 @@ use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\PNFController;
 use App\Http\Controllers\UnfulfilledPaymentController;
+use App\Http\Controllers\UserClubController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\UserEnrollmentController;
@@ -126,6 +127,9 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('users/{user}/role', [UserRoleController::class, 'update'])
         ->name('users.role.update');
+
+    Route::get('users/{user}/clubs', [UserClubController::class, 'index'])
+        ->name('users.clubs.index');
 
     // Change password routes
     Route::group([

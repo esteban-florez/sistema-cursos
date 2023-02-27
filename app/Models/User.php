@@ -83,6 +83,11 @@ class User extends Authenticatable
         return $this->hasMany(Course::class);
     }
 
+    public function dictatedClubs()
+    {
+        return $this->hasMany(Club::class);
+    }
+
     /** --------------- Query Scopes --------------- */
 
     public function scopeInstructors($query)

@@ -16,10 +16,8 @@
           @endphp
           <div class="col-md-6">
             <x-club.alt-card :club="$club">
-              <div class="d-flex flex-column">
-                <span class="mb-1"><b>Día de clases:</b> {{ $club->day }}</span>
-                <span class="mb-1"><b>Hora:</b> {{ $club->hour }}</span>
-              </div>
+              <p class="mb-1">Día de clases: <b>{{ $club->day }}</b></p>
+              <p class="mb-1">Hora: <b>{{ $club->hour }}</b></p>
               <div class="d-flex align-items-center gap-1 mt-3">
                 <x-button :url="route('memberships.show', $membership)" icon="list-ul">
                   Detalles

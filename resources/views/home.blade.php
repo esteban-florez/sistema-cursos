@@ -8,10 +8,10 @@
 
   <section class="container-fluid px-sm-4">
     <x-home.index 
-      :payments=$payments
-      :user=$user
-      :courses=$courses
-      :clubs=$clubs
+      :payments="$payments"
+      :user="$user"
+      :courses="$courses"
+      :clubs="$clubs"
     />
   </section>
 </x-layout.main>
