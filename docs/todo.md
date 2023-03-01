@@ -7,8 +7,8 @@
 
 ## Esteban:
 
-- Respaldo y recuperación de base de datos.
 - Hacer sistema de permisos (Authorization).
+- Preguntar como hacer recuperación de base de datos.
 
 ## Tareas a largo plazo:
 
@@ -16,5 +16,6 @@
   - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Arreglar búsquedas de cursos con código (IG).
 - Depurar el css al final del proyecto.
+- Desinstalar Clockwork al final del proyecto.
 - Correos con Gmail.
 - Hacer sistema de notificaciones.
