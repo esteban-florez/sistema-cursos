@@ -85,7 +85,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? $user?->birth->format(DV) ?? '' }}" required>
+        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? optional($user->birth)->format(DV) ?? '' }}" required>
           Fecha de nacimiento:
         </x-field>
       </div>
@@ -172,6 +172,6 @@
     </x-button>
   </div>
 </form>
-@if ($user?->role !== 'Estudiante')
+@if (optional($user)->role !== 'Estudiante')
   <x-area.new id="newAreaModal" :pnfs="$pnfs" ajax/>
 @endif

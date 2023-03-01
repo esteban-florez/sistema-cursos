@@ -153,6 +153,14 @@ if (!function_exists('randomNumericString')) {
     }
 }
 
+if (!function_exists('strToBool')) {
+    function strToBool($string) {
+        if ($string === 'true') return true;
+        if ($string === 'false') return false;
+        return $string;
+    }
+}
+
 if (!function_exists('backWithoutQuery')) {
     /** 
      * Create a new redirect response to the previous location without query string parameters.

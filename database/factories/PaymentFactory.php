@@ -15,11 +15,12 @@ class PaymentFactory extends Factory
     {
         $type = payTypes()->random();
 
-        $ref = match ($type) {
+        $map = [
             'Pago Móvil' => randomNumericString(4),
             'Transferencia' => randomNumericString(10),
-            default => null
-        };
+        ];
+
+        $ref = $map[$type] ?? null;
         
         return [
             'ref' => $ref,

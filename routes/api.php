@@ -37,8 +37,6 @@ Route::post('areas', function (Request $request) {
 })->name('api.areas.store');
 
 Route::get('schedule/{user}', function (User $user) {
-    $events = null;
-    
     if ($user->role === 'Instructor') {
         $courses = Course::latest()
             ->phase('En curso')
@@ -51,15 +49,15 @@ Route::get('schedule/{user}', function (User $user) {
     } else {
         $courses = Course::latest()
             ->phase('En curso')
-            ->whereHas('students', fn($query) => $query->where('users.id', $user->id))
-            ->get();
+            ->whereHas('students', function ($query) use ($user) {
+                return $query->where('users.id', $user->id);
+            })->get();
         
         $clubs = Club::latest()
-            ->whereHas('members', fn($query) => $query->where('users.id', $user->id))
-            ->get();
+            ->whereHas('members', function ($query) use ($user) {
+                return $query->where('users.id', $user->id);
+            })->get();
     }
 
-    $events = [...$courses, ...$clubs];
-
-    return $events;
+    return $courses->concat($clubs)->all();
 })->name('api.schedule');

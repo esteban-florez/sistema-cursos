@@ -1,7 +1,9 @@
 <?php
 
 function generateAlerts($resource) {
-    $baseMsg = fn($op, $res) => "¡$res se ha $op con éxito!";
+    $baseMsg = function ($op, $res) {
+        return "¡$res se ha $op con éxito!";
+    };
 
     return [
         'created' => $baseMsg('creado', $resource),

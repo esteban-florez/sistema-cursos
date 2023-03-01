@@ -20,8 +20,9 @@ class Item extends Model
     {
         $items = self::all(['id', 'name']);
 
-        $options = $items->mapWithKeys(fn($item) => [$item->id => $item->name])
-            ->all();
+        $options = $items->mapWithKeys(function ($item) {
+            return [$item->id => $item->name];
+        })->all();
 
         return $options;
     }

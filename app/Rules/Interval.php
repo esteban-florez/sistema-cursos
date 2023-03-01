@@ -64,10 +64,12 @@ class Interval implements Rule, DataAwareRule
      */
     public function passes($attribute, $value)
     {
-        $format = match ($this->unit) {
+        $map = [
             'd' => DV,
             'h' => TV,
-        };
+        ];
+        
+        $format = $map[$this->unit];
 
         $date = Date::createFromFormat($format, $value);
         $fieldDate = Date::createFromFormat($format, $this->data[$this->field]);

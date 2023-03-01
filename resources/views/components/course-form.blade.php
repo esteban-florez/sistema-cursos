@@ -43,22 +43,22 @@
       </x-textarea>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="start_ins" id="startIns" value="{{ old('start_ins') ?? $course?->start_ins->format(DV) ?? '' }}" required>
+      <x-field type="date" name="start_ins" id="startIns" value="{{ old('start_ins') ?? optional($course->start_ins)->format(DV) ?? '' }}" required>
         Inicio de Inscripciones:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="end_ins" id="endIns" value="{{ old('end_ins') ?? $course?->end_ins->format(DV) ?? '' }}" required>
+      <x-field type="date" name="end_ins" id="endIns" value="{{ old('end_ins') ?? optional($course->end_ins)->format(DV) ?? '' }}" required>
         Fin de Inscripciones:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="start_course" value="{{ old('start_course') ?? $course?->start_course->format(DV) ?? '' }}" id="startCourse" required>
+      <x-field type="date" name="start_course" value="{{ old('start_course') ?? optional($course->start_course)->format(DV) ?? '' }}" id="startCourse" required>
         Inicio del Curso:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="date" name="end_course" value="{{ old('end_course') ?? $course?->end_course->format(DV) ?? '' }}" id="endCourse" required>
+      <x-field type="date" name="end_course" value="{{ old('end_course') ?? optional($course->end_course)->format(DV) ?? '' }}" id="endCourse" required>
         Fin del Curso:
       </x-field>
     </div>
@@ -78,12 +78,12 @@
       </x-select>
     </div>
     <div class="col-sm-4">
-      <x-field type="time" name="start_hour" id="startTime" value="{{ old('start_hour') ?? $course?->start_hour->format(TV) ?? '' }}" required>
+      <x-field type="time" name="start_hour" id="startTime" value="{{ old('start_hour') ?? optional($course->start_hour)->format(TV) ?? '' }}" required>
         Hora de Inicio:
       </x-field>
     </div>
     <div class="col-sm-4">
-      <x-field type="time" name="end_hour" id="endTime" value="{{ old('end_hour') ?? $course?->end_hour->format(TV) ?? '' }}" required>
+      <x-field type="time" name="end_hour" id="endTime" value="{{ old('end_hour') ?? optional($course->end_hour)->format(TV) ?? '' }}" required>
         Hora de Cierre:
       </x-field>
     </div>

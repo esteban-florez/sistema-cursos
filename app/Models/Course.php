@@ -62,8 +62,9 @@ class Course extends Model
             ->get();
         
         $ids = $courses
-            ->filter(fn($course) => $course->students_count < $course->student_limit)
-            ->modelKeys();
+            ->filter(function ($course) {
+                return $course->students_count < $course->student_limit;
+            })->modelKeys();
         
         return $query->whereIn('id', $ids);
     }
@@ -95,11 +96,11 @@ class Course extends Model
                     continue;
                 }
 
-                $value = match ($value) {
+                $map = [
                     'true' => true,
                     'false' => false,
-                    default => $value,
-                };
+                ];
+                $value = $map[$value] ?? $value;
 
                 $query->where($filter, '=', $value);
             }
@@ -112,9 +113,10 @@ class Course extends Model
     {
         $areas = self::all(['id', 'name']);
 
-        $options = $areas->mapWithKeys(fn($area) => [$area->id => $area->name])
-            ->sortKeys()
-            ->all();
+        $options = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->sortKeys()
+        ->all();
 
         return $options;
     }
@@ -150,13 +152,12 @@ class Course extends Model
         $startCourse = $this->start_course->getTimestamp();
         $endCourse = $this->end_course->getTimestamp();
 
-        return match(true) {
-            $now < $startIns => 'Pre-inscripciones',
-            $now < $endIns => 'Inscripciones',
-            $now < $startCourse => 'Pre-curso',
-            $now < $endCourse => 'En curso',
-            default => 'Finalizado',
-        };
+        if ($now < $startIns) return 'Pre-inscripciones';
+        if ($now < $startIns) return 'Pre-inscripciones';
+        if ($now < $endIns) return 'Inscripciones';
+        if ($now < $startCourse) return 'Pre-curso';
+        if ($now < $endCourse) return 'En curso';
+        return 'Finalizado';
     }
 
     public function getDurationHoursAttribute()

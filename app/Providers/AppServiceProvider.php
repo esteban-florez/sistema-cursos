@@ -35,13 +35,19 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === $role;
         };
 
-        Blade::if('is', fn($user, $role = null) => $checkRole($user, $role));
+        Blade::if('is', function ($user, $role = null) use ($checkRole) {
+            return $checkRole($user, $role);
+        });
 
-        Blade::if('isnt', fn($user, $role = null) => !$checkRole($user, $role));
+        Blade::if('isnt', function ($user, $role = null) use ($checkRole) {
+            return !$checkRole($user, $role);
+        });
 
-        Collection::macro('pairs', fn() =>
-            $this->mapWithKeys(fn($value) => 
-                [$value => $value]));
+        Collection::macro('pairs', function () {
+            $this->mapWithKeys(function ($value) {
+                return [$value => $value];
+            });
+        });
 
         Paginator::useBootstrap();
     }

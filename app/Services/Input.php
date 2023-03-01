@@ -7,10 +7,13 @@ class Input
     public static function getFilters()
     {
         return request()->collect()
-            ->filter(fn($_, $paramName) => explode('|', $paramName)[0] === 'filters')->filter(fn($paramValue) => $paramValue !== null)
-            ->mapWithKeys(fn($paramValue, $paramName) =>
-                [explode('|', $paramName)[1] => $paramValue])
-            ->all();
+            ->filter(function ($_, $paramName) {
+                return explode('|', $paramName)[0] === 'filters';
+            })->filter(function ($paramValue) {
+                return $paramValue !== null;
+            })->mapWithKeys(function($paramValue, $paramName) {
+                return [explode('|', $paramName)[1] => $paramValue];
+            })->all();
     }
 
     public static function checkFile($field)

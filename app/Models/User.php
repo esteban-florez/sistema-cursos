@@ -173,9 +173,9 @@ class User extends Authenticatable
             $users = User::all($cols);
         }
 
-        $options = $users->mapWithKeys(fn($user) => 
-            [$user->id => $user->full_name])
-            ->sortKeys()->all();
+        $options = $users->mapWithKeys(function ($user) {
+            return [$user->id => $user->full_name];
+        })->sortKeys()->all();
 
         return $options;
     }

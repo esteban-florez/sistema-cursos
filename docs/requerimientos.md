@@ -45,7 +45,7 @@
   * Listado de pagos.
   * Certificado de aprobación de cursos.
   * Matrícula en los clubes.
-  - Estado de inventario.
+  * Estado de inventario.
   - Datos estadísticos.
   - Gráficas estadísticas.
 

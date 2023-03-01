@@ -44,11 +44,9 @@ class PaymentController extends Controller
     public function update(UpdatePaymentRequest $request, Payment $payment)
     {
         $data = $request->validated();
+        $data['status'] = 'Pendiente';
 
-        $payment->update([
-            ...$data,
-            'status' => 'Pendiente',
-        ]);
+        $payment->update($data);
 
         return redirect()
             ->route('users.payments.index', Auth::user())

@@ -1,11 +1,13 @@
 @props(['payment'])
 
 @php
-  $color = match ($payment->status) {
+  $colors = [
     'Pendiente' => 'secondary',
     'Rechazado' => 'danger',
     'Confirmado' => 'success',
-  };
+  ];
+  
+  $color = $colors[$payments->status];
 @endphp
 
 <h5 class="text-{{ $color }} mb-0">Estado: {{ $payment->status }}</h5>

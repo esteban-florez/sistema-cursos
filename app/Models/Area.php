@@ -30,8 +30,9 @@ class Area extends Model
     {
         $areas = self::all(['id', 'name']);
 
-        $options = $areas->mapWithKeys(fn($area) => [$area->id => $area->name])
-            ->all();
+        $options = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->all();
 
         return $options;
     }

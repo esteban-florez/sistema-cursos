@@ -40,12 +40,15 @@ class DeleteUnconfirmedEnrollments extends Command
     {
         $courses = Course::all();
 
-        $courses->reject(fn($course) => $course->phase === 'Inscripciones')
-            ->each(function ($course) {
+        $courses->reject(function ($course) {
+            return $course->phase === 'Inscripciones';
+        })->each(function ($course) {
             $unconfirmed = $course->enrollments()
                 ->whereNull('enrollments.confirmed_at')->get();
             
-            $unconfirmed->each(fn($enrollment) => $enrollment->delete());
+            $unconfirmed->each(function ($enrollment) {
+                $enrollment->delete();
+            });
         });
 
         echo "Removed unconfirmed enrollments successfully.\n";

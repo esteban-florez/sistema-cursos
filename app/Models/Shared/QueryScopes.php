@@ -8,12 +8,7 @@ trait QueryScopes
     {
         return $query->when($filters, function ($query, $filters) {
             foreach($filters as $filter => $value) {
-                $value = match($value) {
-                    'true' => true,
-                    'false' => false,
-                    default => $value,
-                };
-                
+                $value = strToBool($value);
                 $query->where($filter, '=', $value);
             }
             
@@ -32,7 +27,8 @@ trait QueryScopes
         
     public function scopeSort($query, $sortColumn)
     {
-        return $query->when($sortColumn, fn($query, $sortColumn) => 
-            $query->orderBy($sortColumn));
+        return $query->when($sortColumn, function ($query, $sortColumn) {
+            return $query->orderBy($sortColumn);
+        });
     }
 }

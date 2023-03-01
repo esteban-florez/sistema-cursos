@@ -15,9 +15,9 @@ class UserEnrollmentController extends Controller
             ->enrollments()
             ->latest()
             ->with('course')
-            ->whereHas('course', 
-                fn($q) => $q->where('courses.name', 'like', "%{$search}%"))
-            ->paginate(6)
+            ->whereHas('course', function ($q) use ($search) {
+                return $q->where('courses.name', 'like', "%{$search}%");
+            })->paginate(6)
             ->withQueryString();
 
         return view('users-enrollments.index', [

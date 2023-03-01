@@ -25,11 +25,12 @@ class OperationRequest extends FormRequest
      */
     public function rules()
     {
-        $maxAmount = Item::find($this->input('item_id'))->stock();
-        $maxRule = $this->input('type') === 'Desincorporación' ? ["max:{$maxAmount}"] : [];
+        $max = $this->input('type') === 'Desincorporación' 
+            ? Item::find($this->input('item_id'))->stock()
+            : 100;
 
         return [
-            'amount' => ['required', 'numeric', 'integer', 'min:1', ...$maxRule],
+            'amount' => ['required', 'numeric', 'integer', 'min:1', 'max:'.$max],
             'type' => ['required', 'in:'.operationTypes()->join(',')],
             'reason' => ['nullable', 'string', 'min:6', 'max:255'],
             'item_id' => ['required', 'numeric', new ValidID],
@@ -38,9 +39,11 @@ class OperationRequest extends FormRequest
 
     public function messages()
     {
-        return [
-            'amount.max' => ':attribute a desincorporar no puede ser mayor al stock actual.',
+        $custom = [
+            'amount.max' => ':attribute a desincorporar no puede ser mayor al stock actual.'
         ];
+
+        return $this->input('type') === 'Desincorporación' ? $custom : [];
     }
 
     public function attributes()

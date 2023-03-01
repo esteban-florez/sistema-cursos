@@ -44,12 +44,8 @@ class Payment extends Model
                     $query->whereIn('enrollment_id', $ids);
                     continue;
                 }
-
-                $value = match ($value) {
-                    'true' => true,
-                    'false' => false,
-                    default => $value,
-                };
+                
+                $value = strToBool($value);
 
                 $query->where($filter, '=', $value);
             }

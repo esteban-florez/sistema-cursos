@@ -16,11 +16,12 @@
     ],
   ];
 
-  $content = match ($value) {
+  $contentMap = [
     'Confirmado' => 'Confirmar',
     'Rechazado' => 'Rechazar',
-    default => $value, 
-  }
+  ];
+  
+  $content = $contentMap[$value] ?? $value;
 @endphp
 
 <form method="POST" class="d-inline" action="{{ route('payments.status.update', $id) }}">

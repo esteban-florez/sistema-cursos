@@ -56,10 +56,11 @@ class EnrollmentController extends Controller
             'mode' => $request->safe()->mode,
         ]);
 
-        Payment::create([
-            ...$request->safe()->except('mode'),
+        $data = $request->safe()->merge([
             'enrollment_id' => $enrollment->id,
-        ]);
+        ])->except('mode');
+
+        Payment::create($data);
 
         if ($request->input('mode') === 'Reservación') {
             Payment::create([

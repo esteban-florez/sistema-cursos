@@ -22,12 +22,12 @@
       </x-select>
     </div>
     <div class="col-sm-6">
-      <x-field type="time" name="start_hour" id="startHour" value="{{ old('start_hour') ?? $club?->start_hour->format(TV) ?? '' }}" required>
+      <x-field type="time" name="start_hour" id="startHour" value="{{ old('start_hour') ?? optional($club->start_hour)->format(TV) ?? '' }}" required>
         Hora de Inicio:
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-field type="time" name="end_hour" id="endHour" value="{{ old('end_hour') ?? $club?->end_hour->format(TV) ?? '' }}" required>
+      <x-field type="time" name="end_hour" id="endHour" value="{{ old('end_hour') ?? optional($club->end_hour)->format(TV) ?? '' }}" required>
         Hora de Cierre:
       </x-field>
     </div>
