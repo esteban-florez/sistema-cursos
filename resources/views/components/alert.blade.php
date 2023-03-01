@@ -12,7 +12,7 @@
   ]);
 
   $color = $colors
-    ->filter(function ($_, $operation) => {
+    ->filter(function ($_, $operation) use ($message) {
       return str($message)->contains($operation);
     })->first();
 @endphp

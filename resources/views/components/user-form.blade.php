@@ -85,7 +85,7 @@
         </div>
       </div>
       <div class="col-md-6">
-        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? optional($user->birth)->format(DV) ?? '' }}" required>
+        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? ($edit ? $user->birth->format(DV) : '') }}" required>
           Fecha de nacimiento:
         </x-field>
       </div>

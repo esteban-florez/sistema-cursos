@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Collection::macro('pairs', function () {
-            $this->mapWithKeys(function ($value) {
+            return $this->mapWithKeys(function ($value) {
                 return [$value => $value];
             });
         });

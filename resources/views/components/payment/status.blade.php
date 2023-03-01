@@ -7,7 +7,7 @@
     'Confirmado' => 'success',
   ];
   
-  $color = $colors[$payments->status];
+  $color = $colors[$payment->status];
 @endphp
 
 <h5 class="text-{{ $color }} mb-0">Estado: {{ $payment->status }}</h5>
