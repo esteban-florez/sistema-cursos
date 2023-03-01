@@ -14,7 +14,7 @@
         :value="$search" :filters="$filters" :sort="$sort"/>
     </div>
     <div>
-      <x-button icon="file-download" hide-text="md" :url="route('payments-pdf.index')">
+      <x-button icon="file-download" hide-text="md" :url="route('payments-pdf')">
         Generar PDF
       </x-button>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>

@@ -2,6 +2,11 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('items.amount.index') }}
   </x-slot>
+  <x-slot name="titleAddon">
+    <x-button :url="route('items-pdf')" icon="file-download" color="success">
+      Generar PDF
+    </x-button>
+  </x-slot>
   <x-select2 />
   <section class="container-fluid mt-3">
     <x-errors />

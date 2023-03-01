@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
+use App\Models\Item;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
-class PaymentPDFController extends Controller
+class ItemPDFController extends Controller
 {
     public function __invoke()
     {
-        $payments = Payment::with('enrollment.course', 'enrollment.student')
-            ->get();
+        $items = Item::latest()
+            ->with('operations')
+            ->paginate(10)
+            ->withQueryString();
 
-        $pdf = PDF::loadView('pdf.payments', [
-            'payments' => $payments,
+        $pdf = PDF::loadView('pdf.items', [
+            'items' => $items,
             'date' => now()->format(DF),
             'logo' => base64('img/logo-upta.png'),
         ])->setPaper('a4', 'landscape');
 
-        $filename = "Reporte de Pagos - Vinculación Social.pdf"; 
+        $filename = "Estado de Inventario.pdf"; 
         $path = public_path($filename);
         $pdf->save($filename);
         

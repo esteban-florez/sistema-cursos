@@ -8,9 +8,6 @@
       placeholder="Buscar artículo por código..." name="search"
       :value="$search ?? ''" :filters="$filters" :sort="$sort"/>
     <div class="ml-auto">
-      <x-button icon="file-download" color="success" hide-text="sm" url="#">
-        Generar PDF
-      </x-button>
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
         Filtros
       </x-button>
