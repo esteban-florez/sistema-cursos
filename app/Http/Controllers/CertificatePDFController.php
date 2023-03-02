@@ -9,6 +9,7 @@ class CertificatePDFController extends Controller
 {
     public function __invoke(Enrollment $enrollment)
     {
+        // GATE
         $student = $enrollment->student;
 
         $pdf = PDF::loadView('pdf.certificate', [

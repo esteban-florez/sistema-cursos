@@ -8,6 +8,11 @@ use App\Models\TransferCredentials;
 
 class TransferCredentialsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

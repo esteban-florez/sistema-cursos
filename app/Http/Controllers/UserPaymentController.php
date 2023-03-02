@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserPaymentController extends Controller
 {
+    // GATE
     /**
      * Display a listing of the resource.
      *
@@ -25,26 +25,5 @@ class UserPaymentController extends Controller
             'payments' => $payments,
             'user' => $user,
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 }

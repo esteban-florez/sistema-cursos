@@ -10,6 +10,10 @@ use Illuminate\Http\Request;
 
 class OperationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
     /**
      * Display a listing of the resource.
      *

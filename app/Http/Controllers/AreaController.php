@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class AreaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
+
     public function index(Request $request)
     {
         $search = $request->input('search');

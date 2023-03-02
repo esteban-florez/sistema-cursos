@@ -6,6 +6,11 @@ use App\Models\Enrollment;
 
 class EnrollmentConfirmationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
+
     public function update(Enrollment $enrollment)
     {
         $enrollment->update([

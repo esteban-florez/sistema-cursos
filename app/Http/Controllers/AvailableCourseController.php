@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AvailableCourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Estudiante');
+    }
+    
     public function index(Request $request)
     {
         $user = Auth::user();

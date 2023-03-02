@@ -11,11 +11,7 @@ use App\Services\Input;
 
 class ClubController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // POLICY
     public function index(Request $request)
     {
         $filters = Input::getFilters();

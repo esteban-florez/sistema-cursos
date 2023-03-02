@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class UserClubController extends Controller
 {
+    // GATE
     public function index(Request $request, User $user)
     {
         $search = $request->input('search');

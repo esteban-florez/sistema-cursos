@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class MembershipPDFController extends Controller
 {
+    // GATE
     public function __invoke(Request $request)
     {
         $club = Club::with('instructor')

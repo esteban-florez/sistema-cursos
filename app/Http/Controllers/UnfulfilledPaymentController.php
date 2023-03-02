@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class UnfulfilledPaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Estudiante');
+        // GATE
+    }
+
     public function index(Request $request)
     {
         $user = User::findOrFail($request->query('user'));

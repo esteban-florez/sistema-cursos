@@ -6,6 +6,11 @@ use App\Models\Payment;
 
 class PendingPaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
+
     public function index()
     {
         $payments = Payment::with('enrollment.student', 'enrollment.course')

@@ -8,6 +8,11 @@ use Illuminate\Validation\Rule;
 
 class PNFController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AvailableClubController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('role:Estudiante');
+    }
+
     public function index(Request $request)
     {
         $user = Auth::user();

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class EnrollmentPDFController extends Controller
 {
+    // GATE
     public function index(Request $request)
     {
         $course = Course::with('instructor')

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class UserRoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
+
     public function update(Request $request, User $user)
     {
         $data = $request->validate([

@@ -8,6 +8,10 @@ use App\Models\MovilCredentials;
 
 class MovilCredentialsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
     /**
      * Store a newly created resource in storage.
      *

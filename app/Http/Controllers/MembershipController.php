@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class MembershipController extends Controller
 {
+    // POLICY
     /**
      * Display a listing of the resource.
      *

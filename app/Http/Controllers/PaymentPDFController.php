@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class PaymentPDFController extends Controller
 {
+    // GATE
     public function __invoke()
     {
         $payments = Payment::with('enrollment.course', 'enrollment.student')

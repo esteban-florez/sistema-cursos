@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class ItemPDFController extends Controller
 {
+    // GATE
     public function __invoke()
     {
         $items = Item::latest()

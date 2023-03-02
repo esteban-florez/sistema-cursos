@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Area;
-use App\Models\Club;
 use App\Models\User;
 use App\Models\PNF;
 use App\Services\Input;
@@ -13,6 +12,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    // POLICY
     /**
      * Display a listing of the resource.
      *

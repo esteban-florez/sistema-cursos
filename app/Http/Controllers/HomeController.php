@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    // TODO -> ay chamo, hay que ver como hacer la autorización de esto
     public function __invoke()
     {
         $user = Auth::user();

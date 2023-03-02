@@ -7,6 +7,10 @@ use App\Models\TransferCredentials;
 
 class CredentialsController extends Controller
 {
+    public function __construct() {
+        $this->middleware('role:Administrador');
+    }
+
     public function index()
     {
         $movil = MovilCredentials::first();
