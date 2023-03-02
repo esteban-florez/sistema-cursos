@@ -2,7 +2,7 @@
 
 - Prestamos de artículos.
 - Ruta de cambio de imagen de perfil.
-- Crear las vistas de: 404 "No encontrado", 403 y 401 "No autorizado".
+- Crear las vistas de: 404 "No encontrado", 403 "No autorizado".
 - Preguntar más sobre los clubes a Edeblangel.
 
 ## Esteban:

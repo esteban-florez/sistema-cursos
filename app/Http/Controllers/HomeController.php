@@ -15,12 +15,12 @@ class HomeController extends Controller
         $user = Auth::user();
         
         $clubs = Club::latest()
-            ->orderby('id', 'desc')
+            ->orderBy('id', 'desc')
             ->limit(2)
             ->get();
 
-        $courses = Course::Availables()
-            ->orderby('id', 'desc')
+        $courses = Course::availables()
+            ->orderBy('id', 'desc')
             ->limit(2)
             ->get();
             

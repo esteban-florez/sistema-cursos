@@ -60,7 +60,7 @@
             <x-layout.sidebar.item :url="route('available-clubs.index')" icon="list">
               Lista de clubes
             </x-layout.sidebar.item>
-            <x-layout.sidebar.item :url="route('users.memberships.index', $user)" icon="list">
+            <x-layout.sidebar.item :url="route('users.memberships.index', $user)" icon="star">
               Mis clubes
             </x-layout.sidebar.item>
             @endis
