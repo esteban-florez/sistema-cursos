@@ -27,7 +27,7 @@ class Payment extends Model
     {
         $currency = $this->type === 'Efectivo ($)' ? '$' : 'Bs.D.';
 
-        $amount = number_format($this->amount, 2, ',');
+        $amount = number_format($this->amount, 2, ',', '.');
 
         return "{$amount} {$currency}";
     }

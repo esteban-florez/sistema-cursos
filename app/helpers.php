@@ -149,7 +149,7 @@ if (!function_exists('base64')) {
 
 if (!function_exists('randomNumericString')) {
     function randomNumericString($length) {
-        return (string) rand(pow(10, $length - 1), pow(10, $length)-1);
+        return (string) rand((int) pow(10, $length - 1), (int) pow(10, $length)-1);
     }
 }
 
