@@ -11,7 +11,7 @@ class Membership extends Model
 
     protected $guarded = [];
 
-    public function member()
+    public function student()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

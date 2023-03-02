@@ -38,7 +38,7 @@ class AuthServiceProvider extends ServiceProvider
                 ->symbols();
         });
 
-        Gate::define('role', function ($user, $roles) {
+        Gate::define('role', function ($user, ...$roles) {
             return collect($roles)->contains($user->role);
         });
     }

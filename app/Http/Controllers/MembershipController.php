@@ -48,22 +48,6 @@ class MembershipController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Membership $membership)
-    {
-        $club = $membership->club;
-
-        return view('users-memberships.show', [
-            'membership' => $membership,
-            'club' => $club,
-        ]);
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

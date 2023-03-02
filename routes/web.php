@@ -4,7 +4,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\AvailableClubController;
 use App\Http\Controllers\AvailableCourseController;
-use App\Http\Controllers\CertificatePDFController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
@@ -17,15 +16,12 @@ use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\EnrollmentConfirmationController;
-use App\Http\Controllers\EnrollmentPDFController;
-use App\Http\Controllers\ItemAmountController;
+use App\Http\Controllers\ItemStockController;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\ItemPDFController;
 use App\Http\Controllers\MembershipController;
-use App\Http\Controllers\MembershipPDFController;
 use App\Http\Controllers\OperationController;
-use App\Http\Controllers\PaymentPDFController;
 use App\Http\Controllers\PaymentStatusController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\PNFController;
 use App\Http\Controllers\UnfulfilledPaymentController;
@@ -117,11 +113,21 @@ Route::middleware('auth')->group(function () {
     Route::get('users/{user}/payments', [UserPaymentController::class, 'index'])
         ->name('users.payments.index');
     
-    Route::get('users/{user}/enrollments', [UserEnrollmentController::class, 'index'])
-        ->name('users.enrollments.index');
+    Route::controller(UserEnrollmentController::class)->group(function () {
+        Route::get('users/{user}/enrollments', 'index')
+            ->name('users.enrollments.index');
+        
+        Route::get('users/enrollments/{enrollment}', 'show')
+            ->name('users.enrollments.show');
+    });
 
-    Route::get('users/{user}/memberships', [UserMembershipController::class, 'index'])
-        ->name('users.memberships.index');
+    Route::controller(UserMembershipController::class)->group(function () {
+        Route::get('users/{user}/memberships', 'index')
+            ->name('users.memberships.index');
+
+        Route::get('users/memberships/{membership}', 'show')
+            ->name('users.memberships.show');
+    });
 
     Route::get('users/{user}/courses', [UserCourseController::class, 'index'])
         ->name('users.courses.index');
@@ -138,7 +144,7 @@ Route::middleware('auth')->group(function () {
         'as' => 'password.',
     ],
     function () {
-        Route::get('user/{user}/change-password', 'change')
+        Route::get('change-password', 'change')
             ->name('change');
 
         Route::post('update-password', 'update')
@@ -176,33 +182,16 @@ Route::middleware('auth')->group(function () {
     Route::get('available-clubs', [AvailableClubController::class, 'index'])
         ->name('available-clubs.index');
 
-
     // Membership routes
     Route::resource('memberships', MembershipController::class)
-        ->except('create', 'edit', 'update');
+        ->only('index', 'store', 'destroy');
 
     // Enrollment routes
-    Route::group([
-        'controller' => EnrollmentController::class,
-        'as' => 'enrollments.',
-    ], function () {
-        Route::get('enrollments', 'index')
-            ->name('index');
-
-        Route::middleware('enroll')->group(function () {
-            Route::get('enrollments/create', 'create')
-                ->name('create');
+    Route::resource('enrollments', EnrollmentController::class)
+        ->only('index', 'create', 'store');
         
-            Route::post('enrollments', 'store')
-                ->name('store');
-        });
-        
-        Route::get('enrollments/{enrollment}/success', 'success')
-            ->name('success');
-
-        Route::get('enrollments/{enrollment}', 'show')
-            ->name('show');
-    }); 
+    Route::get('enrollments/{enrollment}/success', [EnrollmentController::class, 'success'])
+        ->name('success');
 
     Route::patch('enrollments/{enrollment}/approval', 
     [EnrollmentApprovalController::class, 'update'])
@@ -239,19 +228,18 @@ Route::middleware('auth')->group(function () {
     // Schedule route
     Route::get('schedule', function () {
         return view('schedule');
-    })->name('schedule');
+    })->middleware('role:Estudiante,Instructor')->name('schedule');
 
     // Items routes
     Route::resource('items', ItemController::class)
         ->except('create', 'show', 'destroy');
     
-    Route::get('items/amount', [ItemAmountController::class, 'index'])
-        ->name('items.amount.index');
+    Route::get('items-stock', [ItemStockController::class, 'index'])
+        ->name('items.stock.index');
     
     // Operations routes
     Route::resource('operations', OperationController::class)
         ->only('index', 'store');
-
 
     // Home routes
     Route::get('home', HomeController::class)
@@ -260,25 +248,26 @@ Route::middleware('auth')->group(function () {
 
     // PDF routes
     Route::group([
-        'controller' => EnrollmentPDFController::class,
-        'as' => 'enrollments-pdf.'
+        'controller' => PDFController::class,
+        'as' => 'pdf.',
+        'prefix' => 'pdf'
     ], function () {
-        Route::get('enrollments-pdf', 'index')
-            ->name('index');
-    
-        Route::get('enrollments-pdf/{enrollment}', 'show')
-            ->name('show');
+        Route::get('enrollments', 'enrollments')
+            ->name('enrollments');
+
+        Route::get('enrollment', 'enrollment')
+            ->name('enrollment');
+
+        Route::get('payments', 'payments')
+            ->name('payments');
+
+        Route::get('certificate/{enrollment}', 'certificate')
+            ->name('certificate');
+
+        Route::get('memberships', 'memberships')
+            ->name('memberships');
+
+        Route::get('items', 'items')
+            ->name('items');
     });
-
-    Route::get('payments-pdf', PaymentPDFController::class)
-        ->name('payments-pdf');
-
-    Route::get('certificate/{enrollment}', CertificatePDFController::class)
-        ->name('certificate-pdf');
-
-    Route::get('memberships-pdf', MembershipPDFController::class)
-        ->name('memberships-pdf');
-
-    Route::get('items-pdf', ItemPDFController::class)
-        ->name('items-pdf');
 });

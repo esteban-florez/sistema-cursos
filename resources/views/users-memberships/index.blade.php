@@ -19,7 +19,7 @@
               <p class="mb-1">Día de clases: <b>{{ $club->day }}</b></p>
               <p class="mb-1">Hora: <b>{{ $club->hour }}</b></p>
               <div class="d-flex align-items-center gap-1 mt-3">
-                <x-button :url="route('memberships.show', $membership)" icon="list-ul">
+                <x-button :url="route('users.memberships.show', $membership)" icon="list-ul">
                   Detalles
                 </x-button>
                 <x-button color="danger" data-toggle="modal" data-target="#clubModal">

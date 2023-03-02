@@ -1,9 +1,9 @@
 <x-layout.main title="Inventario actual">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('items.amount.index') }}
+    {{ Breadcrumbs::render('items.stock.index') }}
   </x-slot>
   <x-slot name="titleAddon">
-    <x-button :url="route('items-pdf')" icon="file-download" color="success">
+    <x-button :url="route('pdf.items')" icon="file-download" color="success">
       Generar PDF
     </x-button>
   </x-slot>

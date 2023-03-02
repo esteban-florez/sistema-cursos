@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 
-class ItemAmountController extends Controller
+class ItemStockController extends Controller
 {
     public function __construct()
     {
@@ -18,7 +18,7 @@ class ItemAmountController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('items-amount.index', [
+        return view('items-stock.index', [
             'items' => $items,
             'itemOptions' => Item::getOptions(),
         ]);

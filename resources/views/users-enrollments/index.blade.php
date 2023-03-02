@@ -47,11 +47,11 @@
               @endif
               <div class="d-flex align-items-center gap-1 mt-3">
                 @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
-                  <x-button :url="route('certificate-pdf', $enrollment)" color="success" icon="arrow-down">
+                  <x-button :url="route('pdf.certificate', $enrollment)" color="success" icon="arrow-down">
                     Certificado
                   </x-button>
                 @endif
-                <x-button :url="route('enrollments.show', $enrollment)" icon="list-ul">
+                <x-button :url="route('users.enrollments.show', $enrollment)" icon="list-ul">
                   Detalles
                 </x-button>
               </div>

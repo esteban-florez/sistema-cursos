@@ -27,12 +27,12 @@
     <tbody>
       @foreach ($memberships as $membership)
       @php
-        $member = $membership->member;
+        $student = $membership->student;
       @endphp
         <tr>
-          <td>{{ $member->full_name }}</td>
-          <td>{{ $member->full_ci }}</td>
-          <td>{{ $member->upta }}</td>
+          <td>{{ $student->full_name }}</td>
+          <td>{{ $student->full_ci }}</td>
+          <td>{{ $student->upta }}</td>
         </tr>
       @endforeach
     </tbody>

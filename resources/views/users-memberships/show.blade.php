@@ -1,6 +1,6 @@
 <x-layout.main :title="$membership->club->name">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('memberships.show', $membership) }}
+    {{ Breadcrumbs::render('users.memberships.show', $membership) }}
   </x-slot>
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">

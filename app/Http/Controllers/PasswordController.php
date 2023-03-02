@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,14 +64,14 @@ class PasswordController extends Controller
                 ->withErrors(['invalid' => trans('passwords.failure')]);
     }
 
-    public function change(User $user) 
+    public function change() 
     {
         return view('password.change', [
-            'user' => $user,
+            'user' => Auth::user(),
         ]);
     }
 
-    public function update(Request $request, User $user) 
+    public function update(Request $request) 
     {
         $user = Auth::user();
 

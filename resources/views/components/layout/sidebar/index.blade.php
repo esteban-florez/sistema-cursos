@@ -46,7 +46,7 @@
               Cursos dictados
             </x-layout.sidebar.item>
             @endis
-            @isnt('Estudiante')
+            @is('Administrador')
             <x-layout.sidebar.item :url="route('areas.index')" icon="chalkboard-teacher">
               Áreas de formación
             </x-layout.sidebar.item>
@@ -60,13 +60,16 @@
             <x-layout.sidebar.item :url="route('available-clubs.index')" icon="list">
               Lista de clubes
             </x-layout.sidebar.item>
+            <x-layout.sidebar.item :url="route('users.memberships.index', $user)" icon="list">
+              Mis clubes
+            </x-layout.sidebar.item>
             @endis
             @isnt('Estudiante')
             <x-layout.sidebar.item :url="route('clubs.index')" icon="list">
               Lista de clubes
             </x-layout.sidebar.item>
             @endis
-            @isnt('Administrador')
+            @is('Instructor')
             <x-layout.sidebar.item :url="route('users.clubs.index', $user)" icon="star">
               Clubes dictados
             </x-layout.sidebar.item>
@@ -82,7 +85,7 @@
         <x-layout.sidebar.item icon="boxes">
           Inventario
           <x-slot name="menu">
-            <x-layout.sidebar.item :url="route('items.amount.index')" icon="list-alt">
+            <x-layout.sidebar.item :url="route('items.stock.index')" icon="list-alt">
               Inventario actual
             </x-layout.sidebar.item>
             <x-layout.sidebar.item :url="route('operations.index')" icon="history">

@@ -31,7 +31,7 @@
           @endif
           <x-stepper.content id="typeStep" />
           <x-stepper.content id="confirmStep" />
-          <x-stepper.content id="finalStep" :pdf-url="route('enrollments-pdf.show', $enrollment)" first>
+          <x-stepper.content id="finalStep" :pdf-url="route('pdf.enrollment', $enrollment)" first>
             <h3>Inscripción finalizada</h3>
             <div class="alert alert-success mt-3">
               <i class="fas fa-info-circle fa-lg mr-2"></i>

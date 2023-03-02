@@ -8,12 +8,12 @@ use App\Models\Payment;
 use App\Models\Enrollment;
 use App\Models\MovilCredentials;
 use App\Models\TransferCredentials;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class EnrollmentController extends Controller
 {
+    // POLICY
     public function index(Request $request)
     {
         $course = Course::findOrFail($request->query('course'));
@@ -88,19 +88,6 @@ class EnrollmentController extends Controller
         return view('enrollments.success', [
             'enrollment' => $enrollment,
             'isOnline' => $payment->isOnline(),
-        ]);
-    }
-
-    public function show(User $user, Enrollment $enrollment)
-    {
-        $payments = $enrollment->payments;
-        $course = $enrollment->course;
-
-        return view('users-enrollments.show', [
-            'user' => $user,
-            'enrollment' => $enrollment,
-            'payments' => $payments,
-            'course' => $course,
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Membership;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,14 @@ class UserMembershipController extends Controller
             'memberships' => $memberships,
             'search' => $search,
             'user' => $user,
+        ]);
+    }
+
+    public function show(Membership $membership)
+    {
+        return view('users-memberships.show', [
+            'membership' => $membership,
+            'club' => $membership->club,
         ]);
     }
 }

@@ -95,6 +95,21 @@ Breadcrumbs::for('users.enrollments.index', function (Trail $trail, User $user) 
     $trail->push('Mis cursos', route('users.enrollments.index', $user));
 });
 
+Breadcrumbs::for('users.enrollments.show', function (Trail $trail, Enrollment $enrollment) {
+    $trail->parent('users.enrollments.index', $enrollment->student);
+    $trail->push($enrollment->course->name, route('user.enrollments.show', $enrollment));
+});
+
+Breadcrumbs::for('users.memberships.index', function (Trail $trail, User $user) {
+    $trail->parent('clubs');
+    $trail->push('Mis clubes', route('users.memberships.index', $user));
+});
+
+Breadcrumbs::for('users.memberships.show', function (Trail $trail, $membership) {
+    $trail->parent('users.memberships.index', $membership->student);
+    $trail->push($membership->club->name, route('users.memberships.show', $membership));
+});
+
 Breadcrumbs::for('users.courses.index', function (Trail $trail, User $user) {
     $trail->parent('courses');
     $trail->push('Cursos dictados', route('users.courses.index', $user));
@@ -162,16 +177,6 @@ Breadcrumbs::for('memberships.index', function (Trail $trail, Club $club) {
     ));
 });
 
-Breadcrumbs::for('users.memberships.index', function (Trail $trail, User $user) {
-    $trail->parent('clubs');
-    $trail->push('Mis clubes', route('users.memberships.index', $user));
-});
-
-Breadcrumbs::for('memberships.show', function (Trail $trail, $membership) {
-    $trail->parent('users.memberships.index', $membership->member);
-    $trail->push($membership->club->name, route('memberships.show', $membership));
-});
-
 Breadcrumbs::for('enrollments.index', function (Trail $trail, Course $course) {
     $trail->parent('courses.show', $course);
     $trail->push('Matrícula', route(
@@ -189,11 +194,6 @@ Breadcrumbs::for('enrollments.create', function (Trail $trail, Course $course) {
 Breadcrumbs::for('enrollments.success', function (Trail $trail, Enrollment $enrollment) {
     $trail->parent('courses.show', $enrollment->course);
     $trail->push('Inscripción en curso', route('enrollments.success', $enrollment));
-});
-
-Breadcrumbs::for('enrollments.show', function (Trail $trail, Enrollment $enrollment) {
-    $trail->parent('users.enrollments.index', $enrollment->student);
-    $trail->push($enrollment->course->name, route('enrollments.show', $enrollment));
 });
 
 Breadcrumbs::for('credentials.index', function (Trail $trail) {
@@ -228,9 +228,9 @@ Breadcrumbs::for('items.edit', function (Trail $trail, Item $item) {
     $trail->push('Editar artículo', route('items.edit', $item));
 });
 
-Breadcrumbs::for('items.amount.index', function (Trail $trail) {
+Breadcrumbs::for('items.stock.index', function (Trail $trail) {
     $trail->parent('inventory');
-    $trail->push('Inventario actual', route('items.amount.index'));
+    $trail->push('Inventario actual', route('items.stock.index'));
 });
 
 Breadcrumbs::for('operations.index', function (Trail $trail) {

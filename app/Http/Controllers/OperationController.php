@@ -54,7 +54,7 @@ class OperationController extends Controller
         Operation::create($data);
 
         return redirect()
-            ->route('items.amount.index')
+            ->route('items.stock.index')
             ->with('alert', trans('alerts.operations'));
     }
 }

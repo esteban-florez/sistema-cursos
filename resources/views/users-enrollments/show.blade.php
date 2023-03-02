@@ -1,6 +1,6 @@
-<x-layout.main :title="$enrollment->course->name">
+<x-layout.main :title="$course->name">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('enrollments.show', $enrollment) }}
+    {{ Breadcrumbs::render('users.enrollments.show', $enrollment) }}
   </x-slot>
   @push ('css')
     <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">
@@ -12,7 +12,7 @@
   <div class="container-fluid px-3 px-lg-4">
     <div class="row">
       <div class="col-12">
-        <img src="{{ asset($enrollment->course->image) }}" class="details-img rounded elevation-2" alt="Imagen del curso: {{ $enrollment->course->name }}">
+        <img src="{{ asset($course->image) }}" class="details-img rounded elevation-2" alt="Imagen del curso: {{ $course->name }}">
       </div>
       <div class="col-lg-6 p-0">
         <x-course.details

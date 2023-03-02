@@ -12,15 +12,15 @@
   <x-slot name="body">
     @foreach ($memberships as $membership)
       @php
-        $member = $membership->member;
+        $student = $membership->student;
       @endphp
       <x-row
         :data="[
-            $member->full_name,
-            $member->full_ci,
-            $member->upta,
+            $student->full_name,
+            $student->full_ci,
+            $student->upta,
           ]"
-        :details="route('users.show', $member)"
+        :details="route('users.show', $student)"
       >
         <x-slot name="extraActions">
           <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
