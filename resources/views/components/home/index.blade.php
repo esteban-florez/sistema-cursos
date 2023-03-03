@@ -59,7 +59,7 @@
   </x-home.card>
 @endis
 @isnt('Estudiante')
-  <x-home.card color="dark" col="lg-3" aling="lg-right" title="Ultimos cursos" :url="route('courses.index')">
+  <x-home.card color="dark" col="lg-3" aling="lg-right" title="¡Últimos cursos!" :url="route('courses.index')">
     <div class="cards-grid px-2">
       @forelse($courses as $course)
         <div class="py-2">

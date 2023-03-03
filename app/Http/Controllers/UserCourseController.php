@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 
 class UserCourseController extends Controller
 {
-    // GATE
+    public function __construct()
+    {
+        $this->middleware('role:Instructor');    
+        // GATE
+    }
     public function index(Request $request, User $user)
     {
         $search = $request->input('search');

@@ -7,12 +7,12 @@ use App\Models\User;
 
 class UserPaymentController extends Controller
 {
-    // GATE
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('role:Estudiante');
+        // GATE
+    }
+
     public function index(User $user)
     {
         $payments = Payment::with('enrollment.course')

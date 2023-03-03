@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class UserMembershipController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Estudiante');        
+        // GATE
+    }
+
     public function index(Request $request, User $user)
     {
         $search = $request->input('search');
