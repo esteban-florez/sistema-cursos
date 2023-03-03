@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Traten de buscar en internet como activar la opción "innodb_large_prefix", luego si ven que no pudieron ya descomentan esta línea xddd
-        // Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
 
         $checkRole = function ($role, $user = null) {
             $user = $user ?? Auth::user();
