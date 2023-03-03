@@ -62,8 +62,7 @@ class ClubController extends Controller
     {
         return view('clubs.show', [
             'club' => $club,
-            ]
-        );
+        ]);
     }
 
     public function edit(Club $club)

@@ -64,21 +64,21 @@
               Mis clubes
             </x-layout.sidebar.item>
             @endis
-            @isnt('Estudiante')
+            @can('viewAny', App\Models\Club::class)
             <x-layout.sidebar.item :url="route('clubs.index')" icon="list">
               Lista de clubes
             </x-layout.sidebar.item>
-            @endis
+            @endcan
             @is('Instructor')
             <x-layout.sidebar.item :url="route('users.clubs.index', $user)" icon="star">
               Clubes dictados
             </x-layout.sidebar.item>
             @endisnt
-            @is('Administrador')
+            @can('create', App\Models\Club::class)
             <x-layout.sidebar.item :url="route('clubs.create')" icon="plus">
               Registrar club
             </x-layout.sidebar.item>
-            @endis
+            @endcan
           </x-slot>
         </x-layout.sidebar.item>
         @is('Administrador')

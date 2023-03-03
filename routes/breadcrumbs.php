@@ -156,7 +156,12 @@ Breadcrumbs::for('clubs.create', function (Trail $trail) {
 });
 
 Breadcrumbs::for('clubs.show', function (Trail $trail, Club $club) {
-    $trail->parent('clubs.index');
+    if (Auth::user()->can('viewAny', Club::class)) {
+        $trail->parent('clubs.index');
+    } else {
+        $trail->parent('available-clubs.index');
+    }
+
     $trail->push($club->name, route('clubs.show', $club));
 });
 

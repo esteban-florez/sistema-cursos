@@ -18,9 +18,11 @@
                 <x-button :url="route('clubs.show', $club->id)" icon="list-ul">
                   Detalles
                 </x-button>
-                <x-button color="warning" :url="route('clubs.edit', $club->id)" icon="edit">
-                  Editar
-                </x-button>
+                @can('update', $club)
+                  <x-button color="warning" :url="route('clubs.edit', $club)" icon="edit">
+                    Editar
+                  </x-button>
+                @endcan
                 <x-button color="secondary" :url="route('memberships.index', ['club' => $club->id])" icon="clipboard-list">
                   Miembros
                 </x-button>

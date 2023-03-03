@@ -84,7 +84,11 @@
     </div>
   </x-home.card>
 @endis
-<x-home.card color="dark" col="md-3" aling="md-right" title="Ultimos clubes" :url="route('clubs.index')">
+@php
+  $clubsRoute = auth()->user()->can('viewAny', App\Models\Club::class)
+    ? 'clubs.index' : 'available-clubs.index';
+@endphp
+<x-home.card color="dark" col="md-3" aling="md-right" title="Ultimos clubes" :url="route($clubsRoute)">
   <div class="cards-grid px-2">
     @forelse($clubs as $club)
       <x-home.club :club="$club"/>

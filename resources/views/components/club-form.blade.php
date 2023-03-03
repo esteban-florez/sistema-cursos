@@ -38,9 +38,11 @@
     </div>
   </div>
   <div class="d-flex justify-content-between align-items-center">
-    <x-button url="{{ route('clubs.index') }}" color="danger" icon="times">
-      Cancelar
-    </x-button>
+    @can('viewAny', App\Models\Club::class)
+      <x-button url="{{ route('clubs.index') }}" color="danger" icon="times">
+        Cancelar
+      </x-button>
+    @endcan
     <x-button type="submit" color="success" icon="check">
       Aceptar
     </x-button>

@@ -18,7 +18,7 @@
     </div>
     <x-club.details 
       :club="$club" 
-      join
+      no-image
     />
   </section>
 </x-layout.main>

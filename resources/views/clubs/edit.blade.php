@@ -6,12 +6,14 @@
     <x-alert />
     <div class="card mx-sm-3">
       <div class="card-body">
-        <x-club-form 
-          :action="route('clubs.update', $club)" 
-          :instructors="$instructors"
-          :club="$club"
-          edit
-        />
+        @can('update', $club)
+          <x-club-form 
+            :action="route('clubs.update', $club)" 
+            :instructors="$instructors"
+            :club="$club"
+            edit
+          />
+        @endcan
       </div>
     </div>
   </section>

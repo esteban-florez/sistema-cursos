@@ -1,4 +1,5 @@
 <x-layout.main title="Clubes">
+  {{-- AUTH --}}
   <x-select2/>
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('clubs.index') }}
@@ -8,9 +9,11 @@
       placeholder="Buscar club..." :value="$search" 
       name="search" :filters="$filters" :sort="$sort"/>
     <div>
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('clubs.create')">
-        Añadir
-      </x-button>
+      @can('viewAny', App\Models\Club::class)
+        <x-button icon="plus" color="success" hide-text="sm" :url="route('clubs.create')">
+          Añadir
+        </x-button>
+      @endcan
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
         Filtros
       </x-button>
@@ -53,12 +56,18 @@
               $club->members_count,
               ]"
               :details="route('clubs.show', $club)"
-              :edit="route('clubs.edit', $club)"
             >
-              <x-slot name="extraActions">
+              <x-slot name="actions">
+                {{-- @can('viewAny', App\Model\Membership::class) --}}
                 <x-button class="btn-sm" color="secondary" :url="route('memberships.index', ['club' => $club])" icon="clipboard-list">
                   Miembros
                 </x-button>
+                {{-- @endcan --}}
+                @can('update', $club)
+                  <x-button class="btn-sm" color="warning" :url="route('clubs.edit', $club)" icon="edit">
+                    Editar
+                  </x-button>
+                @endcan
               </x-slot>
             </x-row>
           @endforeach

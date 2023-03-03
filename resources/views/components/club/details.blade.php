@@ -1,5 +1,5 @@
-@props(['club', 'join' => false])
-
+@props(['club', 'noImage' => false])
+{{-- AUTH --}}
 @php 
   $joined = auth()->user()
     ->joinedClubs
@@ -8,7 +8,7 @@
 
 <section class="container-fluid details-grid mt-3">
   <div class="card">
-    @if (!$join)
+    @if (!$noImage)
       <img src="{{ asset($club->image) }}" class="w-100 img-fluid details-img rounded elevation-1" alt="Imagen del club">
     @endif
     <div class="card-header">
@@ -24,6 +24,7 @@
       </div>
       <div class="d-flex justify-content-between align-items-center mt-3">
         @isnt('Estudiante')
+          {{-- @can('viewAny', App\Models\Memberships::class) --}}
           <x-button 
             :url="route('memberships.index', ['club' => $club])" 
             class="btn-lg"
@@ -32,36 +33,41 @@
           >
             Miembros
           </x-button>
-          <x-button 
-            :url="route('clubs.edit', $club)" 
-            class="btn-lg"
-            icon="edit"
-          >
-            Editar
-          </x-button>
-        @endis
-        @if (!$join)
-          @is('Estudiante')
+          {{-- @endcan --}}
+          @can('update', $club)
             <x-button 
-              :url="route('available-clubs.index')"
+              :url="route('clubs.edit', $club)" 
               class="btn-lg"
-              color="secondary"
-              icon="times"
+              icon="edit"
             >
-              Volver al listado
+              Editar
             </x-button>
-            @if(!$joined)
-              <x-button class="btn-lg" icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
-                Unirse
-              </x-button>
-              <x-club.modal 
-                :club="$club"
-              />
-            @else
-              <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
-            @endif
-          @endis
-        @endif
+          @endcan
+        @endisnt
+        @is('Estudiante')
+          {{-- @can('available-clubs.viewAny') --}}
+          <x-button
+            :url="route('available-clubs.index')"
+            class="btn-lg"
+            color="secondary"
+            icon="times"
+          >
+            Volver al listado
+          </x-button>
+          {{-- @endcan --}}
+          {{-- @can('create', App\Models\Membership::class) --}}
+          @if(!$joined)
+            <x-button class="btn-lg" icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
+              Unirse
+            </x-button>
+            <x-club.modal 
+              :club="$club"
+            />
+          @else
+            <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
+          {{-- @endcan --}}
+          @endif
+        @endis
       </div>
     </div>
   </div>  

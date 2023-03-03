@@ -6,10 +6,12 @@
     <x-alert />
     <div class="card mx-sm-3">
       <div class="card-body">
-        <x-club-form 
-          :action="route('clubs.store')" 
-          :instructors="$instructors"
-        />
+        @can('create', App\Models\Club::class)
+          <x-club-form 
+            :action="route('clubs.store')" 
+            :instructors="$instructors"
+          />
+        @endcan
       </div>
     </div>
   </section>
