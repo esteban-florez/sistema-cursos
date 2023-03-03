@@ -64,7 +64,7 @@
               :details="route('courses.show', $course)"
               :edit="route('courses.edit', $course)"
             >
-              <x-slot name="extraActions">
+              <x-slot name="actions">
                 <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course])" icon="clipboard-list">
                   Matrícula
                 </x-button>

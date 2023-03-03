@@ -66,7 +66,7 @@
               $payment->status,
               ]"
             >
-              <x-slot name="extraActions">
+              <x-slot name="actions">
                 @foreach (payStatuses() as $status)
                   @unless($status === $payment->status)
                     <x-payment.status-button :id="$payment->id" :value="$status" sm/>

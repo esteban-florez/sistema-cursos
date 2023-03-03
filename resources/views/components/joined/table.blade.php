@@ -22,7 +22,7 @@
           ]"
         :details="route('users.show', $student)"
       >
-        <x-slot name="extraActions">
+        <x-slot name="actions">
           <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
             @csrf
             @method('DELETE')

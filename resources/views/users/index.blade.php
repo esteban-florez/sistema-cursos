@@ -55,7 +55,7 @@
               ]"
               :details="route('users.show', $user)"
             >
-              <x-slot name="extraActions">
+              <x-slot name="actions">
                 <x-button 
                   data-id="{{ $user->id }}"
                   data-role="{{ $user->role }}"

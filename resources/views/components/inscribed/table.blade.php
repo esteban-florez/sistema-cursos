@@ -28,7 +28,7 @@
           ]"
         :details="route('users.show', $student)"
       >
-        <x-slot name="extraActions">
+        <x-slot name="actions">
           @unless($enrollment->status === 'Inscrito')
           <form action="{{ route('enrollments.confirmation.update', $enrollment) }}" method="POST">
             @csrf
