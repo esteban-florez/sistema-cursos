@@ -36,6 +36,11 @@ class Club extends Model
         return $this->belongsTo(Membership::class);
     }
 
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
+
     public function scopeNotJoinedBy($query, $user)
     {
         $ids = $user
@@ -62,5 +67,16 @@ class Club extends Model
     public function getExcerptAttribute()
     {
         return str($this->description)->words(8);
+    }
+
+    public static function getOptions()
+    {
+        $clubs = self::all(['id', 'name']);
+
+        $options = $clubs->mapWithKeys(function ($club) {
+            return [$club->id => $club->name];
+        })->all();
+
+        return $options;
     }
 }

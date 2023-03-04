@@ -15,6 +15,11 @@ class Item extends Model
     {
         return $this->hasMany(Operation::class);
     }
+    
+    public function loans()
+    {
+        return $this->hasMany(Loan::class);
+    }
 
     public static function getOptions()
     {

@@ -243,6 +243,11 @@ Breadcrumbs::for('operations.index', function (Trail $trail) {
     $trail->push('Historial de inventario', route('operations.index'));
 });
 
+Breadcrumbs::for('loans.index', function (Trail $trail) {
+    $trail->parent('inventory');
+    $trail->push('Préstamo de artículos', route('loans.index'));
+});
+
 Breadcrumbs::for('schedule', function (Trail $trail) {
     $trail->push('Horario');
 });

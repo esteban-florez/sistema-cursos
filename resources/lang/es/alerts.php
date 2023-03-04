@@ -29,5 +29,6 @@ return [
     'items' => generateAlerts('El artículo'),
     'joined' => '¡Se ha unido al club con éxito!',
     'retired' => '¡Se ha retirado del club con éxito!',
-    'operations' => '¡La operación se ha registrado con éxito!'
+    'operations' => '¡La operación se ha registrado con éxito!',
+    'loans' => '¡El préstamo se ha registrado con éxito!'
 ];

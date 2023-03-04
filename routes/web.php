@@ -18,6 +18,7 @@ use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\EnrollmentConfirmationController;
 use App\Http\Controllers\ItemStockController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\PaymentStatusController;
@@ -240,6 +241,10 @@ Route::middleware('auth')->group(function () {
     // Operations routes
     Route::resource('operations', OperationController::class)
         ->only('index', 'store');
+
+    // Loans routes
+    Route::resource('loans', LoanController::class)
+        ->only('index', 'store', 'update');
 
     // Home routes
     Route::get('home', HomeController::class)

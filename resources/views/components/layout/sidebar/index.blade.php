@@ -94,6 +94,9 @@
             <x-layout.sidebar.item :url="route('items.index')" icon="th">
               Artículos
             </x-layout.sidebar.item>
+            <x-layout.sidebar.item :url="route('loans.index')" icon="hand-holding">
+              Préstamos
+            </x-layout.sidebar.item>
           </x-slot>
         </x-layout.sidebar.item>
         @endis
