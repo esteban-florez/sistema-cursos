@@ -66,11 +66,11 @@
               :details="route('courses.show', $course)"
             >
               <x-slot name="actions">
-                {{-- @can('viewAny', App\Models\Enrollment::class) --}}
+                @can('viewAny', [App\Models\Enrollment::class, $course])
                   <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course])" icon="clipboard-list">
                     Matrícula
                   </x-button>
-                {{-- @endcan --}}
+                @endcan
                 @can('update', $course)
                   <x-button class="btn-sm" :url="route('courses.edit', $course)" color="warning" icon="edit">
                     Editar

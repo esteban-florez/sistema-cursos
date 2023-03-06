@@ -19,7 +19,7 @@
   $states = ['Aprobado', 'Reprobado']
 @endphp
 
-@foreach ($states as $value)  
+@foreach ($states as $value)
   @if ($enrollment->approval !== $value)
     <form action="{{ route('enrollments.approval.update', $enrollment) }}" method="POST">
       @csrf

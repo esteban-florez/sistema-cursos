@@ -22,9 +22,11 @@
                   Editar
                 </x-button>
               @endcan
-              <x-button color="secondary" :url="route('enrollments.index', ['course' => $course->id])" icon="clipboard-list">
-                Matrícula
-              </x-button>
+              @can('viewAny', [App\Models\Enrollment::class, $course])
+                <x-button color="secondary" :url="route('enrollments.index', ['course' => $course])" icon="clipboard-list">
+                  Matrícula
+                </x-button>
+              @endcan
             </x-course.alt-card>
           </div>
         @endforeach

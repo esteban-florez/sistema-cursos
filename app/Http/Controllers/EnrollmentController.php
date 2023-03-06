@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class EnrollmentController extends Controller
 {
-    // POLICY
+    public function __construct()
+    {
+        $this->authorizeResource(Enrollment::class);
+    }
+
     public function index(Request $request)
     {
         $course = Course::findOrFail($request->query('course'));
@@ -76,10 +80,7 @@ class EnrollmentController extends Controller
 
     public function success(Enrollment $enrollment)
     {
-        // if ($enrollment->user_id !== Auth::user()->id) {
-        //     return redirect()->route('home');
-        // }
-
+        // GATE
         $payment = $enrollment
             ->payments()
             ->whereIn('category', ['Pago completo', 'Reservación'])

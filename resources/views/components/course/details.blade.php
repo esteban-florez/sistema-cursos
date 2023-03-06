@@ -11,9 +11,6 @@
     ];
   
   $phaseColor = $phasesColors[$course->phase];
-  $registered = auth()->user()
-    ->enrolledCourses
-    ->contains($course);
 @endphp
 
 <section class="container-fluid mt-3">
@@ -55,17 +52,15 @@
       @endif
       @if(!$noImage)
         <div class="d-flex justify-content-between align-items-center mt-3">
-          @isnt('Estudiante')
-            {{-- @can('viewAny', App\Models\Enrollment::class) --}}
-              <x-button
-                :url="route('enrollments.index', ['course' => $course])"
-                color="secondary"
-                icon="clipboard-list"
-              >
-                Matrícula
-              </x-button>
-            {{-- @endcan --}}
-          @endisnt
+          @can('viewAny', [App\Models\Enrollment::class, $course])
+            <x-button
+              :url="route('enrollments.index', ['course' => $course])"
+              color="secondary"
+              icon="clipboard-list"
+            >
+              Matrícula
+            </x-button>
+          @endcan
           @can('update', $course)
             <x-button 
               :url="route('courses.edit', $course)"
@@ -75,28 +70,26 @@
             </x-button>
           @endcan
           @is('Estudiante')
-            {{-- @can('avaiable-courses.viewAny') --}}
-              <x-button 
-                :url="route('available-courses.index')"
-                color="secondary"
-                icon="times"
-              >
-                Volver al listado
-              </x-button>
-            {{-- @endcan --}}
-            @if(!$registered)
-              {{-- @can('create', App\Models\Enrollment::class) --}}
-                <x-button 
-                :url="route('enrollments.create', ['course' => $course])"
-                icon="clipboard-list"
-                >
-                  Inscribirse
-                </x-button>
-            @else
-              <p class="h5 m-0 text-primary">Ya estás inscrito en este curso.</p>
-              {{-- @endcan --}}
-            @endif
+          {{-- @can('available-courses.viewAny') --}}
+            <x-button 
+              :url="route('available-courses.index')"
+              color="secondary"
+              icon="times"
+            >
+              Volver al listado
+            </x-button>
+          {{-- @endcan --}}
           @endis
+          @can('create', [App\Models\Enrollment::class, $course])
+            <x-button 
+              :url="route('enrollments.create', ['course' => $course])"
+              icon="clipboard-list"
+            >
+              Inscribirse
+            </x-button>
+          @else
+              <p class="h5 m-0 text-primary">Ya estás inscrito en este curso.</p>
+          @endcan
         </div>
       @endif
     </div>

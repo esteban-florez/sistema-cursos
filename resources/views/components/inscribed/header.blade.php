@@ -24,7 +24,9 @@
     </b>
   </span>
   
+  {{-- @can('pdf.enrollments', $course) --}}
   <x-button icon="file-download" hide-text="md" :url="route('pdf.enrollments', ['course' => $course])">
     Generar PDF
   </x-button>
+  {{-- @endcan --}}
 </div>

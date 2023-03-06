@@ -189,16 +189,17 @@ Breadcrumbs::for('memberships.index', function (Trail $trail, Club $club) {
 
 Breadcrumbs::for('enrollments.index', function (Trail $trail, Course $course) {
     $trail->parent('courses.show', $course);
-    $trail->push('Matrícula', route(
-        'enrollments.index', ['course' => $course]
-    ));
+    if (Auth::user()->can('viewAny', [Enrollment::class, $course])) {
+        $trail->push('Matrícula', route('enrollments.index', ['course' => $course]));
+    }
 });
 
 Breadcrumbs::for('enrollments.create', function (Trail $trail, Course $course) {
     $trail->parent('courses.show', $course);
-    $trail->push('Inscripción en curso', route(
-        'enrollments.create', ['course' => $course]
-    ));
+    if (Auth::user()->can('create', [Enrollment::class, $course])) {
+        $trail->push('Inscripción en curso', route(
+            'enrollments.create', ['course' => $course]));
+    }
 });
 
 Breadcrumbs::for('enrollments.success', function (Trail $trail, Enrollment $enrollment) {
