@@ -17,7 +17,7 @@
       <div class="col-lg-6 p-0">
         <x-course.details
           :course="$course"
-          enroll
+          no-image
         />
       </div>
       <div class="col-12 col-lg-6">

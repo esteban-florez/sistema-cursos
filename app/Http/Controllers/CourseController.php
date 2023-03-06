@@ -13,7 +13,10 @@ use App\Services\Input;
 
 class CourseController extends Controller
 {
-    // POLICY
+    public function __construct() {
+        $this->authorizeResource(Course::class);
+    }
+
     public function index(Request $request)
     {
         $filters = Input::getFilters();
@@ -36,11 +39,6 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('courses.create', [
@@ -50,12 +48,6 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\StoreCourseRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreCourseRequest $request)
     {
         $data = $request->validated();
@@ -70,26 +62,13 @@ class CourseController extends Controller
             ->with('alert', trans('alerts.courses.created'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Course $course)
     {
         return view('courses.show', [
             'course' => $course,
-            ]
-        );
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Course $course)
     {
         return view('courses.edit', [
@@ -100,13 +79,6 @@ class CourseController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateCourseRequest $request, Course $course)
     {
         $data = $request->validated();

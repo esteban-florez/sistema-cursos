@@ -17,11 +17,11 @@
               <x-button :url="route('courses.show', $course->id)" icon="list-ul">
                 Detalles
               </x-button>
-              @if ($course->phase !== 'Finalizado')
-                <x-button color="warning" :url="route('courses.edit', $course->id)" icon="edit">
+              @can('update', $course)
+                <x-button color="warning" :url="route('courses.edit', $course)" icon="edit">
                   Editar
                 </x-button>
-              @endif
+              @endcan
               <x-button color="secondary" :url="route('enrollments.index', ['course' => $course->id])" icon="clipboard-list">
                 Matrícula
               </x-button>

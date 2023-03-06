@@ -16,7 +16,11 @@
               Editar
             </x-button>
           @endcan
-          <x-button :url="route('courses.index', ['filters|area_id' => $area])" icon="eye">Ver cursos</x-button>
+          @can('viewAny', App\Models\Course::class)
+            <x-button :url="route('courses.index', ['filters|area_id' => $area])" icon="eye">
+              Ver cursos
+            </x-button>
+          @endcan
         </div>
       </div>
     </div>

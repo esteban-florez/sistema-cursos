@@ -47,7 +47,12 @@ Breadcrumbs::for('courses.create', function (Trail $trail) {
 });
 
 Breadcrumbs::for('courses.show', function (Trail $trail, Course $course) {
-    $trail->parent('courses.index');
+    if (Auth::user()->can('viewAny', Course::class)) {
+        $trail->parent('courses.index');
+    } else {
+        $trail->parent('available-courses.index');
+    }
+
     $trail->push($course->name, route('courses.show', $course));
 });
 
@@ -58,7 +63,7 @@ Breadcrumbs::for('courses.edit', function (Trail $trail, Course $course) {
 
 Breadcrumbs::for('available-courses.index', function (Trail $trail) {
     $trail->parent('courses');
-    $trail->push('Lista de cursos');
+    $trail->push('Lista de cursos', route('available-clubs.index'));
 });
 
 Breadcrumbs::for('users.index', function (Trail $trail) {
@@ -97,7 +102,7 @@ Breadcrumbs::for('users.enrollments.index', function (Trail $trail, User $user) 
 
 Breadcrumbs::for('users.enrollments.show', function (Trail $trail, Enrollment $enrollment) {
     $trail->parent('users.enrollments.index', $enrollment->student);
-    $trail->push($enrollment->course->name, route('user.enrollments.show', $enrollment));
+    $trail->push($enrollment->course->name, route('users.enrollments.show', $enrollment));
 });
 
 Breadcrumbs::for('users.memberships.index', function (Trail $trail, User $user) {
@@ -172,7 +177,7 @@ Breadcrumbs::for('clubs.edit', function (Trail $trail, Club $club) {
 
 Breadcrumbs::for('available-clubs.index', function (Trail $trail) {
     $trail->parent('clubs');
-    $trail->push('Lista de clubs');
+    $trail->push('Lista de clubs', route('available-clubs.index'));
 });
 
 Breadcrumbs::for('memberships.index', function (Trail $trail, Club $club) {

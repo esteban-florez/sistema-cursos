@@ -26,16 +26,16 @@
               Lista de cursos
             </x-layout.sidebar.item>
             @endis
-            @isnt('Estudiante')
-            <x-layout.sidebar.item :url="route('courses.index')" icon="list">
-              Lista de cursos
-            </x-layout.sidebar.item>
-            @endisnt
-            @is('Administrador')
-            <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
-              Registrar curso
-            </x-layout.sidebar.item>
-            @endis
+            @can('viewAny', App\Models\Course::class)
+              <x-layout.sidebar.item :url="route('courses.index')" icon="list">
+                Lista de cursos
+              </x-layout.sidebar.item>
+            @endcan
+            @can('create', App\Models\Course::class)
+              <x-layout.sidebar.item :url="route('courses.create')" icon="plus">
+                Registrar curso
+              </x-layout.sidebar.item>
+            @endcan
             @is('Estudiante')
             <x-layout.sidebar.item :url="route('users.enrollments.index', $user)" icon="star">
               Mis cursos

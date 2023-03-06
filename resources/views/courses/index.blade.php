@@ -11,9 +11,11 @@
       placeholder="Buscar curso..." :value="$search"
       name="search" :filters="$filters" :sort="$sort"/>
     <div>
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('courses.create')">
-        Añadir
-      </x-button>
+      @can('create', App\Models\Course::class)
+        <x-button icon="plus" color="success" hide-text="sm" :url="route('courses.create')">
+          Añadir
+        </x-button>
+      @endcan
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
         Filtros
       </x-button>
@@ -62,12 +64,18 @@
               $course->phase,
               ]"
               :details="route('courses.show', $course)"
-              :edit="route('courses.edit', $course)"
             >
               <x-slot name="actions">
-                <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course])" icon="clipboard-list">
-                  Matrícula
-                </x-button>
+                {{-- @can('viewAny', App\Models\Enrollment::class) --}}
+                  <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course])" icon="clipboard-list">
+                    Matrícula
+                  </x-button>
+                {{-- @endcan --}}
+                @can('update', $course)
+                  <x-button class="btn-sm" :url="route('courses.edit', $course)" color="warning" icon="edit">
+                    Editar
+                  </x-button>
+                @endcan
               </x-slot>
             </x-row>
           @endforeach

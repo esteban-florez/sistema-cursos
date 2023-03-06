@@ -6,12 +6,14 @@
     <x-alert />
     <div class="card mx-sm-3">
       <div class="card-body">
-        <x-course-form 
-          :action="route('courses.store')"
-          :instructors="$instructors"
-          :areas="$areas"
-          :pnfs="$pnfs"
-        />
+        @can('create', App\Models\Course::clas)
+          <x-course-form 
+            :action="route('courses.store')"
+            :instructors="$instructors"
+            :areas="$areas"
+            :pnfs="$pnfs"
+          />
+        @endcan
       </div>
     </div>
   </section>
