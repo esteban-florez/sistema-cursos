@@ -12,6 +12,7 @@
 
 ## Tareas a largo plazo:
 
+- Autenticación, protección CSRF y autorización de rutas API.
 * Revisar validaciones:
   - Mínimos y máximos razonables en fechas, cantidades, etc.
 - Arreglar búsquedas de cursos con código (IG).

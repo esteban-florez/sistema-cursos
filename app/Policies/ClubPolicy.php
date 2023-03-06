@@ -15,14 +15,14 @@ class ClubPolicy
         return $user->can('role', 'Instructor');
     }
 
-    public function view()
-    {
-        return true;
-    }
-
     public function create()
     {
         return false;
+    }
+
+    public function view()
+    {
+        return true;
     }
 
     public function update(User $user, Club $club)

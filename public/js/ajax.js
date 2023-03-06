@@ -31,7 +31,6 @@ form.addEventListener('submit', (e) => {
 })
 
 function updateOptions(data) {
-  console.log(data)
   const def = document.createElement('option')
   def.innerText = 'Seleccionar...'
   def.setAttribute('value', '')

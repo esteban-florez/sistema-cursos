@@ -19,24 +19,22 @@ use App\Rules\ValidID;
 |
 */
 
-Route::middleware('role:Administrador')->group(function () {
-    Route::get('areas', function () {
-        return Area::all(['id', 'name']);
-    })->name('api.areas.index');
-    
-    Route::post('areas', function (Request $request) {
-        $data = $request->validate([
-            'area_name' => ['required', 'max:50', 'unique:areas,name', 'exclude'],
-            'pnf_id' => ['required', new ValidID('PNF')]
-        ]);
-    
-        $data['name'] = $request->input('area_name');
-    
-        $area = Area::create($data);
-    
-        return response($area, 201);
-    })->name('api.areas.store');
-});
+Route::get('areas', function () {
+    return Area::all(['id', 'name']);
+})->name('api.areas.index');
+
+Route::post('areas', function (Request $request) {
+    $data = $request->validate([
+        'area_name' => ['required', 'max:50', 'unique:areas,name', 'exclude'],
+        'pnf_id' => ['required', new ValidID('PNF')]
+    ]);
+
+    $data['name'] = $request->input('area_name');
+
+    $area = Area::create($data);
+
+    return response($area, 201);
+})->name('api.areas.store');
 
 Route::get('schedule/{user}', function (User $user) {
     if ($user->role === 'Instructor') {

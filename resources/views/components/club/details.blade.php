@@ -27,7 +27,6 @@
           {{-- @can('viewAny', App\Models\Memberships::class) --}}
           <x-button 
             :url="route('memberships.index', ['club' => $club])" 
-            class="btn-lg"
             color="secondary" 
             icon="clipboard-list"
           >
@@ -37,7 +36,6 @@
           @can('update', $club)
             <x-button 
               :url="route('clubs.edit', $club)" 
-              class="btn-lg"
               icon="edit"
             >
               Editar
@@ -48,7 +46,6 @@
           {{-- @can('available-clubs.viewAny') --}}
           <x-button
             :url="route('available-clubs.index')"
-            class="btn-lg"
             color="secondary"
             icon="times"
           >
@@ -57,7 +54,7 @@
           {{-- @endcan --}}
           {{-- @can('create', App\Models\Membership::class) --}}
           @if(!$joined)
-            <x-button class="btn-lg" icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
+            <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
               Unirse
             </x-button>
             <x-club.modal 
