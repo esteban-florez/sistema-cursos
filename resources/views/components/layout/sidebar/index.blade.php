@@ -46,11 +46,11 @@
               Cursos dictados
             </x-layout.sidebar.item>
             @endis
-            @is('Administrador')
-            <x-layout.sidebar.item :url="route('areas.index')" icon="chalkboard-teacher">
-              Áreas de formación
-            </x-layout.sidebar.item>
-            @endisnt
+            @can('viewAny', App\Models\Area::class)
+              <x-layout.sidebar.item :url="route('areas.index')" icon="chalkboard-teacher">
+                Áreas de formación
+              </x-layout.sidebar.item>
+            @endcan
           </x-slot>
         </x-layout.sidebar.item>
         <x-layout.sidebar.item icon="basketball-ball">

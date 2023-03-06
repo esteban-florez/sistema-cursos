@@ -12,7 +12,7 @@ class AreaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Administrador');
+        $this->authorizeResource(Area::class);
     }
 
     public function index(Request $request)

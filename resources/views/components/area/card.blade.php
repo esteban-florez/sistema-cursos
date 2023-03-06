@@ -11,7 +11,11 @@
           </p>
         </div>
         <div class="area-buttons">
-          <x-button :url="route('areas.edit', $area)" color="warning" icon="edit">Editar</x-button>
+          @can('update', $area)
+            <x-button :url="route('areas.edit', $area)" color="warning" icon="edit">
+              Editar
+            </x-button>
+          @endcan
           <x-button :url="route('courses.index', ['filters|area_id' => $area])" icon="eye">Ver cursos</x-button>
         </div>
       </div>

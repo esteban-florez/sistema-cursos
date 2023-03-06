@@ -22,9 +22,11 @@
       </x-select>
       <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $course->area_id ?? null" required>
         Área de Formación:
-        <x-slot name="extra">
-          <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
-        </x-slot>
+        @can('create', App\Models\Area::class)
+          <x-slot name="extra">
+            <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
+          </x-slot>
+        @endcan
       </x-select>
     </div>
     <div class="col-12 col-sm-6">
@@ -97,4 +99,6 @@
     </x-button>
   </div>
 </form>
-<x-area.new id="newAreaModal" :pnfs="$pnfs" ajax/>
+@can('create', App\Models\Area::class)
+  <x-area.new id="newAreaModal" :pnfs="$pnfs" ajax/>
+@endcan
