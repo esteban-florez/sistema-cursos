@@ -12,13 +12,9 @@ class OperationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Administrador');
+        $this->authorizeResource(Operation::class);
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $filters = Input::getFilters();
@@ -41,12 +37,6 @@ class OperationController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Requests\OperationRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(OperationRequest $request)
     {
         $data = $request->validated();

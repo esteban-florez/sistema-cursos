@@ -88,9 +88,11 @@
             <x-layout.sidebar.item :url="route('items.stock.index')" icon="list-alt">
               Inventario actual
             </x-layout.sidebar.item>
-            <x-layout.sidebar.item :url="route('operations.index')" icon="history">
-              Historial
-            </x-layout.sidebar.item>
+            @can('viewAny', App\Models\Operation::class)
+              <x-layout.sidebar.item :url="route('operations.index')" icon="history">
+                Historial
+              </x-layout.sidebar.item>
+            @endcan
             @can('viewAny', App\Models\Item::class)
               <x-layout.sidebar.item :url="route('items.index')" icon="th">
                 Artículos
