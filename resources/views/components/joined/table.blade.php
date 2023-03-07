@@ -23,13 +23,15 @@
         :details="route('users.show', $student)"
       >
         <x-slot name="actions">
-          <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
-            @csrf
-            @method('DELETE')
-            <x-button color="danger" class="btn-sm" type="submit">
-              Retirar
-            </x-button>
-          </form>
+          @can('destroy', $membership)
+            <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
+              @csrf
+              @method('DELETE')
+              <x-button color="danger" class="btn-sm" type="submit">
+                Retirar
+              </x-button>
+            </form>
+          @endcan
         </x-slot>
       </x-row>
     @endforeach

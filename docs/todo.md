@@ -8,7 +8,6 @@
 ## Esteban:
 
 - Hacer sistema de permisos (Authorization).
-- Poner todos los link en breadcrumbs.
 - Preguntar como hacer recuperación de base de datos.
 
 ## Tareas a largo plazo:

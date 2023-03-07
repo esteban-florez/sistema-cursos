@@ -5,6 +5,8 @@
   $action = $membership 
     ? route('memberships.destroy', $membership) 
     : route('memberships.store', ['club' => $club]);
+  $ability = $membership ? 'delete' : 'create';
+  $argument = $membership ?? [App\Models\Club::class, $club];
 @endphp
 
 <x-modal id="clubModal">
@@ -15,14 +17,16 @@
     </button>
   </x-slot>
   <h5 class="font-weight-normal mb-3">¿Desea {{ $operation }} club de {{ $club->name }}?</h5>
-  <form method="POST" action="{{ $action }}">
-    @csrf
-    @if ($membership) @method('DELETE') @endif
-    <x-button color="danger" icon="times" data-dismiss="modal">
-      Cancelar
-    </x-button>
-    <x-button type="submit" color="success" icon="check">
-      Aceptar
-    </x-button>
-  </form>
+  @can($ability, $argument)
+    <form method="POST" action="{{ $action }}">
+      @csrf
+      @if ($membership) @method('DELETE') @endif
+      <x-button color="danger" icon="times" data-dismiss="modal">
+        Cancelar
+      </x-button>
+      <x-button type="submit" color="success" icon="check">
+        Aceptar
+      </x-button>
+    </form>
+  @endcan
 </x-modal>

@@ -1,5 +1,5 @@
 @props(['club', 'noImage' => false])
-{{-- AUTH --}}
+
 @php 
   $joined = auth()->user()
     ->joinedClubs
@@ -24,15 +24,15 @@
       </div>
       <div class="d-flex justify-content-between align-items-center mt-3">
         @isnt('Estudiante')
-          {{-- @can('viewAny', App\Models\Memberships::class) --}}
-          <x-button 
-            :url="route('memberships.index', ['club' => $club])" 
-            color="secondary" 
-            icon="clipboard-list"
-          >
-            Miembros
-          </x-button>
-          {{-- @endcan --}}
+          @can('viewAny', [App\Model\Membership::class, $club])
+            <x-button 
+              :url="route('memberships.index', ['club' => $club])" 
+              color="secondary" 
+              icon="clipboard-list"
+            >
+              Miembros
+            </x-button>
+          @endcan
           @can('update', $club)
             <x-button 
               :url="route('clubs.edit', $club)" 
@@ -52,8 +52,7 @@
             Volver al listado
           </x-button>
           {{-- @endcan --}}
-          {{-- @can('create', App\Models\Membership::class) --}}
-          @if(!$joined)
+          @can('create', [App\Models\Membership::class, $club])
             <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
               Unirse
             </x-button>
@@ -62,8 +61,7 @@
             />
           @else
             <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
-          {{-- @endcan --}}
-          @endif
+          @endcan
         @endis
       </div>
     </div>

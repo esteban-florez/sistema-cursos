@@ -22,13 +22,15 @@
                 <x-button :url="route('users.memberships.show', $membership)" icon="list-ul">
                   Detalles
                 </x-button>
-                <x-button color="danger" data-toggle="modal" data-target="#clubModal">
-                  Retirarse
-                </x-button>
-                <x-club.modal 
-                  :club="$club" 
-                  :membership="$membership"
-                />
+                @can('destroy', $membership)
+                  <x-button color="danger" data-toggle="modal" data-target="#clubModal">
+                    Retirarse
+                  </x-button>
+                  <x-club.modal 
+                    :club="$club" 
+                    :membership="$membership"
+                  />
+                @endcan
               </div>
             </x-club.alt-card>
           </div>

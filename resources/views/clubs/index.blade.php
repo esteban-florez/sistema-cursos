@@ -1,5 +1,4 @@
 <x-layout.main title="Clubes">
-  {{-- AUTH --}}
   <x-select2/>
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('clubs.index') }}
@@ -58,11 +57,11 @@
               :details="route('clubs.show', $club)"
             >
               <x-slot name="actions">
-                {{-- @can('viewAny', App\Model\Membership::class) --}}
+                @can('viewAny', [App\Model\Membership::class, $club])
                 <x-button class="btn-sm" color="secondary" :url="route('memberships.index', ['club' => $club])" icon="clipboard-list">
                   Miembros
                 </x-button>
-                {{-- @endcan --}}
+                @endcan
                 @can('update', $club)
                   <x-button class="btn-sm" color="warning" :url="route('clubs.edit', $club)" icon="edit">
                     Editar

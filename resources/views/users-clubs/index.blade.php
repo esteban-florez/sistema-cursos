@@ -23,9 +23,11 @@
                     Editar
                   </x-button>
                 @endcan
-                <x-button color="secondary" :url="route('memberships.index', ['club' => $club->id])" icon="clipboard-list">
-                  Miembros
-                </x-button>
+                @can('viewAny', [App\Model\Membership::class, $club])
+                  <x-button color="secondary" :url="route('memberships.index', ['club' => $club->id])" icon="clipboard-list">
+                    Miembros
+                  </x-button>
+                @endcan
               </div>
             </x-club.alt-card>
           </div>
