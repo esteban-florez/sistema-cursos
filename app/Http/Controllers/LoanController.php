@@ -5,20 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Item;
 use App\Models\Loan;
+use App\Rules\ValidID;
 use Illuminate\Http\Request;
 
 class LoanController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Administrador');
+        $this->authorizeResource(Loan::class);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         $search = $request->input('search');
@@ -36,18 +32,12 @@ class LoanController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
             'amount' => ['required', 'integer', 'numeric'],
-            'item_id' => ['required', 'integer', 'numeric'],
-            'club_id' => ['required', 'integer', 'numeric'],
+            'item_id' => ['required', 'integer', 'numeric', new ValidID],
+            'club_id' => ['required', 'integer', 'numeric', new ValidID],
         ]);        
         
         Loan::create($data);
@@ -56,13 +46,6 @@ class LoanController extends Controller
             ->with('alert', trans('alerts.loans'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Loan  $loan
-     * @return \Illuminate\Http\Response
-     */
     public function update(Loan $loan)
     {
         $loan->update([

@@ -5,7 +5,9 @@
   <x-layout.bar>
     {{-- No deberia estar esto realmente xd, pero el botoncito queda feo --}}
     <x-search name="search" placeholder="Buscar préstamos..." :value="$search ?? ''"/>
-    <x-button icon="plus" color="success" hide-text="sm" data-target="#itemLoanModal" data-toggle="modal">Añadir</x-button>
+    @can('create', App\Models\Loan::class)
+      <x-button icon="plus" color="success" hide-text="sm" data-target="#itemLoanModal" data-toggle="modal">Añadir</x-button>
+    @endcan
   </x-layout.bar>
   <section class="container-fluid">
     <x-errors />

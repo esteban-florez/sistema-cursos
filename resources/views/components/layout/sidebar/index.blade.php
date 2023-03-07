@@ -96,9 +96,11 @@
                 Artículos
               </x-layout.sidebar.item>
             @endcan
-            <x-layout.sidebar.item :url="route('loans.index')" icon="hand-holding">
-              Préstamos
-            </x-layout.sidebar.item>
+            @can('viewAny', App\Models\Loan::class)
+              <x-layout.sidebar.item :url="route('loans.index')" icon="hand-holding">
+                Préstamos
+              </x-layout.sidebar.item>
+            @endcan
           </x-slot>
         </x-layout.sidebar.item>
         @endis
