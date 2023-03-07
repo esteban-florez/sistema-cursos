@@ -91,9 +91,11 @@
             <x-layout.sidebar.item :url="route('operations.index')" icon="history">
               Historial
             </x-layout.sidebar.item>
-            <x-layout.sidebar.item :url="route('items.index')" icon="th">
-              Artículos
-            </x-layout.sidebar.item>
+            @can('viewAny', App\Models\Item::class)
+              <x-layout.sidebar.item :url="route('items.index')" icon="th">
+                Artículos
+              </x-layout.sidebar.item>
+            @endcan
             <x-layout.sidebar.item :url="route('loans.index')" icon="hand-holding">
               Préstamos
             </x-layout.sidebar.item>

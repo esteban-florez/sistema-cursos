@@ -5,11 +5,13 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('items.index') }}
   </x-slot>
-  <x-slot name="titleAddon">
-    <x-button color="success" icon="plus" id="addItem" data-toggle="modal" data-target="#createModal">
-      Añadir
-    </x-button>
-  </x-slot>
+  @can('create', App\Models\Item::class)
+    <x-slot name="titleAddon">
+      <x-button color="success" icon="plus" id="addItem" data-toggle="modal" data-target="#createModal">
+        Añadir
+      </x-button>
+    </x-slot>
+  @endcan
   <x-errors />
   <section class="container-fluid">
     @if ($items->isNotEmpty())
@@ -25,9 +27,11 @@
                   <x-button icon="list">
                     Operaciones
                   </x-button>
-                  <x-button :url="route('items.edit', $item)" color="warning" icon="edit">
-                    Editar
-                  </x-button>
+                  @can('update', $item)
+                    <x-button :url="route('items.edit', $item)" color="warning" icon="edit">
+                      Editar
+                    </x-button>
+                  @endcan
                 </div>
               </div>
             </div>  
@@ -43,5 +47,7 @@
   <div class="d-flex justify-content-center mt-3">
     {{ $items->links() }}
   </div>
-  <x-items.create-modal id="createModal"/>
+  @can('create', App\Models\Item::class)
+    <x-items.create-modal id="createModal"/>     
+  @endcan
 </x-layout.main>

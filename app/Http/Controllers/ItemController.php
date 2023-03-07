@@ -8,14 +8,9 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     public function __construct() {
-        $this->middleware('role:Administrador');
+        $this->authorizeResource(Item::class);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $items = Item::paginate(6)
@@ -26,12 +21,6 @@ class ItemController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -54,13 +43,6 @@ class ItemController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Item $item)
     {
         $data = $request->validate([

@@ -58,9 +58,11 @@
               </p>
               <x-select name="item_id" id="itemId" :options="$itemOptions" required>
                 Artículo:
-                <x-slot name="extra">
-                  <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#createItemModal">Registrar nuevo artículo</a>
-                </x-slot>
+                @can('create', App\Models\Item::class)
+                  <x-slot name="extra">
+                    <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#createItemModal">Registrar nuevo artículo</a>
+                  </x-slot>
+                @endcan
               </x-select>
               <x-select name="type" id="type" :options="operationTypes()->pairs()" required>
                 Tipo de operación:
@@ -81,4 +83,6 @@
     </div>
   </section>
 </x-layout.main>
-<x-items.create-modal />
+@can('create', App\Models\Item::class)
+  <x-items.create-modal />            
+@endcan
