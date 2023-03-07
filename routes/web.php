@@ -25,6 +25,7 @@ use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\PNFController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserClubController;
 use App\Http\Controllers\UserController;
@@ -227,9 +228,8 @@ Route::middleware('auth')->group(function () {
         ->except('show', 'destroy');
 
     // Schedule route
-    Route::get('schedule', function () {
-        return view('schedule');
-    })->middleware('role:Estudiante,Instructor')->name('schedule');
+    Route::get('schedule', ScheduleController::class)
+        ->name('schedule');
 
     // Items routes
     Route::resource('items', ItemController::class)

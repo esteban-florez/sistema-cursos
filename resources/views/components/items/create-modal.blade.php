@@ -1,6 +1,4 @@
-@props(['id' => 'createItemModal'])
-
-<x-modal :id="$id">
+<x-modal id="createItemModal">
   <x-slot name="header">
     <h4 class="modal-title">Registrar artículo</h4>
     <button type="button" class="close" data-dismiss="modal">

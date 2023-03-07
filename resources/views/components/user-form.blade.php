@@ -106,7 +106,7 @@
               Área de Formación:
               @can('create', App\Models\Area::class)
                 <x-slot name="extra">
-                  <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
+                  <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#createAreaModal">Crear nueva área de formación</a>
                 </x-slot>
               @endcan
             </x-select>
@@ -148,7 +148,7 @@
           <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $user->area_id ?? null" required>
             Área de Formación:
             <x-slot name="extra">
-              <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#newAreaModal">Crear nueva área de formación</a>
+              <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#createAreaModal">Crear nueva área de formación</a>
             </x-slot>
           </x-select>
         </div>
@@ -175,5 +175,5 @@
   </div>
 </form>
 @can('create', App\Models\Area::class)
-  <x-area.new id="newAreaModal" :pnfs="$pnfs" ajax/>
+  <x-area.create-modal :pnfs="$pnfs" ajax/>
 @endcan

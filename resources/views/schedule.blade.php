@@ -1,6 +1,6 @@
 <x-layout.main title="Horario">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('schedule') }}
+    {{ Breadcrumbs::render('schedule', $user) }}
   </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/timetablejs.css') }}">

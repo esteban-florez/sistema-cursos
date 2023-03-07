@@ -58,7 +58,7 @@ Breadcrumbs::for('courses.show', function (Trail $trail, Course $course) {
 
 Breadcrumbs::for('courses.edit', function (Trail $trail, Course $course) {
     $trail->parent('courses.show', $course);
-    $trail->push('Editar curso');
+    $trail->push('Editar curso', route('courses.edit', $course));
 });
 
 Breadcrumbs::for('available-courses.index', function (Trail $trail) {
@@ -77,12 +77,11 @@ Breadcrumbs::for('users.create', function (Trail $trail) {
 });
 
 Breadcrumbs::for('users.show', function (Trail $trail, User $user) {
-    $trail->parent('users.index');
+    // if (Auth::user()->can('view', $user)) {
+        // $trail->parent('users.index');
+    // }
+    
     $trail->push('Perfil', route('users.show', $user));
-});
-
-Breadcrumbs::for('profile', function (Trail $trail) {
-    $trail->push('Perfil');
 });
 
 Breadcrumbs::for('users.edit', function (Trail $trail, User $user) {
@@ -145,9 +144,9 @@ Breadcrumbs::for('unfulfilled-payments.index', function (Trail $trail, User $use
     $trail->push('Cuotas restantes', route('unfulfilled-payments.index', ['user' => $user]));
 });
 
-Breadcrumbs::for('unfulfilled-payments.edit', function (Trail $trail, $user) {
-    $trail->parent('unfulfilled-payments.index', $user);
-    $trail->push('Pagar cuota restante');
+Breadcrumbs::for('unfulfilled-payments.edit', function (Trail $trail, Payment $payment) {
+    $trail->parent('unfulfilled-payments.index', $payment->enrollment->student);
+    $trail->push('Pagar cuota restante', route('unfulfilled-payments.edit', $payment));
 });
 
 Breadcrumbs::for('clubs.index', function (Trail $trail) {
@@ -250,8 +249,8 @@ Breadcrumbs::for('loans.index', function (Trail $trail) {
     $trail->push('Préstamo de artículos', route('loans.index'));
 });
 
-Breadcrumbs::for('schedule', function (Trail $trail) {
-    $trail->push('Horario');
+Breadcrumbs::for('schedule', function (Trail $trail, User $user) {
+    $trail->push('Horario', route('schedule', $user));
 });
 
 Breadcrumbs::for('home', function (Trail $trail) {

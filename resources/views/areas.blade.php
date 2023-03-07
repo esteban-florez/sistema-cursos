@@ -12,7 +12,7 @@
   @endpush
   <x-layout.bar>
     <x-search name="search" placeholder="Buscar área..." :value="$search ?? ''"/>
-    <x-button icon="plus" color="success" hide-text="sm" data-target="#newAreaModal" data-toggle="modal">Añadir</x-button>
+    <x-button icon="plus" color="success" hide-text="sm" data-target="#createAreaModal" data-toggle="modal">Añadir</x-button>
   </x-layout.bar>
   <section class="container-fluid">
     <x-errors />
@@ -34,10 +34,10 @@
   </section>
   <x-slot name="extra">
     @if($edit)
-      <x-area.edit :pnfs="$pnfs" :area="$areaToEdit" id="editAreaModal"></x-area.edit>
+      <x-area.edit-modal :pnfs="$pnfs" :area="$areaToEdit"/>
       <script defer src="{{ asset('js/popup.js') }}"></script>
     @else
-      <x-area.new id="newAreaModal" :pnfs="$pnfs"></x-area.new>
+      <x-area.create-modal :pnfs="$pnfs"/>
     @endif
   </x-slot>
 </x-layout.main>

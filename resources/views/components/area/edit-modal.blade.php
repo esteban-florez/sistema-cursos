@@ -1,6 +1,6 @@
-@props(['id', 'pnfs', 'area'])
+@props(['pnfs', 'area'])
 
-<x-modal :id="$id">
+<x-modal id="editAreaModal">
   <x-slot name="header">
     <h4 class="modal-title">Editar área de formación</h4>
     @can('viewAny', App\Models\Area::class)

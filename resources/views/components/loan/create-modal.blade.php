@@ -1,6 +1,6 @@
-@props(['id' => 'itemLoanModal', 'items', 'clubs'])
+@props(['items', 'clubs'])
 
-<x-modal :id="$id">
+<x-modal id="createLoanModal">
   <x-slot name="header">
     <h4 class="modal-title">Registrar préstamo</h4>
     <button type="button" class="close" data-dismiss="modal">
