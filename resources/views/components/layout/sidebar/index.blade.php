@@ -118,10 +118,12 @@
               Cuotas restantes
             </x-layout.sidebar.item>
             @endis
-            @is('Administrador')
+            @can('viewAny', App\Models\Payment::class)
             <x-layout.sidebar.item :url="route('payments.index')" icon="list">
               Lista de pagos
             </x-layout.sidebar.item>
+            @endcan
+            @is('Administrador')
             <x-layout.sidebar.item :url="route('pending-payments.index')" icon="check">
               Pagos pendientes
             </x-layout.sidebar.item>

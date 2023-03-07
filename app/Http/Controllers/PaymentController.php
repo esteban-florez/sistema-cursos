@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    // POLICY
+    public function __construct()
+    {
+        $this->authorizeResource(Payment::class);
+    }
+
     public function index(Request $request)
     {
         $filters = Input::getFilters();
