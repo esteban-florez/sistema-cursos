@@ -7,11 +7,13 @@
   @endpush
   <section class="container-fluid pb-1">
     <div class="card px-3 pt-2 pb-3">
-      <x-user-form 
-        :areas="$areas"
-        :action="route('users.store')"
-        :pnfs="$pnfs"
-      />
+      @can('create', App\Models\User::class)
+        <x-user-form 
+          :areas="$areas"
+          :action="route('users.store')"
+          :pnfs="$pnfs"
+        />
+      @endcan
     </div>
   </section>
 </x-layout.main>

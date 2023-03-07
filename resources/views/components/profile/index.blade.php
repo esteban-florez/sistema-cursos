@@ -34,11 +34,11 @@
             <div class="card-header">
               <div class="d-flex align-items-center justify-content-between">
                 <h4 class="my-2">Datos personales: </h4>
-                @if (Auth::user()->id === $user->id)
+                @can('update', $user)
                   <x-button url="{{ route('users.edit', $user) }}" color="info">
                     <i class="fas fa-edit"></i>
                   </x-button>
-                @endif
+                @endcan
               </div>
             </div>
             <div class="card-body">

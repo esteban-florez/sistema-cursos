@@ -42,9 +42,11 @@
               </x-slot>
             </x-input-group>
             <div class="d-flex justify-content-between align-items-center">
-              <x-button color="danger" icon="times" :url="route('users.show', $user)">
-                Cancelar
-              </x-button>
+              @can('view', $user)
+                <x-button color="danger" icon="times" :url="route('users.show', $user)">
+                  Cancelar
+                </x-button>
+              @endcan
               <x-button color="success" type="submit" icon="check">Aceptar</x-button>
             </div>
           </form>

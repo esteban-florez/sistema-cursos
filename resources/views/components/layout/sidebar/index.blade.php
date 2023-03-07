@@ -151,9 +151,11 @@
         <x-layout.sidebar.item icon="cog">
           Configuración
           <x-slot name="menu">
-            <x-layout.sidebar.item :url="route('users.index')" icon="user-alt">
-              Usuarios
-            </x-layout.sidebar.item>
+            @can('viewAny', App\Models\User::class)
+              <x-layout.sidebar.item :url="route('users.index')" icon="user-alt">
+                Usuarios
+              </x-layout.sidebar.item>
+            @endcan
             @can('viewAny', App\Models\PNF::class)
               <x-layout.sidebar.item :url="route('pnfs.index')" icon="university">
                 PNFs

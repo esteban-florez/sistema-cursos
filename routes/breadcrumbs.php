@@ -77,16 +77,16 @@ Breadcrumbs::for('users.create', function (Trail $trail) {
 });
 
 Breadcrumbs::for('users.show', function (Trail $trail, User $user) {
-    // if (Auth::user()->can('view', $user)) {
-        // $trail->parent('users.index');
-    // }
+    if (Auth::user()->can('viewAny', User::class)) {
+        $trail->parent('users.index');
+    }
     
     $trail->push('Perfil', route('users.show', $user));
 });
 
 Breadcrumbs::for('users.edit', function (Trail $trail, User $user) {
     $trail->parent('users.show', $user);
-    $trail->push('Editar perfil');
+    $trail->push('Editar perfil', route('users.edit'));
 });
 
 Breadcrumbs::for('users.payments.index', function (Trail $trail, User $user) {

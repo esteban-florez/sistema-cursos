@@ -20,7 +20,6 @@
             $student->full_ci,
             $student->upta,
           ]"
-        :details="route('users.show', $student)"
       >
         <x-slot name="actions">
           @can('destroy', $membership)
@@ -31,6 +30,11 @@
                 Retirar
               </x-button>
             </form>
+          @endcan
+          @can('view', $student)
+            <x-button :url="route('users.show', $student)" class="btn-sm" icon="eye">
+              Detalles
+            </x-button>
           @endcan
         </x-slot>
       </x-row>

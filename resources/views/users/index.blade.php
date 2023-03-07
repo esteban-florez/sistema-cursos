@@ -11,7 +11,9 @@
       placeholder="Buscar usuario..." :value="$search"
       name="search" :filters="$search" :sort="$sort"/>
     <div>
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('users.create')">Añadir</x-button>
+      @can('create', App\Models\User::class)
+        <x-button icon="plus" color="success" hide-text="sm" :url="route('users.create')">Añadir</x-button>
+      @endcan
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>
     </div>
     <x-slot name="filtersCollapse">
@@ -53,7 +55,6 @@
               $user->upta,
               $user->role,
               ]"
-              :details="route('users.show', $user)"
             >
               <x-slot name="actions">
                 <x-button 
@@ -65,6 +66,11 @@
                   icon="user-edit">
                   Rol
                 </x-button>
+                @can('view', $user)
+                  <x-button :url="route('users.show', $user)" class="btn-sm" icon="eye">
+                    Detalles
+                  </x-button>
+                @endcan
               </x-slot>
             </x-row>
           @endforeach
