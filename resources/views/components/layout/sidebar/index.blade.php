@@ -154,9 +154,11 @@
             <x-layout.sidebar.item :url="route('users.index')" icon="user-alt">
               Usuarios
             </x-layout.sidebar.item>
-            <x-layout.sidebar.item :url="route('pnfs.index')" icon="university">
-              PNFs
-            </x-layout.sidebar.item>
+            @can('viewAny', App\Models\PNF::class)
+              <x-layout.sidebar.item :url="route('pnfs.index')" icon="university">
+                PNFs
+              </x-layout.sidebar.item>
+            @endcan
             <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
               Credenciales de pago
             </x-layout.sidebar.item>
