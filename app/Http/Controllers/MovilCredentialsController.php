@@ -12,12 +12,7 @@ class MovilCredentialsController extends Controller
     {
         $this->middleware('role:Administrador');
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(StoreMovilCredentialsRequest $request)
     {
         $data = $request->validated();
@@ -29,12 +24,6 @@ class MovilCredentialsController extends Controller
             ->with('alert', trans('alerts.credentials.created'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateMovilCredentialsRequest $request)
     {
         $data = $request->validated();

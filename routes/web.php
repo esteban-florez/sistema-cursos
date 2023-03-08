@@ -260,7 +260,7 @@ Route::middleware('auth')->group(function () {
         Route::get('enrollments', 'enrollments')
             ->name('enrollments');
 
-        Route::get('enrollment', 'enrollment')
+        Route::get('enrollment/{enrollment}', 'enrollment')
             ->name('enrollment');
 
         Route::get('payments', 'payments')

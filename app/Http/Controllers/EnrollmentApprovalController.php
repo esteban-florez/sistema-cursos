@@ -7,13 +7,10 @@ use Illuminate\Http\Request;
 
 class EnrollmentApprovalController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:Administrador,Instructor');
-        // GATE
-    }
     public function update(Request $request, Enrollment $enrollment)
     {
+        $this->authorize('enrollments.approval.update', $enrollment);
+
         $data = $request->validate([
             'approval' => ['required', 'in:Aprobado,Reprobado'],
         ]);
