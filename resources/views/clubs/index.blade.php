@@ -63,7 +63,7 @@
                 </x-button>
                 @endcan
                 @is("Instructor")
-                <x-button class="btn-sm" color="info" :url="route('club-loans.index', ['club' => $club])" icon="hand-holding">
+                <x-button class="btn-sm" color="info" :url="route('clubs.loans.index', ['club' => $club])" icon="hand-holding">
                   Préstamos
                 </x-button>
                 @endis

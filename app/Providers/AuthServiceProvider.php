@@ -6,6 +6,7 @@ use App\Gates\PDFGates;
 use App\Gates\UnfulfilledPaymentGates;
 use App\Gates\UserEnrollmentGates;
 use App\Gates\UserMembershipGates;
+use App\Models\Club;
 use App\Models\User;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -45,6 +46,13 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('role', function (User $user, ...$roles) {
             return collect($roles)->contains($user->role);
+        });
+
+        Gate::define('clubs.loans.viewAny', function (User $user, Club $club) {
+            if ($user->can('role', 'Administrador')) return true;
+
+            return $user->can('role', 'Instructor')
+                && $club->instructor->id === $user->id;
         });
 
         Gate::define('enrollments.approval.update', function (User $user, $enrollment) {

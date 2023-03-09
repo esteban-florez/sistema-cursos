@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Club;
 use App\Models\Loan;
-use Illuminate\Http\Request;
 
 class ClubLoanController extends Controller
 {
-    public function index(Request $request)
+    public function index(Club $club)
     {
-        $club = Club::findOrFail($request->query('club'));
+        $this->authorize('clubs.loans.viewAny', $club);
 
         $loans = Loan::whereBelongsTo($club)
             ->latest()

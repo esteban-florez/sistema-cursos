@@ -3,9 +3,11 @@
     {{ Breadcrumbs::render('items.stock.index') }}
   </x-slot>
   <x-slot name="titleAddon">
-    <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
-      Añadir
-    </x-button>
+    @can('create', App\Models\Operation::class)
+      <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
+        Añadir
+      </x-button>
+    @endcan
     <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
       Generar PDF
     </x-button>
