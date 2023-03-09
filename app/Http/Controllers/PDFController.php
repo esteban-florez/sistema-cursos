@@ -48,7 +48,7 @@ class PDFController extends Controller
 
     public function payments()
     {
-        $this->authorize('pdf.payments');
+        $this->authorize('role', 'Administrador');
 
         $payments = Payment::with('enrollment.course', 'enrollment.student')
             ->get();
@@ -62,7 +62,7 @@ class PDFController extends Controller
 
     public function items()
     {
-        $this->authorize('pdf.items');
+        $this->authorize('role', 'Administrador');
 
         $items = Item::latest()
             ->with('operations')

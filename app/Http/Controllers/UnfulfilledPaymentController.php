@@ -10,14 +10,10 @@ use Illuminate\Http\Request;
 
 class UnfulfilledPaymentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:Estudiante');
-        // GATE
-    }
-
     public function index(Request $request)
     {
+        $this->authorize('unfulfilled-payments.viewAny');
+
         $user = User::findOrFail($request->query('user'));
 
         $payments = $user->payments()
@@ -33,6 +29,8 @@ class UnfulfilledPaymentController extends Controller
 
     public function edit($id)
     {
+        $this->authorize('unfulfilled-payments.update');
+        
         $payment = Payment::unfulfilled()
             ->findOrFail($id);
         
@@ -54,6 +52,8 @@ class UnfulfilledPaymentController extends Controller
 
     public function update(Request $request, $id)
     {
+        $this->authorize('unfulfilled-payments.update');
+
         $data = $request->validate([
             'type' => ['required', 'in:'.payTypes()->join(',')],
             'ref' => [

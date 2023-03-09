@@ -134,9 +134,6 @@ Route::middleware('auth')->group(function () {
     Route::get('users/{user}/courses', [UserCourseController::class, 'index'])
         ->name('users.courses.index');
 
-    Route::patch('users/{user}/role', [UserRoleController::class, 'update'])
-        ->name('users.role.update');
-
     Route::get('users/{user}/clubs', [UserClubController::class, 'index'])
         ->name('users.clubs.index');
 

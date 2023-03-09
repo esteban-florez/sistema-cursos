@@ -7,13 +7,10 @@ use Illuminate\Http\Request;
 
 class UserClubController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:Instructor');
-        // GATE
-    }
     public function index(Request $request, User $user)
     {
+        $this->authorize('users.clubs.viewAny', $user);
+
         $search = $request->input('search');
         $clubs = $user->dictatedClubs()
             ->latest()

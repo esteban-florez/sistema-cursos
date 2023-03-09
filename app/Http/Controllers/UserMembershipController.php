@@ -8,14 +8,10 @@ use Illuminate\Http\Request;
 
 class UserMembershipController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:Estudiante');        
-        // GATE
-    }
-
     public function index(Request $request, User $user)
     {
+        $this->authorize('users.memberships.viewAny', $user);
+
         $search = $request->input('search');
 
         $memberships = $user
@@ -33,6 +29,8 @@ class UserMembershipController extends Controller
 
     public function show(Membership $membership)
     {
+        $this->authorize('users.memberships.view', $membership);
+
         return view('users-memberships.show', [
             'membership' => $membership,
             'club' => $membership->club,

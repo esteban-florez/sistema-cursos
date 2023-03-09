@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Gates\PDFGates;
+use App\Gates\UnfulfilledPaymentGates;
+use App\Gates\UserEnrollmentGates;
+use App\Gates\UserMembershipGates;
 use App\Models\User;
-use App\Policies\PDFPolicy;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -63,5 +65,26 @@ class AuthServiceProvider extends ServiceProvider
         });
         
         PDFGates::define();
+
+        UnfulfilledPaymentGates::define();
+
+        Gate::define('users.clubs.viewAny', function (User $user, User $model) {
+            return $user->can('role', 'Instructor')
+                && $model->id === $user->id;
+        });
+
+        Gate::define('users.courses.viewAny', function (User $user, User $model) {
+            return $user->can('role', 'Instructor')
+                && $model->id === $user->id;
+        });
+
+        UserEnrollmentGates::define();
+
+        UserMembershipGates::define();
+
+        Gate::define('users.payments.viewAny', function (User $user, User $model) {
+            $user->can('role', 'Estudiante')
+                && $model->id === $user->id;
+        });
     }
 }

@@ -12,13 +12,7 @@ class TransferCredentialsController extends Controller
     {
         $this->middleware('role:Administrador');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(StoreTransferCredentialsRequest $request)
     {
         $data = $request->validated();
@@ -30,12 +24,6 @@ class TransferCredentialsController extends Controller
             ->with('alert', trans('alerts.credentials.created'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateTransferCredentialsRequest $request)
     {
         $data = $request->validated();

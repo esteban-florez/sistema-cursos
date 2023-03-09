@@ -3,9 +3,6 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('users.index') }}
   </x-slot>
-  @push('js')
-    <script defer type="module" src="{{ asset('js/user-role/editUserRole.js') }}"></script>
-  @endpush
   <x-layout.bar>
     <x-search 
       placeholder="Buscar usuario..." :value="$search"
@@ -57,15 +54,6 @@
               ]"
             >
               <x-slot name="actions">
-                <x-button 
-                  data-id="{{ $user->id }}"
-                  data-role="{{ $user->role }}"
-                  data-name="{{ $user->full_name }}"
-                  class="btn-sm"
-                  color="warning"
-                  icon="user-edit">
-                  Rol
-                </x-button>
                 @can('view', $user)
                   <x-button :url="route('users.show', $user)" class="btn-sm" icon="eye">
                     Detalles
@@ -87,5 +75,4 @@
       </div>
     @endif
   </section>
-  <x-users.role-modal/>
 </x-layout.main>

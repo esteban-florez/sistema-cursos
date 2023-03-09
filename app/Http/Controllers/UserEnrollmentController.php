@@ -8,13 +8,10 @@ use Illuminate\Http\Request;
 
 class UserEnrollmentController extends Controller
 {
-    public function __construct() {
-        $this->middleware('role:Estudiante');
-        // GATE
-    }
-
     public function index(Request $request, User $user)
     {
+        $this->authorize('users.enrollments.viewAny', $user);
+
         $search = $request->input('search');
 
         $enrollments = $user
@@ -35,6 +32,8 @@ class UserEnrollmentController extends Controller
 
     public function show(Enrollment $enrollment)
     {
+        $this->authorize('users.enrollments.view', $enrollment);
+
         return view('users-enrollments.show', [
             'user' => $enrollment->user,
             'enrollment' => $enrollment,

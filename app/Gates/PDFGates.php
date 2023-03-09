@@ -2,6 +2,8 @@
 
 namespace App\Gates;
 
+use App\Models\Club;
+use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\User;
 
@@ -9,34 +11,38 @@ class PDFGates extends Gates
 {
     protected static $prefix = 'pdf';
 
-    public function enrollment()
+    public function enrollment(User $user, Enrollment $enrollment)
     {
-
+        return $user->can('role', 'Estudiante')
+            && $enrollment->student->id === $user->id;
     }
 
-    public function enrollments()
+    public function enrollments(User $user, Course $course = null)
     {
+        if ($user->can('role', 'Administrador')) return true;
 
-    }
+        $course = $course ?? Course::findOrFail(request()->query('course'));
 
-    public function payments()
-    {
-
-    }
-
-    public function items()
-    {
-
+        return $user->can('role', 'Instructor')
+            && $course->instructor->id === $user->id;
     }
 
     public function certificate(User $user, Enrollment $enrollment)
     {
         return $user->can('role', 'Estudiante') 
-            && $enrollment->student->id === $user->id;
+            && $enrollment->student->id === $user->id
+            && $enrollment->solvency === 'Solvente'
+            && $enrollment->status === 'Inscrito'
+            && $enrollment->approval === 'Aprobado';
     }
 
-    public function memberships()
+    public function memberships(User $user, Club $club = null)
     {
+        if ($user->can('role', 'Administrador')) return true;
 
+        $club = $club ?? Club::findOrFail(request()->query('club'));
+
+        return $user->can('role', 'Instructor')
+            && $club->instructor->id === $user->id;
     }
 }
