@@ -16,8 +16,6 @@ class CreateLoansTable extends Migration
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
             $table->integer('amount');
-            $table->enum('status', ['Devuelto', 'Prestado'])
-                ->default('Prestado');
             $table->timestamp('returned_at')->nullable();
             $table->foreignId('item_id')->constrained();
             $table->foreignId('club_id')->constrained();

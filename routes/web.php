@@ -8,6 +8,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\ClubLoanController;
 use App\Http\Controllers\CredentialsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\HomeController;
@@ -183,6 +184,9 @@ Route::middleware('auth')->group(function () {
     Route::get('available-clubs', [AvailableClubController::class, 'index'])
         ->name('available-clubs.index');
 
+    Route::get('club-loans', [ClubLoanController::class, 'index'])
+        ->name('club-loans.index');
+
     // Membership routes
     Route::resource('memberships', MembershipController::class)
         ->only('index', 'store', 'destroy');
@@ -237,6 +241,9 @@ Route::middleware('auth')->group(function () {
     
     Route::get('items-stock', [ItemStockController::class, 'index'])
         ->name('items.stock.index');
+    
+    Route::get('items-stock/create', [ItemStockController::class, 'create'])
+        ->name('items.stock.create');
     
     // Operations routes
     Route::resource('operations', OperationController::class)

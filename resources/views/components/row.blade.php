@@ -1,4 +1,4 @@
-@props(['data', 'edit' => false, 'details' => false])
+@props(['data', 'edit' => false, 'details' => false, 'actions' => null])
 
 <tr>
   @foreach ($data as $cell)

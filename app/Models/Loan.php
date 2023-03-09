@@ -12,7 +12,7 @@ class Loan extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'returned_at' => 'date',
+        'returned_at' => 'datetime',
     ];
 
     public function club()
@@ -34,8 +34,12 @@ class Loan extends Model
         }
     }
 
-    // public function getDateAttribute()
-    // {
-    //     return "{$this->returned_at->format(DV)}";
-    // }
+    public function getDateAttribute()
+    {
+        if ($this->returned_at !== null) {
+            return optional($this->returned_at)->format(DF);
+        } else {
+            return '----';
+        }
+    }
 }

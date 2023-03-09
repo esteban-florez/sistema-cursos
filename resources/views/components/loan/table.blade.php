@@ -8,7 +8,9 @@
       <th>Club</th>
       <th>Instructor</th>
       <th>Devuelto</th>
+      @is("Administrador")
       <th>Acciones</th>
+      @endis
     </tr>
   </x-slot>
   <x-slot name="body">
@@ -19,24 +21,24 @@
             $loan->item->name,
             $loan->club->name,
             $loan->club->instructor->full_name,
-            // No me funciona la mrda del format(DF)
-            // $loan->returned_at->format(DF),
-            $loan->returned_at,
+            $loan->date,
           ]"
       >
-        <x-slot name="actions">
-          @if($loan->status === 'Prestado')
-            <form action="{{ route('loans.update', $loan) }}" method="POST">
-              @csrf
-              @method('PATCH')
-              <x-button class="btn-sm" type="submit" icon="check">
-                Devolver
-              </x-button>
-            </form>
-          @else
-            <h6 class="mb-0 text-success">Devuelto</h6>
-          @endif
-        </x-slot>
+        @is("Administrador")
+          <x-slot name="actions">
+            @if($loan->status === 'Prestado')
+              <form action="{{ route('loans.update', $loan) }}" method="POST">
+                @csrf
+                @method('PATCH')
+                <x-button class="btn-sm" type="submit" icon="check">
+                  Devolver
+                </x-button>
+              </form>
+            @else
+              <h6 class="mb-0 text-success">Devuelto</h6>
+            @endif
+          </x-slot>
+        @endis
       </x-row>
     @endforeach
   </x-slot>

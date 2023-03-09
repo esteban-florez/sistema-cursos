@@ -180,6 +180,11 @@ Breadcrumbs::for('available-clubs.index', function (Trail $trail) {
     $trail->push('Lista de clubs', route('available-clubs.index'));
 });
 
+Breadcrumbs::for('club-loans.index', function (Trail $trail) {
+    $trail->parent('clubs.index');
+    $trail->push('Préstamo', route('club-loans.index'));
+});
+
 Breadcrumbs::for('memberships.index', function (Trail $trail, Club $club) {
     $trail->parent('clubs.show', $club);
     $trail->push('Miembros', route(
@@ -242,6 +247,11 @@ Breadcrumbs::for('items.edit', function (Trail $trail, Item $item) {
 Breadcrumbs::for('items.stock.index', function (Trail $trail) {
     $trail->parent('inventory');
     $trail->push('Inventario actual', route('items.stock.index'));
+});
+
+Breadcrumbs::for('items.stock.create', function (Trail $trail) {
+    $trail->parent('items.stock.index');
+    $trail->push('Registrar operación', route('items.stock.create'));
 });
 
 Breadcrumbs::for('operations.index', function (Trail $trail) {

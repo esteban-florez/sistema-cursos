@@ -37,19 +37,36 @@ class Item extends Model
         $amount = $this->stock();
         return "{$amount} unidades.";
     }
+    
+    public function getTotalStockAttribute()
+    {
+        $amount = $this->stock(true);
+        return "{$amount} unidades.";
+    }
 
-    public function stock()
+    public function stock($total = false)
     {
         if ($this->operations->count() < 1) {
             return 0;
         }
 
-        return $this->operations->reduce(function ($carry, $operation) {
+        $amount = $this->operations->reduce(function ($carry, $operation) {
             if ($operation->type === 'Ingreso') {
                 return $carry + $operation->amount;
             }
 
             return $carry - $operation->amount;
         }, 0);
-    }
+        
+        if ($total) return $amount;
+
+        $loans = Loan::where('item_id', $this->id)
+            ->whereNull('returned_at')->get();
+
+        $lend = $loans->reduce(function ($acc, $loan) {
+            return $acc + $loan->amount;
+        });
+
+        return $amount - $lend;
+   }
 }

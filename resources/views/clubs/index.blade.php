@@ -63,6 +63,11 @@
                   Miembros
                 </x-button>
                 {{-- @endcan --}}
+                @is("Instructor")
+                <x-button class="btn-sm" color="info" :url="route('club-loans.index', ['club' => $club])" icon="hand-holding">
+                  Préstamos
+                </x-button>
+                @endis
                 @can('update', $club)
                   <x-button class="btn-sm" color="warning" :url="route('clubs.edit', $club)" icon="edit">
                     Editar

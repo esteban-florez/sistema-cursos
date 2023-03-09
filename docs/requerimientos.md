@@ -18,7 +18,7 @@
   * Participación en clubes.
   * Catálogo de clubes.
   * Gestión de participantes de clubes.
-  - Prestamos de artículos.
+  * Préstamos de artículos.
 
   ## Gestión de Inventario:
   * Ingreso de artículos.

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreLoanRequest;
 use App\Models\Club;
 use App\Models\Item;
 use App\Models\Loan;
-use Illuminate\Http\Request;
 
 class LoanController extends Controller
 {
@@ -19,9 +19,8 @@ class LoanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $search = $request->input('search');
         $items = Item::getOptions();
         $clubs = Club::getOptions();
         $loans = Loan::latest()
@@ -29,7 +28,6 @@ class LoanController extends Controller
             ->withQueryString();
         
         return view('loans', [
-            'search' => $search,
             'loans' => $loans,
             'items' => $items,
             'clubs' => $clubs,
@@ -42,13 +40,9 @@ class LoanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLoanRequest $request)
     {
-        $data = $request->validate([
-            'amount' => ['required', 'integer', 'numeric'],
-            'item_id' => ['required', 'integer', 'numeric'],
-            'club_id' => ['required', 'integer', 'numeric'],
-        ]);        
+        $data = $request->validated();        
         
         Loan::create($data);
 

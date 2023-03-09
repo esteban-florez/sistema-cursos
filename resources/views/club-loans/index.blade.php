@@ -1,11 +1,6 @@
-<x-layout.main title="Préstamo de artículos">
+<x-layout.main title="Préstamo de artículos: Club de {{$club->name}}">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('loans.index') }}
-  </x-slot>
-  <x-slot name="titleAddon">
-    <x-button icon="plus" color="success" hide-text="sm" data-target="#itemLoanModal" data-toggle="modal">
-      Añadir
-    </x-button>
+    {{ Breadcrumbs::render('club-loans.index') }}
   </x-slot>
   <section class="container-fluid px-2 px-sm-4 mt-3">
     <x-errors />
@@ -20,4 +15,3 @@
     @endif
   </section>
 </x-layout.main>
-<x-loan.new :items=$items :clubs=$clubs />
