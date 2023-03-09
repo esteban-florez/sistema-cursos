@@ -239,12 +239,9 @@ Route::middleware('auth')->group(function () {
     Route::get('items-stock', [ItemStockController::class, 'index'])
         ->name('items.stock.index');
     
-    Route::get('items-stock/create', [ItemStockController::class, 'create'])
-        ->name('items.stock.create');
-    
     // Operations routes
     Route::resource('operations', OperationController::class)
-        ->only('index', 'store');
+        ->only('index', 'create', 'store');
 
     // Loans routes
     Route::resource('loans', LoanController::class)

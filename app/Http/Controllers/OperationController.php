@@ -37,6 +37,13 @@ class OperationController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return view('operations.create', [
+            'itemOptions' => Item::getOptions(),
+        ]);
+    }
+
     public function store(OperationRequest $request)
     {
         $data = $request->validated();

@@ -244,9 +244,9 @@ Breadcrumbs::for('items.stock.index', function (Trail $trail) {
     $trail->push('Inventario actual', route('items.stock.index'));
 });
 
-Breadcrumbs::for('items.stock.create', function (Trail $trail) {
+Breadcrumbs::for('operations.create', function (Trail $trail) {
     $trail->parent('items.stock.index');
-    $trail->push('Registrar operación', route('items.stock.create'));
+    $trail->push('Registrar operación', route('operations.create'));
 });
 
 Breadcrumbs::for('operations.index', function (Trail $trail) {

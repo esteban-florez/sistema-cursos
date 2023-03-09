@@ -1,6 +1,6 @@
 <x-layout.main title="Registrar operación">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('items.stock.create') }}
+    {{ Breadcrumbs::render('operations.create') }}
   </x-slot>
   <section class="container-fluid px-2 px-sm-4 mt-3">
     <x-errors />

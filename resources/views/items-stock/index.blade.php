@@ -3,7 +3,7 @@
     {{ Breadcrumbs::render('items.stock.index') }}
   </x-slot>
   <x-slot name="titleAddon">
-    <x-button icon="plus" color="success" hide-text="sm" :url="route('items.stock.create')">
+    <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
       Añadir
     </x-button>
     <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
