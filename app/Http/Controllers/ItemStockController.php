@@ -23,4 +23,11 @@ class ItemStockController extends Controller
             'itemOptions' => Item::getOptions(),
         ]);
     }
+
+    public function create()
+    {
+        return view('items-stock.create', [
+            'itemOptions' => Item::getOptions(),
+        ]);
+    }
 }
