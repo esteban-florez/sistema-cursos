@@ -12,12 +12,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // POLICY
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct() {
+        $this->authorizeResource(User::class);
+    }
+
     public function index(Request $request)
     {
         $filters = Input::getFilters();
@@ -40,11 +38,6 @@ class UserController extends Controller
         ]);
     }
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $areas = Area::getOptions();
@@ -56,12 +49,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
@@ -76,12 +63,6 @@ class UserController extends Controller
             ->with('alert', trans('alerts.users.created'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function show(User $user)
     {
         $courses = $user->dictatedCourses()
@@ -113,12 +94,6 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function edit(User $user)
     {
         $areas = Area::getOptions();
@@ -131,27 +106,13 @@ class UserController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
     public function update(UpdateUserRequest $request, User $user)
     {
         $data = $request->validated();
 
         $user->update($data);
 
-        if ($user->role === 'Estudiante') {
-            return redirect()->route('users.show', $user)
-                ->with('alert', trans('alerts.profile.updated'));
-        }
-
-        if ($user->role === 'Administrador') {
-            return redirect()->route('users.index')
-                ->with('alert', trans('alerts.users.updated'));
-        }
+        return redirect()->route('users.show', $user)
+            ->with('alert', trans('alerts.profile.updated'));
     }
 }

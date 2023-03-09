@@ -2,5 +2,7 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('pnfs.create') }}
   </x-slot>
-  <x-pnf-form />
+  @can('create', App\Models\PNF::class)
+    <x-pnf-form />
+  @endcan
 </x-layout.main>

@@ -26,7 +26,7 @@
       >
         @is("Administrador")
           <x-slot name="actions">
-            @if($loan->status === 'Prestado')
+            @can('update', $loan)
               <form action="{{ route('loans.update', $loan) }}" method="POST">
                 @csrf
                 @method('PATCH')
@@ -36,7 +36,7 @@
               </form>
             @else
               <h6 class="mb-0 text-success">Devuelto</h6>
-            @endif
+            @endcan
           </x-slot>
         @endis
       </x-row>

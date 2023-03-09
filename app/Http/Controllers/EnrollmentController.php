@@ -80,7 +80,6 @@ class EnrollmentController extends Controller
 
     public function success(Enrollment $enrollment)
     {
-        // GATE
         $payment = $enrollment
             ->payments()
             ->whereIn('category', ['Pago completo', 'Reservación'])

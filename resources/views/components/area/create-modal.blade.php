@@ -1,4 +1,4 @@
-@props(['id', 'pnfs', 'ajax' => false])
+@props(['pnfs', 'ajax' => false])
 
 @if($ajax)
   @push('js')
@@ -7,7 +7,7 @@
   @endpush
 @endif
 
-<x-modal :id="$id">
+<x-modal id="createAreaModal">
   <x-slot name="header">
     <h4 class="modal-title">Registrar área de formación</h4>
     <button type="button" class="close" data-dismiss="modal">

@@ -4,9 +4,11 @@
   </x-slot>
   <x-layout.bar>
     <x-search placeholder="Buscar PNF..." :value="$search ?? ''" name="search" />
-    <x-button icon="plus" color="success" hide-text="sm" :url="route('pnfs.create')">
-      Añadir
-    </x-button>
+    @can('create', App\Models\PNF::class)
+      <x-button icon="plus" color="success" hide-text="sm" :url="route('pnfs.create')">
+        Añadir
+      </x-button>
+    @endcan
   </x-layout.bar>
   <section class="container-fluid">
     <x-alert/>
@@ -19,9 +21,11 @@
                 <h3 class="mb-1">{{ $pnf->name }}</h3>
                 <p class="mb-0">Jefe del Departamento:</p>
                 <p class="text-primary text-bold">{{ $pnf->leader }}</p>
-                <x-button :url="route('pnfs.edit', $pnf)" color="warning" icon="edit">
-                  Editar
-                </x-button>
+                @can('update', $pnf)
+                  <x-button :url="route('pnfs.edit', $pnf)" color="warning" icon="edit">
+                    Editar
+                  </x-button>
+                @endcan
               </div>
             </div>
           </div>

@@ -1,12 +1,6 @@
-@php
-  if ($errors->isNotEmpty()) {
-    dd($errors);
-  }
-@endphp
-
 <x-layout.main title="Pagar cuota restante">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('unfulfilled-payments.edit', $user) }}
+    {{ Breadcrumbs::render('unfulfilled-payments.edit', $payment) }}
   </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/loading.css') }}">

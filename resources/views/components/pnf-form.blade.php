@@ -8,7 +8,7 @@
   <div class="row justify-content-center">
     <div class="card col-md-6 mt-3">
       <div class="card-body">
-        <form method="POST" action="{{ route('pnfs.store') }}">
+        <form method="POST" action="{{ $action }}">
           @csrf
           @if ($pnf)
             @method('PUT')
@@ -23,9 +23,11 @@
           <x-field name="leader" placeholder="Ej. Luis Vargas" :value="old('leader') ?? $pnf->leader ?? ''" required>
             Jefe de Departamento:
           </x-field>
-          <x-button color="secondary" icon="times" :url="route('pnfs.index')">
-            Cancelar
-          </x-button>
+            @can('viewAny', App\Models\PNF::class)
+              <x-button color="secondary" icon="times" :url="route('pnfs.index')">
+                Cancelar
+              </x-button>
+            @endcan
           <x-button color="success" icon="check" type="submit">
             Aceptar 
           </x-button>

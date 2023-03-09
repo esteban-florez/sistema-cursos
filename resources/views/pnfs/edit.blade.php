@@ -2,5 +2,7 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('pnfs.edit', $pnf) }}
   </x-slot>
-  <x-pnf-form :pnf="$pnf"/>
+  @can('update', $pnf)
+    <x-pnf-form :pnf="$pnf"/>
+  @endcan
 </x-layout.main>

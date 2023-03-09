@@ -11,14 +11,9 @@ class LoanController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Administrador');
+        $this->authorizeResource(Loan::class);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $items = Item::getOptions();
@@ -34,12 +29,6 @@ class LoanController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreLoanRequest $request)
     {
         $data = $request->validated();        
@@ -50,13 +39,6 @@ class LoanController extends Controller
             ->with('alert', trans('alerts.loans'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Loan  $loan
-     * @return \Illuminate\Http\Response
-     */
     public function update(Loan $loan)
     {
         $loan->update([

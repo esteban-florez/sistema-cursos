@@ -27,10 +27,12 @@
           @foreach ($items as $item)
             <x-row :data="['#'.$item->code, $item->name, $item->stock, $item->total_stock]">
               <x-slot name="actions">
-                <x-button icon="list" class="btn-sm"
-                  :url="route('operations.index', ['filters|item_id' => $item])">
-                  Ver operaciones
-                </x-button>
+                @can('viewAny', App\Models\Operation::class)
+                  <x-button icon="list" class="btn-sm"
+                    :url="route('operations.index', ['filters|item_id' => $item])">
+                    Ver operaciones
+                  </x-button>
+                @endcan
               </x-slot>  
             </x-row>
           @endforeach

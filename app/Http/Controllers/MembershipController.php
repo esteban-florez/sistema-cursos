@@ -9,12 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class MembershipController extends Controller
 {
-    // POLICY
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct() {
+        $this->authorizeResource(Membership::class);
+    }
+
     public function index(Request $request)
     {
         $club = Club::findOrFail($request->query('club'));
@@ -30,12 +28,6 @@ class MembershipController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Membership::create([
@@ -47,25 +39,17 @@ class MembershipController extends Controller
             ->with('alert', trans('alerts.joined'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Membership $membership)
     {
         $user = Auth::user();
         $club = $membership->club;
         $membership->delete();
 
-        if ($user->role === 'Estudiante') {
-            return redirect()->route('users.memberships.index', $user)
-                ->with('alert', trans('alerts.retired'));
-        }
-        else {
-            return redirect()->route('memberships.index', ['club' => $club])
-                ->with('alert', trans('alerts.users.retired'));
-        }
+        return $user->can('viewAny', [Membership::class, $club])
+            ? redirect()->route('memberships.index', ['club' => $club])
+                    ->with('alert', trans('alerts.users.retired')) 
+  
+            : redirect()->route('users.memberships.index', $user)
+                    ->with('alert', trans('alerts.retired'));
     }
 }

@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 
 class PDFController extends Controller
 {
-    // GATES
     public function enrollment(Enrollment $enrollment)
     {
+        $this->authorize('pdf.enrollment', $enrollment);
+
         return $this->generatePDF([
             'view' => 'enrollment',
             'landscape' => false,
@@ -30,6 +31,8 @@ class PDFController extends Controller
     {
         $course = Course::with('instructor')
             ->findOrFail($request->query('course'));
+            
+        $this->authorize('pdf.enrollments', $course);
 
         $enrollments = Enrollment::latest()
             ->whereBelongsTo($course)
@@ -45,6 +48,8 @@ class PDFController extends Controller
 
     public function payments()
     {
+        $this->authorize('pdf.payments');
+
         $payments = Payment::with('enrollment.course', 'enrollment.student')
             ->get();
         
@@ -57,6 +62,8 @@ class PDFController extends Controller
 
     public function items()
     {
+        $this->authorize('pdf.items');
+
         $items = Item::latest()
             ->with('operations')
             ->paginate(10)
@@ -71,6 +78,8 @@ class PDFController extends Controller
 
     public function certificate(Enrollment $enrollment)
     {
+        $this->authorize('pdf.certificate', $enrollment);
+
         return $this->generatePDF([
             'view' => 'certificate',
             'filename' => "{$enrollment->student->full_name} - Certificado de Aprobación.pdf",
@@ -84,6 +93,8 @@ class PDFController extends Controller
     {
         $club = Club::with('instructor')
             ->findOrFail($request->query('club'));
+
+        $this->authorize('pdf.memberships', $club);
 
         $memberships = Membership::latest()
             ->whereBelongsTo($club)
@@ -105,7 +116,7 @@ class PDFController extends Controller
         $filename = $options['filename'];
 
         $data = collect($options)
-            ->except(['view', 'landscape', 'filename']);
+            ->except(['view', 'landscape', 'fipdf.lename']);
 
         $pdf = PDF::loadView("pdf.{$options['view']}", $data->all());
         

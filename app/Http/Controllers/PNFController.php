@@ -10,14 +10,9 @@ class PNFController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:Administrador');
+        $this->authorizeResource(PNF::class);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('pnfs.index', [
@@ -26,22 +21,11 @@ class PNFController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('pnfs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data = $request->validate([
@@ -56,12 +40,6 @@ class PNFController extends Controller
             ->with('alert', trans('alerts.pnf.created'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\PNF  $pnf
-     * @return \Illuminate\Http\Response
-     */
     public function edit(PNF $pnf)
     {
         return view('pnfs.edit', [
@@ -69,13 +47,6 @@ class PNFController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\PNF  $pnf
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, PNF $pnf)
     {
         $data = $request->validate([

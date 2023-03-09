@@ -20,16 +20,22 @@
             $student->full_ci,
             $student->upta,
           ]"
-        :details="route('users.show', $student)"
       >
         <x-slot name="actions">
-          <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
-            @csrf
-            @method('DELETE')
-            <x-button color="danger" class="btn-sm" type="submit">
-              Retirar
+          @can('destroy', $membership)
+            <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
+              @csrf
+              @method('DELETE')
+              <x-button color="danger" class="btn-sm" type="submit">
+                Retirar
+              </x-button>
+            </form>
+          @endcan
+          @can('view', $student)
+            <x-button :url="route('users.show', $student)" class="btn-sm" icon="eye">
+              Detalles
             </x-button>
-          </form>
+          @endcan
         </x-slot>
       </x-row>
     @endforeach

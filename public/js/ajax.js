@@ -19,7 +19,7 @@ form.addEventListener('submit', (e) => {
   })
     .then(res => {
       if (res.ok) {
-        $('#newAreaModal').modal('hide')
+        $('#createAreaModal').modal('hide')
         pnf.selectedIndex = 0
         name.value = ''
         return fetch(optionsUrl)
