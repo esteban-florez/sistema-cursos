@@ -83,7 +83,7 @@
             @endcan
           </x-slot>
         </x-layout.sidebar.item>
-        @is('Administrador')
+        @can('role', 'Administrador')
         <x-layout.sidebar.item icon="boxes">
           Inventario
           <x-slot name="menu">
@@ -109,8 +109,8 @@
             @endcan
           </x-slot>
         </x-layout.sidebar.item>
-        @endis
-        @isnt('Instructor')
+        @endcan
+        @can('role', ['Instructor', 'Estudiante'])
         <x-layout.sidebar.item icon="money-bill">
           Pagos
           <x-slot name="menu">
@@ -136,24 +136,24 @@
             @endcan
           </x-slot>
         </x-layout.sidebar.item>
-        @endisnt
+        @endcan
         @can('role', ['Instructor', 'Estudiante'])
         <x-layout.sidebar.item :url="route('schedule')" icon="calendar-alt">
           Horario
         </x-layout.sidebar.item>
         @endcan
-        @is('Administrador')
+        @can('role', 'Administrador')
         <x-layout.sidebar.item url="#" icon="chart-pie">
           Estadísticas
         </x-layout.sidebar.item>
-        @endis
+        @endcan
         <div class="divider"></div>
-        @isnt('Administrador')
+        @can('role', 'Administrador')
         <x-layout.sidebar.item :url="route('users.show', $user)" icon="user-alt">
           Perfil
         </x-layout.sidebar.item>
-        @endisnt
-        @is('Administrador')
+        @endcan
+        @can('role', 'Administrador')
         <x-layout.sidebar.item icon="cog">
           Configuración
           <x-slot name="menu">
@@ -177,7 +177,7 @@
             </x-layout.sidebar.item>
           </x-slot>
         </x-layout.sidebar.item>
-        @endis
+        @endcan
         <x-layout.sidebar.item :url="route('logout')" icon="sign-out-alt">
           Cerrar Sesión
         </x-layout.sidebar.item>

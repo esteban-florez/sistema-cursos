@@ -61,16 +61,16 @@
                 <x-profile.data :data="$user->tel">
                   Número de Teléfono:
                 </x-profile.data>
-                @is('Estudiante', $user)
+                @if($user->can('role', 'Estudiante'))
                 <x-profile.data :data="$user->grade">
                   Grado de Instrucción:
                 </x-profile.data>
-                @endis
-                @is('Instructor', $user)
+                @endif
+                @if($user->can('role', 'Instructor'))
                 <x-profile.data :data="$user->degree">
                   Titulación:
                 </x-profile.data>
-                @endis
+                @endif
                 <x-profile.data :data="$user->address">
                   Dirección:
                 </x-profile.data>

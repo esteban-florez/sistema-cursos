@@ -1,6 +1,6 @@
 @props(['payments', 'user', 'courses', 'clubs'])
 
-@isnt('Administrador')
+@can('role', ['Instructor', 'Estudiante'])
   <div class="row">
     @if ($payments->isNotEmpty() && $user->payments()->unfulfilled())
       <div class="col-12 col-lg-6">
@@ -31,8 +31,8 @@
       </div>
     @endif
   </div>
-@endis
-@is('Administrador')
+@endcan
+@can('role', 'Administrador')
   <div class="row mt-3">
     <div class="col-md-7">
       <x-home.card color="dark" col="lg-3" aling="lg-right" title="Pagos pendientes" :url="route('pending-payments.index')">
@@ -52,13 +52,13 @@
       </x-home.card>
     </div>
   </div>
-@endis
-@is('Estudiante')
+@endcan
+@can('role', 'Estudiante')
   <x-home.card color="dark" col="lg-3" aling="lg-right" title="¡Últimos cursos!" :url="route('available-courses.index')">
     <x-carousel :items="$courses" detailUrl="courses.show"/>
   </x-home.card>
-@endis
-@isnt('Estudiante')
+@endcan
+@can('role', ['Administrador', 'Instructor'])
   <x-home.card color="dark" col="lg-3" aling="lg-right" title="¡Últimos cursos!" :url="route('courses.index')">
     <div class="cards-grid px-2">
       @forelse($courses as $course)
@@ -83,7 +83,7 @@
       @endforelse
     </div>
   </x-home.card>
-@endis
+@endcan
 @php
   $clubsRoute = $user->can('viewAny', App\Models\Club::class)
     ? 'clubs.index' : 'available-clubs.index';
