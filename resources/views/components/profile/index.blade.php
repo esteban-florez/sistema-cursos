@@ -61,16 +61,16 @@
                 <x-profile.data :data="$user->tel">
                   Número de Teléfono:
                 </x-profile.data>
-                @is('Estudiante', $user)
+                @if($user->can('role', 'Estudiante'))
                 <x-profile.data :data="$user->grade">
                   Grado de Instrucción:
                 </x-profile.data>
-                @endis
-                @is('Instructor', $user)
+                @endif
+                @if($user->can('role', 'Instructor'))
                 <x-profile.data :data="$user->degree">
                   Titulación:
                 </x-profile.data>
-                @endis
+                @endif
                 <x-profile.data :data="$user->address">
                   Dirección:
                 </x-profile.data>
@@ -86,21 +86,21 @@
           <div class="d-flex align-items-center justify-content-between">
             @if($user->role === 'Estudiante')
               <h3 class="my-2">Mis cursos</h3>
-              @if (Auth::user() === $user)
-              <a href="{{ route('users.enrollments.index', $user) }}" class="mt-1">
-                <span>Ver todos</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-              @endif
+              @can('users.enrollments.viewAny', $user)
+                <a href="{{ route('users.enrollments.index', $user) }}" class="mt-1">
+                  <span>Ver todos</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              @endcan
             @endif
             @if($user->role === 'Instructor')
               <h3 class="my-2">Cursos dictados</h3>
-              @if (Auth::user() === $user)
-              <a href="{{ route('users.courses.index', $user) }}" class="mt-1">
-                <span>Ver todos</span>
-                <i class="fas fa-arrow-right"></i>
-              </a>
-              @endif
+              @can('users.courses.viewAny', $user)
+                <a href="{{ route('users.courses.index', $user) }}" class="mt-1">
+                  <span>Ver todos</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              @endcan
             @endif
           </div>
         </div>
@@ -130,21 +130,21 @@
           <div class="d-flex align-items-center justify-content-between">
             @if($user->role === 'Estudiante')
               <h3 class="my-2">Mis clubes</h3>
-              @if (Auth::user() === $user)
+              @can('users.memberships.viewAny', $user)
                 <a href="{{ route('users.memberships.index', $user) }}" class="mt-1">
                   <span>Ver todos</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
-              @endif
+              @endcan
             @endif
             @if($user->role === 'Instructor')
               <h3 class="my-2">Clubes dictados</h3>
-              @if (Auth::user() === $user)
+              @can('users.clubs.viewAny', $user)
                 <a href="{{ route('users.clubs.index', $user) }}" class="mt-1">
                   <span>Ver todos</span>
                   <i class="fas fa-arrow-right"></i>
                 </a>
-              @endif
+              @endcan
             @endif
           </div>
         </div>

@@ -6,6 +6,7 @@
   + certificados de estudiantes.
   * Préstamos a instructor.
   
+- Hacer el formulario de "Registrar operación" menos ancho.
 - Ruta de cambio de imagen de perfil.
 - Crear las vistas de: 404 "No encontrado", 403 "No autorizado".
 - Preguntar más sobre los clubes a Edeblangel.
@@ -13,7 +14,9 @@
 ## Esteban:
 
 - Hacer sistema de permisos (Authorization).
-- Preguntar como hacer recuperación de base de datos.
+- Respaldo y recuperación de base de datos.
+- Monto maximo a prestar en registro de prestamos y registro de operación.
+- Si el "actions" no es null pero viene vacío, hacer que tenga un h4 con rayas por defecto.
 
 ## Tareas a largo plazo:
 

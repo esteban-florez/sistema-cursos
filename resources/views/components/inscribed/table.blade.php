@@ -28,8 +28,7 @@
           ]"
       >
         <x-slot name="actions">
-          @unless($enrollment->status === 'Inscrito')
-            {{-- @can('enrollments.confirmation.update', $enrollment) --}}
+          @can('enrollments.confirmation.update', $enrollment)
             <form action="{{ route('enrollments.confirmation.update', $enrollment) }}" method="POST">
               @csrf
               @method('PATCH')
@@ -37,11 +36,10 @@
                 Inscribir
               </x-button>
             </form>
-            {{-- @endcan --}}
-          @endunless
-          @if($course->phase === 'Finalizado')
+          @endcan
+          @can('enrollments.approval.update', $enrollment)
             <x-inscribed.update-approval-buttons :enrollment="$enrollment"/>
-          @endif
+          @endcan
           @can('view', $student)
             <x-button :url="route('users.show', $student)" class="btn-sm" icon="eye">
               Detalles

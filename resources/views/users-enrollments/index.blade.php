@@ -46,14 +46,16 @@
                 </p>
               @endif
               <div class="d-flex align-items-center gap-1 mt-3">
-                @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
+                @can('pdf.certificate', $enrollment)
                   <x-button :url="route('pdf.certificate', $enrollment)" color="success" icon="arrow-down">
                     Certificado
                   </x-button>
-                @endif
-                <x-button :url="route('users.enrollments.show', $enrollment)" icon="list-ul">
-                  Detalles
-                </x-button>
+                @endcan
+                @can('users.enrollments.view', $enrollment)
+                  <x-button :url="route('users.enrollments.show', $enrollment)" icon="list-ul">
+                    Detalles
+                  </x-button>
+                @endcan
               </div>
             </x-course.alt-card>
           </div>
@@ -62,7 +64,11 @@
     @else
       <div class="empty-container flex-column">
         <h2 class="empty">No te has inscrito en ningún curso</h2>
-        <a class="text-primary" href="{{ route('available-courses.index') }}">Ver cursos disponibles</a>
+        @can('role', 'Estudiante')
+          <a class="text-primary" href="{{ route('available-courses.index') }}">
+            Ver cursos disponibles
+          </a>
+        @endcan
       </div>
     @endif
   </div>

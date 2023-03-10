@@ -37,9 +37,11 @@
                   Referencia:
                 </x-field>
                 <div class="d-flex gap-2">
-                  <x-button color="secondary" icon="arrow-left" :url="route('users.payments.index', auth()->user())">
-                    Volver
-                  </x-button>
+                  @can('users.payments.viewAny')
+                    <x-button color="secondary" icon="arrow-left" :url="route('users.payments.index', auth()->user())">
+                      Volver
+                    </x-button>
+                  @endcan
                   <x-button color="success" icon="check" type="submit">
                     Aceptar
                   </x-button>

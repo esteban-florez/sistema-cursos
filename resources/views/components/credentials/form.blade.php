@@ -13,7 +13,7 @@
       <span class="text-white">&times;</span>
     </button>
   </x-slot>
-  <form method="POST" action="{{route($route)}}">
+  <form method="POST" action="{{ route($route) }}">
     @csrf
     @if($type === 'Editar')
       @method('PUT')

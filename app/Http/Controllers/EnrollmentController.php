@@ -82,6 +82,8 @@ class EnrollmentController extends Controller
 
     public function success(Enrollment $enrollment)
     {
+        $this->authorize('enrollments.success', $enrollment);
+
         $payment = $enrollment
             ->payments()
             ->whereIn('category', ['Pago completo', 'Reservación'])

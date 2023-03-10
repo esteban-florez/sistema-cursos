@@ -5,8 +5,8 @@
     <td>{{ $cell }}</td>
   @endforeach
   @if ($edit || $details || $actions)
-  <td class="px-2">
-    <div class="d-flex gap-1 justify-content-center align-items-center h-100">
+    <td class="px-2">
+      <div class="d-flex gap-1 justify-content-center align-items-center h-100">
         {{ $actions ?? '' }}
         @if ($edit)
           <x-button class="btn-sm" :url="$edit" color="warning" icon="edit" hide-text="md">

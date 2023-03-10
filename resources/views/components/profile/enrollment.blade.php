@@ -20,12 +20,16 @@
     <h6 class="text-{{ $approvalColor }}">Aprobación: {{ $enrollment->approval }}</h6>
     <p class="card-text">{{ $course->excerpt }}</p>
     <div class="d-flex align-items-center">
-      @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
+      @can('pdf.certificate', $enrollment)
         <x-button icon="arrow-down" :url="route('pdf.certificate', $enrollment)" color="success">
           Certificado
         </x-button>
-      @endif
-      <x-button icon="list" :url="route('users.enrollments.show', $enrollment)">Detalles</x-button>
+      @endcan
+      @can('users.memberships.view', $enrollment)
+        <x-button icon="list" :url="route('users.enrollments.show', $enrollment)">
+          Detalles
+        </x-button>  
+      @endcan
     </div>
   </x-slot>
 </x-profile.card>

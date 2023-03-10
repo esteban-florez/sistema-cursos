@@ -183,8 +183,8 @@ Route::middleware('auth')->group(function () {
     Route::get('available-clubs', [AvailableClubController::class, 'index'])
         ->name('available-clubs.index');
 
-    Route::get('club-loans', [ClubLoanController::class, 'index'])
-        ->name('club-loans.index');
+    Route::get('clubs/{club}/loans', [ClubLoanController::class, 'index'])
+        ->name('clubs.loans.index');
 
     // Membership routes
     Route::resource('memberships', MembershipController::class)
@@ -237,7 +237,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('items', ItemController::class)
         ->except('create', 'show', 'destroy');
     
-    Route::get('items-stock', [ItemStockController::class, 'index'])
+    Route::get('items/stock', [ItemStockController::class, 'index'])
         ->name('items.stock.index');
     
     // Operations routes

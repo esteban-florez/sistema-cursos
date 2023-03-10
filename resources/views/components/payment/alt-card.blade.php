@@ -11,11 +11,13 @@
 
 <div class="card payment-card">
   <div class="card-header">
-    <a href="{{ route('users.enrollments.show', $enrollment) }}">
-      <h4 class="text-bold text-truncate mb-0">
-        {{ $course->name }}
-      </h4>
-    </a>
+    @can('users.enrollments.view')
+      <a href="{{ route('users.enrollments.show', $enrollment) }}">
+        <h4 class="text-bold text-truncate mb-0">
+          {{ $course->name }}
+        </h4>
+      </a>
+    @endcan
     <x-payment.status :payment="$payment"/>
   </div>
   <div class="card-body">

@@ -14,9 +14,11 @@
         :value="$search" :filters="$filters" :sort="$sort"/>
     </div>
     <div>
-      <x-button icon="file-download" hide-text="md" :url="route('pdf.payments')">
-        Generar PDF
-      </x-button>
+      @can('role', 'Administrador')
+        <x-button icon="file-download" hide-text="md" :url="route('pdf.payments')">
+          Generar PDF
+        </x-button>
+      @endcan
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>
     </div>
     <x-slot name="filtersCollapse">
@@ -69,7 +71,9 @@
               <x-slot name="actions">
                 @foreach (payStatuses() as $status)
                   @unless($status === $payment->status)
-                    <x-payment.status-button :id="$payment->id" :value="$status" sm/>
+                    @can('role', 'Administrador')
+                      <x-payment.status-button :id="$payment->id" :value="$status" sm/>
+                    @endcan
                   @endunless
                 @endforeach
               </x-slot>

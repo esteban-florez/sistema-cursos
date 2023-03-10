@@ -21,9 +21,11 @@
                 <h5 class="text-success text-bold display-4 text-center" style="font-size: 2.8rem;">{{ $course->remaining_amount }}</h5>
               </div>
               <div class="col-md-6 d-flex flex-column gap-2">
-                <x-button :url="route('unfulfilled-payments.edit', $payment)">
-                  Realizar pago
-                </x-button>
+                @can('unfulfilled-payments.update')
+                  <x-button :url="route('unfulfilled-payments.edit', $payment)">
+                    Realizar pago
+                  </x-button>
+                @endcan
                 <x-button :url="route('courses.show', $course)" color="info">
                   Ver curso
                 </x-button>

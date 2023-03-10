@@ -32,9 +32,11 @@
         </x-button>
         @endif
       </div>
-      <x-button :color="$buttonColor" :url="route('available-courses.index')">
-        {{ $buttonText }}
-      </x-button>
+      @can('role', 'Estudiante')
+        <x-button :color="$buttonColor" :url="route('available-courses.index')">
+          {{ $buttonText }}
+        </x-button>
+      @endcan
     </div>
   </div>
 </div>

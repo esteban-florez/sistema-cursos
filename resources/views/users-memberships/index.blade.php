@@ -19,9 +19,11 @@
               <p class="mb-1">Día de clases: <b>{{ $club->day }}</b></p>
               <p class="mb-1">Hora: <b>{{ $club->hour }}</b></p>
               <div class="d-flex align-items-center gap-1 mt-3">
-                <x-button :url="route('users.memberships.show', $membership)" icon="list-ul">
-                  Detalles
-                </x-button>
+                @can('users.memberships.view', $membership)
+                  <x-button :url="route('users.memberships.show', $membership)" icon="list-ul">
+                    Detalles
+                  </x-button>
+                @endcan
                 @can('destroy', $membership)
                   <x-button color="danger" data-toggle="modal" data-target="#clubModal">
                     Retirarse
@@ -39,7 +41,11 @@
     @else
       <div class="empty-container flex-column">
         <h2 class="empty">No te has unido a ningún club</h2>
-        <a class="text-primary" href="{{ route('available-clubs.index') }}">Ver clubes disponibles</a>
+        @can('role', 'Estudiante')
+          <a class="text-primary" href="{{ route('available-clubs.index') }}">
+            Ver clubes disponibles
+          </a>
+        @endcan
       </div>
     @endif
   </section>

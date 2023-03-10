@@ -14,7 +14,9 @@ class PDFGates extends Gates
     public function enrollment(User $user, Enrollment $enrollment)
     {
         return $user->can('role', 'Estudiante')
-            && $enrollment->student->id === $user->id;
+            && $enrollment->student->id === $user->id
+            && $enrollment->course->phase === 'Inscripciones' 
+            && $enrollment->status === 'En reserva';
     }
 
     public function enrollments(User $user, Course $course = null)

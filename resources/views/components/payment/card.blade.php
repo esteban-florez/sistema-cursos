@@ -39,8 +39,8 @@
       Ver detalles
     </a>
   </div>
-  @if ($user->role === "Administrador")
+  @can('role', 'Administrador')
     <x-payment.status-button :id="$payment->id" value="Confirmado" />
     <x-payment.status-button :id="$payment->id" value="Rechazado" color="danger"/>
-  @endif
+  @endcan
 </div>

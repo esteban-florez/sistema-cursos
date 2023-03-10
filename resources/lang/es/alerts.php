@@ -30,5 +30,6 @@ return [
     'joined' => '¡Se ha unido al club con éxito!',
     'retired' => '¡Se ha retirado del club con éxito!',
     'operations' => '¡La operación se ha registrado con éxito!',
-    'loans' => '¡El préstamo se ha registrado con éxito!'
+    'loans' => '¡El préstamo se ha registrado con éxito!',
+    'confirmed' => '¡La inscripción se ha confirmado con éxito!'
 ];
