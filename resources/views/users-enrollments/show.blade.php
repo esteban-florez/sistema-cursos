@@ -26,21 +26,25 @@
             <h4 class="mb-0">Descargas del curso</h4>
           </div>
           <div class="card-body pt-3">
-            @if ($course->phase === 'Inscripciones' && $enrollment->status === 'En reserva')
+            @can('pdf.enrollment', $enrollment)
               <div class="card-text text-justify mb-3">Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.</div>
-              <x-button color="success" url="#" icon="file-download" class="btn-block mt-2">
+              <x-button color="success" :url="route('pdf.enrollment')" icon="file-download" class="btn-block mt-2">
                 Planilla de Inscripción
               </x-button>
-            @else
+            @endcan
+            @can('pdf.certificate', $enrollment)
+              <div class="card-text text-justify p-2">Felicitaciones por su excelente trabajo. Descargue el certificado haciendo click en el botón de abajo, y llevarlo hasta la sede de la UPTA en La Victoria.</div>
+              <x-button color="secondary" :url="route('')" icon="download" class="btn-block mt-2">
+                Certificado
+              </x-button>
+            @endcan
+            @if (
+              (!auth()->user()->can('pdf.enrollment'))
+              && (!auth()->user()->can('pdf.certificate'))
+            )
               <div class="empty-container">
                 <h2 class="empty">No hay descargas pendientes</h2>
               </div>
-            @endif
-            @if ($enrollment->approval === 'Aprobado' && $enrollment->solvency === 'Solvente')
-              <div class="card-text text-justify p-2">Felicitaciones por su excelente trabajo. Descargue el certificado haciendo click en el botón de abajo, y llevarlo hasta la sede de la UPTA en La Victoria.</div>
-              <x-button color="secondary" url="#" icon="download" class="btn-block mt-2">
-                Certificado
-              </x-button>
             @endif
           </div>
         </div>

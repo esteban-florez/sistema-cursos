@@ -22,9 +22,9 @@
           Cursos
           <x-slot name="menu">
             @can('role', 'Estudiante')
-            <x-layout.sidebar.item :url="route('available-courses.index')" icon="list">
-              Lista de cursos
-            </x-layout.sidebar.item>
+              <x-layout.sidebar.item :url="route('available-courses.index')" icon="list">
+                Lista de cursos
+              </x-layout.sidebar.item>
             @endcan
             @can('viewAny', App\Models\Course::class)
               <x-layout.sidebar.item :url="route('courses.index')" icon="list">
@@ -36,16 +36,16 @@
                 Registrar curso
               </x-layout.sidebar.item>
             @endcan
-            @is('Estudiante')
-            <x-layout.sidebar.item :url="route('users.enrollments.index', $user)" icon="star">
-              Mis cursos
-            </x-layout.sidebar.item>
-            @endis
-            @is('Instructor')
-            <x-layout.sidebar.item :url="route('users.courses.index', $user)" icon="school">
-              Cursos dictados
-            </x-layout.sidebar.item>
-            @endis
+            @can('users.enrollments.viewAny')
+              <x-layout.sidebar.item :url="route('users.enrollments.index', $user)" icon="star">
+                Mis cursos
+              </x-layout.sidebar.item>
+            @endcan
+            @can('users.courses.viewAny', $user)
+              <x-layout.sidebar.item :url="route('users.courses.index', $user)" icon="school">
+                Cursos dictados
+              </x-layout.sidebar.item>
+            @endcan
             @can('viewAny', App\Models\Area::class)
               <x-layout.sidebar.item :url="route('areas.index')" icon="chalkboard-teacher">
                 Áreas de formación
@@ -57,25 +57,25 @@
           Clubes
           <x-slot name="menu">
             @can('role', 'Estudiante')
-            <x-layout.sidebar.item :url="route('available-clubs.index')" icon="list">
-              Lista de clubes
-            </x-layout.sidebar.item>
+              <x-layout.sidebar.item :url="route('available-clubs.index')" icon="list">
+                Lista de clubes
+              </x-layout.sidebar.item>
             @endcan
-            @is('Estudiante')
-            <x-layout.sidebar.item :url="route('users.memberships.index', $user)" icon="star">
-              Mis clubes
-            </x-layout.sidebar.item>
-            @endis
+            @can('users.memberships.viewAny', $user)
+              <x-layout.sidebar.item :url="route('users.memberships.index', $user)" icon="star">
+                Mis clubes
+              </x-layout.sidebar.item>
+            @endcan
             @can('viewAny', App\Models\Club::class)
             <x-layout.sidebar.item :url="route('clubs.index')" icon="list">
               Lista de clubes
             </x-layout.sidebar.item>
             @endcan
-            @is('Instructor')
+            @can('users.clubs.viewAny', $user)
             <x-layout.sidebar.item :url="route('users.clubs.index', $user)" icon="star">
               Clubes dictados
             </x-layout.sidebar.item>
-            @endisnt
+            @endcan
             @can('create', App\Models\Club::class)
             <x-layout.sidebar.item :url="route('clubs.create')" icon="plus">
               Registrar club
@@ -114,32 +114,34 @@
         <x-layout.sidebar.item icon="money-bill">
           Pagos
           <x-slot name="menu">
-            @is('Estudiante')
-            <x-layout.sidebar.item :url="route('users.payments.index', $user)" icon="list">
-              Mis pagos
-            </x-layout.sidebar.item>
-            <x-layout.sidebar.item :url="route('unfulfilled-payments.index', ['user' => $user])" icon="receipt">
-              Cuotas restantes
-            </x-layout.sidebar.item>
-            @endis
+            @can('users.payments.viewAny', $user)
+              <x-layout.sidebar.item :url="route('users.payments.index', $user)" icon="list">
+                Mis pagos
+              </x-layout.sidebar.item>
+            @endcan
+            @can('unfulfilled-payments.viewAny')
+              <x-layout.sidebar.item :url="route('unfulfilled-payments.index', ['user' => $user])" icon="receipt">
+                Cuotas restantes
+              </x-layout.sidebar.item>
+            @endcan
             @can('viewAny', App\Models\Payment::class)
             <x-layout.sidebar.item :url="route('payments.index')" icon="list">
               Lista de pagos
             </x-layout.sidebar.item>
             @endcan
-            @is('Administrador')
+            @can('role', 'Administrador')
             <x-layout.sidebar.item :url="route('pending-payments.index')" icon="check">
               Pagos pendientes
             </x-layout.sidebar.item>
-            @endis
+            @endcan
           </x-slot>
         </x-layout.sidebar.item>
         @endisnt
-        @isnt('Administrador')
+        @can('role', ['Instructor', 'Estudiante'])
         <x-layout.sidebar.item :url="route('schedule')" icon="calendar-alt">
           Horario
         </x-layout.sidebar.item>
-        @endisnt
+        @endcan
         @is('Administrador')
         <x-layout.sidebar.item url="#" icon="chart-pie">
           Estadísticas

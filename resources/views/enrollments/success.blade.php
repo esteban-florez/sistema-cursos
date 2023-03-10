@@ -31,19 +31,23 @@
           @endif
           <x-stepper.content id="typeStep" />
           <x-stepper.content id="confirmStep" />
-          <x-stepper.content id="finalStep" :pdf-url="route('pdf.enrollment', $enrollment)" first>
+          @can('pdf.enrollment', $enrollment)
+          <x-stepper.content id="finalStep"
+            :pdf-url="route('pdf.enrollment', $enrollment)"
+            first>
             <h3>Inscripción finalizada</h3>
             <div class="alert alert-success mt-3">
               <i class="fas fa-info-circle fa-lg mr-2"></i>
               <p class="font-weight-normal d-inline" id="finalParagraph">
                 @if ($isOnline)
-                  Su inscripción ha sido registrada con éxito. El administrador verificará su pago en los próximos días. Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.
+                Su inscripción ha sido registrada con éxito. El administrador verificará su pago en los próximos días. Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.
                 @else
                   Su inscripción ha sido registrada con éxito. Ahora debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y después llevarla impresa a la sede de la UPTA en La Victoria para realizar su pago y confirmar su inscripción.
                 @endif
               </p>
             </div>
           </x-stepper.content>
+          @endcan
         </div>
       </div>
     </div>

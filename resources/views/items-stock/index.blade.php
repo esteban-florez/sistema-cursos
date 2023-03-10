@@ -8,9 +8,11 @@
         Nueva operación
       </x-button>
     @endcan
-    <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
-      Generar PDF
-    </x-button>
+    @can('role', 'Administrador')
+      <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
+        Generar PDF
+      </x-button>
+    @endcan
   </x-slot>
   <x-select2 />
   <section class="container-fluid mt-3">
