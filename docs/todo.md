@@ -4,7 +4,7 @@
   * Pagos a administrador.
   + Aprobación de pagos a estudiantes.
   + certificados de estudiantes.
-  + Préstamos a instructor.
+  * Préstamos a instructor.
   
 - Ruta de cambio de imagen de perfil.
 - Crear las vistas de: 404 "No encontrado", 403 "No autorizado".

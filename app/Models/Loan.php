@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\LoanEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +24,11 @@ class Loan extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    static function LoanNotification($loan)
+    {
+        event(new LoanEvent($loan));
     }
 
     public function getStatusAttribute()

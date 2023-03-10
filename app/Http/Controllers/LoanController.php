@@ -6,6 +6,7 @@ use App\Http\Requests\StoreLoanRequest;
 use App\Models\Club;
 use App\Models\Item;
 use App\Models\Loan;
+use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
@@ -31,9 +32,13 @@ class LoanController extends Controller
 
     public function store(StoreLoanRequest $request)
     {
+        $user = Auth::user();
+
         $data = $request->validated();        
         
-        Loan::create($data);
+        $loan = Loan::create($data);
+
+        Loan::LoanNotification($loan);
 
         return back()
             ->with('alert', trans('alerts.loans'));

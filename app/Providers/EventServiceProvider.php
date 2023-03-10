@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\LoanEvent;
 use App\Events\PaymentEvent;
+use App\Listeners\LoanListener;
 use App\Listeners\PaymentListener;
 use App\Models\Enrollment;
 use App\Observers\EnrollmentObserver;
@@ -23,7 +25,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         PaymentEvent::class => [
             PaymentListener::class,
-        ]
+        ],
+        LoanEvent::class => [
+            LoanListener::class,
+        ],
     ];
 
     /**

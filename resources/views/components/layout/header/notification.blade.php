@@ -10,7 +10,7 @@
       <p class="text-sm">{{ $notification->data['name'] }}</p>
       <p class="text-sm text-muted">
         <i class="far fa-clock"></i>
-        {{ $notification->data['updated_at'] }}
+        {{ $notification->data['time'] }}
       </p>
     </div>
     <div class="d-flex justify-content-center align-items-center mr-2">
