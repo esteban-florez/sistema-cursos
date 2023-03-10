@@ -21,11 +21,11 @@
         <x-layout.sidebar.item icon="graduation-cap">
           Cursos
           <x-slot name="menu">
-            @is('Estudiante')
+            @can('role', 'Estudiante')
             <x-layout.sidebar.item :url="route('available-courses.index')" icon="list">
               Lista de cursos
             </x-layout.sidebar.item>
-            @endis
+            @endcan
             @can('viewAny', App\Models\Course::class)
               <x-layout.sidebar.item :url="route('courses.index')" icon="list">
                 Lista de cursos
@@ -56,10 +56,12 @@
         <x-layout.sidebar.item icon="basketball-ball">
           Clubes
           <x-slot name="menu">
-            @is('Estudiante')
+            @can('role', 'Estudiante')
             <x-layout.sidebar.item :url="route('available-clubs.index')" icon="list">
               Lista de clubes
             </x-layout.sidebar.item>
+            @endcan
+            @is('Estudiante')
             <x-layout.sidebar.item :url="route('users.memberships.index', $user)" icon="star">
               Mis clubes
             </x-layout.sidebar.item>
@@ -85,9 +87,11 @@
         <x-layout.sidebar.item icon="boxes">
           Inventario
           <x-slot name="menu">
-            <x-layout.sidebar.item :url="route('items.stock.index')" icon="list-alt">
-              Inventario actual
-            </x-layout.sidebar.item>
+            @can('role', 'Administrador')
+              <x-layout.sidebar.item :url="route('items.stock.index')" icon="list-alt">
+                Inventario actual
+              </x-layout.sidebar.item>
+            @endcan
             @can('viewAny', App\Models\Operation::class)
               <x-layout.sidebar.item :url="route('operations.index')" icon="history">
                 Historial
@@ -161,9 +165,11 @@
                 PNFs
               </x-layout.sidebar.item>
             @endcan
-            <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
-              Credenciales de pago
-            </x-layout.sidebar.item>
+            @can('role', 'Administrador')
+              <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
+                Credenciales de pago
+              </x-layout.sidebar.item>
+            @endcan
             <x-layout.sidebar.item url="#" icon="database">
               Base de datos
             </x-layout.sidebar.item>

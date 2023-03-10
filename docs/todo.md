@@ -8,8 +8,9 @@
 ## Esteban:
 
 - Hacer sistema de permisos (Authorization).
-- Preguntar como hacer recuperación de base de datos.
+- Respaldo y recuperación de base de datos.
 - Monto maximo a prestar en registro de prestamos y registro de operación.
+- Si el "actions" viene no es null pero viene vacío, hacer que tenga un h4 con rayas por defecto.
 
 ## Tareas a largo plazo:
 

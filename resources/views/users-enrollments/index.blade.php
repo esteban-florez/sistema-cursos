@@ -62,7 +62,11 @@
     @else
       <div class="empty-container flex-column">
         <h2 class="empty">No te has inscrito en ningún curso</h2>
-        <a class="text-primary" href="{{ route('available-courses.index') }}">Ver cursos disponibles</a>
+        @can('role', 'Estudiante')
+          <a class="text-primary" href="{{ route('available-courses.index') }}">
+            Ver cursos disponibles
+          </a>
+        @endcan
       </div>
     @endif
   </div>

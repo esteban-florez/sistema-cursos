@@ -39,7 +39,11 @@
     @else
       <div class="empty-container flex-column">
         <h2 class="empty">No te has unido a ningún club</h2>
-        <a class="text-primary" href="{{ route('available-clubs.index') }}">Ver clubes disponibles</a>
+        @can('role', 'Estudiante')
+          <a class="text-primary" href="{{ route('available-clubs.index') }}">
+            Ver clubes disponibles
+          </a>
+        @endcan
       </div>
     @endif
   </section>

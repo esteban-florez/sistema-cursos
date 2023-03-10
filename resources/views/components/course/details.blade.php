@@ -69,8 +69,7 @@
               Editar
             </x-button>
           @endcan
-          @is('Estudiante')
-          {{-- @can('available-courses.viewAny') --}}
+          @can('role', 'Estudiante')
             <x-button 
               :url="route('available-courses.index')"
               color="secondary"
@@ -78,8 +77,7 @@
             >
               Volver al listado
             </x-button>
-          {{-- @endcan --}}
-          @endis
+          @endcan
           @can('create', [App\Models\Enrollment::class, $course])
             <x-button 
               :url="route('enrollments.create', ['course' => $course])"

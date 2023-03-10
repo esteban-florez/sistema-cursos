@@ -23,27 +23,24 @@
         <span class="mb-1"><b>Miembros:</b> {{ $club->members_count }}</span>
       </div>
       <div class="d-flex justify-content-between align-items-center mt-3">
-        @isnt('Estudiante')
-          @can('viewAny', [App\Model\Membership::class, $club])
-            <x-button 
-              :url="route('memberships.index', ['club' => $club])" 
-              color="secondary" 
-              icon="clipboard-list"
-            >
-              Miembros
-            </x-button>
-          @endcan
-          @can('update', $club)
-            <x-button 
-              :url="route('clubs.edit', $club)" 
-              icon="edit"
-            >
-              Editar
-            </x-button>
-          @endcan
-        @endisnt
-        @is('Estudiante')
-          {{-- @can('available-clubs.viewAny') --}}
+        @can('viewAny', [App\Model\Membership::class, $club])
+          <x-button 
+            :url="route('memberships.index', ['club' => $club])" 
+            color="secondary" 
+            icon="clipboard-list"
+          >
+            Miembros
+          </x-button>
+        @endcan
+        @can('update', $club)
+          <x-button 
+            :url="route('clubs.edit', $club)" 
+            icon="edit"
+          >
+            Editar
+          </x-button>
+        @endcan
+        @can('role', 'Estudiante')
           <x-button
             :url="route('available-clubs.index')"
             color="secondary"
@@ -51,18 +48,17 @@
           >
             Volver al listado
           </x-button>
-          {{-- @endcan --}}
-          @can('create', [App\Models\Membership::class, $club])
-            <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
-              Unirse
-            </x-button>
-            <x-club.modal 
-              :club="$club"
-            />
-          @else
-            <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
-          @endcan
-        @endis
+        @endcan
+        @can('create', [App\Models\Membership::class, $club])
+          <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
+            Unirse
+          </x-button>
+          <x-club.modal 
+            :club="$club"
+          />
+        @else
+          <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
+        @endcan
       </div>
     </div>
   </div>  

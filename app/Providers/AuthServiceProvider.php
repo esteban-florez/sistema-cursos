@@ -56,6 +56,8 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('enrollments.approval.update', function (User $user, $enrollment) {
+            if ($enrollment->course->phase !== 'Finalizado') return false;
+
             if ($user->can('role', 'Administrador')) return true;
 
             return $user->can('role', 'Instructor')

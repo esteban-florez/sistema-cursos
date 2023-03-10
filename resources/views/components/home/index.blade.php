@@ -85,7 +85,7 @@
   </x-home.card>
 @endis
 @php
-  $clubsRoute = auth()->user()->can('viewAny', App\Models\Club::class)
+  $clubsRoute = $user->can('viewAny', App\Models\Club::class)
     ? 'clubs.index' : 'available-clubs.index';
 @endphp
 <x-home.card color="dark" col="md-3" aling="md-right" title="Ultimos clubes" :url="route($clubsRoute)">
