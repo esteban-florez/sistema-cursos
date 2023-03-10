@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\PaymentEvent;
+use App\Listeners\PaymentListener;
 use App\Models\Enrollment;
 use App\Observers\EnrollmentObserver;
 use Illuminate\Auth\Events\Registered;
@@ -19,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        PaymentEvent::class => [
+            PaymentListener::class,
+        ]
     ];
 
     /**

@@ -21,6 +21,7 @@ use App\Http\Controllers\ItemStockController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\PaymentStatusController;
 use App\Http\Controllers\PDFController;
@@ -194,7 +195,7 @@ Route::middleware('auth')->group(function () {
         ->only('index', 'create', 'store');
         
     Route::get('enrollments/{enrollment}/success', [EnrollmentController::class, 'success'])
-        ->name('success');
+        ->name('enrollments.success');
 
     Route::patch('enrollments/{enrollment}/approval', 
     [EnrollmentApprovalController::class, 'update'])
@@ -251,6 +252,13 @@ Route::middleware('auth')->group(function () {
     Route::get('home', HomeController::class)
         ->middleware('prevent-back')
         ->name('home');
+
+    // Notifications routes
+    Route::get('mark-notification/{notification}', [NotificationController::class, 'markNotification'])
+        ->name('mark-notification');
+    
+    Route::get('mark-all-notifications', [NotificationController::class, 'markAllNotifications'])
+        ->name('mark-all-notifications');
 
     // PDF routes
     Route::group([

@@ -1,5 +1,11 @@
 ## Myriam:
 
+- Hacer sistema de notificaciones:
+  * Pagos a administrador.
+  + Aprobación de pagos a estudiantes.
+  + certificados de estudiantes.
+  + Préstamos a instructor.
+  
 - Ruta de cambio de imagen de perfil.
 - Crear las vistas de: 404 "No encontrado", 403 "No autorizado".
 - Preguntar más sobre los clubes a Edeblangel.
@@ -18,4 +24,3 @@
 - Depurar el css al final del proyecto.
 - Desinstalar Clockwork al final del proyecto.
 - Correos con Gmail.
-- Hacer sistema de notificaciones.

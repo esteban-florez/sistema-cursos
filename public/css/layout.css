@@ -135,6 +135,18 @@ span.fab,
   text-align: center;
 }
 
+.empty-notification {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.3rem; 
+  font-weight: 600;
+  color: rgba(102, 121, 130, 0.564);
+}
+
 .callout.callout-primary {
   border-left-color: #007bff;
 }
@@ -146,6 +158,25 @@ span.fab,
 
 .breadcrumb {
   margin-bottom: 0;
+}
+
+.icon-notification {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  text-align: center;
+  width: 40px;
+}
+
+.content-notification {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.8;
+  flex: 1;
+  padding: 0 10px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {

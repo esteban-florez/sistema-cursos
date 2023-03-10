@@ -64,7 +64,7 @@ class EnrollmentController extends Controller
             'enrollment_id' => $enrollment->id,
         ])->except('mode');
 
-        Payment::create($data);
+        $payment = Payment::create($data);
 
         if ($request->input('mode') === 'Reservación') {
             Payment::create([
@@ -73,6 +73,8 @@ class EnrollmentController extends Controller
                 'enrollment_id' => $enrollment->id,
             ]);
         }
+
+        Payment::PaymentNotification($payment);
 
         return redirect()
             ->route('enrollments.success', $enrollment);
