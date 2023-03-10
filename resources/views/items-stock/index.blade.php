@@ -5,7 +5,7 @@
   <x-slot name="titleAddon">
     @can('create', App\Models\Operation::class)
       <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
-        Añadir
+        Nueva operación
       </x-button>
     @endcan
     <x-button :url="route('pdf.items')" icon="file-download" color="secondary">

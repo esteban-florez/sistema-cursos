@@ -63,8 +63,8 @@ class Item extends Model
         $loans = Loan::where('item_id', $this->id)
             ->whereNull('returned_at')->get();
 
-        $lend = $loans->reduce(function ($acc, $loan) {
-            return $acc + $loan->amount;
+        $lend = $loans->reduce(function ($carry, $loan) {
+            return $carry + $loan->amount;
         });
 
         return $amount - $lend;

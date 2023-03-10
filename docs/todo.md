@@ -1,5 +1,6 @@
 ## Myriam:
 
+- Hacer el formulario de "Registrar operación" menos ancho.
 - Ruta de cambio de imagen de perfil.
 - Crear las vistas de: 404 "No encontrado", 403 "No autorizado".
 - Preguntar más sobre los clubes a Edeblangel.
@@ -8,6 +9,7 @@
 
 - Hacer sistema de permisos (Authorization).
 - Preguntar como hacer recuperación de base de datos.
+- Monto maximo a prestar en registro de prestamos y registro de operación.
 
 ## Tareas a largo plazo:
 

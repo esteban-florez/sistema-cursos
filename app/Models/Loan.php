@@ -34,10 +34,15 @@ class Loan extends Model
         }
     }
 
-    public function getDateAttribute()
+    public function getFullAmountAttribute()
+    {
+        return "{$this->amount} unidades";
+    }
+
+    public function getReturnDateAttribute()
     {
         if ($this->returned_at !== null) {
-            return optional($this->returned_at)->format(DF);
+            return $this->returned_at->format(DF);
         } else {
             return '----';
         }

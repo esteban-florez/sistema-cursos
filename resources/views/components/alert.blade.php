@@ -9,6 +9,7 @@
     'unido' => 'success',
     'retirado' => 'danger',
     'registrado' => 'success',
+    'confirmado' => 'success',
   ]);
 
   $color = $colors
