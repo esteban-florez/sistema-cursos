@@ -10,23 +10,26 @@
     <x-errors />
     <x-alert />
     <div class="card mx-2 mb-0 list-top">
-      <div class="w-100 d-flex justify-content-end align-items-center gap-1">
-        @can('create', App\Models\Loan::class)
-          <x-button icon="hand-holding" class="md" color="info" hide-text="sm"
-            data-target="#createLoanModal" data-toggle="modal">
-            Préstamos
-          </x-button>
-        @endcan
-        @can('create', App\Models\Operation::class)
-          <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
-            Nueva operación
-          </x-button>
-        @endcan
-        @can('role', 'Administrador')
-          <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
-            Generar PDF
-          </x-button>
-        @endcan
+      <div class="w-100 d-flex justify-content-between align-items-center">
+        <h3>Stock de artículos</h3>
+        <div>
+          @can('create', App\Models\Loan::class)
+            <x-button icon="hand-holding" class="md" color="info" hide-text="sm"
+              data-target="#createLoanModal" data-toggle="modal">
+              Préstamos
+            </x-button>
+          @endcan
+          @can('create', App\Models\Operation::class)
+            <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
+              Nueva operación
+            </x-button>
+          @endcan
+          @can('role', 'Administrador')
+            <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
+              Generar PDF
+            </x-button>
+          @endcan
+        </div>
       </div>
     </div>
     @if ($items->isNotEmpty())
@@ -64,5 +67,5 @@
       </div>
     @endif
   </section>
+  <x-loan.modal :clubs="$clubs" />
 </x-layout.main>
-<x-loan.create-modal :items=$itemOptions :clubs=$clubs />

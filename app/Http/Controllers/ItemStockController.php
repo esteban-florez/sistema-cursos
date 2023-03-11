@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreLoanRequest;
 use App\Models\Club;
 use App\Models\Item;
-use App\Models\Loan;
 
 class ItemStockController extends Controller
 {
@@ -23,7 +21,6 @@ class ItemStockController extends Controller
 
         return view('items-stock.index', [
             'items' => $items,
-            'itemOptions' => Item::getOptions(),
             'clubs' => Club::getOptions(),
         ]);
     }

@@ -17,7 +17,6 @@ class LoanController extends Controller
 
     public function index()
     {
-        $items = Item::getOptions();
         $clubs = Club::getOptions();
         $loans = Loan::latest()
             ->paginate(10)
@@ -25,7 +24,6 @@ class LoanController extends Controller
         
         return view('loans', [
             'loans' => $loans,
-            'items' => $items,
             'clubs' => $clubs,
         ]);
     }

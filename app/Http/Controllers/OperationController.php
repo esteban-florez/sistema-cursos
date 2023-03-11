@@ -40,7 +40,7 @@ class OperationController extends Controller
     public function create()
     {
         return view('operations.create', [
-            'itemOptions' => Item::getOptions(),
+            'items' => Item::optionsAndStock(),
         ]);
     }
 

@@ -7,11 +7,12 @@
     <x-select2 />
     <x-alert />
     @if ($loans->isNotEmpty())
-      <x-loan.table :loans=$loans />
+      <x-loan.table :loans="$loans" />
     @else
       <div class="empty-container">
         <h2 class="empty">No hay préstamos registrados</h2>
       </div>
     @endif
   </section>
+  <x-loan.modal :clubs="$clubs" />
 </x-layout.main>
