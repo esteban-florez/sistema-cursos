@@ -54,7 +54,6 @@
               $club->end_hour->format(TF),
               $club->members_count,
               ]"
-              :details="route('clubs.show', $club)"
             >
               <x-slot name="actions">
                 @can('viewAny', [App\Model\Membership::class, $club])
@@ -72,6 +71,9 @@
                     Editar
                   </x-button>
                 @endcan
+                <x-button class="btn-sm" :url="route('clubs.show', $club)" icon="eye">
+                  Detalles
+                </x-button>
               </x-slot>
             </x-row>
           @endforeach

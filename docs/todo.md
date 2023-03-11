@@ -3,7 +3,7 @@
 - Hacer sistema de notificaciones:
   * Pagos a administrador.
   + Aprobación de pagos a estudiantes.
-  + certificados de estudiantes.
+  + Certificados de estudiantes.
   * Préstamos a instructor.
   
 - Ruta de cambio de imagen de perfil.
@@ -12,10 +12,7 @@
 
 ## Esteban:
 
-- Hacer sistema de permisos (Authorization).
 - Respaldo y recuperación de base de datos.
-- Monto maximo a prestar en registro de prestamos y registro de operación.
-- Si el "actions" no es null pero viene vacío, hacer que tenga un h4 con rayas por defecto.
 
 ## Tareas a largo plazo:
 

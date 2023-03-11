@@ -15,7 +15,7 @@
     <script defer src="{{ asset('js/bs-stepper.min.js') }}"></script>
   @endpush
   @push('js')
-    <script defer type="module" src="{{ asset('js/inscripcionjs/inscripcionStepper.js') }}"></script>
+    <script type="module" src="{{ asset('js/inscripcionjs/inscripcionStepper.js') }}"></script>
     <script defer src="{{ asset('js/inscripcionjs/responsiveStepper.js') }}"></script>  
   @endpush
   <x-alert />

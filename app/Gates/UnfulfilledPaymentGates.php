@@ -11,13 +11,13 @@ class UnfulfilledPaymentGates extends Gates
 
     public function viewAny(User $user, User $model)
     {
-        $user->can('role', 'Estudiante')
+        return $user->can('role', 'Estudiante')
             && $model->id === $user->id; 
     }
 
     public function update(User $user, Payment $payment)
     {
-        $user->can('role', 'Estudiante')
+        return $user->can('role', 'Estudiante')
             && $payment->enrollment->student->id === $user->id;
     }
 }

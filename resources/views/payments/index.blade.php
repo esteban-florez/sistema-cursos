@@ -4,7 +4,7 @@
     {{ Breadcrumbs::render('payments.index') }}
   </x-slot>
   @push('js')
-    <script defer type="module" src="{{ asset('js/payments/editPayment.js') }}"></script>
+    <script type="module" src="{{ asset('js/payments/editPayment.js') }}"></script>
   @endpush
   <x-layout.bar>
     <div class="d-flex align-items-center gap-1">

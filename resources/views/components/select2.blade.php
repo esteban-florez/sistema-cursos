@@ -5,5 +5,5 @@
   <script defer src="{{ asset('js/select2.min.js') }}"></script>
 @endpush
 @push('js')
-  <script defer type="module" src="{{ asset('js/enableSelect2.js') }}"></script>
+  <script type="module" src="{{ asset('js/enableSelect2.js') }}"></script>
 @endpush

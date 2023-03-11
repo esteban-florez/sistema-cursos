@@ -11,6 +11,8 @@ class Item extends Model
 
     protected $guarded = [];
 
+    protected $with = ['operations', 'loans'];
+
     public function operations()
     {
         return $this->hasMany(Operation::class);
@@ -30,6 +32,25 @@ class Item extends Model
         })->all();
 
         return $options;
+    }
+
+    public static function optionsAndStock()
+    {
+        $data = new \stdClass;
+
+        $items = self::all()->reject(function ($item) {
+            return $item->stock() < 1;
+        });
+
+        $data->stock = $items->mapWithKeys(function ($item) {
+            return [$item->id => $item->stock()];
+        });
+
+        $data->options = $items->mapWithKeys(function ($item) {
+            return [$item->id => $item->name];
+        });
+
+        return $data;
     }
 
     public function getStockAttribute()

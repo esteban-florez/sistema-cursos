@@ -1,6 +1,6 @@
-<x-layout.main title="Préstamo de artículos: Club de {{$club->name}}">
+<x-layout.main title="Préstamos: Club de {{ $club->name }}">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('clubs.loans.index') }}
+    {{ Breadcrumbs::render('clubs.loans.index', $club) }}
   </x-slot>
   <section class="container-fluid px-2 px-sm-4 mt-3">
     <x-errors />

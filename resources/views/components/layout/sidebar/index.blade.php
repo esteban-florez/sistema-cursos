@@ -36,7 +36,7 @@
                 Registrar curso
               </x-layout.sidebar.item>
             @endcan
-            @can('users.enrollments.viewAny')
+            @can('users.enrollments.viewAny', $user)
               <x-layout.sidebar.item :url="route('users.enrollments.index', $user)" icon="star">
                 Mis cursos
               </x-layout.sidebar.item>
@@ -67,19 +67,19 @@
               </x-layout.sidebar.item>
             @endcan
             @can('viewAny', App\Models\Club::class)
-            <x-layout.sidebar.item :url="route('clubs.index')" icon="list">
-              Lista de clubes
-            </x-layout.sidebar.item>
+              <x-layout.sidebar.item :url="route('clubs.index')" icon="list">
+                Lista de clubes
+              </x-layout.sidebar.item>
             @endcan
             @can('users.clubs.viewAny', $user)
-            <x-layout.sidebar.item :url="route('users.clubs.index', $user)" icon="star">
-              Clubes dictados
-            </x-layout.sidebar.item>
+              <x-layout.sidebar.item :url="route('users.clubs.index', $user)" icon="star">
+                Clubes dictados
+              </x-layout.sidebar.item>
             @endcan
             @can('create', App\Models\Club::class)
-            <x-layout.sidebar.item :url="route('clubs.create')" icon="plus">
-              Registrar club
-            </x-layout.sidebar.item>
+              <x-layout.sidebar.item :url="route('clubs.create')" icon="plus">
+                Registrar club
+              </x-layout.sidebar.item>
             @endcan
           </x-slot>
         </x-layout.sidebar.item>
@@ -110,7 +110,7 @@
           </x-slot>
         </x-layout.sidebar.item>
         @endcan
-        @can('role', ['Instructor', 'Estudiante'])
+        @can('role', ['Administrador', 'Estudiante'])
         <x-layout.sidebar.item icon="money-bill">
           Pagos
           <x-slot name="menu">
@@ -119,39 +119,39 @@
                 Mis pagos
               </x-layout.sidebar.item>
             @endcan
-            @can('unfulfilled-payments.viewAny')
+            @can('unfulfilled-payments.viewAny', $user)
               <x-layout.sidebar.item :url="route('unfulfilled-payments.index', ['user' => $user])" icon="receipt">
                 Cuotas restantes
               </x-layout.sidebar.item>
             @endcan
             @can('viewAny', App\Models\Payment::class)
-            <x-layout.sidebar.item :url="route('payments.index')" icon="list">
-              Lista de pagos
-            </x-layout.sidebar.item>
+              <x-layout.sidebar.item :url="route('payments.index')" icon="list">
+                Lista de pagos
+              </x-layout.sidebar.item>
             @endcan
             @can('role', 'Administrador')
-            <x-layout.sidebar.item :url="route('pending-payments.index')" icon="check">
-              Pagos pendientes
-            </x-layout.sidebar.item>
+              <x-layout.sidebar.item :url="route('pending-payments.index')" icon="check">
+                Pagos pendientes
+              </x-layout.sidebar.item>
             @endcan
           </x-slot>
         </x-layout.sidebar.item>
         @endcan
         @can('role', ['Instructor', 'Estudiante'])
-        <x-layout.sidebar.item :url="route('schedule')" icon="calendar-alt">
-          Horario
-        </x-layout.sidebar.item>
+          <x-layout.sidebar.item :url="route('schedule')" icon="calendar-alt">
+            Horario
+          </x-layout.sidebar.item>
         @endcan
         @can('role', 'Administrador')
-        <x-layout.sidebar.item url="#" icon="chart-pie">
-          Estadísticas
-        </x-layout.sidebar.item>
+          <x-layout.sidebar.item url="#" icon="chart-pie">
+            Estadísticas
+          </x-layout.sidebar.item>
         @endcan
         <div class="divider"></div>
         @can('role', 'Administrador')
-        <x-layout.sidebar.item :url="route('users.show', $user)" icon="user-alt">
-          Perfil
-        </x-layout.sidebar.item>
+          <x-layout.sidebar.item :url="route('users.show', $user)" icon="user-alt">
+            Perfil
+          </x-layout.sidebar.item>
         @endcan
         @can('role', 'Administrador')
         <x-layout.sidebar.item icon="cog">

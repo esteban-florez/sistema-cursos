@@ -63,7 +63,6 @@
               $course->total_amount,
               $course->phase,
               ]"
-              :details="route('courses.show', $course)"
             >
               <x-slot name="actions">
                 @can('viewAny', [App\Models\Enrollment::class, $course])
@@ -76,6 +75,9 @@
                     Editar
                   </x-button>
                 @endcan
+                <x-button class="btn-sm" :url="route('courses.show', $course)" icon="eye">
+                  Detalles
+                </x-button>
               </x-slot>
             </x-row>
           @endforeach

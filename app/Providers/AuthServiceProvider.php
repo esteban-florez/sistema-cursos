@@ -93,7 +93,7 @@ class AuthServiceProvider extends ServiceProvider
         UserMembershipGates::define();
 
         Gate::define('users.payments.viewAny', function (User $user, User $model) {
-            $user->can('role', 'Estudiante')
+            return $user->can('role', 'Estudiante')
                 && $model->id === $user->id;
         });
     }

@@ -179,9 +179,9 @@ Breadcrumbs::for('available-clubs.index', function (Trail $trail) {
     $trail->push('Lista de clubs', route('available-clubs.index'));
 });
 
-Breadcrumbs::for('clubs.loans.index', function (Trail $trail) {
-    $trail->parent('clubs.index');
-    $trail->push('Préstamo', route('clubs.loans.index'));
+Breadcrumbs::for('clubs.loans.index', function (Trail $trail, Club $club) {
+    $trail->parent('clubs.show', $club);
+    $trail->push('Préstamos', route('clubs.loans.index', $club));
 });
 
 Breadcrumbs::for('memberships.index', function (Trail $trail, Club $club) {

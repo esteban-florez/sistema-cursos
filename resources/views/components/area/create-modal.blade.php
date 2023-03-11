@@ -2,7 +2,7 @@
 
 @if($ajax)
   @push('js')
-    <script defer type="module" src="{{ asset('js/ajax.js') }}"></script>
+    <script type="module" src="{{ asset('js/ajax.js') }}"></script>
     {{-- maybe some day, petite-vue? or alpinejs? XD --}}
   @endpush
 @endif

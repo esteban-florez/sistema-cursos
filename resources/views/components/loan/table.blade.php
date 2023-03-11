@@ -33,8 +33,6 @@
                 Devolver
               </x-button>
             </form>
-          @else
-            <h4 class="m-0">----</h4>
           @endcan
         </x-slot>
       </x-row>

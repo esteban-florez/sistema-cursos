@@ -3,7 +3,7 @@
     {{ Breadcrumbs::render('pending-payments.index') }}
   </x-slot>
   @push('js')
-    <script defer type="module" src="{{ asset('js/payments/editPaymentStatus.js') }}"></script>
+    <script type="module" src="{{ asset('js/payments/editPaymentStatus.js') }}"></script>
   @endpush
 
   <x-alert />

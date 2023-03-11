@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/detalles.css') }}">
   @endpush
   @push('js')
-    <script defer type="module" src="{{ asset('js/payments/editPaymentStatus.js') }}"></script>
+    <script type="module" src="{{ asset('js/payments/editPaymentStatus.js') }}"></script>
   @endpush
 
   <div class="container-fluid px-3 px-lg-4">
