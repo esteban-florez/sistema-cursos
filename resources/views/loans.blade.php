@@ -2,13 +2,6 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('loans.index') }}
   </x-slot>
-  <x-slot name="titleAddon">
-    @can('create', App\Models\Loan::class)
-      <x-button icon="plus" color="success" hide-text="sm" data-target="#createLoanModal" data-toggle="modal">
-      Añadir
-    </x-button>
-    @endcan
-  </x-slot>
   <section class="container-fluid px-2 px-sm-4 mt-3">
     <x-errors />
     <x-select2 />
@@ -22,4 +15,3 @@
     @endif
   </section>
 </x-layout.main>
-<x-loan.create-modal :items=$items :clubs=$clubs />

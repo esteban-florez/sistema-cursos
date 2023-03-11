@@ -13,6 +13,8 @@ class PaymentNotification extends Notification
 {
     use Queueable;
 
+    public $payment;
+    
     /**
      * Create a new notification instance.
      *

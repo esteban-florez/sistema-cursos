@@ -179,6 +179,25 @@ span.fab,
   overflow: hidden;
 }
 
+.create-box {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-card {
+  width: 90%;
+}
+
+@media screen and (min-width: 576px) {
+  .create-card {
+    width: 60%;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
 @media screen and (min-width: 768px) {
   .bar form {
     width: 50%;

@@ -1,14 +1,11 @@
 <x-layout.main title="Cambiar contraseña">
-  @push('css')
-    <link rel="stylesheet" href="{{ asset('css/change-password.css') }}">
-  @endpush
   @push('js')
     <script defer src="{{ asset('js/newPassword.js') }}"></script>
   @endpush
 
   <section class="container-fluid">
-    <div class="password-box mt-3">
-      <div class="card password-card">
+    <div class="create-box mt-3">
+      <div class="card create-card">
         <div class="card-body">
           <form action="{{ route('password.update') }}" method="POST">
             @csrf

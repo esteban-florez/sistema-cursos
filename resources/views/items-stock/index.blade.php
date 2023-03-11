@@ -2,22 +2,33 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('items.stock.index') }}
   </x-slot>
-  <x-slot name="titleAddon">
-    @can('create', App\Models\Operation::class)
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
-        Nueva operación
-      </x-button>
-    @endcan
-    @can('role', 'Administrador')
-      <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
-        Generar PDF
-      </x-button>
-    @endcan
-  </x-slot>
+  @push('css')
+    <link rel="stylesheet" href="{{ asset('css/listados.css') }}">
+  @endpush
   <x-select2 />
   <section class="container-fluid mt-3">
     <x-errors />
     <x-alert />
+    <div class="card mx-2 mb-0 list-top">
+      <div class="w-100 d-flex justify-content-end align-items-center gap-1">
+        @can('create', App\Models\Loan::class)
+          <x-button icon="hand-holding" class="md" color="info" hide-text="sm"
+            data-target="#createLoanModal" data-toggle="modal">
+            Préstamos
+          </x-button>
+        @endcan
+        @can('create', App\Models\Operation::class)
+          <x-button icon="plus" color="success" hide-text="sm" :url="route('operations.create')">
+            Nueva operación
+          </x-button>
+        @endcan
+        @can('role', 'Administrador')
+          <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
+            Generar PDF
+          </x-button>
+        @endcan
+      </div>
+    </div>
     @if ($items->isNotEmpty())
       <x-table>
         <x-slot name="header">
@@ -48,9 +59,10 @@
         </x-slot>
       </x-table>
     @else
-      <div class="empty-container">
-        <h2 class="empty">No existen artículos registrados.</h2>
+      <div class="card mx-2 empty-container">
+        <h5 class="empty">No existen artículos registrados.</h5>
       </div>
     @endif
   </section>
 </x-layout.main>
+<x-loan.create-modal :items=$itemOptions :clubs=$clubs />

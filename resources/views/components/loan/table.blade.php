@@ -3,6 +3,7 @@
 <x-table>
   <x-slot name="header">
     <tr>
+      <th>Código</th>
       <th>Artículo</th>
       <th>Club</th>
       <th>Cantidad</th>
@@ -15,6 +16,7 @@
     @foreach ($loans as $loan)
       <x-row
         :data="[
+            '#'.$loan->item->code,
             $loan->item->name,
             $loan->club->name,
             $loan->full_amount,

@@ -14,6 +14,8 @@ class LoanEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $loan;
+    
     /**
      * Create a new event instance.
      *

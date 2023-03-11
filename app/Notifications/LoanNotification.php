@@ -12,6 +12,8 @@ class LoanNotification extends Notification
 {
     use Queueable;
 
+    public $loan;
+
     /**
      * Create a new notification instance.
      *

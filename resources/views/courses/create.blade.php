@@ -6,7 +6,7 @@
     <x-alert />
     <div class="card mx-sm-3">
       <div class="card-body">
-        @can('create', App\Models\Course::clas)
+        @can('create', App\Models\Course::class)
           <x-course-form 
             :action="route('courses.store')"
             :instructors="$instructors"
