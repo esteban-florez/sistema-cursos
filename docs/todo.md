@@ -2,7 +2,7 @@
 
 - Hacer sistema de notificaciones:
   * Pagos a administrador.
-  + Aprobación de pagos a estudiantes.
+  * Aprobación de pagos a estudiantes.
   + Certificados de estudiantes.
   * Préstamos a instructor.
   

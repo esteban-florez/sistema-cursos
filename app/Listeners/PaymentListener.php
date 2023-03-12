@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use App\Models\User;
 use App\Notifications\PaymentNotification;
+use App\Notifications\PaymentStatusNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
@@ -28,8 +29,27 @@ class PaymentListener
      */
     public function handle($event)
     {
+        if ($event->type === 'created') {
+            $this->paymentCreated($event->payment);
+        }
+        if ($event->type === 'updated-status') {
+            $this->paymentUpdatedStatus($event->payment);
+        }
+    }
+
+    protected function paymentCreated($payment)
+    {
         $user = User::where('role', 'Administrador')->first();
         
-        Notification::send($user, new PaymentNotification($event->payment));
+        Notification::send($user, new PaymentNotification($payment));
+    }
+
+    protected function paymentUpdatedStatus($payment)
+    {
+        if ($payment->status === 'Pendiente') {
+            return;
+        }
+
+        Notification::send($payment->enrollment->student, new PaymentStatusNotification($payment));
     }
 }

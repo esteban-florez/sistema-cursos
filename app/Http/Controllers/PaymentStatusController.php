@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PaymentEvent;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,8 @@ class PaymentStatusController extends Controller
         ]);
         
         $payment->update($data);
+
+        event(new PaymentEvent($payment, 'updated-status'));
         
         return backWithoutQuery()
             ->with('alert', trans('alerts.payment-status.updated'));

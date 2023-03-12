@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PaymentEvent;
 use App\Http\Requests\EnrollmentRequest;
 use App\Models\Course;
 use App\Models\Payment;
@@ -74,7 +75,7 @@ class EnrollmentController extends Controller
             ]);
         }
 
-        Payment::PaymentNotification($payment);
+        event(new PaymentEvent($payment, 'created'));
 
         return redirect()
             ->route('enrollments.success', $enrollment);

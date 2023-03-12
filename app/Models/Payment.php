@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
-use App\Events\PaymentEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Shared\QueryScopes;
-use App\Notifications\PaymentNotification;
 
 class Payment extends Model
 {
@@ -23,11 +21,6 @@ class Payment extends Model
     public function isOnline()
     {
         return payTypes()->take(2)->contains($this->type);
-    }
-
-    public static function PaymentNotification($payment)
-    {
-        event(new PaymentEvent($payment));
     }
     
     public function getFullAmountAttribute()

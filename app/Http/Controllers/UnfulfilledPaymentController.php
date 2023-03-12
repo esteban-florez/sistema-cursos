@@ -12,9 +12,9 @@ class UnfulfilledPaymentController extends Controller
 {
     public function index(Request $request)
     {
-        $this->authorize('unfulfilled-payments.viewAny');
-
         $user = User::findOrFail($request->query('user'));
+        
+        $this->authorize('unfulfilled-payments.viewAny', $user);
 
         $payments = $user->payments()
             ->unfulfilled()
@@ -29,10 +29,10 @@ class UnfulfilledPaymentController extends Controller
 
     public function edit($id)
     {
-        $this->authorize('unfulfilled-payments.update');
-        
         $payment = Payment::unfulfilled()
             ->findOrFail($id);
+        
+        $this->authorize('unfulfilled-payments.update', $payment);
         
         $credentials = new \stdClass;
         
@@ -52,7 +52,10 @@ class UnfulfilledPaymentController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->authorize('unfulfilled-payments.update');
+        $payment = Payment::unfulfilled()
+            ->findOrFail($id);
+
+        $this->authorize('unfulfilled-payments.update', $payment);
 
         $data = $request->validate([
             'type' => ['required', 'in:'.payTypes()->join(',')],
@@ -60,14 +63,11 @@ class UnfulfilledPaymentController extends Controller
                 'required_if:type,'.payTypes()->take(2)->join(','),
                 'numeric',
                 'digits_between:4,10',
-            ],
+            ],    
             'amount' => ['required', 'numeric'],
-        ]);
+        ]);    
 
         $data['fulfilled'] = true;
-
-        $payment = Payment::unfulfilled()
-            ->findOrFail($id);
 
         $payment->update($data);
 

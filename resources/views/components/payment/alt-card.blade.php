@@ -11,7 +11,7 @@
 
 <div class="card payment-card">
   <div class="card-header">
-    @can('users.enrollments.view')
+    @can('users.enrollments.view', $enrollment)
       <a href="{{ route('users.enrollments.show', $enrollment) }}">
         <h4 class="text-bold text-truncate mb-0">
           {{ $course->name }}

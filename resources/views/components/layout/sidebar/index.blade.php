@@ -72,7 +72,7 @@
               </x-layout.sidebar.item>
             @endcan
             @can('users.clubs.viewAny', $user)
-              <x-layout.sidebar.item :url="route('users.clubs.index', $user)" icon="star">
+              <x-layout.sidebar.item :url="route('users.clubs.index', $user)" icon="school  ">
                 Clubes dictados
               </x-layout.sidebar.item>
             @endcan
@@ -148,7 +148,7 @@
           </x-layout.sidebar.item>
         @endcan
         <div class="divider"></div>
-        @can('role', 'Administrador')
+        @can('role', ['Instructor', 'Estudiante'])
           <x-layout.sidebar.item :url="route('users.show', $user)" icon="user-alt">
             Perfil
           </x-layout.sidebar.item>
