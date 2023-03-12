@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\EnrollmentEvent;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,8 @@ class EnrollmentApprovalController extends Controller
         ]);
 
         $enrollment->update($data);
+
+        event(new EnrollmentEvent($enrollment));
 
         return redirect()
             ->route('enrollments.index', [

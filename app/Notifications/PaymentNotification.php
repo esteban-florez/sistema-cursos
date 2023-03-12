@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use App\Models\Payment;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -20,7 +19,7 @@ class PaymentNotification extends Notification
      *
      * @return void
      */
-    public function __construct(Payment $payment)
+    public function __construct($payment)
     {
         $this->payment = $payment;
     }
@@ -59,11 +58,12 @@ class PaymentNotification extends Notification
     public function toArray($notifiable)
     {
         return [
+            'url' => route('payments.index'),
             'icon' => 'dollar-sign',
             'title' => 'Nuevo pago recibido',
             'id' => $this->payment->id,
             'name' => $this->payment->enrollment->student->full_name,
-            'time' => Carbon::now()->diffForHumans(),
+            'time' => now()->diffForHumans(),
         ];
     }
 }

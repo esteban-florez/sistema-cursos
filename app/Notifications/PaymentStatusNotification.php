@@ -59,6 +59,7 @@ class PaymentStatusNotification extends Notification
         $status = strtolower($this->payment->status);
 
         return [
+            'url' => route('payments.index'),
             'icon' => 'dollar-sign',
             'title' => "Pago $status",
             'id' => $this->payment->id,

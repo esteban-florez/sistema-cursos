@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ClubEvent;
 use App\Http\Requests\StoreClubRequest;
 use App\Http\Requests\UpdateClubRequest;
 use Illuminate\Http\Request;
@@ -52,7 +53,9 @@ class ClubController extends Controller
             $data['image'] = Input::storeFile('image', 'public/clubs');
         }
 
-        Club::create($data);
+        $club = Club::create($data);
+
+        event(new ClubEvent($club));
 
         return redirect()->route('clubs.index')
             ->with('alert', trans('alerts.clubs.created'));
@@ -82,6 +85,8 @@ class ClubController extends Controller
         }
 
         $club->update($data);
+
+        event(new ClubEvent($club));
 
         return redirect()->route('clubs.index')
             ->with('alert', trans('alerts.clubs.updated'));

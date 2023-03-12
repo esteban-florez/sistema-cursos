@@ -1,3 +1,7 @@
+@push('css')
+  <link rel="stylesheet" href="{{ asset('css/notificaciones.css') }}">
+@endpush
+
 @php
     $user = Auth::user();
 @endphp

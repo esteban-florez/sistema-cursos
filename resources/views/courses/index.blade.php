@@ -70,7 +70,7 @@
                     Matrícula
                   </x-button>
                 @endcan
-                @can('update', $course)
+                @can('update', [App\Models\Enrollment::class, $course])
                   <x-button class="btn-sm" :url="route('courses.edit', $course)" color="warning" icon="edit">
                     Editar
                   </x-button>

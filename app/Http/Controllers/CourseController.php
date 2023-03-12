@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CourseEvent;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use Illuminate\Http\Request;
@@ -56,7 +57,9 @@ class CourseController extends Controller
             $data['image'] = Input::storeFile('image', 'public/courses');
         }
 
-        Course::create($data);
+        $course = Course::create($data);
+
+        event(new CourseEvent($course));
 
         return redirect()->route('courses.index')
             ->with('alert', trans('alerts.courses.created'));
@@ -88,6 +91,8 @@ class CourseController extends Controller
         }
 
         $course->update($data);
+
+        event(new CourseEvent($course));
 
         return redirect()->route('courses.index')
             ->with('alert', trans('alerts.courses.updated'));

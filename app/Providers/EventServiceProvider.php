@@ -2,8 +2,14 @@
 
 namespace App\Providers;
 
+use App\Events\ClubEvent;
+use App\Events\CourseEvent;
+use App\Events\EnrollmentEvent;
 use App\Events\LoanEvent;
 use App\Events\PaymentEvent;
+use App\Listeners\ClubListener;
+use App\Listeners\CourseListener;
+use App\Listeners\EnrollmentListener;
 use App\Listeners\LoanListener;
 use App\Listeners\PaymentListener;
 use App\Models\Enrollment;
@@ -28,6 +34,15 @@ class EventServiceProvider extends ServiceProvider
         ],
         LoanEvent::class => [
             LoanListener::class,
+        ],
+        EnrollmentEvent::class => [
+            EnrollmentListener::class,
+        ],
+        CourseEvent::class => [
+            CourseListener::class,
+        ],
+        ClubEvent::class => [
+            ClubListener::class,
         ],
     ];
 

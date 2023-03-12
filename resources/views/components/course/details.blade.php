@@ -85,8 +85,8 @@
             >
               Inscribirse
             </x-button>
-          @else
-              <p class="h5 m-0 text-primary">Ya estás inscrito en este curso.</p>
+          @elsecan('role', 'Estudiante')
+            <p class="h5 m-0 text-primary">Ya estás inscrito en este curso.</p>
           @endcan
         </div>
       @endif

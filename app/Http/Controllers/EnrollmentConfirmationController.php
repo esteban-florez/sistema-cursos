@@ -15,6 +15,6 @@ class EnrollmentConfirmationController extends Controller
         return redirect()
             ->route('enrollments.index', [
                 'course' => $enrollment->course
-            ])->with('alert', 'alerts.confirmed');
+            ])->with('alert', trans('alerts.confirmed'));
     }
 }

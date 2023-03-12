@@ -2,25 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Models\Enrollment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class LoanNotification extends Notification
+class EnrollmentNotification extends Notification
 {
     use Queueable;
 
-    public $loan;
+    public $enrollment;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($loan)
+    public function __construct($enrollment)
     {
-        $this->loan = $loan;
+        $this->enrollment = $enrollment;
     }
 
     /**
@@ -56,12 +57,14 @@ class LoanNotification extends Notification
      */
     public function toArray($notifiable)
     {
+        $approval = strtolower($this->enrollment->approval);
+
         return [
-            'url' => route('clubs.loans.index', ['club' => $this->loan->club]),
-            'icon' => 'hand-holding',
-            'title' => 'Articulo prestado',
-            'id' => $this->loan->id,
-            'name' => $this->loan->item->name,
+            'url' => route('users.enrollments.show', $this->enrollment),
+            'icon' => 'user-graduate',
+            'title' => "Curso $approval",
+            'id' => $this->enrollment->id,
+            'name' => $this->enrollment->course->name,
             'time' => now()->diffForHumans(),
         ];
     }

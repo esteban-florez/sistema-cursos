@@ -7,20 +7,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class LoanNotification extends Notification
+class ClubNotification extends Notification
 {
     use Queueable;
 
-    public $loan;
+    public $club;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($loan)
+    public function __construct($club)
     {
-        $this->loan = $loan;
+        $this->club = $club;
     }
 
     /**
@@ -57,11 +57,11 @@ class LoanNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'url' => route('clubs.loans.index', ['club' => $this->loan->club]),
-            'icon' => 'hand-holding',
-            'title' => 'Articulo prestado',
-            'id' => $this->loan->id,
-            'name' => $this->loan->item->name,
+            'url' => route('users.clubs.index', $this->club->instructor),
+            'icon' => 'running',
+            'title' => "Nuevo club dictado",
+            'id' => $this->club->id,
+            'name' => $this->club->name,
             'time' => now()->diffForHumans(),
         ];
     }
