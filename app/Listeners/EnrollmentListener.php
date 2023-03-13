@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Notifications\CertificateNotification;
 use App\Notifications\EnrollmentNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -28,5 +29,9 @@ class EnrollmentListener
     public function handle($event)
     {
         Notification::send($event->enrollment->student, new EnrollmentNotification($event->enrollment));
+        
+        if ($event->enrollment->certificate($event->enrollment->student)) {
+            Notification::send($event->enrollment->student, new CertificateNotification($event->enrollment));
+        }
     }
 }

@@ -19,13 +19,13 @@
     <h4 class="mb-0">{{ $course->name }}</h4>
     <h6 class="text-{{ $approvalColor }}">Aprobación: {{ $enrollment->approval }}</h6>
     <p class="card-text">{{ $course->excerpt }}</p>
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center gap-1">
       @can('pdf.certificate', $enrollment)
         <x-button icon="arrow-down" :url="route('pdf.certificate', $enrollment)" color="success">
           Certificado
         </x-button>
       @endcan
-      @can('users.memberships.view', $enrollment)
+      @can('users.enrollments.view', $enrollment)
         <x-button icon="list" :url="route('users.enrollments.show', $enrollment)">
           Detalles
         </x-button>  

@@ -28,9 +28,4 @@ class EnrollmentPolicy
             && $course->phase === 'Inscripciones'
             && $user->enrolledCourses->doesntContain($course);
     }
-
-    public function update(User $user, Course $course)
-    {
-        return $course->instructor->id === $user->id;
-    }
 }

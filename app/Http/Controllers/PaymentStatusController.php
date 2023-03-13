@@ -23,7 +23,8 @@ class PaymentStatusController extends Controller
 
         event(new PaymentEvent($payment, 'updated-status'));
         
-        return backWithoutQuery()
+        // return backWithoutQuery()
+        return back()
             ->with('alert', trans('alerts.payment-status.updated'));
     }
 }

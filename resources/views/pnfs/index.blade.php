@@ -15,10 +15,10 @@
     @if ($pnfs->isNotEmpty())
       <div class="row px-3 my-3" style="row-gap: 1rem;">
         @foreach ($pnfs as $pnf)
-          <div class="col-md-6">
+          <div class="col-sm-6 col-md-4 text-center">
             <div class="card mb-0 h-100">
               <div class="card-body">
-                <h3 class="mb-1">{{ $pnf->name }}</h3>
+                <h3 class="mb-1 text-truncate">{{ $pnf->name }}</h3>
                 <p class="mb-0">Jefe del Departamento:</p>
                 <p class="text-primary text-bold">{{ $pnf->leader }}</p>
                 @can('update', $pnf)

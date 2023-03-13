@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\User;
+use App\Notifications\CertificateNotification;
 use App\Notifications\PaymentNotification;
 use App\Notifications\PaymentStatusNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -51,5 +52,9 @@ class PaymentListener
         }
 
         Notification::send($payment->enrollment->student, new PaymentStatusNotification($payment));
+
+        if ($payment->enrollment->certificate($payment->enrollment->student)) {
+            Notification::send($payment->enrollment->student, new CertificateNotification($payment->enrollment));
+        }
     }
 }

@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LoanEvent;
 use App\Http\Requests\StoreLoanRequest;
 use App\Models\Club;
-use App\Models\Item;
 use App\Models\Loan;
-use Illuminate\Support\Facades\Auth;
 
 class LoanController extends Controller
 {
@@ -30,13 +29,11 @@ class LoanController extends Controller
 
     public function store(StoreLoanRequest $request)
     {
-        $user = Auth::user();
-
         $data = $request->validated();        
         
         $loan = Loan::create($data);
 
-        Loan::LoanNotification($loan);
+        event(new LoanEvent($loan, 'created'));
 
         return back()
             ->with('alert', trans('alerts.loans'));
@@ -48,6 +45,8 @@ class LoanController extends Controller
             'returned_at' => now(),
         ]);
 
+        event(new LoanEvent($loan, 'updated'));
+        
         return redirect()
             ->route('loans.index');
     }

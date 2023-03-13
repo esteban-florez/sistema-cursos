@@ -31,6 +31,15 @@ class Enrollment extends Model
         return $this->hasMany(Payment::class);
     }
 
+    public function certificate(User $user)
+    {
+        return $user->can('role', 'Estudiante') 
+            && $this->student->id === $user->id
+            && $this->solvency === 'Solvente'
+            && $this->status === 'Inscrito'
+            && $this->approval === 'Aprobado';
+    }
+
     public function getSolvencyAttribute()
     {
         $solvency = $this->payments->every(function ($payment) {

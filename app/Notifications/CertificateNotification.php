@@ -2,13 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Models\Enrollment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class EnrollmentNotification extends Notification
+class CertificateNotification extends Notification
 {
     use Queueable;
 
@@ -57,12 +56,10 @@ class EnrollmentNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        $approval = strtolower($this->enrollment->approval);
-
         return [
-            'url' => route('users.enrollments.show', $this->enrollment->id),
-            'icon' => 'user-graduate',
-            'title' => "Curso $approval",
+            'url' => route('users.enrollments.show', $this->enrollment),
+            'icon' => 'file-download',
+            'title' => "Descargue su certificado",
             'id' => $this->enrollment->id,
             'name' => $this->enrollment->course->name,
             'time' => now()->diffForHumans(),

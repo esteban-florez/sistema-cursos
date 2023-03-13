@@ -26,11 +26,6 @@ class Loan extends Model
         return $this->belongsTo(Item::class);
     }
 
-    static function LoanNotification($loan)
-    {
-        event(new LoanEvent($loan));
-    }
-
     public function getStatusAttribute()
     {
         if ($this->returned_at !== null) {

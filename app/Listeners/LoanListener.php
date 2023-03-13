@@ -28,8 +28,6 @@ class LoanListener
      */
     public function handle($event)
     {
-        $user = User::findOrFail($event->loan->club->instructor->id);
-        
-        Notification::send($user, new LoanNotification($event->loan));
+        Notification::send($event->loan->club->instructor, new LoanNotification($event->loan));
     }
 }

@@ -56,10 +56,12 @@ class LoanNotification extends Notification
      */
     public function toArray($notifiable)
     {
+        $status = strtolower($this->loan->status);
+
         return [
             'url' => route('clubs.loans.index', ['club' => $this->loan->club]),
             'icon' => 'hand-holding',
-            'title' => 'Articulo prestado',
+            'title' => "Artículo $status",
             'id' => $this->loan->id,
             'name' => $this->loan->item->name,
             'time' => now()->diffForHumans(),
