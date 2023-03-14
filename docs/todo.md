@@ -12,7 +12,6 @@
 - Respaldo y recuperación de base de datos.
 - Autorización del home.
 - Gráficas y estadísticas.
-- Precio del dolar con BCV.
 - Cambio de roles (wtf preguntar a Jackson).
 
 ## Tareas a largo plazo:

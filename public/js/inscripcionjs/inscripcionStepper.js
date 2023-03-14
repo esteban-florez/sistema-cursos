@@ -1,4 +1,3 @@
-'use strict'
 import { getSerialized } from '../utils.js'
 import { updateStepperControls } from './stepperControls.js'
 import setRadioListeners from './setRadioListeners.js'

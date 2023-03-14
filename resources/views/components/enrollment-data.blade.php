@@ -7,5 +7,6 @@
     'Transferencia' => $credentials->transfer
   ]) }}"
   data-course="{{ json_encode($course) }}"
-  data-back="{{ route('available-courses.index') }}">
+  data-back="{{ route('available-courses.index') }}"
+  data-dolar="{{ route('api.dolar') }}">
 </div>

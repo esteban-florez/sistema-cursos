@@ -6,6 +6,8 @@
 
 3. Renombrar accesor a getConfirmation
 
+4. Almacenar respuesta en cache para optimizar.
+
 - Mejoras de formularios con JavaScript en el Frontend (validación, comodidad, formatos).
 
 - En pagos, renombrar "tipo" a "método", y "categoría" a "tipo".

@@ -1,17 +1,25 @@
 function getDolarPrice() {
-  fetch('https://s3.amazonaws.com/dolartoday/data.json')
-    .then(data => data.json())
-    .then(json => {
+  const url = document.querySelector('#serialized').dataset.dolar
+
+  fetch(url)
+    .then(data => data.text())
+    .then(html => {
+      const doc = (new DOMParser).parseFromString(html, 'text/html')
+      
+      const price = parseFloat(
+        doc.querySelector('#dolar strong').innerText.replaceAll(',', '.')
+      )
+
+      localStorage.setItem('usd-price', price)
+    })
+    .then(() => {
       console.log("i'll try to do my best <3")
-      localStorage.setItem('usd-price', json.USD.transferencia)
+      document.querySelector('.loading-container').remove()
+      document.querySelector('#stepperSection').setAttribute('style', '')
     })
     .catch(err => {
       console.log(err)
-      if (!localStorage.getItem('usd-price')) {
-        getDolarPrice()
-      }
     })
 }
-// parseFloat(document.querySelector('#dolar strong').innerText.replaceAll(',', '.'))
-// para futuros planes, con la pagina del BCV
+
 getDolarPrice()

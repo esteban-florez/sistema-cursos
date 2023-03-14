@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Rules\ValidID;
+use Illuminate\Support\Facades\Cache;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,24 @@ Route::post('areas', function (Request $request) {
 
     return response($area, 201);
 })->name('api.areas.store');
+
+Route::get('dolar', function () {
+    // IMPROVE -> 4
+    $ch = curl_init("https://www.bcv.org.ve/");
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $res = curl_exec($ch);
+    
+    if (curl_error($ch)) {
+       return null; 
+    }
+
+    curl_close($ch);
+    
+    return response($res);
+})->name('api.dolar');
 
 Route::get('schedule/{user}', function (User $user) {
     if ($user->role === 'Instructor') {
