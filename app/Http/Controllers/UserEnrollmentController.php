@@ -12,7 +12,7 @@ class UserEnrollmentController extends Controller
     {
         $this->authorize('users.enrollments.viewAny', $user);
 
-        $search = $request->input('search');
+        $search = $request->query('search');
 
         $enrollments = $user
             ->enrollments()

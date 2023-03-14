@@ -12,6 +12,7 @@
           :areas="$areas"
           :action="route('users.store')"
           :pnfs="$pnfs"
+          :role="$defaultRole"
         />
       @endcan
     </div>

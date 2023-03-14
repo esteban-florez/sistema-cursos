@@ -17,7 +17,7 @@ class AreaController extends Controller
 
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $search = $request->query('search');
         
         $areas = Area::when($search, function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");

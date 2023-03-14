@@ -23,8 +23,6 @@ class UpdatePaymentRequest extends FormRequest
      */
     public function rules()
     {
-
-        // dd($this->all());
         return [
             'ref' => [
                 'required_if:type,'.payTypes()->take(2)->join(','),

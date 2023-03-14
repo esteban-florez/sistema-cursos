@@ -1,6 +1,7 @@
 ## Myriam:
   
 - Ruta de cambio de imagen de perfil.
+- Ejecutar "php artisan storage:link"
 - Revisar validaciones ($request->validate() y App/Http/Requests/):
   - Mínimos y máximos razonables en fechas, cantidades, etc.
   - Validaciones inputs HTML.
@@ -12,8 +13,7 @@
 - Autorización del home.
 - Gráficas y estadísticas.
 - Precio del dolar con BCV.
-- Cambio de roles (wtf).
-- Link crear instructor en cursos.
+- Cambio de roles (wtf preguntar a Jackson).
 
 ## Tareas a largo plazo:
 

@@ -12,7 +12,7 @@ class UserMembershipController extends Controller
     {
         $this->authorize('users.memberships.viewAny', $user);
 
-        $search = $request->input('search');
+        $search = $request->query('search');
 
         $memberships = $user
             ->memberships()

@@ -31,6 +31,7 @@ class PaymentListener
         if ($event->type === 'created') {
             $this->paymentCreated($event->payment);
         }
+        
         if ($event->type === 'updated-status') {
             $this->paymentUpdatedStatus($event->payment);
         }

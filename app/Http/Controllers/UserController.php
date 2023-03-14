@@ -19,8 +19,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $filters = Input::getFilters();
-        $search = $request->input('search');
-        $sortColumn = $request->input('sort');
+        $search = $request->query('search');
+        $sortColumn = $request->query('sort');
         
         $users = User::latest()
             ->excludeAdmin()
@@ -38,14 +38,12 @@ class UserController extends Controller
         ]);
     }
     
-    public function create()
+    public function create(Request $request)
     {
-        $areas = Area::getOptions();
-        $pnfs = PNF::getOptions();
-
         return view('users.create', [
-            'areas' => $areas,
-            'pnfs' => $pnfs,
+            'areas' => Area::getOptions(),
+            'pnfs' => PNF::getOptions(),
+            'defaultRole' => $request->query('role'),
         ]);
     }
 

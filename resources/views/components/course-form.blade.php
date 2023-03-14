@@ -19,6 +19,13 @@
       </x-field>
       <x-select name="user_id" id="userId" :options="$instructors" :selected="old('user_id') ?? $course->user_id ?? null" required>
         Instructor:
+        @can('create', App\Models\User::class)
+          <x-slot name="extra">
+            <a class="mt-1 ml-1" href="{{ route('users.create', ['role' => 'Instructor']) }}">
+              Registrar nuevo instructor
+            </a>    
+          </x-slot>
+        @endcan
       </x-select>
       <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $course->area_id ?? null" required>
         Área de Formación:

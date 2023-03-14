@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PaymentEvent;
 use App\Models\MovilCredentials;
 use App\Models\Payment;
 use App\Models\TransferCredentials;
@@ -70,6 +71,8 @@ class UnfulfilledPaymentController extends Controller
         $data['fulfilled'] = true;
 
         $payment->update($data);
+
+        event(new PaymentEvent($payment, 'created'));
 
         return redirect()
             ->route(

@@ -11,7 +11,7 @@ class UserClubController extends Controller
     {
         $this->authorize('users.clubs.viewAny', $user);
 
-        $search = $request->input('search');
+        $search = $request->query('search');
         $clubs = $user->dictatedClubs()
             ->latest()
             ->get();

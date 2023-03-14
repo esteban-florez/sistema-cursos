@@ -11,12 +11,12 @@ class UserPolicy
 
     public function viewAny(User $user)
     {
-        $user->can('role', 'Administrador');
+        return $user->can('role', 'Administrador');
     }
 
     public function create(User $user)
     {
-        $user->can('role', 'Administrador');
+        return $user->can('role', 'Administrador');
     }
     
     public function view(User $user, User $model)

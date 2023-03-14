@@ -18,8 +18,8 @@ class AvailableClubController extends Controller
     {
         $user = Auth::user();
         $filters = Input::getFilters();
-        $search = $request->input('search');
-        $sortColumn = $request->input('sort');
+        $search = $request->query('search');
+        $sortColumn = $request->query('sort');
 
         $clubs = Club::notJoinedBy($user)
             ->search($search)

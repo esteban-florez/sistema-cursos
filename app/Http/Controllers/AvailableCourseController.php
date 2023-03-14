@@ -16,8 +16,8 @@ class AvailableCourseController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $sortColumn = $request->input('sort');
-        $search = $request->input('search');
+        $sortColumn = $request->query('sort');
+        $search = $request->query('search');
 
         $courses = Course::availables()
             ->notBoughtBy($user)

@@ -22,7 +22,7 @@ class EnrollmentController extends Controller
     public function index(Request $request)
     {
         $course = Course::findOrFail($request->query('course'));
-        $search = $request->input('search');
+        $search = $request->query('search');
         
         $enrollments = Enrollment::whereBelongsTo($course)
             ->latest()

@@ -1,4 +1,4 @@
-@props(['pnfs', 'areas', 'action', 'edit' => false, 'user' => null])
+@props(['pnfs', 'areas', 'action', 'edit' => false, 'role' => null, 'user' => null])
 
 @push('js')
   <script defer src="{{ asset('js/user-form.js') }}"></script>
@@ -135,7 +135,7 @@
         @endif
       @else
         <div class="col-md-6">
-          <x-select name="role" id="role" :options="roles()->pairs()" :selected="old('role') ?? $user->role ?? null" required>
+          <x-select name="role" id="role" :options="roles()->pairs()" :selected="old('role') ?? $user->role ?? $role ?? null" required>
             Rol:
           </x-select>
         </div>

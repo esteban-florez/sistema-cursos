@@ -11,7 +11,7 @@ class UserCourseController extends Controller
     {
         $this->authorize('users.courses.viewAny', $user);
 
-        $search = $request->input('search');
+        $search = $request->query('search');
         $courses = $user->dictatedCourses()
             ->latest()
             ->get();
