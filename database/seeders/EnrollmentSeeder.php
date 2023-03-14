@@ -29,13 +29,12 @@ class EnrollmentSeeder extends Seeder
                 ]);
             });
         
-        // Curso inscripciones para probar lo de enrollments:expired
         $students->take(11)
             ->each(function ($s, $i) {
                 Enrollment::create([
                     'user_id' => $s->id,
                     'course_id' => 2,
-                    'created_at' => $i === 1 ? now()->subDays(Enrollment::EXPIRES_IN + 1) : now(),
+                    'created_at' => now(),
                     'mode' => 'Un solo pago',
                 ]);
             });

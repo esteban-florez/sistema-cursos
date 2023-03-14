@@ -14,8 +14,6 @@ class Enrollment extends Model
 
     protected $with = ['payments', 'student', 'course'];
 
-    const EXPIRES_IN = 7;
-
     public function student()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -31,11 +29,9 @@ class Enrollment extends Model
         return $this->hasMany(Payment::class);
     }
 
-    public function certificate(User $user)
+    public function canDownloadCertificate()
     {
-        return $user->can('role', 'Estudiante') 
-            && $this->student->id === $user->id
-            && $this->solvency === 'Solvente'
+        return $this->solvency === 'Solvente'
             && $this->status === 'Inscrito'
             && $this->approval === 'Aprobado';
     }

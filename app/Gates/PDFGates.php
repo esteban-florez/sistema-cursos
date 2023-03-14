@@ -33,9 +33,7 @@ class PDFGates extends Gates
     {
         return $user->can('role', 'Estudiante') 
             && $enrollment->student->id === $user->id
-            && $enrollment->solvency === 'Solvente'
-            && $enrollment->status === 'Inscrito'
-            && $enrollment->approval === 'Aprobado';
+            && $enrollment->canDownloadCertificate();
     }
 
     public function memberships(User $user, Club $club = null)

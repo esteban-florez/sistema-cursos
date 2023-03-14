@@ -6,8 +6,6 @@ use App\Models\User;
 use App\Notifications\CertificateNotification;
 use App\Notifications\PaymentNotification;
 use App\Notifications\PaymentStatusNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
 
 class PaymentListener
@@ -53,7 +51,7 @@ class PaymentListener
 
         Notification::send($payment->enrollment->student, new PaymentStatusNotification($payment));
 
-        if ($payment->enrollment->certificate($payment->enrollment->student)) {
+        if ($payment->enrollment->canDownloadCertificate()) {
             Notification::send($payment->enrollment->student, new CertificateNotification($payment->enrollment));
         }
     }

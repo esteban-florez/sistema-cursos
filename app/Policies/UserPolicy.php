@@ -21,6 +21,8 @@ class UserPolicy
     
     public function view(User $user, User $model)
     {
+        if ($model->can('role', 'Administrador')) return false;
+        
         if ($user->can('role', 'Administrador')) return true;
 
         if ($user->can('role', 'Instructor')) {

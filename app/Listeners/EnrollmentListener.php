@@ -4,8 +4,6 @@ namespace App\Listeners;
 
 use App\Notifications\CertificateNotification;
 use App\Notifications\EnrollmentNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
 
 class EnrollmentListener
@@ -30,7 +28,7 @@ class EnrollmentListener
     {
         Notification::send($event->enrollment->student, new EnrollmentNotification($event->enrollment));
         
-        if ($event->enrollment->certificate($event->enrollment->student)) {
+        if ($event->enrollment->canDownloadCertificate()) {
             Notification::send($event->enrollment->student, new CertificateNotification($event->enrollment));
         }
     }
