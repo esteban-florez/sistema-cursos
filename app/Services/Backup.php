@@ -2,8 +2,11 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use ZipArchive;
 
 class Backup
 {
@@ -14,26 +17,29 @@ class Backup
         $this->file = $file;
     }
 
-    public function name()
+    public function apply()
     {
-        return $this->file->getFilename();
-    }
+        $publicStorage = storage_path('app/public');
+        $publicBackup = storage_path('app/backup-temp/storage/app/public');
+        $tempDir = storage_path('app/backup-temp');
 
-    public function date()
-    {
-        $date = Date::createFromTimestamp($this->file->getCTime());
-        return "{$date->format(DF)} a las {$date->format(TF)}";
-    }
+        $zip = new ZipArchive();        
+        $zip->open($this->file->getRealPath());
+        $zip->extractTo($tempDir);
 
-    public function size()
-    {
-        return $this->sizeOnMB($this->file->getSize());
-    }
+        File::deleteDirectory($publicStorage);
+        File::copyDirectory($publicBackup, $publicStorage);
+        File::deleteDirectory($publicBackup);
+        
+        $sql = File::get(
+            storage_path('app/backup-temp/db-dumps/mysql-vinculacion_social.sql')
+        );
+        
+        Artisan::call('db:wipe');
 
-    
-    public function file()
-    {
-        return $this->file;
+        DB::unprepared($sql);
+
+        File::cleanDirectory($tempDir);
     }
     
     public static function all() {
@@ -78,14 +84,35 @@ class Backup
 
     public function __get($name)
     {
-        $props = collect(['date', 'size', 'hash', 'name', 'file']);
+        $props = collect(['date', 'size', 'name', 'file']);
 
         if (!$props->contains($name)) return null;
 
         return $this->{$name}();
     }
 
-    protected function sizeOnMB($bytes, $decimals = 2)
+    public function name()
+    {
+        return $this->file->getFilename();
+    }
+
+    public function date()
+    {
+        $date = Date::createFromTimestamp($this->file->getCTime());
+        return "{$date->format(DF)} a las {$date->format(TF)}";
+    }
+
+    public function size()
+    {
+        return $this->sizeOnMB($this->file->getSize());
+    }
+
+    public function file()
+    {
+        return $this->file;
+    }
+
+    private function sizeOnMB($bytes, $decimals = 2)
     {
         $sz = 'BKMGTP';
         $factor = floor((strlen($bytes) - 1) / 3);

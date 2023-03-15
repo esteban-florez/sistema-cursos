@@ -15,7 +15,7 @@ class BackupController extends Controller
 
     public function manage()
     {
-        // TODO -> paginacion de backups
+        // IMPROVE -> paginacion de backups
         $lastestBackupDate = 'N/A';
         $backups = Backup::all();
 
@@ -48,7 +48,7 @@ class BackupController extends Controller
 
         $backup = Backup::store($request->file('backup'));
 
-        // $backup->apply();
+        $backup->apply();
 
         return redirect()
             ->route('backups.manage');
@@ -64,13 +64,13 @@ class BackupController extends Controller
 
     public function recover($filename)
     {
-        // TODO -> recuperar base de datos y archivos.
         $backup = Backup::find($filename);
         
-        // $backup->apply();
+        $backup->apply();
 
         return redirect()
-            ->route('backups.manage');
+            ->route('backups.manage')
+            ->with('alert', trans('alerts.backups.recovered'));
     }
 
     public function delete($filename)

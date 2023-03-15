@@ -35,5 +35,6 @@ return [
     'backups' => [
         'dumped' => '¡La base de datos se ha respaldado con éxito!',
         'deleted' => '¡El respaldo se ha eliminado con éxito!',
+        'recovered' => '¡La base de datos se ha restaurado con éxito!'
     ],
 ];
