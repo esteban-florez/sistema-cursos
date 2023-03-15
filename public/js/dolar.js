@@ -1,3 +1,4 @@
+'use strict'
 function getDolarPrice() {
   const url = document.querySelector('#serialized').dataset.dolar
 

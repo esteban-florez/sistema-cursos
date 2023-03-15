@@ -1,3 +1,4 @@
+'use strict'
 Promise.resolve().then(() => {
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()

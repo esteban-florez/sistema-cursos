@@ -1,3 +1,4 @@
+'use strict'
 const roleSelect = $('#role')
 const gradeSelect = document.querySelector('#grade')
 const areaSelect = document.querySelector('#areaId')

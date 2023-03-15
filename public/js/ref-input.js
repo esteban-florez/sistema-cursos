@@ -1,3 +1,4 @@
+'use strict'
 const select = document.querySelector('[name="type"]')
 const ref = document.querySelector('[name="ref"]')
 const textAddon = document.querySelector('.input-group-text')

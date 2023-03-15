@@ -1,3 +1,4 @@
+'use strict'
 const main = document.querySelector('main')
 const stepperHeader = document.querySelector('.bs-stepper-header')
 

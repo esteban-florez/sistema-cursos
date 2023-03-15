@@ -1,3 +1,4 @@
+'use strict'
 const paragraph = document.querySelector('#maxAmount')
 const itemSelect = document.querySelector('#itemId')
 const typeSelect = document.querySelector('#type')
