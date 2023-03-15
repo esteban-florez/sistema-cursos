@@ -159,6 +159,10 @@ span.fab,
   width: 90%;
 }
 
+.custom-file-label::after {
+  content: 'Seleccionar...';
+}
+
 @media screen and (min-width: 576px) {
   .create-card {
     width: 60%;

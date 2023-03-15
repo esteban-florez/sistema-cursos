@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\UniqueBackup;
 use App\Services\Backup;
+use Illuminate\Http\Request;
 
 class BackupController extends Controller
 {
@@ -21,7 +23,7 @@ class BackupController extends Controller
             $lastestBackupDate = $backups->first()->date;
         }
 
-        return view('database', [
+        return view('backups', [
             'date' => $lastestBackupDate,
             'backups' => $backups,
         ]);
@@ -38,6 +40,20 @@ class BackupController extends Controller
             ->with('alert', trans('alerts.backups.dumped'));
     }
 
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'backup' => ['required', 'file', 'mimetypes:application/zip', new UniqueBackup]
+        ]);
+
+        $backup = Backup::store($request->file('backup'));
+
+        // $backup->apply();
+
+        return redirect()
+            ->route('backups.manage');
+    }
+
     public function download($filename)
     {
         $backup = Backup::find($filename);
@@ -49,6 +65,12 @@ class BackupController extends Controller
     public function recover($filename)
     {
         // TODO -> recuperar base de datos y archivos.
+        $backup = Backup::find($filename);
+        
+        // $backup->apply();
+
+        return redirect()
+            ->route('backups.manage');
     }
 
     public function delete($filename)

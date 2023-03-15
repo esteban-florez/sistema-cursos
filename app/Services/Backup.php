@@ -4,8 +4,6 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
-use Symfony\Component\Finder\SplFileInfo;
 
 class Backup
 {
@@ -32,29 +30,44 @@ class Backup
         return $this->sizeOnMB($this->file->getSize());
     }
 
-    public function exists()
-    {
-        return $this->all()->count() > 0;
-    }
-
+    
     public function file()
     {
         return $this->file;
     }
-
+    
     public static function all() {
-        return collect(File::files(storage_path('app/Vinculacion-Social')))
+        $path = storage_path('app/Vinculacion-Social');
+
+        return collect(File::files($path))
             ->map(function ($file) {
                 return new self($file);
             })
             ->reverse()
             ->take(5);
     }
+        
+    public static function exists($filename)
+    {
+        return static::find($filename) !== null;
+    }
 
     public static function find($filename) {
         return static::all()->filter(function ($file) use ($filename) {
             return $file->name === $filename;
         })->first();
+    }
+
+    public static function store($file)
+    {
+        $path = storage_path('app/Vinculacion-Social');
+        $filename = $file->getClientOriginalName();
+        $filepath = "{$path}/{$filename}";
+
+        File::chmod($path, 777);
+        File::copy($file->getRealPath(), $filepath);
+
+        return self::find($filename);
     }
 
     public function delete()

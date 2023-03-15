@@ -272,6 +272,9 @@ Route::middleware('auth')->group(function () {
         Route::get('backups/generate', 'generate')
             ->name('generate');
 
+        Route::post('backups', 'upload')
+            ->name('upload');
+
         Route::get('backups/{backup}', 'download')
             ->name('download');
         

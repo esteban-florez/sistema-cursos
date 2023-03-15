@@ -2,6 +2,7 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('database') }}
   </x-slot>
+  <script defer src="{{ asset('js/backup.js') }}"></script>
   <section class="container-fluid">
     <x-alert />
     <div class="row">
@@ -16,6 +17,25 @@
             <x-button :url="route('backups.generate')" class="w-100 btn-lg" color="success" icon="plus">
               Crear nuevo respaldo
             </x-button>
+            <hr>
+            <h4>Subir un archivo de respaldo</h4>
+            <p class="alert alert-danger">
+              <b>Nota:</b>
+              Es recomendable realizar un nuevo respaldo antes de restaurar la base de datos.
+            </p>
+            <form class="recover" enctype="multipart/form-data" method="POST" action="{{ route('backups.upload') }}">
+              @csrf
+              <div class="custom-file mb-3">
+                <input type="file" class="custom-file-input" name="backup" id="backup">
+                <label class="custom-file-label" for="backup" id="backupLabel">Subir respaldo</label>
+                @error('backup')
+                  <p class="text-danger">{{ ucfirst($message) }}</p>
+                @enderror
+              </div>
+              <x-button class="btn-lg w-100" icon="file-upload" type="submit" id="upload" disabled>
+                Restaurar
+              </x-button>
+            </form>
           </div>
         </div> 
       </div>
@@ -33,7 +53,7 @@
                     <x-button :url="route('backups.download', ['backup' => $backup->name])" icon="file-download">
                       Descargar
                     </x-button>
-                    <form method="POST" action="{{ route('backups.recover', ['backup' => $backup->name]) }}">
+                    <form class="recover" method="POST" action="{{ route('backups.recover', ['backup' => $backup->name]) }}">
                       @csrf
                       @method('PATCH')
                       <x-button color="success" icon="database" type="submit">
@@ -60,4 +80,5 @@
       </div>
     </div>
   </section>
+  <x-backup-modal />
 </x-layout.main>
