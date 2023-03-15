@@ -10,6 +10,7 @@ use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as Trail;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Stmt\Break_;
 
 Breadcrumbs::for('courses', function (Trail $trail) {
     $trail->push('Cursos');
@@ -265,4 +266,9 @@ Breadcrumbs::for('schedule', function (Trail $trail, User $user) {
 
 Breadcrumbs::for('home', function (Trail $trail) {
     $trail->push('Inicio', route('home'));
+});
+
+Breadcrumbs::for('database', function (Trail $trail) {
+    $trail->parent('config');
+    $trail->push('Base de datos', route('backups.manage'));
 });

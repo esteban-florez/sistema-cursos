@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ClubLoanController;
 use App\Http\Controllers\CredentialsController;
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnrollmentApprovalController;
@@ -259,6 +260,27 @@ Route::middleware('auth')->group(function () {
     
     Route::get('mark-all-notifications', [NotificationController::class, 'markAllNotifications'])
         ->name('mark-all-notifications');
+
+    // Database routes
+    Route::group([
+        'controller' => BackupController::class,
+        'as' => 'backups.',
+    ], function () {
+        Route::get('backups', 'manage')
+            ->name('manage');
+    
+        Route::get('backups/generate', 'generate')
+            ->name('generate');
+
+        Route::get('backups/{backup}', 'download')
+            ->name('download');
+        
+        Route::patch('backups/{backup}', 'recover')
+            ->name('recover');
+        
+        Route::delete('backups/{backup}', 'delete')
+            ->name('delete');
+    });
 
     // PDF routes
     Route::group([

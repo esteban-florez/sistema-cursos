@@ -10,7 +10,6 @@
 ## Esteban:
 
 - Respaldo y recuperación de base de datos.
-- Autorización del home.
 - Gráficas y estadísticas.
 - Cambio de roles (wtf preguntar a Jackson).
 

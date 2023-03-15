@@ -10,6 +10,7 @@
     'retirado' => 'danger',
     'registrado' => 'success',
     'confirmado' => 'success',
+    'respaldado' => 'success', 
   ]);
 
   $color = $colors

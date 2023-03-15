@@ -1,4 +1,4 @@
-<!-- Arreglar cuando tengamos las estadisticas reales -->
+<!-- TODO -> real statistics -->
 <div class="row">
   <div class="col-6">
     <div class="small-box bg-info">
