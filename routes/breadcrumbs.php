@@ -10,7 +10,6 @@ use App\Models\User;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 use Diglactic\Breadcrumbs\Generator as Trail;
 use Illuminate\Support\Facades\Auth;
-use PhpParser\Node\Stmt\Break_;
 
 Breadcrumbs::for('courses', function (Trail $trail) {
     $trail->push('Cursos');
@@ -30,6 +29,10 @@ Breadcrumbs::for('inventory', function (Trail $trail) {
 
 Breadcrumbs::for('config', function (Trail $trail) {
     $trail->push('Configuración');
+});
+
+Breadcrumbs::for('home', function (Trail $trail) {
+    $trail->push('Inicio', route('home'));
 });
 
 Breadcrumbs::for('areas.index', function (Trail $trail) {
@@ -261,14 +264,16 @@ Breadcrumbs::for('loans.index', function (Trail $trail) {
 });
 
 Breadcrumbs::for('schedule', function (Trail $trail, User $user) {
+    $trail->parent('home');
     $trail->push('Horario', route('schedule', $user));
 });
 
-Breadcrumbs::for('home', function (Trail $trail) {
-    $trail->push('Inicio', route('home'));
-});
-
-Breadcrumbs::for('database', function (Trail $trail) {
+Breadcrumbs::for('backups', function (Trail $trail) {
     $trail->parent('config');
     $trail->push('Base de datos', route('backups.manage'));
+});
+
+Breadcrumbs::for('stats', function (Trail $trail) {
+    $trail->parent('home');
+    $trail->push('Estadísticas', route('stats'));
 });

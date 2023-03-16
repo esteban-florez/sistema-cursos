@@ -85,10 +85,6 @@ h1 {
   top: calc(50% - 0.5rem);
 }
 
-.small-box {
-  margin-bottom: 0;
-}
-
 span.fas,
 span.far,
 span.fab,

@@ -1,6 +1,6 @@
 <x-layout.main title="Base de datos">
   <x-slot name="breadcrumbs">
-    {{ Breadcrumbs::render('database') }}
+    {{ Breadcrumbs::render('backups') }}
   </x-slot>
   <script defer src="{{ asset('js/backup.js') }}"></script>
   <section class="container-fluid">

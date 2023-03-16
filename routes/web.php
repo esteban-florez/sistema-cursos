@@ -29,6 +29,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\PNFController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserClubController;
 use App\Http\Controllers\UserController;
@@ -100,6 +101,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    // Home routes
+    Route::get('home', HomeController::class)
+        ->middleware('prevent-back')
+        ->name('home');
+
     // Areas routes
     Route::resource('areas', AreaController::class)
         ->except('create', 'show', 'destroy');
@@ -249,11 +255,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('loans', LoanController::class)
         ->only('index', 'store', 'update');
 
-    // Home routes
-    Route::get('home', HomeController::class)
-        ->middleware('prevent-back')
-        ->name('home');
-
     // Notifications routes
     Route::get('mark-notification/{notification}', [NotificationController::class, 'markNotification'])
         ->name('mark-notification');
@@ -261,7 +262,7 @@ Route::middleware('auth')->group(function () {
     Route::get('mark-all-notifications', [NotificationController::class, 'markAllNotifications'])
         ->name('mark-all-notifications');
 
-    // Database routes
+    // Backups routes
     Route::group([
         'controller' => BackupController::class,
         'as' => 'backups.',
@@ -284,6 +285,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('backups/{backup}', 'delete')
             ->name('delete');
     });
+
+    // Stats routes
+    Route::get('stats', StatsController::class)
+        ->name('stats');
 
     // PDF routes
     Route::group([

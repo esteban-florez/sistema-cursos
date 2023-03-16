@@ -141,7 +141,7 @@
           </x-layout.sidebar.item>
         @endcan
         @can('role', 'Administrador')
-          <x-layout.sidebar.item url="#" icon="chart-pie">
+          <x-layout.sidebar.item :url="route('stats')" icon="chart-pie">
             Estadísticas
           </x-layout.sidebar.item>
         @endcan
