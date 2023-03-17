@@ -1,3 +1,4 @@
+'use strict'
 const img = document.querySelector('#previewImg')
 const fileInput = document.querySelector('input[type="file"]')
 fileInput.addEventListener('input', updatePreview)

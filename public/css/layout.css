@@ -85,10 +85,6 @@ h1 {
   top: calc(50% - 0.5rem);
 }
 
-.small-box {
-  margin-bottom: 0;
-}
-
 span.fas,
 span.far,
 span.fab,
@@ -157,6 +153,10 @@ span.fab,
 
 .create-card {
   width: 90%;
+}
+
+.custom-file-label::after {
+  content: 'Seleccionar...';
 }
 
 @media screen and (min-width: 576px) {

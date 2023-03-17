@@ -1,3 +1,4 @@
+'use strict'
 getData()
   .then((events) => {
     initializeTimetable(events)

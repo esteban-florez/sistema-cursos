@@ -1,12 +1,11 @@
 ## Myriam:
   
 - Ruta de cambio de imagen de perfil.
+- Decidir si hacer una vista de todas las notificaciones o quitar ese link.
 - Habilitar y deshabilitar clubes.
 
 ## Esteban:
 
-- Respaldo y recuperación de base de datos.
-- Autorización del home.
 - Gráficas y estadísticas.
 - Cambio de roles (wtf preguntar a Jackson).
 

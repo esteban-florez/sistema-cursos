@@ -31,6 +31,10 @@ Breadcrumbs::for('config', function (Trail $trail) {
     $trail->push('Configuración');
 });
 
+Breadcrumbs::for('home', function (Trail $trail) {
+    $trail->push('Inicio', route('home'));
+});
+
 Breadcrumbs::for('areas.index', function (Trail $trail) {
     $trail->parent('courses');
     $trail->push('Áreas de formación', route('areas.index'));
@@ -260,9 +264,16 @@ Breadcrumbs::for('loans.index', function (Trail $trail) {
 });
 
 Breadcrumbs::for('schedule', function (Trail $trail, User $user) {
+    $trail->parent('home');
     $trail->push('Horario', route('schedule', $user));
 });
 
-Breadcrumbs::for('home', function (Trail $trail) {
-    $trail->push('Inicio', route('home'));
+Breadcrumbs::for('backups', function (Trail $trail) {
+    $trail->parent('config');
+    $trail->push('Base de datos', route('backups.manage'));
+});
+
+Breadcrumbs::for('stats', function (Trail $trail) {
+    $trail->parent('home');
+    $trail->push('Estadísticas', route('stats'));
 });

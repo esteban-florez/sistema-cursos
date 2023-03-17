@@ -31,5 +31,10 @@ return [
     'retired' => '¡Se ha retirado del club con éxito!',
     'operations' => '¡La operación se ha registrado con éxito!',
     'loans' => '¡El préstamo se ha registrado con éxito!',
-    'confirmed' => '¡La inscripción se ha confirmado con éxito!'
+    'confirmed' => '¡La inscripción se ha confirmado con éxito!',
+    'backups' => [
+        'dumped' => '¡La base de datos se ha respaldado con éxito!',
+        'deleted' => '¡El respaldo se ha eliminado con éxito!',
+        'recovered' => '¡La base de datos se ha restaurado con éxito!'
+    ],
 ];

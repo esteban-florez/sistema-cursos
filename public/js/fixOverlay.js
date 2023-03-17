@@ -1,3 +1,4 @@
+'use strict'
 const promise = new Promise((resolve) => {
   setTimeout(() => {
     resolve("i'll keep trying <3")

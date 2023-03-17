@@ -7,7 +7,7 @@
   <section class="container-fluid payments-flex mt-3">
     @if ($payments->isNotEmpty())
       @foreach ($payments as $payment)
-        {{-- TODO -> N+1 queries here? --}}
+        {{-- IMPROVE -> N+1 queries here? --}}
         <x-payment.alt-card :payment="$payment"/>
       @endforeach
       <div class="d-flex justify-content-center">

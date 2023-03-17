@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ClubLoanController;
 use App\Http\Controllers\CredentialsController;
+use App\Http\Controllers\BackupController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnrollmentApprovalController;
@@ -28,6 +29,7 @@ use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\PNFController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserClubController;
 use App\Http\Controllers\UserController;
@@ -99,6 +101,11 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    // Home routes
+    Route::get('home', HomeController::class)
+        ->middleware('prevent-back')
+        ->name('home');
+
     // Areas routes
     Route::resource('areas', AreaController::class)
         ->except('create', 'show', 'destroy');
@@ -248,17 +255,40 @@ Route::middleware('auth')->group(function () {
     Route::resource('loans', LoanController::class)
         ->only('index', 'store', 'update');
 
-    // Home routes
-    Route::get('home', HomeController::class)
-        ->middleware('prevent-back')
-        ->name('home');
-
     // Notifications routes
     Route::get('mark-notification/{notification}', [NotificationController::class, 'markNotification'])
         ->name('mark-notification');
     
     Route::get('mark-all-notifications', [NotificationController::class, 'markAllNotifications'])
         ->name('mark-all-notifications');
+
+    // Backups routes
+    Route::group([
+        'controller' => BackupController::class,
+        'as' => 'backups.',
+    ], function () {
+        Route::get('backups', 'manage')
+            ->name('manage');
+    
+        Route::get('backups/generate', 'generate')
+            ->name('generate');
+
+        Route::post('backups', 'upload')
+            ->name('upload');
+
+        Route::get('backups/{backup}', 'download')
+            ->name('download');
+        
+        Route::patch('backups/{backup}', 'recover')
+            ->name('recover');
+        
+        Route::delete('backups/{backup}', 'delete')
+            ->name('delete');
+    });
+
+    // Stats routes
+    Route::get('stats', StatsController::class)
+        ->name('stats');
 
     // PDF routes
     Route::group([

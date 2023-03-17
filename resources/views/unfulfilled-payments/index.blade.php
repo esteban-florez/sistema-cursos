@@ -10,7 +10,7 @@
       @php
         $course = $payment->enrollment->course;
       @endphp
-      {{-- TODO N+1 queries here --}}
+      {{-- IMPROVE -> N+1 queries here --}}
       <div class="col-md-6">
         <div class="card callout callout-primary p-0">
           <div class="card-body">

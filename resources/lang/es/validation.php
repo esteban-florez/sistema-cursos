@@ -233,6 +233,9 @@ return [
         'club_id' => 'el club',
         'enrollment_id' => 'la matrícula',
         'payment_id' => 'el pago',
+
+        // Backup attributes
+        'backup' => 'el archivo de respaldo',
     ],
 
     'values' => [
