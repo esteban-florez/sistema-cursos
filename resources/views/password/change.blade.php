@@ -9,7 +9,7 @@
         <div class="card-body">
           <form action="{{ route('password.update') }}" method="POST">
             @csrf
-            <x-input-group type="password" name="password_current" id="passwordCurrent" placeholder="Ingresa la contraseña actual..." required>
+            <x-input-group type="password" name="password_current" id="passwordCurrent" placeholder="Ingresa la contraseña actual..." minlength="8" maxlength="20" required>
               Contraseña Actual:
               <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
@@ -19,7 +19,7 @@
             </x-input-group>
             <hr>
             <x-password-tooltip />
-            <x-input-group type="password" name="password" id="password" placeholder="Ingresa nueva contraseña..." required>
+            <x-input-group type="password" name="password" id="password" placeholder="Ingresa nueva contraseña..." minlength="8" maxlength="20" required>
               Nueva contraseña:
               <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
@@ -30,7 +30,7 @@
             @error('password')
               <p class="text-danger">{{ ucfirst($message) }}</p>
             @enderror
-            <x-input-group type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Confirma nueva contraseña..." required>
+            <x-input-group type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Confirma nueva contraseña..." minlength="8" maxlength="20" required>
               Confirma la nueva contraseña:
               <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">

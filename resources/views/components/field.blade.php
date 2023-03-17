@@ -1,4 +1,5 @@
-@props([])
+@props(['validNumber' => false])
+
 
 <div class="mb-3">
   @if($attributes->get('required'))
@@ -8,11 +9,14 @@
   <input
     {{
       $attributes
-        ->class([
-          'form-control',
-          ])
+        ->class(['form-control',])
         ->merge(['type' => 'text', 'autocomplete' => 'off'])
     }}
+    @if($validNumber)
+      min="0"
+      onkeypress="return event.charCode >= 48"
+      oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
+    @endif
   >
   @error($attributes->get('name'))
     <p class="text-danger">{{ ucfirst($message) }}</p>

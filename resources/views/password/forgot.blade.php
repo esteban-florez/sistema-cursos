@@ -21,14 +21,13 @@
           <p class="login-box-msg">Por favor ingrese su correo electrónico para recibir un código de verificación.</p>
           <form action="{{ route('password.email') }}" method="POST">
             @csrf
-            <div class="input-group mb-3">
-              <input autocomplete="off" class="form-control" type="email" name="email" placeholder="Correo electrónico">
-              <div class="input-group-append">
-                <div class="input-group-text bg-white">
-                  <i class="fa fa-envelope"></i>
-                </div>
-              </div>
-            </div>
+            <x-input-group type="email" name="email" id="email" placeholder="Correo electrónico" minlength="6" maxlength="50" required>
+              <x-slot name="append">
+                <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
+                  <span class="fa fa-envelope"></span>
+                </button>
+              </x-slot>
+            </x-input-group>
             @error('email')
               <p class="text-danger">{{ ucfirst($message) }}</p>
             @enderror

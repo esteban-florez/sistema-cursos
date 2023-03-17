@@ -25,22 +25,20 @@
                 {{ $message }}
               </div>
             @enderror
-            <div class="input-group mb-3">
-              <input type="email" autocomplete="off" class="form-control" placeholder="Correo Electrónico" name="email">
-              <div class="input-group-append">
-                <div class="input-group-text">
+            <x-input-group type="email" name="email" id="email" placeholder="Correo Electrónico">
+              <x-slot name="append">
+                <span class="input-group-text">
                   <i class="fa fa-user"></i>
-                </div>
-              </div>
-            </div>
-            <div class="input-group mb-3">
-              <input type="password" autocomplete="off" class="form-control" placeholder="Contraseña" name="password">
-              <div class="input-group-append">
-                <div class="input-group-text">
+                </span>
+              </x-slot>
+            </x-input-group>
+            <x-input-group type="password" name="password" id="password" placeholder="Contraseña">
+              <x-slot name="append">
+                <span class="input-group-text">
                   <i class="fa fa-key"></i>
-                </div>
-              </div>
-            </div>
+                </span>
+              </x-slot>
+            </x-input-group>
             <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
           </form>
           <hr>

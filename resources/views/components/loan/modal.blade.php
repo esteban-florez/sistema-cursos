@@ -21,7 +21,7 @@
         Club:
       </x-select>
       <div class="d-flex flex-column mb-3">
-        <x-field name="amount" type="number" placeholder="Ej. 15" :value="old('amount') ?? ''" required>
+        <x-field name="amount" type="number" placeholder="Ej. 15" :value="old('amount') ?? ''" minlength="1" maxlength="5" validNumber required>
           Cantidad: 
         </x-field>
         <p id="maxAmount" class="mb-0" style="margin-top: -0.8rem; margin-left: 0.2rem;">

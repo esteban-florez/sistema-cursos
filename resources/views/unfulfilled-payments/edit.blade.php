@@ -9,6 +9,9 @@
     <script defer src="{{ asset('js/ref-input.js') }}"></script>
     <script type="module" src="{{ asset('js/print-amount.js') }}"></script>
   @endpush
+  @php
+    $user = auth()->user();
+  @endphp
   <x-select2 />
   <div id="serialized" data-course="{{ json_encode($course) }}"></div>
   <section class="container-fluid">
@@ -16,7 +19,7 @@
       <div class="col-12 col-md-8 col-lg-6">
         <div class="card my-2">
           <div class="card-body">
-            @can('unfulfilled-payments.update')
+            @can('unfulfilled-payments.update', $payment)
               <form method="POST" action="{{ route('unfulfilled-payments.update', $payment) }}">
                 @csrf
                 @method('PATCH')
@@ -34,11 +37,11 @@
                 <x-select name="type" :options="payTypes()->pairs()" :selected="old('type') ?? ''">
                   Tipo de pago:
                 </x-select>
-                <x-field name="ref" type="number" :value="old('ref') ?? ''" disabled>
+                <x-field name="ref" type="number" :value="old('ref') ?? ''" minlength="4" maxlength="10" validNumber disabled>
                   Referencia:
                 </x-field>
                 <div class="d-flex gap-2">
-                  @can('unfulfilled-payments.viewAny')
+                  @can($user, 'unfulfilled-payments.viewAny', $payment)
                     <x-button color="secondary" icon="arrow-left" :url="route('unfulfilled-payments.index', ['user' => $user])">
                       Volver
                     </x-button>

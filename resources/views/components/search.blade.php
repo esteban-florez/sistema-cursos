@@ -10,7 +10,7 @@
     <input type="hidden" name="sort" value="{{ $sort }}">
   @endif
   <div class="input-group">
-    <input autcomplete="off" class="form-control" type="search" {{ $attributes }}>
+    <input type="search" class="form-control" autocomplete="off" {{ $attributes }}>
     <div class="input-group-append">
       <button class="btn btn-dark" type="submit">
         <i class="fas fa-search"></i>

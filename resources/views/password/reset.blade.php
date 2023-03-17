@@ -27,25 +27,23 @@
             @csrf
             <input type="hidden" name="email" value="{{ $email }}">
             <input type="hidden" name="token" value="{{ $token }}">
-            <div class="input-group mb-3">
-              <input autocomplete="off" class="form-control" id="password" type="password" name="password" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
-              <div class="input-group-append">
+            <x-input-group type="password" name="password" id="password" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
+              <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
                   <span class="fas fa-eye"></span>
                 </button>
-              </div>
-            </div>
+              </x-slot>
+            </x-input-group>
             @error('password')
               <p class="text-danger">{{ ucfirst($message) }}</p>
             @enderror
-            <div class="input-group mb-3">
-              <input autocomplete="off" class="form-control" id="passwordConfirmation" type="password" name="password_confirmation" placeholder="Confirma la contraseña..." minlength="8" maxlength="20" required>
-              <div class="input-group-append">
+            <x-input-group type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
+              <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
                   <span class="fas fa-eye"></span>
                 </button>
-              </div>
-            </div>
+              </x-slot>
+            </x-input-group>
             <x-button type="submit" class="btn-block">
               Restablecer contraseña
             </x-button>

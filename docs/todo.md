@@ -1,9 +1,6 @@
 ## Myriam:
   
 - Ruta de cambio de imagen de perfil.
-- Revisar validaciones ($request->validate() y App/Http/Requests/):
-  * Mínimos y máximos razonables en fechas, cantidades, etc.
-  - Validaciones inputs HTML.
 - Habilitar y deshabilitar clubes.
 
 ## Esteban:

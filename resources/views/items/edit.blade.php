@@ -14,10 +14,10 @@
               <p class="font-italic">
                 <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
               </p>
-              <x-field name="name" placeholder="Ej. Balón de Fútbol" :value="old('name') ?? $item->name ?? ''" required>
+              <x-field name="name" placeholder="Ej. Balón de Fútbol" :value="old('name') ?? $item->name ?? ''" minlength="4" maxlength="40" required>
                 Nombre: 
               </x-field>
-              <x-textarea name="description" placeholder="Ej. Balón de fútbol sala de cuero..." :content="old('description') ?? $item->description ?? ''" required>
+              <x-textarea name="description" placeholder="Ej. Balón de fútbol sala de cuero..." :content="old('description') ?? $item->description ?? ''" minlength="6" maxlength="100" required>
                 Descripción:
               </x-textarea>
               @can('viewAny', App\Models\Item::class)

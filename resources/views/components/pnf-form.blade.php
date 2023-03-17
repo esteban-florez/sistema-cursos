@@ -17,10 +17,10 @@
           <p class="font-italic">
             <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
           </p>
-          <x-field name="name" placeholder="Ej. Informática" :value="old('name') ?? $pnf->name ?? ''" required>
+          <x-field name="name" placeholder="Ej. Informática" :value="old('name') ?? $pnf->name ?? ''" minlength="5" maxlength="50" required>
             Nombre: 
           </x-field>
-          <x-field name="leader" placeholder="Ej. Luis Vargas" :value="old('leader') ?? $pnf->leader ?? ''" required>
+          <x-field name="leader" placeholder="Ej. Luis Vargas" :value="old('leader') ?? $pnf->leader ?? ''" minlength="5" maxlength="50" required>
             Jefe de Departamento:
           </x-field>
             @can('viewAny', App\Models\PNF::class)

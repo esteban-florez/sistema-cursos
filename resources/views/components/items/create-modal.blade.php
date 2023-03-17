@@ -9,10 +9,10 @@
   @can('create', App\Models\Item::class)
     <form method="POST" action="{{ route('items.store') }}">
       @csrf
-      <x-field name="name" id="name" placeholder="Ej. Balón de Fútbol" :value="old('name') ?? ''" required>
+      <x-field name="name" id="name" placeholder="Ej. Balón de Fútbol" :value="old('name') ?? ''" minlength="4" maxlength="40" required>
         Nombre:
       </x-field>
-      <x-textarea name="description" id="description" placeholder="Ej. Balón de cuero sintético" :content="old('description') ?? ''" required>
+      <x-textarea name="description" id="description" placeholder="Ej. Balón de cuero sintético" :content="old('description') ?? ''" minlength="6" maxlength="100" required>
         Descripción:
       </x-textarea>
       <x-button color="secondary" data-dismiss="modal" icon="times">Cancelar</x-button>

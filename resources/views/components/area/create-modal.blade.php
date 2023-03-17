@@ -24,7 +24,7 @@
         data-options="{{ route('api.areas.index') }}"
       >
         @csrf
-        <x-field :name="$ajax ? 'area_name' : 'name'" :id="$ajax ? 'areaName' : 'name'" placeholder="Escribe el nombre del área" autocomplete="off" required>
+        <x-field :name="$ajax ? 'area_name' : 'name'" :id="$ajax ? 'areaName' : 'name'" placeholder="Escribe el nombre del área" minlength="5" maxlength="50" required>
           Nombre:
         </x-field>
         <x-select name="pnf_id" id="pnfId" :options="$pnfs" required>

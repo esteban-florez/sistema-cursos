@@ -14,7 +14,7 @@
       <x-image-input :image="$course->image ?? null" :required="!$edit"/>
     </div>
     <div class="col-sm-6 col-md-8">
-      <x-field name="name" id="name" placeholder="Ej. Desarrollo Web" autocomplete="off" :value="old('name') ?? $course->name ?? ''" required>
+      <x-field type="text" name="name" id="name" placeholder="Ej. Desarrollo Web" autocomplete="off" :value="old('name') ?? $course->name ?? ''" minlength="5" maxlength="50" required>
         Nombre:
       </x-field>
       <x-select name="user_id" id="userId" :options="$instructors" :selected="old('user_id') ?? $course->user_id ?? null" required>
@@ -37,17 +37,23 @@
       </x-select>
     </div>
     <div class="col-12 col-sm-6">
-      <x-input-group type="number" name="total_price" id="totalPrice" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" addon="$" required>
+      <x-input-group type="number" name="total_price" id="totalPrice" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" max="100" maxlength="3" validNumber required>
         Monto Total:
+        <x-slot name="append">
+          <span class="input-group-text">$</span>
+        </x-slot>
       </x-input-group>
     </div>
     <div class="col-12 col-sm-6">
-      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" addon="$">
+      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" max="25" maxlength="2" validNumber>
         Monto de Reservación:
+        <x-slot name="append">
+          <span class="input-group-text">$</span>
+        </x-slot>
       </x-input-group>
     </div>
     <div class="col-12">
-      <x-textarea name="description" id="description" rows="4" maxlength="255" placeholder="Ej. Aprende desarrollo web desde cero con este curso." :content="old('description') ?? $course->description ?? ''" required>
+      <x-textarea name="description" id="description" rows="4" maxlength="255" placeholder="Ej. Aprende desarrollo web desde cero con este curso." :content="old('description') ?? $course->description ?? ''" minlength="10" maxlength="255" required>
         Descripción del curso:
       </x-textarea>
     </div>
@@ -72,12 +78,15 @@
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-input-group type="number" name="duration" id="duration" placeholder="Ej. 5" value="{{ old('duration') ?? $course->duration ?? '' }}" addon="horas" required>
+      <x-input-group type="number" name="duration" id="duration" placeholder="Ej. 5" value="{{ old('duration') ?? $course->duration ?? '' }}" max="120" maxlength="3" validNumber required>
         Duración del curso:
+        <x-slot name="append">
+          <span class="input-group-text">horas</span>
+        </x-slot>
       </x-input-group>
     </div>
     <div class="col-sm-6">
-      <x-field type="number" name="student_limit" id="studentLimit" placeholder="Ej. 15" value="{{ old('student_limit') ?? $course->student_limit ?? '' }}" required>
+      <x-field type="number" name="student_limit" id="studentLimit" placeholder="Ej. 15" value="{{ old('student_limit') ?? $course->student_limit ?? '' }}" max="60" maxlength="2" validNumber required>
         Máx. de Estudiantes:
       </x-field>
     </div>

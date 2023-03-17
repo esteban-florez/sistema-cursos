@@ -16,7 +16,7 @@
       <form method="POST" action="{{ route('areas.update', $area) }}">
         @csrf
         @method('PUT')
-        <x-field :value="old('name') ?? $area->name ?? ''" name="name" id="name" placeholder="Escribe el nombre del área" required>
+        <x-field :value="old('name') ?? $area->name ?? ''" name="name" id="name" placeholder="Escribe el nombre del área" minlength="5" maxlength="50" required>
           Nombre:
         </x-field>
         <x-select name="pnf_id" id="pnfId" :options="$pnfs" :selected="old('pnf_id') ?? $area->pnf_id ?? null" required>

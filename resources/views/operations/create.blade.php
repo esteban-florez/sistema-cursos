@@ -33,15 +33,15 @@
                 Tipo de operación:
               </x-select>
               <div class="d-flex flex-column mb-3">
-                <x-field name="amount" type="number" placeholder="Ej. 15" :value="old('amount') ?? ''" required>
+                <x-field name="amount" type="number" placeholder="Ej. 15" :value="old('amount') ?? ''" minlength="1" maxlength="5" validNumber required>
                   Cantidad: 
                 </x-field>
                 <p id="maxAmount" class="mb-0" style="margin-top: -0.8rem; margin-left: 0.2rem;">
                 </p>
               </div>
-              <x-field name="reason" placeholder="Ej. Desgaste por uso" :value="old('reason') ?? ''">
+              <x-textarea name="reason" placeholder="Ej. Desgaste por uso" :value="old('reason') ?? ''" minlength="6" maxlength="100">
                 Descripción:
-              </x-field>
+              </x-textarea>
               <x-button color="success" icon="check" type="submit">
                 Aceptar 
               </x-button>
