@@ -11,6 +11,7 @@ use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ClubLoanController;
 use App\Http\Controllers\CredentialsController;
 use App\Http\Controllers\BackupController;
+use App\Http\Controllers\ClubStatusController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnrollmentApprovalController;
@@ -186,6 +187,9 @@ Route::middleware('auth')->group(function () {
     // Clubs routes
     Route::resource('clubs', ClubController::class)
         ->except('destroy');
+
+    Route::patch('clubs/{club}/status', [ClubStatusController::class, 'update'])
+        ->name('club.status.update');
         
     Route::get('available-clubs', [AvailableClubController::class, 'index'])
         ->name('available-clubs.index');

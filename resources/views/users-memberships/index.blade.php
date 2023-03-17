@@ -24,7 +24,7 @@
                     Detalles
                   </x-button>
                 @endcan
-                @can('destroy', $membership)
+                @can('delete', $membership)
                   <x-button color="danger" data-toggle="modal" data-target="#clubModal">
                     Retirarse
                   </x-button>

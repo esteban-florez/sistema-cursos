@@ -2,7 +2,6 @@
   
 - Ruta de cambio de imagen de perfil.
 - Decidir si hacer una vista de todas las notificaciones o quitar ese link.
-- Habilitar y deshabilitar clubes.
 
 ## Esteban:
 

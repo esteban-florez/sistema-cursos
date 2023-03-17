@@ -46,10 +46,10 @@ class MembershipController extends Controller
         $membership->delete();
 
         return $user->can('viewAny', [Membership::class, $club])
-            ? redirect()->route('memberships.index', ['club' => $club])
+            ? redirect()->back()
                     ->with('alert', trans('alerts.users.retired')) 
   
-            : redirect()->route('users.memberships.index', $user)
+            : redirect()->back()
                     ->with('alert', trans('alerts.retired'));
     }
 }

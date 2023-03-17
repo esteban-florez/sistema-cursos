@@ -37,4 +37,5 @@ return [
         'deleted' => '¡El respaldo se ha eliminado con éxito!',
         'recovered' => '¡La base de datos se ha restaurado con éxito!'
     ],
+    'club-status' => generateAlerts('El estado del club'),
 ];

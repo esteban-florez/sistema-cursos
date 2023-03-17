@@ -16,7 +16,7 @@
       <div class="col-12 col-md-8 col-lg-6">
         <div class="card my-2">
           <div class="card-body">
-            @can('update', $user, App\Models\Payment::class, $payment)
+            @can('update', $user, [App\Models\Payment::class, $payment])
               <form method="POST" action="{{ route('payments.update', $payment) }}">
                 @csrf
                 @method('PUT')

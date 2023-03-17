@@ -9,11 +9,9 @@
         alt="Imagen del Club: {{$club->name }}"
         style="height: 12.5rem;">
     </div>
-    <div class="col-sm-7">
-      <div class="card-header">
-        <h4 class="mb-0">{{ $club->name }}</h4>
-      </div>
+    <div class="col-sm-7 d-flex align-items-center">
       <div class="card-body">
+        <h4>{{ $club->name }}</h4>
         <p class="card-text">{{ $club->excerpt }}</p>
         <div class="d-flex justify-content-between align-items-center">
           <x-button url="{{ route('clubs.show', $club) }}">Detalles</x-button>

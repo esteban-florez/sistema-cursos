@@ -90,7 +90,7 @@ Breadcrumbs::for('users.show', function (Trail $trail, User $user) {
 
 Breadcrumbs::for('users.edit', function (Trail $trail, User $user) {
     $trail->parent('users.show', $user);
-    $trail->push('Editar perfil', route('users.edit'));
+    $trail->push('Editar perfil', route('users.edit', $user));
 });
 
 Breadcrumbs::for('users.payments.index', function (Trail $trail, User $user) {

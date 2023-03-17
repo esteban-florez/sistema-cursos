@@ -48,7 +48,7 @@
                   ]"
               >
                 <x-slot name="actions">
-                  @can('destroy', $membership)
+                  @can('delete', $membership)
                     <form method="POST" action="{{ route('memberships.destroy', $membership) }}">
                       @csrf
                       @method('DELETE')

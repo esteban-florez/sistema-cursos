@@ -21,7 +21,8 @@ class AvailableClubController extends Controller
         $search = $request->query('search');
         $sortColumn = $request->query('sort');
 
-        $clubs = Club::notJoinedBy($user)
+        $clubs = Club::where('status', 'Activo')
+            ->notJoinedBy($user)
             ->search($search)
             ->sort($sortColumn)
             ->filters($filters)

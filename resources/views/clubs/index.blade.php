@@ -42,6 +42,7 @@
           <th>Hora de Inicio</th>
           <th>Hora de Cierre</th>
           <th>Miembros</th>
+          <th>Estado</th>
           <th>Acciones</th>
         </x-slot>
         <x-slot name="body">
@@ -53,23 +54,21 @@
               $club->start_hour->format(TF),
               $club->end_hour->format(TF),
               $club->members_count,
+              $club->status,
               ]"
             >
               <x-slot name="actions">
-                @can('viewAny', [App\Model\Membership::class, $club])
-                <x-button class="btn-sm" color="secondary" :url="route('memberships.index', ['club' => $club])" icon="clipboard-list">
-                  Miembros
-                </x-button>
-                @endcan
-                @can('clubs.loans.viewAny', $club)
-                  <x-button class="btn-sm" color="info" :url="route('clubs.loans.index', ['club' => $club])" icon="hand-holding">
-                    Préstamos
-                  </x-button>
-                @endcan
                 @can('update', $club)
                   <x-button class="btn-sm" color="warning" :url="route('clubs.edit', $club)" icon="edit">
                     Editar
                   </x-button>
+                @endcan
+                @can('role', 'Administrador')
+                  @if($club->status === 'Activo')
+                    <x-club.status-button :id="$club->id" value="Inactivo" sm/>
+                  @else
+                    <x-club.status-button :id="$club->id" value="Activo" sm/>
+                  @endif
                 @endcan
                 <x-button class="btn-sm" :url="route('clubs.show', $club)" icon="eye">
                   Detalles

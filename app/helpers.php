@@ -57,6 +57,12 @@ if (!function_exists('payStatuses')) {
     }
 }
 
+if (!function_exists('clubStatuses')) {
+    function clubStatuses() {
+        return collect(['Activo', 'Inactivo']);
+    }
+}
+
 if (!function_exists('payTypes')) {
     function payTypes() {
         return collect([

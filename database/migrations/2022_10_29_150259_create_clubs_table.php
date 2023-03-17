@@ -16,8 +16,9 @@ class CreateClubsTable extends Migration
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('description');
             $table->string('image');
+            $table->string('description');
+            $table->enum('status', clubStatuses()->all())->default('Activo');
             $table->enum('day', days()->all());
             $table->time('start_hour');
             $table->time('end_hour');
