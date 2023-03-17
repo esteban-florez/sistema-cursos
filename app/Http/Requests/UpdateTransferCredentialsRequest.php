@@ -26,7 +26,7 @@ class UpdateTransferCredentialsRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:5', 'max:50',],
             'bank' => ['required', 'string', 'min:5', 'max:50'],
-            'ci' => ['required', 'integer', 'numeric', 'min:6', 'max:10'],
+            'ci' => ['required', 'string', 'min:6', 'max:15'],
             'type' => ['required', 'in:'.accountTypes()->join(',')],
             'account' => ['required', 'string', 'min:10', 'max:50'],
         ];

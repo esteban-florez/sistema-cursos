@@ -33,7 +33,7 @@ class StoreCourseRequest extends FormRequest
                 new ValidID],
             'area_id' => ['required', 'integer', 'numeric', 
                 new ValidID],
-            'description' => ['required', 'string', 'min:10', 'max:100'],
+            'description' => ['required', 'string', 'min:10', 'max:255'],
             'total_price' => ['required', 'integer', 'numeric', 'between:10,100'],
             'reserv_price' => ['nullable', 'integer', 'numeric', 'between:5,25'],
             'start_ins' => ['required', 'date', 'before:end_ins', 

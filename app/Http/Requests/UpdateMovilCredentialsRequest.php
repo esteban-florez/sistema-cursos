@@ -24,9 +24,9 @@ class UpdateMovilCredentialsRequest extends FormRequest
     public function rules()
     {
         return [
-            'ci' => ['required', 'integer', 'numeric', 'min:6', 'max:10'],
+            'ci' => ['required', 'string', 'min:6', 'max:15'],
             'bank' => ['required', 'string', 'min:5', 'max:50'],
-            'phone' => ['required', 'integer', 'numeric', 'digits:11'],
+            'phone' => ['required', 'string', 'min:11', 'max:15'],
         ];
     }
 }

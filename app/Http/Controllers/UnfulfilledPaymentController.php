@@ -64,7 +64,7 @@ class UnfulfilledPaymentController extends Controller
                 'numeric', 'integer', 'digits_between:4,10',
             ],    
             'type' => ['required', 'in:'.payTypes()->join(',')],
-            'amount' => ['required', 'integer', 'numeric'],
+            'amount' => ['required', 'numeric'],
         ]);    
 
         $data['fulfilled'] = true;

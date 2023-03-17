@@ -32,7 +32,7 @@ class StoreUserRequest extends FormRequest
             'second_lastname' => ['nullable', 'string', 'min:3', 'max:20'],
             'ci' => ['required', 'integer', 'numeric', 'min:6', 'max:10', 'unique:users'],
             'ci_type' => ['required', 'in:'.ciTypes()->join(',')],
-            'image' => ['nullable', 'file', 'image', 'min:200', 'max:2048', 'exclude'],
+            'image' => ['nullable', 'file', 'image', 'min:50', 'max:2048', 'exclude'],
             'gender' => ['required', 'in:'.genders()->join(',')],
             'phone' => ['required', 'integer', 'numeric', 'digits:11'],
             'address' => ['required', 'string', 'min:6', 'max:100'],
