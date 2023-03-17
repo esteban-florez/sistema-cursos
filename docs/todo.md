@@ -1,9 +1,8 @@
 ## Myriam:
   
 - Ruta de cambio de imagen de perfil.
-- Ejecutar "php artisan storage:link"
 - Revisar validaciones ($request->validate() y App/Http/Requests/):
-  - Mínimos y máximos razonables en fechas, cantidades, etc.
+  * Mínimos y máximos razonables en fechas, cantidades, etc.
   - Validaciones inputs HTML.
 - Habilitar y deshabilitar clubes.
 

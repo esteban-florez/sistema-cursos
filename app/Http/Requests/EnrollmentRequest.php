@@ -26,10 +26,9 @@ class EnrollmentRequest extends FormRequest
         return [
             'ref' => [
                 'required_if:type,'.payTypes()->take(2)->join(','),
-                'numeric',
-                'digits_between:4,10',
+                'numeric', 'integer', 'digits_between:4,10',
             ],
-            'amount' => ['required', 'numeric'],
+            'amount' => ['required', 'integer', 'numeric'],
             'type' => ['required', 'in:'.payTypes()->join(',')],
             'category' => ['required', 'in:'.payCategories()->join(',')],
             'mode' => ['required', 'in:'.modes()->join(',')],

@@ -18,7 +18,7 @@ class PasswordController extends Controller
     public function mail(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email']
+            'email' => ['required', 'email', 'min:6', 'max:50']
         ]);
         
         $status = Password::sendResetLink(
@@ -42,7 +42,7 @@ class PasswordController extends Controller
     {
         $request->validate([
             'token' => 'required',
-            'email' => ['required', 'email'],
+            'email' => ['required', 'email', 'min:6', 'max:50'],
             'password' => ['required', 'max:20', 'confirmed', PasswordRule::defaults()],
         ]);
 
@@ -76,8 +76,8 @@ class PasswordController extends Controller
         $user = Auth::user();
 
         $data = $request->validate([
-            'current_password' => ['current_password'],
-            'password' => [PasswordRule::defaults(), 'confirmed'],
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'max:20', PasswordRule::defaults(), 'confirmed'],
         ]);
 
         $user->update($data);

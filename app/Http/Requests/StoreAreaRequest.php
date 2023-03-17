@@ -25,8 +25,9 @@ class StoreAreaRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:50', 'unique:areas'],
-            'pnf_id' => ['required', new ValidID('PNF')]
+            'name' => ['required', 'string', 'min:5', 'max:50', 'unique:areas'],
+            'pnf_id' => ['required', 'numeric', 'integer', 
+                new ValidID('PNF')]
         ];
     }
 }

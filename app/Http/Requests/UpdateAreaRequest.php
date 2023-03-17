@@ -25,16 +25,13 @@ class UpdateAreaRequest extends FormRequest
      */
     public function rules()
     {
+        $id = $this->route('area');
+
         return [
-            'name' => [
-                'required',
-                'max:50',
-                Rule::unique('areas')->ignore($this->route('area')),
-            ],
-            'pnf_id' => [
-                'required',
-                new ValidID('PNF'),
-            ]
+            'name' => ['required', 'string', 'min:5', 'max:50', 
+                Rule::unique('areas')->ignore($id)],
+            'pnf_id' => ['required', 'numeric', 'integer', 
+                new ValidID('PNF')]
         ];
     }
 }

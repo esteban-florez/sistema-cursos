@@ -24,8 +24,8 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'min:4', 'max:100'],
-            'description' => ['required', 'string', 'min:20', 'max:255'],
+            'name' => ['required', 'string', 'min:4', 'max:40'],
+            'description' => ['required', 'string', 'min:10', 'max:100'],
         ]);
 
         $data['code'] = $this->generateCode();
@@ -46,8 +46,8 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'min:4', 'max:100'],
-            'description' => ['required', 'string', 'min:20', 'max:50'],
+            'name' => ['required', 'string', 'min:4', 'max:40'],
+            'description' => ['required', 'string', 'min:10', 'max:100'],
         ]);        
 
         $item->update($data);

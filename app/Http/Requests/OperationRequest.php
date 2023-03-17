@@ -32,8 +32,9 @@ class OperationRequest extends FormRequest
         return [
             'amount' => ['required', 'numeric', 'integer', 'min:1', 'max:'.$max],
             'type' => ['required', 'in:'.operationTypes()->join(',')],
-            'reason' => ['nullable', 'string', 'min:6', 'max:255'],
-            'item_id' => ['required', 'numeric', new ValidID],
+            'reason' => ['nullable', 'string', 'min:6', 'max:100'],
+            'item_id' => ['required', 'numeric', 'integer', 
+                new ValidID],
         ];
     }
 

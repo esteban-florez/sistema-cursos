@@ -31,18 +31,10 @@ class StoreLoanRequest extends FormRequest
 
         return [
             'amount' => ['required', 'integer', 'numeric', 'min:1', 'max:'.$max],
-            'item_id' => [
-                'required', 
-                'integer', 
-                'numeric',
-                new ValidID,
-            ],
-            'club_id' => [
-                'required', 
-                'integer', 
-                'numeric',
-                new ValidID,
-            ],
+            'item_id' => ['required', 'integer', 'numeric', 
+                new ValidID],
+            'club_id' => ['required', 'integer', 'numeric', 
+                new ValidID],
         ];
     }
 

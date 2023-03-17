@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidID;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
 
@@ -25,23 +26,23 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['required', 'max:30'],
-            'second_name' => ['nullable', 'max:30'],
-            'first_lastname' => ['required', 'max:30'],
-            'second_lastname' => ['nullable', 'max:30'],
-            'ci' => ['required', 'integer', 'numeric', 'unique:users'],
+            'first_name' => ['required', 'string', 'min:3', 'max:20'],
+            'second_name' => ['nullable', 'string', 'min:3', 'max:20'],
+            'first_lastname' => ['required', 'string', 'min:3', 'max:20'],
+            'second_lastname' => ['nullable', 'string', 'min:3', 'max:20'],
+            'ci' => ['required', 'integer', 'numeric', 'min:6', 'max:10', 'unique:users'],
             'ci_type' => ['required', 'in:'.ciTypes()->join(',')],
-            'image' => ['nullable', 'file', 'image', 'max:2048', 'exclude'],
+            'image' => ['nullable', 'file', 'image', 'min:200', 'max:2048', 'exclude'],
             'gender' => ['required', 'in:'.genders()->join(',')],
-            'phone' => ['required', 'digits:11'],
-            'address' => ['required', 'string','max:255'],
-            'email' => ['required', 'email', 'max:50', 'unique:users'],
-            'password' => ['required', 'max:50', 'confirmed', Password::defaults()],
+            'phone' => ['required', 'integer', 'numeric', 'digits:11'],
+            'address' => ['required', 'string', 'min:6', 'max:100'],
+            'email' => ['required', 'email', 'min:6', 'max:50', 'unique:users'],
+            'password' => ['required', 'max:20', 'confirmed', Password::defaults()],
             'birth' => ['required', 'date', 'before:now'],
             'role' => ['required', 'in:'.roles()->join(',')],
             'grade' => ['nullable', 'in:'.grades()->join(','), 'required_if:role,Estudiante'],
-            'degree' => ['nullable', 'string', 'max:100', 'required_if:role,Instructor'],
-            'area_id' => ['nullable', 'integer', 'numeric', 'required_if:role,Instructor'],
+            'degree' => ['nullable', 'string', 'required_if:role,Instructor'],
+            'area_id' => ['nullable', 'integer', 'numeric', 'required_if:role,Instructor', new ValidID],
         ];
     }
 }

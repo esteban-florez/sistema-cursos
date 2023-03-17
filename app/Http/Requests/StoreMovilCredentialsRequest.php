@@ -24,9 +24,9 @@ class StoreMovilCredentialsRequest extends FormRequest
     public function rules()
     {
         return [
-            'ci' => ['required', 'string'],
-            'bank' => ['required', 'string'],
-            'phone' => ['required', 'string'],
+            'ci' => ['required', 'integer', 'numeric', 'min:6', 'max:10'],
+            'bank' => ['required', 'string', 'min:5', 'max:50'],
+            'phone' => ['required', 'integer', 'numeric', 'digits:11'],
         ];
     }
 }

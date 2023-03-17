@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ValidID;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -26,22 +27,24 @@ class UpdateUserRequest extends FormRequest
     {
         $user = $this->route('user');
 
-        $rules = [
-            'first_name' => ['required', 'max:30'],
-            'second_name' => ['nullable', 'max:30'],
-            'first_lastname' => ['required', 'max:30'],
-            'second_lastname' => ['nullable', 'max:30'],
-            'ci' => ['required', 'integer', 'numeric', Rule::unique('users')->ignoreModel($user)],
+        return [
+            'first_name' => ['required', 'string', 'min:3', 'max:20'],
+            'second_name' => ['nullable', 'string', 'min:3', 'max:20'],
+            'first_lastname' => ['required', 'string', 'min:3', 'max:20'],
+            'second_lastname' => ['nullable', 'string', 'min:3', 'max:20'],
+            'ci' => ['required', 'integer', 'numeric', 'min:6', 'max:10',  
+                Rule::unique('users')->ignoreModel($user)],
             'ci_type' => ['required', 'in:'.ciTypes()->join(',')],
             'gender' => ['required', 'in:'.genders()->join(',')],
-            'phone' => ['required', 'digits:11'],
-            'address' => ['required', 'string','max:255'],
+            'phone' => ['required', 'integer', 'numeric', 'digits:11'],
+            'address' => ['required', 'string', 'min:6', 'max:100'],
             'birth' => ['required', 'date', 'before:now'],
-            'grade' => Rule::when($user->role === "Estudiante", ['required', 'in:'.grades()->join(',')]),
-            'degree' => Rule::when($user->role === "Instructor", ['required', 'string', 'max:100']),
-            'area_id' => Rule::when($user->role === "Instructor", ['required', 'integer', 'numeric']),
+            'grade' => Rule::when($user->role === "Estudiante", 
+                ['required', 'in:'.grades()->join(',')]),
+            'degree' => Rule::when($user->role === "Instructor", 
+                ['required', 'string']),
+            'area_id' => Rule::when($user->role === "Instructor", 
+                ['required', 'integer', 'numeric', new ValidID]),
         ];
-
-        return $rules;
     }
 }

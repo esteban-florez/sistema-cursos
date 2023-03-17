@@ -26,8 +26,8 @@ Route::get('areas', function () {
 
 Route::post('areas', function (Request $request) {
     $data = $request->validate([
-        'area_name' => ['required', 'max:50', 'unique:areas,name', 'exclude'],
-        'pnf_id' => ['required', new ValidID('PNF')]
+        'area_name' => ['required', 'string', 'min:5', 'max:50', 'unique:areas,name', 'exclude'],
+        'pnf_id' => ['required', 'numeric', 'integer', new ValidID('PNF')]
     ]);
 
     $data['name'] = $request->input('area_name');

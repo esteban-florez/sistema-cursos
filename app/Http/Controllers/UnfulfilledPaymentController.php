@@ -59,13 +59,12 @@ class UnfulfilledPaymentController extends Controller
         $this->authorize('unfulfilled-payments.update', $payment);
 
         $data = $request->validate([
-            'type' => ['required', 'in:'.payTypes()->join(',')],
             'ref' => [
                 'required_if:type,'.payTypes()->take(2)->join(','),
-                'numeric',
-                'digits_between:4,10',
+                'numeric', 'integer', 'digits_between:4,10',
             ],    
-            'amount' => ['required', 'numeric'],
+            'type' => ['required', 'in:'.payTypes()->join(',')],
+            'amount' => ['required', 'integer', 'numeric'],
         ]);    
 
         $data['fulfilled'] = true;

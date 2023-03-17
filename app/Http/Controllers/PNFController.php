@@ -29,8 +29,8 @@ class PNFController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255', 'min:4', 'unique:pnfs'],
-            'leader' => ['required', 'string', 'max:255', 'min:4'],
+            'name' => ['required', 'string', 'min:5', 'max:50', 'unique:pnfs'],
+            'leader' => ['required', 'string', 'min:5', 'max:50'],
         ]);
 
         PNF::create($data);
@@ -51,10 +51,10 @@ class PNFController extends Controller
     {
         $data = $request->validate([
             'name' => [
-                'required', 'string', 'max:255', 'min:4',
+                'required', 'string', 'min:5', 'max:50',
                 Rule::unique('pnfs')->ignoreModel($pnf)
             ],
-            'leader' => ['required', 'string', 'max:255', 'min:4'],
+            'leader' => ['required', 'string', 'min:5', 'max:50'],
         ]);
 
         $pnf->update($data);
