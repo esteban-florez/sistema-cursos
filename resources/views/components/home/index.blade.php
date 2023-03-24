@@ -2,7 +2,7 @@
 
 @can('role', ['Instructor', 'Estudiante'])
   <div class="row">
-    @if ($payments->isNotEmpty() && $user->payments()->unfulfilled())
+    @if ($payments->isNotEmpty())
       <div class="col-12 col-lg-6">
         <x-home.card color="dark" col="12" title="Cuotas restantes" :url="route('unfulfilled-payments.index', ['user' => $user])">
           @foreach ($payments as $payment)

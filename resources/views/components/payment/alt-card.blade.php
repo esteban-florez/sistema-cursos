@@ -5,10 +5,6 @@
   $enrollment = $payment->enrollment;
 @endphp
 
-@push('css')
-  <link rel="stylesheet" href="{{ asset('css/students-payments.css') }}">
-@endpush
-
 <div class="card payment-card">
   <div class="card-header">
     @can('users.enrollments.view', $enrollment)

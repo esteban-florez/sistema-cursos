@@ -8,6 +8,8 @@
 
 4. Almacenar respuesta en cache para optimizar.
 
+5. Un archivo de JavaScript aparte que haga eso mismo para todos los input type number xD. 
+
 - Mejoras de formularios con JavaScript en el Frontend (validación, comodidad, formatos).
 
 - En pagos, renombrar "tipo" a "método", y "categoría" a "tipo".

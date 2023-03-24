@@ -12,6 +12,7 @@
     'confirmado' => 'success',
     'respaldado' => 'success',
     'restaurado' => 'warning', 
+    'realizado' => 'success',
   ]);
 
   $color = $colors

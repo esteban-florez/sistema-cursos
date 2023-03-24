@@ -13,6 +13,7 @@
         ->merge(['type' => 'text', 'autocomplete' => 'off'])
     }}
     @if($validNumber)
+      {{-- IMPROVE -> 5 amigo mío xDDD --}}
       min="0"
       onkeypress="return event.charCode >= 48"
       oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
