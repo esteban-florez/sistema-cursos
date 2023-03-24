@@ -19,8 +19,8 @@ class CourseSeeder extends Seeder
         Course::factory([
             'name' => 'Programación Web',
             'description' => 'Curso de Programación Web con HTML, CSS, JavaScript, PHP, MySQL. Aprende las bases del desarrollo web con este curso básico perfecto para principiantes.',
-            'total_price' => 45,
-            'reserv_price' => 10,
+            'total_price' => 1080,
+            'reserv_price' => 240,
             'start_ins' => now()->subDays(6),
             'end_ins' => now()->addDays(7),
             'start_course' => now()->addDays(8),
@@ -72,7 +72,7 @@ class CourseSeeder extends Seeder
         Course::factory([
             'name' => 'Cocina Profesional',
             'description' => 'En este curso de Cocina profesional aprenderás aplicar los procesos asociados en la gastronomía, con el fin de producir platillos de alta calidad. Es fácil de aprender y solo se requiere tener conocimientos elementales.',
-            'reserv_price' => 8,
+            'reserv_price' => 175,
             'start_ins' => now()->subDays(28),
             'end_ins' => now()->subDays(15),
             'start_course' => now()->subDays(14),
@@ -89,7 +89,7 @@ class CourseSeeder extends Seeder
         Course::factory([
             'name' => 'Fundamentos de la Matemática',
             'description' => 'En este curso aprenderás todo lo necesario para aprobar tus asignaturas de matemáticas en tu universidad. Desde los conceptos más básicos hasta ejercicios avanzados, todo explicado hasta el mínimo detalle.',
-            'reserv_price' => 5,
+            'reserv_price' => 125,
             'start_ins' => now()->subDays(35),
             'end_ins' => now()->subDays(22),
             'start_course' => now()->subDays(21),

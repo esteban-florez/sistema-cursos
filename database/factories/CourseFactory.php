@@ -25,8 +25,8 @@ class CourseFactory extends Factory
         return [
             'name' => implode(' ', $this->faker->words(2)),
             'description' => $this->faker->text(200),
-            'total_price' => $this->faker->randomElement([25, 30, 45, 50]),
-            'reserv_price' => $this->faker->boolean() ? $this->faker->randomElement([5, 8, 10]) : null,
+            'total_price' => $this->faker->randomElement([625, 750, 1080, 1250]),
+            'reserv_price' => $this->faker->boolean() ? $this->faker->randomElement([125, 175, 240]) : null,
             'start_ins' => $start_ins->format(DV),
             'end_ins' => $end_ins->format(DV),
             'start_course' => $start_course->format(DV),

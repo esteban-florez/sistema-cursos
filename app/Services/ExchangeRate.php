@@ -29,7 +29,11 @@ class ExchangeRate
 
     public static function get()
     {
-        $htmlString = self::fetch();
+        try {
+            $htmlString = self::fetch();
+        } catch (\Throwable $th) {
+            return 24.30; // fallback value
+        }
 
         $document = new DOMDocument;
 
@@ -41,6 +45,8 @@ class ExchangeRate
         $strong = $dolarDiv->getElementsByTagName('strong')[0];
         $priceString = trim($strong->textContent);
         $priceString = str_replace(',', '.', $priceString);
-        return floatval($priceString);
+        $price = floatval($priceString);
+        $formattedPrice = number_format($price, 2);
+        return floatval($formattedPrice);
     }
 }

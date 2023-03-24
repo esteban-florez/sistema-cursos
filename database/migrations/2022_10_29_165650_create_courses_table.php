@@ -18,8 +18,8 @@ class CreateCoursesTable extends Migration
             $table->string('name')->unique();
             $table->string('image');
             $table->text('description');
-            $table->integer('total_price');
-            $table->integer('reserv_price')->nullable();
+            $table->float('total_price');
+            $table->float('reserv_price')->nullable();
             $table->date('start_ins');
             $table->date('end_ins');
             $table->date('start_course');

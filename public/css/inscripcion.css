@@ -43,31 +43,3 @@
     padding: 20px;
   }
 }
-
-/* loading state */
-.loading-container {
-  padding-top: 5rem;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.loading {
-  width: 15rem;
-  height: 15rem;
-  border: 1.5rem solid transparent;
-  border-bottom-color: #007bff;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 2s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-} 

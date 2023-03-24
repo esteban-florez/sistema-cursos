@@ -9,11 +9,12 @@ function getDolarPrice() {
     })
     .then(() => {
       console.log("i'll try to do my best <3")
-      document.querySelector('.loading-container').remove()
-      document.querySelector('#stepperSection').setAttribute('style', '')
+      document.querySelector('.loading-container')?.remove()
+      document.querySelector('.hidden-section')?.classList?.remove('hidden-section')
     })
     .catch(err => {
       console.log(err)
+      getDolarPrice()
     })
 }
 

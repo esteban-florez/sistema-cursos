@@ -5,6 +5,7 @@
 - Gráficas y estadísticas.
 - Validaciones inputs de fecha.
 - Ruta de cambio de imagen de perfil.
+- Poner redes sociales en modal de "Contáctanos".
 
 ## Tareas a largo plazo:
 
