@@ -182,19 +182,18 @@ class Course extends Model
 
     public function getTotalAmountAttribute()
     {
-        return "$ {$this->total_price},00";
+        return $this->formatPrice($this->total_price);
     }
 
     public function getReservAmountAttribute()
     {
-        return "$ {$this->reserv_price},00";
+        return $this->formatPrice($this->reserv_price);
     }
 
     public function getRemainingAmountAttribute()
     {
         $remaining = $this->total_price - $this->reserv_price;
-        
-        return "$ {$remaining},00";
+        return $this->formatPrice($remaining);
     }
 
     public function setDaysAttribute($daysArray)
@@ -232,5 +231,11 @@ class Course extends Model
                 $query->where('end_course', '<', $now);
                 break;
         }   
+    }
+
+    protected function formatPrice($price)
+    {
+        $formatted = number_format($price, 2, ',', '.');
+        return "{$formatted} Bs.D.";
     }
 }

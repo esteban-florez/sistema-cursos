@@ -43,7 +43,7 @@ class Backup
     }
     
     public static function all() {
-        $path = storage_path('app/Vinculacion-Social');
+        $path = storage_path('app/backups');
 
         return collect(File::files($path))
             ->map(function ($file) {
@@ -66,7 +66,7 @@ class Backup
 
     public static function store($file)
     {
-        $path = storage_path('app/Vinculacion-Social');
+        $path = storage_path('app/backups');
         $filename = $file->getClientOriginalName();
         $filepath = "{$path}/{$filename}";
 

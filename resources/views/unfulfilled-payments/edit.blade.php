@@ -6,15 +6,21 @@
     <link rel="stylesheet" href="{{ asset('css/loading.css') }}">
   @endpush
   @push('js')
+    <script defer src="{{ asset('js/dolar.js') }}"></script>
     <script defer src="{{ asset('js/ref-input.js') }}"></script>
     <script type="module" src="{{ asset('js/print-amount.js') }}"></script>
   @endpush
-  @php
-    $user = auth()->user();
-  @endphp
   <x-select2 />
-  <div id="serialized" data-course="{{ json_encode($course) }}"></div>
-  <section class="container-fluid">
+  <div
+    id="serialized"
+    data-course="{{ json_encode($course) }}"
+    data-dolar="{{ route('api.dolar') }}"
+    >
+  </div>
+  <div class="loading-container">
+    <span class="loading"></span>
+  </div>
+  <section class="container-fluid hidden-section">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6">
         <div class="card my-2">
@@ -41,8 +47,8 @@
                   Referencia:
                 </x-field>
                 <div class="d-flex gap-2">
-                  @can($user, 'unfulfilled-payments.viewAny', $payment)
-                    <x-button color="secondary" icon="arrow-left" :url="route('unfulfilled-payments.index', ['user' => $user])">
+                  @can('unfulfilled-payments.viewAny', $user)
+                    <x-button color="secondary" icon="arrow-left" :url="route('unfulfilled-payments.index', ['user' => auth()->user()])">
                       Volver
                     </x-button>
                   @endcan

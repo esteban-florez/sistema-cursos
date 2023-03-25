@@ -23,13 +23,14 @@ class HomeController extends Controller
             ->limit(2)
             ->get();
             
-        $payments = Payment::unfulfilled()
+        $payments = $user->payments()
+            ->unfulfilled()
             ->orderBy('id', 'desc')
             ->limit(1)
             ->get();
 
         if ($user->role === 'Administrador') {
-            $payments = Payment::where('status', 'Pendiente',)
+            $payments = Payment::where('status', 'Pendiente')
                 ->orderBy('id', 'desc')
                 ->limit(2)
                 ->get();

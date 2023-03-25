@@ -10,6 +10,7 @@
   @endpush
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/inscripcion.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/loading.css') }}">
   @endpush
   @push('js-plugins')
     <script defer src="{{ asset('js/bs-stepper.min.js') }}"></script>
@@ -23,7 +24,7 @@
   <div class="loading-container">
     <span class="loading"></span>
   </div>
-  <section class="container-fluid px-3" id="stepperSection" style="display: none;">
+  <section class="container-fluid px-3 hidden-section">
     <x-errors />
     <div class="card mt-3">
       <div class="card px-3 pt-2 m-0 bg-primary">

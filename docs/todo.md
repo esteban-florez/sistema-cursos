@@ -1,12 +1,11 @@
 ## Myriam:
-  
-- Ruta de cambio de imagen de perfil.
-- Decidir si hacer una vista de todas las notificaciones o quitar ese link.
 
 ## Esteban:
 
 - Gráficas y estadísticas.
-- Cambio de roles (wtf preguntar a Jackson).
+- Validaciones inputs de fecha.
+- Ruta de cambio de imagen de perfil.
+- Poner redes sociales en modal de "Contáctanos".
 
 ## Tareas a largo plazo:
 

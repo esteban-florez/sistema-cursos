@@ -3,7 +3,9 @@
     {{ Breadcrumbs::render('users.payments.index', $user) }}
   </x-slot>
   <x-alert />
-  
+  @push('css')
+    <link rel="stylesheet" href="{{ asset('css/students-payments.css') }}">
+  @endpush
   <section class="container-fluid payments-flex mt-3">
     @if ($payments->isNotEmpty())
       @foreach ($payments as $payment)

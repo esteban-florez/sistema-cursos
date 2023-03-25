@@ -37,18 +37,18 @@
       </x-select>
     </div>
     <div class="col-12 col-sm-6">
-      <x-input-group type="number" name="total_price" id="totalPrice" placeholder="Ej. 45" value="{{ old('total_price') ?? $course->total_price ?? '' }}" max="100" maxlength="3" validNumber required>
+      <x-input-group type="number" name="total_price" id="totalPrice" placeholder="Ej. 900" value="{{ old('total_price') ?? $course->total_price ?? '' }}" max="2500" maxlength="4" step="0.01" validNumber required>
         Monto Total:
         <x-slot name="append">
-          <span class="input-group-text">$</span>
+          <span class="input-group-text">Bs.D.</span>
         </x-slot>
       </x-input-group>
     </div>
     <div class="col-12 col-sm-6">
-      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 5" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" max="25" maxlength="2" validNumber>
+      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 100" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" max="625" maxlength="3" step="0.01" validNumber>
         Monto de Reservación:
         <x-slot name="append">
-          <span class="input-group-text">$</span>
+          <span class="input-group-text">Bs.D.</span>
         </x-slot>
       </x-input-group>
     </div>

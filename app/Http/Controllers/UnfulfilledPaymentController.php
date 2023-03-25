@@ -78,6 +78,6 @@ class UnfulfilledPaymentController extends Controller
                 'unfulfilled-payments.index', [
                     'user' => $payment->enrollment->student,
                 ])
-            ->with('alerts', trans('alerts.fulfilled'));
+            ->with('alert', trans('alerts.fulfilled'));
     }
 }

@@ -1,11 +1,3 @@
-.payment-card a {
-  color: black;
-}
-
-.payment-card a:hover {
-  text-decoration: underline;
-}
-
 @media screen and (min-width: 596px) {
   .payments-flex {
     width: 90%;
