@@ -37,7 +37,7 @@ class PNFController extends Controller
 
         return redirect()
             ->route('pnfs.index')
-            ->with('alert', trans('alerts.pnf.created'));
+            ->with('alert', trans('alerts.pnfs.created'));
     }
 
     public function edit(PNF $pnf)
@@ -61,6 +61,6 @@ class PNFController extends Controller
 
         return redirect()
             ->route('pnfs.index')
-            ->with('alert', trans('alerts.pnf.updated'));
+            ->with('alert', trans('alerts.pnfs.updated'));
     }
 }

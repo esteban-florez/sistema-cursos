@@ -11,7 +11,7 @@
     @endcan
   </x-layout.bar>
   <section class="container-fluid">
-    <x-alert/>
+    <x-alert />
     @if ($pnfs->isNotEmpty())
       <div class="row px-3 my-3" style="row-gap: 1rem;">
         @foreach ($pnfs as $pnf)

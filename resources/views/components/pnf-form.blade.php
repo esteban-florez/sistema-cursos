@@ -1,7 +1,9 @@
 @props(['pnf' => null])
 
 @php
-  $action = $pnf ? route('pnfs.update', $pnf) : route('pnfs.store');
+  $action = $pnf 
+    ? route('pnfs.update', $pnf) 
+    : route('pnfs.store');
 @endphp
 
 <section class="container-fluid">
@@ -9,10 +11,10 @@
     <div class="card col-md-6 mt-3">
       <div class="card-body">
         <form method="POST" action="{{ $action }}">
-          @csrf
           @if ($pnf)
             @method('PUT')
           @endif
+          @csrf
           <h3>{{$pnf ? 'Editar' : 'Añadir'}} PNF</h3>
           <p class="font-italic">
             <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
@@ -23,11 +25,11 @@
           <x-field name="leader" placeholder="Ej. Luis Vargas" :value="old('leader') ?? $pnf->leader ?? ''" minlength="5" maxlength="50" required>
             Jefe de Departamento:
           </x-field>
-            @can('viewAny', App\Models\PNF::class)
-              <x-button color="secondary" icon="times" :url="route('pnfs.index')">
-                Cancelar
-              </x-button>
-            @endcan
+          @can('viewAny', App\Models\PNF::class)
+            <x-button color="secondary" icon="times" :url="route('pnfs.index')">
+              Cancelar
+            </x-button>
+          @endcan
           <x-button color="success" icon="check" type="submit">
             Aceptar 
           </x-button>

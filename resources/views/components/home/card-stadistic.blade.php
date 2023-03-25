@@ -1,7 +1,7 @@
 <!-- TODO -> real statistics -->
 <div class="row">
   <div class="col-6">
-    <div class="small-box bg-info">
+    <div class="small-box bg-info mb-0">
       <div class="inner">
         <h3>500</h3>
         <p class="font-weight-bold mb-2">Total de Usuarios</p>
@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="col-6">
-    <div class="small-box bg-success">
+    <div class="small-box bg-success mb-0">
       <div class="inner">
         <h3>12k $</h3>
         <p class="font-weight-bold mb-2">Total de Ingresos</p>

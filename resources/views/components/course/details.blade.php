@@ -65,6 +65,7 @@
             <x-button 
               :url="route('courses.edit', $course)"
               icon="edit"
+              color="warning" 
             >
               Editar
             </x-button>

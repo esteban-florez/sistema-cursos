@@ -32,7 +32,7 @@ class UpdateClubRequest extends FormRequest
             'name' => ['required', 'string', 'min:5', 'max:30', 
                 Rule::unique('clubs')->ignore($id)],
             'image' => ['nullable', 'file', 'image', 'min:50', 'max:2048', 'exclude'],
-            'description' => ['required', 'string', 'min:10', 'max:100'],
+            'description' => ['required', 'string', 'min:10', 'max:255'],
             'day' => ['required', 'in:'.days()->join(',')],
             'start_hour' => ['required', 'before:end_hour', 
                 new Interval('end_hour', 8, 'h')],
