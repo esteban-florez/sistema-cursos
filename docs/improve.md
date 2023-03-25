@@ -8,7 +8,9 @@
 
 4. Almacenar respuesta en cache para optimizar.
 
-5. Un archivo de JavaScript aparte que haga eso mismo para todos los input type number xD. 
+5. Un archivo de JavaScript aparte que haga eso mismo para todos los input type number xD.
+
+- Marcar notificaciones leídas con AJAX.
 
 - Mejoras de formularios con JavaScript en el Frontend (validación, comodidad, formatos).
 
