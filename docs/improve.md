@@ -10,6 +10,8 @@
 
 5. Un archivo de JavaScript aparte que haga eso mismo para todos los input type number xD.
 
+- En "public/js/charts/" y en "ChartController" se puede hacer una cantidad insana de DRY y mejorar los algoritmos porque ahorita son O(n2) 
+
 - Marcar notificaciones leídas con AJAX.
 
 - Mejoras de formularios con JavaScript en el Frontend (validación, comodidad, formatos).

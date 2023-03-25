@@ -17,7 +17,7 @@ class CreateEnrollmentsTable extends Migration
             $table->id();
             $table->enum('mode', modes()->all());
             $table->timestamp('confirmed_at')->nullable();
-            $table->enum('approval', ['Aprobado', 'Reprobado', 'Por decidir'])
+            $table->enum('approval', approvalStatuses()->all())
                 ->default('Por decidir');
             $table->foreignId('course_id')->constrained();
             $table->foreignId('user_id')->constrained();

@@ -57,6 +57,13 @@ if (!function_exists('payStatuses')) {
     }
 }
 
+
+if (!function_exists('approvalStatuses')) {
+    function approvalStatuses() {
+        return collect(['Aprobado', 'Reprobado', 'Por decidir']);
+    }
+}
+
 if (!function_exists('clubStatuses')) {
     function clubStatuses() {
         return collect(['Activo', 'Inactivo']);
