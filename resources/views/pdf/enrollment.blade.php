@@ -32,17 +32,16 @@
         <li>Correo Electrónico: <span>{{ $student->email }}</span></li>
       </ul>
     </section>
-    <p class="note">Nota: Esta planilla debe ser llevada antes del {{ $expires }} al Departamento de Vinculación Social en la UPTA La Victoria, para confirmar la inscripción. </p>
     <section class="small">
       <p>Documentos a Consignar</p>
       <p>(Original y Copia)</p>
     </section>
-    <section class="checks">
+    <div class="checks">
       <ul>
         <li>Copia de Cédula de Identidad</li>
         <li>Partida de Nacimiento</li>
       </ul>
-    </section>
+    </div>
   </main>
   <table>
     <tbody>
@@ -63,4 +62,10 @@
       </tr>
     </tbody>
   </table>
+  <section>
+    <p class="note">Nota: Esta planilla debe ser llevada antes del {{ $expires }} al Departamento de Vinculación Social en la UPTA La Victoria, para confirmar la inscripción. </p>
+  </section>
+  <footer>
+    <span>Dirección(Sede Principal): Avenida Universidad s/n, al lado del Comando de la FAN, La Victoria Edo Aragua</span>
+  </footer>
 </body>
