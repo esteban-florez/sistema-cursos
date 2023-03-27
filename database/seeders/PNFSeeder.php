@@ -17,24 +17,23 @@ class PNFSeeder extends Seeder
         PNF::truncate();
 
         $pnfs = [
-            'Extensión Universitaria' => 'N/A',
-            'Administración' => 'Carlos Administrador',
-            'Agroalimentación' => 'Juan Agrónomo',
-            'Contaduría Pública' => 'Alberto Contador',
-            'Electricidad' => 'Luis Eléctrico',
-            'Electrónica' => 'Miguel Electrónico',
-            'Informática' => 'Anyerg Martínez',
-            'Instrumentación y Control' => 'Bob el Consructor',
-            'Mantenimiento' => 'Daniel Mantenedor',
-            'Mecánica' => 'Juan Mecánico',
-            'Sistemas de Calidad y Ambiente' => 'Pedro Calidrupi',
-            'Telecomunicaciones' => 'Wilson Psíquico',
+            'Extensión Universitaria',
+            'Administración',
+            'Agroalimentación',
+            'Contaduría Pública',
+            'Electricidad',
+            'Electrónica',
+            'Informática',
+            'Instrumentación y Control',
+            'Mantenimiento',
+            'Mecánica',
+            'Sistemas de Calidad y Ambiente',
+            'Telecomunicaciones',
         ];
         
-        foreach ($pnfs as $name => $leader) {
+        foreach ($pnfs as $name) {
             PNF::create([
                 'name' => $name,
-                'leader' => $leader,
             ]);
         }
     }

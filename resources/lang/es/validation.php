@@ -193,7 +193,7 @@ return [
         'end_course' => 'fin del curso',
         'duration' => 'la duración',
         'student_limit' => 'el límite de estudiantes',
-        'days' => 'los días',
+        'days' => 'el día',
         'start_hour' => 'la hora de inicio',
         'end_hour' => 'la hora de cierre',
         'day' => 'el día',
@@ -218,9 +218,6 @@ return [
         // Credentials attributes
         'bank' => 'el banco',
         'account' => 'el número de cuenta',
-
-        // PNF attributes
-        'leader' => 'el Jefe de Departamento',
 
         // Area attributes
         'area_name' => 'el nombre',

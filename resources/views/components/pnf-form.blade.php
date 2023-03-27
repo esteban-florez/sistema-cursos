@@ -2,7 +2,7 @@
 
 @php
   $action = $pnf 
-    ? route('pnfs.update', $pnf) 
+    ? route('pnfs.update', $pnf)
     : route('pnfs.store');
 @endphp
 
@@ -25,11 +25,9 @@
           <x-field name="leader" placeholder="Ej. Luis Vargas" :value="old('leader') ?? $pnf->leader ?? ''" minlength="5" maxlength="50" required>
             Jefe de Departamento:
           </x-field>
-          @can('viewAny', App\Models\PNF::class)
-            <x-button color="secondary" icon="times" :url="route('pnfs.index')">
-              Cancelar
-            </x-button>
-          @endcan
+          <x-button color="secondary" icon="times" :url="route('pnfs.index')">
+            Cancelar
+          </x-button>
           <x-button color="success" icon="check" type="submit">
             Aceptar 
           </x-button>

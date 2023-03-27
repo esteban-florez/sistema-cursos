@@ -1,5 +1,5 @@
 'use strict'
-options = {
+const options = {
   backdrop: 'static',
   keyboard: false,
   show: true,

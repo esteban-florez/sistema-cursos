@@ -160,7 +160,7 @@
                   Usuarios
                 </x-layout.sidebar.item>
               @endcan
-              @can('viewAny', App\Models\PNF::class)
+              @can('role', 'Administrador')
                 <x-layout.sidebar.item :url="route('pnfs.index')" icon="university">
                   PNFs
                 </x-layout.sidebar.item>

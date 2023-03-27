@@ -16,7 +16,6 @@ class CreatePnfsTable extends Migration
         Schema::create('pnfs', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('leader');
             $table->timestamps();
         });
     }

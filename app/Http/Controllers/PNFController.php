@@ -10,7 +10,7 @@ class PNFController extends Controller
 {
     public function __construct()
     {
-        $this->authorizeResource(PNF::class);
+        $this->middleware('role:Administrador');
     }
 
     public function index()
@@ -30,7 +30,6 @@ class PNFController extends Controller
     {
         $data = $request->validate([
             'name' => ['required', 'string', 'min:5', 'max:50', 'unique:pnfs'],
-            'leader' => ['required', 'string', 'min:5', 'max:50'],
         ]);
 
         PNF::create($data);
@@ -54,7 +53,6 @@ class PNFController extends Controller
                 'required', 'string', 'min:5', 'max:50',
                 Rule::unique('pnfs')->ignoreModel($pnf)
             ],
-            'leader' => ['required', 'string', 'min:5', 'max:50'],
         ]);
 
         $pnf->update($data);

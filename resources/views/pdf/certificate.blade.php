@@ -35,13 +35,6 @@
         </td>
         @if($course->area->pnf->name === 'Extensión Universitaria')
           <td>
-          </td>
-          <td>
-            <div>
-              ____________________
-              <p class="bold-italic small">Ing. {{ $course->instructor->full_name }}</p>
-              <p class="bold-italic small">Instructor del curso</p>
-            </div>
           </td>  
         @else
           <td>
@@ -51,14 +44,14 @@
               <p class="bold-italic small">Rectora de la UPTA La Victoria</p>
             </div>
           </td>
-          <td>
-            <div>
-              ____________________
-              <p class="bold-italic small">Ing. {{ $course->area->pnf->leader }}</p>
-              <p class="bold-italic small">Jefe del Departamento de {{ $course->area->pnf->name }}</p>
-            </div>
-          </td>
         @endif
+        <td>
+          <div>
+            ____________________
+            <p class="bold-italic small">Ing. {{ $course->instructor->full_name }}</p>
+            <p class="bold-italic small">Instructor del curso</p>
+          </div>
+        </td>
       </tr>
     </table>
   </div>

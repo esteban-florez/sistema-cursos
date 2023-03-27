@@ -2,14 +2,11 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('pnfs.index') }}
   </x-slot>
-  <x-layout.bar>
-    <x-search placeholder="Buscar PNF..." :value="$search ?? ''" name="search" />
-    @can('create', App\Models\PNF::class)
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('pnfs.create')">
-        Añadir
-      </x-button>
-    @endcan
-  </x-layout.bar>
+  <x-slot name="titleAddon">
+    <x-button icon="plus" color="success" hide-text="sm" :url="route('pnfs.create')">
+      Añadir
+    </x-button>
+  </x-slot>
   <section class="container-fluid">
     <x-alert />
     @if ($pnfs->isNotEmpty())
@@ -19,13 +16,9 @@
             <div class="card mb-0 h-100">
               <div class="card-body">
                 <h3 class="mb-1 text-truncate">{{ $pnf->name }}</h3>
-                <p class="mb-0">Jefe del Departamento:</p>
-                <p class="text-primary text-bold">{{ $pnf->leader }}</p>
-                @can('update', $pnf)
-                  <x-button :url="route('pnfs.edit', $pnf)" color="warning" icon="edit">
-                    Editar
-                  </x-button>
-                @endcan
+                <x-button :url="route('pnfs.edit', $pnf)" color="warning" icon="edit">
+                  Editar
+                </x-button>
               </div>
             </div>
           </div>
