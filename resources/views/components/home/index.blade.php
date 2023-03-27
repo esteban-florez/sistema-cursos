@@ -47,7 +47,7 @@
     </div>
     <div class="col-md-5">
       <x-time hideHour='md'/>
-      <x-home.card col="12" aling="left" title="Estadísticas">
+      <x-home.card col="12" aling="left" title="Estadísticas" :url="route('stats')">
         <x-home.card-stadistic :students="$students" :incomes="$incomes" />
       </x-home.card>
     </div>

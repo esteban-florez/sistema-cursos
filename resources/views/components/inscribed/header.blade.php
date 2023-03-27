@@ -24,9 +24,11 @@
     </b>
   </span>
   
-  @can('pdf.enrollments', $course)
-    <x-button icon="file-download" hide-text="md" :url="route('pdf.enrollments', ['course' => $course])">
-      Generar PDF
-    </x-button>
-  @endcan
+  @if ($course->student_diff >= 1)
+    @can('pdf.enrollments', $course)
+      <x-button icon="file-download" hide-text="md" :url="route('pdf.enrollments', ['course' => $course])">
+        Generar PDF
+      </x-button>
+    @endcan
+  @endif
 </div>

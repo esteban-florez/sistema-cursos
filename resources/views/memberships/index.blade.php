@@ -14,11 +14,13 @@
           Miembros: {{ $club->members_count }}
         </p>
       </div>
-      @can('pdf.memberships', $club)
-        <x-button icon="file-download" hide-text="md" :url="route('pdf.memberships', ['club' => $club])">
-          Generar PDF
-        </x-button>
-      @endcan
+      @if ($club->members_count >= 1)
+        @can('pdf.memberships', $club)
+          <x-button icon="file-download" hide-text="md" :url="route('pdf.memberships', ['club' => $club])">
+            Generar PDF
+          </x-button>
+        @endcan
+      @endif
     </div>
     <div class="list-bottom">
       @if($memberships->total() === 0)
