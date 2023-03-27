@@ -15,7 +15,7 @@
     </div>
     <div>
       @can('role', 'Administrador')
-        <x-button icon="file-download" hide-text="md" :url="route('pdf.payments')">
+        <x-button color="secondary" icon="file-download" hide-text="md" :url="route('pdf.payments')">
           Generar PDF
         </x-button>
       @endcan

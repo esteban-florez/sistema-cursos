@@ -1,4 +1,4 @@
-@props(['payments', 'user', 'courses', 'clubs'])
+@props(['payments', 'user', 'courses', 'clubs', 'students', 'incomes'])
 
 @can('role', ['Instructor', 'Estudiante'])
   <div class="row">
@@ -48,7 +48,7 @@
     <div class="col-md-5">
       <x-time hideHour='md'/>
       <x-home.card col="12" aling="left" title="Estadísticas">
-        <x-home.card-stadistic />
+        <x-home.card-stadistic :students="$students" :incomes="$incomes" />
       </x-home.card>
     </div>
   </div>
