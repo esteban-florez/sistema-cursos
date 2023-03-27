@@ -3,7 +3,6 @@
 ## Esteban:
 
 - Hacer seeders para presentación.
-- Validaciones inputs de fecha.
 - Una sola interfaz de historial de inventario, con entradas y salidas, y prestamos y devoluciones.
 
 ## Tareas a largo plazo:

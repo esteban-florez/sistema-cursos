@@ -83,7 +83,7 @@
         </x-input-group>
       </div>
       <div class="col-md-4">
-        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? ($edit ? $user->birth->format(DV) : '') }}" required>
+        <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? ($edit ? $user->birth->format(DV) : '') }}" max="{{ now()->subDay()->format(DV) }}" required>
           Fecha de nacimiento:
         </x-field>
       </div>

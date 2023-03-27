@@ -40,7 +40,7 @@ class StoreCourseRequest extends FormRequest
                 new Interval('end_ins', 30, 'd')],
             'end_ins' => ['required', 'date', 'after:start_ins', 'before:start_course'],
             'start_course' => ['required', 'date', 'after:end_ins', 'before:end_course', 
-                new Interval('end_course', 90, 'd')],
+                new Interval('end_course', 120, 'd')],
             'end_course' => ['required', 'date', 'after:start_course'],
             'duration' => ['required', 'integer', 'numeric', 'between:4,120'],
             'student_limit' => ['required', 'integer', 'numeric', 'between:15,60'],
