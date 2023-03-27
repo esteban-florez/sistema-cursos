@@ -38,7 +38,7 @@ use App\Http\Controllers\UserCourseController;
 use App\Http\Controllers\UserEnrollmentController;
 use App\Http\Controllers\UserMembershipController;
 use App\Http\Controllers\UserPaymentController;
-use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\UserImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -146,6 +146,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('users/{user}/clubs', [UserClubController::class, 'index'])
         ->name('users.clubs.index');
+
+    Route::patch('users/{user}/profile-img', [UserImageController::class, 'update'])
+        ->name('users.image.update');
 
     // Change password routes
     Route::group([

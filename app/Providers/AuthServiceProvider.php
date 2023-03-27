@@ -96,5 +96,11 @@ class AuthServiceProvider extends ServiceProvider
             return $user->can('role', 'Estudiante')
                 && $model->id === $user->id;
         });
+
+        Gate::define('users.image.update', function (User $user, User $model) {
+            return ( $user->can('role', 'Estudiante') 
+                || $user->can('role', 'Instructor') )
+                && $user->id === $model->id;
+        });
     }
 }

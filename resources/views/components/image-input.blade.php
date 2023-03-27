@@ -11,12 +11,6 @@
   $placeholder = $profile ? 'img/user-placeholder.png' : 'img/placeholder.jpg';
   $image = $image ?? $placeholder;
 @endphp
-{{-- no borrar por ahora xd, esta es la versión que me gustaba más a mi --}}
-{{-- <div class="image-input-container d-flex justify-content-center align-items-center" id="previewWrapper">
-  <span class="badge badge-3 badge-dark position-absolute user-select-none">Click para añadir imagen</span>
-  <img class="img-cover" src="{{ asset('img/placeholder.jpg') }}" alt="Imagen de perfil" id="previewImg"> 
-  <input type="file" name="image" id="imgInput">
-</div> --}}
 
 <label>
   @if ($required)

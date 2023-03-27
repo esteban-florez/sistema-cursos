@@ -1,13 +1,12 @@
 <section class="container-fluid mt-2">
   <x-alert />
+  <x-errors />
   <div class="row no-gutters">
     <div class="col-lg-5 col-xl-4">
       <div class="row">
         <div class="col-md-6 col-lg-12">
           <x-profile.widget 
-            :name="$user->full_name"
-            :role="$user->role"
-            :image="$user->image"
+            :user="$user"
             :enrollment-count="$user->enrollments->count()"
             :membership-count="$user->memberships->count()"
           />
@@ -172,3 +171,4 @@
     </div>
   </div>
 </section>
+<x-profile.modal :user="$user"/>

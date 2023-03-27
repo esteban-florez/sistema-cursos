@@ -38,4 +38,5 @@ return [
         'recovered' => '¡La base de datos se ha restaurado con éxito!'
     ],
     'club-status' => generateAlerts('El estado del club'),
+    'profile-img' => generateAlerts('La imagen de perfil'),
 ];
