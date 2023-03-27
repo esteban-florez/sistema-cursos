@@ -221,11 +221,6 @@ Breadcrumbs::for('pnfs.index', function (Trail $trail) {
     $trail->push('PNFs', route('pnfs.index'));
 });
 
-Breadcrumbs::for('pnfs.create', function (Trail $trail) {
-    $trail->parent('pnfs.index');
-    $trail->push('Añadir PNF', route('pnfs.create'));
-});
-
 Breadcrumbs::for('pnfs.edit', function (Trail $trail, PNF $pnf) {
     $trail->parent('pnfs.index');
     $trail->push($pnf->name);

@@ -5,7 +5,7 @@
   <x-layout.bar>
     <x-search placeholder="Buscar PNF..." :value="$search ?? ''" name="search" />
     @can('create', App\Models\PNF::class)
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('pnfs.create')">
+      <x-button icon="plus" color="success" hide-text="sm" data-target="#createPnfModal" data-toggle="modal">
         Añadir
       </x-button>
     @endcan
@@ -37,4 +37,7 @@
       </div>
     @endif
   </section>
+  @can('create', App\Models\PNF::class)
+    <x-pnf.create-modal id="createPnfModal" />
+  @endcan
 </x-layout.main>

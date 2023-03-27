@@ -42,9 +42,14 @@
               <x-textarea name="reason" placeholder="Ej. Desgaste por uso" :value="old('reason') ?? ''" minlength="6" maxlength="100">
                 Descripción:
               </x-textarea>
-              <x-button color="success" icon="check" type="submit">
-                Aceptar 
-              </x-button>
+              <div class="d-flex justify-content-between">
+                <x-button url="{{ route('items.stock.index') }}" color="danger" icon="times">
+                  Cancelar
+                </x-button>
+                <x-button color="success" icon="check" type="submit">
+                  Aceptar 
+                </x-button>
+              </div>
             </form>
           @endcan
         </div>
