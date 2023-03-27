@@ -22,7 +22,7 @@
       }}
       @if($validNumber)
         min="0"
-        onkeypress="return event.charCode >= 48"
+        onkeypress="return event.charCode !== 45"
         oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength)"
       @endif
     />
