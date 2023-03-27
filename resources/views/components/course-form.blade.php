@@ -28,7 +28,7 @@
         @endcan
       </x-select>
       <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $course->area_id ?? null" required>
-        Área de Formación:
+        Área de formación:
         @can('create', App\Models\Area::class)
           <x-slot name="extra">
             <a class="mt-1 ml-1" href="#" data-toggle="modal" data-target="#createAreaModal">Crear nueva área de formación</a>
@@ -37,16 +37,16 @@
       </x-select>
     </div>
     <div class="col-12 col-sm-6">
-      <x-input-group type="number" name="total_price" id="totalPrice" placeholder="Ej. 900" value="{{ old('total_price') ?? $course->total_price ?? '' }}" max="2500" maxlength="4" step="0.01" validNumber required>
-        Monto Total:
+      <x-input-group type="number" name="total_price" id="totalPrice" placeholder="Ej. 900" value="{{ old('total_price') ?? $course->total_price ?? '' }}" max="2500" maxlength="7" step="0.01" validNumber required>
+        Monto total:
         <x-slot name="append">
           <span class="input-group-text">Bs.D.</span>
         </x-slot>
       </x-input-group>
     </div>
     <div class="col-12 col-sm-6">
-      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 100" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" max="625" maxlength="3" step="0.01" validNumber>
-        Monto de Reservación:
+      <x-input-group type="number" name="reserv_price" id="reservPrice" placeholder="Ej. 100" value="{{ old('reserv_price') ?? $course->reserv_price ?? '' }}" max="625" maxlength="6" step="0.01" validNumber>
+        Monto de reservación:
         <x-slot name="append">
           <span class="input-group-text">Bs.D.</span>
         </x-slot>
@@ -87,7 +87,7 @@
     </div>
     <div class="col-sm-6">
       <x-field type="number" name="student_limit" id="studentLimit" placeholder="Ej. 15" value="{{ old('student_limit') ?? $course->student_limit ?? '' }}" max="60" maxlength="2" validNumber required>
-        Máx. de Estudiantes:
+        Máx. de estudiantes:
       </x-field>
     </div>
     <div class="col-sm-4">
@@ -97,12 +97,12 @@
     </div>
     <div class="col-sm-4">
       <x-field type="time" name="start_hour" id="startTime" value="{{ old('start_hour') ?? ($edit ? $course->start_hour->format(TV) : '') }}" required>
-        Hora de Inicio:
+        Hora de inicio:
       </x-field>
     </div>
     <div class="col-sm-4">
       <x-field type="time" name="end_hour" id="endTime" value="{{ old('end_hour') ?? ($edit ? $course->end_hour->format(TV) : '') }}" required>
-        Hora de Cierre:
+        Hora de cierre:
       </x-field>
     </div>
   </div>

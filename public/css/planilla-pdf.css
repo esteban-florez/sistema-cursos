@@ -6,12 +6,11 @@ body {
 
 .title-box {
   margin: 0 auto;
-  width: 33rem;
-  border: 1px solid royalblue;
-  height: 2rem;
+  width: 28rem;
+  height: 1.2rem;
   background-color: #9DA7EE;
-  padding-top: 4px;
-  border-radius: 4px;
+  padding-top: 5px;
+  border-radius: 10px;
   font-size: 13pt;
 }
 
@@ -23,12 +22,12 @@ h1 {
 
 section {
   margin-top: 3rem;
-  margin-bottom: 3rem;
 }
 
 .data,
 .checks {
   text-align: left;
+  margin-bottom: 2rem;
 }
 
 .checks li {
@@ -78,4 +77,5 @@ img {
 
 .note {
   padding: 0 2.2rem;
+  margin-bottom: 3rem;
 }

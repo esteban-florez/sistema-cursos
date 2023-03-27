@@ -19,7 +19,7 @@
   Añadir imagen:
 </label>
 <div class="image-input-container" id="previewWrapper">
-  <img class="img-cover" id="previewImg" alt="Portada del Curso" min="50" max="2048" 
+  <img class="img-cover" id="previewImg" alt="Portada del Curso" 
     src="{{ asset($image) }}"> 
   <input type="file" name="image" id="imgInput" accept="image/*">
 </div>

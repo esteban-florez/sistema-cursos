@@ -67,5 +67,7 @@
       </div>
     @endif
   </section>
-  <x-loan.modal :clubs="$clubs" />
+  @can('create', App\Models\Loan::class)
+    <x-loan.modal :clubs="$clubs" />
+  @endcan
 </x-layout.main>

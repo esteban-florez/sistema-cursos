@@ -21,11 +21,6 @@ class PNFController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        return view('pnfs.create');
-    }
-
     public function store(Request $request)
     {
         $data = $request->validate([

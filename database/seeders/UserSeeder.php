@@ -256,22 +256,22 @@ class UserSeeder extends Seeder
         ]);
 
         // xD!!
-        User::create([
-            'first_name' => 'Kakashi',
-            'first_lastname' => 'Hatake',
-            'ci' => 77777777, 
-            'ci_type' => 'E',
-            'gender' => 'Masculino',
-            'phone' => '04127777777',
-            'address' => 'Konohagakure',
-            'email' => 'kakashi@konoha.com',
-            'password' => 'Konoha20.',
-            'degree' => 'Jonin de Konoha',
-            'birth' => '1989-02-10',
-            'is_upta' => true,
-            'area_id' => 11,
-            'role' => 'Instructor',
-        ]);
+        // User::create([
+        //     'first_name' => 'Kakashi',
+        //     'first_lastname' => 'Hatake',
+        //     'ci' => 77777777, 
+        //     'ci_type' => 'E',
+        //     'gender' => 'Masculino',
+        //     'phone' => '04127777777',
+        //     'address' => 'Konohagakure',
+        //     'email' => 'kakashi@konoha.com',
+        //     'password' => 'Konoha20.',
+        //     'degree' => 'Jonin de Konoha',
+        //     'birth' => '1989-02-10',
+        //     'is_upta' => true,
+        //     'area_id' => 11,
+        //     'role' => 'Instructor',
+        // ]);
 
         User::create([
             'first_name' => 'Esteban',

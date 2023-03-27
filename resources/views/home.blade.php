@@ -11,6 +11,8 @@
       :user="$user"
       :courses="$courses"
       :clubs="$clubs"
+      :students="$students"
+      :incomes="$incomes"
     />
   </section>
 </x-layout.main>

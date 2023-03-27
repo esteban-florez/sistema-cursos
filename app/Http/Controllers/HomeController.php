@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Course;
 use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -12,6 +13,9 @@ class HomeController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
+
+        $students = User::all()->count();
+        $incomes = Payment::incomes();
         
         $clubs = Club::latest()
             ->orderBy('id', 'desc')
@@ -41,6 +45,8 @@ class HomeController extends Controller
             'clubs' => $clubs,
             'courses' => $courses,
             'payments' => $payments,
+            'students' => $students,
+            'incomes' => "{$incomes} Bs.D.",
         ]);
     }
 }

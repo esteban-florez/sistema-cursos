@@ -25,14 +25,14 @@
                 {{ $message }}
               </div>
             @enderror
-            <x-input-group type="email" name="email" id="email" placeholder="Correo Electrónico">
+            <x-input-group type="email" name="email" id="email" placeholder="Correo Electrónico" minlength="6" maxlength="50">
               <x-slot name="append">
                 <span class="input-group-text">
                   <i class="fa fa-user"></i>
                 </span>
               </x-slot>
             </x-input-group>
-            <x-input-group type="password" name="password" id="password" placeholder="Contraseña">
+            <x-input-group type="password" name="password" id="password" placeholder="Contraseña" minlength="8" maxlength="20">
               <x-slot name="append">
                 <span class="input-group-text">
                   <i class="fa fa-key"></i>
@@ -43,7 +43,7 @@
           </form>
           <hr>
           <div class="social-auth-links text-center mb-3">
-            <x-button url="{{ route('register.create') }}" color="success" class="btn-block">
+            <x-button :url="route('register.create')" color="success" class="btn-block">
               ¿No tienes una cuenta? Regístrate.
             </x-button>
           </div>

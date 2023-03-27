@@ -241,7 +241,7 @@ Route::middleware('auth')->group(function () {
 
     // PNFs routes
     Route::resource('pnfs', PNFController::class)
-        ->except('show', 'destroy');
+        ->except('create', 'show', 'destroy');
 
     // Schedule route
     Route::get('schedule', ScheduleController::class)

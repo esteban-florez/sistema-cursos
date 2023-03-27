@@ -7,7 +7,7 @@
   </x-slot>
   @can('create', App\Models\Item::class)
     <x-slot name="titleAddon">
-      <x-button color="success" icon="plus" id="addItem" data-toggle="modal" data-target="#createModal">
+      <x-button color="success" icon="plus" id="addItem" data-toggle="modal" data-target="#createItemModal">
         Añadir
       </x-button>
     </x-slot>
@@ -48,6 +48,6 @@
     {{ $items->links() }}
   </div>
   @can('create', App\Models\Item::class)
-    <x-items.create-modal id="createModal"/>     
+    <x-items.create-modal id="createItemModal"/>     
   @endcan
 </x-layout.main>

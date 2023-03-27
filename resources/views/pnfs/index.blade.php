@@ -3,7 +3,7 @@
     {{ Breadcrumbs::render('pnfs.index') }}
   </x-slot>
   <x-slot name="titleAddon">
-    <x-button icon="plus" color="success" hide-text="sm" :url="route('pnfs.create')">
+    <x-button icon="plus" color="success" hide-text="sm" data-target="#createPnfModal" data-toggle="modal">
       Añadir
     </x-button>
   </x-slot>
@@ -30,4 +30,5 @@
       </div>
     @endif
   </section>
+  <x-pnf.create-modal id="createPnfModal" />
 </x-layout.main>
