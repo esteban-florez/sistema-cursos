@@ -24,7 +24,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">Código: #{{ $item->code }}</h5>
                 <p class="card-text">{{ $item->description }}</p>
                 <div class="align-self-start">
-                  <x-button icon="list">
+                  <x-button :url="route('operations.index', ['filters|item_id' => $item])" icon="list">
                     Operaciones
                   </x-button>
                   @can('update', $item)

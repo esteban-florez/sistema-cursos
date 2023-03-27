@@ -14,6 +14,9 @@
               <p class="font-italic">
                 <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
               </p>
+              <x-field name="code" id="code" placeholder="Ej. 12345" :value="old('code') ?? $item->code ?? ''" minlength="1" maxlength="5" validNumber required>
+                Código:
+              </x-field>
               <x-field name="name" placeholder="Ej. Balón de Fútbol" :value="old('name') ?? $item->name ?? ''" minlength="4" maxlength="40" required>
                 Nombre: 
               </x-field>

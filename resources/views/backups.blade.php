@@ -5,6 +5,7 @@
   <script defer src="{{ asset('js/backup.js') }}"></script>
   <section class="container-fluid">
     <x-alert />
+    <x-errors />
     <div class="row">
       <div class="col-md-4">
         <div class="card mt-2">

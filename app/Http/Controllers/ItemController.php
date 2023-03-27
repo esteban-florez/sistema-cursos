@@ -24,11 +24,10 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
+            'code' => ['required', 'numeric', 'string', 'digits_between:1,5'],
             'name' => ['required', 'string', 'min:4', 'max:40'],
             'description' => ['required', 'string', 'min:10', 'max:100'],
         ]);
-
-        $data['code'] = $this->generateCode();
 
         Item::create($data);
 
@@ -46,6 +45,7 @@ class ItemController extends Controller
     public function update(Request $request, Item $item)
     {
         $data = $request->validate([
+            'code' => ['required', 'numeric', 'string', 'digits_between:1,5'],
             'name' => ['required', 'string', 'min:4', 'max:40'],
             'description' => ['required', 'string', 'min:10', 'max:100'],
         ]);        
@@ -55,17 +55,5 @@ class ItemController extends Controller
         return redirect()
             ->route('items.index')
             ->with('alert', trans('alerts.items.updated'));
-    }
-
-    protected function generateCode() {
-        $latestCode = (int) Item::all()
-            ->last()
-            ->code;
-
-        $code = str($latestCode + 1);
-        $length = 5 - $code->length;
-        return $code->prepend(
-            str('0')->repeat($length)
-        );
     }
 }

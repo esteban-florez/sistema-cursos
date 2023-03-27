@@ -9,6 +9,9 @@
   @can('create', App\Models\Item::class)
     <form method="POST" action="{{ route('items.store') }}">
       @csrf
+      <x-field name="code" id="code" type="number" placeholder="Ej. 12345" :value="old('code') ?? ''" minlength="1" maxlength="5" validNumber required>
+        Código:
+      </x-field>
       <x-field name="name" id="name" placeholder="Ej. Balón de Fútbol" :value="old('name') ?? ''" minlength="4" maxlength="40" required>
         Nombre:
       </x-field>

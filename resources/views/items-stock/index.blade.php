@@ -16,7 +16,7 @@
           @can('create', App\Models\Loan::class)
             <x-button icon="hand-holding" class="md" color="info" hide-text="sm"
               data-target="#createLoanModal" data-toggle="modal">
-              Préstamos
+              Nuevo préstamo
             </x-button>
           @endcan
           @can('create', App\Models\Operation::class)
