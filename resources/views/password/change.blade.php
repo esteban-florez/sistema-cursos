@@ -2,14 +2,14 @@
   @push('js')
     <script defer src="{{ asset('js/newPassword.js') }}"></script>
   @endpush
-
   <section class="container-fluid">
+    <x-errors />
     <div class="create-box mt-3">
       <div class="card create-card">
         <div class="card-body">
           <form action="{{ route('password.update') }}" method="POST">
             @csrf
-            <x-input-group type="password" name="password_current" id="passwordCurrent" placeholder="Ingresa la contraseña actual..." minlength="8" maxlength="20" required>
+            <x-input-group type="password" name="current_password" id="passwordCurrent" placeholder="Ingresa la contraseña actual..." minlength="8" maxlength="20" required>
               Contraseña Actual:
               <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">

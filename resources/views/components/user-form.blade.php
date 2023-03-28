@@ -65,7 +65,7 @@
           Segundo apellido: 
         </x-field>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <x-input-group type="number" name="ci" id="ci" placeholder="Ej. 12345678" value="{{ old('ci') ?? $user->ci ?? '' }}" minlength="6" maxlength="10" validNumber required>
           Cédula:
           <x-slot name="prepend">
@@ -79,33 +79,30 @@
           @enderror
         </x-input-group>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
+        <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $user->gender ?? null" required>
+          Sexo:
+        </x-select>
+      </div>
+      <div class="col-md-6">
         <x-field type="date" name="birth" id="birth" value="{{ old('birth') ?? ($edit ? $user->birth->format(DV) : '') }}" max="{{ now()->subDay()->format(DV) }}" required>
           Fecha de nacimiento:
         </x-field>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-6">
         <x-field type="number" name="phone" id="phone" placeholder="Ej. 04128970019" value="{{ old('phone') ?? $user->phone ?? '' }}" maxlength="11" validNumber required>
           Número de Teléfono: 
         </x-field>
       </div>
-      <div class="col-12">
-        <x-textarea name="address" id="address" placeholder="Ej. Calle 5 de marzo N°40-11, Santa Cruz, Aragua." :content="old('address') ?? $user->address ?? ''" minlength="6" maxlength="100" required>
-          Dirección
-        </x-textarea>
-      </div>
+      @if (!$edit)
+        <div class="col-12">
+          <x-textarea name="address" id="address" placeholder="Ej. Calle 5 de marzo N°40-11, Santa Cruz, Aragua." :content="old('address') ?? $user->address ?? ''" minlength="6" maxlength="100" required>
+            Dirección
+          </x-textarea>
+        </div>    
+      @endif
       @if ($edit)
         @if ($user->role === 'Instructor')
-          <div class="col-md-6">
-            <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $user->gender ?? null" required>
-              Sexo:
-            </x-select>
-          </div>
-          <div class="col-md-6">
-            <x-field type="number" name="phone" id="phone" placeholder="Ej. 04128970019" value="{{ old('phone') ?? $user->phone ?? '' }}" maxlength="11" validNumber required>
-              Número de Teléfono: 
-            </x-field>
-          </div>
           <div class="col-md-6">
             <x-select name="area_id" id="areaId" :options="$areas" :selected="old('area_id') ?? $user->area_id ?? null" required>
               Área de Formación:
@@ -121,21 +118,21 @@
               Titulación:
             </x-field>
           </div>
+          <div class="col-12">
+            <x-textarea name="address" id="address" placeholder="Ej. Calle 5 de marzo N°40-11, Santa Cruz, Aragua." :content="old('address') ?? $user->address ?? ''" minlength="6" maxlength="100" required>
+              Dirección
+            </x-textarea>
+          </div>
         @elseif ($user->role === 'Estudiante')
-          <div class="col-md-4">
-            <x-select name="gender" id="gender" :options="genders()->pairs()" :selected="old('gender') ?? $user->gender ?? null" required>
-              Sexo:
-            </x-select>
-          </div>
-          <div class="col-md-4">
-            <x-field type="number" name="phone" id="phone" placeholder="Ej. 04128970019" value="{{ old('phone') ?? $user->phone ?? '' }}" maxlength="11" validNumber required>
-              Número de Teléfono: 
-            </x-field>
-          </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
             <x-select name="grade" id="grade" :options="grades()->pairs()" :selected="old('grade') ?? null" required>
               Grado de Instrucción:
             </x-select>
+          </div>
+          <div class="col-6">
+            <x-textarea name="address" id="address" placeholder="Ej. Calle 5 de marzo N°40-11, Santa Cruz, Aragua." :content="old('address') ?? $user->address ?? ''" minlength="6" maxlength="100" required>
+              Dirección
+            </x-textarea>
           </div>
         @endif
       @else

@@ -3,7 +3,7 @@
 ## Esteban:
 
 - Paginación de areas.
-- Numeritos de perfil de instructores.
+- Paginación de mis pagos.
 - Hacer seeders para presentación.
 
 ## Tareas a largo plazo:

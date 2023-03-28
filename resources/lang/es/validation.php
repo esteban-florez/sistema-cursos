@@ -236,6 +236,8 @@ return [
 
         // Backup attributes
         'backup' => 'el archivo de respaldo',
+
+        'current_password' => 'la contraseña actual'
     ],
 
     'values' => [

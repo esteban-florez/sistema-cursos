@@ -1,4 +1,4 @@
-@props(['user', 'courseCount' => null, 'clubCount' => null, 'enrollmentCount', 'membershipCount'])
+@props(['user'])
 
 <div class="card card-widget widget-user card-profile mb-3 mx-2">
   <div class="widget-user-header bg-primary">
@@ -15,15 +15,29 @@
       <div class="col-6 border-right">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Cursos</h5>
-          <p class="profile-number badge badge-dark m-0 mt-2">{{ $enrollmentCount }}</p>
-          <p class="profile-number badge badge-dark m-0 mt-2">{{ $courseCount }}</p>
+          @can('role', 'Estudiante')
+          <p class="profile-number badge badge-dark m-0 mt-2">
+            {{ $user->enrollments()->count() }}
+          </p>    
+          @elsecan('role', 'Instructor')
+          <p class="profile-number badge badge-dark m-0 mt-2">
+            {{ $user->dictatedCourses()->count() }}
+          </p>    
+          @endcan
         </div>
       </div>
       <div class="col-6">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Clubes</h5>
-          <p class="profile-number badge badge-dark m-0 mt-2">{{ $membershipCount }}</p>
-          <p class="profile-number badge badge-dark m-0 mt-2">{{ $clubCount }}</p>
+          @can('role', 'Estudiante')
+          <p class="profile-number badge badge-dark m-0 mt-2">
+            {{ $user->memberships()->count() }}
+          </p>    
+          @elsecan('role', 'Instructor')
+          <p class="profile-number badge badge-dark m-0 mt-2">
+            {{ $user->dictatedClubs()->count() }}
+          </p>    
+          @endcan
         </div>
       </div>
       @can('users.image.update', $user)

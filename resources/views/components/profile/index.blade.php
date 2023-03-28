@@ -7,8 +7,6 @@
         <div class="col-md-6 col-lg-12">
           <x-profile.widget 
             :user="$user"
-            :enrollment-count="$user->enrollments->count()"
-            :membership-count="$user->memberships->count()"
           />
           <div class="card card-info mx-2">
             <div class="card-header">
