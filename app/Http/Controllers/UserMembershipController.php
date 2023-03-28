@@ -31,9 +31,8 @@ class UserMembershipController extends Controller
     {
         $this->authorize('users.memberships.view', $membership);
 
-        return view('users-memberships.show', [
-            'membership' => $membership,
-            'club' => $membership->club,
+        return view('clubs.show', [
+            'club' => $club,
         ]);
     }
 }

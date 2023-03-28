@@ -5,7 +5,6 @@
   <x-layout.bar>
     <x-search name="search" placeholder="Buscar club..." :value="$search" />
   </x-layout.bar>
-
   <section class="container-fluid px-3">
     <x-alert />
     @if ($memberships->isNotEmpty())

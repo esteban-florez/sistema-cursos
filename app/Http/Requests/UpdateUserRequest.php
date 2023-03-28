@@ -32,11 +32,12 @@ class UpdateUserRequest extends FormRequest
             'second_name' => ['nullable', 'string', 'min:3', 'max:20'],
             'first_lastname' => ['required', 'string', 'min:3', 'max:20'],
             'second_lastname' => ['nullable', 'string', 'min:3', 'max:20'],
-            'ci' => ['required', 'integer', 'numeric', 'min:6', 'max:10',  
-                Rule::unique('users')->ignoreModel($user)],
+            'ci' => [
+                'required', 'integer', 'numeric', 'digits_between:6,10',  Rule::unique('users')->ignoreModel($user)
+            ],
             'ci_type' => ['required', 'in:'.ciTypes()->join(',')],
             'gender' => ['required', 'in:'.genders()->join(',')],
-            'phone' => ['required', 'integer', 'numeric', 'digits:11'],
+            'phone' => ['required', 'digits:11'],
             'address' => ['required', 'string', 'min:6', 'max:100'],
             'birth' => ['required', 'date', 'before:now'],
             'grade' => Rule::when($user->role === "Estudiante", 

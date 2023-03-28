@@ -150,6 +150,9 @@ return [
         'ci' => [
             'unique' => 'Ya existe una cuenta con esta cédula.',
         ],
+        'current_password' => [
+            'current_password' => 'La contraseña actual que introduciste no es correcta.'
+        ]
     ],
 
     /*

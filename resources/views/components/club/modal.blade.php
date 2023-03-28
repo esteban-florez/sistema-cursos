@@ -6,7 +6,7 @@
     ? route('memberships.destroy', $membership) 
     : route('memberships.store', ['club' => $club]);
   $ability = $membership ? 'delete' : 'create';
-  $argument = $membership ?? [App\Models\Club::class, $club];
+  $argument = $membership ?? [App\Models\Membership::class, $club];
 @endphp
 
 <x-modal id="clubModal">

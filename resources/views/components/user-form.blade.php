@@ -74,9 +74,6 @@
               <option value="E">E-</option>
             </select>
           </x-slot>
-          @error('ci')
-            <p class="text-danger">{{ ucfirst($message) }}</p>
-          @enderror
           @error('ci_type')
             <p class="text-danger">{{ ucfirst($message) }}</p>
           @enderror

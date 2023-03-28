@@ -1,10 +1,12 @@
 @props(['club', 'noImage' => false])
 
-@php 
+@php
   $user = auth()->user();
+
   $joined = $user
     ->joinedClubs
     ->contains($club);
+  
   $statusColor = [
     'Activo' => 'success', 
     'Inactivo' => 'secondary', 
@@ -59,22 +61,20 @@
             Editar
           </x-button>
         @endcan
-        @can('role', 'Estudiante')
-          <x-button
-            :url="route('available-clubs.index')"
-            color="secondary"
-            icon="times"
-          >
-            Volver al listado
+        <x-button
+          :url="route('available-clubs.index')"
+          color="secondary"
+          icon="times"
+        >
+          Volver al listado
+        </x-button>
+        @can('create', [App\Models\Membership::class, $club])
+          <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
+            Unirse
           </x-button>
-          @can('create', [App\Models\Membership::class, $club])
-            <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
-              Unirse
-            </x-button>
-            <x-club.modal :club="$club" />
-          @else
-            <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
-          @endcan
+          <x-club.modal :club="$club" />
+        @else
+          <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
         @endcan
       </div>
     </div>
