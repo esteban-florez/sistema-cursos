@@ -6,12 +6,14 @@
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/students-payments.css') }}">
   @endpush
-  <section class="container-fluid payments-flex mt-3">
+  <section class="mt-3">
     @if ($payments->isNotEmpty())
-      @foreach ($payments as $payment)
-        {{-- IMPROVE -> N+1 queries here? --}}
-        <x-payment.alt-card :payment="$payment"/>
-      @endforeach
+      <div class="container-fluid payments-flex">
+        @foreach ($payments as $payment)
+          {{-- IMPROVE -> N+1 queries here? --}}
+          <x-payment.alt-card :payment="$payment"/>
+        @endforeach
+      </div>
       <div class="d-flex justify-content-center">
         {{ $payments->links() }}
       </div>

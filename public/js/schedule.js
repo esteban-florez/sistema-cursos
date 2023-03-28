@@ -1,6 +1,10 @@
 'use strict'
 getData()
   .then((events) => {
+    document.querySelector('.loading-container')?.remove()
+    document.querySelector('.hidden-section')
+      .classList.remove('hidden-section')
+
     initializeTimetable(events)
   })
 
