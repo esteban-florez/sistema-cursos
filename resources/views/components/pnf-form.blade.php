@@ -1,18 +1,7 @@
-@props(['pnf' => null])
-
-@php
-  $action = $pnf 
-    ? route('pnfs.update', $pnf)
-    : route('pnfs.store');
-@endphp
-
 <section class="container-fluid">
-  <form method="POST" action="{{ $action }}">
-    @if ($pnf)
-      @method('PUT')
-    @endif
+  <form method="POST" action="{{ route('pnfs.store') }}">
     @csrf
-    <h3>{{$pnf ? 'Editar' : 'Añadir'}} PNF</h3>
+    <h3>Añadir PNF</h3>
     <p class="font-italic">
       <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
     </p>

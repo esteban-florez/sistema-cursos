@@ -2,8 +2,9 @@
 
 ## Esteban:
 
+- Paginación de areas.
+- Numeritos de perfil de instructores.
 - Hacer seeders para presentación.
-- Una sola interfaz de historial de inventario, con entradas y salidas, y prestamos y devoluciones.
 
 ## Tareas a largo plazo:
 

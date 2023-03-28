@@ -199,7 +199,7 @@ return [
         'day' => 'el día',
 
         // Item attributes
-        'code' => 'el código',
+        'code' => 'el bien nacional',
 
         // Operation attributes
         'reason' => 'la descripción',

@@ -5,7 +5,7 @@
   <x-select2 />
   <x-layout.bar>
     <x-search 
-      placeholder="Buscar artículo por código..." name="search"
+      placeholder="Buscar artículo por bien nacional..." name="search"
       :value="$search ?? ''" :filters="$filters" :sort="$sort"/>
     <div class="ml-auto">
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
@@ -34,7 +34,7 @@
     @if ($operations->isNotEmpty())
       <x-table>
         <x-slot name="header">
-          <th>Código</th>
+          <th>Bien Nacional</th>
           <th>Artículo</th>
           <th>Operación</th>
           <th>Descripción</th>
@@ -46,7 +46,7 @@
               $color = $operation->type === 'Ingreso' ? 'success' : 'danger';
             @endphp
             <tr>
-              <td># {{$operation->item->code}}</td>
+              <td>BN {{ $operation->item->code }}</td>
               <td>{{ $operation->item->name }}</td>
               <td class="text-{{ $color }} text-bold">{{ $operation->full_amount }}</td>
               <td>{{ $operation->reason ?? '----' }}</td>

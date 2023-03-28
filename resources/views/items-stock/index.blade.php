@@ -35,7 +35,7 @@
     @if ($items->isNotEmpty())
       <x-table>
         <x-slot name="header">
-          <th>Código</th>
+          <th>Bien Nacional</th>
           <th>Artículo</th>
           <th>Stock disponible</th>
           <th>Stock total</th>
@@ -43,7 +43,7 @@
         </x-slot>
         <x-slot name="body">
           @foreach ($items as $item)
-            <x-row :data="['#'.$item->code, $item->name, $item->stock, $item->total_stock]">
+            <x-row :data="['BN '.$item->code, $item->name, $item->stock, $item->total_stock]">
               <x-slot name="actions">
                 @can('viewAny', App\Models\Operation::class)
                   <x-button icon="list" class="btn-sm"

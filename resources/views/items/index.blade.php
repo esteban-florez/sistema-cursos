@@ -21,7 +21,7 @@
             <div class="card h-100 mb-0">
               <div class="card-body d-flex flex-column align-items-center justify-content-center">
                 <h4>{{ $item->name }}</h4>
-                <h6 class="card-subtitle mb-2 text-muted">Código: #{{ $item->code }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">BN: {{ $item->code }}</h5>
                 <p class="card-text">{{ $item->description }}</p>
                 <div class="align-self-start">
                   <x-button :url="route('operations.index', ['filters|item_id' => $item])" icon="list">

@@ -28,7 +28,7 @@
   <table>
     <thead>
       <tr>
-        <th>Código</th>
+        <th>Bien Nacional</th>
         <th>Artículo</th>
         <th>Stock</th>
       </tr>
@@ -36,7 +36,7 @@
     <tbody>
       @foreach ($items as $item)
         <tr>
-          <td> {{ $item->code }} </td>
+          <td> BN {{ $item->code }} </td>
           <td> {{ $item->name }} </td>
           <td> {{ $item->stock }} </td>
         </tr>
