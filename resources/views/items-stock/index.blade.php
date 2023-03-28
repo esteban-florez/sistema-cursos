@@ -24,11 +24,13 @@
               Nueva operación
             </x-button>
           @endcan
-          @can('role', 'Administrador')
-            <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
-              Generar PDF
-            </x-button>
-          @endcan
+          @if ($items->count() >= 1)
+            @can('role', 'Administrador')
+              <x-button :url="route('pdf.items')" icon="file-download" color="secondary">
+                Generar PDF
+              </x-button>
+            @endcan
+          @endif
         </div>
       </div>
     </div>

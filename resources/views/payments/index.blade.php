@@ -14,11 +14,13 @@
         :value="$search" :filters="$filters" :sort="$sort"/>
     </div>
     <div>
-      @can('role', 'Administrador')
-        <x-button color="secondary" icon="file-download" hide-text="md" :url="route('pdf.payments')">
-          Generar PDF
-        </x-button>
-      @endcan
+      @if ($payments->count() >= 1)
+        @can('role', 'Administrador')
+          <x-button color="secondary" icon="file-download" hide-text="md" :url="route('pdf.payments')">
+            Generar PDF
+          </x-button>
+        @endcan
+      @endif
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">Filtros</x-button>
     </div>
     <x-slot name="filtersCollapse">
