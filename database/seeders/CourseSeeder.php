@@ -38,7 +38,7 @@ class CourseSeeder extends Seeder
         Course::factory([
             'name' => 'JavaScript desde Cero',
             'description' => 'Curso de JavaScript para principiantes en la programación. Aprende uno de los lenguajes mas usados en la actualidad y preparate para ser un desarrollador web.',
-            'reserv_price' => null,
+            'reserv_price' => 250,
             'start_ins' => now()->subDays(6),
             'end_ins' => now()->addDays(7),
             'start_course' => now()->addDays(8),
@@ -85,6 +85,23 @@ class CourseSeeder extends Seeder
             'area_id' => 3,
             'user_id' => 7,
         ])->create();
+
+        Course::factory([
+            'name' => 'Marketing Digital',
+            'description' => 'En este curso aprenderás todo lo necesario para hacer la publicidad de tu empresa o negocio de forma completamente digital, para que así puedas alcanzar a un mayor público.',
+            'reserv_price' => null,
+            'start_ins' => now()->subDays(28),
+            'end_ins' => now()->subDays(15),
+            'start_course' => now()->subDays(14),
+            'end_course' => now()->addDays(13),
+            'duration' => 40,
+            'start_hour' => '08:00:00',
+            'end_hour' => '11:00:00',
+            'days' => 'Sábado',
+            'image' => 'img/marketing-digital.jpg',
+            'area_id' => 2,
+            'user_id' => 2,
+        ])->create();
         
         Course::factory([
             'name' => 'Fundamentos de la Matemática',
@@ -101,6 +118,23 @@ class CourseSeeder extends Seeder
             'image' => 'img/matematicas.jpg',
             'area_id' => 10,
             'user_id' => 14,
+        ])->create();
+
+        Course::factory([
+            'name' => 'Curso de React.js',
+            'description' => 'En este curso aprenderás a construir interfaces de usuario reactivas basadas en componentes con React.js, la librería de JavaScript más popular en la actualidad.',
+            'reserv_price' => null,
+            'start_ins' => now()->subDays(35),
+            'end_ins' => now()->subDays(22),
+            'start_course' => now()->subDays(21),
+            'end_course' => now()->subDays(1),
+            'duration' => 50,
+            'start_hour' => '08:00:00',
+            'end_hour' => '11:00:00',
+            'days' => 'Miércoles',
+            'image' => 'img/reactjs.png',
+            'area_id' => 1,
+            'user_id' => 2,
         ])->create();
     }
 }

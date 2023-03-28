@@ -19,7 +19,7 @@ class OperationFactory extends Factory
         $type = operationTypes()->random();
         $amount = $amounts->random();
 
-        if ($type === 'Desincorporación' && ($item->stock() - $amount < 0)) {
+        if ($type === 'Desincorporación' && (($item->stock() - $amount) < 0)) {
             $type = 'Ingreso';
         }
 

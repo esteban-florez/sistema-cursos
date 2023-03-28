@@ -16,6 +16,8 @@ class OperationSeeder extends Seeder
     {
         Operation::truncate();
 
-        Operation::factory(5)->create();
+        for ($i = 0; $i < 19; $i++) { 
+            Operation::factory()->create();
+        }
     }
 }

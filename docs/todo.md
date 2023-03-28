@@ -2,8 +2,6 @@
 
 ## Esteban:
 
-- Paginación de areas.
-- Hacer seeders para presentación.
 
 ## Tareas a largo plazo:
 

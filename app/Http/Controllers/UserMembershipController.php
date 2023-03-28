@@ -32,7 +32,7 @@ class UserMembershipController extends Controller
         $this->authorize('users.memberships.view', $membership);
 
         return view('clubs.show', [
-            'club' => $club,
+            'club' => $membership->club,
         ]);
     }
 }

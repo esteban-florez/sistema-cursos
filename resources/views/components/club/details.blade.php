@@ -11,6 +11,7 @@
     'Activo' => 'success', 
     'Inactivo' => 'secondary', 
   ];
+
   $statusColor = $statusColor[$club->status];
 @endphp
 
@@ -51,30 +52,33 @@
               </x-button>
             @endcan
           </div>
+          @can('update', $club)
+            <x-button 
+              :url="route('clubs.edit', $club)" 
+              icon="edit"
+              color="warning"
+            >
+              Editar
+            </x-button>
+          @endcan
         @endcan
-        @can('update', $club)
-          <x-button 
-            :url="route('clubs.edit', $club)" 
-            icon="edit"
-            color="warning"
+
+        @can('role', 'Estudiante')
+          <x-button
+            :url="route('available-clubs.index')"
+            color="secondary"
+            icon="times"
           >
-            Editar
+            Volver al listado
           </x-button>
-        @endcan
-        <x-button
-          :url="route('available-clubs.index')"
-          color="secondary"
-          icon="times"
-        >
-          Volver al listado
-        </x-button>
-        @can('create', [App\Models\Membership::class, $club])
-          <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
-            Unirse
-          </x-button>
-          <x-club.modal :club="$club" />
-        @else
-          <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
+          @can('create', [App\Models\Membership::class, $club])
+            <x-button icon="clipboard-list" data-toggle="modal" data-target="#clubModal">
+              Unirse
+            </x-button>
+            <x-club.modal :club="$club" />
+          @else
+            <p class="h5 m-0 text-primary">Ya te uniste a este club.</p>
+          @endcan
         @endcan
       </div>
     </div>

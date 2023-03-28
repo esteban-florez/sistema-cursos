@@ -35,7 +35,7 @@ class EnrollmentSeeder extends Seeder
                     'user_id' => $s->id,
                     'course_id' => 2,
                     'created_at' => now(),
-                    'mode' => 'Un solo pago',
+                    'mode' => modes()->random(),
                 ]);
             });
 
@@ -50,16 +50,37 @@ class EnrollmentSeeder extends Seeder
                     'mode' => modes()->random(),
                 ]);
             });
-        
-        // Curso finalizado
-        $students->take(12)
+
+        $students->take(14)
             ->each(function ($s) {
                 Enrollment::create([
                     'user_id' => $s->id,
                     'course_id' => 5,
                     'confirmed_at' => now()->subDays(1),
+                    'mode' => 'Un solo pago',
+                ]);
+            });
+        
+        // Curso finalizado
+        $students->take(12)
+            ->each(function ($s, $i) {
+                Enrollment::create([
+                    'user_id' => $s->id,
+                    'course_id' => 6,
+                    'confirmed_at' => now()->subDays(1),
                     'mode' => modes()->random(),
-                    'approval' => $s->id === 17 ? 'Aprobado' : 'Por decidir',
+                    'approval' => $i === 1 ? 'Aprobado' : 'Por decidir',
+                ]);
+            });
+
+        $students->take(12)
+            ->each(function ($s) {
+                Enrollment::create([
+                    'user_id' => $s->id,
+                    'course_id' => 7,
+                    'confirmed_at' => now()->subDays(1),
+                    'mode' => 'Un solo pago',
+                    'approval' => 'Aprobado',
                 ]);
             });
     }

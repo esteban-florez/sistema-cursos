@@ -33,7 +33,7 @@ class ClubSeeder extends Seeder
             'start_hour' => '08:00:00',
             'end_hour' => '12:00:00',
             'image' => 'img/voleibol.jpg',
-            'user_id' => 2,
+            'user_id' => 11,
         ])->create();
 
         Club::factory([
@@ -43,17 +43,17 @@ class ClubSeeder extends Seeder
             'start_hour' => '08:00:00',
             'end_hour' => '11:00:00',
             'image' => 'img/baloncesto.jpg',
-            'user_id' => 4,
+            'user_id' => 8,
         ])->create();
 
         Club::factory([
             'name' => 'Beisbol',
             'description' => 'El siguiente club tiene como fin único la práctica del beisbol. Aprende las bases y desarrolla tus habilidades en esta área.',
-            'day' => 'Miércoles',
-            'start_hour' => '08:00:00',
-            'end_hour' => '12:00:00',
+            'day' => 'Martes',
+            'start_hour' => '09:00:00',
+            'end_hour' => '11:00:00',
             'image' => 'img/beisbol.jpg',
-            'user_id' => 4,
+            'user_id' => 10,
         ])->create();
 
         Club::factory([
@@ -63,7 +63,7 @@ class ClubSeeder extends Seeder
             'start_hour' => '10:00:00',
             'end_hour' => '12:00:00',
             'image' => 'img/salsa.jpg',
-            'user_id' => 2,
+            'user_id' => 13,
         ])->create();
     }
 }
