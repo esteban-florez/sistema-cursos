@@ -23,10 +23,10 @@ class UserController extends Controller
         $sortColumn = $request->query('sort');
         
         $users = User::latest()
-            ->excludeAdmin()
             ->filters($filters)
             ->search($search)
             ->sort($sortColumn)
+            ->where('role', '!=', 'Administrador')
             ->paginate(10)
             ->withQueryString();
 

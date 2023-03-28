@@ -6,7 +6,7 @@
   <x-layout.bar>
     <x-search 
       placeholder="Buscar usuario..." :value="$search"
-      name="search" :filters="$search" :sort="$sort"/>
+      name="search" :filters="$filters" :sort="$sort"/>
     <div>
       @can('create', App\Models\User::class)
         <x-button icon="plus" color="success" hide-text="sm" :url="route('users.create')">Añadir</x-button>

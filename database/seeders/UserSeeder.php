@@ -418,7 +418,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'first_name' => 'Ricado',
+            'first_name' => 'Ricardo',
             'second_name' => 'Eduardo',
             'first_lastname' => 'García',
             'second_lastname' => 'Romero',
