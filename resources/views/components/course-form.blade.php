@@ -78,7 +78,7 @@
       </x-field>
     </div>
     <div class="col-sm-6">
-      <x-input-group type="number" name="duration" id="duration" placeholder="Ej. 5" value="{{ old('duration') ?? $course->duration ?? '' }}" max="120" maxlength="3" validNumber required>
+      <x-input-group type="number" name="duration" id="duration" placeholder="Ej. 5" value="{{ old('duration') ?? $course->duration ?? '' }}" max="200" maxlength="3" validNumber required>
         Duración del curso:
         <x-slot name="append">
           <span class="input-group-text">horas</span>
