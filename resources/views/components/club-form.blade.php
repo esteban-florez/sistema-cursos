@@ -11,7 +11,7 @@
       <x-image-input :image="$club->image ?? null" :required="!$edit"/>
     </div>
     <div class="col-sm-6 col-md-8">
-      <x-field name="name" id="name" placeholder="Nombre del Club" autocomplete="off" value="{{ old('name') ?? $club->name ?? '' }}" minlength="5" maxlength="30" required>
+      <x-field name="name" id="name" placeholder="Ej. Futbol" autocomplete="off" value="{{ old('name') ?? $club->name ?? '' }}" minlength="5" maxlength="30" required>
         Nombre:
       </x-field>
       <x-select name="day" id="day" :options="days()->pairs()" :selected="old('day') ?? $club->day ?? null" default required>
@@ -39,7 +39,7 @@
       </x-field>
     </div>
     <div class="col-12">
-      <x-textarea name="description" id="description" placeholder="Nombre de descripcion" autocomplete="off" :content="old('description') ?? $club->description ?? ''" minlength="10" maxlength="255" required>
+      <x-textarea name="description" id="description" placeholder="Ej. Aprende las bases del futbol y desarrolla tus habilidades en esta área." autocomplete="off" :content="old('description') ?? $club->description ?? ''" minlength="10" maxlength="255" required>
         Descripcion:
       </x-textarea>
     </div>
