@@ -21,7 +21,7 @@ class AreaController extends Controller
         
         $areas = Area::when($search, function ($query, $search) {
                 return $query->where('name', 'like', "%{$search}%");
-            })->latest()
+            })->orderBy('id', 'desc')
             ->paginate(9)
             ->withQueryString();
 

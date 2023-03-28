@@ -66,6 +66,6 @@
     <p class="note">Nota: Esta planilla debe ser llevada antes del {{ $expires }} al Departamento de Vinculación Social en la UPTA La Victoria, para confirmar la inscripción. </p>
   </section>
   <footer>
-    <span>Dirección(Sede Principal): Avenida Universidad s/n, al lado del Comando de la FAN, La Victoria Edo Aragua</span>
+    <span>Dirección (Sede Principal): Avenida Universidad s/n, al lado del Comando de la FAN, La Victoria Edo Aragua</span>
   </footer>
 </body>

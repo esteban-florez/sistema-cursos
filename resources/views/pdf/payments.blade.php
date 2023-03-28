@@ -54,6 +54,6 @@
     </tbody>
   </table>
   <footer>
-    <span>Dirección(Sede Principal): Avenida Universidad s/n, al lado del Comando de la FAN, La Victoria Edo Aragua</span>
+    <span>Dirección (Sede Principal): Avenida Universidad s/n, al lado del Comando de la FAN, La Victoria Edo Aragua</span>
   </footer>
 </body>
