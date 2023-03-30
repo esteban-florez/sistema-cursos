@@ -1,4 +1,4 @@
-<x-layout.main title="PNFs">
+<x-layout.main title="PNFs y Departamentos">
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('pnfs.index') }}
   </x-slot>
@@ -26,7 +26,7 @@
       </div>
     @else
       <div class="empty-container">
-        <h2 class="empty">No hay PNFs registrados.</h2>
+        <h2 class="empty">No hay PNFs o Departamentos registrados.</h2>
       </div>
     @endif
   </section>

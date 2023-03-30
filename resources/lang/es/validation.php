@@ -228,7 +228,7 @@ return [
         // Foreign key attributes
         'user_id' => 'el usuario',
         'area_id' => 'el área',
-        'pnf_id' => 'el PNF',
+        'pnf_id' => 'el PNF o Departamento',
         'item_id' => 'el artículo',
         'club_id' => 'el club',
         'enrollment_id' => 'la matrícula',

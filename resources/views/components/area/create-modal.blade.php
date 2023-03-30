@@ -28,7 +28,7 @@
           Nombre:
         </x-field>
         <x-select name="pnf_id" id="pnfId" :options="$pnfs" required>
-          PNF:
+          PNF o Departamento:
         </x-select>
         <x-button color="secondary" data-dismiss="modal" icon="times">Cancelar</x-button>
         <x-button color="success" type="submit" icon="check">Aceptar</x-button>

@@ -29,6 +29,8 @@ class PNFSeeder extends Seeder
             'Mecánica',
             'Sistemas de Calidad y Ambiente',
             'Telecomunicaciones',
+            'Ciencias Básicas',
+            'Estudios Generales',
         ];
         
         foreach ($pnfs as $name) {

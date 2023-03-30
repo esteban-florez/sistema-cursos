@@ -162,7 +162,7 @@
               @endcan
               @can('role', 'Administrador')
                 <x-layout.sidebar.item :url="route('pnfs.index')" icon="university">
-                  PNFs
+                  PNFs y Departamentos
                 </x-layout.sidebar.item>
               @endcan
               <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">

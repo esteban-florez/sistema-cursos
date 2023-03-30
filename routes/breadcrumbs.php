@@ -218,13 +218,13 @@ Breadcrumbs::for('credentials.index', function (Trail $trail) {
 
 Breadcrumbs::for('pnfs.index', function (Trail $trail) {
     $trail->parent('config');
-    $trail->push('PNFs', route('pnfs.index'));
+    $trail->push('PNFs o Departamentos', route('pnfs.index'));
 });
 
 Breadcrumbs::for('pnfs.edit', function (Trail $trail, PNF $pnf) {
     $trail->parent('pnfs.index');
     $trail->push($pnf->name);
-    $trail->push('Editar PNF', route('pnfs.edit', $pnf));
+    $trail->push('Editar PNF o Departamento', route('pnfs.edit', $pnf));
 });
 
 Breadcrumbs::for('items.index', function (Trail $trail) {

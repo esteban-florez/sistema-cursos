@@ -1,4 +1,4 @@
-<x-layout.main title="Editar PNF">
+<x-layout.main title="Editar PNF o Departamento">
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('pnfs.edit', $pnf) }}
   </x-slot>
@@ -9,7 +9,7 @@
           <form method="POST" action="{{ route('pnfs.update', $pnf) }}">
             @method('PUT')
             @csrf
-            <h3>Editar PNF</h3>
+            <h3>Editar PNF o Departamento</h3>
             <p class="font-italic">
               <b>Nota:</b> Los campos con <i class="fas fa-asterisk text-danger mx-1"></i> son obligatorios.
             </p>

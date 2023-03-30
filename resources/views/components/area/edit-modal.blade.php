@@ -20,7 +20,7 @@
           Nombre:
         </x-field>
         <x-select name="pnf_id" id="pnfId" :options="$pnfs" :selected="old('pnf_id') ?? $area->pnf_id ?? null" required>
-          PNF:
+          PNF o Departamento:
         </x-select>
         @can('viewAny', App\Models\Area::class)
           <x-button :url="route('areas.index')" color="secondary" icon="times">

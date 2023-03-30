@@ -4,7 +4,7 @@
       <div class="area-card">
         <div class="area-title">
           <h3 class="m-0">{{ str($area->name)->ucfirst() }}</h3>
-          <p class="m-0">PNF:  
+          <p class="m-0">PNF o Departamento:  
             <span class="font-weight-bold">
               {{ $area->pnf->name }}
             </span>
