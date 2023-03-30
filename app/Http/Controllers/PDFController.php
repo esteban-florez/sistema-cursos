@@ -37,7 +37,7 @@ class PDFController extends Controller
         $enrollments = Enrollment::latest()
             ->whereBelongsTo($course)
             ->get();
-
+        
         return $this->generatePDF([
             'view' => 'enrollments',
             'filename' => "{$course->name} - Matrícula.pdf",

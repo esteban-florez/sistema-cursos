@@ -3,17 +3,7 @@
   <link rel="stylesheet" href="{{ public_path('css/planilla-pdf.css') }}">
 </head>
 <body>
-  <img src="data:image/png;base64, {{ $logo }}"/>
-  <header>
-    <p>REPUBLICA BOLIVARIANA DE VENEZUELA</p>
-    <p>MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA</p>
-    <p class="bold-italic">UNIVERSIDAD POLITÉCNICA TERRITORIAL DEL ESTADO ARAGUA</p>
-    <p class="bold-italic">"FEDERICO BRITO FIGUEROA"</p>
-    <div class="title-box">
-      <h3>PLANILLA DE INSCRIPCIÓN</h3>
-    </div>
-    <p class="bold-italic header-title">DEPARTAMENTO DE VINCULACIÓN SOCIO INTEGRAL</p>
-  </header>
+  <x-pdf.header :logo="$logo" titleBox/>
   <main>
     <h1>
       Curso de Ampliación Profesional en: 
@@ -65,7 +55,5 @@
   <section>
     <p class="note">Nota: Esta planilla debe ser llevada antes del {{ $expires }} al Departamento de Vinculación Social en la UPTA La Victoria, para confirmar la inscripción. </p>
   </section>
-  <footer>
-    <span>Dirección (Sede Principal): Avenida Universidad s/n, al lado del Comando de la FAN, La Victoria Edo Aragua</span>
-  </footer>
+  <x-pdf.footer />
 </body>

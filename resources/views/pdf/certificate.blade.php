@@ -5,15 +5,8 @@
 <body>
   <img id="certificate-bg" src="data:image/png;base64, {{ $bg }}">
   <div class="container">
-    <img id="logo" src="data:image/png;base64, {{ $logo }}"/>
-    <header>
-      <p>REPUBLICA BOLIVARIANA DE VENEZUELA</p>
-      <p>MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA</p>
-      <p class="bold-italic">UNIVERSIDAD POLITÉCNICA TERRITORIAL DEL ESTADO ARAGUA</p>
-      <p class="bold-italic">"FEDERICO BRITO FIGUEROA"</p>
-      <p class="bold-italic header-title">DEPARTAMENTO DE VINCULACIÓN SOCIO INTEGRAL</p>
-    </header>
-    <section style="margin-top: 3rem;">
+    <x-pdf.header :logo="$logo" />
+    <section style="margin-top: 2rem;">
       <p class="bold">Otorga el presente:</p>
       <h2 class="normal sub">Certificado a:</h2>
       <h1 class="italic name">{{ $student->full_name }}</h1>
@@ -55,4 +48,5 @@
       </tr>
     </table>
   </div>
+  <x-pdf.footer />
 </body>

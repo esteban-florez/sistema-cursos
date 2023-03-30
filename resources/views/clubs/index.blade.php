@@ -58,6 +58,11 @@
               ]"
             >
               <x-slot name="actions">
+                @can('viewAny', [App\Models\Membership::class, $club])
+                  <x-button class="btn-sm" color="info" :url="route('memberships.index', ['club' => $club])" icon="users">
+                    Miembros
+                  </x-button>
+                @endcan
                 @can('update', $club)
                   <x-button class="btn-sm" color="warning" :url="route('clubs.edit', $club)" icon="edit">
                     Editar

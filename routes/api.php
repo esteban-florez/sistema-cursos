@@ -43,8 +43,7 @@ Route::as('api.')->group(function () {
 
     // Dolar routes
     Route::get('dolar', function () {
-        $price = ExchangeRate::get();
-        return ['price' => $price];
+        return ['price' => ExchangeRate::get()];
     })->name('dolar');
 
     // Schedule routes

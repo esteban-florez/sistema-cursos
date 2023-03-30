@@ -60,6 +60,9 @@
             </x-course.alt-card>
           </div>
         @endforeach
+        <div class="d-flex justify-content-center w-100">
+          {{ $enrollments->links() }}
+        </div>
       </div>
     @else
       <div class="empty-container flex-column">

@@ -1,6 +1,7 @@
 <head>
   <link rel="stylesheet" href="{{ public_path('css/pdf.css') }}">
   <link rel="stylesheet" href="{{ public_path('css/pdf2.css') }}">
+  <link rel="stylesheet" href="{{ public_path('css/pdf-header-footer.css') }}">
   <style>
     table {
       width: 100% !important;
@@ -13,14 +14,7 @@
   </style>
 </head>
 <body>
-  <img src="data:image/png;base64, {{ $logo }}"/>
-  <header>
-    <p>REPUBLICA BOLIVARIANA DE VENEZUELA</p>
-    <p>MINISTERIO DEL PODER POPULAR PARA LA EDUCACIÓN UNIVERSITARIA</p>
-    <p class="bold-italic">UNIVERSIDAD POLITÉCNICA TERRITORIAL DEL ESTADO ARAGUA</p>
-    <p class="bold-italic">"FEDERICO BRITO FIGUEROA"</p>
-    <p class="bold-italic header-title">DEPARTAMENTO DE VINCULACIÓN SOCIO INTEGRAL</p>
-  </header>
+  <x-pdf.header :logo="$logo" />
   <h1>Reporte de Pagos</h1>
   <ul class="style-none">
     <li><span>Fecha:</span> {{ $date }}</li>
@@ -53,7 +47,5 @@
       @endforeach
     </tbody>
   </table>
-  <footer>
-    <span>Dirección (Sede Principal): Avenida Universidad s/n, al lado del Comando de la FAN, La Victoria Edo Aragua</span>
-  </footer>
+  <x-pdf.footer />
 </body>

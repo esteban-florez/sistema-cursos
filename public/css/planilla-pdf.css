@@ -17,11 +17,11 @@ body {
 h1 {
   font-weight: normal;
   font-size: 15pt;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 section {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 .data,
@@ -68,7 +68,7 @@ table {
   left: 35px;
 }
 
-img {
+#logo {
   position: absolute;
   top: 3rem;
   left: 1rem;
