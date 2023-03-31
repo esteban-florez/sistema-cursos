@@ -2,7 +2,6 @@
 
 ## Esteban:
 
-- Hacer bitácora.
 - Añadir ayuda (manual de usuario previsualización PDF)
 
 ## Tareas a largo plazo:

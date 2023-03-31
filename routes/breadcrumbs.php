@@ -263,6 +263,11 @@ Breadcrumbs::for('schedule', function (Trail $trail, User $user) {
     $trail->push('Horario', route('schedule', $user));
 });
 
+Breadcrumbs::for('history', function (Trail $trail) {
+    $trail->parent('home');
+    $trail->push('Bitácora', route('history'));
+});
+
 Breadcrumbs::for('backups', function (Trail $trail) {
     $trail->parent('config');
     $trail->push('Base de datos', route('backups.manage'));

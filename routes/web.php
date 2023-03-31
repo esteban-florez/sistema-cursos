@@ -13,6 +13,7 @@ use App\Http\Controllers\CredentialsController;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\ClubStatusController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EnrollmentApprovalController;
 use App\Http\Controllers\MovilCredentialsController;
@@ -304,6 +305,10 @@ Route::middleware('auth')->group(function () {
     // Stats routes
     Route::get('stats', StatsController::class)
         ->name('stats');
+
+    // History routes
+    Route::get('history', HistoryController::class)
+        ->name('history');
 
     // PDF routes
     Route::group([

@@ -165,6 +165,11 @@
                   PNFs y Departamentos
                 </x-layout.sidebar.item>
               @endcan
+              @can('role', 'Administrador')
+                <x-layout.sidebar.item :url="route('history')" icon="list">
+                  Bitácora
+                </x-layout.sidebar.item>
+              @endcan
               <x-layout.sidebar.item :url="route('credentials.index')" icon="file-invoice">
                 Credenciales de pago
               </x-layout.sidebar.item>
