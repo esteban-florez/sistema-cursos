@@ -179,6 +179,9 @@
             </x-slot>
           </x-layout.sidebar.item>
         @endcan
+        <x-layout.sidebar.item :url="route('help')" icon="question-circle">
+          Acerca de
+        </x-layout.sidebar.item>
         <x-layout.sidebar.item :url="route('logout')" icon="sign-out-alt">
           Cerrar Sesión
         </x-layout.sidebar.item>

@@ -268,6 +268,11 @@ Breadcrumbs::for('history', function (Trail $trail) {
     $trail->push('Bitácora', route('history'));
 });
 
+Breadcrumbs::for('help', function (Trail $trail) {
+    $trail->parent('home');
+    $trail->push('Manual de usuario', route('help'));
+});
+
 Breadcrumbs::for('backups', function (Trail $trail) {
     $trail->parent('config');
     $trail->push('Base de datos', route('backups.manage'));

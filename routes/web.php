@@ -310,6 +310,10 @@ Route::middleware('auth')->group(function () {
     Route::get('history', HistoryController::class)
         ->name('history');
 
+    // Help route
+    Route::view('help', 'help')
+        ->name('help');
+
     // PDF routes
     Route::group([
         'controller' => PDFController::class,
