@@ -31,6 +31,7 @@ use App\Http\Controllers\PendingPaymentController;
 use App\Http\Controllers\PNFController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StatsController;
+use App\Http\Controllers\SystemRestoreController;
 use App\Http\Controllers\UnfulfilledPaymentController;
 use App\Http\Controllers\UserClubController;
 use App\Http\Controllers\UserController;
@@ -99,6 +100,13 @@ Route::middleware('guest')->group(function () {
         Route::post('register', 'store')
             ->name('store');
     });
+
+    // Restore routes
+    Route::get('restore', [SystemRestoreController::class, 'create'])
+        ->name('system-restore.create');
+    
+    Route::post('restore', [SystemRestoreController::class, 'store'])
+        ->name('system-restore.store');
 });
 
 Route::middleware('auth')->group(function () {

@@ -2,7 +2,10 @@
   <x-slot name="breadcrumbs">
     {{ Breadcrumbs::render('backups') }}
   </x-slot>
-  <script defer src="{{ asset('js/backup.js') }}"></script>
+  @push('js')
+    <script defer src="{{ asset('js/backup.js') }}"></script>
+    <script defer src="{{ asset('js/backup-label.js') }}"></script>
+  @endpush
   <section class="container-fluid">
     <x-alert />
     <x-errors />

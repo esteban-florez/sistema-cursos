@@ -32,7 +32,7 @@ class BackupController extends Controller
     public function generate()
     {
         $base = base_path();
-        
+
         shell_exec("cd {$base} && php artisan backup:run");
 
         return redirect()
