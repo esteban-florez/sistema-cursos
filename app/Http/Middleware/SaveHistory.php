@@ -55,7 +55,6 @@ class SaveHistory
         'enrollments.store' => 'Inscribirse en un curso',
         'enrollments.approval.update' => 'Aprobar/reprobar un estudiante',
         'enrollments.confirmation.update' => 'Confirmar inscripción',
-        'home' => 'Ver página de inicio',
         'items.store' => 'Registrar nuevo artículo',
         'items.index' => 'Ver listado de artículos',
         'items.stock.index' => 'Ver estado del inventario',
