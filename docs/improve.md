@@ -1,4 +1,4 @@
-# Cosas que es opcional mejorar
+# Cosas que se pueden mejorar
 
 1. Mover lógica a una clase de componente
 

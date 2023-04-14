@@ -46,13 +46,13 @@
   * Certificado de aprobación de cursos.
   * Matrícula en los clubes.
   * Estado de inventario.
-  - Datos estadísticos.
-  - Gráficas estadísticas.
+  * Datos estadísticos.
+  * Gráficas estadísticas.
 
 # Requerimientos no Funcionales:
   * Registro de usuario.
   * Inicio de sesión.
   * Recuperación de contraseña.
-  - Respaldo de base de datos.
-  - Recuperación de base de datos.
-  - Bitácora.
+  * Respaldo de base de datos.
+  * Recuperación de base de datos.
+  * Bitácora.

@@ -16,7 +16,7 @@ class SaveHistory
         $route = Route::currentRouteName();
         $description = collect($this->descriptions)->get($route);
 
-        if (!$description) {
+        if (!$description || !Auth::user()) {
             return $response;
         }
 

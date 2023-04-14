@@ -45,6 +45,8 @@ class Backup
     public static function all() {
         $path = storage_path('app/backups');
 
+        File::ensureDirectoryExists($path);
+
         return collect(File::files($path))
             ->map(function ($file) {
                 return new self($file);
@@ -67,6 +69,9 @@ class Backup
     public static function store($file)
     {
         $path = storage_path('app/backups');
+
+        File::ensureDirectoryExists($path);
+
         $filename = $file->getClientOriginalName();
         $filepath = "{$path}/{$filename}";
 
