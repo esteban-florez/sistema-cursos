@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
-            $table->softDeletes();
+            $table->string('description');
             $table->timestamps();
         });
     }

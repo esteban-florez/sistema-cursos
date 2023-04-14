@@ -15,14 +15,14 @@ class CreateClubsTable extends Migration
     {
         Schema::create('clubs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->string('name')->unique();
             $table->string('image');
-            $table->set('day', ['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']);
+            $table->string('description');
+            $table->enum('status', clubStatuses()->all())->default('Activo');
+            $table->enum('day', days()->all());
             $table->time('start_hour');
             $table->time('end_hour');
-            $table->foreignId('instructor_id')->constrained();
-            $table->softDeletes();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

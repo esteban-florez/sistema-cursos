@@ -1,10 +1,17 @@
+@props(['club'])
+
 <x-profile.card>
-  <div class="mb-2">
-    <h5 class="mb-0">Club de Futbol</h5>
-    <span class="text-muted">Algo</span>
-  </div>
-  <div class="d-flex align-items-center">
-    <a class="btn btn-primary" href="detalles-club-user.html">Detalles</a>
-    <a class="btn btn-danger mx-2" href="#">Retirarse</a>
-  </div>
+  <x-slot name="image">
+    <img class="img-fluid img-cover h-100 rounded-left"
+      src="{{ asset($club->image) }}"
+      alt="imagen del Club: {{ $club->name }}" 
+    />
+  </x-slot>
+  <x-slot name="body">
+    <h4>{{ $club->name }}</h4>
+    <p class="card-text">{{ $club->excerpt }}</p>
+    <div class="d-flex align-items-center gap-1">
+      <x-button :url="route('clubs.show', $club)" icon="list">Detalles</x-button>
+    </div>
+  </x-slot>
 </x-profile.card>

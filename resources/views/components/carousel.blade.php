@@ -13,20 +13,22 @@
   <div class="carousel-inner">
     @foreach ($items as $item)
       <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-        <div class="carousel-text">
-          <h5>{{ $item->name }}</h5>
-          <x-button :url="route($detailUrl , $item->id)" color="dark" class="btn-sm mb-1">Ver detalles</x-button>
+        <div class="course-info">
+          <a href="{{ route($detailUrl , $item->id) }}" class="d-flex justify-content-center align-items-center">
+            <h5 class="mb-1">{{ $item->name }}</h5>
+            <i class="fas fa-arrow-right ml-2"></i>
+          </a>
         </div>
         <img src="{{ $item->image }}" class="w-100" alt="{{ $item->name }}">
       </div>
     @endforeach
   </div>
   <button class="carousel-control-prev" type="button" data-target="#carouselIndicators" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="carousel-control-prev-icon"></span>
     <span class="sr-only">Previous</span>
   </button>
   <button class="carousel-control-next" type="button" data-target="#carouselIndicators" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="carousel-control-next-icon"></span>
     <span class="sr-only">Next</span>
   </button>
 </div>

@@ -1,15 +1,39 @@
-@props(['id', 'type', 'sm' => false, 'color' => null])
+@props(['id', 'value', 'sm' => false, 'color' => null])
 
 @php
-  $isConfirmed = $type === 'confirmed';
-  $icon = $isConfirmed ? 'check' : 'times';
+  $styles = [
+    'Confirmado' => [
+      'icon' => 'check',
+      'color' => 'success',
+    ],
+    'Rechazado' => [
+      'icon' => 'times',
+      'color' => 'warning',
+    ],
+    'Pendiente' => [
+      'icon' => 'clock',
+      'color' => 'secondary',
+    ],
+  ];
+
+  $contentMap = [
+    'Confirmado' => 'Confirmar',
+    'Rechazado' => 'Rechazar',
+  ];
+  
+  $content = $contentMap[$value] ?? $value;
 @endphp
 
-<form method="POST" class="d-inline" action="{{ route('pending.update', $id) }}">
+<form method="POST" class="d-inline" action="{{ route('payments.status.update', $id) }}">
   @csrf
-  @method('PUT')
-  <input type="hidden" name="status" value="{{ $type }}">
-  <x-button class="{{ $sm ? 'btn-sm' : '' }}" type="submit" :color="$color" :icon="$icon">
-    {{ $isConfirmed ? 'Confirmar' : 'Rechazar' }}
+  @method('PATCH')
+  <input type="hidden" name="status" value="{{ $value }}">
+  <x-button 
+    :color="$color ?? $styles[$value]['color']"
+    :icon="$styles[$value]['icon']"
+    class="{{ $sm ? 'btn-sm' : '' }}"
+    type="submit"
+  >
+    {{ $content }}
   </x-button>
 </form>

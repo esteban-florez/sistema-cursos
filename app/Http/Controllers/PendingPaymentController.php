@@ -3,34 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payment;
-use Illuminate\Http\Request;
 
 class PendingPaymentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Administrador');
+    }
+
     public function index()
     {
-        // TODO -> n + 1 queries here
-        $payments = Payment::with('inscription')
-            ->where('status', 'pending')
+        $payments = Payment::with('enrollment.student', 'enrollment.course')
+            ->where('status', 'Pendiente')
+            ->latest()
             ->paginate(9)
             ->withQueryString();
 
-        return view('payments.pending', [
+        return view('pending-payments.index', [
             'payments' => $payments,
         ]);
-    }
-
-    public function update(Request $request, Payment $payment)
-    {
-        $data = $request->validate([
-            'status' => ['required', 'in:confirmed,rejected'],
-        ]);
-        
-        $operation = $request->input('status') === 'confirmed' ? 'confirmado' : 'rechazado';
-        $payment->update($data);
-        
-        return redirect()
-            ->back()
-            ->withSuccess("El pago se ha {$operation} de forma exitosa.");
     }
 }

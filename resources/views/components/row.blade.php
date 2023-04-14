@@ -1,36 +1,16 @@
-@props(['data', 'edit' => false, 'details' => false, 'delete' => false])
-
-@php
-  $actions = $edit || $details || $delete;
-@endphp
+@props(['data', 'actions' => null])
 
 <tr>
   @foreach ($data as $cell)
     <td>{{ $cell }}</td>
   @endforeach
-  {{ $custom ?? '' }}
-  @if($actions)
-  <td class="px-2">
-    <div class="d-flex gap-1 justify-content-center align-items-center h-100">
-        {{ $extraActions ?? '' }}
-        @if ($edit)
-          <x-button class="btn-sm" :url="$edit" color="warning" icon="edit" hide-text="md">
-            Editar
-          </x-button>
-        @endif
-        @if ($details)
-          <x-button class="btn-sm" :url="$details" icon="eye" hide-text="md">
-            Detalles
-          </x-button>
-        @endif
-        @if ($delete)
-        <form method="POST" action="{{ $delete }}">
-          @csrf
-          @method('DELETE')
-          <x-button class="btn-sm" type="submit" color="danger" icon="trash" hide-text="md">
-            Eliminar
-          </x-button>
-        </form>
+  @if ($actions)
+    <td class="px-2">
+      <div class="d-flex gap-1 justify-content-center align-items-center h-100">
+        @if ($actions->isNotEmpty())
+          {{ $actions }}
+        @else
+          <h4 class="mb-0">----</h4>
         @endif
       </div>
     </td>

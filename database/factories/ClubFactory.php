@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Instructor;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ClubFactory extends Factory
@@ -21,10 +21,10 @@ class ClubFactory extends Factory
             'name' => implode(' ', $this->faker->words(2)),
             'description' => $this->faker->text(100),
             'image' => 'img/programacion.jpg',
-            'day' => $this->faker->randomElement(['mo', 'tu', 'we', 'th', 'fr', 'sa', 'su']),
+            'day' => $this->faker->randomElement(days()),
             'start_hour' => $start_hour,
             'end_hour' => $end_hour,
-            'instructor_id' => Instructor::all()->random()->id,
+            'user_id' => User::where('role', 'Instructor')->get()->random()->id,
         ];
     }
 }

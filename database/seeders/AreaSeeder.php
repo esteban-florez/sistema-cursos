@@ -63,7 +63,7 @@ class AreaSeeder extends Seeder
 
         Area::create([
             'name' => 'Matemáticas',
-            'pnf_id' => 1,
+            'pnf_id' => 13,
         ]);
 
         // xD!!

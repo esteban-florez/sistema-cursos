@@ -1,19 +1,20 @@
-const width = '100%'
-const minimumResultsForSearch = Infinity
-const placeholder = 'Seleccionar...'
-
-$(document).ready(() => {
+export default function select2() {
+  const width = '100%'
+  const placeholder = 'Seleccionar...'
+  
   $('select').each((_, el) => {
-    if(el.multiple) {
-      enable(el, {width, placeholder});
-    } else if(el.dataset.search === 'search') {
-      enable(el, {width})
-    } else {
-      enable(el, {width, minimumResultsForSearch})
+    let options = {}
+ 
+    if (el.name !== 'ci_type') {
+      options = { width }
     }
-  })
-})
 
-function enable(el, options) {
-  $(el).select2(options);
+    if(el.multiple) {
+      options = {...options, placeholder }
+    }
+  
+    $(el).select2(options)
+  })
 }
+
+select2()

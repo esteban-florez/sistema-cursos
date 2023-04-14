@@ -3,48 +3,103 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Course;
+use App\Models\Enrollment;
 use App\Models\Payment;
-use App\Models\Inscription;
-
+use App\Models\User;
+use App\Services\ExchangeRate;
 
 class PaymentSeeder extends Seeder
 {
+    private $rate;
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public static function run()
+    public function run()
     {
+        $this->rate = ExchangeRate::get();
+
         Payment::truncate();
         
-        Inscription::all()
-        ->each(function ($inscription) {
-                $type = collect(['movil', 'transfer', 'dollars', 'bs'])->random();
-                $amount = null;
-                $ref = null;
-
-                if ($type === 'dollars' || $type === 'bs') {
-                } else {
-                    if($type === 'movil') {
-                        $ref = rand(pow(10, 3), pow(10, 4) - 1);
-                    } else {
-                        $ref = rand(pow(10, 7), pow(10, 8) - 1);
-                    }
+        Enrollment::all()
+            ->each(function ($enrollment) {
+                if ($enrollment->mode === 'Un solo pago') {
+                    $payment = $this->createPayment($enrollment, 'Pago completo');
+                    $payment->save();
+                    return;
                 }
                 
-                if ($type !== 'dollars') {
-                    $amount = $inscription->course->total_price * 14.65;
-                } else {
-                    $amount = $inscription->course->total_price;
-                }
+                $payment = $this->createPayment($enrollment, 'Reservación');
+                $payment->save();
                 
-                Payment::create([
-                    'type' => $type,
-                    'amount' => $amount,
-                    'ref' => $ref,
-                    'inscription_id' => $inscription->id,
-                ]);
+                $payment = $this->createPayment($enrollment, 'Cuota restante');
+                $payment->save();
             });
+
+        $this->confirmPayments();
+    }
+
+    protected function confirmPayments()
+    {
+        $user = User::find(16);
+        $course = Course::find(7);
+
+        $payments = Payment::withoutGlobalScope('fulfilled')
+            ->whereHas('enrollment', function ($query) use ($user, $course) {
+                $query->where('enrollments.user_id', $user->id)
+                    ->orWhere('enrollments.course_id', $course->id);
+            })->get();
+
+        $payments->each(function ($payment) {
+            if ($payment->category !== 'Cuota restante') {
+                $payment->update([
+                    'status' => 'Confirmado',
+                ]);
+                return;
+            }
+
+            $course = $payment->enrollment->course;
+
+            $payment->update([
+                'amount' => $course->total_price - $course->reserv_price,
+                'type' => 'Efectivo (Bs.D.)',
+                'fulfilled' => true,
+                'status' => 'Confirmado',
+            ]);
+        });
+    }
+
+    private function createPayment($enrollment, $category)
+    {
+        $course = $enrollment->course;
+
+        if ($category === 'Cuota restante') {
+            return Payment::make([
+                'enrollment_id' => $enrollment->id,
+                'category' => $category,
+                'fulfilled' => false,
+            ]);
+        }
+
+        $payment = Payment::factory([
+            'enrollment_id' => $enrollment->id,
+            'category' => $category,
+        ])->make();
+
+        $basePrices = [
+            'Cuota restante' => $course->total_price - $course->reserv_price,
+            'Pago completo' => $course->total_price,
+            'Reservación' => $course->reserv_price,
+        ];
+
+        if ($payment->type !== 'Efectivo ($)') {
+            $payment->amount = $basePrices[$category];
+        } else {
+            $payment->amount = $basePrices[$category] / $this->rate;
+        }
+
+        return $payment;
     }
 }

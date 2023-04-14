@@ -4,24 +4,31 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Membership;
-use App\Models\Inventory;
-use App\Models\Instructor;
 use App\Models\Shared\QueryScopes;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Club extends Model
 {
-    use HasFactory, QueryScopes, SoftDeletes;
+    use HasFactory, QueryScopes;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
-    protected static $searchColumn = 'name';
+    protected $search = ['name'];
+
+    protected $casts = [
+        'start_hour' => 'datetime',
+        'end_hour' => 'datetime',
+    ];
+
+    protected $withCount = ['members'];
 
     public function instructor()
     {
-        return $this->belongsTo(Instructor::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'memberships');
     }
 
     public function memberships()
@@ -29,33 +36,47 @@ class Club extends Model
         return $this->belongsTo(Membership::class);
     }
 
-    public function inventories()
+    public function loans()
     {
-        return $this->belongsTo(Inventory::class);
+        return $this->hasMany(Loan::class);
     }
 
-    public function getStartHourAttribute($startHour) 
+    public function scopeNotJoinedBy($query, $user)
     {
-        return formatTime($startHour);
+        $ids = $user
+            ->joinedClubs
+            ->modelKeys();
+
+        $query->whereNotIn('id', $ids);
     }
 
-    public function getEndHourAttribute($endHour) 
+    public function scopeJoinedBy($query, $user)
     {
-        return formatTime($endHour);
+        $ids = $user
+            ->joinedClubs
+            ->modelKeys();
+        
+        $query->whereIn('id', $ids);
+    }
+
+    public function getHourAttribute()
+    {
+        return "{$this->start_hour->format(TF)} a {$this->end_hour->format(TF)}";
     }
 
     public function getExcerptAttribute()
     {
-        return Str::words($this->description, 8);
+        return str($this->description)->words(8);
     }
 
-    public function getDayAttribute($day)
+    public static function getOptions()
     {
-        return getWeekDay($day);
-    }
+        $clubs = self::all(['id', 'name']);
 
-    public function getRawDayAttribute()
-    {
-        return $this->getRawOriginal('day');
+        $options = $clubs->mapWithKeys(function ($club) {
+            return [$club->id => $club->name];
+        })->all();
+
+        return $options;
     }
 }

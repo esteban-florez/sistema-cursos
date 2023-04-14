@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 2rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.normal {
+  font-weight: normal;
+}
+
+img {
+  position: absolute;
+}
+
+#logo {
+  top: 2rem;
+  left: 12rem;
+  width: 6rem;
+}
+
+#certificate-bg {
+  top: -48px;
+  left: -48px;
+  height: 120%;
+  width: 110%;
+  z-index: -2;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.name {
+  font-size: 3rem;
+  font-family: serif;
+}
+
+.sub {
+  font-size: 2rem;
+  margin-bottom: -0.5rem;
+}
+
+.course {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+table {
+  margin-top: 5rem;
+}
+
+table, tr {
+  width: 100%;
+}
+
+td {
+  width: 32%;
+}
+
+td div {
+  width: 100%;
+  text-align: center;
+}
+
+.small {
+  font-size: 0.8rem;
+}

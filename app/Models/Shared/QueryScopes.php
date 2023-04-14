@@ -4,32 +4,31 @@ namespace App\Models\Shared;
 
 trait QueryScopes
 {
-    protected static $searchColumn;
-
-    public function scopeFilters($query, $filters, $sortColumn, $search)
+    public function scopeFilters($query, $filters)
     {
-        // TODO -> hacer que pueda buscar por mas de un atributo
-        // TODO -> hacer que pueda ordenar asc y desc
-        return $query->when(
-            $filters,
-            function ($query, $filters) {
-                foreach($filters as $filter => $value) {
-                    if($value === 'true') {
-                        $value = true;
-                    }
-                    else if($value === 'false') {
-                        $value = false; 
-                    }
-                    $query->where($filter, '=', $value);
-                }
-                return $query;
+        return $query->when($filters, function ($query, $filters) {
+            foreach($filters as $filter => $value) {
+                $value = strToBool($value);
+                $query->where($filter, '=', $value);
             }
-            )->when(
-                $search,
-                function ($query, $search) {
-                    $searchColumn = self::$searchColumn;
-                    return $query->where($searchColumn, 'like', "%{$search}%");
-                }
-        )->when($sortColumn, fn($query, $sortColumn) => $query->orderBy($sortColumn));
+            
+            return $query;
+        });
+    }
+    
+    public function scopeSearch($query, $searchText)
+    {
+        return $query->when($searchText, function ($query, $search) {
+            foreach($this->search as $column) {
+                $query->orWhere($column, 'like', "%{$search}%");
+            }
+        });
+    }
+        
+    public function scopeSort($query, $sortColumn)
+    {
+        return $query->when($sortColumn, function ($query, $sortColumn) {
+            return $query->orderBy($sortColumn);
+        });
     }
 }

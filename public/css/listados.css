@@ -5,6 +5,7 @@
   gap: 0.75rem;
   border-radius: 0.25rem 0.25rem 0 0;
   border-width: 1px;
+  padding: 8px 20px;
 }
 
 .list-top > .title-wrapper {

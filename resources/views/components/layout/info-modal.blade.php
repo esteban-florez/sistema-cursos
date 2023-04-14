@@ -8,19 +8,19 @@
   <h5>Redes Sociales: </h5>
   <ul class="d-flex list-unstyled">
     <li class="mr-3">
-      <a href="#">
+      <a href="https://www.facebook.com/uptaragua.oficial" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-facebook"></i>
         Facebook
       </a>
     </li>
     <li class="mr-3">
-      <a href="#">
+      <a href="https://twitter.com/uptaragua" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-twitter"></i>
         Twitter
       </a>
     </li>
     <li class="mr-3">
-      <a href="#">
+      <a href="https://www.instagram.com/cursosuptaraguafbf/" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-instagram"></i>
         Instagram
       </a>

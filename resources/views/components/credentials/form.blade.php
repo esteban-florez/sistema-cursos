@@ -13,29 +13,29 @@
       <span class="text-white">&times;</span>
     </button>
   </x-slot>
-  <form method="POST" action="{{route($route)}}">
+  <form method="POST" action="{{ route($route) }}">
     @csrf
     @if($type === 'Editar')
       @method('PUT')
     @endif
-    <x-field name="ci" id="ci" placeholder="Ej. V-12.345.678" :value="old('ci') ?? $credential->ci ?? ''" required>
+    <x-field type name="ci" id="ci" placeholder="Ej. V-12.345.678" :value="old('ci') ?? $credential->ci ?? ''" minlength="6" maxlength="15" required>
       Cédula: 
     </x-field>
-    <x-field name="bank" id="bank" placeholder="Ej. Bancoejemplo (0101)" :value="old('bank') ?? $credential->bank ?? ''" required>
+    <x-field name="bank" id="bank" placeholder="Ej. Bancoejemplo (0101)" :value="old('bank') ?? $credential->bank ?? ''" minlength="5" maxlength="50" required>
       Banco: 
     </x-field>
     @if ($title === 'transferencia')
-    <x-field name="name" id="name" placeholder="Ej. Edeblangel Vanegas" :value="old('name') ?? $credential->name ?? ''" required>
+    <x-field name="name" id="name" placeholder="Ej. Edeblangel Vanegas" :value="old('name') ?? $credential->name ?? ''" minlength="5" maxlength="50" required>
       Nombre del beneficiario: 
     </x-field>
-    <x-field name="account" id="account" placeholder="Ej. 02052050450284012969" :value="old('account') ?? $credential->account ?? ''" required>
+    <x-field name="account" id="account" placeholder="Ej. 02052050450284012969" :value="old('account') ?? $credential->account ?? ''" minlength="10" maxlength="50" required>
       Nro. de cuenta: 
     </x-field>
-    <x-select name="type" id="type" :options="['Corriente' => 'Corriente', 'Ahorro' => 'Ahorro']" :selected="old('type') ?? $credential->type ?? ''" required default>
+    <x-select name="type" id="type" :options="accountTypes()->pairs()" :selected="old('type') ?? $credential->type ?? null" required default>
       Tipo de cuenta: 
     </x-select>
     @else
-    <x-field name="phone" id="phone" placeholder="Ej. 0412-1234567" :value="old('phone') ?? $credential->phone ?? ''" required>
+    <x-field name="phone" id="phone" placeholder="Ej. 0412-1234567" :value="old('phone') ?? $credential->phone ?? ''" minlength="11" maxlength="15" required>
       Teléfono: 
     </x-field>
     @endif

@@ -10,29 +10,40 @@
         <h1 class="text-white font-weight-normal">Crear nueva contraseña</h1>
       </div>
       <div class="card">
+        @if(session('status'))
+        <div class="alert alert-primary mb-0" role="alert">
+          {{ __(session('status')) }}
+        </div>
+        @endif
+        @error('invalid')
+          <div class="alert alert-danger mb-0" role="alert">
+            {{ $message }}
+          </div>
+        @enderror
         <div class="card-body login-card-body">
-          <span class="badge bg-info help-pass float-right" data-toggle="tooltip" title="La contraseña debe tener entre 8 y 20 caracteres, y debe ser una combinación de mayúsculas, minúsculas, números y símbolos.">?</span>
+          <x-password-tooltip />
           <p class="login-box-msg pb-2">Por favor ingrese su nueva contraseña.</p>
           <form action="{{ route('password.reset') }}" method="POST">
             @csrf
             <input type="hidden" name="email" value="{{ $email }}">
             <input type="hidden" name="token" value="{{ $token }}">
-            <div class="input-group mb-3">
-              <input autocomplete="off" class="form-control" id="password" type="password" name="password" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
-              <div class="input-group-append">
+            <x-input-group type="password" name="password" id="password" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
+              <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
                   <span class="fas fa-eye"></span>
                 </button>
-              </div>
-            </div>
-            <div class="input-group mb-3">
-              <input autocomplete="off" class="form-control" id="passwordConfirmation" type="password" name="password_confirmation" placeholder="Confirma la contraseña..." minlength="8" maxlength="20" required>
-              <div class="input-group-append">
+              </x-slot>
+            </x-input-group>
+            @error('password')
+              <p class="text-danger">{{ ucfirst($message) }}</p>
+            @enderror
+            <x-input-group type="password" name="password_confirmation" id="passwordConfirmation" placeholder="Ingresa la contraseña..." minlength="8" maxlength="20" required>
+              <x-slot name="append">
                 <button class="btn bg-white btn-outline-light" type="button" style="width: 3rem;">
                   <span class="fas fa-eye"></span>
                 </button>
-              </div>
-            </div>
+              </x-slot>
+            </x-input-group>
             <x-button type="submit" class="btn-block">
               Restablecer contraseña
             </x-button>
@@ -43,9 +54,6 @@
               Volver
             </a>
           </div>
-          @error('email')
-            <p>{{$errors->first()}}</p>
-          @enderror
         </div>
       </div>
     </div>

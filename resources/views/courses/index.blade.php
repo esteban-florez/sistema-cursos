@@ -1,20 +1,21 @@
 <x-layout.main title="Cursos">
+  <x-select2/>
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('courses.index') }}
+  </x-slot>
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/cursos.css') }}">
   @endpush
   <x-layout.bar>
-    <x-search placeholder="Buscar curso..." :value="$search" name="search" :action="route(Route::currentRouteName())">
-      <x-slot name="hidden">
-        @foreach ($filters as $filter => $value)
-          <input type="hidden" name="filters|{{ $filter }}" value="{{ $value }}">
-        @endforeach
-        <input type="hidden" name="sort" value="{{ $sort }}">
-      </x-slot>
-    </x-search>
+    <x-search 
+      placeholder="Buscar curso..." :value="$search"
+      name="search" :filters="$filters" :sort="$sort"/>
     <div>
-      <x-button icon="plus" color="success" hide-text="sm" :url="route('courses.create')">
-        Añadir
-      </x-button>
+      @can('create', App\Models\Course::class)
+        <x-button icon="plus" color="success" hide-text="sm" :url="route('courses.create')">
+          Añadir
+        </x-button>
+      @endcan
       <x-button icon="filter" hide-text="sm" data-target="#filtersCollapse" data-toggle="collapse">
         Filtros
       </x-button>
@@ -22,8 +23,11 @@
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         <x-slot name="filters">
-          <x-select :options="$areas" id="areaId" name="filters|area_id" :selected="$filters['area_id'] ?? ''">
+          <x-select :options="$areas" id="areaId" name="filters|area_id" :selected="$filters['area_id'] ?? null">
             Área de Formación
+          </x-select>
+          <x-select :options="phases()->pairs()" id="phase" name="filters|phase" :selected="$filters['phase'] ?? null">
+            Fase
           </x-select>
         </x-slot>
         <x-slot name="sorts">
@@ -33,48 +37,50 @@
     </x-slot>
   </x-layout.bar>
   <section class="container-fluid">
-    <x-alerts type="success" icon="plus-circle"/>
-    <x-alerts type="warning" icon="edit"/>
-    <x-alerts type="danger" icon="times-circle"/>
-    <x-table>
-      <x-slot name="header">
-        <th>Nombre</th>
-        <th>Instructor</th>
-        <th>Inscripciones</th>
-        <th>Fecha</th>
-        <th>Duración</th>
-        <th>Matrícula</th>
-        <th>Monto</th>
-        <th>Estado</th>
-        <th>Acciones</th>
-      </x-slot>
-      <x-slot name="body">
-        @forelse ($courses as $course)
-          <x-row :data="[
-            $course->name,
-            $course->instructor->full_name,
-            $course->start_ins . ' al ' . $course->end_ins,
-            $course->start_course . ' al ' . $course->end_course,
-            $course->duration_hours,
-            $course->student_diff,
-            $course->total_price . ' $',
-            $course->status,
-            ]"
-            :details="route('courses.show', $course->id)"
-            :edit="route('courses.edit', $course->id)"
-            :delete="route('courses.destroy', $course->id)"
-          >
-          <x-slot name="extraActions">
-            <x-button class="btn-sm" color="secondary" :url="route('inscriptions.index', ['course' => $course->id])" icon="clipboard-list">
-              Matrícula
-            </x-button>
-          </x-slot>
-        </x-row>
-        @empty
-          <div class="empty-container">
-            <h2 class="empty">No hay cursos disponibles</h2>
-          </div>
-        @endforelse
+    <x-alert />
+    @if ($courses->isNotEmpty())
+      <x-table>
+        <x-slot name="header">
+          <th>Nombre</th>
+          <th>Instructor</th>
+          <th>Inscripciones</th>
+          <th>Fecha</th>
+          <th>Duración</th>
+          <th>Matrícula</th>
+          <th>Monto</th>
+          <th>Fase</th>
+          <th>Acciones</th>
+        </x-slot>
+        <x-slot name="body">
+          @foreach ($courses as $course)
+            <x-row :data="[
+              $course->name,
+              $course->instructor->full_name,
+              $course->ins_date,
+              $course->date,
+              $course->duration_hours,
+              $course->student_diff,
+              $course->total_amount,
+              $course->phase,
+              ]"
+            >
+              <x-slot name="actions">
+                @can('viewAny', [App\Models\Enrollment::class, $course])
+                  <x-button class="btn-sm" color="secondary" :url="route('enrollments.index', ['course' => $course])" icon="clipboard-list">
+                    Matrícula
+                  </x-button>
+                @endcan
+                @can('update', $course)
+                  <x-button class="btn-sm" :url="route('courses.edit', $course)" color="warning" icon="edit">
+                    Editar
+                  </x-button>
+                @endcan
+                <x-button class="btn-sm" :url="route('courses.show', $course)" icon="eye">
+                  Detalles
+                </x-button>
+              </x-slot>
+            </x-row>
+          @endforeach
         </x-slot>
         <x-slot name="pagination">
           <div class="pagination-container">
@@ -82,5 +88,10 @@
           </div>
         </x-slot>
       </x-table>
+    @else
+      <div class="empty-container">
+        <h2 class="empty">No hay cursos disponibles</h2>
+      </div>
+    @endif
   </section>
 </x-layout.main>

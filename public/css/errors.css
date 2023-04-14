@@ -1,0 +1,67 @@
+.box-error {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  font-weight: 900;
+}
+
+.content {
+  max-width: 18rem;
+  padding: 2rem;
+  background-color: rgba(112, 128, 117, 0.274);
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 5.5rem;
+  color: white;
+}
+
+.line-blue-light {
+  width: 25%;
+  padding: 3px;
+  margin-bottom: 2.5rem;
+  background-color: lightskyblue;
+}    
+
+.message {
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.button {
+  width: 50%;
+  margin-bottom: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .box-error {
+    height: 100vh;
+    display: flex;
+    justify-content: left;
+  }
+
+  .content {
+    max-width: 30rem;
+  }
+
+  .title {
+    font-size: 9rem;
+  }
+  
+  .line-blue-light {
+    width: 20%;
+  }    
+  
+  .message {
+    font-size: 1.5rem;
+  }  
+
+  .button {
+    width: 35%;
+  }
+}

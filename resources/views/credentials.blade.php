@@ -1,18 +1,11 @@
 <x-layout.main title="Credenciales para pagos">
+  <x-slot name="breadcrumbs">
+    {{ Breadcrumbs::render('credentials.index') }}
+  </x-slot>
   <section class="container-fluid mt-3">
-    @if($errors->any())
-    <div class="alert alert-danger">
-      <p>Ocurrieron los siguientes errores: </p>
-      <ul>
-        @foreach ($errors->all() as $message)
-          <li>{{ $message }}</li>
-        @endforeach
-      </ul>
-    </div>
-    @endif
-    <x-alerts type="success" icon="plus-circle"/>
-    <x-alerts type="warning" icon="edit"/>
-    <x-alerts type="danger" icon="times-circle"/>
+    <x-errors />
+    <x-select2 />
+    <x-alert />
     <div class="row">
       @if($transfer)
         <x-credentials.transfer :data="$transfer" />

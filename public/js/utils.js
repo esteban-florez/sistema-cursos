@@ -1,8 +1,5 @@
-const findSelectedCheckbox = checksArray => checksArray.find(check => check.checked === true);
-
-// UNUSED
-const uncheckCheckboxes = checks => {
-  checks.forEach(check => check.checked = false);
+function getSerialized(attribute) {
+  return JSON.parse(document.querySelector('#serialized').dataset[attribute])
 }
 
-export { findSelectedCheckbox, uncheckCheckboxes };
+export { getSerialized }

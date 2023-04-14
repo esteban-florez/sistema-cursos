@@ -1,13 +1,13 @@
-@props(['name', 'role', 'image', 'courseCount', 'clubCount', 'noseCount'])
+@props(['user'])
 
 <div class="card card-widget widget-user card-profile mb-3 mx-2">
   <div class="widget-user-header bg-primary">
-    <h3 class="widget-user-username">{{ $name }}</h3>
-    <h5 class="widget-user-desc">{{ $role }}</h5>
+    <h3 class="widget-user-username">{{ $user->full_name }}</h3>
+    <h5 class="widget-user-desc">{{ $user->role }}</h5>
   </div>
   <div class="widget-user-image">
     <img class="img-circle elevation-2 profile-img img-cover"
-    src="{{ asset($image) }}"
+    src="{{ asset($user->image) }}"
     alt="User Avatar">
   </div>
   <div class="card-footer">
@@ -15,15 +15,38 @@
       <div class="col-6 border-right">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Cursos</h5>
-          <p class="profile-number badge badge-dark m-0 mt-2">{{ $courseCount }}</p>
+          @if($user->can('role', 'Estudiante'))
+            <p class="profile-number badge badge-dark m-0 mt-2">
+              {{ $user->enrollments()->count() }}
+            </p>    
+          @elseif($user->can('role', 'Instructor'))
+            <p class="profile-number badge badge-dark m-0 mt-2">
+              {{ $user->dictatedCourses()->count() }}
+            </p>    
+          @endif
         </div>
       </div>
       <div class="col-6">
         <div class="description-block">
           <h5 class="m-0 text-truncate">Clubes</h5>
-          <p class="profile-number badge badge-dark m-0 mt-2">{{ $clubCount }}</p>
+          @if($user->can('role', 'Estudiante'))
+            <p class="profile-number badge badge-dark m-0 mt-2">
+              {{ $user->memberships()->count() }}
+            </p>    
+          @elseif($user->can('role', 'Instructor'))
+            <p class="profile-number badge badge-dark m-0 mt-2">
+              {{ $user->dictatedClubs()->count() }}
+            </p>    
+          @endif
         </div>
       </div>
+      @can('users.image.update', $user)
+        <div class="col-12 mt-3">
+          <x-button class="btn-block w-100" data-toggle="modal" data-target="#profileImgModal" icon="image">
+            Cambiar imagen de perfil
+          </x-button>
+        </div>
+      @endcan
     </div>
   </div>
 </div>

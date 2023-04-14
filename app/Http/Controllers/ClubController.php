@@ -2,29 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ClubEvent;
+use App\Http\Requests\StoreClubRequest;
+use App\Http\Requests\UpdateClubRequest;
 use Illuminate\Http\Request;
 use App\Models\Club;
-use App\Models\Instructor;
+use App\Models\User;
 use App\Services\Input;
 
 class ClubController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->authorizeResource(Club::class);
+    }
+
     public function index(Request $request)
     {
         $filters = Input::getFilters();
-        $search = $request->input('search', '');
-        $sortColumn = $request->input('sort', '');
+        $search = $request->query('search');
+        $sortColumn = $request->query('sort');
 
-        $clubs = Club::filters($filters, $sortColumn, $search)
+        $clubs = Club::latest()
+            ->filters($filters)
+            ->search($search)
+            ->sort($sortColumn)
             ->paginate(10)
             ->withQueryString();
         
-        return view('club.index', [
+        return view('clubs.index', [
             'clubs' => $clubs,
             'filters' => $filters,
             'sort' => $sortColumn,
@@ -32,124 +38,57 @@ class ClubController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        $instructors = Instructor::getOptions();
-        
-        return view('club.create', [
-            'instructors' => $instructors,
+        return view('clubs.create', [
+            'instructors' => User::getOptions('Instructor'),
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-    public function store(Request $request) 
+    public function store(StoreClubRequest $request) 
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'image' => ['required', 'file', 'image', 'max:2048'],
-            'description' => ['required', 'max:255'],
-            'day' => ['required', 'in:mo,tu,we,th,fr,sa,su'],
-            'start_hour' => ['required'],
-            'end_hour' => ['required'],
-            'instructor_id' => ['required', 'integer', 'numeric'],
-        ]);
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/clubs');
-        } else {
-            unset($data['image']);
         }
 
-        Club::create($data);
+        $club = Club::create($data);
 
-        return redirect()->route('club.index')
-            ->withSuccess('El club se ha añadido con éxito');
+        event(new ClubEvent($club));
+
+        return redirect()->route('clubs.index')
+            ->with('alert', trans('alerts.clubs.created'));
     }
 
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show(Club $club)
     {
-        return view('club.show', [
+        return view('clubs.show', [
             'club' => $club,
-            ]
-        );
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Club $club)
     {
-        $instructors = Instructor::getOptions();
-
-        return view ('club.edit', [
+        return view ('clubs.edit', [
             'club' => $club,
-            'instructors' => $instructors
+            'instructors' => User::getOptions('Instructor'),
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Club $club)
+    public function update(UpdateClubRequest $request, Club $club)
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:30'],
-            'image' => ['required', 'file', 'image', 'max:2048'],
-            'description' => ['required', 'max:255'],
-            'day' => ['required', 'in:mo,tu,we,th,fr,sa,su'],
-            'start_hour' => ['required'],
-            'end_hour' => ['required'],
-            'instructor_id' => ['required', 'integer', 'numeric'],
-        ]);
+        $data = $request->validated();
 
         if (Input::checkFile('image')) {
             $data['image'] = Input::storeFile('image', 'public/clubs');
-        } else {
-            unset($data['image']);
         }
 
         $club->update($data);
 
-        return redirect()->route('club.index')
-            ->withWarning('El club se ha editado con éxito');;
-    }
+        event(new ClubEvent($club));
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Club $club)
-    {
-        $club->delete();
-
-        return redirect()->route('club.index')
-            ->withDanger('El club se ha eliminado con éxito');
+        return redirect()->route('clubs.index')
+            ->with('alert', trans('alerts.clubs.updated'));
     }
 }

@@ -2,24 +2,45 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AvailableClubController;
+use App\Http\Controllers\AvailableCourseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\ClubLoanController;
 use App\Http\Controllers\CredentialsController;
-use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BackupController;
+use App\Http\Controllers\ClubStatusController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\MarketController;
-use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InscriptionApprovalController;
+use App\Http\Controllers\EnrollmentApprovalController;
 use App\Http\Controllers\MovilCredentialsController;
 use App\Http\Controllers\TransferCredentialsController;
-use App\Http\Controllers\StudentPaymentController;
-use App\Http\Controllers\InscriptionController;
-use App\Http\Controllers\InscriptionConfirmationController;
+use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\EnrollmentConfirmationController;
+use App\Http\Controllers\ItemStockController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\OperationController;
+use App\Http\Controllers\PaymentStatusController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\PendingPaymentController;
+use App\Http\Controllers\PNFController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\StatsController;
+use App\Http\Controllers\SystemRestoreController;
+use App\Http\Controllers\UnfulfilledPaymentController;
+use App\Http\Controllers\UserClubController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserCourseController;
+use App\Http\Controllers\UserEnrollmentController;
+use App\Http\Controllers\UserMembershipController;
+use App\Http\Controllers\UserPaymentController;
+use App\Http\Controllers\UserImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,208 +54,288 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('test', function () {
-    return view('test');
-})->name('test');
+Route::middleware('guest')->group(function () {
+    Route::redirect('/', 'login');
 
-Route::post('test', function () {
-    dd([
-        request()->input('filters|is_admin', ''),
-        request()->input('filters|gender', )
-    ]);
-});
-
-Route::redirect('/', 'login')->middleware('guest');
-
-
-// Auth routes
-
-Route::group([
-    'controller' => AuthController::class
-], function () {
-    Route::group([
-        'middleware' => 'guest'
-    ], function () {
-        Route::get('login', 'login')
+    // Auth routes
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('login', 'create')
             ->name('login')
             ->middleware('prevent-back');
         
-        Route::post('auth', 'authenticate')
+        Route::post('auth', 'store')
             ->name('auth');
+
+        Route::get('logout', 'destroy')
+            ->name('logout')
+            ->withoutMiddleware('guest');
     });
-    
-    Route::get('logout', 'logout')
-        ->name('logout')
-        ->middleware('auth');
-});
 
+    // Password recovery
+    Route::group([
+        'controller' => PasswordController::class,
+        'as' => 'password.',
+    ],
+    function () {
+        Route::get('forgot-password', 'forgot')
+            ->name('forgot');
 
-// Password recovery
+        Route::post('forgot-password', 'mail')
+            ->name('email');
 
-Route::group([
-    'controller' => PasswordController::class,
-    'middleware' => 'guest',
-    'as' => 'password.',
-],
-function () {
-    Route::get('forgot-password', 'forgot')
-        ->name('forgot');
-    
-    Route::post('forgot-password', 'mail')
-        ->name('email');
-    
-    Route::get('reset-password/{token}/{email}', 'edit')
-        ->name('edit');
-    
-    Route::post('reset-password', 'reset')
-        ->name('reset');
-});
+        Route::get('reset-password/{token}/{email}', 'edit')
+            ->name('edit');
 
+        Route::post('reset-password', 'reset')
+            ->name('reset');
+    });
 
-// Signup routes
-
-Route::get('signup', [RegisterController::class, 'create'])
-    ->name('register.create');
-
-Route::post('register', [RegisterController::class, 'store'])
-    ->name('register.store');
-
-
-// Instructors routes
-
-Route::resource('instructors', InstructorController::class)
-    ->middleware('auth:instructor', 'admin');
-
-
-// Areas routes
-
-Route::resource('areas', AreaController::class)
-    ->except('create')
-    ->middleware('auth:instructor');
-
-
-// Courses routes
-
-Route::resource('courses', CourseController::class)
-    ->middleware('auth:instructor', 'admin');
-
-
-// Students routes
-
-Route::resource('students', StudentController::class)
-    ->middleware('auth:instructor', 'admin');
-
-Route::get('students/{student}/payments', [StudentPaymentController::class, 'index'])
-    ->middleware('auth:student')
-    ->name('students.payments.index');
-
-
-// Payments routes
-
-Route::get('pending-payments', [PendingPaymentController::class, 'index'])
-    ->middleware('auth:instructor', 'admin')    
-    ->name('pending.index');
-
-Route::put('pending-payments/{payment}', [PendingPaymentController::class, 'update'])
-    ->middleware('auth:instructor', 'admin')    
-    ->name('pending.update');
-
-Route::resource('payments', PaymentController::class)
-    ->middleware('auth:instructor', 'admin')
-    ->only('index', 'destroy');
-
-
-//Club routes
-
-Route::resource('club', ClubController::class)
-    ->middleware('auth'); //por ahora así pa que se vea el show en students too
-
-
-// Course market
-
-Route::group([
-    'middleware' => 'auth:student',
-    'prefix' => 'market',
-    'as' => 'market.'
-], function () {
-    Route::get('/', [MarketController::class, 'index'])
-        ->name('index');
-
-    Route::get('{course}', [MarketController::class, 'show'])
-        ->name('show');
-});
-
-
-// Course enrollment
-
-Route::group([
-    'controller' => EnrollmentController::class,
-    'middleware' => 'auth:student',
-    'prefix' => 'enrollment',
-    'as' => 'enrollment.',
-], function () {
-    Route::middleware('enroll')->group(function () {
-        Route::get('{course}', 'create')
+    // Signup routes
+    Route::group([
+        'controller' => RegisterController::class,
+        'as' => 'register.',
+    ], function () {
+        Route::get('signup', 'create')
             ->name('create');
-    
-        Route::post('{course}', 'store')
+
+        Route::post('register', 'store')
             ->name('store');
     });
+
+    // Restore routes
+    Route::get('restore', [SystemRestoreController::class, 'create'])
+        ->name('system-restore.create');
     
-    Route::get('{inscription}/success', 'success')
-        ->name('success');
-
-    Route::get('{inscription}/download', 'download')
-        ->name('download');
-}); 
-
-
-// Inscriptions routes
-
-Route::get('inscriptions', [InscriptionController::class, 'index'])
-    ->middleware('auth:instructor')
-    ->name('inscriptions.index');
-
-Route::get('inscriptions/download', [InscriptionController::class, 'download'])
-    ->middleware('auth:instructor')
-    ->name('inscriptions.download');
-
-Route::put('inscriptions/{inscription}/approval', 
-[InscriptionApprovalController::class, 'update'])
-    ->middleware('auth:instructor')
-    ->name('inscriptions.approval');
-
-Route::put('inscriptions/{inscription}/confirmation', 
-[InscriptionConfirmationController::class, 'update'])
-    ->middleware('auth:instructor')
-    ->name('inscriptions.confirmation');
-
-    
-// Credentials routes
-
-Route::middleware('auth:instructor', 'admin')->group(function () {
-    Route::get('credentials', [CredentialsController::class, 'index'])
-        ->name('credentials.index');
-    
-    Route::post('movil-credentials', [MovilCredentialsController::class, 'store'])
-        ->name('movil.store');
-    
-    Route::put('movil-credentials', [MovilCredentialsController::class, 'update'])
-        ->name('movil.update');
-    
-    Route::post('transfer-credentials', [TransferCredentialsController::class, 'store'])
-        ->name('transfer.store');
-    
-    Route::put('transfer-credentials', [TransferCredentialsController::class, 'update'])
-        ->name('transfer.update');
+    Route::post('restore', [SystemRestoreController::class, 'store'])
+        ->name('system-restore.store');
 });
 
+Route::middleware('auth')->group(function () {
+    // Home routes
+    Route::get('home', HomeController::class)
+        ->middleware('prevent-back')
+        ->name('home');
 
-// Misc
+    // Areas routes
+    Route::resource('areas', AreaController::class)
+        ->except('create', 'show', 'destroy');
 
-Route::get('home', ([HomeController::class, 'index']))->name('home')
-    ->middleware('auth', 'prevent-back');
+    // Courses routes
+    Route::resource('courses', CourseController::class)
+        ->except('destroy');
 
-Route::view('pagos', 'pagos')->name('pagos')
-    ->middleware('auth');
+    Route::get('available-courses', [AvailableCourseController::class, 'index'])
+        ->name('available-courses.index');
 
+    // Users routes
+    Route::resource('users', UserController::class)
+        ->except('destroy');
+
+    Route::get('users/{user}/payments', [UserPaymentController::class, 'index'])
+        ->name('users.payments.index');
+    
+    Route::controller(UserEnrollmentController::class)->group(function () {
+        Route::get('users/{user}/enrollments', 'index')
+            ->name('users.enrollments.index');
+        
+        Route::get('users/enrollments/{enrollment}', 'show')
+            ->name('users.enrollments.show');
+    });
+
+    Route::controller(UserMembershipController::class)->group(function () {
+        Route::get('users/{user}/memberships', 'index')
+            ->name('users.memberships.index');
+
+        Route::get('users/memberships/{membership}', 'show')
+            ->name('users.memberships.show');
+    });
+
+    Route::get('users/{user}/courses', [UserCourseController::class, 'index'])
+        ->name('users.courses.index');
+
+    Route::get('users/{user}/clubs', [UserClubController::class, 'index'])
+        ->name('users.clubs.index');
+
+    Route::patch('users/{user}/profile-img', [UserImageController::class, 'update'])
+        ->name('users.image.update');
+
+    // Change password routes
+    Route::group([
+        'controller' => PasswordController::class,
+        'as' => 'password.',
+    ],
+    function () {
+        Route::get('change-password', 'change')
+            ->name('change');
+
+        Route::post('update-password', 'update')
+            ->name('update');
+    });
+
+    // Payments routes
+    Route::resource('payments', PaymentController::class)
+        ->only('index', 'edit', 'update');
+
+    Route::get('pending-payments', [PendingPaymentController::class, 'index'])
+        ->name('pending-payments.index');
+
+    Route::patch('payments/{payment}/status', [PaymentStatusController::class, 'update'])
+        ->name('payments.status.update');
+
+    Route::group([
+        'controller' => UnfulfilledPaymentController::class,
+        'as' => 'unfulfilled-payments.',
+    ], function () {
+        Route::get('unfulfilled-payments', 'index')
+            ->name('index');
+        
+        Route::get('unfulfilled-payments/{payment}/edit', 'edit')
+            ->name('edit');
+    
+        Route::patch('unfulfilled-payments/{payment}', 'update')
+            ->name('update');
+    });
+
+    // Clubs routes
+    Route::resource('clubs', ClubController::class)
+        ->except('destroy');
+
+    Route::patch('clubs/{club}/status', [ClubStatusController::class, 'update'])
+        ->name('club.status.update');
+        
+    Route::get('available-clubs', [AvailableClubController::class, 'index'])
+        ->name('available-clubs.index');
+
+    Route::get('clubs/{club}/loans', [ClubLoanController::class, 'index'])
+        ->name('clubs.loans.index');
+
+    // Membership routes
+    Route::resource('memberships', MembershipController::class)
+        ->only('index', 'store', 'destroy');
+
+    // Enrollment routes
+    Route::resource('enrollments', EnrollmentController::class)
+        ->only('index', 'create', 'store');
+        
+    Route::get('enrollments/{enrollment}/success', [EnrollmentController::class, 'success'])
+        ->name('enrollments.success');
+
+    Route::patch('enrollments/{enrollment}/approval', 
+    [EnrollmentApprovalController::class, 'update'])
+        ->name('enrollments.approval.update');
+    
+    Route::patch('enrollments/{enrollment}/confirmation', 
+    [EnrollmentConfirmationController::class, 'update'])
+        ->name('enrollments.confirmation.update');
+
+    // Credentials routes
+    Route::get('credentials', [CredentialsController::class, 'index'])
+        ->name('credentials.index');
+
+    Route::controller(MovilCredentialsController::class)->group(function () {
+        Route::post('movil-credentials', 'store')
+            ->name('movil.store');
+        
+        Route::put('movil-credentials', 'update')
+            ->name('movil.update');
+    });
+
+    Route::controller(TransferCredentialsController::class)->group(function () {
+        Route::post('transfer-credentials', 'store')
+            ->name('transfer.store');
+        
+        Route::put('transfer-credentials', 'update')
+            ->name('transfer.update');
+    });
+
+    // PNFs routes
+    Route::resource('pnfs', PNFController::class)
+        ->except('create', 'show', 'destroy');
+
+    // Schedule route
+    Route::get('schedule', ScheduleController::class)
+        ->name('schedule');
+
+    // Items routes
+    Route::resource('items', ItemController::class)
+        ->except('create', 'show', 'destroy');
+    
+    Route::get('items/stock', [ItemStockController::class, 'index'])
+        ->name('items.stock.index');
+    
+    // Operations routes
+    Route::resource('operations', OperationController::class)
+        ->only('index', 'create', 'store');
+
+    // Loans routes
+    Route::resource('loans', LoanController::class)
+        ->only('index', 'store', 'update');
+
+    // Notifications routes
+    Route::get('mark-notification/{notification}', [NotificationController::class, 'markNotification'])
+        ->name('mark-notification');
+    
+    Route::get('mark-all-notifications', [NotificationController::class, 'markAllNotifications'])
+        ->name('mark-all-notifications');
+
+    // Backups routes
+    Route::group([
+        'controller' => BackupController::class,
+        'as' => 'backups.',
+    ], function () {
+        Route::get('backups', 'manage')
+            ->name('manage');
+    
+        Route::get('backups/generate', 'generate')
+            ->name('generate');
+
+        Route::post('backups', 'upload')
+            ->name('upload');
+
+        Route::get('backups/{backup}', 'download')
+            ->name('download');
+        
+        Route::patch('backups/{backup}', 'recover')
+            ->name('recover');
+        
+        Route::delete('backups/{backup}', 'delete')
+            ->name('delete');
+    });
+
+    // Stats routes
+    Route::get('stats', StatsController::class)
+        ->name('stats');
+
+    // History routes
+    Route::get('history', HistoryController::class)
+        ->name('history');
+
+    // Help route
+    Route::view('help', 'help')
+        ->name('help');
+
+    // PDF routes
+    Route::group([
+        'controller' => PDFController::class,
+        'as' => 'pdf.',
+        'prefix' => 'pdf'
+    ], function () {
+        Route::get('enrollments', 'enrollments')
+            ->name('enrollments');
+
+        Route::get('enrollment/{enrollment}', 'enrollment')
+            ->name('enrollment');
+
+        Route::get('payments', 'payments')
+            ->name('payments');
+
+        Route::get('certificate/{enrollment}', 'certificate')
+            ->name('certificate');
+
+        Route::get('memberships', 'memberships')
+            ->name('memberships');
+
+        Route::get('items', 'items')
+            ->name('items');
+    });
+});

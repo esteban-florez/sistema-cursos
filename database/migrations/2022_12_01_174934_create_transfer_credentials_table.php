@@ -15,11 +15,11 @@ class CreateTransferCredentialsTable extends Migration
     {
         Schema::create('transfer_credentials', function (Blueprint $table) {
             $table->id();
-            $table->string('bank');
-            $table->string('ci');
             $table->string('name');
-            $table->string('type');
+            $table->string('ci');
+            $table->string('bank');
             $table->string('account');
+            $table->string('type');
             $table->timestamps();
         });
     }

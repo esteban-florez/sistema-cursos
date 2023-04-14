@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAreaRequest;
+use App\Http\Requests\UpdateAreaRequest;
 use App\Models\Area;
 use App\Models\PNF;
 use Illuminate\Http\Request;
 
 class AreaController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Area::class);
+    }
+
     public function index(Request $request)
     {
-        $search = $request->input('search', '');
+        $search = $request->query('search');
         
-        $areas = Area::when($search, fn($query, $search) => 
-            $query->where('name', 'like', "%{$search}%"))
-            ->get();
+        $areas = Area::when($search, function ($query, $search) {
+                return $query->where('name', 'like', "%{$search}%");
+            })->orderBy('id', 'desc')
+            ->paginate(9)
+            ->withQueryString();
 
         $pnfs = PNF::getOptions();
 
@@ -25,22 +34,22 @@ class AreaController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreAreaRequest $request)
     {
-        $data = $request->validate([
-            'name' => ['required', 'unique:areas', 'max:255'],
-            'pnf_id' => ['required']
-        ]);
+        $data = $request->validated();
 
         Area::create($data);
 
-        return redirect()->back()
-            ->withSuccess('El área se ha añadido con éxito');
+        return back()
+            ->with('alert', trans('alerts.areas.created'));
     }
 
     public function edit(Area $area)
     {
-        $areas = Area::all();
+        $areas = Area::latest()
+            ->paginate(9)
+            ->withQueryString();
+
         $pnfs = PNF::getOptions();
 
         return view('areas', [
@@ -50,23 +59,13 @@ class AreaController extends Controller
         ]);
     }
 
-    public function update(Request $request, Area $area)
+    public function update(UpdateAreaRequest $request, Area $area)
     {
-        $data = $request->validate([
-            'name' => ['required', 'max:255'],
-            'pnf_id' => ['required']
-        ]);
+        $data = $request->validated();
 
         $area->update($data);
-        // TODO -> hacer que mande error y tal si salió algo mal
-        return redirect()->route('areas.index')
-            ->withWarning('El área se ha editado con éxito');
-    }
 
-    public function destroy(Area $area) {
-        $area->delete();
-        // TODO -> hacer que muestre modal de confirmación
         return redirect()->route('areas.index')
-            ->withDanger('El área se ha eliminado con éxito');
+            ->with('alert', trans('alerts.areas.updated'));
     }
 }

@@ -11,7 +11,6 @@
   @stack('css-plugins')
   <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}">
   @stack('css')
-  <script src="{{ asset('js/dolar.js') }}"></script>
   <script defer src="{{ asset('js/jquery.min.js') }}"></script>
   <script defer src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
   @stack('js-plugins')

@@ -18,14 +18,17 @@ class DatabaseSeeder extends Seeder
 
         $this->call(PNFSeeder::class);
         $this->call(AreaSeeder::class);
-        $this->call(StudentSeeder::class);
-        $this->call(InstructorSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(ClubSeeder::class);
         $this->call(CourseSeeder::class);
-        $this->call(InscriptionSeeder::class);
+        $this->call(EnrollmentSeeder::class);
         $this->call(PaymentSeeder::class);
         $this->call(MovilCredentialsSeeder::class);
         $this->call(TransferCredentialsSeeder::class);
+        $this->call(ItemSeeder::class);
+        $this->call(OperationSeeder::class);
+        $this->call(MembershipSeeder::class);
+        $this->call(LoanSeeder::class);
 
         Schema::enableForeignKeyConstraints();
     }

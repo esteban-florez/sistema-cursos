@@ -15,8 +15,25 @@ class PNFSeeder extends Seeder
     public function run()
     {
         PNF::truncate();
+
+        $pnfs = [
+            'Extensión Universitaria',
+            'Administración',
+            'Agroalimentación',
+            'Contaduría Pública',
+            'Electricidad',
+            'Electrónica',
+            'Informática',
+            'Instrumentación y Control',
+            'Mantenimiento',
+            'Mecánica',
+            'Sistemas de Calidad y Ambiente',
+            'Telecomunicaciones',
+            'Ciencias Básicas',
+            'Estudios Generales',
+        ];
         
-        foreach (PNF::$pnfNames as $name) {
+        foreach ($pnfs as $name) {
             PNF::create([
                 'name' => $name,
             ]);

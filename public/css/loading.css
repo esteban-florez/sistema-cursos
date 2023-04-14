@@ -1,0 +1,50 @@
+@keyframes placeholder-glow {
+  50% {
+    opacity: .2;
+  }
+}
+
+.hidden-section {
+  display: none;
+}
+
+.placeholder {
+  display: inline-block;
+  min-height: 1em;
+  vertical-align: middle;
+  cursor: wait;
+  background-color: currentColor;
+  opacity: .5;
+}
+
+.placeholder-glow .placeholder {
+  -webkit-animation: placeholder-glow 2s ease-in-out infinite;
+  animation: placeholder-glow 2s ease-in-out infinite;
+}
+
+.loading-container {
+  padding-top: 5rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  width: 15rem;
+  height: 15rem;
+  border: 1.5rem solid transparent;
+  border-bottom-color: #007bff;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 

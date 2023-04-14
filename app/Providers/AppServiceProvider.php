@@ -3,10 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,11 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Traten de buscar en internet como activar la opción "innodb_large_prefix", luego si ven que no pudieron ya descomentan esta línea xddd
         Schema::defaultStringLength(191);
 
-        Blade::if('is', fn($role) => $role === getCurrentRole());
-
-        Blade::if('isnt', fn($role) => $role !== getCurrentRole());
+        Collection::macro('pairs', function () {
+            return $this->mapWithKeys(function ($value) {
+                return [$value => $value];
+            });
+        });
 
         Paginator::useBootstrap();
     }

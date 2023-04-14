@@ -4,20 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Instructor;
-use App\Models\Course;
-use App\Models\PNF;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Area extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     public function instructors()
     {
-        return $this->hasMany(Instructor::class);
+        return $this->hasMany(User::class);
     }
 
     public function pnf()
@@ -30,18 +26,13 @@ class Area extends Model
         return $this->hasMany(Course::class);
     }
 
-    public static function getOptions($withDefault = true)
+    public static function getOptions()
     {
         $areas = self::all(['id', 'name']);
 
-        $options = $areas->mapWithKeys(fn($area) => [$area->id => $area->name])
-            ->sortKeys()
-            ->all();
-
-        if ($withDefault) {
-            $defaultOptions = ['' => 'Seleccionar'];
-            return $defaultOptions + $options;
-        }
+        $options = $areas->mapWithKeys(function ($area) {
+            return [$area->id => $area->name];
+        })->all();
 
         return $options;
     }

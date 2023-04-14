@@ -9,36 +9,18 @@ class PNF extends Model
 {
     use HasFactory;
 
-    protected $table = 'pnfs';
-    
-    public static $pnfNames = [
-        'Extensión Universitaria',
-        'Administración',
-        'Agroalimentación',
-        'Contaduría Pública',
-        'Electricidad',
-        'Electrónica',
-        'Informática',
-        'Instrumentación y Control',
-        'Mantenimiento',
-        'Mecánica',
-        'Sistemas de Calidad y Ambiente',
-        'Telecomunicaciones',
-    ];
+    protected $guarded = [];
 
-    public static function getOptions($withDefault = true)
+    protected $table = 'pnfs';
+
+    public static function getOptions()
     {
         $pnfs = self::all(['id', 'name']);
 
-        $options = $pnfs->mapWithKeys(fn($pnf) => [$pnf->id => $pnf->name])
-            ->sortKeys()
-            ->all();
-
-        if ($withDefault) {
-            $defaultOptions = ['' => 'Seleccionar...'];
-            return $defaultOptions + $options;
-        }
-
+        $options = $pnfs->mapWithKeys(function ($pnf) {
+            return [$pnf->id => $pnf->name];
+        })->sortKeys()->all();
+            
         return $options;
     }
 }

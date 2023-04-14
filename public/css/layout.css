@@ -85,13 +85,10 @@ h1 {
   top: calc(50% - 0.5rem);
 }
 
-.small-box {
-  margin-bottom: 0;
-}
-
 span.fas,
 span.far,
-span.fab {
+span.fab,
+.btn * {
   pointer-events: none;
 }
 
@@ -134,9 +131,48 @@ span.fab {
   text-align: center;
 }
 
+.callout.callout-primary {
+  border-left-color: #007bff;
+}
+
+.callout a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.breadcrumb {
+  margin-bottom: 0;
+}
+
+.create-box {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-card {
+  width: 90%;
+}
+
+.custom-file-label::after {
+  content: 'Seleccionar...';
+}
+
+@media screen and (min-width: 576px) {
+  .create-card {
+    width: 60%;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .bar form {
     width: 50%;
+  }
+
+  .empty {
+    font-size: 2.3rem;
   }
 }

@@ -1,35 +1,46 @@
 @props(['payment'])
+@php
+  $details = [
+    'payment' => $payment->attributesToArray(),
+    'course' => $payment->enrollment->course->name,
+    'student' => $payment->enrollment->student->full_name,
+    'date' => $payment->updated_at->format(DF),  
+  ];
+  $statusColor = [
+    'Pendiente' => 'secondary', 
+    'Confirmado' => 'success', 
+    'Rechazado' => 'danger',
+  ];
+  $statusColor = $statusColor[$payment->status];
+  $user = auth()->user();
+@endphp
 
-<div class="callout callout-secondary mb-0">
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/pagos.css') }}">
+@endpush
+<div class="callout callout-{{ $statusColor }} mb-0">
   <h4 class="text-bold m-0"> 
-    {{ $payment->amount }}
+    {{ $payment->full_amount }}
   </h4>
   <p class="text-bold m-0">
     Referencia: 
     <span class="font-weight-normal">
-      {{ $payment->ref ?? 'N/A' }}
+      {{ $payment->ref ?? '----' }}
     </span>
   </p>
   <p class="text-bold m-0">
     Fecha: 
     <span class="font-weight-normal">
-      {{ $payment->updated_at }}
+      {{ $payment->updated_at->format(DF) }}
     </span>
   </p> 
   <div class="mb-2">
-    {{-- TODO -> esto toco arreglarlo a la machinberra por ahora --}}
-    @php
-      $payment->date = $payment->updated_at;
-      unset($payment->updated_at);
-    @endphp
-    <a href data-details="{{ json_encode([
-      'payment' => $payment,
-      'course' => $payment->inscription->course,
-      'student' => $payment->inscription->student
-    ]) }}">
+    <a href data-details="{{ json_encode($details) }}">
       Ver detalles
     </a>
   </div>
-  <x-payment.status-button :id="$payment->id" type="confirmed" color="success"/>
-  <x-payment.status-button :id="$payment->id" type="rejected" color="danger"/>
+  @can('role', 'Administrador')
+    <x-payment.status-button :id="$payment->id" value="Confirmado" />
+    <x-payment.status-button :id="$payment->id" value="Rechazado" color="danger"/>
+  @endcan
 </div>

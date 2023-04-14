@@ -1,15 +1,20 @@
+'use strict'
 function getDolarPrice() {
-  fetch('https://s3.amazonaws.com/dolartoday/data.json')
-    .then(data => data.json())
-    .then(json => {
+  const url = document.querySelector('#serialized').dataset.dolar
+
+  fetch(url)
+    .then(response => response.json())
+    .then(({ price }) => {
+      localStorage.setItem('usd-price', price)
+    })
+    .then(() => {
       console.log("i'll try to do my best <3")
-      localStorage.setItem('usd-price', json.USD.transferencia)
+      document.querySelector('.loading-container')?.remove()
+      document.querySelector('.hidden-section')?.classList?.remove('hidden-section')
     })
     .catch(err => {
       console.log(err)
-      if (!localStorage.getItem('usd-price')) {
-        getDolarPrice()
-      }
+      getDolarPrice()
     })
 }
 

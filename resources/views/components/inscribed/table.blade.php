@@ -1,4 +1,4 @@
-@props(['inscriptions', 'course'])
+@props(['enrollments', 'course'])
 
 <x-table>
   <x-slot name="header">
@@ -8,56 +8,50 @@
       <th>¿UPTA?</th>
       <th>Solvencia</th>
       <th>Cupo</th>
-      <th>¿Aprobado?</th>
+      <th>Aprobación</th>
       <th>Acciones</th>
     </tr>
   </x-slot>
   <x-slot name="body">
-    @foreach ($inscriptions as $inscription)
+    @foreach ($enrollments as $enrollment)
       @php
-        $student = $inscription->student;
+        $student = $enrollment->student;
       @endphp
       <x-row
         :data="[
             $student->full_name,
             $student->full_ci,
-            $student->is_upta,
-            $inscription->payment->status,
-            $inscription->status,
-            $inscription->approved,
+            $student->upta,
+            $enrollment->solvency,
+            $enrollment->status,
+            $enrollment->approval,
           ]"
-        :details="route('students.show', $student->id)"
       >
-        <x-slot name="extraActions">
-          @unless($inscription->status === 'Inscrito')
-          <form action="{{ route('inscriptions.confirmation', $inscription->id) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <x-button type="submit" class="btn-sm" color="success" icon="check">
-              Inscribir
-            </x-button>
-          </form>
-          @endunless
-          @unless($course->status !== 'Finalizado')
-            @php
-              $isApproved = isset($inscription->approved_at);
-              $color = $isApproved ? 'danger' : 'success';
-              $text = $isApproved ? 'Reprobar' : 'Aprobar';
-              $icon = $isApproved ? 'times' : 'check';
-            @endphp
-            <form action="{{ route('inscriptions.approval', $inscription->id) }}" method="POST">
+        <x-slot name="actions">
+          @can('enrollments.confirmation.update', $enrollment)
+            <form action="{{ route('enrollments.confirmation.update', $enrollment) }}" method="POST">
               @csrf
-              @method('PUT')
-              <x-button type="submit" class="btn-sm" color="{{ $color }}" icon="{{ $icon }}">
-                {{ $text }}
+              @method('PATCH')
+              <x-button type="submit" class="btn-sm" color="success" icon="check">
+                Inscribir
               </x-button>
             </form>
-          @endunless
+          @endcan
+          @can('enrollments.approval.update', $enrollment)
+            <x-inscribed.update-approval-buttons :enrollment="$enrollment"/>
+          @endcan
+          @can('view', $student)
+            <x-button :url="route('users.show', $student)" class="btn-sm" icon="eye">
+              Detalles
+            </x-button>
+          @endcan
         </x-slot>
       </x-row>
     @endforeach
   </x-slot>
   <x-slot name="pagination">
-    {{ $inscriptions->links() }}
+    <div class="pagination-container">
+      {{ $enrollments->links() }}
+    </div>
   </x-slot>
 </x-table>

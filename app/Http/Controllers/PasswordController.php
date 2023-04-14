@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password as PasswordRule;
 
 class PasswordController extends Controller
 {
@@ -16,7 +18,7 @@ class PasswordController extends Controller
     public function mail(Request $request)
     {
         $request->validate([
-            'email' => ['required', 'email']
+            'email' => ['required', 'email', 'min:6', 'max:50']
         ]);
         
         $status = Password::sendResetLink(
@@ -24,8 +26,9 @@ class PasswordController extends Controller
         );
         
         return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => $status])
-            : back()->withErrors(['email' => 'El email es incorrecto.']);
+            ? back()->with(['status' => $status])
+            : back()
+                ->withErrors(['invalid' => trans('passwords.user')]);
     }
         
     public function edit($token, $email) {
@@ -39,8 +42,8 @@ class PasswordController extends Controller
     {
         $request->validate([
             'token' => 'required',
-            'email' => ['required', 'email'],
-            'password' => ['required', 'min:8', 'max:20', 'confirmed']
+            'email' => ['required', 'email', 'min:6', 'max:50'],
+            'password' => ['required', 'max:20', 'confirmed', PasswordRule::defaults()],
         ]);
 
         $status = Password::reset(
@@ -58,6 +61,31 @@ class PasswordController extends Controller
         return $status === Password::PASSWORD_RESET
             ? redirect()->route('login')->with(['status' => $status])
             : back()
-                ->withErrors(['email' => 'Error en la recuperación de contraseña.']);
+                ->withErrors(['invalid' => trans('passwords.failure')]);
+    }
+
+    public function change() 
+    {
+        return view('password.change', [
+            'user' => Auth::user(),
+        ]);
+    }
+
+    public function update(Request $request) 
+    {
+        $user = Auth::user();
+
+        $data = $request->validate([
+            'current_password' => ['required', 'current_password', 'exclude'],
+            'password' => [
+                'required', 'max:20', 'confirmed',
+                PasswordRule::defaults()
+            ],
+        ]);
+
+        $user->update($data);
+
+        return redirect()->route('users.show', $user)
+            ->with('alert', trans('alerts.password.updated'));
     }
 }

@@ -10,8 +10,15 @@
         <h5 class="mb-2">{{ $course->name }}</h5>
         <p class="card-text">{{ $course->excerpt }}</p>
         <div class="d-flex justify-content-between align-items-center">
-          <x-button url="{{ route('market.show', $course->id) }}">Detalles</x-button>
-          <h4 class="text-success mb-0">{{ $course->total_price }} $</h4>
+          <x-button :url="route('courses.show', $course)">
+            Detalles
+          </x-button>
+          <div>
+            <h4 class="text-success mb-0 text-right">{{ $course->total_amount }}</h4>
+            @if ($course->hasReserv())
+              <h5 class="mb-0 h6">Reservación: {{ $course->reserv_amount }}</h5>
+            @endif
+          </div>
         </div>
       </div>
     </div>

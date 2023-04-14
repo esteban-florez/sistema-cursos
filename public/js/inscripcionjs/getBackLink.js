@@ -1,6 +1,5 @@
 function getBackLink() {
-  const form = document.querySelector('form[data-back]')
-  return form.dataset.back
+  return document.querySelector('#serialized').dataset.back
 }
 
-export default getBackLink;
+export default getBackLink

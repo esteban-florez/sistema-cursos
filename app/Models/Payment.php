@@ -4,61 +4,33 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Inscription;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Date;
+use App\Models\Shared\QueryScopes;
+use App\Services\ExchangeRate;
 
 class Payment extends Model
 {
-    use HasFactory, SoftDeletes;
-
-    public static $statuses = [
-        '' => 'Seleccionar',
-        'pending' => 'Pendiente',
-        'confirmed' => 'Confirmado',
-        'rejected' => 'Rechazado',
-    ];
-
-    public static $types = [
-        '' => 'Seleccionar',
-        'movil' => 'Pago Móvil',
-        'bs' => 'Efectivo (Bs.D.)',
-        'dollars' => 'Efectivo ($)',
-        'transfer' => 'Transferencia',
-    ];
+    use HasFactory, SoftDeletes, QueryScopes;
     
-    protected $guarded = ['id'];
+    protected $guarded = [];
     
-    public function inscription()
+    public function enrollment()
     {
-        return $this->belongsTo(Inscription::class);
+        return $this->belongsTo(Enrollment::class);
     }
 
-    public function getAmountAttribute($amount)
+    public function isOnline()
+    {
+        return payTypes()->take(2)->contains($this->type);
+    }
+    
+    public function getFullAmountAttribute()
     {
         $currency = $this->type === 'Efectivo ($)' ? '$' : 'Bs.D.';
+
+        $amount = number_format($this->amount, 2, ',', '.');
+
         return "{$amount} {$currency}";
-    }
-
-    public function getRefAttribute($ref)
-    {
-        return $ref ?? '----';
-    }
-
-    public function getTypeAttribute($type)
-    {
-        return static::$types[$type];
-    }
-
-    public function getStatusAttribute($status)
-    {
-        return static::$statuses[$status];
-    }
-
-    public function getUpdatedAtAttribute($date)
-    {
-        return Date::createFromFormat('Y-m-d H:i:s', $date)
-            ->format('d/m/Y');
     }
 
     public function scopeFilters($query, $filters)
@@ -66,19 +38,15 @@ class Payment extends Model
         return $query->when($filters, function ($query, $filters) {
             foreach($filters as $filter => $value) {
                 if ($filter === 'course_id') {
-                    $ids = Inscription::where('course_id', $value)
+                    $ids = Enrollment::where('course_id', $value)
                         ->pluck('id')
                         ->all();
                         
-                    $query->whereIn('inscription_id', $ids);
+                    $query->whereIn('enrollment_id', $ids);
                     continue;
                 }
-
-                if ($value === 'true') {
-                    $value = true;
-                } else if ($value === 'false') {
-                    $value = false; 
-                }
+                
+                $value = strToBool($value);
 
                 $query->where($filter, '=', $value);
             }
@@ -90,22 +58,49 @@ class Payment extends Model
     public function scopeSearch($query, $search)
     {
         return $query->when($search, function ($query, $search) {
-            // TODO -> también debe servir para cédula de extranjero
-            $id = Student::where('ci', (int) $search)
+            $id = User::students()
+                ->where('ci', (int) $search)
                 ->first()
                 ->id ?? 0;
             
-            $ids = Inscription::where('student_id', $id)
+            $ids = Enrollment::where('user_id', $id)
                 ->pluck('id')
                 ->all();
 
-            return $query->whereIn('inscription_id', $ids);
+            return $query->whereIn('enrollment_id', $ids);
         });
     }
 
-    public function scopeSort($query, $sortColumn)
+    public function scopeUnfulfilled($query)
     {
-        return $query->when($sortColumn, fn($query, $sortColumn) => 
-            $query->orderBy($sortColumn));
+        return $query->withoutGlobalScope('fulfilled')
+            ->where('fulfilled', false);
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope('fulfilled', function ($builder) {
+            $builder->where('fulfilled', true);
+        });
+    }
+
+    public static function incomes()
+    {
+        $rate = ExchangeRate::get();
+
+        $total = self::all()->reduce(function ($carry, $payment) use ($rate) {
+            $invalid = !$payment->fulfilled || 
+                $payment->status !== 'Confirmado';
+            
+            if ($invalid) return $carry;
+
+            $amount = $payment->type === 'Efectivo ($)' 
+                ? $payment->amount * $rate  
+                : $payment->amount; 
+
+            return $carry + $amount;
+        }, 0.0);
+
+        return number_format($total, 2, ',', '.');
     }
 }
