@@ -6,6 +6,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,5 +37,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Paginator::useBootstrap();
+
+        if(config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }
