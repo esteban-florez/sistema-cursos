@@ -1,8 +1,8 @@
 @props(['payments', 'user', 'courses', 'clubs', 'students', 'incomes'])
 
 @can('role', ['Instructor', 'Estudiante'])
-  <div class="row">
-    @if ($payments->isNotEmpty())
+  @if ($payments->isNotEmpty())
+    <div class="row">
       <div class="col-12 col-lg-6">
         <x-home.card color="dark" col="12" title="Cuotas restantes" :url="route('unfulfilled-payments.index', ['user' => $user])">
           @foreach ($payments as $payment)
@@ -10,27 +10,8 @@
           @endforeach
         </x-home.card>
       </div>
-      <div class="col-6 d-lg-inline-block d-none">
-        <div class="card w-100 mb-2">
-          <div class="bienvenido my-2">
-            <h4 class="text-center mt-2">¡Hola {{ $user->full_name }}!</h4>
-          </div>
-        </div>
-        <x-time hideHour='lg'/>
-      </div>
-    @else
-      <div class="col-6 d-lg-inline-block d-none">
-        <div class="card w-100 mb-3">
-          <div class="bienvenido">
-            <h4 class="text-center mt-2">¡Hola {{ $user->full_name }}!</h4>
-          </div>
-        </div>
-      </div>
-      <div class="col-6">
-        <x-time hideHour='lg'/>
-      </div>
-    @endif
-  </div>
+    </div>
+  @endif
 @endcan
 @can('role', 'Administrador')
   <div class="row mt-3">
@@ -46,7 +27,6 @@
       </x-home.card>
     </div>
     <div class="col-md-5">
-      <x-time hideHour='md'/>
       <x-home.card col="12" aling="left" title="Estadísticas" :url="route('stats')">
         <x-home.card-stadistic :students="$students" :incomes="$incomes" />
       </x-home.card>

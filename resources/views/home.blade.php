@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
   @endpush
   <section class="container-fluid px-sm-4">
-    <x-home 
+    <x-home
       :payments="$payments"
       :user="$user"
       :courses="$courses"
