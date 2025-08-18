@@ -29,7 +29,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->date('birth');
-            $table->boolean('is_upta')->default(false);
             $table->enum('role', roles(true)->all())->default('Estudiante');
             $table->timestamps();
             // Student fields

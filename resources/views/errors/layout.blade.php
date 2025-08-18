@@ -1,5 +1,5 @@
 {{-- TODO -> Arreglarlo xd, ya lo hice así y no lo queria eliminar --}}
-<title>@yield('title') | Departamento de Vinculación Social</title>
+<title>@yield('title') | Sistema de Cursos y Clubes Universitarios</title>
 <x-layout.app-alt title="">
   @push('css')
     <link rel="stylesheet" href="{{ asset('css/errors.css') }}">

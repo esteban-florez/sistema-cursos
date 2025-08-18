@@ -32,7 +32,7 @@ class Backup
         File::deleteDirectory($publicBackup);
         
         $sql = File::get(
-            storage_path('app/backup-temp/db-dumps/mysql-vinculacion_social.sql')
+            storage_path('app/backup-temp/db-dumps/mysql-cursos.sql')
         );
         
         Artisan::call('db:wipe');

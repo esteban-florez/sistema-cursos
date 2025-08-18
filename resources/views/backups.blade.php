@@ -13,7 +13,7 @@
       <div class="col-md-4">
         <div class="card mt-2">
           <div class="card-body">
-            <h2>Vinculación Social</h2>
+            <h2>Sistema de Cursos</h2>
             <p class="alert alert-info">
               <b>Nota:</b>
               Los respaldos de la base de datos están programados para realizarse de forma automática todos los días a la 1:00 AM.

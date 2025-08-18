@@ -7,7 +7,6 @@
       <x-layout.header/>
       <x-layout.sidebar/>
       {{ $slot }}
-      <x-layout.footer/>
     </div>
     <x-layout.info-modal/>
     {{ $extra ?? '' }}

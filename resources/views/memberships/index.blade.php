@@ -33,7 +33,6 @@
             <tr>
               <th>Nombre</th>
               <th>Cédula</th>
-              <th>¿UPTA?</th>
               <th>Acciones</th>
             </tr>
           </x-slot>
@@ -46,7 +45,6 @@
                 :data="[
                     $student->full_name,
                     $student->full_ci,
-                    $student->upta,
                   ]"
               >
                 <x-slot name="actions">

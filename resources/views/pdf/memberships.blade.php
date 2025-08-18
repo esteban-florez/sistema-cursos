@@ -15,7 +15,6 @@
       <tr>
         <th>Nombre</th>
         <th>Cédula</th>
-        <th>¿UPTA?</th>
       </tr>
     </thead>
     <tbody>
@@ -26,7 +25,6 @@
         <tr>
           <td>{{ $student->full_name }}</td>
           <td>{{ $student->full_ci }}</td>
-          <td>{{ $student->upta }}</td>
         </tr>
       @endforeach
     </tbody>

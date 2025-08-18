@@ -27,13 +27,13 @@
           </div>
           <div class="card-body pt-3">
             @can('pdf.enrollment', $enrollment)
-              <div class="card-text text-justify mb-3">Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la UPTA en La Victoria.</div>
+              <div class="card-text text-justify mb-3">Para formalizar su inscripción debe descargar la Planilla de Inscripción haciendo click en el botón de abajo, y llevarla hasta la sede de la universidad.</div>
               <x-button color="success" :url="route('pdf.enrollment', $enrollment)" icon="file-download" class="btn-block mt-2">
                 Planilla de Inscripción
               </x-button>
             @endcan
             @can('pdf.certificate', $enrollment)
-              <div class="card-text text-justify p-2">Felicitaciones por su excelente trabajo. Descargue el certificado haciendo click en el botón de abajo, y llevarlo hasta la sede de la UPTA en La Victoria.</div>
+              <div class="card-text text-justify p-2">Felicitaciones por su excelente trabajo. Descargue el certificado haciendo click en el botón de abajo, y llevarlo hasta la sede de la universidad.</div>
               <x-button color="secondary" :url="route('pdf.certificate', $enrollment)" icon="download" class="btn-block mt-2">
                 Certificado
               </x-button>

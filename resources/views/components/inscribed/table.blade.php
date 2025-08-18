@@ -5,7 +5,6 @@
     <tr>
       <th>Nombre</th>
       <th>Cédula</th>
-      <th>¿UPTA?</th>
       <th>Solvencia</th>
       <th>Cupo</th>
       <th>Aprobación</th>
@@ -21,7 +20,6 @@
         :data="[
             $student->full_name,
             $student->full_ci,
-            $student->upta,
             $enrollment->solvency,
             $enrollment->status,
             $enrollment->approval,

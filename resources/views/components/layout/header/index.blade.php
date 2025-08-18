@@ -6,10 +6,10 @@
       </a>
     </li>
     <li class="nav-item">
-      <span class="d-none d-sm-inline-block h5 m-0">Departamento de Vinculación Social</span>
+      <span class="d-none d-sm-inline-block h5 m-0">Sistema de Cursos y Clubes Universitarios</span>
     </li>
   </ul>
-  <img src="{{ asset('img/logo-upta.png') }}" alt="Logo de la UPTA" class="brand-image footer-img d-sm-none"
+  <img src="{{ asset('img/logo.png') }}" alt="Logo de la aplicación" class="brand-image footer-img d-sm-none"
     height="35">
   <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">

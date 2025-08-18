@@ -14,7 +14,7 @@
   
       <p>Por haber <span class="bold">APROBADO</span> el curso:</p>
       <h2 class="bold course">"{{ $course->name }}"</h2>
-      <p>La Victoria, Estado Aragua, desde el {{ spanishDate($course->start_course) }} al {{ spanishDate($course->end_course) }}.</p>
+      <p>Desde el {{ spanishDate($course->start_course) }} al {{ spanishDate($course->end_course) }}.</p>
       <p>Duración: {{ $course->duration }} horas académicas.</p>
     </section>
     <table>
@@ -22,8 +22,8 @@
         <td>
           <div>
             ____________________
-            <p class="bold-italic small">Ing. Edeblangel Vanegas</p>
-            <p class="bold-italic small">Jefe del Departamento de Vinculación Social</p>
+            <p class="bold-italic small">Ing. Mario Villegas</p>
+            <p class="bold-italic small">Jefe del Departamento de la Carrera</p>
           </div>
         </td>
         @if($course->area->pnf->name === 'Extensión Universitaria')
@@ -33,8 +33,8 @@
           <td>
             <div>
               ____________________
-              <p class="bold-italic small">Dra. Bettys Muñoz</p>
-              <p class="bold-italic small">Rectora de la UPTA La Victoria</p>
+              <p class="bold-italic small">Dra. Luisa Díaz</p>
+              <p class="bold-italic small">Rectora de la Universidad</p>
             </div>
           </td>
         @endif

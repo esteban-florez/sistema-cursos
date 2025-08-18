@@ -16,7 +16,6 @@
       <tr>
         <th>Nombre</th>
         <th>Cédula</th>
-        <th>¿UPTA?</th>
         <th>Solvencia</th>
         <th>Cupo</th>
         <th>Aprobación</th>
@@ -30,7 +29,6 @@
         <tr>
           <td>{{ $student->full_name }}</td>
           <td>{{ $student->full_ci }}</td>
-          <td>{{ $student->upta }}</td>
           <td>{{ $enrollment->solvency }}</td>
           <td>{{ $enrollment->status }}</td>
           <td>{{ $enrollment->approval }}</td>

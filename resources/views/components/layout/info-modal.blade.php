@@ -8,28 +8,28 @@
   <h5>Redes Sociales: </h5>
   <ul class="d-flex list-unstyled">
     <li class="mr-3">
-      <a href="https://www.facebook.com/uptaragua.oficial" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-facebook"></i>
         Facebook
       </a>
     </li>
     <li class="mr-3">
-      <a href="https://twitter.com/uptaragua" target="_blank" rel="noopener noreferrer">
+      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-twitter"></i>
         Twitter
       </a>
     </li>
     <li class="mr-3">
-      <a href="https://www.instagram.com/cursosuptaraguafbf/" target="_blank" rel="noopener noreferrer">
+      <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-instagram"></i>
         Instagram
       </a>
     </li>
   </ul>
   <h5>Contacto: </h5>
-  <p>04XX-XXX-XXXX - correoupta@example.com</p>
+  <p>04XX-XXX-XXXX - contacto@example.com</p>
   <x-slot name="footer">
-    <span class="float-left">UPTA "Federico Brito Figueroa" | 2022</span>
+    <span class="float-left">Sistema de Cursos y Clubes Universitarios | 2022</span>
     <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
   </x-slot>
 </x-modal>

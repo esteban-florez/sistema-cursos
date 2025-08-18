@@ -16,9 +16,6 @@
     <x-slot name="filtersCollapse">
       <x-filters-collapse>
         <x-slot name="filters">
-          <x-select :options="['true' => 'Sí', 'false' => 'No']" id="isUpta" name="filters|is_upta" :selected="$filters['is_upta'] ?? null">
-            ¿UPTA?
-          </x-select>
           <x-select :options="roles()->pairs()" id="role" name="filters|role" :selected="$filters['role'] ?? null">
             Rol:
           </x-select>
@@ -38,7 +35,6 @@
           <th>Cédula</th>
           <th>Teléfono</th>
           <th>Correo</th>
-          <th>¿UPTA?</th>
           <th>Rol</th>
           <th>Acciones</th>
         </x-slot>
@@ -49,7 +45,6 @@
               $user->full_ci,
               $user->tel,
               $user->email,
-              $user->upta,
               $user->role,
               ]"
             >

@@ -53,7 +53,7 @@
     </tbody>
   </table>
   <section>
-    <p class="note">Nota: Esta planilla debe ser llevada antes del {{ $expires }} al Departamento de Vinculación Social en la UPTA La Victoria, para confirmar la inscripción. </p>
+    <p class="note">Nota: Esta planilla debe ser llevada antes del {{ $expires }} a la universidad, para confirmar la inscripción. </p>
   </section>
   <x-pdf.footer />
 </body>

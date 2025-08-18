@@ -127,11 +127,6 @@ class User extends Authenticatable
         return "{$this->first_name} {$this->first_lastname}";
     }
 
-    public function getUptaAttribute()
-    {
-        return $this->is_upta ? 'Sí' : 'No';
-    }
-
     public function getAgeAttribute()
     {
         return now()->year - $this->birth->year;

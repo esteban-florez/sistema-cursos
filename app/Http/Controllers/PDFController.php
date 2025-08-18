@@ -55,7 +55,7 @@ class PDFController extends Controller
         
         return $this->generatePDF([
             'view' => 'payments',
-            'filename' => 'Reporte de Pagos - Vinculación Social.pdf',
+            'filename' => 'Reporte de Pagos - Sistema de Cursos.pdf',
             'payments' => $payments,
         ]);
     }
@@ -71,7 +71,7 @@ class PDFController extends Controller
         
         return $this->generatePDF([
             'view' => 'items',
-            'filename' => 'Estado de Inventario - Vinculación Social.pdf',
+            'filename' => 'Estado de Inventario - Sistema de Cursos.pdf',
             'items' => $items,
         ]);
     }
@@ -112,7 +112,7 @@ class PDFController extends Controller
     {
         $options['landscape'] = $options['landscape'] ?? true;
         $options['date'] = now()->format(DF);
-        $options['logo'] = base64('img/logo-upta.png');
+        $options['logo'] = base64('img/logo.png');
         $filename = $options['filename'];
 
         $data = collect($options)

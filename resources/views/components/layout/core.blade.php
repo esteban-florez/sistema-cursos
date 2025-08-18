@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
-    {{ $title }} | Departamento de Vinculación Social
+    {{ $title }} | Sistema de Cursos y Clubes
   </title>
   <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
   @stack('css-plugins')
