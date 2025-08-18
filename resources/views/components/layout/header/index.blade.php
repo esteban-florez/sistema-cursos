@@ -24,9 +24,9 @@
       <x-layout.header.dropdown/>
     </li>
     <li class="nav-item">
-      <a class="nav-link" role="button" data-toggle="modal" data-target="#infoModal">
+      <a class="nav-link" role="button" data-toggle="modal" data-target="#info-modal">
         <i class="fas fa-info-circle mr-1"></i>
-        <span class="d-none d-md-inline">Contáctanos</span>
+        <span class="d-none d-md-inline">Acerca de</span>
       </a>
     </li>
   </ul>

@@ -1,35 +1,16 @@
-<x-modal id="infoModal">
+<x-modal id="info-modal">
   <x-slot name="header">
-    <h4 class="modal-title">Contáctanos</h4>
+    <h4 class="modal-title">Acerca de</h4>
     <button type="button" class="close" data-dismiss="modal">
       <span class="text-white">&times;</span>
     </button>
   </x-slot>
-  <h5>Redes Sociales: </h5>
-  <ul class="d-flex list-unstyled">
-    <li class="mr-3">
-      <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-facebook"></i>
-        Facebook
-      </a>
-    </li>
-    <li class="mr-3">
-      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-twitter"></i>
-        Twitter
-      </a>
-    </li>
-    <li class="mr-3">
-      <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-instagram"></i>
-        Instagram
-      </a>
-    </li>
-  </ul>
-  <h5>Contacto: </h5>
-  <p>04XX-XXX-XXXX - contacto@example.com</p>
-  <x-slot name="footer">
-    <span class="float-left">Sistema de Cursos y Clubes Universitarios | 2022</span>
-    <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
-  </x-slot>
+  <p>
+    Este sitio contiene una demo del <a href="https://github.com/esteban-florez/sistema-cursos" rel="noopener noreferrer" target="_blank">Sistema de Cursos y Clubes Universitarios</a>, desarrollado como proyecto universitario por <a href="https://portfolio-esteban-florez-projects.vercel.app" rel="noopener noreferrer" target="_blank">Esteban Florez</a>, <a href="https://github.com/MariYaqueno" rel="noopener noreferrer" target="_blank">Myriam Yaqueno</a> y <a href="https://github.com/angelabache10" rel="noopener noreferrer" target="_blank">Angélica Abache</a>.
+  </p>
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-primary ml-auto" data-dismiss="modal">
+      Aceptar
+    </button>
+  </div>
 </x-modal>

@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    public function create() {
-        return view('login');
+    public function create(Request $request) {
+        $hide = Cookie::get('hide-demo-modal');
+
+        return response()
+            ->view('login', ['modal' => !$hide])
+            ->cookie('hide-demo-modal', 'true');
     }
 
     public function store(Request $request)
