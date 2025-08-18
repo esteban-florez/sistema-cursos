@@ -1,6 +1,6 @@
-# Departamento de Vinculación Social
+# Sistema de Cursos y Clubes Universitarios
 
-Este es un componente web para la gestión de los procesos administrativos del Departamento de Vinculación Social en la UPTA La Victoria.
+Este es un sistema web para la gestión de cursos y clubes universitarios. Es un proyecto universitario realizado por [Esteban Florez](https://github.com/esteban-florez), [Myriam Yaqueno](https://github.com/MariYaqueno) y [Angélica Abache](https://github.com/angelabache10).
 
 ### Tecnologías usadas:
 
