@@ -20,8 +20,8 @@
 }
 
 .logo-container {
-  height: 90px;
-  width: 90px;
+  height: 60px;
+  width: 60px;
   display: grid;
   place-items: center;
   margin: 0 auto;
