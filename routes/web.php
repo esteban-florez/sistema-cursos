@@ -55,7 +55,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('guest')->group(function () {
-    Route::redirect('/', 'login');
+    Route::redirect('/', env('APP_ROUTE_PREFIX', '') . '/login');
 
     // Auth routes
     Route::controller(AuthController::class)->group(function () {
