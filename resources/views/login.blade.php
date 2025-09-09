@@ -27,7 +27,7 @@
             </div>
             @enderror
             <p class="font-weight-bold text-black text-center text-sm mb-0">
-              Esta es aplicación una demo, selecciona un usuario de prueba para iniciar sesión.
+              Esta aplicación es una demo, selecciona un usuario de prueba para iniciar sesión.
             </p>
             <div class="form-check px-4 mt-1">
               <input class="form-check-input" type="radio" name="creds" id="admin" value="admin">
