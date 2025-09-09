@@ -38,8 +38,12 @@ class AppServiceProvider extends ServiceProvider
 
         Paginator::useBootstrap();
 
-        if(config('app.env') === 'production') {
+        if (config('app.env') === 'production') {
             URL::forceScheme('https');
+        }
+
+        if (config('app.url') === 'https://estebanflorez.com/sistema-cursos') {
+            URL::forceRootUrl(config('app.url'));
         }
     }
 }
